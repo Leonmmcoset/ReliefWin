@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Rundown protection: keeping an object alive while it is in use
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

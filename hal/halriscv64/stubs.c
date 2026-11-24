@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT HAL
+ * PROJECT:     ReliefWin HAL
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF
  * PURPOSE:     Explicit unavailable RISC-V platform services
@@ -9,8 +9,8 @@
 #include <arc/arc.h>
 #include <ndk/halfuncs.h>
 #include <ndk/iofuncs.h>
-#include <libernt/hal/acpi_pci.h>
-#include <libernt/hal/msi.h>
+#include <reliefwin/hal/acpi_pci.h>
+#include <reliefwin/hal/msi.h>
 #include "halp.h"
 
 /* Private kernel/HAL imports, not a stable third-party driver interface. */

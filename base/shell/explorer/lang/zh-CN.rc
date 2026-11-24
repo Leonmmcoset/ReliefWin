@@ -120,7 +120,7 @@ EXSTYLE WS_EX_CONTEXTHELP
 CAPTION "自定义通知"
 FONT 9, "宋体"
 BEGIN
-    LTEXT            "LiberNT 显示活动和紧急通知的图标，并隐藏不活动的通知。 您可以更改以下列表中的项目的此行为。", IDC_STATIC, 6, 6, 220, 30
+    LTEXT            "ReliefWin 显示活动和紧急通知的图标，并隐藏不活动的通知。 您可以更改以下列表中的项目的此行为。", IDC_STATIC, 6, 6, 220, 30
     LTEXT            "选择一个项目，然后选择它的通知行为：", IDC_STATIC, 6, 40, 220, 10
     CONTROL          "", IDC_NOTIFICATION_LIST, "SysListView32", WS_CLIPSIBLINGS | WS_BORDER | 0x00008005, 6, 50, 220, 128
     COMBOBOX         IDC_NOTIFICATION_BEHAVIOUR, 103, 178, 78, 200, CBS_DROPDOWNLIST | NOT WS_VISIBLE | WS_CLIPSIBLINGS
@@ -218,4 +218,30 @@ BEGIN
     IDS_TRAYWND_UNDO_CASCADE "撤销层叠(&U)"
     IDS_TRAYWND_UNDO_TILE "撤销平铺(&U)"
     IDS_TRAYDESKBTN_TOOLTIP "Show Desktop/Windows"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_SM2_SHUTDOWN "关机"
+    IDS_SM2_RESTART "重新启动"
+    IDS_SM2_LOGOFF "注销"
+    IDS_SM2_LOCK "锁定"
+    IDS_SM2_SLEEP "睡眠"
+    IDS_SM2_HIBERNATE "休眠"
+    IDS_SM2_ERROR "无法完成此操作（错误 %lu）。"
+    IDS_SM2_DOCUMENTS "文档"
+    IDS_SM2_PICTURES "图片"
+    IDS_SM2_MUSIC "音乐"
+    IDS_SM2_GAMES "游戏"
+    IDS_SM2_COMPUTER "计算机"
+    IDS_SM2_SETTINGS "设置"
+    IDS_SM2_DEVICES "设备"
+    IDS_SM2_ASSIST "网络协助"
+    IDS_SM2_ALLPROGRAMS "所有程序"
+    IDS_SM2_BACK "返回"
+    IDS_SM2_NOMATCH "没有与搜索条件匹配的项目。"
+    IDS_SM2_RENAME "重命名"
+    IDS_SM2_RENAME_FAILED "无法重命名此项目。"
+    IDS_SM2_REMOVE "从此列表中删除"
+    IDS_SM2_SEARCH "搜索程序和文件"
 END

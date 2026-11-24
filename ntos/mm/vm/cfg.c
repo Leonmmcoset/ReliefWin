@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-only (https://spdx.org/licenses/GPL-3.0-only)
  * PURPOSE:     Process control flow guard bitmap backing
  * COPYRIGHT:   Copyright 2026 LiberNT contributors

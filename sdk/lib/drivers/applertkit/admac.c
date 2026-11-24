@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Apple RTKit Library
+ * PROJECT:     ReliefWin Apple RTKit Library
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Apple silicon audio DMA controller (ADMAC)
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -8,8 +8,8 @@
 #ifndef UNIT_TEST
 #include <ntddk.h>
 #endif
-#include <libernt/drivers/applepmgr.h>
-#include <libernt/drivers/appleadmac.h>
+#include <reliefwin/drivers/applepmgr.h>
+#include <reliefwin/drivers/appleadmac.h>
 
 #define ADMAC_MAX_CHANNELS          64
 #define ADMAC_INTERRUPT_OUTPUTS     4

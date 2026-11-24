@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Desktop Window Manager
+ * PROJECT:     ReliefWin Desktop Window Manager
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Composition-engine module boundary
@@ -10,7 +10,7 @@
 #include <objbase.h>
 #include <dxgiformat.h>
 #include <wincodec.h>
-#include <libernt/dwmcore.h>
+#include <reliefwin/dwmcore.h>
 
 #define DWM_CONNECTION_MAGIC 0x434C494Du /* 'MILC' */
 #define DWM_E_ENGINE_NOT_INITIALIZED ((HRESULT)0x8000000EL)

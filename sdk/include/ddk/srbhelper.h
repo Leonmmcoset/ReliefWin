@@ -1418,7 +1418,7 @@ SrbSetPortContext(
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 BOOLEAN SrbContainsScsiCdb(PSTORAGE_REQUEST_BLOCK Srb);
 PVOID SrbGetDataBufferEx(PSTORAGE_REQUEST_BLOCK SrbEx, PULONG DataTransferLength);
 

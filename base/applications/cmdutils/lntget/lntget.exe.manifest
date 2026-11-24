@@ -7,7 +7,7 @@
     processorArchitecture="*"
     version="1.0.0.0"
     type="win32"/>
-<description>lntget package manager</description>
+<description>ReliefWin Package Manager</description>
 <dependency>
     <dependentAssembly>
         <assemblyIdentity

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Non-temporal prefetch hint, a no-op where no prefetch is wired up
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel-Mode Test Suite
+ * PROJECT:     ReliefWin Kernel-Mode Test Suite
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test kernel BCrypt key pairs, public key exports, ECDH secret agreement and key derivation
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

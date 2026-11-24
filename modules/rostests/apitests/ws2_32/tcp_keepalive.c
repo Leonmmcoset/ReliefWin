@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test the TCP_KEEPALIVE, TCP_KEEPINTVL and TCP_KEEPCNT socket options: defaults, limits, sizes and socket types
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

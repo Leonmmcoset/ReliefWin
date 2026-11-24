@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Boot Loader
+ * PROJECT:     ReliefWin Boot Loader
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Startup settings chosen from the boot menu
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -25,14 +25,14 @@ static PCSTR BmStartupNames[] =
 
 static PCSTR BmStartupDescriptions[] =
 {
-    "Starts LiberNT with the kernel debugger. The log shows on the screen and goes to a log file, "
+    "Starts ReliefWin with the kernel debugger. The log shows on the screen and goes to a log file, "
     "the serial port and the network cable without encryption. A debugger at the other end can "
-    "read it and break in. LiberNT maintainers have one.",
-    "Like Debugging but LiberNT only opens the disk it starts from. Other disks stay offline and "
+    "read it and break in. ReliefWin maintainers have one.",
+    "Like Debugging but ReliefWin only opens the disk it starts from. Other disks stay offline and "
     "read-only even if you plug them in later. Nothing on them can be read or changed. When "
-    "LiberNT runs from memory it opens no disk at all.",
+    "ReliefWin runs from memory it opens no disk at all.",
 #ifdef REMOTE_ASSISTANCE
-    "Lets a LiberNT maintainer connect to this computer to help you. The debugger joins the "
+    "Lets a ReliefWin maintainer connect to this computer to help you. The debugger joins the "
     "network and opens an encrypted session. The key to join it shows on the screen. Anyone "
     "with the key controls this PC. Give it only to a maintainer."
 #endif

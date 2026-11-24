@@ -1,12 +1,12 @@
 /*
- * PROJECT:     LiberNT SpacemiT K1 Network Kernel Debugger Extension
+ * PROJECT:     ReliefWin SpacemiT K1 Network Kernel Debugger Extension
  * LICENSE:     GPL-2.0-or-later (https://spdx.org/licenses/GPL-2.0-or-later)
  * PURPOSE:     Polled driver for the SpacemiT K1 EMAC
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
  */
 
 #include "kdk1x.h"
-#include <libernt/fdtlib.h>
+#include <reliefwin/fdtlib.h>
 
 #define K1X_RING_PAGES          2
 #define K1X_MDIO_WAIT           1000

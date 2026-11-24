@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT WDDM DirectX Graphics Kernel
+ * PROJECT:     ReliefWin WDDM DirectX Graphics Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     WDDM display device registration for win32ss integration
  * COPYRIGHT:   Copyright 2024-2025 LiberNT WDDM Team
@@ -45,10 +45,10 @@
 #include <ndk/inbvfuncs.h>
 #include <ntstrsafe.h>
 /* IOCTL_VIDEO_DXGK_* present-path contract, shared with cdd/win32k. */
-#include <libernt/dwmframe.h>
-#include <libernt/rddm/rxgkpresent.h>
-#include <libernt/rddm/rxgkadvcolor.h>
-#include <libernt/rddm/rxgktarget.h>
+#include <reliefwin/dwmframe.h>
+#include <reliefwin/rddm/rxgkpresent.h>
+#include <reliefwin/rddm/rxgkadvcolor.h>
+#include <reliefwin/rddm/rxgktarget.h>
 
 /* TAG_DXGK_DISPLAY is now in dxgkrnl_private.h */
 
@@ -6290,7 +6290,7 @@ DxgkDisplayRegister(
         }
         if (g_DisplayAdapter != NULL || !DxgkpDisplayDesktopDetached())
         {
-            DXGKRNL_ERR("DxgkDisplayRegister: the ReactOS display bridge already belongs to adapter %p\n", g_DisplayAdapter);
+            DXGKRNL_ERR("DxgkDisplayRegister: the ReliefWin display bridge already belongs to adapter %p\n", g_DisplayAdapter);
             return STATUS_NOT_SUPPORTED;
         }
         Adopted = TRUE;

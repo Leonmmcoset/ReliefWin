@@ -1,11 +1,11 @@
 /*
- * PROJECT:     LiberNT kernel-mode tests
+ * PROJECT:     ReliefWin kernel-mode tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     dxgmms2 logical context-stream ordering contract tests
  */
 
 #include <kmt_test.h>
-#include <libernt/drivers/directx/dxgmms2.h>
+#include <reliefwin/drivers/directx/dxgmms2.h>
 #include "context_stream_core.h"
 
 static VOID InitializeCreateInfo(_Out_ PDXGMMS2_CREATE_CONTEXT_STREAM_INFO_V1 Info, _In_ ULONG NodeOrdinal, _In_ ULONG QueueDepth)

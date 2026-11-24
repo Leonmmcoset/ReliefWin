@@ -1,5 +1,5 @@
 #include <windef.h>
-#include <libernt/debug.h>
+#include <reliefwin/debug.h>
 
 typedef PVOID PREADERMODEINFO;
 

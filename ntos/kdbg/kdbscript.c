@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Commands that run other commands, and the transcript
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -175,7 +175,7 @@ KdbpCmdVersion(
     UNREFERENCED_PARAMETER(Argc);
     UNREFERENCED_PARAMETER(Argv);
 
-    KdbpPrint("LiberNT %lu.%lu build %lu, kernel at %p, %u processors, debugger on processor %lu\n",
+    KdbpPrint("ReliefWin %lu.%lu build %lu, kernel at %p, %u processors, debugger on processor %lu\n",
               NtMajorVersion,
               NtMinorVersion,
               NtBuildNumber & 0xFFFF,

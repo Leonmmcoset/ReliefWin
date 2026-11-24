@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT SpacemiT K1 display miniport
+ * PROJECT:     ReliefWin SpacemiT K1 display miniport
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     K1 display controller planes and PowerVR GPU hosted by the software GPU engine
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include <libernt/powervr_umd.h>
+#include <reliefwin/powervr_umd.h>
 
 #include "glue/powervr_glue.h"
 #include "pvr_k1.h"

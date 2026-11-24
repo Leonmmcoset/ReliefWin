@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT kernel-mode tests
+ * PROJECT:     ReliefWin kernel-mode tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     The kernel log reaches the file DEBUGPORT=FILE: names, or lastboot.log at the boot volume root, and a shutdown leaves it at its exact length
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

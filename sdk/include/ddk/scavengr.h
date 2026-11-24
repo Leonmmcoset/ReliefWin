@@ -188,7 +188,7 @@ typedef enum _RX_SCAVENGER_ENTRY_STATE {
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 void NTAPI RxTerminateScavenging(PRX_CONTEXT RxContext);
 
 #ifdef __cplusplus

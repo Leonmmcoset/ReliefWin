@@ -1852,7 +1852,7 @@ extern "C" {
 
 void WINAPI WinHttpFreeProxySettings(WINHTTP_PROXY_SETTINGS *pWinHttpProxySettings);
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 WINHTTPAPI DWORD WINAPI WinHttpAddRequestHeadersEx(HINTERNET hRequest, DWORD dwModifiers, ULONGLONG ullFlags, ULONGLONG ullExtra, DWORD cHeaders, WINHTTP_EXTENDED_HEADER *pHeaders);
 WINHTTPAPI DWORD WINAPI WinHttpFreeProxySettingsEx(WINHTTP_PROXY_SETTINGS_TYPE ProxySettingsType, PVOID pProxySettingsEx);
 WINHTTPAPI void WINAPI WinHttpFreeQueryConnectionGroupResult(WINHTTP_QUERY_CONNECTION_GROUP_RESULT *pResult);

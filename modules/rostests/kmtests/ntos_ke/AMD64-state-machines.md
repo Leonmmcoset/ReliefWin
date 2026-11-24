@@ -30,7 +30,7 @@ The new test is user-mode and exercises only observable API contracts. It does
 not inspect private Windows structures or establish correctness of internal
 locking, scheduling, memory ordering, or architecture-specific transitions.
 The AMD64 Windows baseline is host build 29683. The same binary passed in a
-four-vCPU LiberNT AMD64 KVM snapshot. Both runs completed 85 checks with no
+four-vCPU ReliefWin AMD64 KVM snapshot. Both runs completed 85 checks with no
 failures or skips. These observations do not cover other builds, architectures,
 privilege contexts, or concurrent interleavings.
 
@@ -38,7 +38,7 @@ privilege contexts, or concurrent interleavings.
 
 `apitests/ntdll/NtKeHandoff.c` performs 512 signal-and-wait handoffs on one
 CPU and 512 across two CPUs. The same AMD64 binary passed all 20 checks on
-the Windows host (build 29683) and in the four-vCPU LiberNT snapshot. This
+the Windows host (build 29683) and in the four-vCPU ReliefWin snapshot. This
 observes progress and acknowledgements, not internal ready-queue transitions,
 and does not prove that the early self-wake window was reached.
 The existing `apitests/kernel32/SuspendThread.c` test also passed the same
@@ -49,9 +49,9 @@ particular kernel APC implementation.
 `ntos_ke/KeApcDpcTransitions.c` tests special kernel APC insertion, duplicate
 rejection, removal, reinsertion and delivery (9 checks), and normal DPC
 insertion, duplicate rejection, argument preservation, removal, reinsertion and
-delivery (17 checks). Both tests passed in the LiberNT AMD64 snapshot. They
+delivery (17 checks). Both tests passed in the ReliefWin AMD64 snapshot. They
 have not been run on Windows: the full kernel test driver and private APC ABI
-have not been validated against the host's Windows build, so a LiberNT pass
+have not been validated against the host's Windows build, so a ReliefWin pass
 is not evidence that loading it on the host is safe.
 
 Microsoft documents that a queued DPC cannot be queued a second time and that

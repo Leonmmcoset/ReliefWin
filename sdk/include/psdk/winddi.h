@@ -4483,7 +4483,7 @@ struct tagDEVINFO
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 BOOL WINAPI DrvSurfaceComplete(DHPDEV dhpdev, HANDLE hLogicalSurface);
 BOOL APIENTRY EngAcquireSemaphoreSharedNoWait(HSEMAPHORE hsem);
 BOOL WINAPI EngFntCacheFlush(PVOID OffsetBuffer, BOOL DiscardContent);

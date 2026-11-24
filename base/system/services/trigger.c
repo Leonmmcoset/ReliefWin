@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Service Control Manager
+ * PROJECT:     ReliefWin Service Control Manager
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Service trigger configuration (SERVICE_CONFIG_TRIGGER_INFO)
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arifing193@gmail.com>

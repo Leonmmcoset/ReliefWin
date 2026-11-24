@@ -15,7 +15,7 @@
 
 #include <rtl.h>
 #include <heap.h>
-#include <libernt/verifier.h>
+#include <reliefwin/verifier.h>
 
 #define NDEBUG
 #include <debug.h>

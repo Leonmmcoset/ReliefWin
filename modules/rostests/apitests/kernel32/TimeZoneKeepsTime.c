@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test that changing the time zone keeps the system time and moves only the local time
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -91,8 +91,8 @@ START_TEST(TimeZoneKeepsTime)
     Bias = (Original.Bias > 0) ? Original.Bias - 300 : Original.Bias + 300;
     ZeroMemory(&Zone, sizeof(Zone));
     Zone.Bias = Bias;
-    lstrcpyW(Zone.StandardName, L"LiberNT Test Standard Time");
-    lstrcpyW(Zone.DaylightName, L"LiberNT Test Daylight Time");
+    lstrcpyW(Zone.StandardName, L"ReliefWin Test Standard Time");
+    lstrcpyW(Zone.DaylightName, L"ReliefWin Test Daylight Time");
 
     GetSystemTimeAsFileTime(&Before);
     ok(SetTimeZoneInformation(&Zone), "SetTimeZoneInformation failed: %lu\n", GetLastError());

@@ -15,7 +15,7 @@ Windows = "\"
 "Windows\system32\applaunch.exe" = 1
 "Windows\unattend.inf" = 1
 
-; A file listed here keeps its installed copy when Setup upgrades LiberNT,
+; A file listed here keeps its installed copy when Setup upgrades ReliefWin,
 ; and is copied only when it is missing.
 [SystemTrees.Preserve]
 "Windows\system.ini" = 1
@@ -152,11 +152,11 @@ SetupDebugOptions = "/DEBUG /KDSERIAL /DEBUGPORT=COM1 /FIRSTCHANCE"
 OsLoadOptions = "/FASTDETECT /NOGUIBOOT /NODEBUG"
 
 [NLS]
-AnsiCodepage     = c_1252.nls
-OemCodepage      = c_437.nls
+AnsiCodepage     = c_936.nls
+OemCodepage      = c_936.nls
 UnicodeCasetable = l_intl.nls
 DefaultLayout    = 00000409
-DefaultLanguage  = 00000409
+DefaultLanguage  = 00000804
 
 [Computer.NTx86]
 acpi_mp = "ACPI PC"
@@ -569,7 +569,7 @@ HKCU,"Keyboard Layout\Preload"
 ; copy upgraded in place: a whole key, or one value when a value name is given.
 [HiveInfs.Upgrade.Remove]
 HKLM,"SYSTEM\CurrentControlSet\Services\DiagData"
-HKLM,"SOFTWARE\LiberNT\DiagnosticData"
+HKLM,"SOFTWARE\ReliefWin\DiagnosticData"
 HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection","AllowTelemetry"
 
 ; Files and directories of such a component, named relative to the system root.
@@ -579,7 +579,7 @@ system32\diagdata.exe
 DiagnosticData,dir
 
 [Strings]
-cdname      = "LiberNT Installation Media"
-productname = "LiberNT"
+cdname      = "ReliefWin Installation Media"
+productname = "ReliefWin"
 
 ; EOF

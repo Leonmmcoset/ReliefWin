@@ -17,7 +17,7 @@
 
 #define SERVICE_NAME        L"Kmtest"
 #define SERVICE_PATH        L"kmtest_drv.sys"
-#define SERVICE_DESCRIPTION L"ReactOS Kernel-Mode Test Suite Driver"
+#define SERVICE_DESCRIPTION L"ReliefWin Kernel-Mode Test Suite Driver"
 
 #define RESULTBUFFER_SIZE   (1024 * 1024)
 

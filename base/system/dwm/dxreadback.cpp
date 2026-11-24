@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Desktop Window Manager
+ * PROJECT:     ReliefWin Desktop Window Manager
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     CPU readback of GPU surface publications
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -9,7 +9,7 @@
 #include <d3d11.h>
 #include <dxgi1_2.h>
 #include <string.h>
-#include <libernt/dwmframe.h>
+#include <reliefwin/dwmframe.h>
 
 #include "dxsurface.h"
 #include "dxformat.h"

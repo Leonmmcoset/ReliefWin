@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Apple AOP Driver
+ * PROJECT:     ReliefWin Apple AOP Driver
  * LICENSE:     MIT (https://spdx.org/licenses/MIT)
  * PURPOSE:     Shared state, AFK and EPIC definitions of the Apple Always-On Processor driver
  * COPYRIGHT:   Copyright (C) The Asahi Linux Contributors
@@ -9,10 +9,10 @@
 #pragma once
 
 #include <ntifs.h>
-#include <libernt/drivers/fdtdrv.h>
-#include <libernt/drivers/applertkit.h>
-#include <libernt/drivers/appledart.h>
-#include <libernt/drivers/appleaop.h>
+#include <reliefwin/drivers/fdtdrv.h>
+#include <reliefwin/drivers/applertkit.h>
+#include <reliefwin/drivers/appledart.h>
+#include <reliefwin/drivers/appleaop.h>
 
 #define AOP_TAG                         'pOpA'
 

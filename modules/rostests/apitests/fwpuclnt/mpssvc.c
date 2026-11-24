@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API Tests
+ * PROJECT:     ReliefWin API Tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Tests Windows Firewall policy rule parsing and WFP enforcement
  * COPYRIGHT:   Copyright 2026 Ostap Brehin <osbre@protonmail.com>
@@ -450,7 +450,7 @@ START_TEST(mpssvc)
     First = OpenEngine(FWPM_SESSION_FLAG_DYNAMIC);
     Second = OpenEngine(FWPM_SESSION_FLAG_DYNAMIC);
     KeyError = RegCreateKeyExW(HKEY_CURRENT_USER,
-                               L"Software\\LiberNT_MpsSvc_Test",
+                               L"Software\\ReliefWin_MpsSvc_Test",
                                0,
                                NULL,
                                REG_OPTION_VOLATILE,
@@ -488,7 +488,7 @@ START_TEST(mpssvc)
     if (KeyError == ERROR_SUCCESS)
     {
         RegCloseKey(TestKey);
-        RegDeleteKeyW(HKEY_CURRENT_USER, L"Software\\LiberNT_MpsSvc_Test");
+        RegDeleteKeyW(HKEY_CURRENT_USER, L"Software\\ReliefWin_MpsSvc_Test");
     }
     if (Second != NULL)
         FwpmEngineClose0(Second);

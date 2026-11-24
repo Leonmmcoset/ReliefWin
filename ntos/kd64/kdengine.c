@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     The conversation with the host: what stopped, and what to do next
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -257,7 +257,7 @@ KdpDispatchManipulate(
 
         case DbgKdClearAllInternalBreakpointsApi:
             /*
-             * The host does not expect an answer to this one. LiberNT keeps no
+             * The host does not expect an answer to this one. ReliefWin keeps no
              * internal breakpoints, so there is nothing to clear either.
              */
             KdpNumInternalBreakpoints = 0;

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel CRT
+ * PROJECT:     ReliefWin Kernel CRT
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     The secure routines the kernel exports: _wcsnset_s, _wcslwr_s, _ultow_s and bsearch_s
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -133,7 +133,7 @@ bsearch_s(
 
     if (Count == 0)
         return NULL;
-    /* FIXME: on Windows 11 a call with an invalid parameter never returns; LiberNT returns NULL */
+    /* FIXME: on Windows 11 a call with an invalid parameter never returns; ReliefWin returns NULL */
     if (Key == NULL || Base == NULL || Width == 0 || Compare == NULL)
         return NULL;
 

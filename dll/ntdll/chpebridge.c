@@ -16,7 +16,7 @@
 #include <ndk/sefuncs.h>
 #include <ndk/dbgkfuncs.h>
 #include <ndk/pofuncs.h>
-#include <libernt/subsys/csr/csr.h>
+#include <reliefwin/subsys/csr/csr.h>
 #include <delayloadhandler.h>
 #include <evntprov.h>
 #include <math.h>

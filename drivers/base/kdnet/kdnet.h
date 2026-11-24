@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Network Kernel Debugger Transport
+ * PROJECT:     ReliefWin Network Kernel Debugger Transport
  * LICENSE:     GPL-2.0-or-later (https://spdx.org/licenses/GPL-2.0-or-later)
  * PURPOSE:     Internal interfaces of the network transport
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -23,7 +23,7 @@
 
 #define KDNET_DEFAULT_PORT      50000
 #ifdef REMOTE_ASSISTANCE
-#define KDNET_DEFAULT_HOST      "libernt.com"
+#define KDNET_DEFAULT_HOST      ""
 #endif
 #define KDNET_BROADCAST_INPUT_PORT  6665
 #define KDNET_BROADCAST_OUTPUT_PORT 6666

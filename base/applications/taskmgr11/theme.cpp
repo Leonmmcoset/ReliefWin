@@ -6,7 +6,7 @@
  */
 
 #include "app.h"
-#include <libernt/dwmsettings.h>
+#include <reliefwin/dwmsettings.h>
 
 Theme g_t;
 

@@ -5,7 +5,7 @@
  * COPYRIGHT:   2020 Victor Perevertkin (victor.perevertkin@reactos.org)
  */
 
-#include <libernt/debug.h>
+#include <reliefwin/debug.h>
 
 #define ERR(fmt, ...) ERR__(DPFLTR_DISK_ID, fmt, ##__VA_ARGS__)
 #define WARN(fmt, ...) WARN__(DPFLTR_DISK_ID, fmt, ##__VA_ARGS__)

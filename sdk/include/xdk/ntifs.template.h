@@ -6544,7 +6544,7 @@ extern "C" {
 NTSTATUS NTAPI MapSecurityError(SECURITY_STATUS SecStatus);
 NTSTATUS NTAPI RtlGetAcesBufferSize(PACL Acl, PULONG AcesBufferSize);
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 BOOLEAN CcAsyncCopyRead(PFILE_OBJECT FileObject, PLARGE_INTEGER FileOffset, ULONG Length, BOOLEAN Wait, PVOID Buffer, PIO_STATUS_BLOCK IoStatus, PETHREAD IoIssuerThread, PCC_ASYNC_READ_CONTEXT AsyncReadContext);
 NTSTATUS CcErrorCallbackRoutine(PCC_ERROR_CALLBACK_CONTEXT Context);
 LONGLONG CcGetCacheFileSize(const SECTION_OBJECT_POINTERS *SectionObjectPointer);
@@ -6706,7 +6706,7 @@ typedef struct _STREAM_INFORMATION_ENTRY STREAM_INFORMATION_ENTRY;
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 SECURITY_STATUS SspiAcceptSecurityContextAsync(SspiAsyncContext *AsyncContext, PCredHandle phCredential, PCtxtHandle phContext, PSecBufferDesc pInput, unsigned long fContextReq, unsigned long TargetDataRep, PCtxtHandle phNewContext, PSecBufferDesc pOutput, unsigned long *pfContextAttr, PTimeStamp ptsExpiry);
 SECURITY_STATUS SspiAcquireCredentialsHandleAsyncA(SspiAsyncContext *AsyncContext, LPSTR pszPrincipal, LPSTR pszPackage, unsigned long fCredentialUse, void *pvLogonId, void *pAuthData, SEC_GET_KEY_FN pGetKeyFn, void *pvGetKeyArgument, PCredHandle phCredential, PTimeStamp ptsExpiry);
 SECURITY_STATUS SspiAcquireCredentialsHandleAsyncW(SspiAsyncContext *AsyncContext, PSECURITY_STRING pszPrincipal, PSECURITY_STRING pszPackage, unsigned long fCredentialUse, void *pvLogonId, void *pAuthData, SEC_GET_KEY_FN pGetKeyFn, void *pvGetKeyArgument, PCredHandle phCredential, PTimeStamp ptsExpiry);

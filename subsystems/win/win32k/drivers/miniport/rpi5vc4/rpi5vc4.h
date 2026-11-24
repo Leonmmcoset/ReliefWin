@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Raspberry Pi 5 framebuffer miniport
+ * PROJECT:     ReliefWin Raspberry Pi 5 framebuffer miniport
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Shared declarations for the Raspberry Pi 5 framebuffer miniport.
  * COPYRIGHT:   Copyright 2026 Ahmed Arif <arif193@gmail.com>
@@ -15,8 +15,8 @@
 #undef __BROKEN__
 #include <video.h>
 #include <devioctl.h>
-#include <libernt/loader_framebuffer.h>
-#include <libernt/rpi5vc4_xpdm.h>
+#include <reliefwin/loader_framebuffer.h>
+#include <reliefwin/rpi5vc4_xpdm.h>
 
 #define RPI5VC4_CURSOR_WIDTH 64
 #define RPI5VC4_CURSOR_HEIGHT 64

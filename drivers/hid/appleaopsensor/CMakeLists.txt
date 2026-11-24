@@ -1,5 +1,5 @@
 #
-# PROJECT:     LiberNT Apple AOP Sensor HID Driver
+# PROJECT:     ReliefWin Apple AOP Sensor HID Driver
 # LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
 # PURPOSE:     Apple AOP sensor HID driver build rules
 # COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

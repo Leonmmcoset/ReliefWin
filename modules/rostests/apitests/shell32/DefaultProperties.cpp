@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Tests for SHAddDefaultPropertiesByExt, SHCreateDefaultPropertiesOp and SHSetDefaultProperties
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -75,7 +75,7 @@ static void test_add_by_ext(void)
         { L".jpg", 3, TRUE },
         { L".png", 3, TRUE },
         { L".mp3", 2, FALSE },
-        { L".libernt-unknown", 2, FALSE },
+        { L".reliefwin-unknown", 2, FALSE },
     };
     IPropertyStore *store;
     WCHAR user[256];
@@ -163,7 +163,7 @@ START_TEST(DefaultProperties)
     test_add_by_ext();
 
     GetTempPathW(MAX_PATH, path);
-    StringCchCatW(path, MAX_PATH, L"libernt_defaults.txt");
+    StringCchCatW(path, MAX_PATH, L"reliefwin_defaults.txt");
     file = CreateFileW(path, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
     if (file != INVALID_HANDLE_VALUE)
     {

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Tests for OpenTrace, ProcessTrace and CloseTrace
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -12,7 +12,7 @@
 #include <evntcons.h>
 
 #define TEST_EVENTS 5
-#define SESSION_NAME L"LiberNTOpenTraceTest"
+#define SESSION_NAME L"ReliefWinOpenTraceTest"
 
 static const GUID test_event_guid = { 0x5b3e6c2a, 0x1f4d, 0x4c8e, { 0x9a, 0x17, 0x3d, 0x52, 0x8e, 0x61, 0x0c, 0x94 } };
 static const GUID test_session_guid = { 0x7d21a9f0, 0x6b3c, 0x4e5a, { 0x8f, 0x02, 0x44, 0x1c, 0xe7, 0x9b, 0x35, 0xd8 } };
@@ -122,7 +122,7 @@ static void test_invalid(void)
     ok(GetLastError() == ERROR_INVALID_PARAMETER, "OpenTraceW(NULL) error %lu\n", GetLastError());
 
     ZeroMemory(&logfile, sizeof(logfile));
-    logfile.LogFileName = L"C:\\libernt-no-such-dir\\missing.etl";
+    logfile.LogFileName = L"C:\\reliefwin-no-such-dir\\missing.etl";
     logfile.ProcessTraceMode = PROCESS_TRACE_MODE_EVENT_RECORD;
     logfile.EventRecordCallback = record_callback;
     SetLastError(0xdeadbeef);
@@ -159,7 +159,7 @@ static void test_invalid(void)
     ok(ret == ERROR_INVALID_HANDLE, "CloseTrace bogus handle returned %lu\n", ret);
 
     ZeroMemory(&logfile, sizeof(logfile));
-    logfile.LoggerName = L"LiberNTNoSuchRealTimeSession";
+    logfile.LoggerName = L"ReliefWinNoSuchRealTimeSession";
     logfile.ProcessTraceMode = PROCESS_TRACE_MODE_REAL_TIME | PROCESS_TRACE_MODE_EVENT_RECORD;
     logfile.EventRecordCallback = record_callback;
     SetLastError(0xdeadbeef);
@@ -437,7 +437,7 @@ START_TEST(OpenTrace)
     test_invalid();
 
     GetTempPathW(MAX_PATH, path);
-    StringCchCatW(path, MAX_PATH, L"libernt_opentrace.etl");
+    StringCchCatW(path, MAX_PATH, L"reliefwin_opentrace.etl");
     DeleteFileW(path);
 
     if (!write_trace(path, &buffer_size_kb))

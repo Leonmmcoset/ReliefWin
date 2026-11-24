@@ -1,7 +1,7 @@
 
 include_directories(
     BEFORE .
-    ${REACTOS_SOURCE_DIR}/sdk/include/libernt/drivers)
+    ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/drivers)
 
 list(APPEND SOURCE
     afunix.c

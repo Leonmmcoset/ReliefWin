@@ -1,7 +1,7 @@
 #ifndef _USERENV_H
 #define _USERENV_H
 
-/* FIXME: Windows includes <wbemcli.h> here; LiberNT users built with COM_NO_WINDOWS_H cannot take it, so only the two interfaces are forward-declared */
+/* FIXME: Windows includes <wbemcli.h> here; ReliefWin users built with COM_NO_WINDOWS_H cannot take it, so only the two interfaces are forward-declared */
 #ifndef __IWbemClassObject_FWD_DEFINED__
 #define __IWbemClassObject_FWD_DEFINED__
 typedef struct IWbemClassObject IWbemClassObject;
@@ -415,7 +415,7 @@ typedef DWORD (*PFNPROCESSGROUPPOLICYEX)(DWORD, HANDLE, HKEY, PGROUP_POLICY_OBJE
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 USERENVAPI HRESULT WINAPI CreateProfile(LPCWSTR pszUserSid, LPCWSTR pszUserName, LPWSTR pszProfilePath, DWORD cchProfilePath);
 USERENVAPI HRESULT WINAPI DeriveRestrictedAppContainerSidFromAppContainerSidAndRestrictedName(PSID psidAppContainerSid, PCWSTR pszRestrictedAppContainerName, PSID *ppsidRestrictedAppContainerSid);
 USERENVAPI BOOL WINAPI FreeGPOListA(PGROUP_POLICY_OBJECTA pGPOList);

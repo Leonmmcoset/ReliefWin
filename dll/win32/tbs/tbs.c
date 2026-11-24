@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT TPM Base Services
+ * PROJECT:     ReliefWin TPM Base Services
  * LICENSE:     LGPL-2.1-or-later (https://spdx.org/licenses/LGPL-2.1-or-later)
  * PURPOSE:     TBS contexts and command submission over the TPM 2.0 driver
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -12,7 +12,7 @@
 #include <winioctl.h>
 #include <cfgmgr32.h>
 #include <initguid.h>
-#include <libernt/drivers/tpm2.h>
+#include <reliefwin/drivers/tpm2.h>
 #include <tbs.h>
 
 #define NDEBUG

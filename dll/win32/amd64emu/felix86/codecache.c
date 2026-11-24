@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT AMD64 emulation host
+ * PROJECT:     ReliefWin AMD64 emulation host
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Translation cache of guest code kept between runs of the same program
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -143,7 +143,7 @@ F86cInitialize(VOID)
     Value.MaximumLength = sizeof(Buffer);
     if (!NT_SUCCESS(RtlQueryEnvironmentVariable_U(NULL, &Name, &Value)))
         return FALSE;
-    if (!NT_SUCCESS(RtlStringCbPrintfW(Path, sizeof(Path), L"%wZ\\LiberNT", &Value)))
+    if (!NT_SUCCESS(RtlStringCbPrintfW(Path, sizeof(Path), L"%wZ\\ReliefWin", &Value)))
         return FALSE;
     RtlInitUnicodeString(&DosPath, Path);
     if (!RtlDosPathNameToNtPathName_U(DosPath.Buffer, &NtPath, NULL, NULL))

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test that a HEAD request leaves the cached GET response of its URL intact
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -141,7 +141,7 @@ START_TEST(HeadCache)
     Thread = CreateThread(NULL, 0, ServerThread, NULL, 0, NULL);
     ok(Thread != NULL, "CreateThread failed, error %lu\n", GetLastError());
 
-    Session = InternetOpenA("LiberNT HeadCache", INTERNET_OPEN_TYPE_DIRECT, NULL, NULL, 0);
+    Session = InternetOpenA("ReliefWin HeadCache", INTERNET_OPEN_TYPE_DIRECT, NULL, NULL, 0);
     ok(Session != NULL, "InternetOpenA failed, error %lu\n", GetLastError());
     Connect = InternetConnectA(Session, "127.0.0.1", ntohs(Address.sin_port), NULL, NULL, INTERNET_SERVICE_HTTP, 0, 0);
     ok(Connect != NULL, "InternetConnectA failed, error %lu\n", GetLastError());

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT CYW43455 SDIO Function Transport
+ * PROJECT:     ReliefWin CYW43455 SDIO Function Transport
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Own CYW43455 SDIO control and companion function stacks
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -8,7 +8,7 @@
 #include <ntddk.h>
 #include <ntddsd.h>
 #include <initguid.h>
-#include <libernt/drivers/cyw43455sdio.h>
+#include <reliefwin/drivers/cyw43455sdio.h>
 
 #define NDEBUG
 #include <debug.h>

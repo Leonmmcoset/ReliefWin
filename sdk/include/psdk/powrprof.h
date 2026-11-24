@@ -330,7 +330,7 @@ typedef BOOLEAN WINAPI PWRSCHEMESENUMPROC_V2(UINT, DWORD, LPWSTR, DWORD, LPWSTR,
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 BOOLEAN STDAPICALLTYPE DevicePowerClose(void);
 BOOLEAN STDAPICALLTYPE DevicePowerEnumDevices(ULONG QueryIndex, ULONG QueryInterpretationFlags, ULONG QueryFlags, PBYTE pReturnBuffer, PULONG pBufferSize);
 BOOLEAN STDAPICALLTYPE DevicePowerOpen(ULONG DebugMask);

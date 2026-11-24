@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Tests the MMCSS thread characteristics and priorities avrt sets
  * COPYRIGHT:   Copyright 2026 Ostap Brehin <osbre@protonmail.com>
@@ -691,7 +691,7 @@ TestRuntimeTask(VOID)
     HKEY Key;
     LONG Error;
 
-    Error = RegCreateKeyExW(HKEY_LOCAL_MACHINE, TASKS_KEY L"\\LiberNT Runtime", 0, NULL, 0, KEY_ALL_ACCESS, NULL, &Key, NULL);
+    Error = RegCreateKeyExW(HKEY_LOCAL_MACHINE, TASKS_KEY L"\\ReliefWin Runtime", 0, NULL, 0, KEY_ALL_ACCESS, NULL, &Key, NULL);
     if (Error != ERROR_SUCCESS)
     {
         skip("cannot create a task key: %ld\n", Error);
@@ -700,8 +700,8 @@ TestRuntimeTask(VOID)
     RegSetValueExW(Key, L"Scheduling Category", 0, REG_SZ, (PBYTE)Category, sizeof(Category));
     RegSetValueExW(Key, L"Priority", 0, REG_DWORD, (PBYTE)&Priority, sizeof(Priority));
     RegCloseKey(Key);
-    RunInThread(RuntimeTaskThread, (PVOID)L"LiberNT Runtime");
-    RegDeleteKeyW(HKEY_LOCAL_MACHINE, TASKS_KEY L"\\LiberNT Runtime");
+    RunInThread(RuntimeTaskThread, (PVOID)L"ReliefWin Runtime");
+    RegDeleteKeyW(HKEY_LOCAL_MACHINE, TASKS_KEY L"\\ReliefWin Runtime");
 }
 
 static DWORD WINAPI

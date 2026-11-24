@@ -25,9 +25,9 @@
 #include "winuser.h"
 #include "wine/list.h"
 
-#define MEDIA_SESSION_CLASS L"LiberNTMediaSession"
-#define MEDIA_SESSION_STATUS L"LiberNTMediaStatus"
-#define MEDIA_SESSION_TICK L"LiberNTMediaTick"
+#define MEDIA_SESSION_CLASS L"ReliefWinMediaSession"
+#define MEDIA_SESSION_STATUS L"ReliefWinMediaStatus"
+#define MEDIA_SESSION_TICK L"ReliefWinMediaTick"
 #endif
 
 WINE_DEFAULT_DEBUG_CHANNEL(mediacontrol);

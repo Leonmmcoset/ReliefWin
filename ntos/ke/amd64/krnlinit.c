@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     amd64 processor startup on the boot stack: clock rate, startup thread, kernel phase 0
  * COPYRIGHT:   Copyright Timo Kreuzer <timo.kreuzer@reactos.org>

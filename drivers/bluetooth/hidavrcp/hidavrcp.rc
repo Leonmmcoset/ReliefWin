@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Bluetooth AVRCP HID miniport
+ * PROJECT:     ReliefWin Bluetooth AVRCP HID miniport
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Bluetooth AVRCP HID miniport version resource
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -9,4 +9,4 @@
 #define REACTOS_STR_FILE_DESCRIPTION "Bluetooth AVRCP HID miniport"
 #define REACTOS_STR_INTERNAL_NAME "hidavrcp"
 #define REACTOS_STR_ORIGINAL_FILENAME "hidavrcp.sys"
-#include <libernt/version.rc>
+#include <reliefwin/version.rc>

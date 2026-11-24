@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Verify Direct3D HAL versions against the build 26100 SDK
  * COPYRIGHT:   Copyright 2026 LiberNT contributors

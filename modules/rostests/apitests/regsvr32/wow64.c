@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     regsvr32 hands 32-bit DLLs to the WoW64 regsvr32
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arifing193@gmail.com>

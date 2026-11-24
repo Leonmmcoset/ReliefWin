@@ -30,7 +30,7 @@ Revision History:
 #include <devpkey.h>
 #include <ntiologc.h>
 #ifdef __REACTOS__
-#include <libernt/drivers/dumpstor.h>
+#include <reliefwin/drivers/dumpstor.h>
 #endif
 
 

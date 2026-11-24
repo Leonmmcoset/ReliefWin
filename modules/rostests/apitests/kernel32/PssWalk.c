@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Tests walking process snapshots of threads, handles and the address space
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -143,7 +143,7 @@ static void TestThreads(void)
 
 static void TestHandles(void)
 {
-    static const WCHAR EventName[] = L"LiberNTPssWalkEvent";
+    static const WCHAR EventName[] = L"ReliefWinPssWalkEvent";
     HANDLE Event = CreateEventW(NULL, TRUE, TRUE, EventName);
     HANDLE Semaphore = CreateSemaphoreW(NULL, 2, 5, NULL);
     PSS_HANDLE_INFORMATION Info;

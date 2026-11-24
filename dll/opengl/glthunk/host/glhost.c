@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT OpenGL thunk
+ * PROJECT:     ReliefWin OpenGL thunk
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Native OpenGL ICD reached by the ICD of emulated AMD64 processes
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -13,7 +13,7 @@
 #undef WIN32_NO_STATUS
 #include <ntstatus.h>
 #include <ndk/ntndk.h>
-#include <libernt/emuhost.h>
+#include <reliefwin/emuhost.h>
 #include "glthunk.h"
 #include "glsig.h"
 

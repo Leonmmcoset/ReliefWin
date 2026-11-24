@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT WDDM Null/Software GPU Miniport
+ * PROJECT:     ReliefWin WDDM Null/Software GPU Miniport
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Private header for softgpu.sys — WDDM 2.0 ABI miniport with a
  *              physical/software engine and no GPU MMU, targeting QEMU STD
@@ -71,7 +71,7 @@
  * argument struct, the WDDM2 DDI typedefs and the DxgkInitialize prototype.
  * It is the same header dxgkrnl is built against, guaranteeing matching ABI. */
 #include <dispmprt.h>
-#include <libernt/rddm/rxgkpresent.h>
+#include <reliefwin/rddm/rxgkpresent.h>
 
 /* ---- Debug helpers ------------------------------------------------------- */
 #define NDEBUG

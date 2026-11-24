@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT HAL
+ * PROJECT:     ReliefWin HAL
  * LICENSE:     GPL-2.0-or-later (https://spdx.org/licenses/GPL-2.0-or-later)
  * PURPOSE:     Validation of firmware tables before their contents are consumed
  * COPYRIGHT:   Copyright 2026 LiberNT contributors

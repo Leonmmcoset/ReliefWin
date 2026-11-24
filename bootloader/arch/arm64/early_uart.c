@@ -15,9 +15,9 @@
 #include <blefi.h>
 #include <drivers/acpi/acpi.h>
 
-#include <libernt/arm64/early_uart.h>
+#include <reliefwin/arm64/early_uart.h>
 #include <edk2/Fdt.h>
-#include <libernt/fdtlib.h>
+#include <reliefwin/fdtlib.h>
 
 /*
  * Global runtime-detected UART state.

@@ -1,12 +1,12 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Opt-in ARM64 CPU scheduling audit capture
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
  */
 
 #include <ntoskrnl.h>
-#include <libernt/cpuaudit.h>
+#include <reliefwin/cpuaudit.h>
 
 volatile LONG KiCpuAuditActive;
 CPU_AUDIT_IRQ KiCpuAuditIrqs[CPU_AUDIT_CPUS][CPU_AUDIT_IRQS];

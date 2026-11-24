@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT kernel-mode tests
+ * PROJECT:     ReliefWin kernel-mode tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     An ACPI brightness hotkey on an integrated panel reaches the shell even without brightness control
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -7,8 +7,8 @@
 
 #include <kmt_test.h>
 #include <acpiioct.h>
-#include <libernt/drivers/acpi/acpipci.h>
-#include <libernt/rddm/rxgkmonitor.h>
+#include <reliefwin/drivers/acpi/acpipci.h>
+#include <reliefwin/rddm/rxgkmonitor.h>
 
 /* The panel's adapter carries BKEY(Code), which raises Notify(<panel output>, Code); the harness SSDT provides it */
 #define KEY_METHOD 'YEKB'

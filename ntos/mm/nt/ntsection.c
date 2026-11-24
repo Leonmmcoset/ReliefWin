@@ -8,7 +8,7 @@
  */
 
 #include <mm/nt/mint.h>
-#include <libernt/cfgscp.h>
+#include <reliefwin/cfgscp.h>
 
 #define MI_HEADER_BUFFER_SIZE (64 * 1024)
 #define MI_IMAGE64_RELOCATION_WINDOW 0x800000000ULL

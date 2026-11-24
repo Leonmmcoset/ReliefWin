@@ -2127,7 +2127,7 @@ Rp1GemQueryInformation(
 
         case OID_GEN_VENDOR_DESCRIPTION:
         {
-            static const CHAR Description[] = "ReactOS RP1 Cadence GEM Ethernet";
+            static const CHAR Description[] = "ReliefWin RP1 Cadence GEM Ethernet";
             return Rp1GemCopyQuery(OidRequest, Description, sizeof(Description));
         }
 

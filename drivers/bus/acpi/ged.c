@@ -1,12 +1,12 @@
 /*
- * PROJECT:     LiberNT ACPI bus driver
+ * PROJECT:     ReliefWin ACPI bus driver
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Interrupt-signaled ACPI events of the Generic Event Device
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
  */
 
 #include "precomp.h"
-#include <libernt/hal/msi.h>
+#include <reliefwin/hal/msi.h>
 
 #define NDEBUG
 #include <debug.h>

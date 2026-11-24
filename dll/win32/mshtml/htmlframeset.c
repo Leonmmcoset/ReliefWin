@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT MSHTML
+ * PROJECT:     ReliefWin MSHTML
  * LICENSE:     LGPL-2.1-or-later (https://spdx.org/licenses/LGPL-2.1-or-later)
  * PURPOSE:     Frameset element
  * COPYRIGHT:   Copyright 2026 Ostap Brehin <osbre@protonmail.com>

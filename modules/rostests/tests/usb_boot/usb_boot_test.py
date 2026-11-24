@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# PROJECT:     LiberNT USB boot tests
+# PROJECT:     ReliefWin USB boot tests
 # LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
 # PURPOSE:     Check USB controller startup during an AMD64 KVM boot
 # COPYRIGHT:   Copyright 2026 LiberNT contributors
@@ -29,7 +29,7 @@ def main():
     if not args.image.is_file() or not args.vars.is_file() or not args.firmware.is_file():
         parser.error('image, firmware and firmware variables must be existing files')
 
-    with tempfile.TemporaryDirectory(prefix='libernt-usb-boot-') as temporary:
+    with tempfile.TemporaryDirectory(prefix='reliefwin-usb-boot-') as temporary:
         work = Path(temporary)
         vars_copy = work / 'vars.fd'
         serial = work / 'serial.log'

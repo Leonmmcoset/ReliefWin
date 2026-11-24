@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test ShellExecuteEx on a shortcut file with and without a verb
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -92,13 +92,13 @@ static void TestVerb(PCWSTR Folder, PCWSTR Verb, PCWSTR Name, BOOL Runs)
 
     GetModuleFileNameW(NULL, Module, ARRAYSIZE(Module));
     StringCchPrintfW(Link, ARRAYSIZE(Link), L"%sselink-%s.lnk", Folder, Name);
-    StringCchPrintfW(Arguments, ARRAYSIZE(Arguments), L"ShellExecuteLink child LiberNT-selink-%lu-%s",
+    StringCchPrintfW(Arguments, ARRAYSIZE(Arguments), L"ShellExecuteLink child ReliefWin-selink-%lu-%s",
                      GetCurrentProcessId(), Name);
     hr = CreateLink(Link, Module, Arguments);
     ok(hr == S_OK, "%S: creating the shortcut failed with 0x%lx\n", Name, hr);
     if (FAILED(hr))
         return;
-    StringCchPrintfW(Arguments, ARRAYSIZE(Arguments), L"LiberNT-selink-%lu-%s", GetCurrentProcessId(), Name);
+    StringCchPrintfW(Arguments, ARRAYSIZE(Arguments), L"ReliefWin-selink-%lu-%s", GetCurrentProcessId(), Name);
     Event = CreateEventW(NULL, TRUE, FALSE, Arguments);
 
     Info.fMask = SEE_MASK_FLAG_DDEWAIT | SEE_MASK_FLAG_NO_UI;

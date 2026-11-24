@@ -7,7 +7,7 @@
  */
 
 #include "uxthemep.h"
-#include <libernt/dwmframe.h>
+#include <reliefwin/dwmframe.h>
 #include <math.h>
 
 #define NC_PREVIEW_MSGBOX_HALF_WIDTH 75

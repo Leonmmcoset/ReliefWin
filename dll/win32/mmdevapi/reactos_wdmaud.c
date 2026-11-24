@@ -817,9 +817,9 @@ static void get_device_display_name(EDataFlow flow, DWORD index, WCHAR *name, UI
     if (caps_name && caps_name[0])
         lstrcpynW(name, caps_name, name_len);
     else if (flow == eCapture)
-        swprintf(name, name_len, L"ReactOS WDMAUD Capture %lu", index);
+        swprintf(name, name_len, L"ReliefWin WDMAUD Capture %lu", index);
     else
-        swprintf(name, name_len, L"ReactOS WDMAUD Render %lu", index);
+        swprintf(name, name_len, L"ReliefWin WDMAUD Render %lu", index);
 }
 
 static unsigned int align_uint(unsigned int value, unsigned int align)
@@ -4854,7 +4854,7 @@ NTSTATUS reactos_mmdevapi_call(unsigned int code, void *args)
         }
 
         default:
-            FIXME("Unhandled ReactOS mmdevapi backend call %u.\n", code);
+            FIXME("Unhandled ReliefWin mmdevapi backend call %u.\n", code);
             return STATUS_NOT_IMPLEMENTED;
     }
 }

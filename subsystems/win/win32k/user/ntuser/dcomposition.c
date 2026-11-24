@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Win32k
+ * PROJECT:     ReliefWin Win32k
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Composition connections, producer commands and resource ownership
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif193@gmail.com>
@@ -8,7 +8,7 @@
 #include <win32k.h>
 #include "composition.h"
 #include "dcomposition.h"
-#include <libernt/dcompbatch.h>
+#include <reliefwin/dcompbatch.h>
 
 #define DCOMP_TAG 'pmCD'
 

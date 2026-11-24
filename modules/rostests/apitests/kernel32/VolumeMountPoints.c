@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test FindFirst/FindNextVolumeMountPoint and FindVolumeMountPointClose
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -8,8 +8,8 @@
 #include "precomp.h"
 #include <ndk/iofuncs.h>
 
-#define MOUNT_LEAF L"libernt_vmp_apitest"
-#define JUNCTION_LEAF L"libernt_vmp_junction"
+#define MOUNT_LEAF L"reliefwin_vmp_apitest"
+#define JUNCTION_LEAF L"reliefwin_vmp_junction"
 #define MAX_ENTRIES 64
 
 typedef HANDLE (WINAPI *FN_FindFirstVolumeMountPointW)(LPCWSTR, LPWSTR, DWORD);

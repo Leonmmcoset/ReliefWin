@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test that waits and signals racing on every processor lose no wake and hand no object over twice
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

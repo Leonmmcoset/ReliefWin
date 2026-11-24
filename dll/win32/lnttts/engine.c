@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Text-to-Speech Engine
+ * PROJECT:     ReliefWin Text-to-Speech Engine
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     SAPI text-to-speech engine object
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

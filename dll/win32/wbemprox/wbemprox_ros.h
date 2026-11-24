@@ -5,4 +5,4 @@
 #include <devpkey.h>
 #undef WIN32_NO_STATUS
 #include <winbase.h>
-#include <libernt/kernel32_compat.h>
+#include <reliefwin/kernel32_compat.h>

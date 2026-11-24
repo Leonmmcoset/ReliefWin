@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT kernel-mode tests
+ * PROJECT:     ReliefWin kernel-mode tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     WSK name resolution through NETIO
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -109,7 +109,7 @@ static
 VOID
 TestNumericOnly(VOID)
 {
-    UNICODE_STRING Node = RTL_CONSTANT_STRING(L"libernt.invalid");
+    UNICODE_STRING Node = RTL_CONSTANT_STRING(L"reliefwin.invalid");
     PADDRINFOEXW Result = NULL;
     ADDRINFOEXW Hints;
     KEVENT Event;

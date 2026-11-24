@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Tests for AssocCreateForClasses and AssocGetDetailsOfPropKey
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -51,7 +51,7 @@ static void test_create(void)
         ok(hr == S_OK, "COMMAND open hr 0x%lx\n", hr);
         ok(!wcscmp(buffer, expected), "COMMAND '%ls', expected '%ls'\n", buffer, expected);
 
-        hr = get_string(qa, ASSOCSTR_COMMAND, L"libernt-no-verb", buffer, ARRAYSIZE(buffer));
+        hr = get_string(qa, ASSOCSTR_COMMAND, L"reliefwin-no-verb", buffer, ARRAYSIZE(buffer));
         ok(hr == HRESULT_FROM_WIN32(ERROR_NO_ASSOCIATION), "missing verb hr 0x%lx\n", hr);
 
         key = NULL;
@@ -65,7 +65,7 @@ static void test_create(void)
     }
 
     elements[0].ac = ASSOCCLASS_PROGID_STR;
-    elements[0].pszClass = L"libernt.no.such.progid";
+    elements[0].pszClass = L"reliefwin.no.such.progid";
     elements[1].ac = ASSOCCLASS_PROGID_STR;
     elements[1].pszClass = L"txtfile";
     hr = AssocCreateForClasses(elements, 2, IID_PPV_ARG(IQueryAssociations, &qa));
@@ -98,7 +98,7 @@ static void test_create(void)
     }
 
     elements[0].ac = ASSOCCLASS_PROGID_STR;
-    elements[0].pszClass = L"libernt.no.such.progid";
+    elements[0].pszClass = L"reliefwin.no.such.progid";
     hr = AssocCreateForClasses(elements, 1, IID_PPV_ARG(IQueryAssociations, &qa));
     ok(hr == S_OK, "only missing class hr 0x%lx\n", hr);
     if (SUCCEEDED(hr))
@@ -164,7 +164,7 @@ static void test_details(void)
     DWORD i;
 
     GetTempPathW(MAX_PATH, path);
-    StringCchCatW(path, MAX_PATH, L"libernt_details.txt");
+    StringCchCatW(path, MAX_PATH, L"reliefwin_details.txt");
     file = CreateFileW(path, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
     if (file == INVALID_HANDLE_VALUE)
         return;

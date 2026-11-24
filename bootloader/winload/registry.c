@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Boot Loader
+ * PROJECT:     ReliefWin Boot Loader
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     SYSTEM hive, national language data and boot driver loading
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -461,7 +461,7 @@ OslLoadHalExtensions(
     PUCHAR Data;
     ULONG Type, Length, Index;
 
-    /* FIXME: Windows registers its HAL extensions in a way it does not document; this list is LiberNT's. */
+    /* FIXME: Windows registers its HAL extensions in a way it does not document; this list is ReliefWin's. */
     Data = BlRegValue(OslSystemHive, OslOpenControlKey(L"Control", L"HAL", NULL), L"Extensions", &Type, &Length);
     if (!Data || Type != REG_MULTI_SZ)
         return;

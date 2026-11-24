@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Who owns the boot display and what gets drawn on it
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

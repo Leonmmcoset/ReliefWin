@@ -18,7 +18,7 @@
 
 #include "resources.h"
 
-#include <libernt/manifest_exe.rc>
+#include <reliefwin/manifest_exe.rc>
 
 LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
 

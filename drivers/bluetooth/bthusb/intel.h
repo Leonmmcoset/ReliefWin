@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Bluetooth USB transport
+ * PROJECT:     ReliefWin Bluetooth USB transport
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Intel USB bootloader initialization
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

@@ -1,6 +1,6 @@
 
-include_directories(${REACTOS_SOURCE_DIR}/sdk/include/libernt/idl)
-add_rpc_files(server ${REACTOS_SOURCE_DIR}/sdk/include/libernt/idl/wkssvc.idl)
+include_directories(${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/idl)
+add_rpc_files(server ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/idl/wkssvc.idl)
 spec2def(wkssvc.dll wkssvc.spec ADD_IMPORTLIB)
 
 add_library(wkssvc MODULE

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API Tests
+ * PROJECT:     ReliefWin API Tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test OpenFileById before and after the parent directory of the file is renamed
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

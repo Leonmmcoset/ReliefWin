@@ -855,7 +855,7 @@ typedef struct _USER_INFO_24 {
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 NTSTATUS NetAddServiceAccount(LPWSTR ServerName, LPWSTR AccountName, LPWSTR Password, DWORD Flags);
 NTSTATUS NetEnumerateServiceAccounts(LPWSTR ServerName, DWORD Flags, DWORD *AccountsCount, PZPWSTR *Accounts);
 NTSTATUS NetIsServiceAccount(LPWSTR ServerName, LPWSTR AccountName, BOOL *IsService);

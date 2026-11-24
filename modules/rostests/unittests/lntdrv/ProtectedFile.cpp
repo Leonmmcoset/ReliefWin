@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Driver Installer - Unit-tests
+ * PROJECT:     ReliefWin Driver Installer - Unit-tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test that a package which would replace a protected system file is recognized before it is installed
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -46,8 +46,8 @@ static bool WriteInf(const std::wstring &path, const char *file, int dirid)
                        "%s=1\r\n"
                        "\r\n"
                        "[Strings]\r\n"
-                       "Provider=\"LiberNT Protected File Test\"\r\n"
-                       "Disk=\"LiberNT protected file test files\"\r\n",
+                       "Provider=\"ReliefWin Protected File Test\"\r\n"
+                       "Disk=\"ReliefWin protected file test files\"\r\n",
                        file, dirid, file);
     if (length <= 0)
         return false;

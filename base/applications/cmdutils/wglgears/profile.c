@@ -7,8 +7,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <libernt/dwmprof.h>
-#include <libernt/dwmpresenttracenames.h>
+#include <reliefwin/dwmprof.h>
+#include <reliefwin/dwmpresenttracenames.h>
 #include "profile.h"
 
 #define PROFILE_FRAME_CAPACITY 131072

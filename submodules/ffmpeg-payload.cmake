@@ -31,7 +31,7 @@ else()
         return()
     endif()
     set(_payload_zip "${_payload_dir}/${_payload_name}")
-    libernt_download_payload(LiberNT/LiberNT "ffmpeg-${FFMPEG_PAYLOAD_RELEASE}" "${_payload_name}"
+    reliefwin_download_payload(LiberNT/LiberNT "ffmpeg-${FFMPEG_PAYLOAD_RELEASE}" "${_payload_name}"
         "${_payload_zip}" "${_payload_hash}" _payload_error)
     if(NOT _payload_error STREQUAL "")
         message(STATUS "FFmpeg: downloading the payload failed (${_payload_error}); "

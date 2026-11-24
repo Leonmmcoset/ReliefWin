@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Apple PWM Driver
+ * PROJECT:     ReliefWin Apple PWM Driver
  * LICENSE:     MIT (https://spdx.org/licenses/MIT)
  * PURPOSE:     Apple silicon PWM controller output, ported from Asahi Linux pwm-apple.c (GPL-2.0 OR MIT)
  * COPYRIGHT:   Copyright The Asahi Linux Contributors

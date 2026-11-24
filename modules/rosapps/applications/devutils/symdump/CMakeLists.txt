@@ -1,5 +1,5 @@
 
-include_directories(BEFORE ${REACTOS_SOURCE_DIR}/include/libernt/wine)
+include_directories(BEFORE ${REACTOS_SOURCE_DIR}/include/reliefwin/wine)
 add_executable(symdump symdump.c)
 set_module_type(symdump win32cui)
 target_link_libraries(symdump wine)

@@ -1,12 +1,12 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     In-memory PnP resource database
  * COPYRIGHT:   Copyright LiberNT contributors
  */
 
 #include <ntoskrnl.h>
-#include <libernt/drivers/cmreslist.h>
+#include <reliefwin/drivers/cmreslist.h>
 #define NDEBUG
 #include <debug.h>
 

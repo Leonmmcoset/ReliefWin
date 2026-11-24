@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT AMD64 emulation host
+ * PROJECT:     ReliefWin AMD64 emulation host
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Dispatch and unwind AMD64 exceptions in processes the native loader owns
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

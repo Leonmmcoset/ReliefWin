@@ -1,7 +1,7 @@
 
 include_directories(
     include
-    ${REACTOS_SOURCE_DIR}/sdk/include/libernt/drivers)
+    ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/drivers)
 
 #
 # subdirectories containing special-purpose drivers

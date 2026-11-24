@@ -8,7 +8,7 @@
 #include "opengl32.h"
 
 #include <d3dkmthk.h>
-#include <libernt/dwmframe.h>
+#include <reliefwin/dwmframe.h>
 #include <winreg.h>
 #include <wchar.h>
 
@@ -1183,10 +1183,10 @@ struct ICD_Data* IntGetIcdData(
         if((ret != ERROR_SUCCESS) || (dwValueType != REG_SZ) || !wcslen(CustomDrvInfo.DriverName))
             goto custom_end;
 
-        if(!_wcsicmp(CustomDrvInfo.DriverName, L"ReactOS Software Implementation"))
+        if(!_wcsicmp(CustomDrvInfo.DriverName, L"ReliefWin Software Implementation"))
         {
             /* Always announce the fact that we're forcing ROSSWI */
-            ERR("Forcing ReactOS Software Implementation\n");
+            ERR("Forcing ReliefWin Software Implementation\n");
             CustomDriverState = OGL_CD_ROSSWI;
             return NULL;
         }

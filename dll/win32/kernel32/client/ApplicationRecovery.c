@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Win32 Base API
+ * PROJECT:     ReliefWin Win32 Base API
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Application recovery registration and the recovery run of an unhandled exception
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

@@ -1,14 +1,14 @@
 /*
- * PROJECT:     LiberNT Apple RTKit Library
+ * PROJECT:     ReliefWin Apple RTKit Library
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Memory of the objects the Apple silicon graphics firmware reaches
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
  */
 
 #include <ntddk.h>
-#include <libernt/drivers/appleadt.h>
-#include <libernt/drivers/appleuat.h>
-#include <libernt/drivers/appleagxinit.h>
+#include <reliefwin/drivers/appleadt.h>
+#include <reliefwin/drivers/appleuat.h>
+#include <reliefwin/drivers/appleagxinit.h>
 
 #define AGX_OBJECT_PAGES            (APPLE_UAT_PAGE_SIZE / PAGE_SIZE)
 

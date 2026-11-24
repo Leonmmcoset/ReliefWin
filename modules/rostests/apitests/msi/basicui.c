@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Progress window of the internal UI for a package without dialogs
  * COPYRIGHT:   Copyright 2026 mikuta0407 <mikuta0407@mikuta0407.net>
@@ -23,7 +23,7 @@ static const PCWSTR Queries[] =
     L"INSERT INTO `Property` (`Property`, `Value`) VALUES ('ProductCode', '{6F1D7C42-93B5-4E0A-B2C8-5A7E1D3F9C64}')",
     L"INSERT INTO `Property` (`Property`, `Value`) VALUES ('ProductVersion', '1.0.0')",
     L"INSERT INTO `Property` (`Property`, `Value`) VALUES ('ProductLanguage', '1033')",
-    L"INSERT INTO `Property` (`Property`, `Value`) VALUES ('Manufacturer', 'LiberNT')",
+    L"INSERT INTO `Property` (`Property`, `Value`) VALUES ('Manufacturer', 'ReliefWin')",
     L"INSERT INTO `CustomAction` (`Action`, `Type`, `Source`, `Target`) VALUES ('SetWaiter', 51, 'WAITER', '[SystemFolder]ping.exe')",
     L"INSERT INTO `CustomAction` (`Action`, `Type`, `Source`, `Target`) VALUES ('Wait', 114, 'WAITER', '-n 3 127.0.0.1')",
     L"INSERT INTO `InstallExecuteSequence` (`Action`, `Sequence`) VALUES ('CostInitialize', 100)",

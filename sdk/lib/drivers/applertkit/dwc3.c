@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Apple RTKit Library
+ * PROJECT:     ReliefWin Apple RTKit Library
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Host start of an Apple silicon Type-C DWC3 controller
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -8,9 +8,9 @@
 #ifndef UNIT_TEST
 #include <ntddk.h>
 #endif
-#include <libernt/drivers/appledwc3host.h>
-#include <libernt/drivers/applepmgr.h>
-#include <libernt/drivers/appleatcphy.h>
+#include <reliefwin/drivers/appledwc3host.h>
+#include <reliefwin/drivers/applepmgr.h>
+#include <reliefwin/drivers/appleatcphy.h>
 
 #define DWC3_GCTL                   0xC110
 #define DWC3_GCTL_PRTCAP_MASK       (3UL << 12)

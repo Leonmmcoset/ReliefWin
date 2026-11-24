@@ -59,7 +59,7 @@ AddService = , 0x00000002
 
 [Strings]
 ; Non-localizable
-ReactOS = "LiberNT Project"
+ReactOS = "ReliefWin Project"
 
 MsftMfg = "Microsoft"
 NecMfg = "NEC"

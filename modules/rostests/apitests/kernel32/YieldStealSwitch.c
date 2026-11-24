@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Stresses Sleep(0) taking a thread another processor is still switching away from
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

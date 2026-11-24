@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Apple RTKit Library
+ * PROJECT:     ReliefWin Apple RTKit Library
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Port and link bring-up of the Apple silicon PCIe controller
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -8,9 +8,9 @@
 #ifndef UNIT_TEST
 #include <ntddk.h>
 #endif
-#include <libernt/drivers/applepcie.h>
-#include <libernt/drivers/applepmgr.h>
-#include <libernt/drivers/appledart.h>
+#include <reliefwin/drivers/applepcie.h>
+#include <reliefwin/drivers/applepmgr.h>
+#include <reliefwin/drivers/appledart.h>
 
 #define PHY_LANE_CFG                0x00
 #define PHY_LANE_CFG_REFCLK0REQ     (1UL << 0)

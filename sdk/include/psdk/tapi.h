@@ -2548,7 +2548,7 @@ LONG WINAPI phoneGetMessage(HPHONEAPP hPhoneApp, LPPHONEMESSAGE lpMessage, DWORD
 LONG WINAPI phoneInitializeExA(LPHPHONEAPP lphPhoneApp, HINSTANCE hInstance, PHONECALLBACK lpfnCallback, LPCSTR lpszFriendlyAppName, LPDWORD lpdwNumDevs, LPDWORD lpdwAPIVersion, LPPHONEINITIALIZEEXPARAMS lpPhoneInitializeExParams);
 LONG WINAPI phoneInitializeExW(LPHPHONEAPP lphPhoneApp, HINSTANCE hInstance, PHONECALLBACK lpfnCallback, LPCWSTR lpszFriendlyAppName, LPDWORD lpdwNumDevs, LPDWORD lpdwAPIVersion, LPPHONEINITIALIZEEXPARAMS lpPhoneInitializeExParams);
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 LONG WINAPI lineAgentSpecific(HLINE hLine, DWORD dwAddressID, DWORD dwAgentExtensionIDIndex, LPVOID lpParams, DWORD dwSize);
 LONG WINAPI lineCreateAgentA(HLINE hLine, LPCSTR lpszAgentID, LPCSTR lpszAgentPIN, LPHAGENT lphAgent);
 LONG WINAPI lineCreateAgentSessionA(HLINE hLine, HAGENT hAgent, LPCSTR lpszAgentPIN, DWORD dwWorkingAddressID, LPGUID lpGroupID, LPHAGENTSESSION lphAgentSession);

@@ -686,7 +686,7 @@ extern "C" {
 
 BOOL WINAPI WcsGetCalibrationManagementState(BOOL *pbIsEnabled);
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 BOOL WINAPI CMCheckColors(HCMTRANSFORM hcmTransform, LPCOLOR lpaInputColors, DWORD nColors, COLORTYPE ctInput, LPBYTE lpaResult);
 BOOL WINAPI CMCheckColorsInGamut(HCMTRANSFORM hcmTransform, RGBTRIPLE *lpaRGBTriple, LPBYTE lpaResult, UINT nCount);
 BOOL WINAPI CMCheckRGBs(HCMTRANSFORM hcmTransform, LPVOID lpSrcBits, BMFORMAT bmInput, DWORD dwWidth, DWORD dwHeight, DWORD dwStride, LPBYTE lpaResult, PBMCALLBACKFN pfnCallback, LPARAM ulCallbackData);

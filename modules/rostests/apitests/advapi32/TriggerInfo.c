@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     SERVICE_CONFIG_TRIGGER_INFO through ChangeServiceConfig2 and sc triggerinfo
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arifing193@gmail.com>

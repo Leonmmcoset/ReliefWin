@@ -2,7 +2,7 @@
 Signature   = "$WINDOWS NT$"
 Class       = Extension
 ClassGuid   = {e2f84ce7-8efa-411c-aa69-97454ca4cb57}
-Provider    = %LiberNT%
+Provider    = %ReliefWin%
 DriverVer   = 11/15/2026,1.00
 PnpLockdown = 1
 
@@ -17,7 +17,7 @@ HKR, , IconPath, 0x00010000, "%%SystemRoot%%\System32\setupapi.dll,-70"
 
 [Strings]
 ; Non-localizable
-LiberNT = "LiberNT Project"
+ReliefWin = "ReliefWin Project"
 
 ; Localizable
 ExtensionClassName = "Extensions"

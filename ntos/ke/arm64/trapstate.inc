@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     ARM64 exception entry state layout and SIMD register macros shared by the vector code
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

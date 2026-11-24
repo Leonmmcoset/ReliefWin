@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Runtime exception handler loaded by Windows Error Reporting for the crash report test
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

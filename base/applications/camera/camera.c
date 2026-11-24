@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Camera
+ * PROJECT:     ReliefWin Camera
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Live preview of a camera through Media Foundation
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -595,7 +595,7 @@ wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR CommandLine, int Sh
     Class.lpfnWndProc = WindowProc;
     Class.hInstance = hInstance;
     Class.hCursor = LoadCursorW(NULL, (LPCWSTR)IDC_ARROW);
-    Class.lpszClassName = L"LiberNTCamera";
+    Class.lpszClassName = L"ReliefWinCamera";
     RegisterClassExW(&Class);
 
     LoadStringW(hInstance, IDS_TITLE, Title, ARRAYSIZE(Title));

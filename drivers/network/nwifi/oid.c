@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Native WiFi (802.11) stack
+ * PROJECT:     ReliefWin Native WiFi (802.11) stack
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     OID requests from the protocols above the media-converting filter
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

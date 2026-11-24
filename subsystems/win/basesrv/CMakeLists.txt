@@ -1,5 +1,5 @@
 
-include_directories(${REACTOS_SOURCE_DIR}/sdk/include/libernt/subsys)
+include_directories(${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/subsys)
 
 spec2def(basesrv.dll basesrv.spec ADD_IMPORTLIB)
 

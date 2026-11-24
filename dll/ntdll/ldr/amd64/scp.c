@@ -1,13 +1,13 @@
 /*
- * PROJECT:     LiberNT NT Library
+ * PROJECT:     ReliefWin NT Library
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Supplemental code page unwind registration
  * COPYRIGHT:   Copyright 2026 LiberNT contributors
  */
 
 #include <ntdll.h>
-#include <libernt/cfgscp.h>
-#include <libernt/wow64shared.h>
+#include <reliefwin/cfgscp.h>
+#include <reliefwin/wow64shared.h>
 
 extern SYSTEM_DLL_INIT_BLOCK LdrSystemDllInitBlock;
 static volatile LONG LdrpCfgPolicy = -1;

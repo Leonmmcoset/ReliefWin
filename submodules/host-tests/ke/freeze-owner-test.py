@@ -1,4 +1,4 @@
-# PROJECT:     LiberNT host-native tests
+# PROJECT:     ReliefWin host-native tests
 # LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
 # PURPOSE:     Only the processor that holds a freeze nests it; the next owner starts from a clean state
 # COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

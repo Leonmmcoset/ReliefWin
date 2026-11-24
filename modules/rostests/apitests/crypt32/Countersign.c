@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test PKCS #9 countersignatures against the results of Windows 11
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -422,7 +422,7 @@ static const BYTE WeakCert[] =
     0xb4,
 };
 
-static const BYTE Content[] = "LiberNT countersignature probe";
+static const BYTE Content[] = "ReliefWin countersignature probe";
 static BYTE SigningTime[] = { 0x17, 0x0d, '2', '6', '0', '1', '0', '1', '0', '0', '0', '0', '0', '0', 'Z' };
 static BYTE DataOid[] = { 0x06, 0x09, 0x2a, 0x86, 0x48, 0x86, 0xf7, 0x0d, 0x01, 0x07, 0x01 };
 
@@ -451,9 +451,9 @@ static const BYTE Sha1Hash[] =
 };
 
 #define ENCODING (X509_ASN_ENCODING | PKCS_7_ASN_ENCODING)
-#define SIGNER_CONTAINER L"LiberNT crypt32 apitest signer"
-#define TSA_CONTAINER L"LiberNT crypt32 apitest TSA"
-#define WEAK_CONTAINER L"LiberNT crypt32 apitest weak TSA"
+#define SIGNER_CONTAINER L"ReliefWin crypt32 apitest signer"
+#define TSA_CONTAINER L"ReliefWin crypt32 apitest TSA"
+#define WEAK_CONTAINER L"ReliefWin crypt32 apitest weak TSA"
 
 static HCRYPTPROV SignerProv, TsaProv, WeakProv;
 static PCCERT_CONTEXT Signer, Tsa, Root, Weak;

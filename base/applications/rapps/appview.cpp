@@ -1077,8 +1077,6 @@ CAppInfoDisplay::SetWelcomeText(bool bAppwiz)
         szText.LoadStringW(IDS_WELCOME_TEXT);
         RichEdit->InsertText(szText, 0);
 
-        szText.LoadStringW(IDS_WELCOME_URL);
-        RichEdit->InsertText(szText, CFM_LINK);
     }
     else
     {

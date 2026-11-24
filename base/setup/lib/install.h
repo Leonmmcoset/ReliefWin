@@ -9,7 +9,7 @@
 
 #pragma once
 
-#define UPGRADE_INVENTORY_PATH  L"servicing\\LiberNT.files"
+#define UPGRADE_INVENTORY_PATH  L"servicing\\ReliefWin.files"
 
 typedef enum _FILE_COPY_STATUS
 {

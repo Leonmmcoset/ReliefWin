@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT PowerVR user-mode transport
+ * PROJECT:     ReliefWin PowerVR user-mode transport
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     DRM render node emulation for Mesa's PowerVR driver over D3DKMT escapes
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -21,7 +21,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <libernt/powervr_umd.h>
+#include <reliefwin/powervr_umd.h>
 
 #include <drm-uapi/drm.h>
 #include <xf86drm.h>

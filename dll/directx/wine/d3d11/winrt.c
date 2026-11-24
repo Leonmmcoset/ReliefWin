@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Direct3D 11
+ * PROJECT:     ReliefWin Direct3D 11
  * LICENSE:     LGPL-2.1-or-later (https://spdx.org/licenses/LGPL-2.1-or-later)
  * PURPOSE:     Windows Runtime Direct3D device and surface objects over DXGI interfaces
  * COPYRIGHT:   Copyright 2026 Ostap Brehin <osbre@protonmail.com>

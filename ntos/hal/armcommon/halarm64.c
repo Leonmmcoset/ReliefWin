@@ -15,9 +15,9 @@
 #include <ioaccess.h>
 #include <halfuncs.h>
 #include <halefi.h>
-#include <libernt/hal/acpi_pci.h>
-#include <libernt/hal/acpi_cstate.h>
-#include <libernt/drivers/acpi/acpi.h>
+#include <reliefwin/hal/acpi_pci.h>
+#include <reliefwin/hal/acpi_cstate.h>
+#include <reliefwin/drivers/acpi/acpi.h>
 #include <halacpip.h>
 #include <halacpi_arm64.h>
 #include <bugcodes.h>

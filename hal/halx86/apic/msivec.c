@@ -9,7 +9,7 @@
 /* INCLUDES *******************************************************************/
 
 #include <hal.h>
-#include <libernt/hal/msi.h>
+#include <reliefwin/hal/msi.h>
 #include "apicp.h"
 #include "msip.h"
 #include <smp.h>

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT package manager
+ * PROJECT:     ReliefWin package manager
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Installed application registry, install tracking and uninstall
  * COPYRIGHT:   Copyright 2026 Ahmed Arif
@@ -28,7 +28,7 @@ namespace
 
 constexpr const wchar_t *UninstallKey = ArpUninstallKey;
 constexpr wchar_t MachineEnvironmentKey[] = L"SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Environment";
-constexpr wchar_t TrackingKey[] = L"Software\\LiberNT\\lntget\\Installed";
+constexpr wchar_t TrackingKey[] = L"Software\\ReliefWin\\lntget\\Installed";
 constexpr DWORD UninstallRegistrationTimeoutMs = 120000;
 constexpr DWORD UninstallRegistrationRecheckMs = 1000;
 

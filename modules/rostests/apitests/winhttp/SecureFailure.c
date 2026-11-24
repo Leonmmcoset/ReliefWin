@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test how WinHttpSendRequest reports a rejected server certificate
  * COPYRIGHT:   Copyright 2026 mikuta0407 <mikuta0407@mikuta0407.net>
@@ -60,7 +60,7 @@ SendSecure(
     SecureFailureCalls = 0;
     SecureFailureFlags = 0;
 
-    Session = pWinHttpOpen(L"LiberNT apitest", WINHTTP_ACCESS_TYPE_NO_PROXY, NULL, NULL, 0);
+    Session = pWinHttpOpen(L"ReliefWin apitest", WINHTTP_ACCESS_TYPE_NO_PROXY, NULL, NULL, 0);
     ok(Session != NULL, "WinHttpOpen failed with %lu\n", GetLastError());
     if (!Session)
         return FALSE;

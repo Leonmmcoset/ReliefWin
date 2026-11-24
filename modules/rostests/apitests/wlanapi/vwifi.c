@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Installs and removes the vwifi test adapter
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -69,7 +69,7 @@ InstallVwifi(HDEVINFO *Devices, SP_DEVINFO_DATA *Device)
         return FALSE;
 
     Device->cbSize = sizeof(*Device);
-    if (!SetupDiCreateDeviceInfoW(*Devices, L"Net", &NetClass, L"LiberNT virtual Wi-Fi test adapter",
+    if (!SetupDiCreateDeviceInfoW(*Devices, L"Net", &NetClass, L"ReliefWin virtual Wi-Fi test adapter",
                                   NULL, DICD_GENERATE_ID, Device) ||
         !SetupDiSetDeviceRegistryPropertyW(*Devices, Device, SPDRP_HARDWAREID,
                                            (const BYTE *)VwifiHardwareIds, sizeof(VwifiHardwareIds)))

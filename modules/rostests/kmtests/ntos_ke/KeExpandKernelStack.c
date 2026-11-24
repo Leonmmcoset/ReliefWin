@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT kernel-mode tests
+ * PROJECT:     ReliefWin kernel-mode tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Tests that a callout on an expanded kernel stack takes page faults wherever that stack lies
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

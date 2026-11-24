@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Tells whether a device runs on the virtio 3D GPU, whose host has measured limits
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

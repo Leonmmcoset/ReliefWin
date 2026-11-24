@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test the AddReg FLG_ADDREG_32BITKEY and FLG_ADDREG_64BITKEY registry views
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -10,7 +10,7 @@
 #include <setupapi.h>
 #include <stdio.h>
 
-static const WCHAR KeyName[] = L"Software\\LiberNTAddRegView";
+static const WCHAR KeyName[] = L"Software\\ReliefWinAddRegView";
 
 static const char InfText[] =
     "[Version]\r\n"
@@ -18,9 +18,9 @@ static const char InfText[] =
     "[Install]\r\n"
     "AddReg=Reg\r\n"
     "[Reg]\r\n"
-    "HKLM,\"Software\\LiberNTAddRegView\",Native,,\"native\"\r\n"
-    "HKLM,\"Software\\LiberNTAddRegView\",View32,0x00004000,\"x86\"\r\n"
-    "HKLM,\"Software\\LiberNTAddRegView\",View64,0x00001000,\"x64\"\r\n";
+    "HKLM,\"Software\\ReliefWinAddRegView\",Native,,\"native\"\r\n"
+    "HKLM,\"Software\\ReliefWinAddRegView\",View32,0x00004000,\"x86\"\r\n"
+    "HKLM,\"Software\\ReliefWinAddRegView\",View64,0x00001000,\"x64\"\r\n";
 
 static int
 HasValue(REGSAM View, PCWSTR Name, PCWSTR Expected)

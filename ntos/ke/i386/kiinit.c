@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     i386 kernel entry from the loader: PCR, GDT, IDT, TSS, features and processor startup
  * COPYRIGHT:   Copyright Alex Ionescu <alex.ionescu@reactos.org>

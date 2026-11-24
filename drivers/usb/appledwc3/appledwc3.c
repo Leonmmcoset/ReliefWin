@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Apple Silicon USB Glue Driver
+ * PROJECT:     ReliefWin Apple Silicon USB Glue Driver
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Powers an Apple silicon Type-C USB controller and enumerates its xHCI core
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -9,13 +9,13 @@
 #include <initguid.h>
 #include <wdmguid.h>
 #include <ntstrsafe.h>
-#include <libernt/drivers/fdtdrv.h>
-#include <libernt/drivers/applepmgr.h>
-#include <libernt/drivers/appledart.h>
-#include <libernt/drivers/appleatcphy.h>
-#include <libernt/drivers/appleacepd.h>
-#include <libernt/drivers/appledwc3host.h>
-#include <libernt/drivers/kdusbshare.h>
+#include <reliefwin/drivers/fdtdrv.h>
+#include <reliefwin/drivers/applepmgr.h>
+#include <reliefwin/drivers/appledart.h>
+#include <reliefwin/drivers/appleatcphy.h>
+#include <reliefwin/drivers/appleacepd.h>
+#include <reliefwin/drivers/appledwc3host.h>
+#include <reliefwin/drivers/kdusbshare.h>
 
 #define APPLE_DWC3_TAG              '3wDA'
 

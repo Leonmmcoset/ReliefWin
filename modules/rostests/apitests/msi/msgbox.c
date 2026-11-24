@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Message boxes of the internal UI during an install
  * COPYRIGHT:   Copyright 2026 mikuta0407 <mikuta0407@mikuta0407.net>
@@ -23,7 +23,7 @@ static const PCWSTR Base[] =
     L"INSERT INTO `Property` (`Property`, `Value`) VALUES ('ProductCode', '{4C8E2B71-5A3D-4F96-9E07-B1D6C3A8F254}')",
     L"INSERT INTO `Property` (`Property`, `Value`) VALUES ('ProductVersion', '1.0.0')",
     L"INSERT INTO `Property` (`Property`, `Value`) VALUES ('ProductLanguage', '1033')",
-    L"INSERT INTO `Property` (`Property`, `Value`) VALUES ('Manufacturer', 'LiberNT')",
+    L"INSERT INTO `Property` (`Property`, `Value`) VALUES ('Manufacturer', 'ReliefWin')",
     L"INSERT INTO `InstallExecuteSequence` (`Action`, `Sequence`) VALUES ('CostInitialize', 100)",
     NULL
 };

@@ -19,7 +19,7 @@
  */
 
 #include <ntoskrnl.h>
-#include <libernt/smpdbg.h>
+#include <reliefwin/smpdbg.h>
 #define NDEBUG
 #include <debug.h>
 

@@ -1395,7 +1395,7 @@ DEFINE_SAFE_MULT_U16(UShortMult, USHORT, ULongToUShort)
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 HRESULT IntPtrToChar(INT_PTR iOperand, CHAR *pch);
 HRESULT LongLongToUInt8(LONGLONG llOperand, UINT8 *pu8Result);
 #if (defined(_WIN64))

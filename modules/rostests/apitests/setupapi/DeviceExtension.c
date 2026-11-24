@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test that extension INFs apply over a device's base driver and never become it
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -55,8 +55,8 @@ static const char BaseInf[] =
     "Needs=UmPass.Services\r\n"
     "\r\n"
     "[Strings]\r\n"
-    "Lnt=\"LiberNT tests\"\r\n"
-    "Dev=\"LiberNT extension test device\"\r\n";
+    "Lnt=\"ReliefWin tests\"\r\n"
+    "Dev=\"ReliefWin extension test device\"\r\n";
 
 #define EXTENSION_HEAD(guid, ver) \
     "[Version]\r\n" \
@@ -80,8 +80,8 @@ static const char BaseInf[] =
 
 #define EXTENSION_TAIL \
     "[Strings]\r\n" \
-    "Lnt=\"LiberNT tests\"\r\n" \
-    "Ext=\"LiberNT test extension\"\r\n"
+    "Lnt=\"ReliefWin tests\"\r\n" \
+    "Ext=\"ReliefWin test extension\"\r\n"
 
 static const char OldExtensionInf[] =
     EXTENSION_HEAD("{6d3f0c1e-4a52-4f3b-9c1d-2b8e7a5f9e01}", "11/01/2026,1.0.0.0")

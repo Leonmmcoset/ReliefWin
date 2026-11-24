@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT kernel-mode tests
+ * PROJECT:     ReliefWin kernel-mode tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Plug and Play queries a PCI bus FDO passes to the device below it
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

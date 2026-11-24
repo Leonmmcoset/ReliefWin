@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT DirectX Diagnostic Tool
+ * PROJECT:     ReliefWin DirectX Diagnostic Tool
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Direct3D 11 rendering benchmark
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

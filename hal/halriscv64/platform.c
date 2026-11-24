@@ -1,12 +1,12 @@
 /*
- * PROJECT:     LiberNT RISC-V HAL
+ * PROJECT:     ReliefWin RISC-V HAL
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF
  * PURPOSE:     Retained device-tree platform discovery
  */
 
 #include <ntifs.h>
-#include <libernt/fdt.h>
+#include <reliefwin/fdt.h>
 #include "halp.h"
 
 static

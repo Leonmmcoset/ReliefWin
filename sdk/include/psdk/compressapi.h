@@ -94,7 +94,7 @@ typedef struct _COMPRESS_ALLOCATION_ROUTINES *PCOMPRESS_ALLOCATION_ROUTINES;
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 BOOL WINAPI QueryCompressorInformation(COMPRESSOR_HANDLE CompressorHandle, COMPRESS_INFORMATION_CLASS CompressInformationClass, PVOID CompressInformation, SIZE_T CompressInformationSize);
 BOOL WINAPI QueryDecompressorInformation(DECOMPRESSOR_HANDLE DecompressorHandle, COMPRESS_INFORMATION_CLASS CompressInformationClass, PVOID CompressInformation, SIZE_T CompressInformationSize);
 BOOL WINAPI ResetCompressor(COMPRESSOR_HANDLE CompressorHandle);

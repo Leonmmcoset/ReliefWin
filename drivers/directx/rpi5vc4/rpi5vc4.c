@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Raspberry Pi 5 WDDM display-only miniport
+ * PROJECT:     ReliefWin Raspberry Pi 5 WDDM display-only miniport
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     DriverEntry, PnP/power lifecycle, child devices, adapter
  *              capabilities and the HVS hardware-cursor pointer DDIs.
@@ -21,7 +21,7 @@
 #include "rpi5vc4_iommu.h"
 
 #define NDEBUG
-#include <libernt/debug.h>
+#include <reliefwin/debug.h>
 
 #define RPI5VC4_ACPI_SIGNATURE(a, b, c, d) \
     ((ULONG)(a) | ((ULONG)(b) << 8) | ((ULONG)(c) << 16) | ((ULONG)(d) << 24))

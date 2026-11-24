@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# PROJECT:     LiberNT host-native tests
+# PROJECT:     ReliefWin host-native tests
 # LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
 # PURPOSE:     Exercise pending receive interrupts across masking and rearming on the 82540EM
 # COPYRIGHT:   Copyright 2026 The LiberNT contributors

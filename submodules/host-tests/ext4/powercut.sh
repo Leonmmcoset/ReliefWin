@@ -1,5 +1,5 @@
 #!/bin/sh
-# PROJECT:     LiberNT host-native tests
+# PROJECT:     ReliefWin host-native tests
 # LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
 # PURPOSE:     Cuts the ext4 core stress at chosen device writes and checks what journal recovery leaves, by e2fsck
 #              and by the core itself

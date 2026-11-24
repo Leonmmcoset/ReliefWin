@@ -1,7 +1,7 @@
-# LiberNT brand assets
+# ReliefWin brand assets
 
-The files in this directory are the LiberNT logo, mark and banner. They are **not** licensed under the GNU GPL that covers the LiberNT source code.
+The original logo image in `reliefwin-source.jpg` was supplied by the maintainer for the ReliefWin rebranding. The generated mark, wordmarks, icons, boot images and wallpapers are derived from that image.
 
-Copyright © Ahmed ARIF. All rights reserved.
+No separate public artwork licence or transfer of ownership was supplied. Do not infer a GPL artwork grant from the licences of the operating-system source code. Contact the maintainer for permission to reuse the supplied logo outside this project.
 
-They may be used only as the [brand policy](../../../TRADEMARK.md) allows: unchanged, to refer to this project or to redistribute an official build. Redrawing, recolouring, overlaying or otherwise adapting them, and shipping them in a modified build, needs written permission.
+The previous upstream logo is not shipped as ReliefWin branding. The original upstream brand policy is retained separately in `media/doc/UPSTREAM_TRADEMARK.md`; it does not claim ownership of this replacement artwork. See the repository's [brand policy](../../../TRADEMARK.md).

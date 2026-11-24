@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test that an INF AddComponent makes a software device under its device, whose package CopyINF imported and whose AddSoftware runs from the driver store
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -13,7 +13,7 @@
 #include <devguid.h>
 
 #define PARENT_HWID L"LNT_SWC_TEST_PARENT"
-#define SOFTWARE_RESULT_KEY L"SOFTWARE\\LiberNTApiTest\\SoftwareComponent"
+#define SOFTWARE_RESULT_KEY L"SOFTWARE\\ReliefWinApiTest\\SoftwareComponent"
 
 static const char ParentInf[] =
     "[Version]\r\n"
@@ -59,9 +59,9 @@ static const char ParentInf[] =
     "Description=%CompDesc%\r\n"
     "\r\n"
     "[Strings]\r\n"
-    "Lnt=\"LiberNT tests\"\r\n"
-    "Parent=\"LiberNT component parent\"\r\n"
-    "CompDesc=\"LiberNT test component\"\r\n";
+    "Lnt=\"ReliefWin tests\"\r\n"
+    "Parent=\"ReliefWin component parent\"\r\n"
+    "CompDesc=\"ReliefWin test component\"\r\n";
 
 static const char ComponentInf[] =
     "[Version]\r\n"
@@ -94,7 +94,7 @@ static const char ComponentInf[] =
     "[CompSoftware]\r\n"
     "SoftwareType=1\r\n"
     "SoftwareBinary=lntswreg.exe\r\n"
-    "SoftwareArguments=add,HKLM\\SOFTWARE\\LiberNTApiTest\\SoftwareComponent,/v,Instance,/d,<<DeviceInstanceID>>,/f\r\n"
+    "SoftwareArguments=add,HKLM\\SOFTWARE\\ReliefWinApiTest\\SoftwareComponent,/v,Instance,/d,<<DeviceInstanceID>>,/f\r\n"
     "SoftwareVersion=1.0.0.0\r\n"
     "\r\n"
     "[CompFiles]\r\n"
@@ -110,9 +110,9 @@ static const char ComponentInf[] =
     "lntswreg.exe=1\r\n"
     "\r\n"
     "[Strings]\r\n"
-    "Lnt=\"LiberNT tests\"\r\n"
-    "Comp=\"LiberNT test component driver\"\r\n"
-    "Disk=\"LiberNT test disk\"\r\n";
+    "Lnt=\"ReliefWin tests\"\r\n"
+    "Comp=\"ReliefWin test component driver\"\r\n"
+    "Disk=\"ReliefWin test disk\"\r\n";
 
 static BOOL
 WriteTextFile(PCWSTR Path, const char *Text)
@@ -195,7 +195,7 @@ CheckComponentRecord(PCWSTR ParentId)
     ZeroMemory(Buffer, sizeof(Buffer));
     Error = RegQueryValueExW(Key, L"Description", NULL, &Type, (BYTE *)Buffer, &Size);
     ok(Error == ERROR_SUCCESS && Type == REG_SZ, "Description: error %ld type %lu\n", Error, Type);
-    ok(!wcscmp(Buffer, L"LiberNT test component"), "Description is '%ls'\n", Buffer);
+    ok(!wcscmp(Buffer, L"ReliefWin test component"), "Description is '%ls'\n", Buffer);
 
     RegCloseKey(Key);
 }

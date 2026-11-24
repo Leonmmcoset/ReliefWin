@@ -1,17 +1,17 @@
 /*
- * PROJECT:     LiberNT Apple Power Management Processor Driver
+ * PROJECT:     ReliefWin Apple Power Management Processor Driver
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Device power votes of the Apple silicon power management processor
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
  */
 
 #include <ntddk.h>
-#include <libernt/drivers/applertkit.h>
-#include <libernt/drivers/appleadt.h>
-#include <libernt/drivers/appledart.h>
-#include <libernt/drivers/applepmgr.h>
-#include <libernt/drivers/applepmp.h>
-#include <libernt/drivers/fdtdrv.h>
+#include <reliefwin/drivers/applertkit.h>
+#include <reliefwin/drivers/appleadt.h>
+#include <reliefwin/drivers/appledart.h>
+#include <reliefwin/drivers/applepmgr.h>
+#include <reliefwin/drivers/applepmp.h>
+#include <reliefwin/drivers/fdtdrv.h>
 
 #define PMP_TAG                     'pPpA'
 #define PMP_ENDPOINT                0x20

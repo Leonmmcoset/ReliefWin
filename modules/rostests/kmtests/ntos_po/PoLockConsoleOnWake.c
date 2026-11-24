@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT kernel-mode tests
+ * PROJECT:     ReliefWin kernel-mode tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     A driver registering for GUID_LOCK_CONSOLE_ON_WAKE is told the console is locked on wake
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

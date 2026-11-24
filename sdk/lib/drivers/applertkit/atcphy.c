@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Apple RTKit Library
+ * PROJECT:     ReliefWin Apple RTKit Library
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     USB2 host bring-up of the Apple silicon Type-C PHY
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -8,7 +8,7 @@
 #ifndef UNIT_TEST
 #include <ntddk.h>
 #endif
-#include <libernt/drivers/appleatcphy.h>
+#include <reliefwin/drivers/appleatcphy.h>
 
 #define AUSPLL_FSM_CTRL                     0x1014
 #define AUSPLL_APB_CMD_OVERRIDE             0x2000

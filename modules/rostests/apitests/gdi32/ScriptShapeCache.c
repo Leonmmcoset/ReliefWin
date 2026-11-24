@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Tests that a script cache shapes and places a font without layout tables the same way every time
  * COPYRIGHT:   Copyright 2026 Ahmed Arif <arif.ing@outlook.com>

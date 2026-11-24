@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Apple Graphics Driver
+ * PROJECT:     ReliefWin Apple Graphics Driver
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Render and compute work on the Apple silicon graphics processor
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

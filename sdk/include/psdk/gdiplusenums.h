@@ -823,7 +823,7 @@ enum GenericFontFamily {
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 enum ObjectType
 {
     ObjectTypeInvalid = 0,

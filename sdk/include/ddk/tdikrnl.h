@@ -1266,7 +1266,7 @@ typedef struct _TDI_VERSION_ TDI_VERSION;
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 void TdiCopyBufferToMdlWithReservedMapping(PVOID SourceBuffer, PMDL DestinationMdl, ULONG DestinationOffset, ULONG BytesToCopy);
 void NTAPI TdiCopyBufferToMdlWithReservedMappingAtDpcLevel(PVOID SourceBuffer, PMDL DestinationMdl, ULONG DestinationOffset, ULONG BytesToCopy);
 void NTAPI TdiGet9FTriageBlock(PVOID *TriageBlockAddress);

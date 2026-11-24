@@ -1,5 +1,5 @@
 #
-# PROJECT:     LiberNT Virtual WiFi Bus Driver
+# PROJECT:     ReliefWin Virtual WiFi Bus Driver
 # LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
 # PURPOSE:     Virtual WiFi bus upper filter build rules
 # COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

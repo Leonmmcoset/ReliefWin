@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Tests Windows.UI.Notifications toast manager, notifier, notification and history
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -19,7 +19,7 @@ static WCHAR ShortcutAppId[64];
 static WCHAR RegisteredKey[128];
 static const WCHAR ToastXml[] =
     L"<toast launch=\"apitest-launch\"><visual><binding template=\"ToastGeneric\">"
-    L"<text>LiberNT API test</text><text>Toast body</text></binding></visual></toast>";
+    L"<text>ReliefWin API test</text><text>Toast body</text></binding></visual></toast>";
 
 struct failed_handler
 {
@@ -464,9 +464,9 @@ START_TEST(ToastNotification)
     hr = RoInitialize(RO_INIT_MULTITHREADED);
     ok(SUCCEEDED(hr), "RoInitialize failed, hr %#lx\n", hr);
 
-    swprintf(UnregisteredAppId, ARRAYSIZE(UnregisteredAppId), L"LiberNT.ApiTest.ToastUnregistered.%lu", GetCurrentProcessId());
-    swprintf(RegisteredAppId, ARRAYSIZE(RegisteredAppId), L"LiberNT.ApiTest.ToastRegistered.%lu", GetCurrentProcessId());
-    swprintf(ShortcutAppId, ARRAYSIZE(ShortcutAppId), L"LiberNT.ApiTest.ToastShortcut.%lu", GetCurrentProcessId());
+    swprintf(UnregisteredAppId, ARRAYSIZE(UnregisteredAppId), L"ReliefWin.ApiTest.ToastUnregistered.%lu", GetCurrentProcessId());
+    swprintf(RegisteredAppId, ARRAYSIZE(RegisteredAppId), L"ReliefWin.ApiTest.ToastRegistered.%lu", GetCurrentProcessId());
+    swprintf(ShortcutAppId, ARRAYSIZE(ShortcutAppId), L"ReliefWin.ApiTest.ToastShortcut.%lu", GetCurrentProcessId());
     swprintf(RegisteredKey, ARRAYSIZE(RegisteredKey), L"Software\\Classes\\AppUserModelId\\%ls", RegisteredAppId);
 
     TraceActivatableClass(RuntimeClass_Windows_UI_Notifications_ToastNotificationManager);
@@ -530,8 +530,8 @@ START_TEST(ToastNotification)
             TestShow(Statics, History2, Document, UnregisteredAppId, FALSE);
             if (!RegCreateKeyExW(HKEY_CURRENT_USER, RegisteredKey, 0, NULL, 0, KEY_ALL_ACCESS, NULL, &Key, NULL))
             {
-                RegSetValueExW(Key, L"DisplayName", 0, REG_SZ, (const BYTE *)L"LiberNT API test",
-                               sizeof(L"LiberNT API test"));
+                RegSetValueExW(Key, L"DisplayName", 0, REG_SZ, (const BYTE *)L"ReliefWin API test",
+                               sizeof(L"ReliefWin API test"));
                 RegCloseKey(Key);
                 TestShow(Statics, History2, Document, RegisteredAppId, TRUE);
                 Id = CreateHString(RegisteredAppId);
@@ -593,15 +593,15 @@ START_TEST(ToastCallback)
     Handler->Reason = -1;
     Handler->RemoveResult = E_FAIL;
 
-    swprintf(AppId, ARRAYSIZE(AppId), L"LiberNT.ApiTest.ToastCallback.%lu", GetCurrentProcessId());
+    swprintf(AppId, ARRAYSIZE(AppId), L"ReliefWin.ApiTest.ToastCallback.%lu", GetCurrentProcessId());
     swprintf(KeyName, ARRAYSIZE(KeyName), L"Software\\Classes\\AppUserModelId\\%ls", AppId);
     if (RegCreateKeyExW(HKEY_CURRENT_USER, KeyName, 0, NULL, 0, KEY_ALL_ACCESS, NULL, &Key, NULL))
     {
         ok(FALSE, "Cannot register the test application ID\n");
         goto done;
     }
-    RegSetValueExW(Key, L"DisplayName", 0, REG_SZ, (const BYTE *)L"LiberNT callback test",
-                   sizeof(L"LiberNT callback test"));
+    RegSetValueExW(Key, L"DisplayName", 0, REG_SZ, (const BYTE *)L"ReliefWin callback test",
+                   sizeof(L"ReliefWin callback test"));
     RegCloseKey(Key);
     Registered = TRUE;
     Shortcut = CreateAppShortcut(ShortcutPath, AppId);

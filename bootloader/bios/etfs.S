@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Boot Loader
+ * PROJECT:     ReliefWin Boot Loader
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     El Torito no-emulation boot image: loads \BOOTMGR from an ISO 9660 medium and starts it
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

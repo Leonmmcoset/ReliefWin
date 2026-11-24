@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Tests for PowerDuplicateScheme and PowerDeleteScheme
  * COPYRIGHT:   Copyright 2026 Ostap Brehin <osbre@protonmail.com>
@@ -73,7 +73,7 @@ static void test_arguments(void)
 static void test_duplicate(const GUID *original)
 {
     WCHAR source_name[128], name[128];
-    static const WCHAR new_name[] = L"LiberNT duplicate test";
+    static const WCHAR new_name[] = L"ReliefWin duplicate test";
     GUID *dest = NULL, *active = NULL;
     DWORD source_ac, value, ret;
 

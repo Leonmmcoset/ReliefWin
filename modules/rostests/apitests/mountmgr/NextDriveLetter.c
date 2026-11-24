@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test for IOCTL_MOUNTMGR_NEXT_DRIVE_LETTER after a drive letter is removed
  * COPYRIGHT:   Copyright 2026 mikuta0407 <mikuta0407@mikuta0407.net>

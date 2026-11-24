@@ -1,8 +1,12 @@
 # Credits
 
-## LiberNT
+## ReliefWin
 
-LiberNT is available thanks to the work of:
+The ReliefWin name and replacement logo were requested and supplied by this fork's maintainer.
+
+## LiberNT upstream contributors
+
+The inherited LiberNT work is available thanks to:
 
 - Ahmed ARIF (arif.ing@outlook.com)
 - Alula (git@alula.me)
@@ -13,7 +17,7 @@ To be listed here, add your name to this section in your pull request.
 
 ## Artwork
 
-LiberNT uses artwork from:
+ReliefWin uses artwork from:
 
 - Microsoft Corporation (Fluent UI System Icons) (https://github.com/microsoft/fluentui-system-icons)
 - Papirus Development Team (https://github.com/PapirusDevelopmentTeam)
@@ -24,7 +28,7 @@ LiberNT uses artwork from:
 
 ## ReactOS
 
-LiberNT is a modified version of ReactOS, and the code it inherits is the work of the ReactOS contributors. ReactOS is available thanks to the work of:
+ReliefWin is a modified version of ReactOS, and the code it inherits is the work of the ReactOS contributors. ReactOS is available thanks to the work of:
 
 - Aleksandar Andrejevic (aandrejevic@reactos.org)
 - Aleksey Bragin (aleksey at reactos org)

@@ -3944,10 +3944,10 @@ DeletePartition(
     return TRUE;
 }
 
-#define LIBERNT_BOOTMGR_MAGIC_OFFSET 0x10
-#define LIBERNT_BOOTMGR_MAGIC        0x50545342
+#define RELIEFWIN_BOOTMGR_MAGIC_OFFSET 0x10
+#define RELIEFWIN_BOOTMGR_MAGIC        0x50545342
 
-/* LiberNT's PC/AT BOOTMGR carries the signature of its startup block, 'BSTP', at offset 0x10 */
+/* ReliefWin's PC/AT BOOTMGR carries the signature of its startup block, 'BSTP', at offset 0x10 */
 BOOT_MANAGER_OWNER
 GetPcatBootManagerOwner(
     _In_ PCWSTR RootPath)
@@ -3957,7 +3957,7 @@ GetPcatBootManagerOwner(
     LARGE_INTEGER Offset;
     UNICODE_STRING Name;
     WCHAR Path[MAX_PATH];
-    ULONG Header[(LIBERNT_BOOTMGR_MAGIC_OFFSET / sizeof(ULONG)) + 1];
+    ULONG Header[(RELIEFWIN_BOOTMGR_MAGIC_OFFSET / sizeof(ULONG)) + 1];
     HANDLE File;
     NTSTATUS Status;
 
@@ -3984,12 +3984,12 @@ GetPcatBootManagerOwner(
 
     if (!NT_SUCCESS(Status) ||
         (IoStatusBlock.Information < sizeof(Header)) ||
-        (Header[LIBERNT_BOOTMGR_MAGIC_OFFSET / sizeof(ULONG)] != LIBERNT_BOOTMGR_MAGIC))
+        (Header[RELIEFWIN_BOOTMGR_MAGIC_OFFSET / sizeof(ULONG)] != RELIEFWIN_BOOTMGR_MAGIC))
     {
         return BootManagerForeign;
     }
 
-    return BootManagerLiberNT;
+    return BootManagerReliefWin;
 }
 
 static
@@ -4063,8 +4063,8 @@ IsSupportedActivePartition(
                 return FALSE;
             }
 
-            /* An NTFS volume is taken as the system partition only when LiberNT already boots from it */
-            return !Ntfs || (Owner == BootManagerLiberNT);
+            /* An NTFS volume is taken as the system partition only when ReliefWin already boots from it */
+            return !Ntfs || (Owner == BootManagerReliefWin);
         }
         else
         {

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT AMD64 emulation host
+ * PROJECT:     ReliefWin AMD64 emulation host
  * LICENSE:     MIT (https://spdx.org/licenses/MIT)
  * PURPOSE:     AMD64 unwind types of the shared CHPE runtime in RV64X processes
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

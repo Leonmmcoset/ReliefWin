@@ -10,8 +10,8 @@ LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
 
 STRINGTABLE
 {
-    100, "LiberNT test type"
-    101, "LiberNT test type with a name that is longer than forty characters"
+    100, "ReliefWin test type"
+    101, "ReliefWin test type with a name that is longer than forty characters"
 }
 
 SHLIMIT DIALOG 0, 0, 122, 84
@@ -24,7 +24,7 @@ FONT 9, "Tahoma"
 }
 
 ShellHook DIALOG 0, 0, 200, 84
-CAPTION "ReactOS ShellHook test dialog"
+CAPTION "ReliefWin ShellHook test dialog"
 STYLE DS_MODALFRAME | WS_POPUPWINDOW | WS_CAPTION
 FONT 9, "Tahoma"
 {

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Apple Silicon Battery Driver
+ * PROJECT:     ReliefWin Apple Silicon Battery Driver
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Battery miniclass driver for the battery reported by the Apple SMC
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -7,7 +7,7 @@
 
 #include <ntddk.h>
 #include <batclass.h>
-#include <libernt/drivers/applesmc.h>
+#include <reliefwin/drivers/applesmc.h>
 
 #define APPLE_BATTERY_TAG           'tBpA'
 #define APPLE_BATTERY_ID            1

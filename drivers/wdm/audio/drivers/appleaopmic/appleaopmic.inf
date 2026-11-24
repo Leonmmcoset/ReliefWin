@@ -1,4 +1,4 @@
-; PROJECT:     LiberNT Apple AOP Microphone Driver
+; PROJECT:     ReliefWin Apple AOP Microphone Driver
 ; LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
 ; COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
 
@@ -6,7 +6,7 @@
 Signature="$Windows NT$"
 Class=MEDIA
 ClassGuid={4d36e96c-e325-11ce-bfc1-08002be10318}
-Provider=%LiberNT%
+Provider=%ReliefWin%
 DriverVer=11/11/2026,1.0.0.0
 
 [DestinationDirs]
@@ -14,7 +14,7 @@ DefaultDestDir=12
 AppleAopMic.CopyFiles=12
 
 [Manufacturer]
-%LiberNT%=AppleAopMicModels,NTARM64
+%ReliefWin%=AppleAopMicModels,NTARM64
 
 [AppleAopMicModels.NTARM64]
 %AppleAopMic.DeviceDesc%=AppleAopMic_Install,APPLEAOP\AUDIO
@@ -75,12 +75,12 @@ HKR,,FriendlyName,,%AppleAopMic.TopologyName%
 appleaopmic.sys=1
 
 [Strings]
-LiberNT="LiberNT"
+ReliefWin="ReliefWin"
 AppleAopMic.DeviceDesc="Apple Built-in Microphones"
-AppleAopMic.ServiceDesc="LiberNT Apple AOP Microphone Driver"
+AppleAopMic.ServiceDesc="ReliefWin Apple AOP Microphone Driver"
 AppleAopMic.WaveName="Microphone Array"
 AppleAopMic.TopologyName="Microphone Array Topology"
-DiskName="LiberNT Installation Media"
+DiskName="ReliefWin Installation Media"
 Proxy.CLSID="{17CCA71B-ECD7-11D0-B908-00A0C9223196}"
 KSCATEGORY_AUDIO="{6994AD04-93EF-11D0-A3CC-00A0C9223196}"
 KSCATEGORY_CAPTURE="{65E8773D-8F56-11D0-A3B9-00A0C9223196}"

@@ -1,5 +1,5 @@
 /*
- * PROJECT:         LiberNT Kernel
+ * PROJECT:         ReliefWin Kernel
  * LICENSE:         GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * FILE:            ntoskrnl/ke/arm64/topology.c
  * PURPOSE:         ARM64 CPU, NUMA and SMT topology discovery
@@ -7,8 +7,8 @@
  */
 
 #include <ntoskrnl.h>
-#include <libernt/arm64/acpi.h>
-#include <libernt/fdtlib.h>
+#include <reliefwin/arm64/acpi.h>
+#include <reliefwin/fdtlib.h>
 
 #define NDEBUG
 #include <debug.h>

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT HAL extensions
+ * PROJECT:     ReliefWin HAL extensions
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Raspberry Pi 4 extension: BCM2711 PCIe and VideoCore
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

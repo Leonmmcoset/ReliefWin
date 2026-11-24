@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Tests for SHSetLocalizedName, SHGetLocalizedName and SHRemoveLocalizedName
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -190,8 +190,8 @@ START_TEST(LocalizedName)
 
     GetTempPathW(MAX_PATH, dir);
     StringCchCopyW(dir2, MAX_PATH, dir);
-    StringCchCatW(dir, MAX_PATH, L"libernt_locname");
-    StringCchCatW(dir2, MAX_PATH, L"libernt_locname2");
+    StringCchCatW(dir, MAX_PATH, L"reliefwin_locname");
+    StringCchCatW(dir2, MAX_PATH, L"reliefwin_locname2");
     remove_tree(dir);
     remove_tree(dir2);
     ok(CreateDirectoryW(dir, NULL), "CreateDirectoryW failed: %lu\n", GetLastError());
@@ -200,9 +200,9 @@ START_TEST(LocalizedName)
     test_folder(dir);
     test_file(dir2);
 
-    hr = SHRemoveLocalizedName(L"C:\\libernt-no-such-dir\\x");
+    hr = SHRemoveLocalizedName(L"C:\\reliefwin-no-such-dir\\x");
     ok(hr == HRESULT_FROM_WIN32(ERROR_FILE_NOT_FOUND), "Remove missing path hr 0x%lx\n", hr);
-    hr = SHSetLocalizedName(L"C:\\libernt-no-such-dir\\x", TEST_MODULE, TEST_ID);
+    hr = SHSetLocalizedName(L"C:\\reliefwin-no-such-dir\\x", TEST_MODULE, TEST_ID);
     ok(hr == HRESULT_FROM_WIN32(ERROR_FILE_NOT_FOUND), "Set missing path hr 0x%lx\n", hr);
 
     remove_tree(dir);

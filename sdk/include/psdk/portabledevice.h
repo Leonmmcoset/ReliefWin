@@ -1031,7 +1031,7 @@ typedef struct tagWPD_COMMAND_ACCESS_LOOKUP_ENTRY {
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 void FreePortableDevicePnPIDs(LPWSTR *pPnPIDs, DWORD cPnPIDs);
 
 #ifdef __cplusplus

@@ -1,15 +1,15 @@
 /*
- * PROJECT:     LiberNT USB Network Kernel Debugger Extension
+ * PROJECT:     ReliefWin USB Network Kernel Debugger Extension
  * LICENSE:     GPL-2.0-or-later (https://spdx.org/licenses/GPL-2.0-or-later)
  * PURPOSE:     Controller glue of an Apple silicon Type-C DWC3 controller
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
  */
 
 #include "kdusbnet.h"
-#include <libernt/drivers/fdtdrv.h>
-#include <libernt/drivers/applepmgr.h>
-#include <libernt/drivers/appledart.h>
-#include <libernt/drivers/appledwc3host.h>
+#include <reliefwin/drivers/fdtdrv.h>
+#include <reliefwin/drivers/applepmgr.h>
+#include <reliefwin/drivers/appledart.h>
+#include <reliefwin/drivers/appledwc3host.h>
 
 #define USBNET_APPLE_OWNER "USB debugger"
 

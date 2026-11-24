@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT WiFiCx
+ * PROJECT:     ReliefWin WiFiCx
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Wi-Fi WDF class extension: client binding, device bring-up and WDI command transport
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif193.001@gmail.com>

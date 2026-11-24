@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT USB Network Kernel Debugger Extension
+ * PROJECT:     ReliefWin USB Network Kernel Debugger Extension
  * LICENSE:     GPL-2.0-or-later (https://spdx.org/licenses/GPL-2.0-or-later)
  * PURPOSE:     Device-tree controllers: the tree kdnet found and the I/O the platform glue runs on
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -7,7 +7,7 @@
 
 #include "kdusbnet.h"
 #include <kdfdt.h>
-#include <libernt/drivers/fdtdrv.h>
+#include <reliefwin/drivers/fdtdrv.h>
 
 static
 PVOID

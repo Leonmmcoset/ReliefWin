@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT vcruntime library
+ * PROJECT:     ReliefWin vcruntime library
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     longjmp on ARM
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

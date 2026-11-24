@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT HAL
+ * PROJECT:     ReliefWin HAL
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Apple AIC2/AIC3 interrupt backend probe
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include <libernt/hal/halext.h>
+#include <reliefwin/hal/halext.h>
 
 extern BOOLEAN AppleAicDetected;
 

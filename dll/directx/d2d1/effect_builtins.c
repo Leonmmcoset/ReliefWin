@@ -889,7 +889,7 @@ static const WCHAR bitmap_source_description[] =
 L"<?xml version='1.0'?>                                                   \
   <Effect>                                                                \
     <Property name='DisplayName' type='string' value='Bitmap Source'/>    \
-    <Property name='Author'      type='string' value='LiberNT'/>          \
+    <Property name='Author'      type='string' value='ReliefWin'/>          \
     <Property name='Category'    type='string' value='Stub'/>             \
     <Property name='Description' type='string' value='Bitmap Source'/>    \
     <Inputs minimum='0' maximum='0' >                                     \

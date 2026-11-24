@@ -2074,7 +2074,7 @@ typedef DDHAL_DDVIDEOPORTCALLBACKS * LPDDHAL_DDVIDEOPORTCALLBACKS;
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 BOOL DDHAL_SetInfo(LPDDHALINFO lpDDHALInfo, BOOL reset);
 FLATPTR DDHAL_VidMemAlloc(LPDDRAWI_DIRECTDRAW_GBL lpDD, int heap, DWORD dwWidth, DWORD dwHeight);
 void DDHAL_VidMemFree(LPDDRAWI_DIRECTDRAW_GBL lpDD, int heap, FLATPTR fpMem);

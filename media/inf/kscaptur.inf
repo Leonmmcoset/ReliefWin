@@ -37,13 +37,13 @@ msyuv.dll
 tsbyuv.dll
 
 [VfWWDM]
-HKLM,%MediaResourcesMSVideo%\MSVideo.VFWWDM,"Description",,"ReactOS WDM Image Capture"
-HKLM,%MediaResourcesMSVideo%\MSVideo.VFWWDM,"FriendlyName",,"ReactOS WDM Image Capture"
+HKLM,%MediaResourcesMSVideo%\MSVideo.VFWWDM,"Description",,"ReliefWin WDM Image Capture"
+HKLM,%MediaResourcesMSVideo%\MSVideo.VFWWDM,"FriendlyName",,"ReliefWin WDM Image Capture"
 HKLM,%MediaResourcesMSVideo%\MSVideo.VFWWDM,"Driver",,"vfwwdm.drv"
 
 [VfWWDM.NT]
-HKLM,%MediaResourcesMSVideo%\MSVideo.VFWWDM,"Description",,"ReactOS WDM Image Capture (Win32)"
-HKLM,%MediaResourcesMSVideo%\MSVideo.VFWWDM,"FriendlyName",,"ReactOS WDM Image Capture (Win32)"
+HKLM,%MediaResourcesMSVideo%\MSVideo.VFWWDM,"Description",,"ReliefWin WDM Image Capture (Win32)"
+HKLM,%MediaResourcesMSVideo%\MSVideo.VFWWDM,"FriendlyName",,"ReliefWin WDM Image Capture (Win32)"
 HKLM,%MediaResourcesMSVideo%\MSVideo.VFWWDM,"Driver",,"vfwwdm32.dll"
 
 [VfWWDM.AddReg.NT]
@@ -242,7 +242,7 @@ HKLM,%RunOnce%,"NDISIP0",,"rundll32.exe streamci,StreamingDeviceSetup %NdisIP.De
 
 [Strings]
 ; Non-localizable
-ReactOS = "LiberNT Project"
+ReliefWin = "ReliefWin Project"
 
 ActiveMovieCategories="CLSID\{da4e3da0-d07d-11d0-bd50-00a0c911ce86}\Instance"
 GUID.TvTuner="{A799A800-A46D-11d0-A18C-00A02401DCD4}"

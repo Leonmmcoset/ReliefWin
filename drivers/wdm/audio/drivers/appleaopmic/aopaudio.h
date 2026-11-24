@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Apple AOP Microphone Driver
+ * PROJECT:     ReliefWin Apple AOP Microphone Driver
  * LICENSE:     MIT (https://spdx.org/licenses/MIT)
  * PURPOSE:     Audio service calls of the Apple Always-On Processor
  * COPYRIGHT:   Copyright (C) The Asahi Linux Contributors
@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include <libernt/drivers/appleaop.h>
+#include <reliefwin/drivers/appleaop.h>
 
 #ifdef __cplusplus
 extern "C" {

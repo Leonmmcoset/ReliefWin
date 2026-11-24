@@ -2769,7 +2769,7 @@ typedef IAVIPersistFile *PAVIPERSISTFILE;
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 UINT VFWAPI DrawDibError(HDRAWDIB hdd);
 BOOL VFWAPI DrawDibInit(void);
 

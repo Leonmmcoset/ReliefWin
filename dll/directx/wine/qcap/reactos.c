@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT DirectShow capture
+ * PROJECT:     ReliefWin DirectShow capture
  * LICENSE:     LGPL-2.1-or-later
  * PURPOSE:     Kernel streaming backend for Wine qcap capture calls
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

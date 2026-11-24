@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Tests for TraceEvent, TraceEventInstance, TraceMessage, TraceMessageVa, CreateTraceInstanceId
  *              and GetTraceLoggerHandle
@@ -11,7 +11,7 @@
 #include <wmistr.h>
 #include <evntrace.h>
 
-#define SESSION_NAME L"LiberNTTraceEventsTest"
+#define SESSION_NAME L"ReliefWinTraceEventsTest"
 #define MAX_SEEN 32
 #define MARKER_SIZE 16
 

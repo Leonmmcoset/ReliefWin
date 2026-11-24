@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Driver Installer - Unit-tests
+ * PROJECT:     ReliefWin Driver Installer - Unit-tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test which device IDs the driver installer searches the catalog for
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -132,7 +132,7 @@ static void CheckInfClass(const char *klass, const char *guid, bool function)
     }
     length = sprintf(text,
                      "[Version]\r\nSignature=\"$WINDOWS NT$\"\r\nClass=%s\r\nClassGuid=%s\r\n"
-                     "ExtensionId={7C4BC2E8-56F6-4F2B-A2B9-6C1D9A20A41D}\r\nProvider=LiberNT\r\n"
+                     "ExtensionId={7C4BC2E8-56F6-4F2B-A2B9-6C1D9A20A41D}\r\nProvider=ReliefWin\r\n"
                      "DriverVer=01/01/2026,1.0.0.0\r\n",
                      klass, guid);
     file = CreateFileW(path, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, 0, NULL);

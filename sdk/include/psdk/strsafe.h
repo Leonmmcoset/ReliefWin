@@ -2101,7 +2101,7 @@ typedef const __unaligned wchar_t *STRSAFE_LPCUWSTR;
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 typedef unsigned long DWORD;
 
 HRESULT WINAPI StringExHandleFillBehindNullA(STRSAFE_LPSTR pszDestEnd, size_t cbRemaining, DWORD dwFlags);

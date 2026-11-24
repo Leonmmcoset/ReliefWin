@@ -86,7 +86,7 @@ typedef struct IORING_INFO {
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 HRESULT STDAPICALLTYPE BuildIoRingRegisterFileHandles(HIORING ioRing, UINT32 count, const HANDLE handles[], UINT_PTR userData);
 HRESULT STDAPICALLTYPE CloseIoRing(HIORING ioRing);
 HRESULT STDAPICALLTYPE CreateIoRing(IORING_VERSION ioringVersion, IORING_CREATE_FLAGS flags, UINT32 submissionQueueSize, UINT32 completionQueueSize, HIORING *h);
@@ -128,7 +128,7 @@ struct IORING_HANDLE_REF
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 HRESULT STDAPICALLTYPE BuildIoRingCancelRequest(HIORING ioRing, IORING_HANDLE_REF file, UINT_PTR opToCancel, UINT_PTR userData);
 HRESULT STDAPICALLTYPE BuildIoRingFlushFile(HIORING ioRing, IORING_HANDLE_REF fileRef, FILE_FLUSH_MODE flushMode, UINT_PTR userData, IORING_SQE_FLAGS sqeFlags);
 HRESULT STDAPICALLTYPE BuildIoRingReadFile(HIORING ioRing, IORING_HANDLE_REF fileRef, IORING_BUFFER_REF dataRef, UINT32 numberOfBytesToRead, UINT64 fileOffset, UINT_PTR userData, IORING_SQE_FLAGS sqeFlags);
@@ -150,7 +150,7 @@ HRESULT STDAPICALLTYPE BuildIoRingWriteFileGather(HIORING ioRing, IORING_HANDLE_
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 HRESULT STDAPICALLTYPE BuildIoRingRegisterBuffers(HIORING ioRing, UINT32 count, const IORING_BUFFER_INFO buffers[], UINT_PTR userData);
 BOOL STDAPICALLTYPE IsIoRingOpSupported(HIORING ioRing, IORING_OP_CODE op);
 

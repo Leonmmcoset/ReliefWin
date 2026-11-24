@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     A registry change notification is signaled when the thread that asked for it exits
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -7,7 +7,7 @@
 
 #include "precomp.h"
 
-#define TEST_KEY L"Software\\LiberNTTest\\RegNotifyThreadExit"
+#define TEST_KEY L"Software\\ReliefWinTest\\RegNotifyThreadExit"
 
 typedef struct _NOTIFY_THREAD
 {

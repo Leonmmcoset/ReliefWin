@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Terminal
+ * PROJECT:     ReliefWin Terminal
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Terminal view: drawing, selection, clipboard, search and keyboard input
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -7,7 +7,7 @@
 
 #include "terminal.h"
 
-#define VIEW_CLASS L"LiberNT.TerminalView"
+#define VIEW_CLASS L"ReliefWin.TerminalView"
 #define TIMER_CURSOR 1
 #define TIMER_AUTOSCROLL 2
 

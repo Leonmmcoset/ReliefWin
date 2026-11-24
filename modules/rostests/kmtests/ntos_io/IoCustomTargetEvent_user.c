@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT kernel-mode tests
+ * PROJECT:     ReliefWin kernel-mode tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     A custom event a driver reports on a device reaches a window watching a handle to it, with its data
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Apple Display Coprocessor Driver
+ * PROJECT:     ReliefWin Apple Display Coprocessor Driver
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Display coprocessor (DCP) interface of the Apple silicon display miniport
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -7,9 +7,9 @@
 
 #pragma once
 
-#include <libernt/drivers/applertkit.h>
-#include <libernt/drivers/appledart.h>
-#include <libernt/drivers/fdtdrv.h>
+#include <reliefwin/drivers/applertkit.h>
+#include <reliefwin/drivers/appledart.h>
+#include <reliefwin/drivers/fdtdrv.h>
 
 #define APPLE_DCP_TAG                       'pcDA'
 #define APPLE_DCP_WORKING_SURFACE_COUNT     12UL

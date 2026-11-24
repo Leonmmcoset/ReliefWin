@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     A process started with a token of another session runs in that session
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

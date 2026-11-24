@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Tests for software restriction policy rules and their evaluation by SaferIdentifyLevel
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -12,8 +12,8 @@
 #define SAFER_PARENT_PATH L"Software\\Policies\\Microsoft\\Windows"
 #define SAFER_POLICY_PATH SAFER_PARENT_PATH L"\\Safer\\CodeIdentifiers"
 #define SAFER_EVENT_SOURCE L"Microsoft-Windows-SoftwareRestrictionPolicies"
-#define TEST_MARKER L"LiberNTSaferApitest"
-#define TEST_REGISTRY_RULE_KEY L"Software\\LiberNTSaferApitest"
+#define TEST_MARKER L"ReliefWinSaferApitest"
+#define TEST_REGISTRY_RULE_KEY L"Software\\ReliefWinSaferApitest"
 
 static BOOL (WINAPI *pSaferCreateLevel)(DWORD, DWORD, DWORD, SAFER_LEVEL_HANDLE *, PVOID);
 static BOOL (WINAPI *pSaferCloseLevel)(SAFER_LEVEL_HANDLE);
@@ -28,7 +28,7 @@ static BOOL (WINAPI *pSaferiSearchMatchingHashRules)(ALG_ID, PBYTE, DWORD, DWORD
 
 static WCHAR TestDir[MAX_PATH];
 static WCHAR TargetPath[MAX_PATH];
-static const char TargetContent[] = "LiberNT software restriction policy test image\r\n";
+static const char TargetContent[] = "ReliefWin software restriction policy test image\r\n";
 static BYTE TargetMd5[16];
 
 static BOOL

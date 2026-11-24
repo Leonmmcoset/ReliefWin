@@ -217,7 +217,7 @@ extern "C" {
 HRESULT WINAPI GetIntegratedDisplaySize(double *sizeInInches);
 BOOL WINAPI GetPhysicallyInstalledSystemMemory(PULONGLONG TotalMemoryInKilobytes);
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 WINBASEAPI DEVELOPER_DRIVE_ENABLEMENT_STATE WINAPI GetDeveloperDriveEnablementState(void);
 WINBASEAPI BOOL WINAPI GetOsManufacturingMode(PBOOL pbEnabled);
 WINBASEAPI BOOL WINAPI GetSystemLeapSecondInformation(PBOOL Enabled, PDWORD Flags);

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT DirectX Graphics Kernel
+ * PROJECT:     ReliefWin DirectX Graphics Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Video Memory Manager (VidMm) implementation
  * COPYRIGHT:   Copyright 2024 LiberNT WDDM Team
@@ -61,7 +61,7 @@
 #include "presenttrace.h"
 #include "debug.h"
 #include <ndk/psfuncs.h>
-#include <libernt/dwmframe.h>
+#include <reliefwin/dwmframe.h>
 
 #define NDEBUG
 #include <debug.h>
@@ -9617,7 +9617,7 @@ DxgkpCreateAllocationCaptured(
             }
             if (pCreateAllocation->Flags.RestrictSharedAccess)
             {
-                /* TODO: Windows enters a display broker creator as the process-less (IsDwm) entry; LiberNT has no display broker */
+                /* TODO: Windows enters a display broker creator as the process-less (IsDwm) entry; ReliefWin has no display broker */
                 Status = DxgkVidMmAddSharedAccess(Resource, FALSE,
                                                   Device != NULL ? Device->OwnerProcess : PsGetCurrentProcess());
                 if (!NT_SUCCESS(Status))

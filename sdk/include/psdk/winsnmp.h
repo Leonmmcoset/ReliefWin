@@ -340,7 +340,7 @@ typedef SNMPAPI_STATUS (*PFNSNMPSTARTUPEX)(smiLPUINT32, smiLPUINT32, smiLPUINT32
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 SNMPAPI_STATUS SnmpCleanupEx(void);
 SNMPAPI_STATUS SnmpListenEx(HSNMP_ENTITY hEntity, SNMPAPI_STATUS lStatus, smiUINT32 nUseEntityAddr);
 SNMPAPI_STATUS SnmpStartupEx(smiLPUINT32 nMajorVersion, smiLPUINT32 nMinorVersion, smiLPUINT32 nLevel, smiLPUINT32 nTranslateMode, smiLPUINT32 nRetransmitMode);

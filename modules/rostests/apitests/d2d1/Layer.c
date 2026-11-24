@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Tests what ID2D1DeviceContext::PushLayer and PopLayer draw on a bitmap target
  * COPYRIGHT:   Copyright 2026 Earzu Chan <contact@earzuchan.me>

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT host-native tests
+ * PROJECT:     ReliefWin host-native tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     DHCP client RFC 2131 retransmission schedule against Windows 11
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif193@gmail.com>

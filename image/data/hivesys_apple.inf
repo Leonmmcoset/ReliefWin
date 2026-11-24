@@ -1,4 +1,4 @@
-; PROJECT:     LiberNT ARM64 boot hive
+; PROJECT:     ReliefWin ARM64 boot hive
 ; LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
 ; PURPOSE:     Apple silicon boot driver services
 ; COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

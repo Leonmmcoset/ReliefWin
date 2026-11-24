@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-2.0-or-later (https://spdx.org/licenses/GPL-2.0-or-later)
  * PURPOSE:     Driver replacement through the kernel debugger (.kdfiles)
  * COPYRIGHT:   Copyright 2026 Ostap Brehin <hi@ostapbrehin.com>

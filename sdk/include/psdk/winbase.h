@@ -4875,7 +4875,7 @@ LPVOID WINAPI MapViewOfFileExNuma(HANDLE hFileMappingObject, DWORD dwDesiredAcce
 BOOL WINAPI SetMessageWaitingIndicator(HANDLE hMsgIndicator, ULONG ulMsgCount);
 HANDLE WINAPI SetTimerQueueTimer(HANDLE TimerQueue, WAITORTIMERCALLBACK Callback, PVOID Parameter, DWORD DueTime, DWORD Period, BOOL PreferIo);
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 WINBASEAPI void WINAPI ApplicationRecoveryFinished(BOOL bSuccess);
 WINBASEAPI HRESULT WINAPI ApplicationRecoveryInProgress(PBOOL pbCancelled);
 WINBASEAPI BOOL WINAPI CopyFileTransactedA(LPCSTR lpExistingFileName, LPCSTR lpNewFileName, LPPROGRESS_ROUTINE lpProgressRoutine, LPVOID lpData, LPBOOL pbCancel, DWORD dwCopyFlags, HANDLE hTransaction);
@@ -5060,7 +5060,7 @@ typedef enum _RTL_UMS_THREAD_INFO_CLASS UMS_THREAD_INFO_CLASS;
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 #if (defined(_AMD64_) || defined(_X86_) || defined(_ARM64_))
 WINBASEAPI BOOL WINAPI GetXStateFeaturesMask(PCONTEXT Context, PDWORD64 FeatureMask);
 WINBASEAPI PVOID WINAPI LocateXStateFeature(PCONTEXT Context, DWORD FeatureId, PDWORD Length);

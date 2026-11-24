@@ -1,5 +1,5 @@
 #
-# PROJECT:     LiberNT Apple ISP Camera Driver
+# PROJECT:     ReliefWin Apple ISP Camera Driver
 # LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
 # PURPOSE:     Build the Apple silicon ISP camera AVStream driver
 # COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

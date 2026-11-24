@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     What a kernel thread is made of and how its state is changed from outside
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

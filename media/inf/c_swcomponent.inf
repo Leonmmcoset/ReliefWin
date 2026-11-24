@@ -3,7 +3,7 @@ Signature   = "$WINDOWS NT$"
 LayoutFile  = layout.inf
 Class       = SoftwareComponent
 ClassGuid   = {5c4c3332-344d-483c-8739-259e934c9cc8}
-Provider    = %LiberNT%
+Provider    = %ReliefWin%
 DriverVer   = 11/15/2026,1.00
 PnpLockdown = 1
 
@@ -35,7 +35,7 @@ AddService = , 0x00000002
 
 [Strings]
 ; Non-localizable
-LiberNT = "LiberNT Project"
+ReliefWin = "ReliefWin Project"
 
 ; Localizable
 SoftwareComponentClassName = "Software components"

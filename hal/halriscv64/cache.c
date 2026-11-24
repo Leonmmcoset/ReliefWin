@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT RISC-V HAL
+ * PROJECT:     ReliefWin RISC-V HAL
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     External cache maintenance for the SiFive composable cache
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -7,7 +7,7 @@
 
 #include <ntifs.h>
 #include <ndk/haltypes.h>
-#include <libernt/fdtlib.h>
+#include <reliefwin/fdtlib.h>
 #include "halp.h"
 
 #define RISCV_CCACHE_FLUSH64 0x200

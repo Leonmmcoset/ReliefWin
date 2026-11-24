@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Time Zone Resources
+ * PROJECT:     ReliefWin Time Zone Resources
  * LICENSE:     LGPL-2.1-or-later (https://spdx.org/licenses/LGPL-2.1-or-later)
  * PURPOSE:     Time zone display name strings referenced by the MUI time zone registry values
  * COPYRIGHT:   Strings from Wine dlls/tzres/tzres.rc
@@ -12,7 +12,7 @@
 #define REACTOS_STR_ORIGINAL_FILENAME "tzres.dll"
 #include <windef.h>
 
-#include <libernt/version.rc>
+#include <reliefwin/version.rc>
 
 LANGUAGE LANG_ENGLISH, SUBLANG_DEFAULT
 

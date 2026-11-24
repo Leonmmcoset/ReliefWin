@@ -459,7 +459,7 @@ typedef BOOLEAN (NTAPI *PRX_LOCK_ENUMERATOR)(PMRX_SRV_OPEN, PVOID *, PLARGE_INTE
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 void __RxFillAndInstallFastIoDispatch(PRDBSS_DEVICE_OBJECT RxDeviceObject, PFAST_IO_DISPATCH FastIoDispatch, ULONG FastIoDispatchSize);
 void NTAPI RxFinalizeLockList(struct _RX_CONTEXT *RxContext);
 void NTAPI RxMakeLateDeviceAvailable(PRDBSS_DEVICE_OBJECT RxDeviceObject);

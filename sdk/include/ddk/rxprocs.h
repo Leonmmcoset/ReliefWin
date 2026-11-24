@@ -830,7 +830,7 @@ typedef union _UCHAR4 {
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 NTSTATUS NTAPI DuplicateTransportAddress(PTRANSPORT_ADDRESS *Copy, PTRANSPORT_ADDRESS Original, POOL_FLAGS PoolFlags);
 void NTAPI RxAcquireFileForNtCreateSection(PFILE_OBJECT FileObject);
 NTSTATUS NTAPI RxAcquireForCcFlush(PFILE_OBJECT FileObject, PDEVICE_OBJECT DeviceObject);
@@ -883,7 +883,7 @@ typedef struct _RX_CREATE_CONNECTION_CALLOUT_CONTEXT_ *PRX_CREATE_CONNECTION_CAL
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 void NTAPI RxCeCleanupConnectCallOutContext(PRX_CREATE_CONNECTION_CALLOUT_CONTEXT CreateConnectionContext);
 NTSTATUS NTAPI RxCeInitiateConnectRequest(PRX_CALLOUT_PARAMETERS_BLOCK ParameterBlock);
 
@@ -900,7 +900,7 @@ NTSTATUS NTAPI RxCeInitiateConnectRequest(PRX_CALLOUT_PARAMETERS_BLOCK Parameter
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 NTSTATUS NTAPI DuplicateConnectionInformation(PRXCE_CONNECTION_INFORMATION *Copy, PRXCE_CONNECTION_INFORMATION Original, POOL_FLAGS PoolFlags);
 
 #ifdef __cplusplus

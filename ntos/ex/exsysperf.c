@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     What the system has been doing: the counters it keeps as it runs
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

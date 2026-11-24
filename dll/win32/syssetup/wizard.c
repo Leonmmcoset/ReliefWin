@@ -65,38 +65,38 @@ static const WCHAR* InstallationTypes[INSTALLATION_TYPE_MAX] =
 
 static const WCHAR* s_DefaultSoundEvents[][2] = 
 {
-    { L".Default", L"%SystemRoot%\\Media\\ReactOS_Default.wav" },
+    { L".Default", L"%SystemRoot%\\Media\\ReliefWin_Default.wav" },
     { L"AppGPFault", L"" },
     { L"Close", L"" },
-    { L"CriticalBatteryAlarm", L"%SystemRoot%\\Media\\ReactOS_Battery_Critical.wav" },
-    { L"DeviceConnect",  L"%SystemRoot%\\Media\\ReactOS_Hardware_Insert.wav" },
-    { L"DeviceDisconnect", L"%SystemRoot%\\Media\\ReactOS_Hardware_Remove.wav" },
-    { L"DeviceFail", L"%SystemRoot%\\Media\\ReactOS_Hardware_Fail.wav" },
-    { L"LowBatteryAlarm", L"%SystemRoot%\\Media\\ReactOS_Battery_Low.wav" },
-    { L"MailBeep", L"%SystemRoot%\\Media\\ReactOS_Notify.wav" },
-    { L"Maximize", L"%SystemRoot%\\Media\\ReactOS_Restore.wav" },
-    { L"MenuCommand", L"%SystemRoot%\\Media\\ReactOS_Menu_Command.wav" },
+    { L"CriticalBatteryAlarm", L"%SystemRoot%\\Media\\ReliefWin_Battery_Critical.wav" },
+    { L"DeviceConnect",  L"%SystemRoot%\\Media\\ReliefWin_Hardware_Insert.wav" },
+    { L"DeviceDisconnect", L"%SystemRoot%\\Media\\ReliefWin_Hardware_Remove.wav" },
+    { L"DeviceFail", L"%SystemRoot%\\Media\\ReliefWin_Hardware_Fail.wav" },
+    { L"LowBatteryAlarm", L"%SystemRoot%\\Media\\ReliefWin_Battery_Low.wav" },
+    { L"MailBeep", L"%SystemRoot%\\Media\\ReliefWin_Notify.wav" },
+    { L"Maximize", L"%SystemRoot%\\Media\\ReliefWin_Restore.wav" },
+    { L"MenuCommand", L"%SystemRoot%\\Media\\ReliefWin_Menu_Command.wav" },
     { L"MenuPopup", L"" },
-    { L"Minimize", L"%SystemRoot%\\Media\\ReactOS_Minimize.wav" },
+    { L"Minimize", L"%SystemRoot%\\Media\\ReliefWin_Minimize.wav" },
     { L"Open", L"" },
-    { L"PrintComplete", L"%SystemRoot%\\Media\\ReactOS_Print_Complete.wav" },
+    { L"PrintComplete", L"%SystemRoot%\\Media\\ReliefWin_Print_Complete.wav" },
     { L"RestoreDown", L"" },
     { L"RestoreUp", L"" },
-    { L"SystemAsterisk", L"%SystemRoot%\\Media\\ReactOS_Ding.wav" },
-    { L"SystemExclamation", L"%SystemRoot%\\Media\\ReactOS_Exclamation.wav" },
-    { L"SystemExit", L"%SystemRoot%\\Media\\ReactOS_Shutdown.wav" },
-    { L"SystemHand", L"%SystemRoot%\\Media\\ReactOS_Critical_Stop.wav" },
-    { L"SystemNotification", L"%SystemRoot%\\Media\\ReactOS_Balloon.wav" },
-    { L"SystemQuestion", L"%SystemRoot%\\Media\\ReactOS_Ding.wav" },
-    { L"SystemStart", L"%SystemRoot%\\Media\\ReactOS_Startup.wav" },
-    { L"WindowsLogoff", L"%SystemRoot%\\Media\\ReactOS_LogOff.wav" }
+    { L"SystemAsterisk", L"%SystemRoot%\\Media\\ReliefWin_Ding.wav" },
+    { L"SystemExclamation", L"%SystemRoot%\\Media\\ReliefWin_Exclamation.wav" },
+    { L"SystemExit", L"%SystemRoot%\\Media\\ReliefWin_Shutdown.wav" },
+    { L"SystemHand", L"%SystemRoot%\\Media\\ReliefWin_Critical_Stop.wav" },
+    { L"SystemNotification", L"%SystemRoot%\\Media\\ReliefWin_Balloon.wav" },
+    { L"SystemQuestion", L"%SystemRoot%\\Media\\ReliefWin_Ding.wav" },
+    { L"SystemStart", L"%SystemRoot%\\Media\\ReliefWin_Startup.wav" },
+    { L"WindowsLogoff", L"%SystemRoot%\\Media\\ReliefWin_LogOff.wav" }
 /* Logon sound is already set by default for both Server and Workstation */
 };
 
 static const WCHAR* s_ExplorerSoundEvents[][2] = 
 {
-    { L"EmptyRecycleBin", L"%SystemRoot%\\Media\\ReactOS_Recycle.wav" },
-    { L"Navigating", L"%SystemRoot%\\Media\\ReactOS_Start.wav" }
+    { L"EmptyRecycleBin", L"%SystemRoot%\\Media\\ReliefWin_Recycle.wav" },
+    { L"Navigating", L"%SystemRoot%\\Media\\ReliefWin_Start.wav" }
 };
 
 static BOOL

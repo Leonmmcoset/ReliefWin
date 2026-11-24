@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Raspberry Pi 5 WDDM display-only miniport
+ * PROJECT:     ReliefWin Raspberry Pi 5 WDDM display-only miniport
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Shared declarations for the RPi5 (BCM2712) WDDM2 KMDOD.
  * COPYRIGHT:   Copyright 2026 Ahmed Arif <arif193@gmail.com>
@@ -22,11 +22,11 @@
 #include <wdm.h>
 #include <windef.h>
 #include <dispmprt.h>
-#include <libernt/rddm/rxgkpresent.h>
-#include <libernt/loader_framebuffer.h>
+#include <reliefwin/rddm/rxgkpresent.h>
+#include <reliefwin/loader_framebuffer.h>
 #include "rpi5vc4_pointer.h"
-#include <libernt/rpi5vc4_umd.h>
-#include <libernt/rpi5vc4_xpdm.h>
+#include <reliefwin/rpi5vc4_umd.h>
+#include <reliefwin/rpi5vc4_xpdm.h>
 
 #ifndef DXGKDDI_INTERFACE_VERSION_WDDM2_0
 #define DXGKDDI_INTERFACE_VERSION_WDDM2_0 0x5023

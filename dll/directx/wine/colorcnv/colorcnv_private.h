@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Color Converter DSP
+ * PROJECT:     ReliefWin Color Converter DSP
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Pixel format conversion interface of the color converter
  * COPYRIGHT:   Copyright 2026 Ostap Brehin <osbre@protonmail.com>

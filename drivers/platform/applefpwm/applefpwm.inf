@@ -1,4 +1,4 @@
-; PROJECT:     LiberNT Apple PWM Driver
+; PROJECT:     ReliefWin Apple PWM Driver
 ; LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
 ; COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
 
@@ -6,7 +6,7 @@
 Signature = "$Windows NT$"
 Class = System
 ClassGUID = {4d36e97d-e325-11ce-bfc1-08002be10318}
-Provider = %LiberNT%
+Provider = %ReliefWin%
 DriverVer = 11/11/2026,1.0.0.0
 
 [DestinationDirs]
@@ -37,7 +37,7 @@ ServiceBinary = %12%\applefpwm.sys
 LoadOrderGroup = Extended Base
 
 [Strings]
-LiberNT = "LiberNT Project"
+ReliefWin = "ReliefWin Project"
 StdMfg = "(Standard system devices)"
 AppleFpwm.DeviceDesc = "Apple PWM Controller"
 PwmLeds.DeviceDesc = "PWM LEDs"

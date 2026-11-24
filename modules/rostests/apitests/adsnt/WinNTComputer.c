@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test that the WinNT computer object is a container of the local groups and users
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

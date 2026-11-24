@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Apple RTKit Library
+ * PROJECT:     ReliefWin Apple RTKit Library
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Where the Apple silicon power management processor reads the power requests of the blocks it manages
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -8,7 +8,7 @@
 #ifndef UNIT_TEST
 #include <ntddk.h>
 #endif
-#include <libernt/drivers/appleadt.h>
+#include <reliefwin/drivers/appleadt.h>
 
 #define PTD_RANGE_ENTRY_SIZE        32
 #define PTD_RANGE_INDEX_OFFSET      4

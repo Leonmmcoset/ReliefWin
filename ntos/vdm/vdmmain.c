@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Virtual DOS machine services: control calls, initialization and the BIOS area
  * COPYRIGHT:   Copyright Alex Ionescu <alex.ionescu@reactos.org>

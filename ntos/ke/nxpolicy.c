@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     The data execution prevention policy the boot options ask for on x86 processors
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

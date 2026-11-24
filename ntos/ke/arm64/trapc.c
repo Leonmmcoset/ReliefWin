@@ -1,5 +1,5 @@
 /*
- * PROJECT:         LiberNT Kernel
+ * PROJECT:         ReliefWin Kernel
  * LICENSE:         GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * FILE:            ntoskrnl/ke/arm64/trapc.c
  * PURPOSE:         Trap handling stubs for ARM64
@@ -8,7 +8,7 @@
 
 #include <ntoskrnl.h>
 #if defined(_M_ARM64)
-#include <libernt/cpuaudit.h>
+#include <reliefwin/cpuaudit.h>
 #endif
 #include <arm64trap.h>
 #define NDEBUG

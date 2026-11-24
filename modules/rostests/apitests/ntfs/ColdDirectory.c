@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test listing a directory whose index is not cached, also while it is edited
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

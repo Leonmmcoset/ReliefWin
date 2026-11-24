@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Apple Silicon Audio Driver
+ * PROJECT:     ReliefWin Apple Silicon Audio Driver
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Speaker voice coil and magnet temperature model ported from speakersafetyd 2.0.2
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -28,7 +28,7 @@
  */
 
 #include <ntddk.h>
-#include <libernt/drivers/fdtdrv.h>
+#include <reliefwin/drivers/fdtdrv.h>
 #include "protect.h"
 
 #define PROTECT_ONE_Q62             (1ULL << 62)

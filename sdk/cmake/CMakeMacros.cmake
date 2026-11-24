@@ -1038,9 +1038,10 @@ function(create_registry_hives)
                 FOR preinstall)
 
     # LiveCD hives
+    utf16le_convert(${CMAKE_SOURCE_DIR}/image/data/livecd.inf ${CMAKE_BINARY_DIR}/image/data/livecd_utf16.inf)
     list(APPEND _livecd_inf_files
         ${_registry_inf}
-        ${CMAKE_SOURCE_DIR}/image/data/livecd.inf
+        ${CMAKE_BINARY_DIR}/image/data/livecd_utf16.inf
         ${CMAKE_SOURCE_DIR}/image/data/caroots.inf)
     if(REACTOS_USE_XPDM AND (SARCH STREQUAL "xbox"))
         list(APPEND _livecd_inf_files
@@ -1095,9 +1096,10 @@ function(create_registry_hives)
     # Preinstall hives (same as LiveCD but with preinstall.inf instead of livecd.inf)
     file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/boot/bootdata/preinstall)
 
+    utf16le_convert(${CMAKE_SOURCE_DIR}/image/data/preinstall.inf ${CMAKE_BINARY_DIR}/image/data/preinstall_utf16.inf)
     list(APPEND _preinstall_inf_files
         ${_registry_inf}
-        ${CMAKE_SOURCE_DIR}/image/data/preinstall.inf
+        ${CMAKE_BINARY_DIR}/image/data/preinstall_utf16.inf
         ${CMAKE_SOURCE_DIR}/image/data/caroots.inf)
     list(APPEND _preinstall_inf_files
         ${CMAKE_SOURCE_DIR}/image/data/app_launcher.inf)
@@ -1278,8 +1280,8 @@ function(set_target_cpp_properties _target)
     endif()
 endfunction()
 
-function(libernt_standard_disk_signature _signature)
-    string(UUID _disk NAMESPACE 354fa6e5-5e45-49af-91bf-1fd2754e470a NAME "LiberNT standard disk" TYPE SHA1)
+function(reliefwin_standard_disk_signature _signature)
+    string(UUID _disk NAMESPACE 354fa6e5-5e45-49af-91bf-1fd2754e470a NAME "ReliefWin standard disk" TYPE SHA1)
     string(SUBSTRING "${_disk}" 0 8 _value)
     set(${_signature} ${_value} PARENT_SCOPE)
 endfunction()

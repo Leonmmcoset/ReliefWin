@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT kernel-mode tests
+ * PROJECT:     ReliefWin kernel-mode tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Values shared by the scatter/gather DMA test miniport and its user-mode test
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arifing193@gmail.com>

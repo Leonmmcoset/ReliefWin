@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT KernelBase
+ * PROJECT:     ReliefWin KernelBase
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Memory API set functions exported only by KernelBase
  * COPYRIGHT:   Copyright 2026 Ahmed Arif <arif.ing@outlook.com>
@@ -9,7 +9,7 @@
 #include <winternl.h>
 
 #ifdef _M_AMD64
-#include <libernt/cfgtargets.h>
+#include <reliefwin/cfgtargets.h>
 
 BOOL WINAPI
 SetProcessValidCallTargetsForMappedView(HANDLE Process, PVOID VirtualAddress, SIZE_T RegionSize,

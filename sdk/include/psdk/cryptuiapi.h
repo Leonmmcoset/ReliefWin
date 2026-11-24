@@ -496,7 +496,7 @@ typedef struct CERT_SELECTUI_INPUT {
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 HRESULT WINAPI CertSelectionGetSerializedBlob(PCERT_SELECTUI_INPUT pcsi, void **ppOutBuffer, ULONG *pulOutBufferSize);
 
 #ifdef __cplusplus

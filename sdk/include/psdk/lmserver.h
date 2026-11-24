@@ -839,7 +839,7 @@ typedef struct _SERVER_INFO_1602 {
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 DWORD NET_API_FUNCTION NetServerTransportAddForInstance(LPWSTR servername, DWORD level, LPBYTE bufptr, LPDWORD InstanceHandle);
 DWORD NET_API_FUNCTION NetServerTransportDelForInstance(LPWSTR servername, DWORD level, LPBYTE bufptr, LPDWORD InstanceHandle);
 

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Apple AOP Driver
+ * PROJECT:     ReliefWin Apple AOP Driver
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Apple Always-On Processor: coprocessor boot and the functions it serves
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -7,9 +7,9 @@
 
 #include <ntifs.h>
 #include <initguid.h>
-#include <libernt/drivers/appleaop.h>
+#include <reliefwin/drivers/appleaop.h>
 #include "appleaop.h"
-#include <libernt/drivers/applepmgr.h>
+#include <reliefwin/drivers/applepmgr.h>
 
 #define AOP_DART_WINDOW                 0x40000000ULL
 #define AOP_DMA_ALIGN                   0x4000

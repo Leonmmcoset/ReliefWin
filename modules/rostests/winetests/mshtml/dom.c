@@ -10963,7 +10963,7 @@ static HRESULT list_elem_put(IHTMLElement *elem, const WCHAR *prop, VARIANT *v, 
     return hres;
 }
 
-static void test_text_block_elements_libernt(IHTMLDocument2 *doc)
+static void test_text_block_elements_reliefwin(IHTMLDocument2 *doc)
 {
     static const IID * const block_iids[] = {
         &IID_IHTMLDivElement, &IID_IHTMLSpanElement, &IID_IHTMLHRElement, &IID_IHTMLPhraseElement, &IID_IHTMLPhraseElement2,
@@ -11112,7 +11112,7 @@ static void test_text_block_elements_libernt(IHTMLDocument2 *doc)
     IHTMLElement_Release(elem);
 }
 
-static void test_list_elements_libernt(IHTMLDocument2 *doc)
+static void test_list_elements_reliefwin(IHTMLDocument2 *doc)
 {
     static const IID * const list_iids[] = {
         &IID_IHTMLListElement2, &IID_IHTMLUListElement, &IID_IHTMLOListElement, &IID_IHTMLDListElement,
@@ -11324,7 +11324,7 @@ static const char *text_elem_variant_str(const VARIANT *v, char *buf, size_t siz
     return buf;
 }
 
-static void test_text_elements_libernt(IHTMLDocument2 *doc)
+static void test_text_elements_reliefwin(IHTMLDocument2 *doc)
 {
     static const IID * const text_iids[] = {
         &IID_IHTMLPhraseElement, &IID_IHTMLPhraseElement2, &IID_IHTMLPhraseElement3,
@@ -11673,7 +11673,7 @@ static void test_text_elements_libernt(IHTMLDocument2 *doc)
     }
 }
 
-static void test_text_elements_ie9_libernt(IHTMLDocument2 *doc)
+static void test_text_elements_ie9_reliefwin(IHTMLDocument2 *doc)
 {
     static const struct {
         const WCHAR *tag;
@@ -11739,7 +11739,7 @@ static void test_text_elements_ie9_libernt(IHTMLDocument2 *doc)
     }
 }
 
-static void test_attr_collection_builtins_libernt(IHTMLDocument2 *doc)
+static void test_attr_collection_builtins_reliefwin(IHTMLDocument2 *doc)
 {
     static const struct {
         const WCHAR *name;
@@ -11926,7 +11926,7 @@ static unsigned count_attr_col_name(IHTMLAttributeCollection *col, const WCHAR *
     return cnt;
 }
 
-static void test_databinding_libernt(IHTMLDocument2 *doc)
+static void test_databinding_reliefwin(IHTMLDocument2 *doc)
 {
     static const struct {
         const WCHAR *tag;
@@ -11996,7 +11996,7 @@ static void test_databinding_libernt(IHTMLDocument2 *doc)
     }
 }
 
-static void test_option_databinding_libernt(IHTMLDocument2 *doc)
+static void test_option_databinding_reliefwin(IHTMLDocument2 *doc)
 {
     static const WCHAR *names[] = { L"dataFld", L"dataSrc", L"dataFormatAs" };
     IHTMLDocument6 *doc6;
@@ -12061,7 +12061,7 @@ static void test_option_databinding_libernt(IHTMLDocument2 *doc)
     }
 }
 
-static void test_invoke_error_libernt(IUnknown *obj, const WCHAR *prop, WORD flags, VARIANT *args, unsigned argc,
+static void test_invoke_error_reliefwin(IUnknown *obj, const WCHAR *prop, WORD flags, VARIANT *args, unsigned argc,
                                       HRESULT expected)
 {
     DISPID id = -1, named = DISPID_PROPERTYPUT;
@@ -12109,7 +12109,7 @@ static void test_invoke_error_libernt(IUnknown *obj, const WCHAR *prop, WORD fla
     IDispatchEx_Release(dispex);
 }
 
-static void test_invoke_errors_libernt(IHTMLDocument2 *doc)
+static void test_invoke_errors_reliefwin(IHTMLDocument2 *doc)
 {
     static const WCHAR *targets[] = { L"", L"example.org", L"about:blank", L"http://example.org", L"*" };
     IHTMLWindow2 *window;
@@ -12121,7 +12121,7 @@ static void test_invoke_errors_libernt(IHTMLDocument2 *doc)
     div = test_create_elem(doc, L"div");
     V_VT(&args[0]) = VT_BSTR;
     V_BSTR(&args[0]) = SysAllocString(L"x");
-    test_invoke_error_libernt((IUnknown*)div, L"align", DISPATCH_PROPERTYPUT, args, 1, E_INVALIDARG);
+    test_invoke_error_reliefwin((IUnknown*)div, L"align", DISPATCH_PROPERTYPUT, args, 1, E_INVALIDARG);
     VariantClear(&args[0]);
     IHTMLElement_Release(div);
 
@@ -12131,20 +12131,20 @@ static void test_invoke_errors_libernt(IHTMLDocument2 *doc)
     V_BSTR(&args[1]) = SysAllocString(L"m");
     V_VT(&args[0]) = VT_I4;
     V_I4(&args[0]) = 1;
-    test_invoke_error_libernt((IUnknown*)window, L"postMessage", DISPATCH_METHOD, args, 2, E_INVALIDARG);
+    test_invoke_error_reliefwin((IUnknown*)window, L"postMessage", DISPATCH_METHOD, args, 2, E_INVALIDARG);
     V_VT(&args[0]) = VT_NULL;
-    test_invoke_error_libernt((IUnknown*)window, L"postMessage", DISPATCH_METHOD, args, 2, E_INVALIDARG);
+    test_invoke_error_reliefwin((IUnknown*)window, L"postMessage", DISPATCH_METHOD, args, 2, E_INVALIDARG);
     for(i = 0; i < ARRAY_SIZE(targets); i++) {
         V_VT(&args[0]) = VT_BSTR;
         V_BSTR(&args[0]) = SysAllocString(targets[i]);
-        test_invoke_error_libernt((IUnknown*)window, L"postMessage", DISPATCH_METHOD, args, 2, E_ABORT);
+        test_invoke_error_reliefwin((IUnknown*)window, L"postMessage", DISPATCH_METHOD, args, 2, E_ABORT);
         VariantClear(&args[0]);
     }
     VariantClear(&args[1]);
     IHTMLWindow2_Release(window);
 }
 
-static void test_selector_lookup_libernt(IUnknown *obj, const WCHAR *prop, DISPID expected_id, BOOL ie9)
+static void test_selector_lookup_reliefwin(IUnknown *obj, const WCHAR *prop, DISPID expected_id, BOOL ie9)
 {
     static const DWORD flags[] = { 0, fdexNameCaseSensitive, fdexNameCaseSensitive | (1u << 28),
                                    fdexNameCaseSensitive | (2u << 28), fdexNameCaseInsensitive | (3u << 28) };
@@ -12170,7 +12170,7 @@ static void test_selector_lookup_libernt(IUnknown *obj, const WCHAR *prop, DISPI
     SysFreeString(name);
 }
 
-static void test_selector_version_libernt(IHTMLDocument2 *doc)
+static void test_selector_version_reliefwin(IHTMLDocument2 *doc)
 {
     IHTMLDocument2 *node = get_doc_node(doc);
     IHTMLElement *body = doc_get_body(doc);
@@ -12185,15 +12185,15 @@ static void test_selector_version_libernt(IHTMLDocument2 *doc)
         IHTMLDocument6_Release(doc6);
     }
 
-    test_selector_lookup_libernt((IUnknown*)body, L"querySelector", DISPID_IELEMENTSELECTOR_QUERYSELECTOR, ie9);
-    test_selector_lookup_libernt((IUnknown*)body, L"querySelectorAll", DISPID_IELEMENTSELECTOR_QUERYSELECTORALL, ie9);
-    test_selector_lookup_libernt((IUnknown*)node, L"querySelector", DISPID_IDOCUMENTSELECTOR_QUERYSELECTOR, ie9);
-    test_selector_lookup_libernt((IUnknown*)node, L"querySelectorAll", DISPID_IDOCUMENTSELECTOR_QUERYSELECTORALL, ie9);
+    test_selector_lookup_reliefwin((IUnknown*)body, L"querySelector", DISPID_IELEMENTSELECTOR_QUERYSELECTOR, ie9);
+    test_selector_lookup_reliefwin((IUnknown*)body, L"querySelectorAll", DISPID_IELEMENTSELECTOR_QUERYSELECTORALL, ie9);
+    test_selector_lookup_reliefwin((IUnknown*)node, L"querySelector", DISPID_IDOCUMENTSELECTOR_QUERYSELECTOR, ie9);
+    test_selector_lookup_reliefwin((IUnknown*)node, L"querySelectorAll", DISPID_IDOCUMENTSELECTOR_QUERYSELECTORALL, ie9);
     IHTMLElement_Release(body);
     IHTMLDocument2_Release(node);
 }
 
-static IDispatch *get_thrown_dom_exception_libernt(IHTMLWindow2 *window, const WCHAR *code)
+static IDispatch *get_thrown_dom_exception_reliefwin(IHTMLWindow2 *window, const WCHAR *code)
 {
     IDispatchEx *dispex;
     DISPPARAMS dp = {0};
@@ -12232,7 +12232,7 @@ static IDispatch *get_thrown_dom_exception_libernt(IHTMLWindow2 *window, const W
     return ret;
 }
 
-static void test_dom_exception_name_libernt(IDispatch *disp, BOOL has_name, const WCHAR *expected)
+static void test_dom_exception_name_reliefwin(IDispatch *disp, BOOL has_name, const WCHAR *expected)
 {
     DISPPARAMS dp = {0};
     IDispatchEx *dispex;
@@ -12264,7 +12264,7 @@ static void test_dom_exception_name_libernt(IDispatch *disp, BOOL has_name, cons
     IDispatchEx_Release(dispex);
 }
 
-static void test_dom_exception_libernt(IHTMLDocument2 *doc)
+static void test_dom_exception_reliefwin(IHTMLDocument2 *doc)
 {
     static const struct {
         LONG put;
@@ -12367,7 +12367,7 @@ static void test_dom_exception_libernt(IHTMLDocument2 *doc)
     hres = IHTMLDocument2_get_parentWindow(doc, &window);
     ok(hres == S_OK, "get_parentWindow failed: %08lx\n", hres);
     if(mode >= 9) {
-        disp = get_thrown_dom_exception_libernt(window,
+        disp = get_thrown_dom_exception_reliefwin(window,
                 L"try { document.body.querySelector('##'); } catch(e) { window.winetest_exception = e; }");
         if(disp) {
             hres = IDispatch_QueryInterface(disp, &DIID_DispDOMException, (void**)&unk);
@@ -12381,7 +12381,7 @@ static void test_dom_exception_libernt(IHTMLDocument2 *doc)
                 hres = IDOMException_get_message(exception, &str);
                 ok(hres == S_OK && !wcscmp(str, L"SyntaxError"), "get_message returned %08lx %s\n", hres, wine_dbgstr_w(str));
                 SysFreeString(str);
-                test_dom_exception_name_libernt(disp, mode >= 10, L"SyntaxError");
+                test_dom_exception_name_reliefwin(disp, mode >= 10, L"SyntaxError");
 
                 for(i = 0; i < ARRAY_SIZE(codes); i++) {
                     hres = IDOMException_put_code(exception, codes[i].put);
@@ -12394,14 +12394,14 @@ static void test_dom_exception_libernt(IHTMLDocument2 *doc)
                     ok(hres == S_OK && !wcscmp(str, codes[i].message), "put_code(%ld): get_message returned %08lx %s\n",
                        codes[i].put, hres, wine_dbgstr_w(str));
                     SysFreeString(str);
-                    test_dom_exception_name_libernt(disp, mode >= 10, codes[i].message);
+                    test_dom_exception_name_reliefwin(disp, mode >= 10, codes[i].message);
                 }
                 IDOMException_Release(exception);
             }
             IDispatch_Release(disp);
         }
 
-        disp = get_thrown_dom_exception_libernt(window,
+        disp = get_thrown_dom_exception_reliefwin(window,
                 L"window.winetest_exception = DOMException.prototype;");
         if(disp) {
             hres = IDispatch_QueryInterface(disp, &IID_IDOMException, (void**)&unk);
@@ -12409,7 +12409,7 @@ static void test_dom_exception_libernt(IHTMLDocument2 *doc)
             IDispatch_Release(disp);
         }
 
-        disp = get_thrown_dom_exception_libernt(window,
+        disp = get_thrown_dom_exception_reliefwin(window,
                 L"try { window.postMessage('m', 'example.org'); } catch(e) { window.winetest_exception = e; }");
         if(disp) {
             hres = IDispatch_QueryInterface(disp, &IID_IDOMException, (void**)&exception);
@@ -12434,7 +12434,7 @@ static void test_dom_exception_libernt(IHTMLDocument2 *doc)
     IHTMLDocument2_Release(node);
 }
 
-static void test_databinding_attr_col_libernt(IHTMLDocument2 *doc)
+static void test_databinding_attr_col_reliefwin(IHTMLDocument2 *doc)
 {
     static const WCHAR *tags[] = { L"body", L"div" };
     IHTMLAttributeCollection *attr_col;
@@ -12499,7 +12499,7 @@ static void test_databinding_attr_col_libernt(IHTMLDocument2 *doc)
     }
 }
 
-static void test_tag_attr_only_libernt(IHTMLDocument2 *doc)
+static void test_tag_attr_only_reliefwin(IHTMLDocument2 *doc)
 {
     static const struct {
         const WCHAR *tag;
@@ -12768,7 +12768,7 @@ static BOOL is_bstr_variant(const VARIANT *v, const WCHAR *str)
     return V_BSTR(v) && !wcscmp(V_BSTR(v), str);
 }
 
-static void test_attr_name_alias_libernt(IHTMLDocument2 *doc)
+static void test_attr_name_alias_reliefwin(IHTMLDocument2 *doc)
 {
     static const struct {
         const WCHAR *tag;
@@ -12907,7 +12907,7 @@ static BOOL is_bstr_or_null(BSTR s, const WCHAR *exp)
     return exp ? s && !wcscmp(s, exp) : !s;
 }
 
-static void test_frameset_libernt(IHTMLDocument2 *doc)
+static void test_frameset_reliefwin(IHTMLDocument2 *doc)
 {
     static const struct {
         const WCHAR *name;
@@ -13167,7 +13167,7 @@ static void _test_window_event_prop(unsigned line, IDispatchEx *elem, IDispatchE
     VariantClear(&v);
 }
 
-static void test_body_window_events_libernt(IHTMLDocument2 *doc)
+static void test_body_window_events_reliefwin(IHTMLDocument2 *doc)
 {
     static const WCHAR *events[] = {
         L"onload", L"onunload", L"onbeforeunload", L"onblur", L"onfocus", L"onscroll",
@@ -13266,7 +13266,7 @@ static void test_body_window_events_libernt(IHTMLDocument2 *doc)
     IHTMLElement_Release(body);
 }
 
-static void test_table_dispids_libernt(IHTMLElement *elem, const WCHAR *tag, const WCHAR *const *names, const DISPID *dispids)
+static void test_table_dispids_reliefwin(IHTMLElement *elem, const WCHAR *tag, const WCHAR *const *names, const DISPID *dispids)
 {
     IDispatchEx *dispex;
     DISPID dispid;
@@ -13287,7 +13287,7 @@ static void test_table_dispids_libernt(IHTMLElement *elem, const WCHAR *tag, con
     IDispatchEx_Release(dispex);
 }
 
-static void test_table_attr_libernt(IHTMLElement *elem, const WCHAR *name, const WCHAR *value, const WCHAR *exp)
+static void test_table_attr_reliefwin(IHTMLElement *elem, const WCHAR *name, const WCHAR *value, const WCHAR *exp)
 {
     BSTR str = SysAllocString(name);
     HRESULT hres;
@@ -13307,7 +13307,7 @@ typedef HRESULT (WINAPI *table_get_bstr_t)(IDispatch*,BSTR*);
 typedef HRESULT (WINAPI *table_put_var_t)(IDispatch*,VARIANT);
 typedef HRESULT (WINAPI *table_get_var_t)(IDispatch*,VARIANT*);
 
-static IDispatch *get_table_iface_libernt(IHTMLElement *elem, const IID *iid, const char *name)
+static IDispatch *get_table_iface_reliefwin(IHTMLElement *elem, const IID *iid, const char *name)
 {
     IDispatch *iface = NULL;
     HRESULT hres;
@@ -13317,7 +13317,7 @@ static IDispatch *get_table_iface_libernt(IHTMLElement *elem, const IID *iid, co
     return iface;
 }
 
-static void test_table_strings_libernt(IHTMLDocument2 *doc)
+static void test_table_strings_reliefwin(IHTMLDocument2 *doc)
 {
     static const struct {
         const WCHAR *tag;
@@ -13349,7 +13349,7 @@ static void test_table_strings_libernt(IHTMLDocument2 *doc)
 
     for(i = 0; i < ARRAY_SIZE(tests); i++) {
         IHTMLElement *elem = test_create_elem(doc, tests[i].tag);
-        IDispatch *iface = get_table_iface_libernt(elem, tests[i].iid, tests[i].iface);
+        IDispatch *iface = get_table_iface_reliefwin(elem, tests[i].iid, tests[i].iface);
         table_put_bstr_t put;
         table_get_bstr_t get;
         HRESULT hres;
@@ -13378,7 +13378,7 @@ static void test_table_strings_libernt(IHTMLDocument2 *doc)
             ok(hres == S_OK && str && !wcscmp(str, values[j]), "%s.%s after put(%s): %08lx %s\n", wine_dbgstr_w(tests[i].tag),
                wine_dbgstr_w(tests[i].name), wine_dbgstr_w(values[j]), hres, wine_dbgstr_w(str));
             SysFreeString(str);
-            test_table_attr_libernt(elem, tests[i].name, values[j], tests[i].ie9 ? NULL : values[j]);
+            test_table_attr_reliefwin(elem, tests[i].name, values[j], tests[i].ie9 ? NULL : values[j]);
         }
 
         IDispatch_Release(iface);
@@ -13386,7 +13386,7 @@ static void test_table_strings_libernt(IHTMLDocument2 *doc)
     }
 }
 
-static void test_table_lengths_libernt(IHTMLDocument2 *doc)
+static void test_table_lengths_reliefwin(IHTMLDocument2 *doc)
 {
     static const struct {
         const WCHAR *tag;
@@ -13433,7 +13433,7 @@ static void test_table_lengths_libernt(IHTMLDocument2 *doc)
 
     for(i = 0; i < ARRAY_SIZE(props); i++) {
         IHTMLElement *elem = test_create_elem(doc, props[i].tag);
-        IDispatch *iface = get_table_iface_libernt(elem, props[i].iid, props[i].iface);
+        IDispatch *iface = get_table_iface_reliefwin(elem, props[i].iid, props[i].iface);
         table_put_var_t put;
         table_get_var_t get;
         HRESULT hres;
@@ -13477,7 +13477,7 @@ static void test_table_lengths_libernt(IHTMLDocument2 *doc)
     }
 }
 
-static void test_table_keywords_libernt(IHTMLDocument2 *doc)
+static void test_table_keywords_reliefwin(IHTMLDocument2 *doc)
 {
     static const struct {
         const WCHAR *tag;
@@ -13520,7 +13520,7 @@ static void test_table_keywords_libernt(IHTMLDocument2 *doc)
 
     for(i = 0; i < ARRAY_SIZE(props); i++) {
         IHTMLElement *elem = test_create_elem(doc, props[i].tag);
-        IDispatch *iface = get_table_iface_libernt(elem, props[i].iid, props[i].iface);
+        IDispatch *iface = get_table_iface_reliefwin(elem, props[i].iid, props[i].iface);
         const WCHAR *name = props[i].valign ? L"vAlign" : L"align";
         table_put_bstr_t put;
         table_get_bstr_t get;
@@ -13561,7 +13561,7 @@ static void test_table_keywords_libernt(IHTMLDocument2 *doc)
     }
 }
 
-static void test_table_col_span_libernt(IHTMLDocument2 *doc)
+static void test_table_col_span_reliefwin(IHTMLDocument2 *doc)
 {
     static const struct {
         LONG value;
@@ -13616,7 +13616,7 @@ static void test_table_col_span_libernt(IHTMLDocument2 *doc)
     IHTMLElement_Release(elem);
 }
 
-static void test_table_section_bgcolor_libernt(IHTMLDocument2 *doc)
+static void test_table_section_bgcolor_reliefwin(IHTMLDocument2 *doc)
 {
     static const struct {
         VARTYPE vt;
@@ -13667,7 +13667,7 @@ static void test_table_section_bgcolor_libernt(IHTMLDocument2 *doc)
     IHTMLElement_Release(elem);
 }
 
-static IHTMLTableSection *create_table_section_libernt(IHTMLDocument2 *doc, IHTMLElement **div)
+static IHTMLTableSection *create_table_section_reliefwin(IHTMLDocument2 *doc, IHTMLElement **div)
 {
     IHTMLElementCollection *col;
     IHTMLTableSection *section;
@@ -13698,7 +13698,7 @@ static IHTMLTableSection *create_table_section_libernt(IHTMLDocument2 *doc, IHTM
     return section;
 }
 
-static LONG table_section_row_count_libernt(IHTMLTableSection *section)
+static LONG table_section_row_count_reliefwin(IHTMLTableSection *section)
 {
     IHTMLElementCollection *rows;
     HRESULT hres;
@@ -13714,7 +13714,7 @@ static LONG table_section_row_count_libernt(IHTMLTableSection *section)
     return len;
 }
 
-static void test_table_section_row_id_libernt(IHTMLTableSection *section, LONG index, const WCHAR *exid)
+static void test_table_section_row_id_reliefwin(IHTMLTableSection *section, LONG index, const WCHAR *exid)
 {
     IHTMLElementCollection *rows;
     IDispatch *disp = NULL;
@@ -13736,7 +13736,7 @@ static void test_table_section_row_id_libernt(IHTMLTableSection *section, LONG i
     }
 }
 
-static void test_table_section_rows_libernt(IHTMLDocument2 *doc)
+static void test_table_section_rows_reliefwin(IHTMLDocument2 *doc)
 {
     IHTMLTableSection4 *section4;
     IHTMLTableSection *section;
@@ -13745,12 +13745,12 @@ static void test_table_section_rows_libernt(IHTMLDocument2 *doc)
     HRESULT hres;
     BSTR str;
 
-    section = create_table_section_libernt(doc, &div);
+    section = create_table_section_reliefwin(doc, &div);
     if(!section) {
         IHTMLElement_Release(div);
         return;
     }
-    ok(table_section_row_count_libernt(section) == 2, "unexpected row count\n");
+    ok(table_section_row_count_reliefwin(section) == 2, "unexpected row count\n");
 
     row = NULL;
     hres = IHTMLTableSection_insertRow(section, -1, &row);
@@ -13763,17 +13763,17 @@ static void test_table_section_rows_libernt(IHTMLDocument2 *doc)
         IHTMLElement_Release(elem);
         IDispatch_Release(row);
     }
-    ok(table_section_row_count_libernt(section) == 3, "unexpected row count after insertRow(-1)\n");
-    test_table_section_row_id_libernt(section, 2, NULL);
+    ok(table_section_row_count_reliefwin(section) == 3, "unexpected row count after insertRow(-1)\n");
+    test_table_section_row_id_reliefwin(section, 2, NULL);
 
     row = NULL;
     hres = IHTMLTableSection_insertRow(section, 0, &row);
     ok(hres == S_OK && row, "insertRow(0) returned %08lx\n", hres);
     if(row)
         IDispatch_Release(row);
-    test_table_section_row_id_libernt(section, 0, NULL);
-    test_table_section_row_id_libernt(section, 1, L"ra");
-    ok(table_section_row_count_libernt(section) == 4, "unexpected row count after insertRow(0)\n");
+    test_table_section_row_id_reliefwin(section, 0, NULL);
+    test_table_section_row_id_reliefwin(section, 1, L"ra");
+    ok(table_section_row_count_reliefwin(section) == 4, "unexpected row count after insertRow(0)\n");
 
     row = (void*)0xdeadbeef;
     hres = IHTMLTableSection_insertRow(section, 5, &row);
@@ -13785,22 +13785,22 @@ static void test_table_section_rows_libernt(IHTMLDocument2 *doc)
     ok(hres == S_OK && row, "insertRow(4) returned %08lx\n", hres);
     if(row)
         IDispatch_Release(row);
-    ok(table_section_row_count_libernt(section) == 5, "unexpected row count after insertRow(4)\n");
+    ok(table_section_row_count_reliefwin(section) == 5, "unexpected row count after insertRow(4)\n");
 
     hres = IHTMLTableSection_deleteRow(section, 0);
     ok(hres == S_OK, "deleteRow(0) returned %08lx\n", hres);
-    test_table_section_row_id_libernt(section, 0, L"ra");
+    test_table_section_row_id_reliefwin(section, 0, L"ra");
     hres = IHTMLTableSection_deleteRow(section, -1);
     ok(hres == S_OK, "deleteRow(-1) returned %08lx\n", hres);
-    ok(table_section_row_count_libernt(section) == 3, "unexpected row count after deleteRow\n");
-    test_table_section_row_id_libernt(section, 2, NULL);
+    ok(table_section_row_count_reliefwin(section) == 3, "unexpected row count after deleteRow\n");
+    test_table_section_row_id_reliefwin(section, 2, NULL);
     hres = IHTMLTableSection_deleteRow(section, 3);
     ok(hres == E_INVALIDARG, "deleteRow(3) returned %08lx\n", hres);
     hres = IHTMLTableSection_deleteRow(section, -2);
     ok(hres == E_INVALIDARG, "deleteRow(-2) returned %08lx\n", hres);
     hres = IHTMLTableSection_deleteRow(section, 2);
     ok(hres == S_OK, "deleteRow(2) returned %08lx\n", hres);
-    test_table_section_row_id_libernt(section, 1, L"rb");
+    test_table_section_row_id_reliefwin(section, 1, L"rb");
 
     hres = IHTMLTableSection_QueryInterface(section, &IID_IHTMLTableSection4, (void**)&section4);
     ok(hres == S_OK, "Could not get IHTMLTableSection4: %08lx\n", hres);
@@ -13814,7 +13814,7 @@ static void test_table_section_rows_libernt(IHTMLDocument2 *doc)
         ok(hres == E_UNEXPECTED, "IHTMLTableSection4 insertRow(1) returned %08lx\n", hres);
         hres = IHTMLTableSection4_insertRow(section4, 3, &row);
         ok(hres == 0x80700001, "IHTMLTableSection4 insertRow(3) returned %08lx\n", hres);
-        ok(table_section_row_count_libernt(section) == 2, "unexpected row count after IHTMLTableSection4 calls\n");
+        ok(table_section_row_count_reliefwin(section) == 2, "unexpected row count after IHTMLTableSection4 calls\n");
         IHTMLTableSection4_Release(section4);
     }
     IHTMLTableSection_Release(section);
@@ -13838,7 +13838,7 @@ static void test_table_section_rows_libernt(IHTMLDocument2 *doc)
     IHTMLElement_Release(elem);
 }
 
-static void test_table_row4_libernt(IHTMLDocument2 *doc)
+static void test_table_row4_reliefwin(IHTMLDocument2 *doc)
 {
     IHTMLElement *elem = test_create_elem(doc, L"tr");
     IHTMLTableRow4 *row4;
@@ -13862,7 +13862,7 @@ static void test_table_row4_libernt(IHTMLDocument2 *doc)
     IHTMLElement_Release(elem);
 }
 
-static void test_table_sections_libernt(IHTMLDocument2 *doc)
+static void test_table_sections_reliefwin(IHTMLDocument2 *doc)
 {
     static const WCHAR *cell_names[] = { L"abbr", L"axis", L"ch", L"chOff", L"headers", L"scope", NULL };
     static const DISPID cell_dispids[] = {
@@ -13920,20 +13920,20 @@ static void test_table_sections_libernt(IHTMLDocument2 *doc)
             if(SUCCEEDED(hres))
                 IUnknown_Release(unk);
         }
-        test_table_dispids_libernt(elem, tests[i].tag, tests[i].names, tests[i].dispids);
+        test_table_dispids_reliefwin(elem, tests[i].tag, tests[i].names, tests[i].dispids);
         IHTMLElement_Release(elem);
     }
 
-    test_table_row4_libernt(doc);
-    test_table_strings_libernt(doc);
-    test_table_lengths_libernt(doc);
-    test_table_keywords_libernt(doc);
-    test_table_col_span_libernt(doc);
-    test_table_section_bgcolor_libernt(doc);
-    test_table_section_rows_libernt(doc);
+    test_table_row4_reliefwin(doc);
+    test_table_strings_reliefwin(doc);
+    test_table_lengths_reliefwin(doc);
+    test_table_keywords_reliefwin(doc);
+    test_table_col_span_reliefwin(doc);
+    test_table_section_bgcolor_reliefwin(doc);
+    test_table_section_rows_reliefwin(doc);
 }
 
-static void test_table_section_ie9_rows_libernt(IHTMLDocument2 *doc)
+static void test_table_section_ie9_rows_reliefwin(IHTMLDocument2 *doc)
 {
     IHTMLElement *elem = test_create_elem(doc, L"tbody");
     IHTMLTableSection4 *section4 = NULL;
@@ -13956,14 +13956,14 @@ static void test_table_section_ie9_rows_libernt(IHTMLDocument2 *doc)
         ok(hres == S_OK && row, "IHTMLTableSection4 insertRow(0) returned %08lx\n", hres);
         if(row)
             IDispatch_Release(row);
-        ok(table_section_row_count_libernt(section) == 1, "unexpected row count after insertRow\n");
+        ok(table_section_row_count_reliefwin(section) == 1, "unexpected row count after insertRow\n");
         hres = IHTMLTableSection4_deleteRow(section4, 1);
         ok(hres == 0x80700001, "IHTMLTableSection4 deleteRow(1) returned %08lx\n", hres);
         hres = IHTMLTableSection_deleteRow(section, 1);
         ok(hres == E_INVALIDARG, "deleteRow(1) returned %08lx\n", hres);
         hres = IHTMLTableSection4_deleteRow(section4, 0);
         ok(hres == S_OK, "IHTMLTableSection4 deleteRow(0) returned %08lx\n", hres);
-        ok(table_section_row_count_libernt(section) == 0, "unexpected row count after deleteRow\n");
+        ok(table_section_row_count_reliefwin(section) == 0, "unexpected row count after deleteRow\n");
         hres = IHTMLTableSection4_deleteRow(section4, -1);
         ok(hres == S_OK, "empty IHTMLTableSection4 deleteRow(-1) returned %08lx\n", hres);
         hres = IHTMLTableSection4_deleteRow(section4, 5);
@@ -13982,7 +13982,7 @@ static void test_table_section_ie9_rows_libernt(IHTMLDocument2 *doc)
     IHTMLElement_Release(elem);
 }
 
-static void test_table_sections_ie9_libernt(IHTMLDocument2 *doc)
+static void test_table_sections_ie9_reliefwin(IHTMLDocument2 *doc)
 {
     static const struct {
         const WCHAR *tag;
@@ -14006,7 +14006,7 @@ static void test_table_sections_ie9_libernt(IHTMLDocument2 *doc)
 
     for(i = 0; i < ARRAY_SIZE(tests); i++) {
         IHTMLElement *elem = test_create_elem(doc, tests[i].tag);
-        IDispatch *iface = get_table_iface_libernt(elem, tests[i].iid, tests[i].iface);
+        IDispatch *iface = get_table_iface_reliefwin(elem, tests[i].iid, tests[i].iface);
         BSTR str, name;
         table_put_bstr_t put;
         table_get_bstr_t get;
@@ -14024,7 +14024,7 @@ static void test_table_sections_ie9_libernt(IHTMLDocument2 *doc)
         hres = put(iface, str);
         ok(hres == S_OK, "%s [%u] put returned %08lx\n", wine_dbgstr_w(tests[i].tag), i, hres);
         SysFreeString(str);
-        test_table_attr_libernt(elem, tests[i].attr, L"x", tests[i].ie9 ? L"x" : NULL);
+        test_table_attr_reliefwin(elem, tests[i].attr, L"x", tests[i].ie9 ? L"x" : NULL);
 
         name = SysAllocString(tests[i].attr);
         V_VT(&v) = VT_BSTR;
@@ -14043,10 +14043,10 @@ static void test_table_sections_ie9_libernt(IHTMLDocument2 *doc)
         IHTMLElement_Release(elem);
     }
 
-    test_table_section_ie9_rows_libernt(doc);
+    test_table_section_ie9_rows_reliefwin(doc);
 }
 
-static void test_frameset_events_libernt(IHTMLDocument2 *doc)
+static void test_frameset_events_reliefwin(IHTMLDocument2 *doc)
 {
     static const WCHAR *events[] = { L"onload", L"onunload", L"onbeforeunload", L"onbeforeprint", L"onafterprint" };
     IDispatchEx *dispex;
@@ -17098,32 +17098,32 @@ START_TEST(dom)
         run_domtest(doc_blank, test_dom_elements);
         run_domtest(doc_blank, test_about_blank_storage);
         run_domtest(doc_blank, test_attr_collection_builtins);
-        run_domtest(doc_blank, test_attr_collection_builtins_libernt);
-        run_domtest(doc_blank, test_tag_attr_only_libernt);
-        run_domtest(doc_blank, test_databinding_libernt);
-        run_domtest(doc_blank, test_option_databinding_libernt);
-        run_domtest(doc_blank_ie8, test_option_databinding_libernt);
-        run_domtest(doc_blank_ie9, test_option_databinding_libernt);
-        run_domtest(doc_blank, test_invoke_errors_libernt);
-        run_domtest(doc_blank_ie8, test_invoke_errors_libernt);
-        run_domtest(doc_blank, test_selector_version_libernt);
-        run_domtest(doc_blank_ie8, test_selector_version_libernt);
-        run_domtest(doc_blank_ie9, test_selector_version_libernt);
-        run_domtest(doc_blank_ie8, test_dom_exception_libernt);
-        run_domtest(doc_blank_ie9, test_dom_exception_libernt);
-        run_domtest(doc_blank_ie11, test_dom_exception_libernt);
-        run_domtest(doc_blank, test_databinding_attr_col_libernt);
-        run_domtest(doc_blank_ie9, test_databinding_attr_col_libernt);
-        run_domtest(doc_blank_ie11, test_databinding_attr_col_libernt);
-        run_domtest(doc_blank, test_attr_name_alias_libernt);
-        run_domtest(doc_blank, test_frameset_libernt);
-        run_domtest(doc_blank, test_table_sections_libernt);
-        run_domtest(doc_blank_ie9, test_table_sections_ie9_libernt);
-        run_domtest(doc_blank, test_body_window_events_libernt);
-        run_domtest(doc_blank, test_text_elements_libernt);
-        run_domtest(doc_blank_ie9, test_text_elements_ie9_libernt);
-        run_domtest(doc_blank, test_list_elements_libernt);
-        run_domtest(doc_blank, test_text_block_elements_libernt);
+        run_domtest(doc_blank, test_attr_collection_builtins_reliefwin);
+        run_domtest(doc_blank, test_tag_attr_only_reliefwin);
+        run_domtest(doc_blank, test_databinding_reliefwin);
+        run_domtest(doc_blank, test_option_databinding_reliefwin);
+        run_domtest(doc_blank_ie8, test_option_databinding_reliefwin);
+        run_domtest(doc_blank_ie9, test_option_databinding_reliefwin);
+        run_domtest(doc_blank, test_invoke_errors_reliefwin);
+        run_domtest(doc_blank_ie8, test_invoke_errors_reliefwin);
+        run_domtest(doc_blank, test_selector_version_reliefwin);
+        run_domtest(doc_blank_ie8, test_selector_version_reliefwin);
+        run_domtest(doc_blank_ie9, test_selector_version_reliefwin);
+        run_domtest(doc_blank_ie8, test_dom_exception_reliefwin);
+        run_domtest(doc_blank_ie9, test_dom_exception_reliefwin);
+        run_domtest(doc_blank_ie11, test_dom_exception_reliefwin);
+        run_domtest(doc_blank, test_databinding_attr_col_reliefwin);
+        run_domtest(doc_blank_ie9, test_databinding_attr_col_reliefwin);
+        run_domtest(doc_blank_ie11, test_databinding_attr_col_reliefwin);
+        run_domtest(doc_blank, test_attr_name_alias_reliefwin);
+        run_domtest(doc_blank, test_frameset_reliefwin);
+        run_domtest(doc_blank, test_table_sections_reliefwin);
+        run_domtest(doc_blank_ie9, test_table_sections_ie9_reliefwin);
+        run_domtest(doc_blank, test_body_window_events_reliefwin);
+        run_domtest(doc_blank, test_text_elements_reliefwin);
+        run_domtest(doc_blank_ie9, test_text_elements_ie9_reliefwin);
+        run_domtest(doc_blank, test_list_elements_reliefwin);
+        run_domtest(doc_blank, test_text_block_elements_reliefwin);
         if(is_ie9plus) {
             compat_mode = COMPAT_IE9;
             run_domtest(doc_blank_ie9, test_doc_open);
@@ -17142,7 +17142,7 @@ START_TEST(dom)
     run_domtest(indent_test_str, test_indent);
     run_domtest(cond_comment_str, test_cond_comment);
     run_domtest(frameset_str, test_frameset);
-    run_domtest(frameset_str, test_frameset_events_libernt);
+    run_domtest(frameset_str, test_frameset_events_reliefwin);
     run_domtest(emptydiv_str, test_docfrag);
     run_domtest(doc_blank, test_replacechild_elems);
     run_domtest(doc_blank, test_quirks_mode_perf_toJSON);

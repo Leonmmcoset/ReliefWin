@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Themed WM_NCHITTEST reports the client where it covers the caption
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

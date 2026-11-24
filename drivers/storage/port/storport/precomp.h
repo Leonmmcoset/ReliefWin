@@ -22,8 +22,8 @@
 #include <ntdddisk.h>
 #include <mountdev.h>
 #include <wdmguid.h>
-#include <libernt/drivers/dumpstor.h>
-#include <libernt/drivers/dumpscsi.h>
+#include <reliefwin/drivers/dumpstor.h>
+#include <reliefwin/drivers/dumpscsi.h>
 
 /* Memory Tags */
 #define TAG_GLOBAL_DATA     'DGtS'

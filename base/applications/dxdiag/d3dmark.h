@@ -1,14 +1,14 @@
 /*
- * PROJECT:     LiberNT DirectX Diagnostic Tool
+ * PROJECT:     ReliefWin DirectX Diagnostic Tool
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
- * PURPOSE:     Rotating LiberNT mark drawn by the Direct3D tests
+ * PURPOSE:     Rotating ReliefWin mark drawn by the Direct3D tests
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
  */
 
 #ifndef D3DMARK_H__
 #define D3DMARK_H__
 
-#define D3DTEST_MARK_VERTEX_COUNT 96
+#define D3DTEST_MARK_VERTEX_COUNT 456
 #define D3DTEST_HUD_VERTEX_COUNT 3072
 #define D3DTEST_MAX_VERTEX_COUNT (D3DTEST_MARK_VERTEX_COUNT + D3DTEST_HUD_VERTEX_COUNT)
 #define D3DTEST_HUD_TEXT_COLOR 0xffffffff

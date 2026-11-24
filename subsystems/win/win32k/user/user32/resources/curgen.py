@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# PROJECT:     LiberNT user32
+# PROJECT:     ReliefWin user32
 # LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
 # PURPOSE:     Draw the system cursors at every Windows cursor size and write them as PNG cursor files
 # COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

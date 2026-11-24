@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test that installing driver files that can only be replaced at the next restart asks for that restart
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -46,9 +46,9 @@ static const char TestInf[] =
     "lntrb.bin=1\r\n"
     "\r\n"
     "[Strings]\r\n"
-    "Provider=\"LiberNT Need Reboot Test\"\r\n"
-    "Device=\"LiberNT need reboot test device\"\r\n"
-    "Disk=\"LiberNT need reboot test files\"\r\n";
+    "Provider=\"ReliefWin Need Reboot Test\"\r\n"
+    "Device=\"ReliefWin need reboot test device\"\r\n"
+    "Disk=\"ReliefWin need reboot test files\"\r\n";
 
 static const char NewContent[] = "new driver file";
 static const char OldContent[] = "old driver file";

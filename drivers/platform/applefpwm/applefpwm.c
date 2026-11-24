@@ -1,13 +1,13 @@
 /*
- * PROJECT:     LiberNT Apple PWM Driver
+ * PROJECT:     ReliefWin Apple PWM Driver
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Apple silicon PWM controllers and the PWM LEDs they drive
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
  */
 
 #include <ntddk.h>
-#include <libernt/drivers/fdtdrv.h>
-#include <libernt/drivers/applepmgr.h>
+#include <reliefwin/drivers/fdtdrv.h>
+#include <reliefwin/drivers/applepmgr.h>
 #include "fpwm.h"
 
 #define FPWM_MAX_LEDS 4

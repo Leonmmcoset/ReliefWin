@@ -75,7 +75,7 @@ HKLM,"SOFTWARE\Classes\Applications\zipfldr.dll","NoOpenWith",0x00000000,""
 HKLM,"SOFTWARE\Classes\Applications\explorer.exe","NoStartPage",0x00000000,""
 HKLM,"SOFTWARE\Classes\Applications\icwconn1.exe","NoStartPage",0x00000000,""
 HKLM,"SOFTWARE\Classes\Applications\inoculan.exe","NoStartPage",0x00000000,""
-HKLM,"SOFTWARE\Classes\Applications\libernt.exe","NoStartPage",0x00000000,""
+HKLM,"SOFTWARE\Classes\Applications\reliefwin.exe","NoStartPage",0x00000000,""
 HKLM,"SOFTWARE\Classes\Applications\mobsync.exe","NoStartPage",0x00000000,""
 HKLM,"SOFTWARE\Classes\Applications\navwnt.exe","NoStartPage",0x00000000,""
 HKLM,"SOFTWARE\Classes\Applications\realmon.exe","NoStartPage",0x00000000,""
@@ -368,7 +368,7 @@ HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Control Panel\Extended Propertie
 HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Control Panel\Extended Properties\{305CA226-D286-468e-B848-2B2E8E697B74} 2","wined3dcfg.cpl",0x00010001,1
 
 ; Cursors Schemes
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Control Panel\Cursors\Schemes","LiberNT Default",0x00020000,""",,,,,,,,,,,,,"""
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Control Panel\Cursors\Schemes","ReliefWin Default",0x00020000,""",,,,,,,,,,,,,"""
 
 HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}\PropertyBag","ThisPCPolicy",0x00000000,"Hide"
 HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{F42EE2D3-909F-4907-8871-4C22FC0BF756}\PropertyBag","ThisPCPolicy",0x00000000,"Hide"
@@ -995,7 +995,7 @@ HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers",,0x000
 
 ; Version Information
 HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion","InstallDate",0x00010003,0
-HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion","ProductName",2,"LiberNT"
+HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion","ProductName",2,"ReliefWin"
 HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion","InstallationType",2,"Client"
 HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion","DisplayVersion",2,"24H2"
 HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion","ReleaseId",2,"2009"

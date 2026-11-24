@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT host-native tests
+ * PROJECT:     ReliefWin host-native tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Tests the USB disk layout mkdiskimg -cd writes into a boot CD image
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -149,7 +149,7 @@ static void BuildIso(uint8_t* iso)
     term[6] = 1;
 
     cat[0] = 0x01;
-    memcpy(cat + 4, "LiberNT test", 12);
+    memcpy(cat + 4, "ReliefWin test", sizeof("ReliefWin test") - 1);
     cat[30] = 0x55;
     cat[31] = 0xAA;
     for (i = 0; i < 32; i += 2)

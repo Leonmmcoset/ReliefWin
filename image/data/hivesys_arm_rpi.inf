@@ -1,4 +1,4 @@
-; PROJECT:     LiberNT ARMv7 boot hive
+; PROJECT:     ReliefWin ARMv7 boot hive
 ; LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
 ; PURPOSE:     Boot drivers of the 32-bit Raspberry Pi profiles
 ; COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

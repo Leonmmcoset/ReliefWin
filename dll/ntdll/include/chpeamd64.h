@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT NT Library
+ * PROJECT:     ReliefWin NT Library
  * LICENSE:     MIT (https://spdx.org/licenses/MIT)
  * PURPOSE:     AMD64 unwind types of the ARM64EC ntdll bridge
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

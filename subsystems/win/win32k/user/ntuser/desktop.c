@@ -9,7 +9,7 @@
 /* INCLUDES ******************************************************************/
 
 #include <win32k.h>
-#include <libernt/buildstamp.h>
+#include <reliefwin/buildstamp.h>
 #include <ndk/inbvfuncs.h>
 DBG_DEFAULT_CHANNEL(UserDesktop);
 
@@ -333,12 +333,12 @@ IntQueryNetworkAssistanceKey(OUT PWSTR pwszText,
 #endif
 
 #if DBG
-#define LIBERNT_BUILD_FLAVOUR L"debug"
+#define RELIEFWIN_BUILD_FLAVOUR L"debug"
 #else
-#define LIBERNT_BUILD_FLAVOUR L"release"
+#define RELIEFWIN_BUILD_FLAVOUR L"release"
 #endif
 
-#define LIBERNT_BUILD_HEADING L"LiberNT " LIBERNT_BUILD_FLAVOUR L" build"
+#define RELIEFWIN_BUILD_HEADING L"ReliefWin " RELIEFWIN_BUILD_FLAVOUR L" build"
 
 static NTSTATUS
 GetSystemVersionString(OUT PWSTR pwszzVersion,
@@ -352,8 +352,8 @@ GetSystemVersionString(OUT PWSTR pwszzVersion,
     Status = RtlStringCchCopyW(pwszzVersion,
                                cchDest,
                                InSafeMode
-                                   ? LIBERNT_BUILD_HEADING L" " LIBERNT_BUILD_STAMP_W L"\n"
-                                   : LIBERNT_BUILD_HEADING L"\n" LIBERNT_BUILD_STAMP_W L"\n");
+                                   ? RELIEFWIN_BUILD_HEADING L" " RELIEFWIN_BUILD_STAMP_W L"\n"
+                                   : RELIEFWIN_BUILD_HEADING L"\n" RELIEFWIN_BUILD_STAMP_W L"\n");
     if (!NT_SUCCESS(Status))
     {
         /* General failure, NULL-terminate the string */

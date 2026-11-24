@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     UEFI GOP-specific boot UI helpers
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF (arif.ing@outlook.com)
@@ -29,10 +29,10 @@
 #define INBV_LOGO_FRAME_MS          15
 #define INBV_LOGO_DEFAULT_INCREMENT 100000UL
 #define INBV_LOGO_POOL_TAG          'oLbI'
-#define INBV_LOGO_WIDTH             51
-#define INBV_LOGO_TOP_WIDTH         64
+#define INBV_LOGO_WIDTH             120
+#define INBV_LOGO_TOP_WIDTH         120
 #define INBV_LOGO_LIFT              20
-#define INBV_LOGO_UNITS             407
+#define INBV_LOGO_UNITS             400
 #define INBV_LOGO_PROGRESS_MAX      10000
 #define INBV_LOGO_PROGRESS_CEILING  9500
 #define INBV_LOGO_PROGRESS_SHARE    5
@@ -62,8 +62,8 @@ typedef struct _INBV_LOGO_RECT
 
 static const INBV_LOGO_RECT InbvLogoShape[2][2] =
 {
-    { {   0,  60,  88, 356 }, {  88, 268, 299, 356 } },
-    { { 319,   0, 407, 296 }, { 108,   0, 319,  89 } },
+    { {   0,   0,  10,  10 }, {  10,   0, 200,  10 } },
+    { { 390,   0, 400,  10 }, { 200,   0, 390,  10 } },
 };
 
 typedef struct _INBV_LOGO_STATE
@@ -1342,7 +1342,7 @@ InbvGopHandleBootBitmap(VOID)
 
     if (!WordmarkDrawn)
     {
-        static const CHAR LoadingMsg[] = "ReactOS";
+        static const CHAR LoadingMsg[] = "ReliefWin";
         ULONG CharW;
         ULONG msgPx;
         ULONG x;

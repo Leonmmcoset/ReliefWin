@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Intel HD Graphics Driver
+ * PROJECT:     ReliefWin Intel HD Graphics Driver
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Adapter state shared by the hdgfx display and submission code
  * COPYRIGHT:   Copyright 2026 Ostap Brehin <osbre@protonmail.com>
@@ -11,8 +11,8 @@
 #include <ntddk.h>
 #include <windef.h>
 #include <dispmprt.h>
-#include <libernt/drivers/directx/softgpu_2d_shared.h>
-#include <libernt/drivers/directx/hdgfx_umd.h>
+#include <reliefwin/drivers/directx/softgpu_2d_shared.h>
+#include <reliefwin/drivers/directx/hdgfx_umd.h>
 
 #define NDEBUG
 #include <debug.h>

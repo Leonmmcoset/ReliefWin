@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test that WM_MDICREATE reaches a window procedure intact on every delivery path
  * COPYRIGHT:   Copyright 2026 Ahmed Arif <arif193@gmail.com>

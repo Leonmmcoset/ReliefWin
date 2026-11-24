@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Windows Lockdown Policy
+ * PROJECT:     ReliefWin Windows Lockdown Policy
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Lockdown, application control and dynamic code policy queries
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -14,7 +14,7 @@
 #include <ntstatus.h>
 #include <wldp.h>
 
-/* LiberNT enforces no code integrity or application control policy. */
+/* ReliefWin enforces no code integrity or application control policy. */
 #define WLDP_NO_POLICY_STATE WLDP_LOCKDOWN_DEFINED_FLAG
 
 static
@@ -278,6 +278,6 @@ WldpQuerySecurityPolicy(
 
     if (!ValueAddress)
         return HRESULT_FROM_NT(STATUS_INVALID_PARAMETER);
-    /* LiberNT keeps no secure policy settings, so every lookup misses. */
+    /* ReliefWin keeps no secure policy settings, so every lookup misses. */
     return HRESULT_FROM_NT(STATUS_NOT_FOUND);
 }

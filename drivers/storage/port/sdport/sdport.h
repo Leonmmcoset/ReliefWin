@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT SD Port Driver
+ * PROJECT:     ReliefWin SD Port Driver
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Internal header for the SD port driver (sdport.sys)
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -12,8 +12,8 @@
 #include <stdio.h>
 #include <ntstrsafe.h>
 #include <ntddsd.h>
-#include <libernt/drivers/sd/sdhci.h>
-#include <libernt/drivers/sd/sddef.h>
+#include <reliefwin/drivers/sd/sdhci.h>
+#include <reliefwin/drivers/sd/sddef.h>
 #include "sdport_win.h"
 
 /* Pool tags */

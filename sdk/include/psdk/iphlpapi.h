@@ -242,7 +242,7 @@ extern "C" {
 DWORD WINAPI DisableMediaSense(HANDLE *pHandle, OVERLAPPED *pOverLapped);
 ULONG WINAPI GetTcpTable2(PMIB_TCPTABLE2 TcpTable, PULONG SizePointer, BOOL Order);
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 IPHLPAPI_DLL_LINKAGE void WINAPI CancelIfTimestampConfigChange(HIFTIMESTAMPCHANGE NotificationHandle);
 IPHLPAPI_DLL_LINKAGE DWORD WINAPI CaptureInterfaceHardwareCrossTimestamp(const NET_LUID *InterfaceLuid, PINTERFACE_HARDWARE_CROSSTIMESTAMP CrossTimestamp);
 IPHLPAPI_DLL_LINKAGE ULONG WINAPI CreatePersistentTcpPortReservation(USHORT StartPort, USHORT NumberOfPorts, PULONG64 Token);

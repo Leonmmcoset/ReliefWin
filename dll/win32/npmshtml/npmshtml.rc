@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Gecko ActiveX plugin
+ * PROJECT:     ReliefWin Gecko ActiveX plugin
  * LICENSE:     LGPL-2.1-or-later (https://spdx.org/licenses/LGPL-2.1-or-later)
  * PURPOSE:     Version resource Gecko reads to register the plugin
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -7,8 +7,8 @@
 
 #include <windef.h>
 #include <winver.h>
-#include <libernt/version.h>
-#include <libernt/buildno.h>
+#include <reliefwin/version.h>
+#include <reliefwin/buildno.h>
 #include <ntverp.h>
 
 /* Gecko reads plugin strings from the 0409/04E4 block only, like Wine's VER_VERSION_TRANSLATION */
@@ -25,13 +25,13 @@ BEGIN
     BEGIN
         BLOCK "040904E4"
         BEGIN
-            VALUE "CompanyName",        "LiberNT Project"
+            VALUE "CompanyName",        "ReliefWin Project"
             VALUE "FileDescription",    "Wine ActiveX plugin"
             VALUE "FileVersion",        VER_PRODUCTVERSION_STR
             VALUE "InternalName",       "npmshtml"
             VALUE "MIMEType",           "application/x-oleobject"
             VALUE "OriginalFilename",   "npmshtml.dll"
-            VALUE "ProductName",        "LiberNT Operating System"
+            VALUE "ProductName",        "ReliefWin Operating System"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
     END

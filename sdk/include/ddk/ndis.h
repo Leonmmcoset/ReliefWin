@@ -13193,7 +13193,7 @@ NDIS_STATUS NTAPI NdisCoGetTapiCallId(NDIS_HANDLE NdisVcHandle, PVAR_STRING Tapi
 NDIS_STATUS NTAPI NdisMAllocateNetBufferSGList(NDIS_HANDLE NdisMiniportDmaHandle, PNET_BUFFER NetBuffer, PVOID Context, ULONG Flags, PVOID ScatterGatherListBuffer, ULONG ScatterGatherListBufferSize);
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 #if ((NDIS_SUPPORT_NDIS620))
 NDIS_STATUS NTAPI NdisBuildScatterGatherList(NDIS_HANDLE NdisHandle, PNDIS_SCATTER_GATHER_LIST_PARAMETERS SGListParameters);
 #endif

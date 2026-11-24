@@ -8,7 +8,7 @@
 #include <bl.h>
 #include <riscv64.h>
 #include <drivers/bootvid/framebuf.h>
-#include <libernt/fdtlib.h>
+#include <reliefwin/fdtlib.h>
 #include <jh7110disp.h>
 
 extern ULONG_PTR VramAddress;

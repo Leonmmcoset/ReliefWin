@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT WDDM DirectX Graphics Kernel
+ * PROJECT:     ReliefWin WDDM DirectX Graphics Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Desktop duplication registrations (D3DKMTCreateOutputDupl and the frame entry points)
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arifing193@gmail.com>

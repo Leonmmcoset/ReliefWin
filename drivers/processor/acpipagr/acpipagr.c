@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT ACPI Processor Aggregator Driver
+ * PROJECT:     ReliefWin ACPI Processor Aggregator Driver
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     ACPI000C logical-processor idling policy
@@ -8,7 +8,7 @@
 #include <ntddk.h>
 #include <wdmguid.h>
 #include <acpiioct.h>
-#include <libernt/drivers/acpipagr.h>
+#include <reliefwin/drivers/acpipagr.h>
 
 #define NDEBUG
 #include <debug.h>

@@ -9,7 +9,7 @@
 
 #include "ksecdd.h"
 #if defined(_M_ARM64) || defined(__aarch64__)
-#include <libernt/arm64/sysreg.h>
+#include <reliefwin/arm64/sysreg.h>
 #endif
 
 #define NDEBUG

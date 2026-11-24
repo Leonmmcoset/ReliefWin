@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT kernel-mode tests
+ * PROJECT:     ReliefWin kernel-mode tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test FsRtlQueryKernelEaFile, FsRtlSetKernelEaFile and the kernel EA protection of the file system
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -65,7 +65,7 @@ static
 VOID
 TestFileEas(VOID)
 {
-    UNICODE_STRING Path = RTL_CONSTANT_STRING(L"\\SystemRoot\\libernt_kernelea.tmp");
+    UNICODE_STRING Path = RTL_CONSTANT_STRING(L"\\SystemRoot\\reliefwin_kernelea.tmp");
     OBJECT_ATTRIBUTES Attributes;
     IO_STATUS_BLOCK Iosb;
     PFILE_OBJECT FileObject;

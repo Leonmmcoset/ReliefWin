@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Themed caption text must keep its ascenders and descenders
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -9,7 +9,7 @@
 #include <windows.h>
 #include <uxtheme.h>
 #include <vssym32.h>
-#include <libernt/dwmframe.h>
+#include <reliefwin/dwmframe.h>
 
 #define CAPTURE_WIDTH 200
 #define TEXT_LEFT 32
@@ -248,7 +248,7 @@ START_TEST(CustomCaptionInset)
     Class.hInstance = GetModuleHandleW(NULL);
     Class.lpfnWndProc = custom_caption_inset_proc;
     Class.hbrBackground = Blue;
-    Class.lpszClassName = L"LiberNTCustomCaptionInset";
+    Class.lpszClassName = L"ReliefWinCustomCaptionInset";
     RegisterClassW(&Class);
     Window = CreateWindowExW(WS_EX_TOPMOST, Class.lpszClassName, L"Custom title",
                              WS_OVERLAPPEDWINDOW | WS_VISIBLE,

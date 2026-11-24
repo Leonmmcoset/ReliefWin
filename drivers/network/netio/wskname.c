@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT NetIO driver
+ * PROJECT:     ReliefWin NetIO driver
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     WSK name resolution: WskGetAddressInfo, WskFreeAddressInfo and WskGetNameInfo
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -15,7 +15,7 @@
 #include "wskname.h"
 
 #define NDEBUG
-#include <libernt/debug.h>
+#include <reliefwin/debug.h>
 
 /* Exported by the kernel; the prototypes are the ones sdk/include/ndk/rtlfuncs.h declares. */
 NTSYSAPI

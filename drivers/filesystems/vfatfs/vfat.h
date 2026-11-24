@@ -8,7 +8,7 @@
 #include <section_attribs.h>
 #ifdef KDBG
 #include <ndk/kdfuncs.h>
-#include <libernt/kdros.h>
+#include <reliefwin/kdros.h>
 #endif
 
 

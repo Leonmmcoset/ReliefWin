@@ -9,7 +9,7 @@
 /* INCLUDES *******************************************************************/
 
 #include "smss.h"
-#include <libernt/dump.h>
+#include <reliefwin/dump.h>
 
 #define NDEBUG
 #include <debug.h>

@@ -29,6 +29,26 @@ option(HOST_TEST_STORPORT "Build native Storport tests" ON)
 option(HOST_TEST_DXGKRNL "Build native DirectX graphics kernel tests" ON)
 option(HOST_TEST_BOOTLOADER "Build native boot loader tests" ON)
 option(HOST_TEST_APPLEAGX "Build native Apple graphics firmware data tests" ON)
+option(HOST_TEST_BRANDING "Build native branding and update configuration tests" ON)
+option(HOST_TEST_WINDMC "Build native message-header compiler tests" ON)
+option(HOST_TEST_PCIX "Build native PCI synchronous I/O ownership tests" ON)
+option(HOST_TEST_WINSPOOL "Build native printer ANSI conversion tests" ON)
+
+if(BUILD_TESTING AND HOST_TEST_WINSPOOL)
+    add_subdirectory(winspool)
+endif()
+
+if(BUILD_TESTING AND HOST_TEST_PCIX)
+    add_subdirectory(pcix)
+endif()
+
+if(BUILD_TESTING AND HOST_TEST_WINDMC)
+    add_subdirectory(windmc)
+endif()
+
+if(BUILD_TESTING AND HOST_TEST_BRANDING)
+    add_subdirectory(branding)
+endif()
 
 if(BUILD_TESTING AND HOST_TEST_DHCPCSVC)
     add_subdirectory(dhcpcsvc)

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Apple AOP Driver
+ * PROJECT:     ReliefWin Apple AOP Driver
  * LICENSE:     MIT (https://spdx.org/licenses/MIT)
  * PURPOSE:     Ambient light and lid angle sensors behind the Apple Always-On Processor
  * COPYRIGHT:   Copyright (C) The Asahi Linux Contributors

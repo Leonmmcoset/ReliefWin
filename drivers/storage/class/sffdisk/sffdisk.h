@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT SD/MMC Storage Class Driver
+ * PROJECT:     ReliefWin SD/MMC Storage Class Driver
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Main header for sffdisk.sys
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -12,7 +12,7 @@
 #include <ntddstor.h>
 #include <ntddsd.h>
 #include <psdk/sffdisk.h>
-#include <libernt/drivers/sd/sddef.h>
+#include <reliefwin/drivers/sd/sddef.h>
 #include <stdio.h>
 
 /** @brief Pool tag: 'SFfd' */

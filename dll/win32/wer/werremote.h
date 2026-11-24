@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Windows Error Reporting
+ * PROJECT:     ReliefWin Windows Error Reporting
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Reading the WER registrations of another process
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

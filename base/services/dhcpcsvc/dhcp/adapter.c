@@ -3,7 +3,7 @@
 #include <netioapi.h>
 
 #define NDEBUG
-#include <libernt/debug.h>
+#include <reliefwin/debug.h>
 
 extern HANDLE hAdapterStateChangedEvent;
 

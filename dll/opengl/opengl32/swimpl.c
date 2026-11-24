@@ -594,7 +594,7 @@ end:
 
 static const char* renderer_string(void)
 {
-    return "ReactOS SW Implementation";
+    return "ReliefWin SW Implementation";
 }
 
 static inline void PUT_PIXEL_8(BYTE* Buffer, BYTE Value)

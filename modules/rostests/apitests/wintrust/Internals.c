@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test the wintrust exports that have no SDK declaration, as measured on Windows 11
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -321,7 +321,7 @@ TestDecode(VOID)
 
     ok(Decode && FreeDecode, "TrustDecode functions are not exported\n");
     if (!Decode || !FreeDecode ||
-        !CertStrToNameW(X509_ASN_ENCODING, L"CN=LiberNT decode", CERT_X500_NAME_STR, NULL, NameData, &NameSize, NULL))
+        !CertStrToNameW(X509_ASN_ENCODING, L"CN=ReliefWin decode", CERT_X500_NAME_STR, NULL, NameData, &NameSize, NULL))
         return;
     ok_int(Decode(0, &Out, &Size, 0, X509_ASN_ENCODING, X509_NAME, NameData, NameSize, 0), TRUE);
     ok(Out && Size && ((CERT_NAME_INFO *)Out)->cRDN == 1, "unexpected decoded name\n");
@@ -372,9 +372,9 @@ TestAgencyAndUsage(VOID)
     }
     Extension.Value.cbData = EncodedSize;
     EkuExtension.Value.cbData = EkuSize;
-    WithAgency = SelfSigned(L"CN=LiberNT agency", &Extensions);
-    Plain = SelfSigned(L"CN=LiberNT plain", NULL);
-    ClientAuth = SelfSigned(L"CN=LiberNT client auth", &EkuExtensions);
+    WithAgency = SelfSigned(L"CN=ReliefWin agency", &Extensions);
+    Plain = SelfSigned(L"CN=ReliefWin plain", NULL);
+    ClientAuth = SelfSigned(L"CN=ReliefWin client auth", &EkuExtensions);
     if (!WithAgency || !Plain || !ClientAuth)
     {
         skip("Cannot create the certificates\n");
@@ -437,7 +437,7 @@ TestStores(VOID)
     for (i = 0; i < RTL_NUMBER_OF(Names); i++)
     {
         HCERTSTORE Store = CertOpenStore(CERT_STORE_PROV_SYSTEM_W, 0, 0, CERT_SYSTEM_STORE_CURRENT_USER, Names[i]);
-        PCCERT_CONTEXT Marker = SelfSigned(L"CN=LiberNT store marker", NULL), Added = NULL, Found;
+        PCCERT_CONTEXT Marker = SelfSigned(L"CN=ReliefWin store marker", NULL), Added = NULL, Found;
 
         if (!Store || !Marker || !CertAddCertificateContextToStore(Store, Marker, CERT_STORE_ADD_ALWAYS, &Added))
         {
@@ -498,8 +498,8 @@ TestStores(VOID)
     WinVerifyTrust(INVALID_HANDLE_VALUE, &Generic, &Data);
 
     Memory = CertOpenStore(CERT_STORE_PROV_MEMORY, 0, 0, 0, NULL);
-    Inside = SelfSigned(L"CN=LiberNT inside", NULL);
-    Outside = SelfSigned(L"CN=LiberNT outside", NULL);
+    Inside = SelfSigned(L"CN=ReliefWin inside", NULL);
+    Outside = SelfSigned(L"CN=ReliefWin outside", NULL);
     if (Memory && Inside && Outside && CertAddCertificateContextToStore(Memory, Inside, CERT_STORE_ADD_ALWAYS, NULL))
     {
         ZeroMemory(&Fake, sizeof(Fake));
@@ -526,7 +526,7 @@ TestChainedToMicrosoft(VOID)
     PFN_CHAINED Chained = GET(PFN_CHAINED, "WTHelperIsChainedToMicrosoft");
     PFN_CHAINED_STATE ChainedState = GET(PFN_CHAINED_STATE, "WTHelperIsChainedToMicrosoftFromStateData");
     HCERTSTORE Memory = CertOpenStore(CERT_STORE_PROV_MEMORY, 0, 0, 0, NULL);
-    PCCERT_CONTEXT Own = SelfSigned(L"CN=LiberNT not Microsoft", NULL);
+    PCCERT_CONTEXT Own = SelfSigned(L"CN=ReliefWin not Microsoft", NULL);
 
     ok(Chained && ChainedState, "Microsoft chain helpers are not exported\n");
     if (!Chained || !ChainedState || !Memory || !Own)
@@ -704,7 +704,7 @@ TestProviderData(VOID)
     if (!Image || !ReadFile(Handle, Image, Size, &Size, NULL))
         Size = 0;
     CloseHandle(Handle);
-    Context = SelfSigned(L"CN=LiberNT provider data", NULL);
+    Context = SelfSigned(L"CN=ReliefWin provider data", NULL);
     GetSystemTimeAsFileTime(&Now);
 
     for (Choice = 0; Choice < 3; Choice++)

@@ -30,7 +30,7 @@
 
 /* DWM composition contract (CDD_ESCAPE_*, IOCTL_VIDEO_DXGK_*): shared with
  * win32k and dxgkrnl. */
-#include <libernt/dwmframe.h>
+#include <reliefwin/dwmframe.h>
 
 #define RCDD_DISPLAY_TILE_DIMENSION 9
 #define RCDD_DISPLAY_TILE_COUNT \

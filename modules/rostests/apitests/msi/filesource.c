@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Source file names InstallFiles uses for an uncompressed source image
  * COPYRIGHT:   Copyright 2026 Ostap Brehin <osbre@protonmail.com>
@@ -18,7 +18,7 @@ static const PCWSTR Tables[] =
     L"INSERT INTO `Property` (`Property`, `Value`) VALUES ('ProductName', 'msi_apitest filesource')",
     L"INSERT INTO `Property` (`Property`, `Value`) VALUES ('ProductVersion', '1.0.0')",
     L"INSERT INTO `Property` (`Property`, `Value`) VALUES ('ProductLanguage', '1033')",
-    L"INSERT INTO `Property` (`Property`, `Value`) VALUES ('Manufacturer', 'LiberNT')",
+    L"INSERT INTO `Property` (`Property`, `Value`) VALUES ('Manufacturer', 'ReliefWin')",
     L"INSERT INTO `Property` (`Property`, `Value`) VALUES ('ProductCode', '{3B8E5F21-7C4A-4E19-A6D2-9F0B1C7E4A53}')",
     L"CREATE TABLE `Directory` (`Directory` CHAR(72) NOT NULL, `Directory_Parent` CHAR(72), `DefaultDir` CHAR(255) NOT NULL LOCALIZABLE PRIMARY KEY `Directory`)",
     L"INSERT INTO `Directory` (`Directory`, `Directory_Parent`, `DefaultDir`) VALUES ('TARGETDIR', '', 'SourceDir')",

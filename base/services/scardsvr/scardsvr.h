@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Smart Card Service
+ * PROJECT:     ReliefWin Smart Card Service
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Smart card resource manager definitions
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

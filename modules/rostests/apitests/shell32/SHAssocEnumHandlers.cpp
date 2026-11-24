@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Tests for SHAssocEnumHandlers
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -112,7 +112,7 @@ START_TEST(SHAssocEnumHandlers)
     ok(count >= 1, ".txt recommended handlers %lu\n", count);
     ok(recommended == count, ".txt recommended %lu of %lu\n", recommended, count);
 
-    count = enum_handlers(L".libernt-unknown-ext", ASSOC_FILTER_NONE, &notepad, &recommended);
+    count = enum_handlers(L".reliefwin-unknown-ext", ASSOC_FILTER_NONE, &notepad, &recommended);
     ok(count >= 1, "unknown extension handlers %lu\n", count);
     ok(recommended == 0, "unknown extension recommended %lu\n", recommended);
 

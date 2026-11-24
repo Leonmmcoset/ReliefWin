@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test that an ISO 9660 disc mounts with the CDFS file system
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -8,7 +8,7 @@
 #include "precomp.h"
 
 #define TEST_LABEL L"LNTCDFS"
-#define TEST_TEXT "LiberNT CDFS\n"
+#define TEST_TEXT "ReliefWin CDFS\n"
 
 START_TEST(CdfsVolume)
 {

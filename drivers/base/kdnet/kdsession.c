@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Network Kernel Debugger Transport
+ * PROJECT:     ReliefWin Network Kernel Debugger Transport
  * LICENSE:     GPL-2.0-or-later (https://spdx.org/licenses/GPL-2.0-or-later)
  * PURPOSE:     Encrypted debugger session: Noise NNpsk0 handshake and reliable terminal streams
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

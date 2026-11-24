@@ -21,7 +21,7 @@
 @ stdcall WinUsb_SetPowerPolicy(ptr long long ptr)
 @ stdcall WinUsb_WritePipe(ptr long ptr long ptr ptr)
 
-# LiberNT exports the documented winusb.h functions that the Wine spec lacks.
+# ReliefWin exports the documented winusb.h functions that the Wine spec lacks.
 @ stdcall WinUsb_QueryPipeEx(ptr long long ptr)
 @ stdcall WinUsb_GetCurrentFrameNumber(ptr ptr ptr)
 @ stdcall WinUsb_GetAdjustedFrameNumber(ptr int64)

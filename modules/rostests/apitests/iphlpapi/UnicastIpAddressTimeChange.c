@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API Tests
+ * PROJECT:     ReliefWin API Tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test that unicast addresses keep their timing when the system time is set back
  * COPYRIGHT:   Copyright 2026 mikuta0407 <mikuta0407@mikuta0407.net>

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT DHCP Client Service
+ * PROJECT:     ReliefWin DHCP Client Service
  * LICENSE:     GPL-2.0-or-later (https://spdx.org/licenses/GPL-2.0-or-later)
  * PURPOSE:     RFC 2131 sections 4.1 and 4.4.5 DHCPDISCOVER/DHCPREQUEST retransmission schedule
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif193@gmail.com>

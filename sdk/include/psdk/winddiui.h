@@ -268,7 +268,7 @@ typedef struct _PRINTER_EVENT_ATTRIBUTES_INFO {
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 BOOL WINAPI DrvConvertDevMode(LPTSTR pPrinterName, PDEVMODE pdmIn, PDEVMODE pdmOut, PLONG pcbNeeded, DWORD fMode);
 BOOL WINAPI DrvQueryColorProfile(HANDLE hPrinter, PDEVMODEW pdevmode, ULONG ulQueryMode, void *pvProfileData, ULONG *pcbProfileData, FLONG *pflProfileData);
 BOOL WINAPI DrvQueryJobAttributes(HANDLE hPrinter, PDEVMODE pDevMode, DWORD dwLevel, LPBYTE lpAttributeInfo);

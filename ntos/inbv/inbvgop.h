@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     UEFI GOP-specific boot UI helpers
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF (arif.ing@outlook.com)
@@ -8,7 +8,7 @@
 #pragma once
 
 #include <ntddk.h>
-#include <libernt/arc/arc.h>
+#include <reliefwin/arc/arc.h>
 
 #ifdef __cplusplus
 extern "C" {

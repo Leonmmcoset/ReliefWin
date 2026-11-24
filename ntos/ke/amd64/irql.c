@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Exported IRQL entry points for callers that cannot inline CR8 accesses
  * COPYRIGHT:   Copyright Timo Kreuzer <timo.kreuzer@reactos.org>

@@ -32,7 +32,7 @@
 #include <wingdi.h>
 #include <winuser.h>
 #include <winbase.h>
-#include <libernt/usertouch.h>
+#include <reliefwin/usertouch.h>
 
 
 #else

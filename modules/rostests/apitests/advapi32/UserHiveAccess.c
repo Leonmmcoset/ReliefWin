@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test that the profile owner can write its user hive without administrator rights
  * COPYRIGHT:   Copyright 2026 Ahmed Arif <arif.ing@outlook.com>
@@ -20,7 +20,7 @@ TestUserHiveWrite(VOID)
     ok(Error == ERROR_SUCCESS, "RegOpenCurrentUser returned %ld\n", Error);
     if (Error != ERROR_SUCCESS) return;
 
-    Error = RegCreateKeyExW(User, L"Software\\LiberNTUserHiveAccess", 0, NULL, REG_OPTION_VOLATILE,
+    Error = RegCreateKeyExW(User, L"Software\\ReliefWinUserHiveAccess", 0, NULL, REG_OPTION_VOLATILE,
                             KEY_ALL_ACCESS, NULL, &Key, NULL);
     ok(Error == ERROR_SUCCESS, "RegCreateKeyExW returned %ld\n", Error);
     if (Error == ERROR_SUCCESS)
@@ -29,7 +29,7 @@ TestUserHiveWrite(VOID)
         ok(Error == ERROR_SUCCESS, "RegSetValueExW returned %ld\n", Error);
         RegCloseKey(Key);
 
-        Error = RegDeleteKeyW(User, L"Software\\LiberNTUserHiveAccess");
+        Error = RegDeleteKeyW(User, L"Software\\ReliefWinUserHiveAccess");
         ok(Error == ERROR_SUCCESS, "RegDeleteKeyW returned %ld\n", Error);
     }
 

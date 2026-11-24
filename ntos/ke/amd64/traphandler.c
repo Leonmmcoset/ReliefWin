@@ -1,12 +1,12 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     amd64 DPC, IPI and NMI interrupt handlers and the system call dispatcher
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
  */
 
 #include <ntoskrnl.h>
-#include <libernt/smpdbg.h>
+#include <reliefwin/smpdbg.h>
 
 #define MAX_SYSCALL_PARAMS 16
 #define KI_REGISTER_PARAMS 4

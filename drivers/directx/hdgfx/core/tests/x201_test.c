@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Intel HD Graphics Driver tests
+ * PROJECT:     ReliefWin Intel HD Graphics Driver tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Decode X201 Ironlake register and OpRegion dumps on the host
  * COPYRIGHT:   Copyright 2026 Ostap Brehin <osbre@protonmail.com>
@@ -324,7 +324,7 @@ TestSyntheticVbt(void)
     memcpy(OpRegion, "IntelGraphicsMem", 16);
     OpRegion[0x10] = 8;
     OpRegion[0x58] = 0x08;
-    memcpy(Vbt, "$VBT LIBERNT-TEST", 17);
+    memcpy(Vbt, "$VBT RELIEFWIN-TEST", sizeof("$VBT RELIEFWIN-TEST") - 1);
     Vbt[28] = 48;
     memcpy(Bdb, "BIOS_DATA_BLOCK ", 16);
     Bdb[16] = 163;
@@ -348,7 +348,7 @@ TestSyntheticVbt(void)
     Vbt[24] = (uint8_t)(48 + Offset);
     Vbt[25] = (uint8_t)((48 + Offset) >> 8);
 
-    CheckPanelVbt(OpRegion, 0x2000, "$VBT LIBERNT-TEST", 163, 4);
+    CheckPanelVbt(OpRegion, 0x2000, "$VBT RELIEFWIN-TEST", 163, 4);
 
     OpRegion[0x58] = 0;
     CHECK_EQ(HdgfxOpRegionFindVbt(OpRegion, 0x2000, (const uint8_t **)&Vbt, &Offset), 0);

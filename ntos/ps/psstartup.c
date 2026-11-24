@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Bringing the process manager up: its object types, its tables
  *              and the native image every user process starts from
@@ -8,8 +8,8 @@
 
 #include <ntoskrnl.h>
 #include "pspriv.h"
-#include <libernt/wow64shared.h>
-#include <libernt/cfgscp.h>
+#include <reliefwin/wow64shared.h>
+#include <reliefwin/cfgscp.h>
 #define NDEBUG
 #include <debug.h>
 

@@ -1142,7 +1142,7 @@ struct _SECURITY_STRING
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 SECURITY_STATUS WINAPI DelegateSecurityContext(PCtxtHandle phContext, PSECURITY_STRING pTarget, SecDelegationType DelegationType, PTimeStamp pExpiry, PSecBuffer pPackageParameters, PSecBufferDesc pOutput);
 
 #ifdef __cplusplus
@@ -1181,7 +1181,7 @@ typedef struct _SEC_WINNT_AUTH_IDENTITY_W
 } SEC_WINNT_AUTH_IDENTITY_W, *PSEC_WINNT_AUTH_IDENTITY_W;
 #endif
 
-/* FIXME: Windows leaves the ANSI record undefined after ntifs.h has defined _AUTH_IDENTITY_DEFINED; LiberNT always provides it once */
+/* FIXME: Windows leaves the ANSI record undefined after ntifs.h has defined _AUTH_IDENTITY_DEFINED; ReliefWin always provides it once */
 #ifndef _AUTH_IDENTITY_A_DEFINED
 #define _AUTH_IDENTITY_A_DEFINED
 typedef struct _SEC_WINNT_AUTH_IDENTITY_A

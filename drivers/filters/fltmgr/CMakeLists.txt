@@ -1,6 +1,6 @@
 
 include_directories(
-    ${REACTOS_SOURCE_DIR}/sdk/include/libernt/drivers/fltmgr
+    ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/drivers/fltmgr
     includes)
 
 add_definitions(-DEX_LEGACY_PUSH_LOCKS)

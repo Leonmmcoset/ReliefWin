@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     System time, the time zone it is shown in, and the clock's step
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

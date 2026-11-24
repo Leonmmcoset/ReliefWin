@@ -1541,7 +1541,7 @@ typedef struct _FAILURE_PREDICTION_INFO * PFAILURE_PREDICTION_INFO;
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 NTSTATUS NTAPI ClassModeSenseTranslate(PDEVICE_OBJECT DeviceObject, PMODE_PARAMETER_HEADER ModeSenseData, PULONG ModeSenseBufferSize);
 
 #ifdef __cplusplus

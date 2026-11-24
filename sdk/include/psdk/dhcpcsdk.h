@@ -159,7 +159,7 @@ DWORD WINAPI DhcpUndoRequestParams(DWORD, LPVOID, LPWSTR, LPWSTR);
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 DWORD WINAPI DhcpGetOriginalSubnetMask(LPCWSTR sAdapterName, DWORD *dwSubnetMask);
 
 #ifdef __cplusplus

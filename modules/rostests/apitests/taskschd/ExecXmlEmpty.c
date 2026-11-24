@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test that task XML accepts empty string elements, as the Task Scheduler schema allows
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -15,7 +15,7 @@ static const WCHAR TaskXmlHead[] =
     L"<?xml version=\"1.0\" encoding=\"UTF-16\"?>\n"
     L"<Task version=\"1.2\" xmlns=\"http://schemas.microsoft.com/windows/2004/02/mit/task\">\n"
     L"  <RegistrationInfo>\n"
-    L"    <Author>LiberNT</Author>\n";
+    L"    <Author>ReliefWin</Author>\n";
 
 static const WCHAR TaskXmlTail[] =
     L"  </RegistrationInfo>\n"

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT RISC-V HAL
+ * PROJECT:     ReliefWin RISC-V HAL
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF
  * PURPOSE:     RISC-V firmware PCI root bus and device-tree PnP bridge
@@ -14,8 +14,8 @@
 #include <initguid.h>
 #include <wdmguid.h>
 #include <acpiioct.h>
-#include <libernt/drivers/reshubio.h>
-#include <libernt/fdtlib.h>
+#include <reliefwin/drivers/reshubio.h>
+#include <reliefwin/fdtlib.h>
 #include "halp.h"
 
 #define RISCV_PLATFORM_FDO 0x52504644UL

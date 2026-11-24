@@ -1328,7 +1328,7 @@ extern "C" {
 DWORD WINAPI MprAdminGetErrorString(DWORD dwError, LPWSTR *lplpwsErrorString);
 DWORD WINAPI MprConfigServerConnect(LPWSTR lpwsServerName, HANDLE *phMprConfig);
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 BOOL WINAPI MprAdminAcceptNewConnection(RAS_CONNECTION_0 *pRasConnection0, RAS_CONNECTION_1 *pRasConnection1);
 BOOL WINAPI MprAdminAcceptNewConnection2(RAS_CONNECTION_0 *pRasConnection0, RAS_CONNECTION_1 *pRasConnection1, RAS_CONNECTION_2 *pRasConnection2);
 BOOL WINAPI MprAdminAcceptNewConnection3(RAS_CONNECTION_0 *pRasConnection0, RAS_CONNECTION_1 *pRasConnection1, RAS_CONNECTION_2 *pRasConnection2, RAS_CONNECTION_3 *pRasConnection3);

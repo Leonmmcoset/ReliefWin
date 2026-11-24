@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Tests high-resolution waitable timers
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -94,11 +94,11 @@ START_TEST(WaitableTimerHighResolution)
     CloseHandle(Timer);
 
     SetLastError(0xdeadbeef);
-    Timer = Create(NULL, L"LiberNTHighResolutionTimerName", CREATE_WAITABLE_TIMER_HIGH_RESOLUTION, TIMER_ALL_ACCESS);
+    Timer = Create(NULL, L"ReliefWinHighResolutionTimerName", CREATE_WAITABLE_TIMER_HIGH_RESOLUTION, TIMER_ALL_ACCESS);
     trace("named high resolution timer: %p, %lu\n", Timer, GetLastError());
     if (Timer)
     {
-        HANDLE Opened = OpenWaitableTimerW(TIMER_ALL_ACCESS, FALSE, L"LiberNTHighResolutionTimerName");
+        HANDLE Opened = OpenWaitableTimerW(TIMER_ALL_ACCESS, FALSE, L"ReliefWinHighResolutionTimerName");
 
         ok(Opened != NULL, "the named timer did not open: %lu\n", GetLastError());
         if (Opened) CloseHandle(Opened);

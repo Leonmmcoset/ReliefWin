@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test an application manifest that names one dependent assembly more than once
  * COPYRIGHT:   Copyright 2026 Ostap Brehin <osbre@protonmail.com>
@@ -32,7 +32,7 @@ static void TestManifest(const char *Name, const char *Dependencies, BOOL Expect
     static const char Header[] =
         "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>"
         "<assembly xmlns=\"urn:schemas-microsoft-com:asm.v1\" manifestVersion=\"1.0\">"
-        "<assemblyIdentity type=\"win32\" name=\"LiberNT.ActCtxDependencyVersions\" version=\"1.0.0.0\"/>";
+        "<assemblyIdentity type=\"win32\" name=\"ReliefWin.ActCtxDependencyVersions\" version=\"1.0.0.0\"/>";
     static const char Footer[] = "</assembly>";
     WCHAR Directory[MAX_PATH], Path[MAX_PATH];
     ACTCTX_SECTION_KEYED_DATA Data = { sizeof(Data) };

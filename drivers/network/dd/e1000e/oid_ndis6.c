@@ -253,7 +253,7 @@ E1000QueryInformation(
 
         case OID_GEN_VENDOR_DESCRIPTION:
         {
-            static const char VendorDesc[] = "ReactOS Intel E1000 Driver";
+            static const char VendorDesc[] = "ReliefWin Intel E1000 Driver";
             CopySource = (PVOID)VendorDesc;
             CopyLength = sizeof(VendorDesc);
             break;

@@ -193,7 +193,7 @@ typedef struct _RESTOREPTINFOEX {
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 BOOL WINAPI SRSetRestorePointInternal(PRESTOREPOINTINFOW pRestorePtSpec, PSTATEMGRSTATUS pSMgrStatus, BOOL fForceSurrogate);
 
 #ifdef __cplusplus

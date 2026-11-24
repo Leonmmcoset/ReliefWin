@@ -8,7 +8,7 @@ UnattendSetupEnabled = yes
 
 ; Set this option to automatically specify language in the language setup.
 ; See hivesys.inf for available languages.
-LocaleID = 409
+LocaleID = 804
 
 ; Override the default Win8 visual style or select Classic with DefaultThemesOff = yes.
 ;[Shell]

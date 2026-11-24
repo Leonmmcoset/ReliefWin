@@ -1393,7 +1393,7 @@ typedef struct nd_opt_pref64_info *PND_OPTION_PREF64;
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 UINT32 In6ExtractEmbeddedV4AddrFromV6(const IN6_ADDR *Ipv6Address, ULONG PrefixLength, IN_ADDR *Ipv4Address);
 UINT32 In6IsEmbeddedV4AddrPrefixLengthValid(ULONG PrefixLength);
 UINT32 In6SetAddrV4Embedded(const IN6_ADDR *Prefix, ULONG PrefixLength, IN_ADDR *Ipv4Address, IN6_ADDR *Ipv6Address);

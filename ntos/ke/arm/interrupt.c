@@ -1,13 +1,13 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     ARMv7 interrupt objects and interrupt dispatch
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
  */
 
 #include <ntoskrnl.h>
-#include <libernt/hal/halext.h>
-#include <libernt/arm64/sysreg.h>
+#include <reliefwin/hal/halext.h>
+#include <reliefwin/arm64/sysreg.h>
 #define NDEBUG
 #include <debug.h>
 

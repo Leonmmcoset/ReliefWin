@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT ACPI Time and Alarm Driver
+ * PROJECT:     ReliefWin ACPI Time and Alarm Driver
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  */
 
@@ -8,7 +8,7 @@
 #include <ntddk.h>
 #include <wdmguid.h>
 #include <acpiioct.h>
-#include <libernt/drivers/acpitime.h>
+#include <reliefwin/drivers/acpitime.h>
 
 #define ACPITIME_TAG 'mTcA'
 #define ACPITIME_MAX_OUTPUT (64 * 1024)

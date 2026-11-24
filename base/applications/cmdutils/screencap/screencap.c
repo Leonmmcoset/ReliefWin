@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT test tools
+ * PROJECT:     ReliefWin test tools
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Capture the desktop to a BMP file or an HTTP PUT URL
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

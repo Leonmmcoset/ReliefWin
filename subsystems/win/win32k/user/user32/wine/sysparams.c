@@ -7,8 +7,8 @@
 #include <winuser.h>
 #include <winbase.h>
 #include <d3dkmthk.h>
-#include <libernt/rddm/rxgkadvcolor.h>
-#include <libernt/rddm/rxgktarget.h>
+#include <reliefwin/rddm/rxgkadvcolor.h>
+#include <reliefwin/rddm/rxgktarget.h>
 #include "wine/debug.h"
 
 #ifndef NT_SUCCESS

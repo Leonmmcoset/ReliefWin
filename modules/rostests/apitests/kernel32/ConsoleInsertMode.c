@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test that the insert mode changes only with ENABLE_EXTENDED_FLAGS
  * COPYRIGHT:   Copyright 2026 mikuta0407 <mikuta0407@mikuta0407.net>
@@ -9,7 +9,7 @@
 #include <winuser.h>
 
 #define COOKED_MODE (ENABLE_LINE_INPUT | ENABLE_ECHO_INPUT | ENABLE_PROCESSED_INPUT)
-#define TEST_TITLE L"LiberNT ConsoleInsertMode test"
+#define TEST_TITLE L"ReliefWin ConsoleInsertMode test"
 
 static HANDLE Input;
 

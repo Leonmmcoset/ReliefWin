@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Boot Loader
+ * PROJECT:     ReliefWin Boot Loader
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Boot manager main routine
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -15,10 +15,10 @@
 #define BM_DEFAULT_TITLE   L"Boot Manager"
 #define BM_BOOT_TIMEOUT    3
 #define BM_WINDOWS_TITLE   L"Windows Boot Manager"
-#define BM_LIBERNT_TITLE   L"LiberNT"
-#define BM_LIBERNT_ENTRY   L"{354fa6e5-5e45-49af-91bf-1fd2754e470a}"
+#define BM_RELIEFWIN_TITLE   L"ReliefWin"
+#define BM_RELIEFWIN_ENTRY   L"{354fa6e5-5e45-49af-91bf-1fd2754e470a}"
 #define BM_INSTALL_IMAGE_OPTION L"INSTALLIMAGE="
-#define BM_UPDATE_STATE    L"\\EFI\\LiberNT\\Boot\\update.state"
+#define BM_UPDATE_STATE    L"\\EFI\\ReliefWin\\Boot\\update.state"
 #define BM_UPDATE_STARTS   3
 #define BM_UPDATE_UNDO_STARTS (BM_UPDATE_STARTS * 2)
 #define BM_UPDATE_STATE_CHARS 160
@@ -30,14 +30,14 @@
 
 typedef enum _BM_FOUND_SYSTEM
 {
-    BmFoundLiberNT,
+    BmFoundReliefWin,
     BmFoundWindows,
     BmFoundRemovable
 } BM_FOUND_SYSTEM;
 
 static const PCWSTR BmStorePaths[] =
 {
-    L"\\EFI\\LiberNT\\Boot\\BCD",
+    L"\\EFI\\ReliefWin\\Boot\\BCD",
     L"\\Boot\\BCD",
 };
 
@@ -59,7 +59,7 @@ static PCSTR BmToolMenuNames[BM_MAX_TOOLS];
 static ULONG BmCount;
 static ULONG BmToolCount;
 static ULONG BmSelected;
-static ULONG BmLiberNTEntry = MAXULONG;
+static ULONG BmReliefWinEntry = MAXULONG;
 static BOOLEAN BmUsb[BM_MAX_ENTRIES];
 static ULONG BmStoreCount;
 static PVOID BmKnownVolumes[BM_MAX_VOLUMES];
@@ -113,7 +113,7 @@ BmGetStoreDescription(
     PVOID Store;
     ULONG Size, Index, Loaders = 0;
 
-    RtlStringCchCopyW(Description, Chars, Windows ? BM_WINDOWS_TITLE : BM_LIBERNT_TITLE);
+    RtlStringCchCopyW(Description, Chars, Windows ? BM_WINDOWS_TITLE : BM_RELIEFWIN_TITLE);
 
     Store = BcdReadStoreFile(Device, FwGetSystemStorePath(Windows), &Size);
     if (!Store)
@@ -305,7 +305,7 @@ BmAddFoundEntry(
     Entry = &BmEntries[Index];
     Entry->FirmwareDevice = Device;
     Entry->FirmwarePath = Path;
-    if (System == BmFoundLiberNT)
+    if (System == BmFoundReliefWin)
     {
         Entry->FirmwareOptions = BM_START_DEFAULT_OPTION;
         BmGetStoreDescription(Device, FALSE, Entry->Description, RTL_NUMBER_OF(Entry->Description));
@@ -336,7 +336,7 @@ BOOLEAN
 BmExamineVolume(
     _In_ PVOID Device)
 {
-    PCWSTR Removable, LiberNTManager, WindowsManager;
+    PCWSTR Removable, ReliefWinManager, WindowsManager;
     BOOLEAN Usb, Boot, Added = FALSE;
 
     if (BmPassCount < RTL_NUMBER_OF(BmPassVolumes))
@@ -346,15 +346,15 @@ BmExamineVolume(
 
     Usb = FwIsUsbVolume(Device);
     Boot = FwIsBootVolume(Device);
-    LiberNTManager = FwGetSystemManagerPath(FALSE);
+    ReliefWinManager = FwGetSystemManagerPath(FALSE);
     WindowsManager = FwGetSystemManagerPath(TRUE);
-    if (!Boot && FwFileExists(Device, LiberNTManager) && FwIsLiberNTManager(Device, LiberNTManager) &&
-        BmAddFoundEntry(Device, Usb, BmFoundLiberNT, LiberNTManager))
+    if (!Boot && FwFileExists(Device, ReliefWinManager) && FwIsReliefWinManager(Device, ReliefWinManager) &&
+        BmAddFoundEntry(Device, Usb, BmFoundReliefWin, ReliefWinManager))
     {
         Added = TRUE;
     }
 
-    if (FwFileExists(Device, WindowsManager) && !FwIsLiberNTManager(Device, WindowsManager) &&
+    if (FwFileExists(Device, WindowsManager) && !FwIsReliefWinManager(Device, WindowsManager) &&
         BmAddFoundEntry(Device, Usb, BmFoundWindows, WindowsManager))
     {
         Added = TRUE;
@@ -454,7 +454,7 @@ BmBuildMenu(VOID)
     {
         BmMenuName(BmEntries[i].Description, BmNames[i]);
         BmMenuNames[i] = BmNames[i];
-        BmMenuIcons[i] = (!BmEntries[i].FirmwareDevice || BmEntries[i].FirmwareOptions != NULL) ? UiMenuIconLiberNT :
+        BmMenuIcons[i] = (!BmEntries[i].FirmwareDevice || BmEntries[i].FirmwareOptions != NULL) ? UiMenuIconReliefWin :
                          BmLogos[i].Pixels ? UiMenuIconImage : UiMenuIconDesktop;
         BmMenuImages[i] = BmLogos[i].Pixels ? &BmLogos[i] : NULL;
     }
@@ -575,7 +575,7 @@ BmStartSelectedApplication(
     if (Startup->Profile != 0 && !FwDebugEnabled)
     {
         FwDebugEnable();
-        FwDebugAnnounce("LiberNT Boot Manager", TRUE);
+        FwDebugAnnounce("ReliefWin Boot Manager", TRUE);
     }
 
     if (BmIsUpdateEntry(Entry))
@@ -649,10 +649,10 @@ BmChooseStartup(
         return TRUE;
     }
 
-    if (BmLiberNTEntry >= BmCount)
+    if (BmReliefWinEntry >= BmCount)
         return FALSE;
 
-    *Entry = &BmEntries[BmLiberNTEntry];
+    *Entry = &BmEntries[BmReliefWinEntry];
     return TRUE;
 }
 
@@ -931,7 +931,7 @@ BlMain(VOID)
     ULONG Size, Default = 0, DefaultTool = MAXULONG, i;
     LONG Timeout;
 
-    FwDebugAnnounce("LiberNT Boot Manager", TRUE);
+    FwDebugAnnounce("ReliefWin Boot Manager", TRUE);
     Store = BmReadStore(BmStorePath, RTL_NUMBER_OF(BmStorePath), &Size);
 
     RtlStringCchCopyW(BmTitle, RTL_NUMBER_OF(BmTitle), BM_DEFAULT_TITLE);
@@ -946,7 +946,7 @@ BlMain(VOID)
             BcdGetBoolean(&BootMgr, BcdLibraryBoolean_DebuggerEnabled, &Debug) && Debug)
         {
             FwDebugEnable();
-            FwDebugAnnounce("LiberNT Boot Manager", TRUE);
+            FwDebugAnnounce("ReliefWin Boot Manager", TRUE);
         }
 
         BmStore = Store;
@@ -959,8 +959,8 @@ BlMain(VOID)
 
         for (i = 0; i < BmCount; i++)
         {
-            if (_wcsicmp(BmEntries[i].Id, BM_LIBERNT_ENTRY) == 0)
-                BmLiberNTEntry = i;
+            if (_wcsicmp(BmEntries[i].Id, BM_RELIEFWIN_ENTRY) == 0)
+                BmReliefWinEntry = i;
         }
 
         BmToolCount = BmEnumerateToolEntries(BmTools, RTL_NUMBER_OF(BmTools), &DefaultTool);

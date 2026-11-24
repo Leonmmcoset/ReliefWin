@@ -1,24 +1,26 @@
 ;
-; Copyright 2000 Dave Pickles
+;// Copyright 2000 Dave Pickles
 ;
-; This library is free software; you can redistribute it and/or
-; modify it under the terms of the GNU Lesser General Public
-; License as published by the Free Software Foundation; either
-; version 2.1 of the License, or (at your option) any later version.
+;// This library is free software; you can redistribute it and/or
+;// modify it under the terms of the GNU Lesser General Public
+;// License as published by the Free Software Foundation; either
+;// version 2.1 of the License, or (at your option) any later version.
 ;
-; This library is distributed in the hope that it will be useful,
-; but WITHOUT ANY WARRANTY; without even the implied warranty of
-; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-; Lesser General Public License for more details.
+;// This library is distributed in the hope that it will be useful,
+;// but WITHOUT ANY WARRANTY; without even the implied warranty of
+;// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+;// Lesser General Public License for more details.
 ;
-; You should have received a copy of the GNU Lesser General Public
-; License along with this library; if not, write to the Free Software
-; Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
+;// You should have received a copy of the GNU Lesser General Public
+;// License along with this library; if not, write to the Free Software
+;// Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
 ;
 
 LanguageNames=(ENU=0x409:winerr)
 SeverityNames=(CoError=0x2:STATUS_SEVERITY_COERROR)
-FacilityNames=(Trust=0xb:FACILITY_CERT)
+FacilityNames=(Trust=0xb:FACILITY_CERT
+               Null=0x0:FACILITY_NULL
+               Dxgi=0x87a:FACILITY_DXGI)
 
 MessageId=0
 SymbolicName=ERROR_SUCCESS

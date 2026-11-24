@@ -28,7 +28,7 @@
  */
 /* #include "wininet_xx.rc" */
 
-#include <libernt/manifest_dll.rc>
+#include <reliefwin/manifest_dll.rc>
 
 /*
  * Everything specific to any language goes

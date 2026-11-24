@@ -1,5 +1,5 @@
 /*
- * PROJECT:         LiberNT HAL (ARM64)
+ * PROJECT:         ReliefWin HAL (ARM64)
  * LICENSE:         GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * FILE:            ntos/hal/arm64/start.c
  * PURPOSE:         SMP (Symmetric Multi-Processing) boot support for ARM64
@@ -40,7 +40,7 @@
 #include <ioaccess.h>
 #include <halfuncs.h>
 #include <halacpi_arm64.h>
-#include <libernt/arm64/sysreg.h>
+#include <reliefwin/arm64/sysreg.h>
 #include <halarch.h>
 #include "devtree.h"
 #include <debug.h>

@@ -1,7 +1,7 @@
 #include <rosdhcp.h>
 
 #define NDEBUG
-#include <libernt/debug.h>
+#include <reliefwin/debug.h>
 
 char *piaddr( struct iaddr addr ) {
     struct sockaddr_in sa;

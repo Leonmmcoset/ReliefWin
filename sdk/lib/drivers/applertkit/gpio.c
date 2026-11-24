@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Apple RTKit Library
+ * PROJECT:     ReliefWin Apple RTKit Library
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Apple silicon pin controller: pin functions, GPIO outputs and GPIO interrupts
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -8,9 +8,9 @@
 #ifndef UNIT_TEST
 #include <ntddk.h>
 #endif
-#include <libernt/drivers/applepmgr.h>
-#include <libernt/drivers/applegpio.h>
-#include <libernt/drivers/appleadmac.h>
+#include <reliefwin/drivers/applepmgr.h>
+#include <reliefwin/drivers/applegpio.h>
+#include <reliefwin/drivers/appleadmac.h>
 
 #define GPIO_DATA           0x00000001
 #define GPIO_MODE           0x0000000e

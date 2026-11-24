@@ -292,7 +292,7 @@ IsPartitionActive(
 typedef enum _BOOT_MANAGER_OWNER
 {
     BootManagerNone,
-    BootManagerLiberNT,
+    BootManagerReliefWin,
     BootManagerForeign
 } BOOT_MANAGER_OWNER;
 

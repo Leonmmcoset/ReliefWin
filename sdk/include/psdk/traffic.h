@@ -241,7 +241,7 @@ extern "C" {
 
 ULONG WINAPI TcDeregisterClient(HANDLE ClientHandle);
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 ULONG WINAPI TcAddFilter(HANDLE FlowHandle, PTC_GEN_FILTER pGenericFilter, PHANDLE pFilterHandle);
 ULONG WINAPI TcAddFlow(HANDLE IfcHandle, HANDLE ClFlowCtx, ULONG Flags, PTC_GEN_FLOW pGenericFlow, PHANDLE pFlowHandle);
 ULONG WINAPI TcCloseInterface(HANDLE IfcHandle);

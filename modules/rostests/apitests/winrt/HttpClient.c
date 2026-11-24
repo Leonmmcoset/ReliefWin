@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Tests Windows.Web.Http.HttpClient against a loopback HTTP server
  * COPYRIGHT:   Copyright 2026 Ostap Brehin <osbre@protonmail.com>
@@ -453,7 +453,7 @@ TestHead(
     Seen = FindRequest("HEAD /head HTTP/1.1\r\n");
     ok(Seen != NULL, "the server did not receive HEAD /head HTTP/1.1\n");
     ok(RequestHasHeader(Seen, "Connection: close"), "the request has no Connection: close\n");
-    ok(RequestHasHeader(Seen, "User-Agent: LiberNT-Test/1.0"), "the request has no User-Agent\n");
+    ok(RequestHasHeader(Seen, "User-Agent: ReliefWin-Test/1.0"), "the request has no User-Agent\n");
     ok(RequestHasHeader(Seen, "Accept-Encoding: gzip, deflate"), "the request has no Accept-Encoding\n");
 
     CheckStatus(Response, HttpStatusCode_Ok);
@@ -476,7 +476,7 @@ TestHead(
         Headers = GetMap((IUnknown *)RequestHeaders);
         if (Headers)
         {
-            CheckLookup(Headers, L"User-Agent", L"LiberNT-Test/1.0");
+            CheckLookup(Headers, L"User-Agent", L"ReliefWin-Test/1.0");
             IMap_HSTRING_HSTRING_Release(Headers);
         }
         IHttpRequestHeaderCollection_Release(RequestHeaders);
@@ -933,7 +933,7 @@ SetDefaultHeaders(
     ok(hr == S_OK, "UserAgent returned %#lx\n", hr);
     if (SUCCEEDED(hr))
     {
-        Value = CreateHString(L"LiberNT-Test/1.0");
+        Value = CreateHString(L"ReliefWin-Test/1.0");
         hr = IHttpProductInfoHeaderValueCollection_ParseAdd(UserAgent, Value);
         ok(hr == S_OK, "UserAgent.ParseAdd returned %#lx\n", hr);
         WindowsDeleteString(Value);
@@ -943,7 +943,7 @@ SetDefaultHeaders(
     if (Map)
     {
         CheckLookup(Map, L"connection", L"close");
-        CheckLookup(Map, L"User-Agent", L"LiberNT-Test/1.0");
+        CheckLookup(Map, L"User-Agent", L"ReliefWin-Test/1.0");
         IMap_HSTRING_HSTRING_get_Size(Map, &Size);
         ok(Size == 2, "the default request headers have %u entries\n", Size);
         IMap_HSTRING_HSTRING_Release(Map);

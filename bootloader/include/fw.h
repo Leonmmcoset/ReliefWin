@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Boot Loader
+ * PROJECT:     ReliefWin Boot Loader
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Firmware services used by the common code
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -105,7 +105,7 @@ FwGetSystemStorePath(
     _In_ BOOLEAN Windows);
 
 BOOLEAN
-FwIsLiberNTManager(
+FwIsReliefWinManager(
     _In_ PVOID Device,
     _In_ PCWSTR Path);
 

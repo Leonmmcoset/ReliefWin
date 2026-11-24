@@ -5,7 +5,7 @@ add_definitions(
 
 include_directories(
     BEFORE include
-    ${REACTOS_SOURCE_DIR}/sdk/include/libernt/drivers/ndisuio)
+    ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/drivers/ndisuio)
 
 list(APPEND SOURCE
     createclose.c

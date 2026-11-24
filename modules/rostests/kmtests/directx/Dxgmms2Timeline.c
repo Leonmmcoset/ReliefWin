@@ -1,11 +1,11 @@
 /*
- * PROJECT:     LiberNT kernel-mode tests
+ * PROJECT:     ReliefWin kernel-mode tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     dxgmms2 submission-fence timeline contract tests
  */
 
 #include <kmt_test.h>
-#include <libernt/drivers/directx/dxgmms2.h>
+#include <reliefwin/drivers/directx/dxgmms2.h>
 #include "timeline_core.h"
 
 #define TAG_DXGMMS2_TIMELINE_TEST 'tT2D'

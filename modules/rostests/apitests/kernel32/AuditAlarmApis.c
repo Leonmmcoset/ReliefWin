@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Tests the audit alarm functions of kernelbase
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -24,7 +24,7 @@ static FN_ObjectPrivilegeAuditAlarmW pObjectPrivilegeAuditAlarmW;
 static FN_PrivilegedServiceAuditAlarmW pPrivilegedServiceAuditAlarmW;
 
 static GENERIC_MAPPING FileMapping = {FILE_GENERIC_READ, FILE_GENERIC_WRITE, FILE_GENERIC_EXECUTE, FILE_ALL_ACCESS};
-static WCHAR Subsystem[] = L"LiberNT audit test";
+static WCHAR Subsystem[] = L"ReliefWin audit test";
 static WCHAR ObjectType[] = L"Test object";
 static WCHAR ObjectName[] = L"AuditAlarmApis";
 static WCHAR ServiceName[] = L"AuditAlarmApis service";

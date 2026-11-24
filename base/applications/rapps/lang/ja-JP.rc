@@ -170,11 +170,10 @@ END
 
 STRINGTABLE
 BEGIN
-    IDS_APPTITLE "ReactOS アプリ マネージャー"
+    IDS_APPTITLE "ReliefWin アプリ マネージャー"
     IDS_APP_AUTHORS "Copyright 2009 Dmitry Chapyshev"
-    IDS_WELCOME_TITLE "ReactOS アプリ マネージャーへようこそ!"
-    IDS_WELCOME_TEXT "左側からカテゴリを選択し、インストールまたはアンインストールするアプリを選んでください。\nReactOS ウェブ サイト: "
-    IDS_WELCOME_URL "https://reactos.org"
+    IDS_WELCOME_TITLE "ReliefWin アプリ マネージャーへようこそ!"
+    IDS_WELCOME_TEXT "左側からカテゴリを選択し、インストールまたはアンインストールするアプリを選んでください。"
 
     IDS_APPWIZ_TITLE "プログラムの追加と削除"
     IDS_APPWIZ_TEXT1 "「アプリケーション」または「更新」を選択すると、システムにインストールされているアプリケーションまたは更新内容の一覧が表示されます。"

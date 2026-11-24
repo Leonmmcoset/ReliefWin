@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT OpenGL thunk
+ * PROJECT:     ReliefWin OpenGL thunk
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Process services of the native OpenGL host inside an emulation host
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -20,7 +20,7 @@
 #undef WIN32_NO_STATUS
 #include <ntstatus.h>
 #include <ndk/ntndk.h>
-#include <libernt/emuhost.h>
+#include <reliefwin/emuhost.h>
 
 #define HOSTRT_EOF          (-1)
 #define HOSTRT_ENOENT       2

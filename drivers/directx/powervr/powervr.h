@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT PowerVR Rogue WDDM miniport
+ * PROJECT:     ReliefWin PowerVR Rogue WDDM miniport
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Adapter context and platform interface
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -9,7 +9,7 @@
 
 #include <ntddk.h>
 #include <dispmprt.h>
-#include <libernt/powervr_umd.h>
+#include <reliefwin/powervr_umd.h>
 
 #include "glue/powervr_glue.h"
 

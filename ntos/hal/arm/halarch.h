@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT HAL
+ * PROJECT:     ReliefWin HAL
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     ARMv7 address space and loader conventions of the ARM HAL
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Boot Loader
+ * PROJECT:     ReliefWin Boot Loader
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Debug log file on the boot volume
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -7,7 +7,7 @@
 
 #include <blefi.h>
 
-#define BOOTLOG_PATH   L"\\EFI\\LiberNT\\Boot\\boot.log"
+#define BOOTLOG_PATH   L"\\EFI\\ReliefWin\\Boot\\boot.log"
 #define BOOTLOG_BYTES  4096
 
 static EFI_GUID BootLogFileSystemGuid = EFI_SIMPLE_FILE_SYSTEM_PROTOCOL_GUID;

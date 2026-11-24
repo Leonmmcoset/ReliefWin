@@ -9993,7 +9993,7 @@ BOOL WINAPI CryptRetrieveTimeStamp(LPCWSTR wszUrl, DWORD dwRetrievalFlags, DWORD
 BOOL WINAPI CryptSetKeyIdentifierProperty(const CRYPT_HASH_BLOB *pKeyIdentifier, DWORD dwPropId, DWORD dwFlags, LPCWSTR pwszComputerName, void *pvReserved, const void *pvData);
 BOOL WINAPI CryptVerifyTimeStampSignature(const BYTE *pbTSContentInfo, DWORD cbTSContentInfo, const BYTE *pbData, DWORD cbData, HCERTSTORE hAdditionalStore, PCRYPT_TIMESTAMP_CONTEXT *ppTsContext, PCCERT_CONTEXT *ppTsSigner, HCERTSTORE *phStore);
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 WINCRYPT32API void WINAPI CertAddRefServerOcspResponse(HCERT_SERVER_OCSP_RESPONSE hServerOcspResponse);
 WINCRYPT32API void WINAPI CertAddRefServerOcspResponseContext(PCCERT_SERVER_OCSP_RESPONSE_CONTEXT pServerOcspResponseContext);
 WINCRYPT32API void WINAPI CertCloseServerOcspResponse(HCERT_SERVER_OCSP_RESPONSE hServerOcspResponse, DWORD dwFlags);

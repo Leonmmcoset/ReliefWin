@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Linux Subsystem
+ * PROJECT:     ReliefWin Linux Subsystem
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Downloads, verifies and unpacks a Linux root file system
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -226,7 +226,7 @@ LxHttpGet(
     if (Buffer == NULL)
         return ERROR_NOT_ENOUGH_MEMORY;
 
-    Session = WinHttpOpen(L"LiberNT lxterm", WINHTTP_ACCESS_TYPE_DEFAULT_PROXY, WINHTTP_NO_PROXY_NAME,
+    Session = WinHttpOpen(L"ReliefWin lxterm", WINHTTP_ACCESS_TYPE_DEFAULT_PROXY, WINHTTP_NO_PROXY_NAME,
                           WINHTTP_NO_PROXY_BYPASS, 0);
     if (Session != NULL)
         Connect = WinHttpConnect(Session, Host, Parts.nPort, 0);
@@ -1506,7 +1506,7 @@ LxProvisionGui(
         BOOL Text;
     } Files[] =
     {
-        { L"lxwayland", "usr/local/lib/libernt/lxwayland/lxwayland", 0755, FALSE },
+        { L"lxwayland", "usr/local/lib/reliefwin/lxwayland/lxwayland", 0755, FALSE },
         { L"lxwayland.service", "etc/systemd/system/lxwayland.service", 0644, TRUE },
         { L"lx-gui-setup.service", "etc/systemd/system/lx-gui-setup.service", 0644, TRUE },
         { L"lxsession.service", "etc/systemd/system/lxsession@.service", 0644, TRUE },

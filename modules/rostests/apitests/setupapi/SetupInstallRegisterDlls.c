@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     RegisterDlls self-registration of 32-bit and native DLLs through SetupInstallFromInfSection
  * COPYRIGHT:   Copyright 2026 Ahmed Arif <arif193@gmail.com>

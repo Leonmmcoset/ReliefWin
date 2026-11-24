@@ -48,12 +48,7 @@ AddFormA(HANDLE hPrinter, DWORD Level, PBYTE pForm)
 
     if (Level > 1)
     {
-        if (pfi2A->pKeyword)
-        {
-            len = MultiByteToWideChar(CP_ACP, 0, pfi2A->pKeyword, -1, NULL, 0);
-            pfi2W.pKeyword = HeapAlloc(GetProcessHeap(), 0, len * sizeof(WCHAR));
-            MultiByteToWideChar(CP_ACP, 0, pfi2A->pKeyword, -1, (LPWSTR)pfi2W.pKeyword, len);
-        }
+        pfi2W.pKeyword = pfi2A->pKeyword;
 
         if (pfi2A->pMuiDll)
         {
@@ -76,7 +71,6 @@ AddFormA(HANDLE hPrinter, DWORD Level, PBYTE pForm)
     res = AddFormW( hPrinter, Level, (PBYTE)&pfi2W );
 
     if (pfi2W.pName) HeapFree(GetProcessHeap(), 0, pfi2W.pName);
-    if (pfi2W.pKeyword) HeapFree(GetProcessHeap(), 0, (LPWSTR)pfi2W.pKeyword);
     if (pfi2W.pMuiDll) HeapFree(GetProcessHeap(), 0, (LPWSTR)pfi2W.pMuiDll);
     if (pfi2W.pDisplayName) HeapFree(GetProcessHeap(), 0, (LPWSTR)pfi2W.pDisplayName);
 
@@ -176,7 +170,8 @@ DeleteFormW(HANDLE hPrinter, PWSTR pFormName)
 BOOL WINAPI
 EnumFormsA(HANDLE hPrinter, DWORD Level, PBYTE pForm, DWORD cbBuf, PDWORD pcbNeeded, PDWORD pcReturned)
 {
-    DWORD dwErrorCode, i;
+    DWORD dwErrorCode = ERROR_SUCCESS;
+    DWORD i;
     PFORM_INFO_1W pfi1w = (PFORM_INFO_1W)pForm;
     PFORM_INFO_2W pfi2w = (PFORM_INFO_2W)pForm;
 
@@ -189,11 +184,6 @@ EnumFormsA(HANDLE hPrinter, DWORD Level, PBYTE pForm, DWORD cbBuf, PDWORD pcbNee
             switch ( Level )
             {
                 case 2:
-                    dwErrorCode = UnicodeToAnsiInPlace((LPWSTR)pfi2w[i].pKeyword);
-                    if (dwErrorCode != ERROR_SUCCESS)
-                    {
-                        goto Cleanup;
-                    }
                     dwErrorCode = UnicodeToAnsiInPlace((LPWSTR)pfi2w[i].pMuiDll);
                     if (dwErrorCode != ERROR_SUCCESS)
                     {
@@ -221,6 +211,8 @@ EnumFormsA(HANDLE hPrinter, DWORD Level, PBYTE pForm, DWORD cbBuf, PDWORD pcbNee
         return TRUE;
     }
 Cleanup:
+    if (dwErrorCode != ERROR_SUCCESS)
+        SetLastError(dwErrorCode);
     return FALSE;
 }
 
@@ -292,11 +284,6 @@ GetFormA(HANDLE hPrinter, PSTR pFormName, DWORD Level, PBYTE pForm, DWORD cbBuf,
         switch ( Level )
         {
             case 2:
-                dwErrorCode = UnicodeToAnsiInPlace((LPWSTR)pfi2w->pKeyword);
-                if (dwErrorCode != ERROR_SUCCESS)
-                {
-                    goto Cleanup;
-                }
                 dwErrorCode = UnicodeToAnsiInPlace((LPWSTR)pfi2w->pMuiDll);
                 if (dwErrorCode != ERROR_SUCCESS)
                 {
@@ -321,8 +308,13 @@ GetFormA(HANDLE hPrinter, PSTR pFormName, DWORD Level, PBYTE pForm, DWORD cbBuf,
                 }
         }
     }
+    else
+    {
+        dwErrorCode = GetLastError();
+    }
 Cleanup:
     if (FormNameW) HeapFree(GetProcessHeap(), 0, FormNameW);
+    SetLastError(dwErrorCode);
     return (dwErrorCode == ERROR_SUCCESS);
 }
 
@@ -424,12 +416,7 @@ SetFormA(HANDLE hPrinter, PSTR pFormName, DWORD Level, PBYTE pForm)
 
     if (Level > 1)
     {
-        if (pfi2A->pKeyword)
-        {
-            len = MultiByteToWideChar(CP_ACP, 0, pfi2A->pKeyword, -1, NULL, 0);
-            pfi2W.pKeyword = HeapAlloc(GetProcessHeap(), 0, len * sizeof(WCHAR));
-            MultiByteToWideChar(CP_ACP, 0, pfi2A->pKeyword, -1, (LPWSTR)pfi2W.pKeyword, len);
-        }
+        pfi2W.pKeyword = pfi2A->pKeyword;
 
         if (pfi2A->pMuiDll)
         {
@@ -453,7 +440,6 @@ SetFormA(HANDLE hPrinter, PSTR pFormName, DWORD Level, PBYTE pForm)
 
     if (FormNameW) HeapFree(GetProcessHeap(), 0, FormNameW);
     if (pfi2W.pName) HeapFree(GetProcessHeap(), 0, pfi2W.pName);
-    if (pfi2W.pKeyword) HeapFree(GetProcessHeap(), 0, (LPWSTR)pfi2W.pKeyword);
     if (pfi2W.pMuiDll) HeapFree(GetProcessHeap(), 0, (LPWSTR)pfi2W.pMuiDll);
     if (pfi2W.pDisplayName) HeapFree(GetProcessHeap(), 0, (LPWSTR)pfi2W.pDisplayName);
 

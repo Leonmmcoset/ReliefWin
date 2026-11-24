@@ -3,7 +3,7 @@ add_definitions(
     -DHAVE_ZLIB)
 
 include_directories(
-    ${REACTOS_SOURCE_DIR}/sdk/include/libernt/libs/zlib)
+    ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/libs/zlib)
 
 spec2def(cabinet.dll cabinet.spec ADD_IMPORTLIB)
 

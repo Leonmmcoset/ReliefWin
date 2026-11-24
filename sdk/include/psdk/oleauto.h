@@ -775,7 +775,7 @@ WINOLEAUTAPI void WINAPI ClearCustData(LPCUSTDATA);
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 void STDAPICALLTYPE OaEnablePerUserTLibRegistration(void);
 HRESULT STDAPICALLTYPE SafeArrayAddRef(SAFEARRAY *psa, PVOID *ppDataToRelease);
 void STDAPICALLTYPE SafeArrayReleaseData(PVOID pData);

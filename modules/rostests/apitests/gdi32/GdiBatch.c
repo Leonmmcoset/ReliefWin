@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test for the validation of GDI batch commands queued in the TEB
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -104,7 +104,7 @@ TestOddLengthText(
     if (Teb->GdiBatchCount != 2 || First->gbHdr.Cmd != GdiBCTextOut)
     {
         GdiFlush();
-        skip("ExtTextOutW was not queued in the LiberNT batch format\n");
+        skip("ExtTextOutW was not queued in the ReliefWin batch format\n");
         return;
     }
 
@@ -163,7 +163,7 @@ START_TEST(GdiBatch)
 
         if (!QueueText(Dc, Cases[Index].Tamper))
         {
-            skip("ExtTextOutW was not queued in the LiberNT batch format\n");
+            skip("ExtTextOutW was not queued in the ReliefWin batch format\n");
             break;
         }
 

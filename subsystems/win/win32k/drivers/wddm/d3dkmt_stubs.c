@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Display Driver Model - Win32k/dxgkrnl Bridge
+ * PROJECT:     ReliefWin Display Driver Model - Win32k/dxgkrnl Bridge
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     D3DKMT kernel-mode entry points (IOCTL bridge to dxgkrnl)
  * COPYRIGHT:   Copyright 2025 LiberNT Contributors
@@ -26,8 +26,8 @@
 #include <pseh/pseh2.h>
 #include "wddm_bridge.h"
 #include <d3dkmthk.h>
-#include <libernt/rddm/rxgkinterface.h>
-#include <libernt/rddm/rxgkioctl.h>
+#include <reliefwin/rddm/rxgkinterface.h>
+#include <reliefwin/rddm/rxgkioctl.h>
 
 struct _D3DKMT_ISFEATUREENABLED;
 struct _D3DKMT_QUERYFSEBLOCK;

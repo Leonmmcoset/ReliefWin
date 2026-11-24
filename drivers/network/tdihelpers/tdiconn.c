@@ -10,8 +10,8 @@
  */
 
 #include <afd.h>
-#include <libernt/tdiunix.h>
-#include <libernt/tdibth.h>
+#include <reliefwin/tdiunix.h>
+#include <reliefwin/tdibth.h>
 
 #ifdef UNIMPLEMENTED
 #undef UNIMPLEMENTED
@@ -20,7 +20,7 @@
 /* If you want to see the DPRINT() output in your debugger,
  * remove the following line (or comment it out) */
 #define NDEBUG
-#include <libernt/debug.h>
+#include <reliefwin/debug.h>
 
 UINT TdiAddressSizeFromType( UINT AddressType ) {
     switch( AddressType ) {

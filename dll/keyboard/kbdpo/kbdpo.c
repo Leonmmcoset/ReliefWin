@@ -512,7 +512,7 @@ ROSDATA VSC_LPWSTR extended_key_names[] = {
   { 0x4b, L"Esquerda" },
   { 0x4d, L"Direita" },
 
-  { 0x54, L"<LiberNT>" },
+  { 0x54, L"<ReliefWin>" },
   { 0x56, L"Ajuda" },
   { 0x5b, L"Windows Esquerda" },
   { 0x5c, L"Windows Direita" },

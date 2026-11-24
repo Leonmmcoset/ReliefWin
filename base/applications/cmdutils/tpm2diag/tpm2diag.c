@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT TPM 2.0 Diagnostic Utility
+ * PROJECT:     ReliefWin TPM 2.0 Diagnostic Utility
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  */
 
@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <wchar.h>
 #include <initguid.h>
-#include <libernt/drivers/tpm2.h>
+#include <reliefwin/drivers/tpm2.h>
 
 #define TPM2DIAG_RESPONSE_SIZE 65536
 #define TPM2DIAG_HEADER_SIZE 10

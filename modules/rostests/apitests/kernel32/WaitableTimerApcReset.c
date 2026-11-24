@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Setting a timer again while its completion routine is pending does not keep the timer alive
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

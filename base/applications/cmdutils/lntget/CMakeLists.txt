@@ -1,5 +1,5 @@
 include_directories(
-    ${REACTOS_SOURCE_DIR}/sdk/include/libernt/libs/zlib
+    ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/libs/zlib
     ${REACTOS_SOURCE_DIR}/sdk/lib/3rdparty/zlib/contrib)
 
 list(APPEND SOURCE

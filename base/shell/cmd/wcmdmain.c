@@ -31,8 +31,8 @@
 #include "shellapi.h"
 #include "wine/debug.h"
 #ifdef __REACTOS__
-#include <libernt/buildno.h>
-#include <libernt/version.h>
+#include <reliefwin/buildno.h>
+#include <reliefwin/version.h>
 #endif
 
 WINE_DEFAULT_DEBUG_CHANNEL(cmd);

@@ -1,13 +1,13 @@
 /*
- * PROJECT:     LiberNT Shell Frame
+ * PROJECT:     ReliefWin Shell Frame
  * LICENSE:     LGPL-2.1-or-later (https://spdx.org/licenses/LGPL-2.1-or-later)
  * PURPOSE:     Light and dark palettes, accent color, DPI and fonts
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
  */
 
 #include "shellframe.h"
-#include <libernt/dwmframe.h>
-#include <libernt/dwmsettings.h>
+#include <reliefwin/dwmframe.h>
+#include <reliefwin/dwmsettings.h>
 
 namespace ShellFrame
 {

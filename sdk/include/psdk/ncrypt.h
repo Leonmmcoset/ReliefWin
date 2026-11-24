@@ -947,7 +947,7 @@ struct NCRYPT_ALLOC_PARA
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 SECURITY_STATUS WINAPI NCryptCreateClaim(NCRYPT_KEY_HANDLE hSubjectKey, NCRYPT_KEY_HANDLE hAuthorityKey, DWORD dwClaimType, NCryptBufferDesc *pParameterList, PBYTE pbClaimBlob, DWORD cbClaimBlob, DWORD *pcbResult, DWORD dwFlags);
 SECURITY_STATUS WINAPI NCryptDeriveKey(NCRYPT_SECRET_HANDLE hSharedSecret, LPCWSTR pwszKDF, NCryptBufferDesc *pParameterList, PBYTE pbDerivedKey, DWORD cbDerivedKey, DWORD *pcbResult, ULONG dwFlags);
 SECURITY_STATUS WINAPI NCryptEnumStorageProviders(DWORD *pdwProviderCount, NCryptProviderName **ppProviderList, DWORD dwFlags);

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT CRT library
+ * PROJECT:     ReliefWin CRT library
  * LICENSE:     MIT (https://spdx.org/licenses/MIT)
  * PURPOSE:     x64 roundf, which returns a signaling NaN unchanged as Windows x64 does
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

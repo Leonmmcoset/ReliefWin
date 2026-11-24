@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT NTFS file system driver
+ * PROJECT:     ReliefWin NTFS file system driver
  * LICENSE:     MIT (https://spdx.org/licenses/MIT)
  * PURPOSE:     Transactional NTFS: transacted namespace, data isolation and KTM enlistment
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

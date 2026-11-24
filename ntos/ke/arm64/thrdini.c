@@ -8,11 +8,11 @@
 
 #include <ntoskrnl.h>
 #if defined(_M_ARM64)
-#include <libernt/cpuaudit.h>
+#include <reliefwin/cpuaudit.h>
 #endif
 #define NDEBUG
 #include <debug.h>
-#include <libernt/smpdbg.h>
+#include <reliefwin/smpdbg.h>
 
 /*
  * Stack layout used during context acquisition:

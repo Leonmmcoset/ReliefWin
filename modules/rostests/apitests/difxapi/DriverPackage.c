@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test the documented DIFxAPI driver package status codes
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -26,7 +26,7 @@ static const char UnsignedInf[] =
     "ClassGuid={4d36e97d-e325-11ce-bfc1-08002be10318}\r\nProvider=%Mfg%\r\nDriverVer=01/01/2026,1.0.0.0\r\n"
     "[Manufacturer]\r\n%Mfg%=Models,NTx86,NTamd64\r\n"
     "[Models.NTx86]\r\n%Dev%=Inst,ROOT\\LNTDIFXTEST\r\n[Models.NTamd64]\r\n%Dev%=Inst,ROOT\\LNTDIFXTEST\r\n"
-    "[Inst]\r\n[Inst.Services]\r\nAddService=,2\r\n[Strings]\r\nMfg=\"LiberNT\"\r\nDev=\"DIFx test device\"\r\n";
+    "[Inst]\r\n[Inst.Services]\r\nAddService=,2\r\n[Strings]\r\nMfg=\"ReliefWin\"\r\nDev=\"DIFx test device\"\r\n";
 
 static
 BOOL
@@ -70,7 +70,7 @@ static
 VOID
 TestNative(VOID)
 {
-    INSTALLERINFO_W EmptyInfo = { L"{6B1C1A5E-0000-4000-8000-4C4E54444958}", L"", L"DIFx test", L"LiberNT" };
+    INSTALLERINFO_W EmptyInfo = { L"{6B1C1A5E-0000-4000-8000-4C4E54444958}", L"", L"DIFx test", L"ReliefWin" };
     WCHAR Inf[MAX_PATH], SystemInf[MAX_PATH], Buffer[MAX_PATH];
     DWORD Chars;
     BOOL Reboot;

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test RPC calls passing counted strings embedded in other structures
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -11,7 +11,7 @@
 #include <wchar.h>
 #include "embedded_s.h"
 
-#define ENDPOINT L"LiberNTEmbeddedPointers"
+#define ENDPOINT L"ReliefWinEmbeddedPointers"
 #define SID_SIZE(Count) FIELD_OFFSET(SID_BLOB, SubAuthority[Count])
 
 #define MISMATCH_NAME     0x01
@@ -173,7 +173,7 @@ InitDisplayEntry(DISPLAY_ENTRY *Entry, unsigned long Index, BOOL Copy)
 static VOID
 InitDomainInfo(DOMAIN_INFO *Domain, unsigned long Index, BOOL Copy)
 {
-    static const PCWSTR Names[] = { L"LIBERNT-PC", L"BUILTIN", L"NT AUTHORITY" };
+    static const PCWSTR Names[] = { L"RELIEFWIN-PC", L"BUILTIN", L"NT AUTHORITY" };
     PCWSTR Name = Names[Index % ARRAYSIZE(Names)];
 
     if (Copy)

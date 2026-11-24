@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-PROJECT:     LiberNT Build
+PROJECT:     ReliefWin Build
 LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
 PURPOSE:     Build the LLVM runtimes of a configured Clang build tree against the SDK headers
 COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -105,7 +105,7 @@ def main():
             parser.error(f'missing matching runtime input: {path}')
     run('cmake', '--build', build, '--target', 'xdk', 'psdk')
     includes = [resource / 'include'] + [source / 'sdk/include' / path for path in
-                ['ucrt', 'vcruntime', 'crt', 'psdk', '', 'ddk', 'reactos']] + [
+                ['ucrt', 'vcruntime', 'crt', 'psdk', '', 'ddk', 'reliefwin']] + [
                 build / 'sdk/include', build / 'sdk/include/psdk', build / 'sdk/include/ddk']
     flags = (f'{machine_flags} -fms-extensions -funwind-tables '
              '-D_DLL -D__USE_CRTIMP -D_WIN32_WINNT=0x0A00 -DWINVER=0x0A00 '

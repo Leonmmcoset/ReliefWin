@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT kernel-mode tests
+ * PROJECT:     ReliefWin kernel-mode tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Stops in the debugger with memory for its memory commands to read and change
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -10,7 +10,7 @@
 UCHAR KdbTestBytes[16] = { 0x10, 0x11, 0xA5, 0x5A, 0x14, 0x15, 0x16, 0x17,
                            0x18, 0x19, 0x1A, 0x1B, 0x1C, 0x1D, 0x1E, 0x1F };
 UCHAR KdbTestCopy[16];
-WCHAR KdbTestText[] = L"LiberNT";
+WCHAR KdbTestText[] = L"ReliefWin";
 PVOID KdbTestPointers[2];
 
 START_TEST(KdbMemoryCommands)

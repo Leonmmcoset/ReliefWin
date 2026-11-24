@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT HAL — ARM64 BCM2837 (Raspberry Pi 3) interrupt backend
+ * PROJECT:     ReliefWin HAL — ARM64 BCM2837 (Raspberry Pi 3) interrupt backend
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Interrupt-chip backend for the GIC-less BCM2837 SoC.
  *
@@ -41,10 +41,10 @@
 #include <ndk/kefuncs.h>
 #include <ioaccess.h>
 #include <halfuncs.h>
-#include <libernt/drivers/acpi/acpi.h>
+#include <reliefwin/drivers/acpi/acpi.h>
 #include <halacpi.h>
-#include <libernt/arm64/sysreg.h>
-#include <libernt/hal/halext.h>
+#include <reliefwin/arm64/sysreg.h>
+#include <reliefwin/hal/halext.h>
 #include "bcm2837.h"
 
 #define NDEBUG

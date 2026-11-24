@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     hdgfx Gen 5 user batches are limited to the active console session
  * COPYRIGHT:   Copyright 2026 Ostap Brehin <osbre@protonmail.com>

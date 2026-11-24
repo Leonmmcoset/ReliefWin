@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Boot Loader
+ * PROJECT:     ReliefWin Boot Loader
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     ARMv7 OS loader hooks: LPAE address space and kernel entry
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -8,7 +8,7 @@
 #include <blefi.h>
 #include <fdtacpi.h>
 #include <edk2/Fdt.h>
-#include <libernt/fdtlib.h>
+#include <reliefwin/fdtlib.h>
 #include "../../winload/winload.h"
 
 #define ARM_PTE_VALID        0x0000000000000001ULL

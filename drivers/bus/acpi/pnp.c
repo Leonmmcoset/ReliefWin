@@ -1,7 +1,7 @@
 #include "precomp.h"
 
-#include <libernt/drivers/reshubio.h>
-#include <libernt/drivers/inteli2c.h>
+#include <reliefwin/drivers/reshubio.h>
+#include <reliefwin/drivers/inteli2c.h>
 
 #define NDEBUG
 #include <debug.h>

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Tests the em size at which a world transform turns the recommended rendering mode to outline
  * COPYRIGHT:   Copyright 2026 Ahmed Arif <arif.ing@outlook.com>

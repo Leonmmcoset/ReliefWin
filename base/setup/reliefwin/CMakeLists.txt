@@ -1,0 +1,77 @@
+
+include_directories(
+    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}/../lib
+    ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/libs/zlib
+#    ${REACTOS_SOURCE_DIR}/base/setup/lib
+    ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/drivers
+    ${REACTOS_SOURCE_DIR}/sdk/lib/tzlib)
+
+list(APPEND SOURCE
+    spapisup/fileqsup.c
+    spapisup/infsupp.c
+    account.c
+    alongside.c
+    diskinfo.c
+    diskpage.c
+    filesec.c
+    frame.c
+    hostops.c
+    hostpage.c
+    langpage.c
+    reliefwin.c
+    selftest.c
+    updbcd.c
+    upgrade.c
+    wizard.c
+    reliefwin.h)
+
+file(GLOB reliefwin_rc_deps res/*.*)
+list(APPEND reliefwin_rc_deps
+    ${REACTOS_SOURCE_DIR}/base/system/userinit/res/rosbitmap.bmp
+    ${REACTOS_SOURCE_DIR}/base/system/userinit/res/rosbitmap_mask.bmp
+    ${REACTOS_SOURCE_DIR}/image/data/filesecurity.txt)
+add_rc_deps(reliefwin.rc ${reliefwin_rc_deps})
+add_executable(reliefwin ${SOURCE} reliefwin.rc)
+
+add_pch(reliefwin reliefwin.h SOURCE)
+set_module_type(reliefwin win32gui UNICODE)
+target_link_libraries(reliefwin uuid tzlib volresize)
+add_delay_importlibs(reliefwin setuplib)
+add_importlibs(reliefwin advapi32 gdi32 user32 comctl32 dwmapi shlwapi setupapi ole32 oleaut32 version bcrypt msvcrt kernel32 ntdll)
+add_cd_file(TARGET reliefwin DESTINATION reactos NO_CAB FOR bootcd livecd)
+add_cd_file(TARGET reliefwin DESTINATION ${ARCH} FOR preinstall)
+add_cd_file(TARGET reliefwin DESTINATION root NO_CAB NAME_ON_CD setup.exe FOR bootcd)
+
+list(APPEND OOBE_SOURCE
+    account.c
+    apps.c
+    frame.c
+    langpage.c
+    oobe.c
+    reliefwin.h)
+
+add_rc_deps(oobe.rc ${reliefwin_rc_deps})
+add_executable(oobe ${OOBE_SOURCE} oobe.rc)
+add_pch(oobe reliefwin.h OOBE_SOURCE)
+set_module_type(oobe win32gui UNICODE)
+target_link_libraries(oobe uuid tzlib)
+add_importlibs(oobe advapi32 gdi32 user32 comctl32 dwmapi setupapi ole32 oleaut32 msi wintrust crypt32 bcrypt netapi32 samlib userenv syssetup msvcrt kernel32 ntdll)
+add_cd_file(TARGET oobe DESTINATION reactos/system32/oobe FOR all)
+add_cd_file(FILE ${CMAKE_CURRENT_SOURCE_DIR}/oobeapps.inf DESTINATION reactos/system32/oobe FOR all)
+
+list(APPEND UPDATE_SOURCE
+    frame.c
+    updagent.c
+    updbcd.c
+    updzip.c
+    reliefwin.h)
+
+add_rc_deps(lntupdate.rc ${reliefwin_rc_deps})
+add_executable(lntupdate ${UPDATE_SOURCE} lntupdate.rc)
+add_pch(lntupdate reliefwin.h UPDATE_SOURCE)
+set_module_type(lntupdate win32gui UNICODE)
+target_link_libraries(lntupdate uuid zlib)
+add_importlibs(lntupdate advapi32 gdi32 user32 comctl32 dwmapi shell32 shlwapi setupapi ole32 oleaut32 bcrypt msvcrt kernel32 ntdll)
+add_cd_file(TARGET lntupdate DESTINATION reactos/system32 FOR all)
+add_registry_inf(lntupdate.inf)

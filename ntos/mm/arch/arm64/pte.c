@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT NT Virtual Memory Subsystem
+ * PROJECT:     ReliefWin NT Virtual Memory Subsystem
  * FILE:        ntoskrnl/nvs/arch/arm64/pte.c
  * PURPOSE:     VMSA long-descriptor page-table entry operations (ARM64, ARMv7 LPAE)
  *

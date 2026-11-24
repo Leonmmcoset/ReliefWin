@@ -741,7 +741,7 @@ static BOOLEAN NtfsFixupRecord(PNTFS_VOLUME_INFO Volume, PNTFS_RECORD Record, UL
     USHORT *Block;
     ULONG Stride = NTFS_SEQUENCE_NUMBER_STRIDE;
 
-    /* LiberNT volumes formatted on 4Kn disks protect each sector instead of each 512 bytes */
+    /* ReliefWin volumes formatted on 4Kn disks protect each sector instead of each 512 bytes */
     if (Volume->BootSector.BytesPerSector > NTFS_SEQUENCE_NUMBER_STRIDE &&
         RecordSize % Volume->BootSector.BytesPerSector == 0 &&
         Record->USACount == RecordSize / Volume->BootSector.BytesPerSector + 1)

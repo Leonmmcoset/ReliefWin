@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Creating a key through a symbolic link whose target has no parent fails instead of recursing
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -9,9 +9,9 @@
 #include <ndk/cmfuncs.h>
 #include <ndk/obfuncs.h>
 
-#define TEST_KEY L"SOFTWARE\\LiberNTTest\\RegCreateKeyLink"
+#define TEST_KEY L"SOFTWARE\\ReliefWinTest\\RegCreateKeyLink"
 
-static const WCHAR LinkTarget[] = L"\\Registry\\Machine\\SOFTWARE\\LiberNTTest\\RegCreateKeyLink\\missing\\target";
+static const WCHAR LinkTarget[] = L"\\Registry\\Machine\\SOFTWARE\\ReliefWinTest\\RegCreateKeyLink\\missing\\target";
 
 static
 VOID

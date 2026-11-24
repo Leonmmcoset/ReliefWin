@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Direct3D runtimes
+ * PROJECT:     ReliefWin Direct3D runtimes
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Translates the error a user-mode driver reports into the one an application sees
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

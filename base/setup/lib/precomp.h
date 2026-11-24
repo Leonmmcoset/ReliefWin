@@ -29,7 +29,7 @@
 #include <ntstrsafe.h>
 
 /* Filesystem headers */
-#include <libernt/rosioctl.h>   // For extra partition IDs
+#include <reliefwin/rosioctl.h>   // For extra partition IDs
 
 
 #ifndef SPLIBAPI

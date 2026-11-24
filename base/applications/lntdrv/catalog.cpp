@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Driver Installer
+ * PROJECT:     ReliefWin Driver Installer
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Microsoft Update Catalog client
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -29,10 +29,10 @@ const size_t MaximumDetails = 100;
 const size_t WantedMatches = 3;
 const unsigned MaximumPages = 4;
 const unsigned DetailWorkers = 6;
-const WCHAR DetailsKey[] = L"SOFTWARE\\LiberNT\\Drivers\\Catalog";
-const WCHAR SearchesKey[] = L"SOFTWARE\\LiberNT\\Drivers\\Catalog\\Searches";
-const WCHAR ThrottleKey[] = L"SOFTWARE\\LiberNT\\Drivers\\Catalog\\Throttle";
-const WCHAR SearchLock[] = L"Local\\LiberNT.DriverCatalog.Search";
+const WCHAR DetailsKey[] = L"SOFTWARE\\ReliefWin\\Drivers\\Catalog";
+const WCHAR SearchesKey[] = L"SOFTWARE\\ReliefWin\\Drivers\\Catalog\\Searches";
+const WCHAR ThrottleKey[] = L"SOFTWARE\\ReliefWin\\Drivers\\Catalog\\Throttle";
+const WCHAR SearchLock[] = L"Local\\ReliefWin.DriverCatalog.Search";
 const unsigned MaximumAttempts = 3;
 const size_t RowsPerPage = 25;
 const unsigned DownloadConnections = 8;
@@ -769,7 +769,7 @@ Catalog::Catalog()
 
     ULONG connections = DownloadConnections + 2;
 
-    m_Session = InternetOpenW(L"LiberNT-Driver-Installer/1.0", INTERNET_OPEN_TYPE_PRECONFIG, NULL, NULL, 0);
+    m_Session = InternetOpenW(L"ReliefWin-Driver-Installer/1.0", INTERNET_OPEN_TYPE_PRECONFIG, NULL, NULL, 0);
     InternetSetOptionW(NULL, INTERNET_OPTION_MAX_CONNS_PER_SERVER, &connections, sizeof(connections));
     InternetSetOptionW(NULL, INTERNET_OPTION_MAX_CONNS_PER_1_0_SERVER, &connections, sizeof(connections));
     if (m_Session)

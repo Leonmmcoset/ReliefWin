@@ -301,7 +301,7 @@ DWORD WINAPI BluetoothUpdateDeviceRecord(BLUETOOTH_DEVICE_INFO *);
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 BOOL WINAPI BluetoothIsVersionAvailable(UCHAR MajorVersion, UCHAR MinorVersion);
 
 #ifdef __cplusplus

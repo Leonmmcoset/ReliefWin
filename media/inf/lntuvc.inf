@@ -1,6 +1,6 @@
 ; LNTUVC.INF
 
-; Installation of the LiberNT USB camera driver (lntuvc.sys).
+; Installation of the ReliefWin USB camera driver (lntuvc.sys).
 
 [Version]
 Signature  = "$Windows NT$"
@@ -8,7 +8,7 @@ Signature  = "$Windows NT$"
 LayoutFile = layout.inf
 Class      = Camera
 ClassGUID  = {ca3e7ab9-b4c3-4ae6-8251-579ef933890f}
-Provider   = %LiberNT%
+Provider   = %ReliefWin%
 DriverVer  = 10/02/2005,1.00.0.0
 
 [ClassInstall32.NT]
@@ -61,7 +61,7 @@ LoadOrderGroup = Base
 
 [Strings]
 ; Non-localizable
-LiberNT = "LiberNT Project"
+ReliefWin = "ReliefWin Project"
 MediaCategories = "SYSTEM\CurrentControlSet\Control\MediaCategories"
 
 ; Localizable

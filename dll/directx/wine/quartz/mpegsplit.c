@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT DirectShow
+ * PROJECT:     ReliefWin DirectShow
  * LICENSE:     LGPL-2.1-or-later (https://spdx.org/licenses/LGPL-2.1-or-later)
  * PURPOSE:     MPEG-1 stream splitter filter
  * COPYRIGHT:   Copyright 2026 Ostap Brehin <osbre@protonmail.com>

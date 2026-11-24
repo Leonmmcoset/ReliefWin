@@ -1,14 +1,14 @@
 /*
- * PROJECT:     LiberNT TPM 2.0 Driver
+ * PROJECT:     ReliefWin TPM 2.0 Driver
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     ACPI MSFT0101 CRB and FIFO hardware transport
  */
 
 #include <ntddk.h>
 #include <acpiioct.h>
-#include <libernt/drivers/acpi/acpi.h>
-#include <libernt/drivers/acpi/acpisystem.h>
-#include <libernt/drivers/tpm2.h>
+#include <reliefwin/drivers/acpi/acpi.h>
+#include <reliefwin/drivers/acpi/acpisystem.h>
+#include <reliefwin/drivers/tpm2.h>
 
 #define NDEBUG
 #include <debug.h>

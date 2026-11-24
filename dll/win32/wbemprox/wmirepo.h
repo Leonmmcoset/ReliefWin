@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT WMI
+ * PROJECT:     ReliefWin WMI
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Repository objects, store and decoupled provider transport
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test that file services given the name of another kind of object leave no handle behind
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -30,7 +30,7 @@ START_TEST(NtDeleteFile)
     DWORD Before, After;
     ULONG Round;
 
-    _snwprintf(NameBuffer, RTL_NUMBER_OF(NameBuffer), L"\\BaseNamedObjects\\LiberntNtDeleteFile%lu", GetCurrentProcessId());
+    _snwprintf(NameBuffer, RTL_NUMBER_OF(NameBuffer), L"\\BaseNamedObjects\\ReliefWinNtDeleteFile%lu", GetCurrentProcessId());
     NameBuffer[RTL_NUMBER_OF(NameBuffer) - 1] = UNICODE_NULL;
     RtlInitUnicodeString(&Name, NameBuffer);
     InitializeObjectAttributes(&ObjectAttributes, &Name, OBJ_CASE_INSENSITIVE, NULL, NULL);

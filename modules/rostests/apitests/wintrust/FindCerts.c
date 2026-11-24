@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test the certificate chains FindCertsByIssuer returns and their buffer layout
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -11,7 +11,7 @@
 
 typedef HRESULT (WINAPI *PFN_FIND_CERTS)(PCERT_CHAIN, DWORD *, DWORD *, BYTE *, DWORD, LPCWSTR, DWORD);
 
-#define TEST_CONTAINER L"LiberNT findcerts apitest"
+#define TEST_CONTAINER L"ReliefWin findcerts apitest"
 #define ALIGN_PTR(x) (((x) + sizeof(DWORD_PTR) - 1) & ~(DWORD_PTR)(sizeof(DWORD_PTR) - 1))
 
 static
@@ -57,7 +57,7 @@ TestIgnoredPurpose(HCRYPTPROV Provider, HCERTSTORE My, CRYPT_KEY_PROV_INFO *KeyI
     PCCERT_CONTEXT Cert, Added = NULL;
     DWORD Size = 0, Count = 0;
 
-    if (!CertStrToNameW(X509_ASN_ENCODING, L"CN=LiberNT findcerts client auth", CERT_X500_NAME_STR, NULL, NameData,
+    if (!CertStrToNameW(X509_ASN_ENCODING, L"CN=ReliefWin findcerts client auth", CERT_X500_NAME_STR, NULL, NameData,
                         &Name.cbData, NULL) ||
         !CryptEncodeObject(X509_ASN_ENCODING, X509_ENHANCED_KEY_USAGE, &Usage, UsageData, &Extension.Value.cbData) ||
         !(Cert = CertCreateSelfSignCertificate(Provider, &Name, 0, KeyInfo, NULL, NULL, NULL, &Extensions)))
@@ -93,8 +93,8 @@ START_TEST(FindCerts)
 
     ok(FindCerts != NULL, "FindCertsByIssuer is not exported\n");
     if (!FindCerts ||
-        !CertStrToNameW(X509_ASN_ENCODING, L"CN=LiberNT findcerts apitest", CERT_X500_NAME_STR, NULL, NameData, &Name.cbData, NULL) ||
-        !CertStrToNameW(X509_ASN_ENCODING, L"CN=LiberNT findcerts other", CERT_X500_NAME_STR, NULL, OtherData, &Other.cbData, NULL))
+        !CertStrToNameW(X509_ASN_ENCODING, L"CN=ReliefWin findcerts apitest", CERT_X500_NAME_STR, NULL, NameData, &Name.cbData, NULL) ||
+        !CertStrToNameW(X509_ASN_ENCODING, L"CN=ReliefWin findcerts other", CERT_X500_NAME_STR, NULL, OtherData, &Other.cbData, NULL))
         return;
 
     CryptAcquireContextW(&Provider, TEST_CONTAINER, MS_ENHANCED_PROV_W, PROV_RSA_FULL, CRYPT_DELETEKEYSET);

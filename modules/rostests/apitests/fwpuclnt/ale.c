@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API Tests
+ * PROJECT:     ReliefWin API Tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Tests for filters at the ALE authorization layers
  * COPYRIGHT:   Copyright 2026 Ostap Brehin <osbre@protonmail.com>
@@ -30,7 +30,7 @@ AddBlock(
     ZeroMemory(&Filter, sizeof(Filter));
     ZeroMemory(Conditions, sizeof(Conditions));
     Filter.layerKey = *Layer;
-    Filter.displayData.name = L"LiberNT ALE apitest filter";
+    Filter.displayData.name = L"ReliefWin ALE apitest filter";
     Filter.action.type = FWP_ACTION_BLOCK;
     Filter.weight.type = FWP_EMPTY;
     Filter.filterCondition = Conditions;
@@ -344,7 +344,7 @@ AddBlockOn(
 
     ZeroMemory(&Filter, sizeof(Filter));
     Filter.layerKey = *Layer;
-    Filter.displayData.name = L"LiberNT ALE apitest probe filter";
+    Filter.displayData.name = L"ReliefWin ALE apitest probe filter";
     Filter.action.type = FWP_ACTION_BLOCK;
     Filter.weight.type = FWP_EMPTY;
     Filter.filterCondition = Conditions;
@@ -761,7 +761,7 @@ START_TEST(ale)
     ok(WSAStartup(MAKEWORD(2, 2), &WsaData) == 0, "WSAStartup failed\n");
 
     ZeroMemory(&Session, sizeof(Session));
-    Session.displayData.name = L"LiberNT ALE apitest session";
+    Session.displayData.name = L"ReliefWin ALE apitest session";
     Session.flags = FWPM_SESSION_FLAG_DYNAMIC;
     Error = FwpmEngineOpen0(NULL, RPC_C_AUTHN_WINNT, NULL, &Session, &Engine);
     if (Error != ERROR_SUCCESS)

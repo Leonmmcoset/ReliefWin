@@ -26,4 +26,4 @@
 #define REACTOS_STR_ORIGINAL_FILENAME   "bootvid.dll"
 #endif
 
-#include <libernt/version.rc>
+#include <reliefwin/version.rc>

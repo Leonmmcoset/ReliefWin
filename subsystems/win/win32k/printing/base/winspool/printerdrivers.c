@@ -628,7 +628,7 @@ Cleanup:
     RtlFreeUnicodeString(&pEnvironmentW);
     SetLastError(dwErrorCode);
     FIXME("EnumPrinterDriversA Exit %d Err %d\n",ret,GetLastError());
-    return ret;
+    return ret && dwErrorCode == ERROR_SUCCESS;
 }
 
 BOOL WINAPI

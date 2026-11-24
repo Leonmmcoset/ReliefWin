@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT i8042 port driver
+ * PROJECT:     ReliefWin i8042 port driver
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Rules for the callbacks a keyboard filter hooks into the port
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

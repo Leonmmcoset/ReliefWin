@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 '''
-PROJECT:     LiberNT Kernel Debugger Tools
+PROJECT:     ReliefWin Kernel Debugger Tools
 LICENSE:     GPL-2.0-or-later (https://spdx.org/licenses/GPL-2.0-or-later)
 PURPOSE:     Serves driver replacements (.kdfiles) to a target on the KDBG serial terminal
 COPYRIGHT:   Copyright 2026 Ostap Brehin <hi@ostapbrehin.com>

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Bringing the executive up, in the order its parts need
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -7,10 +7,10 @@
 
 #include <ntoskrnl.h>
 #include <ntos/inbv/logo.h>
-#include <libernt/smpdbg.h>
+#include <reliefwin/smpdbg.h>
 #define NDEBUG
 #include <debug.h>
-#include <libernt/buildno.h>
+#include <reliefwin/buildno.h>
 
 /* GLOBALS ********************************************************************/
 
@@ -19,7 +19,7 @@ ULONG ExpInitializationPhase = 0;
 ULONG NtMajorVersion = VER_PRODUCTMAJORVERSION;
 ULONG NtMinorVersion = VER_PRODUCTMINORVERSION;
 ULONG NtBuildNumber = VER_PRODUCTBUILD;
-CHAR NtBuildLab[] = KERNEL_VERSION_BUILD_STR ".libernt";
+CHAR NtBuildLab[] = KERNEL_VERSION_BUILD_STR ".reliefwin";
 
 ULONG CmNtCSDVersion = 0;
 ULONG CmNtCSDReleaseType = 0;

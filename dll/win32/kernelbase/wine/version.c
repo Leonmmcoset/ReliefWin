@@ -1611,7 +1611,7 @@ static LONG get_package_identity( HANDLE process )
     if ((status = NtOpenProcessToken( process, TOKEN_QUERY, &token )))
         return RtlNtStatusToDosError( status );
     NtClose( token );
-    /* TODO: read the package identity of a packaged process from its token; LiberNT deploys no packages */
+    /* TODO: read the package identity of a packaged process from its token; ReliefWin deploys no packages */
     return APPMODEL_ERROR_NO_PACKAGE;
 }
 #endif

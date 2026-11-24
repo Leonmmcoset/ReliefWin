@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# PROJECT:     LiberNT NTFS library tests
+# PROJECT:     ReliefWin NTFS library tests
 # LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
 # PURPOSE:     Grow a directory index by a new run while its root fills the base file record
 # COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif193@gmail.com>

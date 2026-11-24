@@ -32,8 +32,8 @@
 #ifdef __REACTOS__
 #include "winnls.h"
 #include "resource.h"
-#include <libernt/dwmframe.h>
-#include <libernt/colorscheme.h>
+#include <reliefwin/dwmframe.h>
+#include <reliefwin/colorscheme.h>
 #include <dwmapi.h>
 #endif
 

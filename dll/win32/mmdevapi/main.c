@@ -140,7 +140,7 @@ static BOOL WINAPI init_driver(INIT_ONCE *once, void *param, void **context)
         return TRUE;
     }
 
-    WARN("No ReactOS WDMAUD audio backend could be initialized.\n");
+    WARN("No ReliefWin WDMAUD audio backend could be initialized.\n");
     return TRUE;
 }
 

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Apple RTKit Library
+ * PROJECT:     ReliefWin Apple RTKit Library
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Initial data the Apple silicon graphics firmware is started with
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -14,9 +14,9 @@
 #ifndef UNIT_TEST
 #include <ntddk.h>
 #endif
-#include <libernt/drivers/appleadt.h>
-#include <libernt/drivers/appleuat.h>
-#include <libernt/drivers/appleagxinit.h>
+#include <reliefwin/drivers/appleadt.h>
+#include <reliefwin/drivers/appleuat.h>
+#include <reliefwin/drivers/appleagxinit.h>
 
 VOID
 NTAPI

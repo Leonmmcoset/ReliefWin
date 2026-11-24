@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Unit tests for the Apple silicon PWM controller and PWM LED driver
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -9,7 +9,7 @@
 
 #define WIN32_NO_STATUS
 #include <ndk/ntndk.h>
-#include <libernt/fdtlib.h>
+#include <reliefwin/fdtlib.h>
 
 #define UNIT_TEST
 

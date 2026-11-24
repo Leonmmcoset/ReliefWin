@@ -43,7 +43,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <windows.h>
-#include <libernt/buildno.h>
+#include <reliefwin/buildno.h>
 
 #include "rosperf.h"
 
@@ -318,7 +318,8 @@ PrintOSVersion(void)
   RosVersion = VersionInfo.szCSDVersion + wcslen(VersionInfo.szCSDVersion) + 1;
   RosVersionLen = sizeof(VersionInfo.szCSDVersion) / sizeof(VersionInfo.szCSDVersion[0]) -
                   (RosVersion - VersionInfo.szCSDVersion);
-  if (7 <= RosVersionLen && 0 == _wcsnicmp(RosVersion, L"ReactOS", 7))
+  if (ARRAYSIZE(L"ReliefWin") - 1 <= RosVersionLen &&
+      0 == _wcsnicmp(RosVersion, L"ReliefWin", ARRAYSIZE(L"ReliefWin") - 1))
     {
       wprintf(L"Running on %s\n", RosVersion);
       return;
@@ -672,7 +673,7 @@ CreatePerfWindows(HINSTANCE hInstance, PPERF_INFO PerfInfo)
     }
 
   MainWnd = CreateWindowW(L"RosPerfMain",
-                          L"ReactOS performance test",
+                          L"ReliefWin performance test",
                           WS_OVERLAPPEDWINDOW | WS_VISIBLE,
                           0,
                           0,

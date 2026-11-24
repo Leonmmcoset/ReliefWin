@@ -178,7 +178,7 @@ DiUninstallDevice(
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 BOOL WINAPI DiShowUpdateDriver(HWND hwndParent, PCWSTR FilePath, DWORD Flags, PBOOL NeedReboot);
 BOOL WINAPI DiUninstallDriverA(HWND hwndParent, LPCSTR InfPath, DWORD Flags, PBOOL NeedReboot);
 BOOL WINAPI DiUninstallDriverW(HWND hwndParent, LPCWSTR InfPath, DWORD Flags, PBOOL NeedReboot);

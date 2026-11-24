@@ -1,5 +1,5 @@
 #
-# PROJECT:     LiberNT Tegra GPIO driver
+# PROJECT:     ReliefWin Tegra GPIO driver
 # LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
 # PURPOSE:     Tegra GPIO driver build rules
 # COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

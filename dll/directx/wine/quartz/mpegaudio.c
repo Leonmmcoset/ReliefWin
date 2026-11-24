@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT DirectShow
+ * PROJECT:     ReliefWin DirectShow
  * LICENSE:     LGPL-2.1-or-later (https://spdx.org/licenses/LGPL-2.1-or-later)
  * PURPOSE:     Native MPEG audio decoder filter
  * COPYRIGHT:   Copyright 2022 Anton Baskanov

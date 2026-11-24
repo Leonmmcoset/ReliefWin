@@ -1630,7 +1630,7 @@ DWORD WINAPI DsBindA(LPCSTR DomainControllerName, LPCSTR DnsDomainName, HANDLE *
 DWORD WINAPI DsBindW(LPCWSTR DomainControllerName, LPCWSTR DnsDomainName, HANDLE *phDS);
 DWORD WINAPI DsGetSpnA(DS_SPN_NAME_TYPE ServiceType, LPCSTR ServiceClass, LPCSTR ServiceName, USHORT InstancePort, USHORT cInstanceNames, LPCSTR *pInstanceNames, const USHORT *pInstancePorts, DWORD *pcSpn, LPSTR **prpszSpn);
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 NTDSAPI DWORD WINAPI DsAddSidHistoryA(HANDLE hDS, DWORD Flags, LPCSTR SrcDomain, LPCSTR SrcPrincipal, LPCSTR SrcDomainController, RPC_AUTH_IDENTITY_HANDLE SrcDomainCreds, LPCSTR DstDomain, LPCSTR DstPrincipal);
 NTDSAPI DWORD WINAPI DsAddSidHistoryW(HANDLE hDS, DWORD Flags, LPCWSTR SrcDomain, LPCWSTR SrcPrincipal, LPCWSTR SrcDomainController, RPC_AUTH_IDENTITY_HANDLE SrcDomainCreds, LPCWSTR DstDomain, LPCWSTR DstPrincipal);
 DWORD WINAPI DsBindByInstanceA(LPCSTR ServerName, LPCSTR Annotation, GUID *InstanceGuid, LPCSTR DnsDomainName, RPC_AUTH_IDENTITY_HANDLE AuthIdentity, LPCSTR ServicePrincipalName, DWORD BindFlags, HANDLE *phDS);

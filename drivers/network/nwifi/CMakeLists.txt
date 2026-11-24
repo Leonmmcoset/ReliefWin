@@ -1,5 +1,5 @@
 #
-# LiberNT Native WiFi (802.11) driver - nwifi.sys
+# ReliefWin Native WiFi (802.11) driver - nwifi.sys
 # NDIS 6.20 media-converting filter: 802.3 above, Native 802.11 below.
 #
 

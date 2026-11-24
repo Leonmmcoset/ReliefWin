@@ -1,5 +1,5 @@
 ##
-## PROJECT:     LiberNT Boot Loader
+## PROJECT:     ReliefWin Boot Loader
 ## LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
 ## PURPOSE:     Build definitions
 ## COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -13,8 +13,8 @@ include_directories(BEFORE include)
 include_directories(
     ${REACTOS_SOURCE_DIR}/ntos/include
     ${REACTOS_SOURCE_DIR}/sdk/lib/cmlib
-    ${REACTOS_SOURCE_DIR}/sdk/include/libernt/libs
-    ${REACTOS_SOURCE_DIR}/sdk/include/libernt/edk2)
+    ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/libs
+    ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/edk2)
 
 add_definitions(-D_NTHAL_ -D_BLDR_ -D_NTSYSTEM_ -DNTDDI_VERSION=${REACTOS_TARGET_NTDDI})
 
@@ -183,7 +183,7 @@ add_library(bootwim
     ${REACTOS_SOURCE_DIR}/sdk/lib/libwim/wimcore.c
     ${REACTOS_SOURCE_DIR}/sdk/lib/libwim/xpress_huff.c)
 set_property(TARGET bootwim PROPERTY C_STANDARD 11)
-target_include_directories(bootwim PRIVATE ${REACTOS_SOURCE_DIR}/sdk/include/libernt/libs/libwim)
+target_include_directories(bootwim PRIVATE ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/libs/libwim)
 target_compile_definitions(bootwim PRIVATE XPRESS_HUFF_DECOMPRESS_ONLY=1)
 add_dependencies(bootwim xdk)
 

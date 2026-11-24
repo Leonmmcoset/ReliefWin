@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT FreeLoader
+ * PROJECT:     ReliefWin FreeLoader
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Stop the board watchdogs the firmware leaves running
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -8,7 +8,7 @@
 #include <blefi.h>
 #include <riscv64.h>
 #include <edk2/Fdt.h>
-#include <libernt/fdtlib.h>
+#include <reliefwin/fdtlib.h>
 
 DBG_DEFAULT_CHANNEL(WARNING);
 

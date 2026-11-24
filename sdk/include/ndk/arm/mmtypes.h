@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT NDK
+ * PROJECT:     ReliefWin NDK
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     ARM (Thumb-2) memory manager types
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Intel HD Graphics Driver tests
+ * PROJECT:     ReliefWin Intel HD Graphics Driver tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Sandy Bridge generation table, engine setup, ring sequences and VGA and DisplayPort mode set on the host
  * COPYRIGHT:   Copyright 2026 Ostap Brehin <osbre@protonmail.com>

@@ -5,7 +5,7 @@
 #include "dxgi_private.h"
 
 #include <d3dkmthk.h>
-#include <libernt/rddm/rxgkadvcolor.h>
+#include <reliefwin/rddm/rxgkadvcolor.h>
 
 #ifndef NT_SUCCESS
 #define NT_SUCCESS(status) ((NTSTATUS)(status) >= 0)

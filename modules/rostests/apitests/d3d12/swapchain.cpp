@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Source region and tearing presents of Direct3D 12 window swap chains
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

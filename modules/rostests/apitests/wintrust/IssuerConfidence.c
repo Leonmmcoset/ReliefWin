@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test the confidence and error that the issuer certificate searches report
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -14,8 +14,8 @@ typedef PCCERT_CONTEXT (WINAPI *PFN_TRUST_FIND_ISSUER)(PCCERT_CONTEXT, DWORD, DW
 typedef PCCERT_CONTEXT (WINAPI *PFN_HELPER_FIND_ISSUER)(PCCERT_CONTEXT, DWORD, HCERTSTORE *, FILETIME *, DWORD,
                                                         DWORD *, DWORD *);
 
-#define ISSUER_CONTAINER L"LiberNT confidence issuer"
-#define LEAF_CONTAINER L"LiberNT confidence leaf"
+#define ISSUER_CONTAINER L"ReliefWin confidence issuer"
+#define LEAF_CONTAINER L"ReliefWin confidence leaf"
 
 static HCRYPTPROV IssuerKey, LeafKey;
 static PCCERT_CONTEXT Issuer;
@@ -149,7 +149,7 @@ START_TEST(IssuerConfidence)
 
     IssuerKey = CreateKey(ISSUER_CONTAINER);
     LeafKey = CreateKey(LEAF_CONTAINER);
-    Issuer = IssuerKey && LeafKey ? CreateCert(L"CN=LiberNT confidence issuer", IssuerKey, IssuerKey, NULL, 10, 3650)
+    Issuer = IssuerKey && LeafKey ? CreateCert(L"CN=ReliefWin confidence issuer", IssuerKey, IssuerKey, NULL, 10, 3650)
                                   : NULL;
     if (!Issuer)
     {
@@ -181,15 +181,15 @@ START_TEST(IssuerConfidence)
     CryptEncodeObject(X509_ASN_ENCODING, X509_AUTHORITY_KEY_ID, &KeyInfo, KeyIdData, &KeyIdSize);
     KeyId.Value.cbData = KeyIdSize;
 
-    CheckConfidence("no identifier", CreateCert(L"CN=LiberNT leaf", IssuerKey, LeafKey, NULL, 1, 365), Base, 0);
-    CheckConfidence("issuer and serial", CreateCert(L"CN=LiberNT leaf", IssuerKey, LeafKey, &Aki1, 1, 365),
+    CheckConfidence("no identifier", CreateCert(L"CN=ReliefWin leaf", IssuerKey, LeafKey, NULL, 1, 365), Base, 0);
+    CheckConfidence("issuer and serial", CreateCert(L"CN=ReliefWin leaf", IssuerKey, LeafKey, &Aki1, 1, 365),
                     Base | CERT_CONFIDENCE_AUTHIDEXT | CERT_CONFIDENCE_HYGIENE, 0);
-    CheckConfidence("issuer and serial (v2)", CreateCert(L"CN=LiberNT leaf", IssuerKey, LeafKey, &Aki2, 1, 365),
+    CheckConfidence("issuer and serial (v2)", CreateCert(L"CN=ReliefWin leaf", IssuerKey, LeafKey, &Aki2, 1, 365),
                     Base | CERT_CONFIDENCE_AUTHIDEXT | CERT_CONFIDENCE_HYGIENE, 0);
-    CheckConfidence("key identifier only", CreateCert(L"CN=LiberNT leaf", IssuerKey, LeafKey, &KeyId, 1, 365), Base, 0);
-    CheckConfidence("bad signature", CreateCert(L"CN=LiberNT leaf", LeafKey, LeafKey, &Aki1, 1, 365),
+    CheckConfidence("key identifier only", CreateCert(L"CN=ReliefWin leaf", IssuerKey, LeafKey, &KeyId, 1, 365), Base, 0);
+    CheckConfidence("bad signature", CreateCert(L"CN=ReliefWin leaf", LeafKey, LeafKey, &Aki1, 1, 365),
                     CERT_CONFIDENCE_TIME | CERT_CONFIDENCE_TIMENEST | CERT_CONFIDENCE_AUTHIDEXT, TRUST_E_CERT_SIGNATURE);
-    CheckConfidence("not nested", CreateCert(L"CN=LiberNT leaf", IssuerKey, LeafKey, &Aki1, 20, 365),
+    CheckConfidence("not nested", CreateCert(L"CN=ReliefWin leaf", IssuerKey, LeafKey, &Aki1, 20, 365),
                     CERT_CONFIDENCE_SIG | CERT_CONFIDENCE_TIME | CERT_CONFIDENCE_AUTHIDEXT | CERT_CONFIDENCE_HYGIENE, 0);
 
     {

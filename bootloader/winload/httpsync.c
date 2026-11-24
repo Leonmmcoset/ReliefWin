@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Boot Loader
+ * PROJECT:     ReliefWin Boot Loader
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     httpsync: apply the archive of changed files to the operating system volume
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -20,7 +20,7 @@
 #define OSL_TAR_PREFIX_OFFSET  345
 #define OSL_TAR_PREFIX_CHARS   155
 #define OSL_SYNC_ID_FILE       "SYNC.ID"
-#define OSL_SYNC_STATE_FILE    "LiberNT.sync"
+#define OSL_SYNC_STATE_FILE    "ReliefWin.sync"
 #define OSL_SYNC_ID_CHARS      128
 #define OSL_SYNC_NAME_CHARS    (OSL_TAR_PREFIX_CHARS + 1 + OSL_TAR_NAME_CHARS + 1)
 

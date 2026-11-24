@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     rundll32 entry points of 32-bit DLLs and entry points named by ordinal
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arifing193@gmail.com>
@@ -9,7 +9,7 @@
 #include <windows.h>
 #include <strsafe.h>
 
-#define TEST_KEY L"Software\\LiberNT Tests\\rundll32"
+#define TEST_KEY L"Software\\ReliefWin Tests\\rundll32"
 #define NOT_EXITED 0xffffffff
 
 static BOOL write_inf(PCWSTR path, PCSTR value)
@@ -23,7 +23,7 @@ static BOOL write_inf(PCWSTR path, PCSTR value)
     StringCbPrintfA(text, sizeof(text),
                        "[Version]\r\nSignature=\"$Windows NT$\"\r\n\r\n"
                        "[DefaultInstall]\r\nAddReg=LntReg\r\n\r\n"
-                       "[LntReg]\r\nHKCU,\"Software\\LiberNT Tests\\rundll32\",%s,0x00010001,1\r\n", value);
+                       "[LntReg]\r\nHKCU,\"Software\\ReliefWin Tests\\rundll32\",%s,0x00010001,1\r\n", value);
     length = lstrlenA(text);
     file = CreateFileW(path, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
     if (file == INVALID_HANDLE_VALUE)

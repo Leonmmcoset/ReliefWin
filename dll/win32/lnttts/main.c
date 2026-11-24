@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Text-to-Speech Engine
+ * PROJECT:     ReliefWin Text-to-Speech Engine
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     DLL entry points and class factory
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -9,7 +9,7 @@
 #include "lnttts.h"
 
 DEFINE_GUID(SPDFID_WaveFormatEx, 0xc31adbae, 0x527f, 0x4ff5, 0xa2, 0x30, 0xf6, 0x2b, 0xb6, 0x1f, 0xf7, 0x0c);
-DEFINE_GUID(CLSID_LiberNTTtsEngine, 0x1d9ab4b8, 0x5861, 0x469b, 0x8d, 0x18, 0x9e, 0xe9, 0xa2, 0x3e, 0x5d, 0x2a);
+DEFINE_GUID(CLSID_ReliefWinTtsEngine, 0x1d9ab4b8, 0x5861, 0x469b, 0x8d, 0x18, 0x9e, 0xe9, 0xa2, 0x3e, 0x5d, 0x2a);
 
 static LONG ServerLocks;
 
@@ -103,7 +103,7 @@ DllGetClassObject(
     _In_ REFIID Iid,
     _Outptr_ void **Object)
 {
-    if (!IsEqualCLSID(Clsid, &CLSID_LiberNTTtsEngine))
+    if (!IsEqualCLSID(Clsid, &CLSID_ReliefWinTtsEngine))
     {
         *Object = NULL;
         return CLASS_E_CLASSNOTAVAILABLE;

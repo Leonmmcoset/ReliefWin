@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API Tests
+ * PROJECT:     ReliefWin API Tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test that terminal key sequences reach a pseudo console client reading in virtual terminal input mode
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

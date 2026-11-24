@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT HAL
+ * PROJECT:     ReliefWin HAL
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Apple silicon core power-down in WFI for processor idle
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -8,9 +8,9 @@
 #include <ntifs.h>
 #include <arc/arc.h>
 #include <ioaccess.h>
-#include <libernt/arm64/sysreg.h>
+#include <reliefwin/arm64/sysreg.h>
 #include <pseh/pseh2.h>
-#include <libernt/hal/halext.h>
+#include <reliefwin/hal/halext.h>
 #include "apple_aic.h"
 
 #define NDEBUG

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT kernel-mode tests
+ * PROJECT:     ReliefWin kernel-mode tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Stops in the debugger with a driver, a device, an IRP and a file object to look at
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

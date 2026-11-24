@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT WoW64 x86 CPU
+ * PROJECT:     ReliefWin WoW64 x86 CPU
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Enter the recompiler with the native context WoW64 unwinds to
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

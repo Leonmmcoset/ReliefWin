@@ -135,7 +135,7 @@ CLIENT_CALL_RETURN RPC_VAR_ENTRY
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 CLIENT_CALL_RETURN NdrMesProcEncodeDecode2(handle_t Handle, const MIDL_STUB_DESC *pStubDesc, PFORMAT_STRING pFormatString, ...);
 CLIENT_CALL_RETURN NdrMesProcEncodeDecode3(handle_t Handle, const MIDL_STUBLESS_PROXY_INFO *pProxyInfo, unsigned long nProcNum, void *pReturnValue, ...);
 size_t WINAPI NdrMesSimpleTypeAlignSizeAll(handle_t Handle, const MIDL_STUBLESS_PROXY_INFO *pProxyInfo);

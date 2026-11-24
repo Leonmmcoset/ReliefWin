@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT D3DKMT API Tests
+ * PROJECT:     ReliefWin D3DKMT API Tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     KMTQAITYPE_QUERYREGISTRY registry and driver path queries
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif193@gmail.com>
@@ -85,9 +85,9 @@ QregRegistryValues(D3DKMT_HANDLE hAdapter, LUID Luid)
 
     QregRefused(hAdapter, Luid, "service Start as REG_SZ", D3DDDI_QUERYREGISTRY_SERVICEKEY, 0, L"Start", REG_SZ, 0,
                 sizeof(Buffer), STATUS_INVALID_PARAMETER);
-    QregRefused(hAdapter, Luid, "missing service value", D3DDDI_QUERYREGISTRY_SERVICEKEY, 0, L"LiberNTNoSuchValue",
+    QregRefused(hAdapter, Luid, "missing service value", D3DDDI_QUERYREGISTRY_SERVICEKEY, 0, L"ReliefWinNoSuchValue",
                 REG_DWORD, 0, sizeof(Buffer), STATUS_OBJECT_NAME_NOT_FOUND);
-    QregRefused(hAdapter, Luid, "missing adapter value", D3DDDI_QUERYREGISTRY_ADAPTERKEY, 0, L"LiberNTNoSuchValue",
+    QregRefused(hAdapter, Luid, "missing adapter value", D3DDDI_QUERYREGISTRY_ADAPTERKEY, 0, L"ReliefWinNoSuchValue",
                 REG_DWORD, 0, sizeof(Buffer), STATUS_OBJECT_NAME_NOT_FOUND);
     QregRefused(hAdapter, Luid, "service value named with a leading backslash", D3DDDI_QUERYREGISTRY_SERVICEKEY, 0,
                 L"\\Start", REG_DWORD, 0, sizeof(Buffer), STATUS_OBJECT_NAME_NOT_FOUND);

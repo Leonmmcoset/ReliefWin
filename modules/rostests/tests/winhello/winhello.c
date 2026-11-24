@@ -645,8 +645,8 @@ LRESULT CALLBACK MainWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 
 	 case WM_PAINT:
 	  hDC = BeginPaint(hWnd, &ps);
-	  TextOut(hDC, 10, 10, "Hello World from ReactOS!",
-			strlen("Hello World from ReactOS!"));
+	  TextOut(hDC, 10, 10, "Hello World from ReliefWin!",
+			strlen("Hello World from ReliefWin!"));
 	  TextOut(hDC, 10, 80, "Press Ctrl+C or Ctrl+Alt+F1 to test Hotkey support.",
 			strlen("Press Ctrl+C or Ctrl+Alt+F1 to test Hotkey support."));
           GetClientRect(hWnd, &clr);

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT kernel-mode tests
+ * PROJECT:     ReliefWin kernel-mode tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Preemption by a ready thread raised above the running thread
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

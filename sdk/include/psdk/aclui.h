@@ -247,7 +247,7 @@ typedef ISecurityInformation4 *LPSECURITYINFO4;
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 HRESULT EditSecurityAdvanced(HWND hwndOwner, LPSECURITYINFO psi, SI_PAGE_TYPE uSIPage);
 
 #ifdef __cplusplus

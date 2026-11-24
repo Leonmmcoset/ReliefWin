@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Driver Installer - Unit-tests
+ * PROJECT:     ReliefWin Driver Installer - Unit-tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test the catalog search page parser and cache, the search terms, the hardware-id filter, the search
  *              throttle wait and the offered version

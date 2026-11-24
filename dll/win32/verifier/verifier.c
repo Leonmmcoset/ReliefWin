@@ -6,7 +6,7 @@
  */
 
 #include <ndk/rtlfuncs.h>
-#include <libernt/verifier.h>
+#include <reliefwin/verifier.h>
 
 #if 0
 #define PROVIDER_PREFIX "AVRF"

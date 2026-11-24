@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Cache Manager
+ * PROJECT:     ReliefWin Cache Manager
  * FILE:        ntoskrnl/cc/api/cccoherency.c
  * PURPOSE:     Keeping cached and uncached readers of a file in agreement
  *

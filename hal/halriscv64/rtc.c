@@ -4,7 +4,7 @@
 /* Device-tree-discovered Goldfish RTC on QEMU virt. Register contract:
  * https://github.com/qemu/qemu/blob/v10.2.0/hw/rtc/goldfish_rtc.c */
 #include <ntifs.h>
-#include <libernt/fdtlib.h>
+#include <reliefwin/fdtlib.h>
 #include "halp.h"
 
 #define RTC_UNIX_EPOCH 116444736000000000ULL

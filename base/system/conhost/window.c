@@ -27,7 +27,7 @@
 #include "wine/debug.h"
 #ifdef __REACTOS__
 #include <shellapi.h>
-#include <libernt/dwmsettings.h>
+#include <reliefwin/dwmsettings.h>
 #endif
 
 WINE_DEFAULT_DEBUG_CHANNEL(console);

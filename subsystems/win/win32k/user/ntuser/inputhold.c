@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Win32k subsystem
+ * PROJECT:     ReliefWin Win32k subsystem
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Device files of the raw input thread that close for their device's removal
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

@@ -1670,7 +1670,7 @@ HRESULT WINAPI ConfigCiFinalPolicy(CRYPT_PROVIDER_DATA *pProvData)
 
     if (!pProvData || !pProvData->pgActionID || !IsEqualGUID(pProvData->pgActionID, &ConfigCiAction))
         return E_INVALIDARG;
-    /* TODO: INFO_NEEDED: Windows 11 asks the active code integrity policy; LiberNT enforces none and allows the subject */
+    /* TODO: INFO_NEEDED: Windows 11 asks the active code integrity policy; ReliefWin enforces none and allows the subject */
     return S_OK;
 }
 
@@ -1809,7 +1809,7 @@ BOOL WINAPI WTHelperGetAgencyInfo(PCCERT_CONTEXT pCert, DWORD *pcbAgencyInfo, SP
         return FALSE;
     if (!pAgencyInfo || *pcbAgencyInfo < needed)
     {
-        /* FIXME: Windows 11 decodes into a non-NULL buffer whatever size the caller gave; LiberNT refuses */
+        /* FIXME: Windows 11 decodes into a non-NULL buffer whatever size the caller gave; ReliefWin refuses */
         *pcbAgencyInfo = needed;
         SetLastError(ERROR_INSUFFICIENT_BUFFER);
         return FALSE;

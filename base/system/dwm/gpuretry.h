@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Desktop Window Manager
+ * PROJECT:     ReliefWin Desktop Window Manager
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Paces the attempts to bring back a Direct3D compositor that failed to start
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

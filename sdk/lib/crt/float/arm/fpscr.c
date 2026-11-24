@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT CRT library
+ * PROJECT:     ReliefWin CRT library
  * LICENSE:     MIT (https://spdx.org/licenses/MIT)
  * PURPOSE:     ARM floating point control and status words over the VFP FPSCR
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

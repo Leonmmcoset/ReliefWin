@@ -4767,7 +4767,7 @@ typedef struct _DXGK_I2C_INTERFACE_2 *PDXGK_I2C_INTERFACE_2;
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 PVOID NTAPI DlAllocateCommonBuffer(PVOID DeviceHandle, PVP_DMA_ADAPTER DlpDmaAdapter, ULONG DesiredLength, PPHYSICAL_ADDRESS LogicalAddress, BOOLEAN CacheEnabled, PVOID Reserved);
 PVOID NTAPI DlAllocatePool(PVOID DeviceHandle, VP_POOL_TYPE PoolType, SIZE_T NumberOfBytes, ULONG Tag);
 void NTAPI DlClearEvent(PVOID DeviceHandle, PEVENT pEvent);

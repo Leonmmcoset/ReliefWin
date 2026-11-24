@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Asking a lock package whether anything is locked or being locked
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

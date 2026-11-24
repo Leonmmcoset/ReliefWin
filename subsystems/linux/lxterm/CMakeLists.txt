@@ -1,6 +1,6 @@
 include_directories(
     ${REACTOS_SOURCE_DIR}/sdk/lib/3rdparty/lzma
-    ${REACTOS_SOURCE_DIR}/sdk/include/libernt/libs/zlib)
+    ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/libs/zlib)
 
 add_executable(lxterm
     lxterm.c
@@ -16,8 +16,8 @@ add_importlibs(lxterm winhttp bcrypt shell32 user32 iphlpapi advapi32 msvcrt ker
 add_cd_file(TARGET lxterm DESTINATION reactos/system32 FOR all)
 
 cmdenvvar(envvar_systemroot "SystemRoot" FALSE)
-add_link("Linux Terminal" "shell:system\\terminal.exe" CMDLINE_ARGS "-p Ubuntu"
+add_link("Linux 终端" "shell:system\\terminal.exe" CMDLINE_ARGS "-p Ubuntu"
          ICON "${envvar_systemroot}\\system32\\lxterm.exe" ICON_INDEX 0)
-add_custom_target(lxterm_links DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/Linux Terminal.lnk")
-add_cd_file(FILE "${CMAKE_CURRENT_BINARY_DIR}/Linux Terminal.lnk" TARGET lxterm_links
+add_custom_target(lxterm_links DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/Linux 终端.lnk")
+add_cd_file(FILE "${CMAKE_CURRENT_BINARY_DIR}/Linux 终端.lnk" TARGET lxterm_links
             DESTINATION "ProgramData/Microsoft/Windows/Start Menu/Programs" FOR livecd preinstall)

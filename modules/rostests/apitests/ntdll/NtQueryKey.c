@@ -297,8 +297,8 @@ static
 void
 Test_KeyCachedInformationLargeData(void)
 {
-    UNICODE_STRING SourceName = RTL_CONSTANT_STRING(L"\\Registry\\Machine\\Software\\LiberNTTest_KcbMaxData");
-    UNICODE_STRING HiveName = RTL_CONSTANT_STRING(L"\\Registry\\Machine\\LiberNTTest_KcbHive");
+    UNICODE_STRING SourceName = RTL_CONSTANT_STRING(L"\\Registry\\Machine\\Software\\ReliefWinTest_KcbMaxData");
+    UNICODE_STRING HiveName = RTL_CONSTANT_STRING(L"\\Registry\\Machine\\ReliefWinTest_KcbHive");
     UNICODE_STRING ChildName = RTL_CONSTANT_STRING(L"Child");
     UNICODE_STRING ValueName = RTL_CONSTANT_STRING(L"Big");
     OBJECT_ATTRIBUTES SourceAttributes, HiveAttributes, FileAttributes, ChildAttributes;

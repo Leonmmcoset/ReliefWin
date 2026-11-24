@@ -1,5 +1,5 @@
 /*
- * PROJECT:         LiberNT Kernel
+ * PROJECT:         ReliefWin Kernel
  * LICENSE:         GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:         Generate Windows-compatible kernel dumps
  * COPYRIGHT:       Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -11,7 +11,7 @@
 #include <ntddstor.h>
 #define NDEBUG
 #include <debug.h>
-#include <libernt/drivers/dumpstor.h>
+#include <reliefwin/drivers/dumpstor.h>
 #ifdef _WIN64
 #include <mm/nt/mmkernel.h>
 #endif
@@ -1590,7 +1590,7 @@ NTSTATUS NTAPI KdpWriteCrashDump(VOID)
         goto Exit;
     }
 
-    RtlCopyMemory(KdpCrashDumpState.Header->Comment, "ReactOS crash dump", sizeof("ReactOS crash dump"));
+    RtlCopyMemory(KdpCrashDumpState.Header->Comment, "ReliefWin crash dump", sizeof("ReliefWin crash dump"));
 
     if (KdpCrashDumpState.DumpType != DUMP_TYPE_FULL)
     {
@@ -1953,7 +1953,7 @@ NTSTATUS NTAPI KdpWriteLiveKernelDump(_In_ PSYSDBG_LIVEDUMP_CONTROL Control, _In
     Header->BugCheckParameter3 = Control->BugCheckParam3;
     Header->BugCheckParameter4 = Control->BugCheckParam4;
     Header->Attributes.LiveDumpGeneratedDump = TRUE;
-    RtlCopyMemory(Header->Comment, "ReactOS live kernel dump", sizeof("ReactOS live kernel dump"));
+    RtlCopyMemory(Header->Comment, "ReliefWin live kernel dump", sizeof("ReliefWin live kernel dump"));
 
     /* Live dumps carry only the in-use pages: kernel-space ones by default,
      * user-space ones as well when the caller asked for them */

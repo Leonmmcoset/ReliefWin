@@ -1,5 +1,5 @@
 ;
-; PROJECT:     LiberNT USB Attached SCSI Driver
+; PROJECT:     ReliefWin USB Attached SCSI Driver
 ; LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
 ; PURPOSE:     Installs the StorPort USB Attached SCSI miniport on UAS interfaces
 ; COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -59,7 +59,7 @@ HKR,,EventMessageFile,%REG_EXPAND_SZ%,"%%SystemRoot%%\System32\IoLogMsg.dll"
 HKR,,TypesSupported,%REG_DWORD%,7
 
 [Strings]
-ROS                     = "LiberNT"
+ROS                     = "ReliefWin"
 UasMfg                  = "USB Attached SCSI (UAS) Compatible Device"
 DeviceDesc              = "USB Attached SCSI Driver"
 UAS.DeviceDesc          = "USB Attached SCSI (UAS) Mass Storage Device"

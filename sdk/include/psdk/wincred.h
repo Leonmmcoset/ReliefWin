@@ -851,7 +851,7 @@ BOOL WINAPI CredPackAuthenticationBufferW(DWORD dwFlags, LPWSTR pszUserName, LPW
 DWORD WINAPI CredUIPromptForWindowsCredentialsW(PCREDUI_INFOW pUiInfo, DWORD dwAuthError, ULONG *pulAuthPackage, LPCVOID pvInAuthBuffer, ULONG ulInAuthBufferSize, LPVOID *ppvOutAuthBuffer, ULONG *pulOutAuthBufferSize, BOOL *pfSave, DWORD dwFlags);
 BOOL WINAPI CredUnPackAuthenticationBufferW(DWORD dwFlags, PVOID pAuthBuffer, DWORD cbAuthBuffer, LPWSTR pszUserName, DWORD *pcchMaxUserName, LPWSTR pszDomainName, DWORD *pcchMaxDomainName, LPWSTR pszPassword, DWORD *pcchMaxPassword);
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 WINADVAPI BOOL WINAPI CredFindBestCredentialA(LPCSTR TargetName, DWORD Type, DWORD Flags, PCREDENTIALA *Credential);
 WINADVAPI BOOL WINAPI CredFindBestCredentialW(LPCWSTR TargetName, DWORD Type, DWORD Flags, PCREDENTIALW *Credential);
 WINADVAPI BOOL WINAPI CredGetTargetInfoA(LPCSTR TargetName, DWORD Flags, PCREDENTIAL_TARGET_INFORMATIONA *TargetInfo);

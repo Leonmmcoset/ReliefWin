@@ -17,7 +17,7 @@
 #include <shellapi.h>
 #include <shlguid_undoc.h>
 #define NTSTATUS LONG // for debug.h
-#include <libernt/debug.h>
+#include <reliefwin/debug.h>
 #include <shellutils.h>
 #include <ntquery.h>
 #include <fdi.h>

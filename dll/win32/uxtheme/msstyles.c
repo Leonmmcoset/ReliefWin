@@ -26,7 +26,7 @@
 #include "wingdi.h"
 #include "winuser.h"
 #ifdef __REACTOS__
-#include <libernt/user32_compat.h>
+#include <reliefwin/user32_compat.h>
 #endif
 #include "winnls.h"
 #include "vfwmsgs.h"

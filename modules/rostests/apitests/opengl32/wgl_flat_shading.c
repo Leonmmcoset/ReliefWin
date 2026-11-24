@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Flat shading takes the provoking vertex colour, and the D3D12 driver runs on the virtio 3D GPU
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

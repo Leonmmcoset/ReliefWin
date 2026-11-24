@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT WDDM Software GPU Miniport
+ * PROJECT:     ReliefWin WDDM Software GPU Miniport
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Hand a stopped adapter's contiguous slab to an adapter that is starting
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif193@gmail.com>

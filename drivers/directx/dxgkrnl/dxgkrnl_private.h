@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT WDDM DirectX Graphics Kernel
+ * PROJECT:     ReliefWin WDDM DirectX Graphics Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Master internal header for dxgkrnl.sys — defines all private
  *              data structures, global state, and function prototypes shared
@@ -89,11 +89,11 @@
  */
 #include <dispmprt.h>
 #include <d3dkmthk.h>
-#include <libernt/drivers/directx/dxgmms2.h>
+#include <reliefwin/drivers/directx/dxgmms2.h>
 #include "d3dkmt.h"
 
 /* ---- ReactOS WDDM private adapter-level interface ---------------------- */
-#include <libernt/rddm/rxgkinterface.h>
+#include <reliefwin/rddm/rxgkinterface.h>
 
 struct _DXGK_REDIRECTION_SURFACE_CREATE;
 struct _VIDEO_MODE_INFORMATION;
@@ -129,13 +129,13 @@ extern NTKERNELAPI PVOID MmSystemRangeStart;
 
 /* ---- Debug helpers ----------------------------------------------------- */
 /*
- * Use the full path <libernt/debug.h> to avoid accidentally finding the
+ * Use the full path <reliefwin/debug.h> to avoid accidentally finding the
  * local dxgkrnl "debug.h" via the angle-bracket search path.
- * The local "debug.h" must come after <libernt/debug.h> because it uses
+ * The local "debug.h" must come after <reliefwin/debug.h> because it uses
  * DPRINT / DPRINT1 macros defined by the system header.
  */
 #define NDEBUG
-#include <libernt/debug.h>
+#include <reliefwin/debug.h>
 #include "debug.h"
 
 /* Pool tag for display/vidpn-related allocations */

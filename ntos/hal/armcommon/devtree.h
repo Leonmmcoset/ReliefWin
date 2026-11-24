@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT HAL
+ * PROJECT:     ReliefWin HAL
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Device tree lookups for platforms booted without ACPI
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include <libernt/hal/halext.h>
+#include <reliefwin/hal/halext.h>
 
 ULONG
 HalpArm64FindDeviceTreePhandle(

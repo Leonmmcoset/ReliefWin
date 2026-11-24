@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Write the kernel debug print log to the boot volume
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -9,7 +9,7 @@
 #include <ntdddisk.h>
 #define NDEBUG
 #include <debug.h>
-#include <libernt/drivers/dumpstor.h>
+#include <reliefwin/drivers/dumpstor.h>
 
 #define KDP_BOOT_LOG_CHUNK_SIZE (64 * 1024)
 #define KDP_BOOT_LOG_POLL_MS 250

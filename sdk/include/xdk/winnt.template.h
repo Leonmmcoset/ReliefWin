@@ -878,7 +878,7 @@ typedef struct _XSAVE_ARM64_SME_ZA_HEADER XSAVE_ARM64_SME_ZA_HEADER;
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 #if (!defined(RC_INVOKED) && !defined(MIDL_PASS))
 LONG AddNoFence(volatile LONG *Destination, LONG Value);
 SHORT AddNoFence16(volatile SHORT *Destination, SHORT Value);

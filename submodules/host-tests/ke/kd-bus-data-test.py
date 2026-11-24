@@ -1,4 +1,4 @@
-# PROJECT:     LiberNT host-native tests
+# PROJECT:     ReliefWin host-native tests
 # LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
 # PURPOSE:     A stopped machine reads PCI configuration through the HAL's non-waiting path, never the locked one
 # COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

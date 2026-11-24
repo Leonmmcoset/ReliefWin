@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Direct3D 11 runtime
+ * PROJECT:     ReliefWin Direct3D 11 runtime
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Required format support per feature level, from the DirectX-Specs D3D11.3 format lists (CC-BY-4.0)
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif193@gmail.com>

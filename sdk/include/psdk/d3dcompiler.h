@@ -186,7 +186,7 @@ typedef struct _D3D_SHADER_DATA {
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 HRESULT WINAPI D3DCompressShaders(UINT uNumShaders, D3D_SHADER_DATA *pShaderData, UINT uFlags, ID3DBlob **ppCompressedData);
 HRESULT WINAPI D3DDecompressShaders(LPCVOID pSrcData, SIZE_T SrcDataSize, UINT uNumShaders, UINT uStartIndex, UINT *pIndices, UINT uFlags, ID3DBlob **ppShaders, UINT *pTotalShaders);
 struct ID3D10Effect;

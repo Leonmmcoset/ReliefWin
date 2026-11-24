@@ -1,5 +1,5 @@
 #!/bin/sh
-# PROJECT:     LiberNT host-native tests
+# PROJECT:     ReliefWin host-native tests
 # LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
 # PURPOSE:     Formats an image with mkfs.ext4, runs the ext4 core stress on it and checks the result with e2fsck
 # COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

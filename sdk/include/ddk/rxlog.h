@@ -74,7 +74,7 @@ typedef struct RX_LOG {
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 void _RxPrintLog(ULONG EntriesToPrint);
 void NTAPI RxUninitializeLog(void);
 

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Display Driver Model - Win32k/dxgkrnl Bridge
+ * PROJECT:     ReliefWin Display Driver Model - Win32k/dxgkrnl Bridge
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     NtGdiDdDDI* -> D3DKMT* thin adapter layer
  * COPYRIGHT:   Copyright 2025 LiberNT Contributors
@@ -58,7 +58,7 @@
 #include <windef.h>
 #include "wddm_bridge.h"
 #include <d3dkmthk.h>
-#include <libernt/rddm/rxgkinterface.h>
+#include <reliefwin/rddm/rxgkinterface.h>
 #define NDEBUG
 #include <debug.h>
 

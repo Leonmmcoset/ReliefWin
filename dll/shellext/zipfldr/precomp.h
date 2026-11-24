@@ -21,7 +21,7 @@
 #include <strsafe.h>
 // debug.h needs this:
 #define NTSTATUS LONG
-#include <libernt/debug.h>
+#include <reliefwin/debug.h>
 #include <shellutils.h>
 
 #define EXTRACT_VERBA "extract"

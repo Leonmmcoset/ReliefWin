@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Tests for the input.dll layout or TIP functions
  * COPYRIGHT:   Copyright 2026 mikuta0407 <mikuta0407@mikuta0407.net>
@@ -43,7 +43,7 @@ static FN_EnumEnabledLayoutOrTip pEnumEnabledLayoutOrTip;
 
 static const WCHAR s_szUserProfile[] = L"Control Panel\\International\\User Profile";
 static const WCHAR s_szPreload[] = L"Keyboard Layout\\Preload";
-static const WCHAR s_szBackup[] = L"Software\\LiberNTInputTest";
+static const WCHAR s_szBackup[] = L"Software\\ReliefWinInputTest";
 
 static void BackupKey(LPCWSTR pszKey, LPCWSTR pszName)
 {

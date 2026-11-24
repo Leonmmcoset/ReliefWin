@@ -3316,7 +3316,7 @@ typedef DWORD (WINAPI *PCLUSAPI_CLUSTER_UPGRADE)(HCLUSTER, BOOL, PCLUSTER_UPGRAD
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 #if (( !MIDL_PASS && !__midl ))
 DWORD WINAPI AddClusterStorageNode(HCLUSTER hCluster, PCWSTR lpszNodeName, PCLUSTER_SETUP_PROGRESS_CALLBACK pfnProgressCallback, PVOID pvCallbackArg, LPCWSTR lpszClusterStorageNodeDescription, LPCWSTR lpszClusterStorageNodeLocation);
 DWORD WINAPI BackupClusterDatabase(HCLUSTER hCluster, LPCWSTR lpszPathName);
@@ -3840,7 +3840,7 @@ typedef LONG (WINAPI *PCLUSTER_REG_READ_BATCH_REPLY_NEXT_COMMAND)(HREGREADBATCHR
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 #if (( !MIDL_PASS && !__midl ))
 DWORD WINAPI AddClusterGroupDependency(HGROUP hDependentGroup, HGROUP hProviderGroup);
 DWORD WINAPI AddClusterGroupDependencyEx(HGROUP hDependentGroup, HGROUP hProviderGroup, LPCWSTR lpszReason);

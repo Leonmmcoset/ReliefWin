@@ -28,7 +28,7 @@ static ULONG TrapDisplayY;
  * The early_uart.h provides EarlyUartPutc/EarlyUartPuts/EarlyUartPutHex
  * that use the platform-detected UART address.
  */
-#include <libernt/arm64/early_uart.h>
+#include <reliefwin/arm64/early_uart.h>
 
 /*
  * Trap UART output macros - use the runtime-detected early UART.
@@ -165,7 +165,7 @@ TrapDisplayDumpContext(
     if (!TrapDisplayBegin())
         return;
 
-    TrapDisplayPuts(" ReactOS FreeLDR ARM64 ", TRAP_DISPLAY_HEADER_ATTR);
+    TrapDisplayPuts(" ReliefWin Loader ARM64 ", TRAP_DISPLAY_HEADER_ATTR);
     TrapDisplayPuts(Title, TRAP_DISPLAY_HEADER_ATTR);
     TrapDisplayPutChar('\n', TRAP_DISPLAY_ATTR);
 
@@ -469,7 +469,7 @@ TrapScreenDump(
 
     FaultAddrValid = ((InstructionAbort || DataAbort) && !(Iss & ESR_ELx_FNV)) || ExceptionClass == ESR_ELx_EC_PC_ALIGN;
 
-    TrapScreenPrint("\nLiberNT loader %s: %s, class %02lx\n", Title, ExceptionName, ExceptionClass);
+    TrapScreenPrint("\nReliefWin loader %s: %s, class %02lx\n", Title, ExceptionName, ExceptionClass);
     TrapScreenPrint("ESR %016llx ISS %07lx IL %lu\n", Esr, Iss, (Esr & ESR_ELx_IL) ? 1UL : 0UL);
     if (InstructionAbort || DataAbort)
     {

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Boot Loader
+ * PROJECT:     ReliefWin Boot Loader
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     BOOTMGR startup stub: real-mode entry, boot application mapping and the BIOS call gate
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -101,7 +101,7 @@ BiosMessageA20:
 BiosMessageCpu:
     .asciz "BOOTMGR: this processor does not run 64-bit code.\r\n"
 BiosMessageLoader:
-    .asciz "BOOTMGR: not started by a LiberNT boot sector.\r\n"
+    .asciz "BOOTMGR: not started by a ReliefWin boot sector.\r\n"
 BiosMessageImage:
     .asciz "BOOTMGR is damaged: its boot application image is not valid.\r\n"
 BiosMessageReturn:

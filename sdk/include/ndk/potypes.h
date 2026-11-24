@@ -131,7 +131,7 @@ typedef struct _PO_IRP_MANAGER
 
 #if !defined(NTOS_MODE_USER) && !defined(_PROCESSOR_POWER_STATE_LEGACY_MEMBERS_DEFINED)
 #define _PROCESSOR_POWER_STATE_LEGACY_MEMBERS_DEFINED
-/* LiberNT idle and throttle state, kept over the Windows processor power management members */
+/* ReliefWin idle and throttle state, kept over the Windows processor power management members */
 #define PROCESSOR_POWER_STATE_LEGACY_MEMBERS \
     PPROCESSOR_IDLE_FUNCTION IdleFunction; \
     ULONG Idle0KernelTimeLimit; \

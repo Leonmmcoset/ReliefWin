@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Two new profiles made from the default profile at the same time both come out whole
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

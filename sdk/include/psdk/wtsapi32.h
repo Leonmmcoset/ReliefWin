@@ -1159,7 +1159,7 @@ BOOL WINAPI WTSVirtualChannelQuery(HANDLE hChannelHandle, WTS_VIRTUAL_CLASS, PVO
 BOOL WINAPI WTSVirtualChannelRead(HANDLE hChannelHandle, ULONG TimeOut, PCHAR Buffer, ULONG BufferSize, PULONG pBytesRead);
 BOOL WINAPI WTSVirtualChannelWrite(HANDLE hChannelHandle, PCHAR Buffer, ULONG Length, PULONG pBytesWritten);
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 BOOL WINAPI WTSActiveSessionExists(PBOOL pbActiveSessionExists);
 void WINAPI WTSCloudAuthClose(WTS_CLOUD_AUTH_HANDLE cloudAuthHandle);
 BOOL WINAPI WTSCloudAuthConvertAssertionToSerializedUserCredential(WTS_CLOUD_AUTH_HANDLE cloudAuthHandle, PCSTR assertion, ULONG assertionLength, PCWSTR resourceId, WTS_SERIALIZED_USER_CREDENTIAL **userCredential);

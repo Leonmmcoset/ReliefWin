@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Smart Card API
+ * PROJECT:     ReliefWin Smart Card API
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Smart card calls served by the smart card resource manager
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

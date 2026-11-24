@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     A 32-bit process under WoW64 sees 2 GB of user space, or 4 GB when its image is large address aware
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

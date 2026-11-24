@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later),
  *              with portions under the BSD license in COPYING.ARM
  * PURPOSE:     i386 trap and interrupt handlers called from the entry stubs

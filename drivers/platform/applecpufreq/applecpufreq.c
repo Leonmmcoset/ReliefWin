@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Apple CPU Performance Driver
+ * PROJECT:     ReliefWin Apple CPU Performance Driver
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Performance states of the Apple silicon CPU clusters
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -8,8 +8,8 @@
 #include <ntifs.h>
 #include <ndk/exfuncs.h>
 #include <ntstrsafe.h>
-#include <libernt/arm64/sysreg.h>
-#include <libernt/drivers/fdtdrv.h>
+#include <reliefwin/arm64/sysreg.h>
+#include <reliefwin/drivers/fdtdrv.h>
 #include "governor.h"
 
 #define CPUFREQ_FAILURES_LOGGED     3

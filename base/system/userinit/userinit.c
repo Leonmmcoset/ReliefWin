@@ -817,7 +817,7 @@ wWinMain(IN HINSTANCE hInst,
         NotifyLogon();
 
     if (bIsLiveCD)
-        StartInstaller(L"libernt.exe");
+        StartInstaller(L"reliefwin.exe");
 
     return 0;
 }

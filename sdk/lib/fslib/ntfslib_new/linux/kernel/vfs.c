@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 /*
- * PROJECT:     LiberNT NTFS library
+ * PROJECT:     ReliefWin NTFS library
  * LICENSE:     MIT (https://spdx.org/licenses/MIT)
  * PURPOSE:     Linux VFS glue for the NTFS core
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -1926,6 +1926,6 @@ static void __exit nk_exit(void)
 
 module_init(nk_init);
 module_exit(nk_exit);
-MODULE_DESCRIPTION("NTFS through the LiberNT NTFS library");
+MODULE_DESCRIPTION("NTFS through the ReliefWin NTFS library");
 MODULE_LICENSE("Dual MIT/GPL");
 MODULE_ALIAS_FS("ntfslib");

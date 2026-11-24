@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Tests that SetWindowPos on a window of another thread returns after that thread handled the change,
  *              unless SWP_ASYNCWINDOWPOS is given

@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# PROJECT:     LiberNT NTFS library tests
+# PROJECT:     ReliefWin NTFS library tests
 # LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
 # PURPOSE:     Format a 4096-byte sector volume and round-trip files through it
 # COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

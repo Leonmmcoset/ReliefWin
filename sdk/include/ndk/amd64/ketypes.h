@@ -62,7 +62,7 @@ typedef struct _PROCESSOR_POWER_STATE
         };
         struct
         {
-            PROCESSOR_POWER_STATE_LEGACY_MEMBERS                    // [LiberNT]
+            PROCESSOR_POWER_STATE_LEGACY_MEMBERS                    // [ReliefWin]
         };
     };
     UCHAR ArchitecturalEfficiencyClass;                             // 0x1C8
@@ -817,7 +817,7 @@ typedef struct _KPRCB
     union // 0x000C8
     {
         ULONGLONG GroupSetMember;
-        ULONG64 SetMember; // [LiberNT] legacy alias
+        ULONG64 SetMember; // [ReliefWin] legacy alias
     };
     UCHAR Group; // 0x000D0
     UCHAR GroupIndex; // 0x000D1
@@ -961,7 +961,7 @@ typedef struct _KPRCB
     union // 0x04100
     {
         UCHAR TimerTable[16920]; // _KTIMER_TABLE
-        KSPIN_LOCK_QUEUE TimerTableLockQueue[LOCK_QUEUE_TIMER_TABLE_LOCKS]; // [LiberNT] timer table locks
+        KSPIN_LOCK_QUEUE TimerTableLockQueue[LOCK_QUEUE_TIMER_TABLE_LOCKS]; // [ReliefWin] timer table locks
     };
     PVOID DpcLog; // 0x08318
     ULONG DpcLogIndex; // 0x08320
@@ -1218,7 +1218,7 @@ typedef struct _KPRCB
     union // 0x0BEC0
     {
         ULONGLONG PrcbPad141[512];
-        struct // [LiberNT] state Windows does not keep in the KPRCB
+        struct // [ReliefWin] state Windows does not keep in the KPRCB
         {
             KEVENT DpcEvent;
             LONG DpcSetEventRequest;

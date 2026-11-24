@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Broadcom PCIe Bluetooth transport
+ * PROJECT:     ReliefWin Broadcom PCIe Bluetooth transport
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Broadcom BCM4378/4387/4388 PCIe Bluetooth transport definitions
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -12,9 +12,9 @@
 #include <wdmguid.h>
 #include <ntstrsafe.h>
 #include <bthxddi.h>
-#include <libernt/drivers/fdtdrv.h>
-#include <libernt/drivers/appledart.h>
-#include <libernt/drivers/applepcie.h>
+#include <reliefwin/drivers/fdtdrv.h>
+#include <reliefwin/drivers/appledart.h>
+#include <reliefwin/drivers/applepcie.h>
 #include "proto.h"
 
 #define BCMBT_TAG                       'tBcB'

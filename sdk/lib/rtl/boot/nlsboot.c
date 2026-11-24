@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Boot Loader
+ * PROJECT:     ReliefWin Boot Loader
  * LICENSE:     GPL-2.0+ (https://spdx.org/licenses/GPL-2.0+)
  * PURPOSE:     "Poor-man" boot-time National Language Support (NLS) functions.
  * COPYRIGHT:   Copyright 2022 Hermès Bélusca-Maïto

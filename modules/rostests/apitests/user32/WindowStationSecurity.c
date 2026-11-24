@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Tests the security a window station and a desktop get, and that opening one is checked against it
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -70,14 +70,14 @@ START_TEST(WindowStationSecurity)
 
     TestDirectory();
 
-    WinSta = CreateWindowStationW(L"LiberNTSecurityTest", 0, WINSTA_ALL_ACCESS | READ_CONTROL, NULL);
+    WinSta = CreateWindowStationW(L"ReliefWinSecurityTest", 0, WINSTA_ALL_ACCESS | READ_CONTROL, NULL);
     ok(WinSta != NULL, "CreateWindowStationW failed %lu\n", GetLastError());
     if (WinSta != NULL)
     {
         ok(GetSddl(WinSta, DACL_SECURITY_INFORMATION, Sddl, ARRAYSIZE(Sddl)), "Cannot read the window station's DACL: %lu\n", GetLastError());
         ok(!wcscmp(Sddl, L"D:(A;;0xf037f;;;WD)(A;;0xf037f;;;RC)(A;OIIO;GA;;;WD)(A;OIIO;GA;;;RC)"), "A window station created without a descriptor has %ls\n", Sddl);
         ok(SetProcessWindowStation(WinSta), "SetProcessWindowStation failed %lu\n", GetLastError());
-        Desktop = CreateDesktopW(L"LiberNTSecurityDesk", NULL, NULL, 0, GENERIC_ALL, NULL);
+        Desktop = CreateDesktopW(L"ReliefWinSecurityDesk", NULL, NULL, 0, GENERIC_ALL, NULL);
         ok(Desktop != NULL, "CreateDesktopW failed %lu\n", GetLastError());
         if (Desktop != NULL)
         {

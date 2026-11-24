@@ -4,8 +4,8 @@
 #include <initguid.h>
 #include <devpkey.h>
 #include <poclass.h>
-#include <libernt/drivers/reshubio.h>
-#include <libernt/drivers/inteli2c.h>
+#include <reliefwin/drivers/reshubio.h>
+#include <reliefwin/drivers/inteli2c.h>
 #include <wdmguid.h>
 
 #define NDEBUG

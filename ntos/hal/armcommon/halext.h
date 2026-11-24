@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT HAL
+ * PROJECT:     ReliefWin HAL
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Services the HAL extensions register, as the ARM64 HAL consumes them
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include <libernt/hal/halext.h>
+#include <reliefwin/hal/halext.h>
 
 #if defined(_NTOSKRNL_) || defined(_NTSYSTEM_)
 ULONG

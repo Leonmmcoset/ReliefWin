@@ -8,7 +8,7 @@
 #include <ks.h>
 #include <ksmedia.h>
 #include <mmsystem.h>
-#include <libernt/libs/sound/wavefmt.h>
+#include <reliefwin/libs/sound/wavefmt.h>
 
 #include "mmixer.h"
 

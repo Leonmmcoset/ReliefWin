@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Dispatcher, scheduler, timer and lock inline helpers
  * COPYRIGHT:   Copyright Alex Ionescu <alex.ionescu@reactos.org>

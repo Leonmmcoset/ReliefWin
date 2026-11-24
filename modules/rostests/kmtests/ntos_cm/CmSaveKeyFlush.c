@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT kernel-mode tests
+ * PROJECT:     ReliefWin kernel-mode tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Flushing the whole registry succeeds while a key is being saved to a file
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

@@ -788,7 +788,7 @@ typedef SECURITY_STATUS (WINAPI *SslGetServerIdentityFn)(PBYTE, DWORD, PBYTE *, 
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 BOOL WINAPI SslCrackCertificate(PUCHAR pbCertificate, DWORD cbCertificate, DWORD dwFlags, PX509Certificate *ppCertificate);
 SECURITY_STATUS WINAPI SslDeserializeCertificateStore(CERT_BLOB SerializedCertificateStore, PCCERT_CONTEXT *ppCertContext);
 void WINAPI SslFreeCertificate(PX509Certificate pCertificate);

@@ -1,5 +1,5 @@
 #
-# PROJECT:     LiberNT Broadcom PCIe Bluetooth transport
+# PROJECT:     ReliefWin Broadcom PCIe Bluetooth transport
 # LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
 # PURPOSE:     Broadcom PCIe Bluetooth transport build rules
 # COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

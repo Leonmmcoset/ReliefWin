@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Extensible Storage Engine
+ * PROJECT:     ReliefWin Extensible Storage Engine
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Entry points of the database engine that report it as unavailable
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

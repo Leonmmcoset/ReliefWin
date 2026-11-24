@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test a suspended process initialized by a thread other than its initial thread
  * COPYRIGHT:   Copyright 2026 Ostap Brehin <osbre@protonmail.com>

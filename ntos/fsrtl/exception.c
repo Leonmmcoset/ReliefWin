@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Telling an exception a file system may pass on from one it may not
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

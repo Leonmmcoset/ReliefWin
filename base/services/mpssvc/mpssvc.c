@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Windows Firewall service
+ * PROJECT:     ReliefWin Windows Firewall service
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Windows Firewall service lifecycle and policy reload orchestration
  * COPYRIGHT:   Copyright 2026 Ostap Brehin <osbre@protonmail.com>

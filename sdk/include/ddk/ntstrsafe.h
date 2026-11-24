@@ -3393,7 +3393,7 @@ typedef const __unaligned wchar_t *STRSAFE_PCUNZWCH;
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 NTSTATUS NTAPI RtlStringCbCopyUnicodeString(NTSTRSAFE_PWSTR pszDest, size_t cbDest, PCUNICODE_STRING SourceString);
 NTSTATUS NTAPI RtlStringCbCopyUnicodeStringEx(NTSTRSAFE_PWSTR pszDest, size_t cbDest, PCUNICODE_STRING SourceString, NTSTRSAFE_PWSTR *ppszDestEnd, size_t *pcbRemaining, DWORD dwFlags);
 NTSTATUS NTAPI RtlStringCchCopyUnicodeString(NTSTRSAFE_PWSTR pszDest, size_t cchDest, PCUNICODE_STRING SourceString);

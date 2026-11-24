@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT WDDM 2.x Graphics Memory Manager and Scheduler
+ * PROJECT:     ReliefWin WDDM 2.x Graphics Memory Manager and Scheduler
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Private module state for dxgmms2.sys
  */
@@ -12,8 +12,8 @@
 #include <ntifs.h>
 #include <ntddk.h>
 #include <wdm.h>
-#include <libernt/debug.h>
-#include <libernt/drivers/directx/dxgmms2.h>
+#include <reliefwin/debug.h>
+#include <reliefwin/drivers/directx/dxgmms2.h>
 #include "timeline_core.h"
 #include "context_stream_core.h"
 #include "scheduler_core.h"

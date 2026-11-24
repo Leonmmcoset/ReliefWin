@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Validation of information class requests against their class table
  * COPYRIGHT:   Copyright 2022 George Bișoc <george.bisoc@reactos.org>
@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include <libernt/probe.h>
+#include <reliefwin/probe.h>
 
 ROS_PROBE_UNUSED
 static

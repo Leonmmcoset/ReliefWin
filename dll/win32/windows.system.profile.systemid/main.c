@@ -252,7 +252,7 @@ static SystemIdentificationSource read_system_id( BYTE *id )
     HKEY key;
     LONG ret;
 
-    if (RegOpenKeyExW( HKEY_LOCAL_MACHINE, L"SOFTWARE\\LiberNT\\SystemIdentification", 0,
+    if (RegOpenKeyExW( HKEY_LOCAL_MACHINE, L"SOFTWARE\\ReliefWin\\SystemIdentification", 0,
                        KEY_QUERY_VALUE | KEY_WOW64_64KEY, &key ))
         return SystemIdentificationSource_None;
 

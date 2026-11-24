@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     OpenGL 1.1 clears, triangles, textures and depth read back exactly
  * COPYRIGHT:   Copyright 2026 Ostap Brehin <osbre@protonmail.com>

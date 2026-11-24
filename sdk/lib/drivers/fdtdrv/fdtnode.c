@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Device Tree Driver Library
+ * PROJECT:     ReliefWin Device Tree Driver Library
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Device-tree lookups and register mapping through the I/O of the tree's owner
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -8,7 +8,7 @@
 #ifndef UNIT_TEST
 #include <ntddk.h>
 #endif
-#include <libernt/drivers/fdtdrv.h>
+#include <reliefwin/drivers/fdtdrv.h>
 
 ULONG
 NTAPI

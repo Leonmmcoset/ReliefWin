@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Windows Firewall service
+ * PROJECT:     ReliefWin Windows Firewall service
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Load firewall rules and translate them into WFP filters
  * COPYRIGHT:   Copyright 2026 Ostap Brehin <osbre@protonmail.com>
@@ -63,7 +63,7 @@ MpsApplyFirewallRule(
 
     ZeroMemory(&Filter, sizeof(Filter));
     ZeroMemory(Conditions, sizeof(Conditions));
-    Filter.displayData.name = L"LiberNT firewall rule";
+    Filter.displayData.name = L"ReliefWin firewall rule";
     Filter.layerKey = Rule->Inbound ? FWPM_LAYER_ALE_AUTH_RECV_ACCEPT_V4 :
                                       FWPM_LAYER_ALE_AUTH_CONNECT_V4;
     Filter.subLayerKey = *SubLayerKey;
@@ -227,7 +227,7 @@ MpsAddLoopbackPermit(
     Condition.conditionValue.uint32 = FWP_CONDITION_FLAG_IS_LOOPBACK;
 
     ZeroMemory(&Filter, sizeof(Filter));
-    Filter.displayData.name = L"LiberNT firewall loopback";
+    Filter.displayData.name = L"ReliefWin firewall loopback";
     Filter.layerKey = FWPM_LAYER_ALE_AUTH_CONNECT_V4;
     Filter.subLayerKey = *SubLayerKey;
     Filter.action.type = FWP_ACTION_PERMIT;

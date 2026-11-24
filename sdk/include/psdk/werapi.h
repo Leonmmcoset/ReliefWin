@@ -478,7 +478,7 @@ typedef const WER_REPORT_INFORMATION_V5 *PCWER_REPORT_INFORMATION_V5;
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 HRESULT STDAPICALLTYPE WerRegisterAdditionalProcess(DWORD processId, DWORD captureExtraInfoForThreadId);
 HRESULT STDAPICALLTYPE WerRegisterAppLocalDump(PCWSTR localAppDataRelativePath);
 HRESULT STDAPICALLTYPE WerRegisterExcludedMemoryBlock(const void *address, DWORD size);

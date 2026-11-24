@@ -97,10 +97,10 @@ def sha256(path):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Build the LiberNT LLVMpipe/Lavapipe release payload")
+    parser = argparse.ArgumentParser(description="Build the ReliefWin LLVMpipe/Lavapipe release payload")
     parser.add_argument("--arch", required=True, choices=("amd64", "arm64", "riscv64"))
-    parser.add_argument("--source-dir", required=True, help="LiberNT source tree")
-    parser.add_argument("--build-dir", required=True, help="LiberNT build directory that already built mesa_gallium")
+    parser.add_argument("--source-dir", required=True, help="ReliefWin source tree")
+    parser.add_argument("--build-dir", required=True, help="ReliefWin build directory that already built mesa_gallium")
     parser.add_argument("--llvm-root", required=True, help="Static Windows LLVM 22 install for the native architecture")
     parser.add_argument("--llvm-root-ec", help="Static Windows LLVM 22 install for ARM64EC (arm64 only)")
     parser.add_argument("--llvm-license", required=True, help="LLVM LICENSE.TXT")

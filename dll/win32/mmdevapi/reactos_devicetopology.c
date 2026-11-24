@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Core Audio
+ * PROJECT:     ReliefWin Core Audio
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     DeviceTopology API over audio endpoints and their KS filters
  * COPYRIGHT:   Copyright 2026 Ostap Brehin <osbre@protonmail.com>

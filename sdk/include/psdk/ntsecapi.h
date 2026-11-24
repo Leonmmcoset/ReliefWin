@@ -1686,7 +1686,7 @@ typedef struct _LSA_FOREST_TRUST_INFORMATION2 *PLSA_FOREST_TRUST_INFORMATION2;
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 typedef struct _AUDIT_POLICY_INFORMATION *PAUDIT_POLICY_INFORMATION;
 
 BOOLEAN WINAPI AuditComputeEffectivePolicyBySid(const PSID pSid, const GUID *pSubCategoryGuids, ULONG dwPolicyCount, PAUDIT_POLICY_INFORMATION *ppAuditPolicy);
@@ -2192,7 +2192,7 @@ typedef struct _KERB_TRANSFER_CRED_REQUEST *PKERB_TRANSFER_CRED_REQUEST;
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 BOOLEAN WINAPI AuditSetPerUserPolicy(const PSID pSid, PCAUDIT_POLICY_INFORMATION pAuditPolicy, ULONG dwPolicyCount);
 BOOLEAN WINAPI AuditSetSystemPolicy(PCAUDIT_POLICY_INFORMATION pAuditPolicy, ULONG dwPolicyCount);
 

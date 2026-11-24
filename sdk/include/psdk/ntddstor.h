@@ -2905,7 +2905,7 @@ typedef struct _STORAGE_ZONED_DEVICE_DESCRIPTOR STORAGE_ZONED_DEVICE_DESCRIPTOR;
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 BOOLEAN DeviceDsmAddDataSetRange(PDEVICE_DSM_INPUT Input, ULONG InputLength, LONGLONG Offset, ULONGLONG Length);
 PDEVICE_DSM_RANGE DeviceDsmDataSetRanges(PDEVICE_DSM_INPUT Input);
 ULONG DeviceDsmGetInputLength(PDEVICE_DSM_DEFINITION Definition, ULONG ParameterBlockLength, ULONG NumberOfDataSetRanges);

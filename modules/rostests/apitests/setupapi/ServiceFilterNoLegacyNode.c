@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     A service filter on the device ID list creates no legacy device node
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -52,9 +52,9 @@ TestNoLegacyNode(
 
 START_TEST(ServiceFilterNoLegacyNode)
 {
-    static const PCWSTR LegacyServices[] = { L"Null", L"Beep", L"LiberNTNoSuchService" };
+    static const PCWSTR LegacyServices[] = { L"Null", L"Beep", L"ReliefWinNoSuchService" };
     static const PCWSTR LegacyNodes[] = { L"ROOT\\LEGACY_NULL\\0000", L"ROOT\\LEGACY_BEEP\\0000",
-                                          L"ROOT\\LEGACY_LIBERNTNOSUCHSERVICE\\0000" };
+                                          L"ROOT\\LEGACY_RELIEFWINNOSUCHSERVICE\\0000" };
     ULONG Index;
 
     for (Index = 0; Index < ARRAYSIZE(LegacyServices); Index++)

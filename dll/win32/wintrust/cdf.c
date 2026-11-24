@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Trust Verification API
+ * PROJECT:     ReliefWin Trust Verification API
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Build catalog files from catalog definition files
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

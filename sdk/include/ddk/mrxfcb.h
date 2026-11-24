@@ -280,7 +280,7 @@ RxAcquireExclusiveFcbResourceInMRx(
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 NTSTATUS RxAcquireSharedFcbResourceInMRx(PMRX_FCB Fcb);
 NTSTATUS RxAcquireSharedFcbResourceInMRxEx(PRX_CONTEXT pRxContext, PMRX_FCB Fcb);
 void RxReleaseFcbResourceForThreadInMRx(PRX_CONTEXT pRxContext, PMRX_FCB MrxFcb, ERESOURCE_THREAD ResourceThreadId);

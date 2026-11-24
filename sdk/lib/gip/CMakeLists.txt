@@ -1,3 +1,3 @@
 # SPDX-License-Identifier: MIT
 add_library(gip STATIC gip.c)
-target_include_directories(gip PUBLIC ${REACTOS_SOURCE_DIR}/sdk/include/libernt/libs/gip)
+target_include_directories(gip PUBLIC ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/libs/gip)

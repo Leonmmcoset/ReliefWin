@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT USB Camera Driver
+ * PROJECT:     ReliefWin USB Camera Driver
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     GUIDs the driver uses, as published in the Windows SDK ksmedia.h
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

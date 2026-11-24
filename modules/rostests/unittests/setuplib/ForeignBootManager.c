@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test which system installed the PC/AT boot manager of a root
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -30,15 +30,15 @@ WriteBootManager(
 
 START_TEST(ForeignBootManager)
 {
-    /* The head of LiberNT's PC/AT BOOTMGR: a jump, "BOOTMGR", then the startup block 'BSTP' at 0x10 */
-    static const UCHAR LiberNT[0x20] = { 0xE9, 0xF7, 0x01, 0x8D, 0xB4, 0x00, 0x00, 0x90, 'B', 'O', 'O', 'T', 'M', 'G', 'R', 0,
+    /* The head of ReliefWin's PC/AT BOOTMGR: a jump, "BOOTMGR", then the startup block 'BSTP' at 0x10 */
+    static const UCHAR ReliefWin[0x20] = { 0xE9, 0xF7, 0x01, 0x8D, 0xB4, 0x00, 0x00, 0x90, 'B', 'O', 'O', 'T', 'M', 'G', 'R', 0,
                                          'B', 'S', 'T', 'P', 1, 0, 0, 0 };
     static const UCHAR Other[0x20] = { 0xEB, 0x22, 0x90, 'B', 'O', 'O', 'T', 'M', 'G', 'R', 0, 0, 0, 0, 0, 0,
                                        'O', 'T', 'H', 'R' };
     WCHAR Dir[MAX_PATH], Root[MAX_PATH], Path[MAX_PATH];
 
     GetTempPathW(MAX_PATH, Dir);
-    wcscat(Dir, L"LiberNTForeignBootManager");
+    wcscat(Dir, L"ReliefWinForeignBootManager");
     CreateDirectoryW(Dir, NULL);
     StringCchPrintfW(Root, MAX_PATH, L"\\??\\%s", Dir);
     StringCchPrintfW(Path, MAX_PATH, L"%s\\bootmgr", Dir);
@@ -46,13 +46,13 @@ START_TEST(ForeignBootManager)
 
     ok_int(GetPcatBootManagerOwner(Root), BootManagerNone);
 
-    WriteBootManager(Dir, LiberNT, sizeof(LiberNT));
-    ok_int(GetPcatBootManagerOwner(Root), BootManagerLiberNT);
+    WriteBootManager(Dir, ReliefWin, sizeof(ReliefWin));
+    ok_int(GetPcatBootManagerOwner(Root), BootManagerReliefWin);
 
     WriteBootManager(Dir, Other, sizeof(Other));
     ok_int(GetPcatBootManagerOwner(Root), BootManagerForeign);
 
-    WriteBootManager(Dir, LiberNT, 8);
+    WriteBootManager(Dir, ReliefWin, 8);
     ok_int(GetPcatBootManagerOwner(Root), BootManagerForeign);
 
     DeleteFileW(Path);

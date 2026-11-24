@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test reaching a server restarted on the endpoint of one that died during a call
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -12,8 +12,8 @@
 #include <rpcdcep.h>
 #include <stdio.h>
 
-#define ENDPOINT L"LiberNTServerRestart"
-#define READY_EVENT L"LiberNTServerRestartReady"
+#define ENDPOINT L"ReliefWinServerRestart"
+#define READY_EVENT L"ReliefWinServerRestartReady"
 
 #define PROC_PING 0
 #define PROC_DIE  1

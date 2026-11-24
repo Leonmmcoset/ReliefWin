@@ -5809,7 +5809,7 @@ void NTAPI KsPinRegisterIrpCompletionCallback(PKSPIN Pin, PFNKSPINIRPCOMPLETION 
 BOOLEAN NTAPI KsProcessPinUpdate(PKSPROCESSPIN ProcessPin);
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 #if (!(defined(_NTDDK_)))
 KSDDKAPI HRESULT WINAPI KsCreateAllocator2(HANDLE ConnectionHandle, PKSALLOCATOR_FRAMING AllocatorFraming, PHANDLE AllocatorHandle);
 KSDDKAPI HRESULT NTAPI KsCreateClock2(HANDLE ConnectionHandle, PKSCLOCK_CREATE ClockCreate, PHANDLE ClockHandle);

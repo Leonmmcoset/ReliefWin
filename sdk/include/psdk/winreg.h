@@ -743,7 +743,7 @@ typedef struct provider_info REG_PROVIDER;
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 WINADVAPI DWORD APIENTRY CheckForHiberboot(PBOOLEAN pHiberboot, BOOLEAN bClearFlag);
 WINADVAPI LSTATUS APIENTRY RegConnectRegistryExA(LPCSTR lpMachineName, HKEY hKey, ULONG Flags, PHKEY phkResult);
 WINADVAPI LSTATUS APIENTRY RegConnectRegistryExW(LPCWSTR lpMachineName, HKEY hKey, ULONG Flags, PHKEY phkResult);

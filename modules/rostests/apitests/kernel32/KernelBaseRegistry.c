@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Tests for RegRestoreKeyW, RegOpenUserClassesRoot, SHRegCreateUSKeyW and RegLoadMUIStringA
  * COPYRIGHT:   Copyright 2026 Ahmed Arif <arif.ing@outlook.com>
@@ -12,8 +12,8 @@
 #include <ndk/sefuncs.h>
 #include <ndk/setypes.h>
 
-#define TEST_ROOT L"Software\\LiberNT-apitest-KernelBaseRegistry"
-#define TEST_CLASS L"LiberNT.UserClassesTest"
+#define TEST_ROOT L"Software\\ReliefWin-apitest-KernelBaseRegistry"
+#define TEST_CLASS L"ReliefWin.UserClassesTest"
 
 typedef LSTATUS (WINAPI *PFN_REGRESTOREKEYW)(HKEY, LPCWSTR, DWORD);
 typedef LSTATUS (WINAPI *PFN_REGOPENUSERCLASSESROOT)(HANDLE, DWORD, REGSAM, PHKEY);
@@ -156,8 +156,8 @@ TestRegRestoreKey(VOID)
     if (Child)
         RegCloseKey(Child);
 
-    MakeTempPath(File, L"LiberNTRestore.hiv");
-    MakeTempPath(Missing, L"LiberNTRestoreMissing.hiv");
+    MakeTempPath(File, L"ReliefWinRestore.hiv");
+    MakeTempPath(Missing, L"ReliefWinRestoreMissing.hiv");
 
     if (Source && Target && SaveKeyToFile(Source, File))
     {
@@ -308,7 +308,7 @@ TestUserClassesWithTemporaryProfile(
         RegCloseKey(Class);
     }
 
-    MakeTempPath(File, L"LiberNTUserClasses.hiv");
+    MakeTempPath(File, L"ReliefWinUserClasses.hiv");
     if (SaveKeyToFile(Profile, File))
     {
         if (NT_SUCCESS(RtlAdjustPrivilege(SE_RESTORE_PRIVILEGE, TRUE, FALSE, &RestoreWas)))
@@ -543,7 +543,7 @@ TestRegLoadMUIStringA(VOID)
     }
 
     Size = 0xdeadbeef;
-    Error = pRegLoadMUIStringA(HKEY_LOCAL_MACHINE, "LiberNTMissingValue", Buffer, sizeof(Buffer), &Size, 0, NULL);
+    Error = pRegLoadMUIStringA(HKEY_LOCAL_MACHINE, "ReliefWinMissingValue", Buffer, sizeof(Buffer), &Size, 0, NULL);
     ok_long(Error, ERROR_CALL_NOT_IMPLEMENTED);
 }
 

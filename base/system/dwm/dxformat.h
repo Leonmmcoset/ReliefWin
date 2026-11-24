@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Desktop Window Manager
+ * PROJECT:     ReliefWin Desktop Window Manager
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Converts a row of a client swap chain format to BGRA8 for software composition
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

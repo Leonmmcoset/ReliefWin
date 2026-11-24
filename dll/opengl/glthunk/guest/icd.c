@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT OpenGL thunk
+ * PROJECT:     ReliefWin OpenGL thunk
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     OpenGL ICD of emulated AMD64 processes that renders with the native OpenGL host
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -8,7 +8,7 @@
 #include <windef.h>
 #include <winbase.h>
 #include <wingdi.h>
-#include <libernt/emuhost.h>
+#include <reliefwin/emuhost.h>
 #include "../glthunk.h"
 
 #define GLTHUNK_STRING2(Value) #Value

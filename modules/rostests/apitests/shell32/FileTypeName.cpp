@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test that the type name of a file comes from the FriendlyTypeName of its ProgID
  * COPYRIGHT:   Copyright 2026 mikuta0407 <mikuta0407@mikuta0407.net>
@@ -67,7 +67,7 @@ TestTypeName(PCWSTR Extension, PCWSTR ProgId, UINT StringId)
 START_TEST(FileTypeName)
 {
     CoInitialize(NULL);
-    TestTypeName(L".lntftnshort", L"LiberNT.FileTypeNameShort", IDS_FILETYPE_SHORT);
-    TestTypeName(L".lntftnlong", L"LiberNT.FileTypeNameLong", IDS_FILETYPE_LONG);
+    TestTypeName(L".lntftnshort", L"ReliefWin.FileTypeNameShort", IDS_FILETYPE_SHORT);
+    TestTypeName(L".lntftnlong", L"ReliefWin.FileTypeNameLong", IDS_FILETYPE_LONG);
     CoUninitialize();
 }

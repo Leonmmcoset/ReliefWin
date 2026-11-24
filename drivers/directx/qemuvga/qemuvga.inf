@@ -1,11 +1,11 @@
-; LiberNT driver for the legacy-free QEMU standard VGA
+; ReliefWin driver for the legacy-free QEMU standard VGA
 
 [Version]
 Signature="$Windows NT$"
 LayoutFile=layout.inf
 Class=Display
 ClassGUID={4D36E968-E325-11CE-BFC1-08002BE10318}
-Provider=%LiberNT%
+Provider=%ReliefWin%
 DriverVer=11/22/2026,1.0.0.0
 
 [DestinationDirs]
@@ -39,10 +39,10 @@ ServiceBinary=%12%\qemuvga.sys
 LoadOrderGroup=Video
 
 [Strings]
-LiberNT="LiberNT Project"
+ReliefWin="ReliefWin Project"
 StdMfg="(Standard display types)"
 QemuVga.DeviceDesc="QEMU Standard VGA (secondary)"
-QemuVga.ServiceDesc="LiberNT QEMU Standard VGA Driver"
+QemuVga.ServiceDesc="ReliefWin QEMU Standard VGA Driver"
 REG_MULTI_SZ=0x00010000
 REG_DWORD=0x00010001
 REG_SZ=0x00000000

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test that an application hive is shared, usable and let go once its keys are closed
  * COPYRIGHT:   Copyright 2026 Ahmed Arif <arif.ing@outlook.com>
@@ -17,7 +17,7 @@ SaveTestHive(
     HKEY Source;
     LONG Error;
 
-    Error = RegCreateKeyExW(HKEY_CURRENT_USER, L"Software\\LiberNTAppKeySource", 0, NULL, 0,
+    Error = RegCreateKeyExW(HKEY_CURRENT_USER, L"Software\\ReliefWinAppKeySource", 0, NULL, 0,
                             KEY_ALL_ACCESS, NULL, &Source, NULL);
     ok(Error == ERROR_SUCCESS, "RegCreateKeyExW returned %ld\n", Error);
     if (Error != ERROR_SUCCESS) return FALSE;
@@ -26,7 +26,7 @@ SaveTestHive(
     {
         skip("Cannot enable SeBackupPrivilege\n");
         RegCloseKey(Source);
-        RegDeleteKeyW(HKEY_CURRENT_USER, L"Software\\LiberNTAppKeySource");
+        RegDeleteKeyW(HKEY_CURRENT_USER, L"Software\\ReliefWinAppKeySource");
         return FALSE;
     }
 
@@ -35,7 +35,7 @@ SaveTestHive(
 
     RtlAdjustPrivilege(SE_BACKUP_PRIVILEGE, WasEnabled, FALSE, &Ignored);
     RegCloseKey(Source);
-    RegDeleteKeyW(HKEY_CURRENT_USER, L"Software\\LiberNTAppKeySource");
+    RegDeleteKeyW(HKEY_CURRENT_USER, L"Software\\ReliefWinAppKeySource");
     return (Error == ERROR_SUCCESS);
 }
 
@@ -54,7 +54,7 @@ START_TEST(RegLoadAppKey)
     ULONG Attempt;
 
     GetTempPathW(ARRAYSIZE(Directory), Directory);
-    StringCchCatW(Directory, ARRAYSIZE(Directory), L"LiberNTAppKey");
+    StringCchCatW(Directory, ARRAYSIZE(Directory), L"ReliefWinAppKey");
     CreateDirectoryW(Directory, NULL);
     StringCchPrintfW(Path, ARRAYSIZE(Path), L"%s\\app.hiv", Directory);
     DeleteFileW(Path);

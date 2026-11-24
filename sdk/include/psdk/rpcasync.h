@@ -293,7 +293,7 @@ typedef struct _RPC_CALL_LOCAL_ADDRESS_V1 {
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 RPCRTAPI RPC_STATUS RPC_ENTRY I_RpcBindingInqClientTokenAttributes(RPC_BINDING_HANDLE Binding, LUID *TokenId, LUID *AuthenticationId, LUID *ModifiedId);
 RPCRTAPI RPC_STATUS RPC_ENTRY RpcBindingBind(PRPC_ASYNC_STATE pAsync, RPC_BINDING_HANDLE Binding, RPC_IF_HANDLE IfSpec);
 RPCRTAPI RPC_STATUS RPC_ENTRY RpcBindingUnbind(RPC_BINDING_HANDLE Binding);

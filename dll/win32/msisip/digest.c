@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT MSI SIP
+ * PROJECT:     ReliefWin MSI SIP
  * LICENSE:     LGPL-2.1-or-later (https://spdx.org/licenses/LGPL-2.1-or-later)
  * PURPOSE:     Digest of MSI compound files for Authenticode
  * COPYRIGHT:   Copyright 2026 Ostap Brehin <osbre@protonmail.com>

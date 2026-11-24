@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT kernel-mode tests
+ * PROJECT:     ReliefWin kernel-mode tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Power requests a driver creates, and sets and clears at DISPATCH_LEVEL
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -52,7 +52,7 @@ CheckRequests(VOID)
     RtlZeroMemory(&Context, sizeof(Context));
     Context.Version = POWER_REQUEST_CONTEXT_VERSION;
     Context.Flags = POWER_REQUEST_CONTEXT_SIMPLE_STRING;
-    RtlInitUnicodeString(&Context.SimpleString, L"LiberNT kernel power request test");
+    RtlInitUnicodeString(&Context.SimpleString, L"ReliefWin kernel power request test");
 
     Status = PoCreatePowerRequest(&Request, KmtDriverObject->DeviceObject, &Context);
     ok_eq_hex(Status, STATUS_SUCCESS);

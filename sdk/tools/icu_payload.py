@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 # SPDX-FileCopyrightText: 2026 Ahmed ARIF <arif.ing@outlook.com>
 #
-# Builds the ICU payload of a LiberNT release in a Docker container:
+# Builds the ICU payload of a ReliefWin release in a Docker container:
 #   libernt-icu-<release>-<arch>.zip  system32\icu.dll and the license, cataloged by the build
 #   libernt-icu-<release>-<arch>.msi  what the second stage installs over the stub icu.dll
 # icu.dll is ICU4C with the data built in, the unversioned C API exported and a 72.1 file
@@ -77,7 +77,7 @@ BEGIN
     BLOCK "040904B0"
     BEGIN
       VALUE "CompanyName", "Unicode, Inc."
-      VALUE "FileDescription", "ICU for LiberNT"
+      VALUE "FileDescription", "ICU for ReliefWin"
       VALUE "FileVersion", "72.1.0.2"
       VALUE "InternalName", "icu"
       VALUE "OriginalFilename", "icu.dll"
@@ -141,10 +141,10 @@ def write_msi(root, arch, release, version, output, work):
     wxs = work / "icu.wxs"
     wxs.write_text(f'''<?xml version="1.0" encoding="utf-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <Product Id="*" Name="LiberNT ICU {release}" Language="1033" Version="{version}"
-           Manufacturer="LiberNT" UpgradeCode="{upgrade}">
+  <Product Id="*" Name="ReliefWin ICU {release}" Language="1033" Version="{version}"
+           Manufacturer="ReliefWin" UpgradeCode="{upgrade}">
     <Package InstallerVersion="500" Compressed="yes" InstallScope="perMachine"/>
-    <MajorUpgrade DowngradeErrorMessage="A newer LiberNT ICU is already installed."/>
+    <MajorUpgrade DowngradeErrorMessage="A newer ReliefWin ICU is already installed."/>
     <Media Id="1" Cabinet="icu.cab" EmbedCab="yes"/>
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="{folder}">
@@ -165,7 +165,7 @@ def write_msi(root, arch, release, version, output, work):
 ''')
     subprocess.run(["wixl", "-a", wixl_arch, "-o", str(output), str(wxs)], check=True)
     if arch == "arm64":
-        subprocess.run(["msibuild", str(output), "-s", f"LiberNT ICU {release}", "LiberNT",
+        subprocess.run(["msibuild", str(output), "-s", f"ReliefWin ICU {release}", "ReliefWin",
                         template, "{" + str(uuid.uuid4()).upper() + "}"], check=True)
 
 

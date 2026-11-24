@@ -12,7 +12,7 @@
 /* INCLUDES *******************************************************************/
 
 #include <k32.h>
-#include <libernt/precisetime.h>
+#include <reliefwin/precisetime.h>
 
 #define NDEBUG
 #include <debug.h>

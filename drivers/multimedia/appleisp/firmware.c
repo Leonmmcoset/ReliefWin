@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Apple ISP Camera Driver
+ * PROJECT:     ReliefWin Apple ISP Camera Driver
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     ISP power, address space, coprocessor boot and IPC channels
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

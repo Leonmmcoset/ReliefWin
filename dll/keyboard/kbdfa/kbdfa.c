@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Keyboard Layouts
+ * PROJECT:     ReliefWin Keyboard Layouts
  * LICENSE:     LGPL-2.1-or-later (https://spdx.org/licenses/LGPL-2.1-or-later)
  * PURPOSE:     Persian keyboard layout
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -311,10 +311,10 @@ ROSDATA VSC_LPWSTR extended_key_names[] = {
   { 0x51, L"Page Down" },
   { 0x52, L"Insert" },
   { 0x53, L"Delete" },
-  { 0x54, L"<LiberNT>" },
+  { 0x54, L"<ReliefWin>" },
   { 0x56, L"Help" },
-  { 0x5b, L"Left <LiberNT>" },
-  { 0x5c, L"Right <LiberNT>" },
+  { 0x5b, L"Left <ReliefWin>" },
+  { 0x5c, L"Right <ReliefWin>" },
   { 0x5d, L"Application" },
   { 0, NULL }
 };

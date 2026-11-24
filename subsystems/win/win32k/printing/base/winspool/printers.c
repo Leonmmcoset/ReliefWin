@@ -671,6 +671,7 @@ DocumentPropertiesA(HWND hWnd, HANDLE hPrinter, LPSTR pDeviceName, PDEVMODEA pDe
     PDEVMODEW pdmwOutput = NULL;
     LONG lReturnValue = -1;
     DWORD cch;
+    DWORD conversionError;
 
     FIXME("DocumentPropertiesA(%p, %p, %s, %p, %p, %lu)\n", hWnd, hPrinter, pDeviceName, pDevModeOutput, pDevModeInput, fMode);
 
@@ -728,7 +729,13 @@ DocumentPropertiesA(HWND hWnd, HANDLE hPrinter, LPSTR pDeviceName, PDEVMODEA pDe
 
     if (pdmwOutput)
     {
-        RosConvertUnicodeDevModeToAnsiDevmode(pdmwOutput, pDevModeOutput);
+        conversionError = RosConvertUnicodeDevModeToAnsiDevmode(pdmwOutput, pDevModeOutput);
+        if (conversionError != ERROR_SUCCESS)
+        {
+            SetLastError(conversionError);
+            lReturnValue = -1;
+            goto Cleanup;
+        }
     }
 
 Cleanup:
@@ -954,7 +961,7 @@ DocumentPropertySheets( PPROPSHEETUI_INFO pCPSUIInfo, LPARAM lparam )
                     if ( pi9 )
                     {
                         Result = pi9->pDevMode->dmSize + pi9->pDevMode->dmDriverExtra;
-                        FIXME("IDPS : Using ReactOS backup!!! DevMode Size %d\n",Result);
+                        FIXME("IDPS : Using ReliefWin backup!!! DevMode Size %d\n",Result);
                         HeapFree(hProcessHeap, 0, pi9);
                     }
                 }
@@ -1418,28 +1425,12 @@ EnumPrintersA(DWORD Flags, PSTR Name, DWORD Level, PBYTE pPrinterEnum, DWORD cbB
     DWORD dwErrorCode;
     DWORD cch;
     PWSTR pwszName = NULL;
-    PSTR pszPrinterName = NULL;
-    PSTR pszServerName = NULL;
-    PSTR pszDescription = NULL;
-    PSTR pszName = NULL;
-    PSTR pszComment = NULL;
-    PSTR pszShareName = NULL;
-    PSTR pszPortName = NULL;
-    PSTR pszDriverName = NULL;
-    PSTR pszLocation = NULL;
-    PSTR pszSepFile = NULL;
-    PSTR pszPrintProcessor = NULL;
-    PSTR pszDatatype = NULL;
-    PSTR pszParameters = NULL;
     DWORD i;
     PPRINTER_INFO_1W ppi1w = NULL;
-    PPRINTER_INFO_1A ppi1a = NULL;
     PPRINTER_INFO_2W ppi2w = NULL;
     PPRINTER_INFO_2A ppi2a = NULL;
     PPRINTER_INFO_4W ppi4w = NULL;
-    PPRINTER_INFO_4A ppi4a = NULL;
     PPRINTER_INFO_5W ppi5w = NULL;
-    PPRINTER_INFO_5A ppi5a = NULL;
 
     TRACE("EnumPrintersA(%lu, %s, %lu, %p, %lu, %p, %p)\n", Flags, Name, Level, pPrinterEnum, cbBuf, pcbNeeded, pcReturned);
 
@@ -1484,10 +1475,7 @@ EnumPrintersA(DWORD Flags, PSTR Name, DWORD Level, PBYTE pPrinterEnum, DWORD cbB
     ppi4w = (PPRINTER_INFO_4W)pPrinterEnum;
     ppi5w = (PPRINTER_INFO_5W)pPrinterEnum;
     /* mapping to pPrinterEnum for ANSI (a) characters for Levels 1, 2, 4, and 5 */
-    ppi1a = (PPRINTER_INFO_1A)pPrinterEnum;
     ppi2a = (PPRINTER_INFO_2A)pPrinterEnum;
-    ppi4a = (PPRINTER_INFO_4A)pPrinterEnum;
-    ppi5a = (PPRINTER_INFO_5A)pPrinterEnum;
 
     for (i = 0; i < *pcReturned; i++)
     {
@@ -1495,366 +1483,100 @@ EnumPrintersA(DWORD Flags, PSTR Name, DWORD Level, PBYTE pPrinterEnum, DWORD cbB
         {
             case 1:
             {
-                if (ppi1w[i].pDescription)
-                {
-                    // Convert Unicode pDescription to a ANSI string pszDescription.
-                    cch = wcslen(ppi1w[i].pDescription);
+                dwErrorCode = UnicodeToAnsiInPlace(ppi1w[i].pDescription);
+                if (dwErrorCode != ERROR_SUCCESS)
+                    goto Cleanup;
 
-                    pszDescription = HeapAlloc(hProcessHeap, 0, (cch + 1) * sizeof(CHAR));
-                    if (!pszDescription)
-                    {
-                        dwErrorCode = ERROR_NOT_ENOUGH_MEMORY;
-                        ERR("HeapAlloc failed!\n");
-                        goto Cleanup;
-                    }
+                dwErrorCode = UnicodeToAnsiInPlace(ppi1w[i].pName);
+                if (dwErrorCode != ERROR_SUCCESS)
+                    goto Cleanup;
 
-                    WideCharToMultiByte(CP_ACP, 0, ppi1w[i].pDescription, -1, pszDescription, cch + 1, NULL, NULL);
-                    StringCchCopyA(ppi1a[i].pDescription, cch + 1, pszDescription);
-
-                    HeapFree(hProcessHeap, 0, pszDescription);
-                }
-
-                if (ppi1w[i].pName)
-                {
-                    // Convert Unicode pName to a ANSI string pszName.
-                    cch = wcslen(ppi1w[i].pName);
-
-                    pszName = HeapAlloc(hProcessHeap, 0, (cch + 1) * sizeof(CHAR));
-                    if (!pszName)
-                    {
-                        dwErrorCode = ERROR_NOT_ENOUGH_MEMORY;
-                        ERR("HeapAlloc failed!\n");
-                        goto Cleanup;
-                    }
-
-                    WideCharToMultiByte(CP_ACP, 0, ppi1w[i].pName, -1, pszName, cch + 1, NULL, NULL);
-                    StringCchCopyA(ppi1a[i].pName, cch + 1, pszName);
-
-                    HeapFree(hProcessHeap, 0, pszName);
-                }
-
-                if (ppi1w[i].pComment)
-                {
-                    // Convert Unicode pComment to a ANSI string pszComment.
-                    cch = wcslen(ppi1w[i].pComment);
-
-                    pszComment = HeapAlloc(hProcessHeap, 0, (cch + 1) * sizeof(CHAR));
-                    if (!pszComment)
-                    {
-                        dwErrorCode = ERROR_NOT_ENOUGH_MEMORY;
-                        ERR("HeapAlloc failed!\n");
-                        goto Cleanup;
-                    }
-
-                    WideCharToMultiByte(CP_ACP, 0, ppi1w[i].pComment, -1, pszComment, cch + 1, NULL, NULL);
-                    StringCchCopyA(ppi1a[i].pComment, cch + 1, pszComment);
-
-                    HeapFree(hProcessHeap, 0, pszComment);
-                }
+                dwErrorCode = UnicodeToAnsiInPlace(ppi1w[i].pComment);
+                if (dwErrorCode != ERROR_SUCCESS)
+                    goto Cleanup;
                 break;
             }
 
 
             case 2:
             {
-                if (ppi2w[i].pServerName)
-                {
-                    // Convert Unicode pServerName to a ANSI string pszServerName.
-                    cch = wcslen(ppi2w[i].pServerName);
+                dwErrorCode = UnicodeToAnsiInPlace(ppi2w[i].pServerName);
+                if (dwErrorCode != ERROR_SUCCESS)
+                    goto Cleanup;
 
-                    pszServerName = HeapAlloc(hProcessHeap, 0, (cch + 1) * sizeof(CHAR));
-                    if (!pszServerName)
-                    {
-                        dwErrorCode = ERROR_NOT_ENOUGH_MEMORY;
-                        ERR("HeapAlloc failed!\n");
-                        goto Cleanup;
-                    }
+                dwErrorCode = UnicodeToAnsiInPlace(ppi2w[i].pPrinterName);
+                if (dwErrorCode != ERROR_SUCCESS)
+                    goto Cleanup;
 
-                    WideCharToMultiByte(CP_ACP, 0, ppi2w[i].pServerName, -1, pszServerName, cch + 1, NULL, NULL);
-                    StringCchCopyA(ppi2a[i].pServerName, cch + 1, pszServerName);
+                dwErrorCode = UnicodeToAnsiInPlace(ppi2w[i].pShareName);
+                if (dwErrorCode != ERROR_SUCCESS)
+                    goto Cleanup;
 
-                    HeapFree(hProcessHeap, 0, pszServerName);
-                }
+                dwErrorCode = UnicodeToAnsiInPlace(ppi2w[i].pPortName);
+                if (dwErrorCode != ERROR_SUCCESS)
+                    goto Cleanup;
 
-                if (ppi2w[i].pPrinterName)
-                {
-                    // Convert Unicode pPrinterName to a ANSI string pszPrinterName.
-                    cch = wcslen(ppi2w[i].pPrinterName);
+                dwErrorCode = UnicodeToAnsiInPlace(ppi2w[i].pDriverName);
+                if (dwErrorCode != ERROR_SUCCESS)
+                    goto Cleanup;
 
-                    pszPrinterName = HeapAlloc(hProcessHeap, 0, (cch + 1) * sizeof(CHAR));
-                    if (!pszPrinterName)
-                    {
-                        dwErrorCode = ERROR_NOT_ENOUGH_MEMORY;
-                        ERR("HeapAlloc failed!\n");
-                        goto Cleanup;
-                    }
+                dwErrorCode = UnicodeToAnsiInPlace(ppi2w[i].pComment);
+                if (dwErrorCode != ERROR_SUCCESS)
+                    goto Cleanup;
 
-                    WideCharToMultiByte(CP_ACP, 0, ppi2w[i].pPrinterName, -1, pszPrinterName, cch + 1, NULL, NULL);
-                    StringCchCopyA(ppi2a[i].pPrinterName, cch + 1, pszPrinterName);
-
-                    HeapFree(hProcessHeap, 0, pszPrinterName);
-                }
-
-                if (ppi2w[i].pShareName)
-                {
-                    // Convert Unicode pShareName to a ANSI string pszShareName.
-                    cch = wcslen(ppi2w[i].pShareName);
-
-                    pszShareName = HeapAlloc(hProcessHeap, 0, (cch + 1) * sizeof(CHAR));
-                    if (!pszShareName)
-                    {
-                        dwErrorCode = ERROR_NOT_ENOUGH_MEMORY;
-                        ERR("HeapAlloc failed!\n");
-                        goto Cleanup;
-                    }
-
-                    WideCharToMultiByte(CP_ACP, 0, ppi2w[i].pShareName, -1, pszShareName, cch + 1, NULL, NULL);
-                    StringCchCopyA(ppi2a[i].pShareName, cch + 1, pszShareName);
-
-                    HeapFree(hProcessHeap, 0, pszShareName);
-                }
-
-                if (ppi2w[i].pPortName)
-                {
-                    // Convert Unicode pPortName to a ANSI string pszPortName.
-                    cch = wcslen(ppi2w[i].pPortName);
-
-                    pszPortName = HeapAlloc(hProcessHeap, 0, (cch + 1) * sizeof(CHAR));
-                    if (!pszPortName)
-                    {
-                        dwErrorCode = ERROR_NOT_ENOUGH_MEMORY;
-                        ERR("HeapAlloc failed!\n");
-                        goto Cleanup;
-                    }
-
-                    WideCharToMultiByte(CP_ACP, 0, ppi2w[i].pPortName, -1, pszPortName, cch + 1, NULL, NULL);
-                    StringCchCopyA(ppi2a[i].pPortName, cch + 1, pszPortName);
-
-                    HeapFree(hProcessHeap, 0, pszPortName);
-                }
-
-                if (ppi2w[i].pDriverName)
-                {
-                    // Convert Unicode pDriverName to a ANSI string pszDriverName.
-                    cch = wcslen(ppi2w[i].pDriverName);
-
-                    pszDriverName = HeapAlloc(hProcessHeap, 0, (cch + 1) * sizeof(CHAR));
-                    if (!pszDriverName)
-                    {
-                        dwErrorCode = ERROR_NOT_ENOUGH_MEMORY;
-                        ERR("HeapAlloc failed!\n");
-                        goto Cleanup;
-                    }
-
-                    WideCharToMultiByte(CP_ACP, 0, ppi2w[i].pDriverName, -1, pszDriverName, cch + 1, NULL, NULL);
-                    StringCchCopyA(ppi2a[i].pDriverName, cch + 1, pszDriverName);
-
-                    HeapFree(hProcessHeap, 0, pszDriverName);
-                }
-
-                if (ppi2w[i].pComment)
-                {
-                    // Convert Unicode pComment to a ANSI string pszComment.
-                    cch = wcslen(ppi2w[i].pComment);
-
-                    pszComment = HeapAlloc(hProcessHeap, 0, (cch + 1) * sizeof(CHAR));
-                    if (!pszComment)
-                    {
-                        dwErrorCode = ERROR_NOT_ENOUGH_MEMORY;
-                        ERR("HeapAlloc failed!\n");
-                        goto Cleanup;
-                    }
-
-                    WideCharToMultiByte(CP_ACP, 0, ppi2w[i].pComment, -1, pszComment, cch + 1, NULL, NULL);
-                    StringCchCopyA(ppi2a[i].pComment, cch + 1, pszComment);
-
-                    HeapFree(hProcessHeap, 0, pszComment);
-                }
-
-                if (ppi2w[i].pLocation)
-                {
-                    // Convert Unicode pLocation to a ANSI string pszLocation.
-                    cch = wcslen(ppi2w[i].pLocation);
-
-                    pszLocation = HeapAlloc(hProcessHeap, 0, (cch + 1) * sizeof(CHAR));
-                    if (!pszLocation)
-                    {
-                        dwErrorCode = ERROR_NOT_ENOUGH_MEMORY;
-                        ERR("HeapAlloc failed!\n");
-                        goto Cleanup;
-                    }
-
-                    WideCharToMultiByte(CP_ACP, 0, ppi2w[i].pLocation, -1, pszLocation, cch + 1, NULL, NULL);
-                    StringCchCopyA(ppi2a[i].pLocation, cch + 1, pszLocation);
-
-                    HeapFree(hProcessHeap, 0, pszLocation);
-                }
+                dwErrorCode = UnicodeToAnsiInPlace(ppi2w[i].pLocation);
+                if (dwErrorCode != ERROR_SUCCESS)
+                    goto Cleanup;
 
 
-                if (ppi2w[i].pSepFile)
-                {
-                    // Convert Unicode pSepFile to a ANSI string pszSepFile.
-                    cch = wcslen(ppi2w[i].pSepFile);
+                dwErrorCode = UnicodeToAnsiInPlace(ppi2w[i].pSepFile);
+                if (dwErrorCode != ERROR_SUCCESS)
+                    goto Cleanup;
 
-                    pszSepFile = HeapAlloc(hProcessHeap, 0, (cch + 1) * sizeof(CHAR));
-                    if (!pszSepFile)
-                    {
-                        dwErrorCode = ERROR_NOT_ENOUGH_MEMORY;
-                        ERR("HeapAlloc failed!\n");
-                        goto Cleanup;
-                    }
-
-                    WideCharToMultiByte(CP_ACP, 0, ppi2w[i].pSepFile, -1, pszSepFile, cch + 1, NULL, NULL);
-                    StringCchCopyA(ppi2a[i].pSepFile, cch + 1, pszSepFile);
-
-                    HeapFree(hProcessHeap, 0, pszSepFile);
-                }
-
-                if (ppi2w[i].pPrintProcessor)
-                {
-                    // Convert Unicode pPrintProcessor to a ANSI string pszPrintProcessor.
-                    cch = wcslen(ppi2w[i].pPrintProcessor);
-
-                    pszPrintProcessor = HeapAlloc(hProcessHeap, 0, (cch + 1) * sizeof(CHAR));
-                    if (!pszPrintProcessor)
-                    {
-                        dwErrorCode = ERROR_NOT_ENOUGH_MEMORY;
-                        ERR("HeapAlloc failed!\n");
-                        goto Cleanup;
-                    }
-
-                    WideCharToMultiByte(CP_ACP, 0, ppi2w[i].pPrintProcessor, -1, pszPrintProcessor, cch + 1, NULL, NULL);
-                    StringCchCopyA(ppi2a[i].pPrintProcessor, cch + 1, pszPrintProcessor);
-
-                    HeapFree(hProcessHeap, 0, pszPrintProcessor);
-                }
+                dwErrorCode = UnicodeToAnsiInPlace(ppi2w[i].pPrintProcessor);
+                if (dwErrorCode != ERROR_SUCCESS)
+                    goto Cleanup;
 
 
-                if (ppi2w[i].pDatatype)
-                {
-                    // Convert Unicode pDatatype to a ANSI string pszDatatype.
-                    cch = wcslen(ppi2w[i].pDatatype);
+                dwErrorCode = UnicodeToAnsiInPlace(ppi2w[i].pDatatype);
+                if (dwErrorCode != ERROR_SUCCESS)
+                    goto Cleanup;
 
-                    pszDatatype = HeapAlloc(hProcessHeap, 0, (cch + 1) * sizeof(CHAR));
-                    if (!pszDatatype)
-                    {
-                        dwErrorCode = ERROR_NOT_ENOUGH_MEMORY;
-                        ERR("HeapAlloc failed!\n");
-                        goto Cleanup;
-                    }
-
-                    WideCharToMultiByte(CP_ACP, 0, ppi2w[i].pDatatype, -1, pszDatatype, cch + 1, NULL, NULL);
-                    StringCchCopyA(ppi2a[i].pDatatype, cch + 1, pszDatatype);
-
-                    HeapFree(hProcessHeap, 0, pszDatatype);
-                }
-
-                if (ppi2w[i].pParameters)
-                {
-                    // Convert Unicode pParameters to a ANSI string pszParameters.
-                    cch = wcslen(ppi2w[i].pParameters);
-
-                    pszParameters = HeapAlloc(hProcessHeap, 0, (cch + 1) * sizeof(CHAR));
-                    if (!pszParameters)
-                    {
-                        dwErrorCode = ERROR_NOT_ENOUGH_MEMORY;
-                        ERR("HeapAlloc failed!\n");
-                        goto Cleanup;
-                    }
-
-                    WideCharToMultiByte(CP_ACP, 0, ppi2w[i].pParameters, -1, pszParameters, cch + 1, NULL, NULL);
-                    StringCchCopyA(ppi2a[i].pParameters, cch + 1, pszParameters);
-
-                    HeapFree(hProcessHeap, 0, pszParameters);
-                }
+                dwErrorCode = UnicodeToAnsiInPlace(ppi2w[i].pParameters);
+                if (dwErrorCode != ERROR_SUCCESS)
+                    goto Cleanup;
                 if ( ppi2w[i].pDevMode )
                 {
-                    RosConvertUnicodeDevModeToAnsiDevmode( ppi2w[i].pDevMode, ppi2a[i].pDevMode );
+                    dwErrorCode = RosConvertUnicodeDevModeToAnsiDevmode( ppi2w[i].pDevMode, ppi2a[i].pDevMode );
+                    if (dwErrorCode != ERROR_SUCCESS)
+                    {
+                        goto Cleanup;
+                    }
                 }
                 break;
             }
 
             case 4:
             {
-                if (ppi4w[i].pPrinterName)
-                {
-                    // Convert Unicode pPrinterName to a ANSI string pszPrinterName.
-                    cch = wcslen(ppi4w[i].pPrinterName);
+                dwErrorCode = UnicodeToAnsiInPlace(ppi4w[i].pPrinterName);
+                if (dwErrorCode != ERROR_SUCCESS)
+                    goto Cleanup;
 
-                    pszPrinterName = HeapAlloc(hProcessHeap, 0, (cch + 1) * sizeof(CHAR));
-                    if (!pszPrinterName)
-                    {
-                        dwErrorCode = ERROR_NOT_ENOUGH_MEMORY;
-                        ERR("HeapAlloc failed!\n");
-                        goto Cleanup;
-                    }
-
-                    WideCharToMultiByte(CP_ACP, 0, ppi4w[i].pPrinterName, -1, pszPrinterName, cch + 1, NULL, NULL);
-                    StringCchCopyA(ppi4a[i].pPrinterName, cch + 1, pszPrinterName);
-
-                    HeapFree(hProcessHeap, 0, pszPrinterName);
-                }
-
-                if (ppi4w[i].pServerName)
-                {
-                    // Convert Unicode pServerName to a ANSI string pszServerName.
-                    cch = wcslen(ppi4w[i].pServerName);
-
-                    pszServerName = HeapAlloc(hProcessHeap, 0, (cch + 1) * sizeof(CHAR));
-                    if (!pszServerName)
-                    {
-                        dwErrorCode = ERROR_NOT_ENOUGH_MEMORY;
-                        ERR("HeapAlloc failed!\n");
-                        goto Cleanup;
-                    }
-
-                    WideCharToMultiByte(CP_ACP, 0, ppi4w[i].pServerName, -1, pszServerName, cch + 1, NULL, NULL);
-                    StringCchCopyA(ppi4a[i].pServerName, cch + 1, pszServerName);
-
-                    HeapFree(hProcessHeap, 0, pszServerName);
-                }
+                dwErrorCode = UnicodeToAnsiInPlace(ppi4w[i].pServerName);
+                if (dwErrorCode != ERROR_SUCCESS)
+                    goto Cleanup;
                 break;
             }
 
             case 5:
             {
-                if (ppi5w[i].pPrinterName)
-                {
-                    // Convert Unicode pPrinterName to a ANSI string pszPrinterName.
-                    cch = wcslen(ppi5w[i].pPrinterName);
+                dwErrorCode = UnicodeToAnsiInPlace(ppi5w[i].pPrinterName);
+                if (dwErrorCode != ERROR_SUCCESS)
+                    goto Cleanup;
 
-                    pszPrinterName = HeapAlloc(hProcessHeap, 0, (cch + 1) * sizeof(CHAR));
-                    if (!pszPrinterName)
-                    {
-                        dwErrorCode = ERROR_NOT_ENOUGH_MEMORY;
-                        ERR("HeapAlloc failed!\n");
-                        goto Cleanup;
-                    }
-
-                    WideCharToMultiByte(CP_ACP, 0, ppi5w[i].pPrinterName, -1, pszPrinterName, cch + 1, NULL, NULL);
-                    StringCchCopyA(ppi5a[i].pPrinterName, cch + 1, pszPrinterName);
-
-                    HeapFree(hProcessHeap, 0, pszPrinterName);
-                }
-
-                if (ppi5w[i].pPortName)
-                {
-                    // Convert Unicode pPortName to a ANSI string pszPortName.
-                    cch = wcslen(ppi5w[i].pPortName);
-
-                    pszPortName = HeapAlloc(hProcessHeap, 0, (cch + 1) * sizeof(CHAR));
-                    if (!pszPortName)
-                    {
-                        dwErrorCode = ERROR_NOT_ENOUGH_MEMORY;
-                        ERR("HeapAlloc failed!\n");
-                        goto Cleanup;
-                    }
-
-                    WideCharToMultiByte(CP_ACP, 0, ppi5w[i].pPortName, -1, pszPortName, cch + 1, NULL, NULL);
-                    StringCchCopyA(ppi5a[i].pPortName, cch + 1, pszPortName);
-
-                    HeapFree(hProcessHeap, 0, pszPortName);
-                }
+                dwErrorCode = UnicodeToAnsiInPlace(ppi5w[i].pPortName);
+                if (dwErrorCode != ERROR_SUCCESS)
+                    goto Cleanup;
                 break;
             }
 
@@ -2063,19 +1785,14 @@ BOOL WINAPI
 GetPrinterA(HANDLE hPrinter, DWORD Level, LPBYTE pPrinter, DWORD cbBuf, LPDWORD pcbNeeded)
 {
     DWORD dwErrorCode;
-    PPRINTER_INFO_1A ppi1a = (PPRINTER_INFO_1A)pPrinter;
     PPRINTER_INFO_1W ppi1w = (PPRINTER_INFO_1W)pPrinter;
     PPRINTER_INFO_2A ppi2a = (PPRINTER_INFO_2A)pPrinter;
     PPRINTER_INFO_2W ppi2w = (PPRINTER_INFO_2W)pPrinter;
-    PPRINTER_INFO_4A ppi4a = (PPRINTER_INFO_4A)pPrinter;
     PPRINTER_INFO_4W ppi4w = (PPRINTER_INFO_4W)pPrinter;
-    PPRINTER_INFO_5A ppi5a = (PPRINTER_INFO_5A)pPrinter;
     PPRINTER_INFO_5W ppi5w = (PPRINTER_INFO_5W)pPrinter;
-    PPRINTER_INFO_7A ppi7a = (PPRINTER_INFO_7A)pPrinter;
     PPRINTER_INFO_7W ppi7w = (PPRINTER_INFO_7W)pPrinter;
     PPRINTER_INFO_9A ppi9a = (PPRINTER_INFO_9A)pPrinter;
     PPRINTER_INFO_9W ppi9w = (PPRINTER_INFO_9W)pPrinter;
-    DWORD cch;
 
     TRACE("GetPrinterA(%p, %lu, %p, %lu, %p)\n", hPrinter, Level, pPrinter, cbBuf, pcbNeeded);
 
@@ -2097,429 +1814,114 @@ GetPrinterA(HANDLE hPrinter, DWORD Level, LPBYTE pPrinter, DWORD cbBuf, LPDWORD 
     {
         case 1:
         {
-            if (ppi1w->pDescription)
-            {
-                PSTR pszDescription;
+            dwErrorCode = UnicodeToAnsiInPlace(ppi1w->pDescription);
+            if (dwErrorCode != ERROR_SUCCESS)
+                goto Cleanup;
 
-                // Convert Unicode pDescription to a ANSI string pszDescription.
-                cch = wcslen(ppi1w->pDescription);
+            dwErrorCode = UnicodeToAnsiInPlace(ppi1w->pName);
+            if (dwErrorCode != ERROR_SUCCESS)
+                goto Cleanup;
 
-                pszDescription = HeapAlloc(hProcessHeap, 0, (cch + 1) * sizeof(CHAR));
-                if (!pszDescription)
-                {
-                    dwErrorCode = ERROR_NOT_ENOUGH_MEMORY;
-                    ERR("HeapAlloc failed!\n");
-                    goto Cleanup;
-                }
-
-                WideCharToMultiByte(CP_ACP, 0, ppi1w->pDescription, -1, pszDescription, cch + 1, NULL, NULL);
-                StringCchCopyA(ppi1a->pDescription, cch + 1, pszDescription);
-
-                HeapFree(hProcessHeap, 0, pszDescription);
-            }
-
-            if (ppi1w->pName)
-            {
-                PSTR pszName;
-
-                // Convert Unicode pName to a ANSI string pszName.
-                cch = wcslen(ppi1w->pName);
-
-                pszName = HeapAlloc(hProcessHeap, 0, (cch + 1) * sizeof(CHAR));
-                if (!pszName)
-                {
-                    dwErrorCode = ERROR_NOT_ENOUGH_MEMORY;
-                    ERR("HeapAlloc failed!\n");
-                    goto Cleanup;
-                }
-
-                WideCharToMultiByte(CP_ACP, 0, ppi1w->pName, -1, pszName, cch + 1, NULL, NULL);
-                StringCchCopyA(ppi1a->pName, cch + 1, pszName);
-
-                HeapFree(hProcessHeap, 0, pszName);
-            }
-
-            if (ppi1w->pComment)
-            {
-                PSTR pszComment;
-
-                // Convert Unicode pComment to a ANSI string pszComment.
-                cch = wcslen(ppi1w->pComment);
-
-                pszComment = HeapAlloc(hProcessHeap, 0, (cch + 1) * sizeof(CHAR));
-                if (!pszComment)
-                {
-                    dwErrorCode = ERROR_NOT_ENOUGH_MEMORY;
-                    ERR("HeapAlloc failed!\n");
-                    goto Cleanup;
-                }
-
-                WideCharToMultiByte(CP_ACP, 0, ppi1w->pComment, -1, pszComment, cch + 1, NULL, NULL);
-                StringCchCopyA(ppi1a->pComment, cch + 1, pszComment);
-
-                HeapFree(hProcessHeap, 0, pszComment);
-            }
+            dwErrorCode = UnicodeToAnsiInPlace(ppi1w->pComment);
+            if (dwErrorCode != ERROR_SUCCESS)
+                goto Cleanup;
             break;
         }
 
         case 2:
         {
-            if (ppi2w->pServerName)
-            {
-                PSTR pszServerName;
+            dwErrorCode = UnicodeToAnsiInPlace(ppi2w->pServerName);
+            if (dwErrorCode != ERROR_SUCCESS)
+                goto Cleanup;
 
-                // Convert Unicode pServerName to a ANSI string pszServerName.
-                cch = wcslen(ppi2w->pServerName);
+            dwErrorCode = UnicodeToAnsiInPlace(ppi2w->pPrinterName);
+            if (dwErrorCode != ERROR_SUCCESS)
+                goto Cleanup;
 
-                pszServerName = HeapAlloc(hProcessHeap, 0, (cch + 1) * sizeof(CHAR));
-                if (!pszServerName)
-                {
-                    dwErrorCode = ERROR_NOT_ENOUGH_MEMORY;
-                    ERR("HeapAlloc failed!\n");
-                    goto Cleanup;
-                }
+            dwErrorCode = UnicodeToAnsiInPlace(ppi2w->pShareName);
+            if (dwErrorCode != ERROR_SUCCESS)
+                goto Cleanup;
 
-                WideCharToMultiByte(CP_ACP, 0, ppi2w->pServerName, -1, pszServerName, cch + 1, NULL, NULL);
-                StringCchCopyA(ppi2a->pServerName, cch + 1, pszServerName);
+            dwErrorCode = UnicodeToAnsiInPlace(ppi2w->pPortName);
+            if (dwErrorCode != ERROR_SUCCESS)
+                goto Cleanup;
 
-                HeapFree(hProcessHeap, 0, pszServerName);
-            }
+            dwErrorCode = UnicodeToAnsiInPlace(ppi2w->pDriverName);
+            if (dwErrorCode != ERROR_SUCCESS)
+                goto Cleanup;
 
-            if (ppi2w->pPrinterName)
-            {
-                PSTR pszPrinterName;
+            dwErrorCode = UnicodeToAnsiInPlace(ppi2w->pComment);
+            if (dwErrorCode != ERROR_SUCCESS)
+                goto Cleanup;
 
-                // Convert Unicode pPrinterName to a ANSI string pszPrinterName.
-                cch = wcslen(ppi2w->pPrinterName);
+            dwErrorCode = UnicodeToAnsiInPlace(ppi2w->pLocation);
+            if (dwErrorCode != ERROR_SUCCESS)
+                goto Cleanup;
 
-                pszPrinterName = HeapAlloc(hProcessHeap, 0, (cch + 1) * sizeof(CHAR));
-                if (!pszPrinterName)
-                {
-                    dwErrorCode = ERROR_NOT_ENOUGH_MEMORY;
-                    ERR("HeapAlloc failed!\n");
-                    goto Cleanup;
-                }
+            dwErrorCode = UnicodeToAnsiInPlace(ppi2w->pSepFile);
+            if (dwErrorCode != ERROR_SUCCESS)
+                goto Cleanup;
 
-                WideCharToMultiByte(CP_ACP, 0, ppi2w->pPrinterName, -1, pszPrinterName, cch + 1, NULL, NULL);
-                StringCchCopyA(ppi2a->pPrinterName, cch + 1, pszPrinterName);
+            dwErrorCode = UnicodeToAnsiInPlace(ppi2w->pPrintProcessor);
+            if (dwErrorCode != ERROR_SUCCESS)
+                goto Cleanup;
 
-                HeapFree(hProcessHeap, 0, pszPrinterName);
-            }
+            dwErrorCode = UnicodeToAnsiInPlace(ppi2w->pDatatype);
+            if (dwErrorCode != ERROR_SUCCESS)
+                goto Cleanup;
 
-            if (ppi2w->pShareName)
-            {
-                PSTR pszShareName;
-
-                // Convert Unicode pShareName to a ANSI string pszShareName.
-                cch = wcslen(ppi2w->pShareName);
-
-                pszShareName = HeapAlloc(hProcessHeap, 0, (cch + 1) * sizeof(CHAR));
-                if (!pszShareName)
-                {
-                    dwErrorCode = ERROR_NOT_ENOUGH_MEMORY;
-                    ERR("HeapAlloc failed!\n");
-                    goto Cleanup;
-                }
-
-                WideCharToMultiByte(CP_ACP, 0, ppi2w->pShareName, -1, pszShareName, cch + 1, NULL, NULL);
-                StringCchCopyA(ppi2a->pShareName, cch + 1, pszShareName);
-
-                HeapFree(hProcessHeap, 0, pszShareName);
-            }
-
-            if (ppi2w->pPortName)
-            {
-                PSTR pszPortName;
-
-                // Convert Unicode pPortName to a ANSI string pszPortName.
-                cch = wcslen(ppi2w->pPortName);
-
-                pszPortName = HeapAlloc(hProcessHeap, 0, (cch + 1) * sizeof(CHAR));
-                if (!pszPortName)
-                {
-                    dwErrorCode = ERROR_NOT_ENOUGH_MEMORY;
-                    ERR("HeapAlloc failed!\n");
-                    goto Cleanup;
-                }
-
-                WideCharToMultiByte(CP_ACP, 0, ppi2w->pPortName, -1, pszPortName, cch + 1, NULL, NULL);
-                StringCchCopyA(ppi2a->pPortName, cch + 1, pszPortName);
-
-                HeapFree(hProcessHeap, 0, pszPortName);
-            }
-
-            if (ppi2w->pDriverName)
-            {
-                PSTR pszDriverName;
-
-                // Convert Unicode pDriverName to a ANSI string pszDriverName.
-                cch = wcslen(ppi2w->pDriverName);
-
-                pszDriverName = HeapAlloc(hProcessHeap, 0, (cch + 1) * sizeof(CHAR));
-                if (!pszDriverName)
-                {
-                    dwErrorCode = ERROR_NOT_ENOUGH_MEMORY;
-                    ERR("HeapAlloc failed!\n");
-                    goto Cleanup;
-                }
-
-                WideCharToMultiByte(CP_ACP, 0, ppi2w->pDriverName, -1, pszDriverName, cch + 1, NULL, NULL);
-                StringCchCopyA(ppi2a->pDriverName, cch + 1, pszDriverName);
-
-                HeapFree(hProcessHeap, 0, pszDriverName);
-            }
-
-            if (ppi2w->pComment)
-            {
-                PSTR pszComment;
-
-                // Convert Unicode pComment to a ANSI string pszComment.
-                cch = wcslen(ppi2w->pComment);
-
-                pszComment = HeapAlloc(hProcessHeap, 0, (cch + 1) * sizeof(CHAR));
-                if (!pszComment)
-                {
-                    dwErrorCode = ERROR_NOT_ENOUGH_MEMORY;
-                    ERR("HeapAlloc failed!\n");
-                    goto Cleanup;
-                }
-
-                WideCharToMultiByte(CP_ACP, 0, ppi2w->pComment, -1, pszComment, cch + 1, NULL, NULL);
-                StringCchCopyA(ppi2a->pComment, cch + 1, pszComment);
-
-                HeapFree(hProcessHeap, 0, pszComment);
-            }
-
-            if (ppi2w->pLocation)
-            {
-                PSTR pszLocation;
-
-                // Convert Unicode pLocation to a ANSI string pszLocation.
-                cch = wcslen(ppi2w->pLocation);
-
-                pszLocation = HeapAlloc(hProcessHeap, 0, (cch + 1) * sizeof(CHAR));
-                if (!pszLocation)
-                {
-                    dwErrorCode = ERROR_NOT_ENOUGH_MEMORY;
-                    ERR("HeapAlloc failed!\n");
-                    goto Cleanup;
-                }
-
-                WideCharToMultiByte(CP_ACP, 0, ppi2w->pLocation, -1, pszLocation, cch + 1, NULL, NULL);
-                StringCchCopyA(ppi2a->pLocation, cch + 1, pszLocation);
-
-                HeapFree(hProcessHeap, 0, pszLocation);
-            }
-
-            if (ppi2w->pSepFile)
-            {
-                PSTR pszSepFile;
-
-                // Convert Unicode pSepFile to a ANSI string pszSepFile.
-                cch = wcslen(ppi2w->pSepFile);
-
-                pszSepFile = HeapAlloc(hProcessHeap, 0, (cch + 1) * sizeof(CHAR));
-                if (!pszSepFile)
-                {
-                    dwErrorCode = ERROR_NOT_ENOUGH_MEMORY;
-                    ERR("HeapAlloc failed!\n");
-                    goto Cleanup;
-                }
-
-                WideCharToMultiByte(CP_ACP, 0, ppi2w->pSepFile, -1, pszSepFile, cch + 1, NULL, NULL);
-                StringCchCopyA(ppi2a->pSepFile, cch + 1, pszSepFile);
-
-                HeapFree(hProcessHeap, 0, pszSepFile);
-            }
-
-            if (ppi2w->pPrintProcessor)
-            {
-                PSTR pszPrintProcessor;
-
-                // Convert Unicode pPrintProcessor to a ANSI string pszPrintProcessor.
-                cch = wcslen(ppi2w->pPrintProcessor);
-
-                pszPrintProcessor = HeapAlloc(hProcessHeap, 0, (cch + 1) * sizeof(CHAR));
-                if (!pszPrintProcessor)
-                {
-                    dwErrorCode = ERROR_NOT_ENOUGH_MEMORY;
-                    ERR("HeapAlloc failed!\n");
-                    goto Cleanup;
-                }
-
-                WideCharToMultiByte(CP_ACP, 0, ppi2w->pPrintProcessor, -1, pszPrintProcessor, cch + 1, NULL, NULL);
-                StringCchCopyA(ppi2a->pPrintProcessor, cch + 1, pszPrintProcessor);
-
-                HeapFree(hProcessHeap, 0, pszPrintProcessor);
-            }
-
-            if (ppi2w->pDatatype)
-            {
-                PSTR pszDatatype;
-
-                // Convert Unicode pDatatype to a ANSI string pszDatatype.
-                cch = wcslen(ppi2w->pDatatype);
-
-                pszDatatype = HeapAlloc(hProcessHeap, 0, (cch + 1) * sizeof(CHAR));
-                if (!pszDatatype)
-                {
-                    dwErrorCode = ERROR_NOT_ENOUGH_MEMORY;
-                    ERR("HeapAlloc failed!\n");
-                    goto Cleanup;
-                }
-
-                WideCharToMultiByte(CP_ACP, 0, ppi2w->pDatatype, -1, pszDatatype, cch + 1, NULL, NULL);
-                StringCchCopyA(ppi2a->pDatatype, cch + 1, pszDatatype);
-
-                HeapFree(hProcessHeap, 0, pszDatatype);
-            }
-
-            if (ppi2w->pParameters)
-            {
-                PSTR pszParameters;
-
-                // Convert Unicode pParameters to a ANSI string pszParameters.
-                cch = wcslen(ppi2w->pParameters);
-
-                pszParameters = HeapAlloc(hProcessHeap, 0, (cch + 1) * sizeof(CHAR));
-                if (!pszParameters)
-                {
-                    dwErrorCode = ERROR_NOT_ENOUGH_MEMORY;
-                    ERR("HeapAlloc failed!\n");
-                    goto Cleanup;
-                }
-
-                WideCharToMultiByte(CP_ACP, 0, ppi2w->pParameters, -1, pszParameters, cch + 1, NULL, NULL);
-                StringCchCopyA(ppi2a->pParameters, cch + 1, pszParameters);
-
-                HeapFree(hProcessHeap, 0, pszParameters);
-            }
+            dwErrorCode = UnicodeToAnsiInPlace(ppi2w->pParameters);
+            if (dwErrorCode != ERROR_SUCCESS)
+                goto Cleanup;
             if ( ppi2w->pDevMode )
             {
-                RosConvertUnicodeDevModeToAnsiDevmode( ppi2w->pDevMode, ppi2a->pDevMode );
+                dwErrorCode = RosConvertUnicodeDevModeToAnsiDevmode( ppi2w->pDevMode, ppi2a->pDevMode );
+                if (dwErrorCode != ERROR_SUCCESS)
+                {
+                    goto Cleanup;
+                }
             }
             break;
         }
 
         case 4:
         {
-            if (ppi4w->pPrinterName)
-            {
-                PSTR pszPrinterName;
+            dwErrorCode = UnicodeToAnsiInPlace(ppi4w->pPrinterName);
+            if (dwErrorCode != ERROR_SUCCESS)
+                goto Cleanup;
 
-                // Convert Unicode pPrinterName to a ANSI string pszPrinterName.
-                cch = wcslen(ppi4w->pPrinterName);
-
-                pszPrinterName = HeapAlloc(hProcessHeap, 0, (cch + 1) * sizeof(CHAR));
-                if (!pszPrinterName)
-                {
-                    dwErrorCode = ERROR_NOT_ENOUGH_MEMORY;
-                    ERR("HeapAlloc failed!\n");
-                    goto Cleanup;
-                }
-
-                WideCharToMultiByte(CP_ACP, 0, ppi4w->pPrinterName, -1, pszPrinterName, cch + 1, NULL, NULL);
-                StringCchCopyA(ppi4a->pPrinterName, cch + 1, pszPrinterName);
-
-                HeapFree(hProcessHeap, 0, pszPrinterName);
-            }
-
-            if (ppi4w->pServerName)
-            {
-                PSTR pszServerName;
-
-                // Convert Unicode pServerName to a ANSI string pszServerName.
-                cch = wcslen(ppi4w->pServerName);
-
-                pszServerName = HeapAlloc(hProcessHeap, 0, (cch + 1) * sizeof(CHAR));
-                if (!pszServerName)
-                {
-                    dwErrorCode = ERROR_NOT_ENOUGH_MEMORY;
-                    ERR("HeapAlloc failed!\n");
-                    goto Cleanup;
-                }
-
-                WideCharToMultiByte(CP_ACP, 0, ppi4w->pServerName, -1, pszServerName, cch + 1, NULL, NULL);
-                StringCchCopyA(ppi4a->pServerName, cch + 1, pszServerName);
-
-                HeapFree(hProcessHeap, 0, pszServerName);
-            }
+            dwErrorCode = UnicodeToAnsiInPlace(ppi4w->pServerName);
+            if (dwErrorCode != ERROR_SUCCESS)
+                goto Cleanup;
             break;
         }
 
         case 5:
         {
-            if (ppi5w->pPrinterName)
-            {
-                PSTR pszPrinterName;
+            dwErrorCode = UnicodeToAnsiInPlace(ppi5w->pPrinterName);
+            if (dwErrorCode != ERROR_SUCCESS)
+                goto Cleanup;
 
-                // Convert Unicode pPrinterName to a ANSI string pszPrinterName.
-                cch = wcslen(ppi5w->pPrinterName);
-
-                pszPrinterName = HeapAlloc(hProcessHeap, 0, (cch + 1) * sizeof(CHAR));
-                if (!pszPrinterName)
-                {
-                    dwErrorCode = ERROR_NOT_ENOUGH_MEMORY;
-                    ERR("HeapAlloc failed!\n");
-                    goto Cleanup;
-                }
-
-                WideCharToMultiByte(CP_ACP, 0, ppi5w->pPrinterName, -1, pszPrinterName, cch + 1, NULL, NULL);
-                StringCchCopyA(ppi5a->pPrinterName, cch + 1, pszPrinterName);
-
-                HeapFree(hProcessHeap, 0, pszPrinterName);
-            }
-
-            if (ppi5w->pPortName)
-            {
-                PSTR pszPortName;
-
-                // Convert Unicode pPortName to a ANSI string pszPortName.
-                cch = wcslen(ppi5w->pPortName);
-
-                pszPortName = HeapAlloc(hProcessHeap, 0, (cch + 1) * sizeof(CHAR));
-                if (!pszPortName)
-                {
-                    dwErrorCode = ERROR_NOT_ENOUGH_MEMORY;
-                    ERR("HeapAlloc failed!\n");
-                    goto Cleanup;
-                }
-
-                WideCharToMultiByte(CP_ACP, 0, ppi5w->pPortName, -1, pszPortName, cch + 1, NULL, NULL);
-                StringCchCopyA(ppi5a->pPortName, cch + 1, pszPortName);
-
-                HeapFree(hProcessHeap, 0, pszPortName);
-            }
+            dwErrorCode = UnicodeToAnsiInPlace(ppi5w->pPortName);
+            if (dwErrorCode != ERROR_SUCCESS)
+                goto Cleanup;
             break;
         }
 
         case 7:
         {
-            if (ppi7w->pszObjectGUID)
-            {
-                PSTR pszaObjectGUID;
-
-                // Convert Unicode pszObjectGUID to a ANSI string pszaObjectGUID.
-                cch = wcslen(ppi7w->pszObjectGUID);
-
-                pszaObjectGUID = HeapAlloc(hProcessHeap, 0, (cch + 1) * sizeof(CHAR));
-                if (!pszaObjectGUID)
-                {
-                    dwErrorCode = ERROR_NOT_ENOUGH_MEMORY;
-                    ERR("HeapAlloc failed!\n");
-                    goto Cleanup;
-                }
-
-                WideCharToMultiByte(CP_ACP, 0, ppi7w->pszObjectGUID, -1, pszaObjectGUID, cch + 1, NULL, NULL);
-                StringCchCopyA(ppi7a->pszObjectGUID, cch + 1, pszaObjectGUID);
-
-                HeapFree(hProcessHeap, 0, pszaObjectGUID);
-            }
+            dwErrorCode = UnicodeToAnsiInPlace(ppi7w->pszObjectGUID);
+            if (dwErrorCode != ERROR_SUCCESS)
+                goto Cleanup;
         }
             break;
         case 8:
         case 9:
-            RosConvertUnicodeDevModeToAnsiDevmode(ppi9w->pDevMode, ppi9a->pDevMode);
+            dwErrorCode = RosConvertUnicodeDevModeToAnsiDevmode(ppi9w->pDevMode, ppi9a->pDevMode);
+            if (dwErrorCode != ERROR_SUCCESS)
+            {
+                goto Cleanup;
+            }
             break;
     }       // switch
 

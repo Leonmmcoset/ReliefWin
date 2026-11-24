@@ -1,4 +1,4 @@
-# PROJECT:     LiberNT host-native tests
+# PROJECT:     ReliefWin host-native tests
 # LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
 # PURPOSE:     System-time adjustment and timer cancellation regression
 # COPYRIGHT:   Copyright 2026 LiberNT contributors

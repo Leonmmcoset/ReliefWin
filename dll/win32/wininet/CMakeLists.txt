@@ -1,5 +1,5 @@
 
-include_directories(${REACTOS_SOURCE_DIR}/sdk/include/libernt/libs/zlib)
+include_directories(${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/libs/zlib)
 
 add_definitions(
     -D_WINE

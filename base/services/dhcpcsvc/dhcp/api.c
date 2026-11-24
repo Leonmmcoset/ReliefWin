@@ -10,7 +10,7 @@
 #include <netioapi.h>
 
 #define NDEBUG
-#include <libernt/debug.h>
+#include <reliefwin/debug.h>
 
 static CRITICAL_SECTION ApiCriticalSection;
 static CONDITION_VARIABLE LeaseCondition = CONDITION_VARIABLE_INIT;

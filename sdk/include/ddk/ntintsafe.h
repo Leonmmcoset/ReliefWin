@@ -634,7 +634,7 @@ typedef long long RtlINT64;
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 NTSTATUS RtlIntPtrToChar(INT_PTR iOperand, CHAR *pch);
 NTSTATUS RtlIntToChar(INT iOperand, CHAR *pch);
 NTSTATUS RtlLongLongToChar(LONGLONG llOperand, CHAR *pch);

@@ -300,7 +300,7 @@ GetAdaptersAddresses(
             break;
         case AF_INET6:
             /* One day maybe... */
-            FIXME("IPv6 is not supported in ReactOS!\n");
+            FIXME("IPv6 is not supported in ReliefWin!\n");
             /* We got nothing to say in this case */
             return ERROR_NO_DATA;
             break;

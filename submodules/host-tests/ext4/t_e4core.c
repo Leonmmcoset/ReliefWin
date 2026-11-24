@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT host-native tests
+ * PROJECT:     ReliefWin host-native tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Runs the ext4 driver's core on an image file: single commands, and a random run of creates, writes,
  *              truncates, renames, links, deletes and attribute changes checked against a model and by e2fsck

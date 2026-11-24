@@ -1,12 +1,12 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Tests the conversion of client swap chain formats for software composition
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
  */
 #include <apitest.h>
 #include <windows.h>
-#include <libernt/dwmframe.h>
+#include <reliefwin/dwmframe.h>
 #include "../../../../base/system/dwm/dxformat.h"
 
 static void

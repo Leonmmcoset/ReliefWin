@@ -3189,7 +3189,7 @@ extern "C" {
 
 BOOL WINAPI ImportPrivacySettings(PCWSTR pszFilename, BOOL *pfParsePrivacyPreferences, BOOL *pfParsePerSiteRules);
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 typedef struct IEnumPrivacyRecords IEnumPrivacyRecords;
 
 HRESULT STDAPICALLTYPE DoPrivacyDlg(HWND hwndOwner, PCWSTR pszUrl, IEnumPrivacyRecords *pPrivacyEnum, BOOL fReportAllSites);

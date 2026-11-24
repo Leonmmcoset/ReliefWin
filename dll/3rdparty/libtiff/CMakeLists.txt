@@ -6,9 +6,9 @@ add_definitions(
     -DTIF_PLATFORM_CONSOLE)
 
 include_directories(
-    ${REACTOS_SOURCE_DIR}/sdk/include/libernt/libs/libjpeg
-    ${REACTOS_SOURCE_DIR}/sdk/include/libernt/libs/libtiff
-    ${REACTOS_SOURCE_DIR}/sdk/include/libernt/libs/zlib)
+    ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/libs/libjpeg
+    ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/libs/libtiff
+    ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/libs/zlib)
 
 spec2def(libtiff.dll libtiff.spec ADD_IMPORTLIB)
 

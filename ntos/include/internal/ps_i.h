@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Size, alignment and direction of each process and thread information class
  * COPYRIGHT:   Copyright Alex Ionescu <alex.ionescu@reactos.org>

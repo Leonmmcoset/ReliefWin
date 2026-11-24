@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test that a package entering the driver store creates the root devices of its DeviceInstall32 section
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -44,8 +44,8 @@ static const char RootDeviceInf[] =
     "AddService=,0x00000002\r\n"
     "\r\n"
     "[Strings]\r\n"
-    "Lnt=\"LiberNT tests\"\r\n"
-    "Dev=\"LiberNT root device test device\"\r\n";
+    "Lnt=\"ReliefWin tests\"\r\n"
+    "Dev=\"ReliefWin root device test device\"\r\n";
 
 static BOOL
 WriteInf(PCWSTR Path)

@@ -1305,7 +1305,7 @@ typedef BOOL (WINAPI *PFAXUNREGISTERSERVICEPROVIDERW)(LPCWSTR);
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 BOOL WINAPI FaxUnregisterRoutingExtensionA(HANDLE hFaxHandle, LPCSTR lpctstrExtensionName);
 BOOL WINAPI FaxUnregisterRoutingExtensionW(HANDLE hFaxHandle, LPCWSTR lpctstrExtensionName);
 BOOL WINAPI FaxUnregisterServiceProviderW(LPCWSTR DeviceProvider);

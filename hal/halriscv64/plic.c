@@ -1,12 +1,12 @@
 /*
- * PROJECT:     LiberNT RISC-V HAL
+ * PROJECT:     ReliefWin RISC-V HAL
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF
  * PURPOSE:     QEMU virt supervisor PLIC discovery and MMIO ownership
  */
 
 #include <ntifs.h>
-#include <libernt/fdtlib.h>
+#include <reliefwin/fdtlib.h>
 #include "halp.h"
 
 #define RISCV_PLIC_ENABLE_BASE       0x2000UL

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Apple RTKit Library
+ * PROJECT:     ReliefWin Apple RTKit Library
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Power-on and reset of Apple silicon PMGR device domains
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

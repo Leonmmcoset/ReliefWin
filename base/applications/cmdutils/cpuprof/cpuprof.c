@@ -7,12 +7,12 @@
 #include <initguid.h>
 #include <poclass.h>
 #include <acpiioct.h>
-#include <libernt/drivers/sensorprovider.h>
+#include <reliefwin/drivers/sensorprovider.h>
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>
 #include <wchar.h>
-#include <libernt/cpuaudit.h>
+#include <reliefwin/cpuaudit.h>
 #include "clock.h"
 
 typedef LONG (NTAPI *QUERY_SYSTEM)(ULONG, PVOID, ULONG, PULONG);

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     The progress window of the internal UI in the UI and execute sequences
  * COPYRIGHT:   Copyright 2026 mikuta0407 <mikuta0407@mikuta0407.net>
@@ -34,7 +34,7 @@ static const PCWSTR Queries[] =
     L"INSERT INTO `Property` (`Property`, `Value`) VALUES ('ProductCode', '{2E7B9D14-6A3C-4F85-B0D2-8C1E5A7F3B96}')",
     L"INSERT INTO `Property` (`Property`, `Value`) VALUES ('ProductVersion', '1.0.0')",
     L"INSERT INTO `Property` (`Property`, `Value`) VALUES ('ProductLanguage', '1033')",
-    L"INSERT INTO `Property` (`Property`, `Value`) VALUES ('Manufacturer', 'LiberNT')",
+    L"INSERT INTO `Property` (`Property`, `Value`) VALUES ('Manufacturer', 'ReliefWin')",
     L"INSERT INTO `CustomAction` (`Action`, `Type`, `Source`, `Target`) VALUES ('SetShell', 51, 'SHELL', '[SystemFolder]cmd.exe')",
     L"INSERT INTO `CustomAction` (`Action`, `Type`, `Source`, `Target`) VALUES ('UiWait', 114, 'SHELL', '/c echo x>\"[TempFolder]msiuiphase.ui\"&ping -n 3 127.0.0.1>nul')",
     L"INSERT INTO `CustomAction` (`Action`, `Type`, `Source`, `Target`) VALUES ('SetTarget', 51, 'TARGETDIR', '[TempFolder]')",

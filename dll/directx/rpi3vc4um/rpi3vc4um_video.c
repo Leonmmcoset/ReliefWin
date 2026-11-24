@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Raspberry Pi 3 video support
+ * PROJECT:     ReliefWin Raspberry Pi 3 video support
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     D3D9 decode DDI backend for the VideoCore MMAL decoder
  * COPYRIGHT:   Copyright 2026 Ahmed Arif <arif193@gmail.com>
@@ -14,7 +14,7 @@
 #include <dxva.h>
 
 #include "rpi3mmal.h"
-#include <libernt/drivers/directx/softgpu_2d_shared.h>
+#include <reliefwin/drivers/directx/softgpu_2d_shared.h>
 
 #include "../softgpuum/softgpuum_backend.h"
 

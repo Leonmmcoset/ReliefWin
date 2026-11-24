@@ -14,7 +14,7 @@
 #include "rpi5vc4_mbox.h"
 
 #define NDEBUG
-#include <libernt/debug.h>
+#include <reliefwin/debug.h>
 
 static ULONG
 Rpi5V3dRead(

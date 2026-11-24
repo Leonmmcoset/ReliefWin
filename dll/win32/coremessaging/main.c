@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Windows Runtime
+ * PROJECT:     ReliefWin Windows Runtime
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     CoreMessaging entry points and DispatcherQueue activation factories
  * COPYRIGHT:   Copyright 2026 Ostap Brehin <osbre@protonmail.com>

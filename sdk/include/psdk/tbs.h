@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT SDK
+ * PROJECT:     ReliefWin SDK
  * LICENSE:     LGPL-2.1-or-later (https://spdx.org/licenses/LGPL-2.1-or-later)
  * PURPOSE:     TPM Base Services declarations
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -130,7 +130,7 @@ typedef const UINT32 * PCUINT32;
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 TBS_RESULT WINAPI Tbsi_Create_Windows_Key(TBS_HANDLE keyHandle);
 
 #ifdef __cplusplus

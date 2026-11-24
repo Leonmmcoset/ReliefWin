@@ -298,6 +298,7 @@ static __inline DEVMODEA*
 _ConvertToDevmodeA(const DEVMODEW *dmW)
 {
     DEVMODEA *dmA;
+    DWORD dwErrorCode;
     WORD dmA_size, dmW_size;
     size_t BytesToCopy;
 
@@ -305,7 +306,10 @@ _ConvertToDevmodeA(const DEVMODEW *dmW)
 
     /* this is the minimal dmSize that XP accepts */
     if (dmW_size < FIELD_OFFSET(DEVMODEW, dmFields))
+    {
+        SetLastError(ERROR_INVALID_DATA);
         return NULL;
+    }
 
     // Guard against callers that set dmSize incorrectly.
     if (dmW_size > sizeof(DEVMODEW))
@@ -318,10 +322,15 @@ _ConvertToDevmodeA(const DEVMODEW *dmW)
 
     // Allocate the required bytes, that is dmSize for the ANSI DEVMODEA structure plus any extra bytes requested through dmDriverExtra.
     dmA = HeapAlloc(GetProcessHeap(), 0, dmA_size + dmW->dmDriverExtra);
-    if (!dmA) return NULL;
+    if (!dmA)
+    {
+        SetLastError(ERROR_NOT_ENOUGH_MEMORY);
+        return NULL;
+    }
 
     // Every valid DEVMODEW has a dmDeviceName, which we convert to ANSI here.
-    WideCharToMultiByte(CP_ACP, 0, dmW->dmDeviceName, -1, (LPSTR)dmA->dmDeviceName, CCHDEVICENAME, NULL, NULL);
+    if (!WideCharToMultiByte(CP_ACP, 0, dmW->dmDeviceName, -1, (LPSTR)dmA->dmDeviceName, CCHDEVICENAME, NULL, NULL))
+        goto Failure;
 
     // Copy everything up to dmFormName or the remaining dmW_size, whatever is smaller.
     BytesToCopy = min(FIELD_OFFSET(DEVMODEW, dmFormName) - FIELD_OFFSET(DEVMODEW, dmSpecVersion), dmW_size - CCHDEVICENAME * sizeof(WCHAR));
@@ -331,7 +340,10 @@ _ConvertToDevmodeA(const DEVMODEW *dmW)
     if (dmW_size >= FIELD_OFFSET(DEVMODEW, dmFormName) + CCHFORMNAME * sizeof(WCHAR))
     {
         if (dmW->dmFields & DM_FORMNAME)
-            WideCharToMultiByte(CP_ACP, 0, dmW->dmFormName, -1, (LPSTR)dmA->dmFormName, CCHFORMNAME, NULL, NULL);
+        {
+            if (!WideCharToMultiByte(CP_ACP, 0, dmW->dmFormName, -1, (LPSTR)dmA->dmFormName, CCHFORMNAME, NULL, NULL))
+                goto Failure;
+        }
         else
             dmA->dmFormName[0] = 0;
 
@@ -348,9 +360,15 @@ _ConvertToDevmodeA(const DEVMODEW *dmW)
     dmA->dmSize = dmA_size;
 
     return dmA;
+
+Failure:
+    dwErrorCode = GetLastError();
+    HeapFree(GetProcessHeap(), 0, dmA);
+    SetLastError(dwErrorCode);
+    return NULL;
 }
 
-void RosConvertUnicodeDevModeToAnsiDevmode(PDEVMODEW pDevModeInput, PDEVMODEA pDevModeOutput)
+DWORD RosConvertUnicodeDevModeToAnsiDevmode(PDEVMODEW pDevModeInput, PDEVMODEA pDevModeOutput)
 {
     PDEVMODEA pTmp;
 
@@ -358,11 +376,14 @@ void RosConvertUnicodeDevModeToAnsiDevmode(PDEVMODEW pDevModeInput, PDEVMODEA pD
 
     // Check if a pDevModeInput and pDevModeOutput are both not NULL.
     if (!pDevModeInput || !pDevModeOutput)
-        return;
+        return ERROR_SUCCESS;
 
     pTmp = _ConvertToDevmodeA(pDevModeInput);
+    if (!pTmp)
+        return GetLastError();
     memcpy( pDevModeOutput, pTmp, pTmp->dmSize + pTmp->dmDriverExtra); // Copy into a Wide char (Larger) buffer.
     HeapFree(hProcessHeap, 0, pTmp);
+    return ERROR_SUCCESS;
 }
 
 VOID

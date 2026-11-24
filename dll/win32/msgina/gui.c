@@ -10,7 +10,7 @@
 #include "msgina.h"
 
 #include <wingdi.h>
-#include <libernt/bootstatus.h>
+#include <reliefwin/bootstatus.h>
 #include <ndk/exfuncs.h>
 #include "logonui.h"
 

@@ -1716,7 +1716,7 @@ typedef BOOL (WINAPI *SYMADDSOURCESTREAMA)(HANDLE, ULONG64, PCSTR, PBYTE, size_t
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 BOOL WINAPI DbgHelpCreateUserDump(LPCSTR FileName, PDBGHELP_CREATE_USER_DUMP_CALLBACK Callback, PVOID UserData);
 BOOL WINAPI DbgHelpCreateUserDumpW(LPCWSTR FileName, PDBGHELP_CREATE_USER_DUMP_CALLBACK Callback, PVOID UserData);
 BOOL WINAPI FindFileInSearchPath(HANDLE hprocess, PCSTR SearchPathA, PCSTR FileName, DWORD one, DWORD two, DWORD three, PSTR FilePath);

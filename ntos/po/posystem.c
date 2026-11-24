@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     The power of the machine as a whole
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -1815,7 +1815,7 @@ NtPowerInformation(
                 break;
 
             case ProcessorStateHandler2:
-                /* TODO: the Windows 11 contract of this level is not sourced; LiberNT's processor driver registers through it */
+                /* TODO: the Windows 11 contract of this level is not sourced; ReliefWin's processor driver registers through it */
                 if (PreviousMode != KernelMode)
                     Status = STATUS_ACCESS_DENIED;
                 else if ((InputBuffer == NULL) || (OutputBuffer != NULL) || (OutputBufferLength != 0))

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Software GPU timeout detection and recovery on the render path
  * COPYRIGHT:   Copyright 2026 Ostap Brehin <osbre@protonmail.com>
@@ -259,7 +259,7 @@ START_TEST(softgpu_tdr)
     }
     if (!IsSoftGpu(hAdapter))
     {
-        skip("This test requires the LiberNT software GPU\n");
+        skip("This test requires the ReliefWin software GPU\n");
         goto cleanup;
     }
 

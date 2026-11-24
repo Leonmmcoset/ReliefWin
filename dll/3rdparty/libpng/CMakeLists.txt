@@ -6,8 +6,8 @@ add_definitions(
     -DPNG_BUILD_DLL)
 
 include_directories(
-    ${REACTOS_SOURCE_DIR}/sdk/include/libernt/libs/libpng
-    ${REACTOS_SOURCE_DIR}/sdk/include/libernt/libs/zlib)
+    ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/libs/libpng
+    ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/libs/zlib)
 
 spec2def(libpng.dll libpng.spec ADD_IMPORTLIB)
 

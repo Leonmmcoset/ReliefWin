@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test that WinNT:// paths open the local computer's groups and users and change a group's members
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

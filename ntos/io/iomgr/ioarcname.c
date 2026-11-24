@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Giving the loader's ARC names an NT name to point at
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

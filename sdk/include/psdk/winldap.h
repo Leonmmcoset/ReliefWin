@@ -884,7 +884,7 @@ extern "C" {
 
 LDAPMessage * __cdecl ldap_next_reference(LDAP *ld, LDAPMessage *entry);
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 void LDAPAPI ldap_set_dbg_routine(DBGPRINT DebugPrintRoutine);
 
 #ifdef __cplusplus

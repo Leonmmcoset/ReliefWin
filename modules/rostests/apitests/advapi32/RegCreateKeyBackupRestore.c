@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test which privileges let REG_OPTION_BACKUP_RESTORE create a subkey the parent's DACL refuses
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -10,7 +10,7 @@
 #include <ndk/obfuncs.h>
 #include <sddl.h>
 
-#define PARENT L"Software\\LiberNTRegBackupRestore"
+#define PARENT L"Software\\ReliefWinRegBackupRestore"
 
 static
 BOOL

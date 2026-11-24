@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Tegra USB transceiver driver
+ * PROJECT:     ReliefWin Tegra USB transceiver driver
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Clock and transceiver of a Tegra210 USB 2.0 controller
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

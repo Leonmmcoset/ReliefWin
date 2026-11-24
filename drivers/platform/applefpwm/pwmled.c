@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Apple PWM Driver
+ * PROJECT:     ReliefWin Apple PWM Driver
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     LEDs driven by a PWM output, as the device tree describes them
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

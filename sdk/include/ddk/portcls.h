@@ -3606,7 +3606,7 @@ typedef struct _PC_POWER_FRAMEWORK_SETTINGS *PPC_POWER_FRAMEWORK_SETTINGS;
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 void PC_POWER_FRAMEWORK_SETTINGS_INIT(PPC_POWER_FRAMEWORK_SETTINGS PowerFrameworkSettings);
 NTSTATUS NTAPI PcAssignPowerFrameworkSettings(PDEVICE_OBJECT DeviceObject, PPC_POWER_FRAMEWORK_SETTINGS PowerFrameworkSettings);
 NTSTATUS NTAPI PcRegisterAdapterPnpManagement(PUNKNOWN Unknown, PDEVICE_OBJECT DeviceObject);

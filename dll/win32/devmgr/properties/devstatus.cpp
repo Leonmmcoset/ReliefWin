@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Device Manager
+ * PROJECT:     ReliefWin Device Manager
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Device status text of the property sheet and the hardware page
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

@@ -324,7 +324,7 @@ LONG WINAPI GetApplicationUserModelIdFromToken(HANDLE token, UINT32 *application
 LONG WINAPI GetCurrentApplicationUserModelId(UINT32 *applicationUserModelIdLength, PWSTR applicationUserModelId);
 LONG WINAPI ParseApplicationUserModelId(PCWSTR applicationUserModelId, UINT32 *packageFamilyNameLength, PWSTR packageFamilyName, UINT32 *packageRelativeApplicationIdLength, PWSTR packageRelativeApplicationId);
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 typedef struct PACKAGEDEPENDENCY_CONTEXT__ *PACKAGEDEPENDENCY_CONTEXT;
 
 WINBASEAPI HRESULT WINAPI AddPackageDependency(PCWSTR packageDependencyId, INT32 rank, AddPackageDependencyOptions options, PACKAGEDEPENDENCY_CONTEXT *packageDependencyContext, PWSTR *packageFullName);

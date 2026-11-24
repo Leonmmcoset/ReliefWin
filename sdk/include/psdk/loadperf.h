@@ -71,7 +71,7 @@ DWORD WINAPI UnloadPerfCounterTextStringsW(LPCWSTR, BOOL);
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 DWORD WINAPI BackupPerfRegistryToFileW(LPCWSTR szFileName, LPCWSTR szCommentString);
 DWORD WINAPI RestorePerfRegistryFromFileW(LPCWSTR szFileName, LPCWSTR szLangId);
 DWORD WINAPI SetServiceAsTrustedA(LPCSTR szReserved, LPCSTR szServiceName);

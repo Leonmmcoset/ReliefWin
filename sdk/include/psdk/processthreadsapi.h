@@ -445,7 +445,7 @@ typedef struct PROCESS_PROTECTION_LEVEL_INFORMATION {
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 BOOL WINAPI GetProcessDefaultCpuSetMasks(HANDLE Process, PGROUP_AFFINITY CpuSetMasks, USHORT CpuSetMaskCount, PUSHORT RequiredMaskCount);
 BOOL WINAPI GetThreadSelectedCpuSetMasks(HANDLE Thread, PGROUP_AFFINITY CpuSetMasks, USHORT CpuSetMaskCount, PUSHORT RequiredMaskCount);
 WINBASEAPI BOOL WINAPI IsProcessCritical(HANDLE hProcess, PBOOL Critical);

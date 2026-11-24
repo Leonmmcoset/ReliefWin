@@ -19,7 +19,7 @@ config PROFILE_ARM64
 
       Nintendo Switch (minimal) builds the SD card image started from
       hekate's L4T loader through Switchroot's U-Boot with its EFI loader
-      (switchsdimg, LiberNT-switch-sd.img). The system runs from RAM.
+      (switchsdimg, ReliefWin-switch-sd.img). The system runs from RAM.
       WoW64, the FEX ARM64EC emulator, FFmpeg, LLVMpipe, Wine Mono, rosapps
       and the tests are left out. Only this profile builds the Tegra drivers.
 

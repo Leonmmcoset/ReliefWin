@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Explorer
+ * PROJECT:     ReliefWin Explorer
  * LICENSE:     LGPL-2.1-or-later (https://spdx.org/licenses/LGPL-2.1-or-later)
  * PURPOSE:     File Explorer window: tabs, bands, panes and status
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -1557,7 +1557,7 @@ CCabinetWindow::SavePlacement()
     if (!GetWindowPlacement(m_hwnd, &placement))
         return;
     StringCchPrintfW(name, _countof(name), L"Placement%u", GetDpiForWindow(m_hwnd));
-    if (RegCreateKeyExW(HKEY_CURRENT_USER, L"Software\\LiberNT\\Explorer", 0, NULL, 0, KEY_SET_VALUE, NULL, &key,
+    if (RegCreateKeyExW(HKEY_CURRENT_USER, L"Software\\ReliefWin\\Explorer", 0, NULL, 0, KEY_SET_VALUE, NULL, &key,
                         NULL) == ERROR_SUCCESS)
     {
         DWORD pane = m_PreviewPane ? 2 : m_DetailsPane ? 1 : 0;
@@ -1726,7 +1726,7 @@ CCabinetWindow::Open(PCIDLIST_ABSOLUTE pidl, PCUITEMID_CHILD select, int showCmd
                          CW_USEDEFAULT, CW_USEDEFAULT, Scale(1000), Scale(680), NULL, NULL, g_hInstance, this))
         return HRESULT_FROM_WIN32(GetLastError());
     StringCchPrintfW(name, _countof(name), L"Placement%u", GetDpiForWindow(m_hwnd));
-    if (RegGetValueW(HKEY_CURRENT_USER, L"Software\\LiberNT\\Explorer", name, RRF_RT_REG_BINARY, NULL,
+    if (RegGetValueW(HKEY_CURRENT_USER, L"Software\\ReliefWin\\Explorer", name, RRF_RT_REG_BINARY, NULL,
                      &placement, &size) == ERROR_SUCCESS && size == sizeof(placement) &&
         placement.length == sizeof(placement))
     {
@@ -1744,7 +1744,7 @@ CCabinetWindow::Open(PCIDLIST_ABSOLUTE pidl, PCUITEMID_CHILD select, int showCmd
     {
         DWORD pane = 0;
         size = sizeof(pane);
-        if (RegGetValueW(HKEY_CURRENT_USER, L"Software\\LiberNT\\Explorer", L"Pane", RRF_RT_REG_DWORD, NULL, &pane,
+        if (RegGetValueW(HKEY_CURRENT_USER, L"Software\\ReliefWin\\Explorer", L"Pane", RRF_RT_REG_DWORD, NULL, &pane,
                          &size) == ERROR_SUCCESS)
             SetPane(pane == 1, pane == 2);
     }

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Device Tree Driver Library
+ * PROJECT:     ReliefWin Device Tree Driver Library
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Device-tree access for drivers of devices the HAL enumerates from the firmware tree
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -10,7 +10,7 @@
 #include <stdarg.h>
 #include <stdio.h>
 #endif
-#include <libernt/drivers/fdtdrv.h>
+#include <reliefwin/drivers/fdtdrv.h>
 
 #define FDT_DRIVER_TAG 'vDdF'
 

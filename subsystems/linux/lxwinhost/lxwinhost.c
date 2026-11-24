@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Linux Subsystem
+ * PROJECT:     ReliefWin Linux Subsystem
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Windows host for the windows of Linux Wayland programs
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -39,8 +39,8 @@
 #define LX_RENDERER_RESTARTS        5
 #define LX_RENDERER_RESTART_WINDOW  60000
 
-#define LX_HOST_CLASS   L"LiberNT.LinuxWindow"
-#define LX_HOST_MESSAGE L"LiberNT.LinuxWindowHost"
+#define LX_HOST_CLASS   L"ReliefWin.LinuxWindow"
+#define LX_HOST_MESSAGE L"ReliefWin.LinuxWindowHost"
 
 #define LX_BTN_LEFT     0x110
 #define LX_BTN_RIGHT    0x111
@@ -1019,13 +1019,13 @@ LxStartCompositor(
     LX_LAUNCH Launch;
 
     LxBootRoot(L"lxwinhost", Root);
-    if (!LxRootHasFile(Root, L"\\usr\\local\\lib\\libernt\\lxwayland\\lxwayland"))
+    if (!LxRootHasFile(Root, L"\\usr\\local\\lib\\reliefwin\\lxwayland\\lxwayland"))
         return;
     ZeroMemory(&Launch, sizeof(Launch));
     Launch.Name = L"lxwinhost";
     Launch.Root = Root;
     Launch.Cwd = "/";
-    Launch.FileName = "/usr/local/lib/libernt/lxwayland/lxwayland";
+    Launch.FileName = "/usr/local/lib/reliefwin/lxwayland/lxwayland";
     Launch.Detached = TRUE;
     if (LxStringsAdd(&Launch.Args, "lxwayland") &&
         LxEnvSet(&Launch.Env, "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"))

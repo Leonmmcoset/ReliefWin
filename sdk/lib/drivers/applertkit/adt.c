@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Apple RTKit Library
+ * PROJECT:     ReliefWin Apple RTKit Library
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Reader of the Apple device tree the boot loader exports
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -8,7 +8,7 @@
 #ifndef UNIT_TEST
 #include <ntddk.h>
 #endif
-#include <libernt/drivers/appleadt.h>
+#include <reliefwin/drivers/appleadt.h>
 
 #define ADT_HEADER_SIZE             8
 #define ADT_PROPERTY_HEADER_SIZE    (APPLE_ADT_NAME_LENGTH + sizeof(ULONG))

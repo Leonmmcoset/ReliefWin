@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test the foreground right of a process started by the foreground process
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

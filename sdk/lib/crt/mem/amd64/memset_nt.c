@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT CRT library
+ * PROJECT:     ReliefWin CRT library
  * LICENSE:     MIT (https://spdx.org/licenses/MIT)
  * PURPOSE:     AMD64 memset of fills larger than half the last-level cache with non-temporal stores
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

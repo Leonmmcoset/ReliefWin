@@ -1,11 +1,11 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test caption layout retained with front surfaces
  */
 #include <apitest.h>
 #include <windows.h>
-#include <libernt/dwmframe.h>
+#include <reliefwin/dwmframe.h>
 #include "../../../../subsystems/win/win32k/user/ntuser/captioncache.h"
 
 START_TEST(caption_cache)

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Stopping the system on purpose, and saying why before it stops
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -816,7 +816,7 @@ KiReportBugCheck(
 
     _snprintf(Line,
               sizeof(Line),
-              "\r\nLiberNT %lu.%lu build %lu, %d processor(s)\r\n",
+              "\r\nReliefWin %lu.%lu build %lu, %d processor(s)\r\n",
               SharedUserData->NtMajorVersion,
               SharedUserData->NtMinorVersion,
               NtBuildNumber & 0xFFFF,

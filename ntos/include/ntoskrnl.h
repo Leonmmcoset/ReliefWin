@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Precompiled header of the kernel
  * COPYRIGHT:   Copyright Alex Ionescu <alex@relsoft.net>
@@ -107,7 +107,7 @@ C_ASSERT(MAX_WIN32_PATH == MAX_PATH);
 
 #include "config.h"
 #include "internal/ntoskrnl.h"
-#include <libernt/probe.h>
+#include <reliefwin/probe.h>
 #include "internal/probe.h"
 #include "resource.h"
 #include "internal/ps_i.h"

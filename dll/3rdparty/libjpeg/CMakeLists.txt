@@ -7,8 +7,8 @@ add_definitions(
     -Dmain=mainptr)
 
 include_directories(
-    ${REACTOS_SOURCE_DIR}/sdk/include/libernt/libs/libjpeg
-    ${REACTOS_SOURCE_DIR}/sdk/include/libernt/libs/zlib)
+    ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/libs/libjpeg
+    ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/libs/zlib)
 
 spec2def(libjpeg.dll libjpeg.spec ADD_IMPORTLIB)
 

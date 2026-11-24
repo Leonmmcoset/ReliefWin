@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Intel HD Graphics Driver tests
+ * PROJECT:     ReliefWin Intel HD Graphics Driver tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Decode and rebuild the 2570p Ivy Bridge display state on the host
  * COPYRIGHT:   Copyright 2026 Ostap Brehin <osbre@protonmail.com>

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Audio Resampler DSP
+ * PROJECT:     ReliefWin Audio Resampler DSP
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Shared declarations of the resampler object and its signal path
  * COPYRIGHT:   Copyright 2026 Ostap Brehin <osbre@protonmail.com>

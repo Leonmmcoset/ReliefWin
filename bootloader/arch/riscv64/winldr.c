@@ -11,8 +11,8 @@
 #include <edk2/Fdt.h>
 #include <RiscVBoot.h>
 #include <ndk/ketypes.h>
-#include <libernt/fdt.h>
-#include <libernt/fdtlib.h>
+#include <reliefwin/fdt.h>
+#include <reliefwin/fdtlib.h>
 
 DBG_DEFAULT_CHANNEL(WINDOWS);
 

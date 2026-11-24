@@ -93,7 +93,6 @@
 #define IDS_APP_AUTHORS          101
 #define IDS_WELCOME_TITLE        102
 #define IDS_WELCOME_TEXT         103
-#define IDS_WELCOME_URL          104
 #define IDS_APPWIZ_TITLE         105
 #define IDS_APPWIZ_TEXT1         106
 #define IDS_APPWIZ_TEXT2         107

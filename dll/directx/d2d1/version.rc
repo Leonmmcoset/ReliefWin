@@ -16,7 +16,7 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#define WINE_FILEDESCRIPTION_STR "LiberNT Direct2D"
+#define WINE_FILEDESCRIPTION_STR "ReliefWin Direct2D"
 
 #define WINE_FILENAME_STR "d2d1.dll"
 
@@ -25,7 +25,7 @@
 #define WINE_PRODUCTVERSION 10,0,26100,9178
 #define WINE_PRODUCTVERSION_STR "10.0.26100.9178"
 
-#define REACTOS_STR_COMPANY_NAME "LiberNT, Legacy Wine/ReactOS\0"
+#define REACTOS_STR_COMPANY_NAME "ReliefWin, Legacy Wine/ReactOS\0"
 #define REACTOS_STR_LEGAL_COPYRIGHT "(C) 1993-" COPYRIGHT_YEAR " the Wine project authors, 2026 Earzu Chan, LiberNT\0"
 
 #include "wine/wine_common_ver.rc"

@@ -1,14 +1,14 @@
 /*
- * PROJECT:     LiberNT Storport NVMe miniport
+ * PROJECT:     ReliefWin Storport NVMe miniport
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Apple ANS storage controller of Apple silicon machines
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
  */
 
 #include "stornvme.h"
-#include <libernt/drivers/fdtdrv.h>
-#include <libernt/drivers/applertkit.h>
-#include <libernt/drivers/applepmgr.h>
+#include <reliefwin/drivers/fdtdrv.h>
+#include <reliefwin/drivers/applertkit.h>
+#include <reliefwin/drivers/applepmgr.h>
 
 #define ANS_TAG 'snAA'
 

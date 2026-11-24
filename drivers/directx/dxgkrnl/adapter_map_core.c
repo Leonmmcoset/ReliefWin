@@ -1,11 +1,11 @@
 /*
- * PROJECT:     LiberNT DirectX Graphics Kernel
+ * PROJECT:     ReliefWin DirectX Graphics Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Testable adapter MapMemory range and owner validation
  */
 
 #include "adapter_map_core.h"
-#include <libernt/drivers/cmreslist.h>
+#include <reliefwin/drivers/cmreslist.h>
 
 BOOLEAN
 DxgkAdapterMapRangeAssigned(

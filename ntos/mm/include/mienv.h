@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT NT Virtual Memory Subsystem
+ * PROJECT:     ReliefWin NT Virtual Memory Subsystem
  * FILE:        ntoskrnl/nvs/include/mienv.h
  * PURPOSE:     Memory manager environment definitions
  *

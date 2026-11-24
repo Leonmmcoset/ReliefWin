@@ -36,8 +36,8 @@
 using namespace ATL;
 
 #define NDEBUG
-#include <libernt/debug.h>
-#include <libernt/shellutils.h>
+#include <reliefwin/debug.h>
+#include <reliefwin/shellutils.h>
 #include <ui/rosdlgs.h>
 
 

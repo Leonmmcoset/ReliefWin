@@ -6,9 +6,9 @@
 #include <cmreslist.h>
 #include <ntstrsafe.h>
 #include <ntintsafe.h>
-#include <libernt/hal/acpi_pci.h>
+#include <reliefwin/hal/acpi_pci.h>
 #include <acpiioct.h>
-#include <libernt/drivers/acpi/acpipci.h>
+#include <reliefwin/drivers/acpi/acpipci.h>
 #include "pcidef.h"
 
 #define TAG_PCI '0ICP'

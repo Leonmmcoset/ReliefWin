@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT WDDM DirectX Graphics Kernel
+ * PROJECT:     ReliefWin WDDM DirectX Graphics Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Swap chain / present infrastructure
  * COPYRIGHT:   Copyright 2024-2026 LiberNT WDDM Team
@@ -53,7 +53,7 @@
 #include "present.h"
 #include "present_queue_core.h"
 #include "display_core.h"
-#include <libernt/dwmframe.h>
+#include <reliefwin/dwmframe.h>
 
 #define DXGK_PRESENT_EXEC_LOG_LIMIT  32
 #define DXGK_PRESENT_EXEC_SLOW_US    5000ULL

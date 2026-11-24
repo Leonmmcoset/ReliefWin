@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Native host library built as RV64X, called by emulated x64 code and calling it back
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -8,7 +8,7 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <windef.h>
-#include <libernt/emuhost.h>
+#include <reliefwin/emuhost.h>
 #include "rv64xtest.h"
 
 static RV64X_TEST_TABLE Rv64xTable;

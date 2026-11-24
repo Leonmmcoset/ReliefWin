@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT StarFive JH7110 display miniport
+ * PROJECT:     ReliefWin StarFive JH7110 display miniport
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Version resource
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -9,4 +9,4 @@
 #define REACTOS_STR_FILE_DESCRIPTION  "StarFive JH7110 Display Driver (WDDM)"
 #define REACTOS_STR_INTERNAL_NAME     "jh7110dc"
 #define REACTOS_STR_ORIGINAL_FILENAME "jh7110dc.sys"
-#include <libernt/version.rc>
+#include <reliefwin/version.rc>

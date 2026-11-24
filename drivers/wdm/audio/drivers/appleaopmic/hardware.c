@@ -1,15 +1,15 @@
 /*
- * PROJECT:     LiberNT Apple AOP Microphone Driver
+ * PROJECT:     ReliefWin Apple AOP Microphone Driver
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Device tree, DART and ADMAC access of the built-in microphones
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
  */
 
 #include <ntddk.h>
-#include <libernt/drivers/fdtdrv.h>
-#include <libernt/drivers/appleadmac.h>
-#include <libernt/drivers/appledart.h>
-#include <libernt/drivers/applertkit.h>
+#include <reliefwin/drivers/fdtdrv.h>
+#include <reliefwin/drivers/appleadmac.h>
+#include <reliefwin/drivers/appledart.h>
+#include <reliefwin/drivers/applertkit.h>
 #include "hardware.h"
 
 #define AOP_MIC_HW_TAG 'hOpA'

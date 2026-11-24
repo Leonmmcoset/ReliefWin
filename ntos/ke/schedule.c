@@ -1,12 +1,12 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Choosing which thread a processor runs next, and handing it over
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
  */
 
 #include <ntoskrnl.h>
-#include <libernt/smpdbg.h>
+#include <reliefwin/smpdbg.h>
 #include "keprivate.h"
 #define NDEBUG
 #include <debug.h>

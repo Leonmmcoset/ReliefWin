@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT kernel-mode tests
+ * PROJECT:     ReliefWin kernel-mode tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     An HD Audio function device answers the standard bus interface query
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

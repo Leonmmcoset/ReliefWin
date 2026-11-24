@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Terminal
+ * PROJECT:     ReliefWin Terminal
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Terminal settings: profiles, color schemes, key bindings and the settings file
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

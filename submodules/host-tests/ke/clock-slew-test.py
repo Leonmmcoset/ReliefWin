@@ -1,4 +1,4 @@
-# PROJECT:     LiberNT host-native tests
+# PROJECT:     ReliefWin host-native tests
 # LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
 # PURPOSE:     A time adjustment moves the system time by its value per default clock period at any clock step
 # COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

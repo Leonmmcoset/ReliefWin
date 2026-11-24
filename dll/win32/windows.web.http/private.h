@@ -1,12 +1,12 @@
 /*
- * PROJECT:     LiberNT Windows Runtime
+ * PROJECT:     ReliefWin Windows Runtime
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Windows.Web.Http internal declarations
  * COPYRIGHT:   Copyright 2026 Ostap Brehin <osbre@protonmail.com>
  */
 
-#ifndef __LIBERNT_WINDOWS_WEB_HTTP_PRIVATE_H
-#define __LIBERNT_WINDOWS_WEB_HTTP_PRIVATE_H
+#ifndef __RELIEFWIN_WINDOWS_WEB_HTTP_PRIVATE_H
+#define __RELIEFWIN_WINDOWS_WEB_HTTP_PRIVATE_H
 
 #include <stdarg.h>
 #include <assert.h>

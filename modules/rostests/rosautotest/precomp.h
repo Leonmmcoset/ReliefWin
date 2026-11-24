@@ -33,7 +33,7 @@ using namespace std;
 
 #include <dpfilter.h>
 #include <ndk/rtlfuncs.h>
-#include <libernt/buildno.h>
+#include <reliefwin/buildno.h>
 
 /* Class includes */
 #include "auto_array_ptr.h"

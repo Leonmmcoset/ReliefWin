@@ -39,7 +39,7 @@
 #include "wine/wined3d.h"
 #include "wine/winedxgi.h"
 #ifdef __REACTOS__
-#include "libernt/dxgi_dcomp.h"
+#include "reliefwin/dxgi_dcomp.h"
 #endif
 
 enum dxgi_frame_latency

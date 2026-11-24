@@ -1,13 +1,13 @@
 /*
- * PROJECT:     LiberNT Apple Graphics Driver
+ * PROJECT:     ReliefWin Apple Graphics Driver
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Identification of the Apple silicon graphics processor
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
  */
 
 #include "appleagxp.h"
-#include <libernt/drivers/applepmgr.h>
-#include <libernt/drivers/applepmp.h>
+#include <reliefwin/drivers/applepmgr.h>
+#include <reliefwin/drivers/applepmp.h>
 #include <pseh/pseh2.h>
 
 #define AGX_TAG                     'xgAA'

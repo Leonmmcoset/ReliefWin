@@ -42,7 +42,7 @@ BEGIN
     END
 END
 
-#include <libernt/manifest_exe.rc>
+#include <reliefwin/manifest_exe.rc>
 
 /* UTF-8 */
 #pragma code_page(65001)

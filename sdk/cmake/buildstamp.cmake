@@ -1,5 +1,5 @@
 #
-# PROJECT:     LiberNT build system
+# PROJECT:     ReliefWin build system
 # LICENSE:     GPL-2.0-or-later (https://spdx.org/licenses/GPL-2.0-or-later)
 # PURPOSE:     Stamp the build with the branch, commit, target, toolchain and time
 # COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -53,19 +53,19 @@ endif()
 # tree the same way does not recompile what shows the stamp.
 if(EXISTS "${OUTPUT}")
     file(READ "${OUTPUT}" STAMPED)
-    if(STAMPED MATCHES "LIBERNT_BUILD_BRANCH +\"([^\"]*)\"")
+    if(STAMPED MATCHES "RELIEFWIN_BUILD_BRANCH +\"([^\"]*)\"")
         set(STAMPED_BRANCH "${CMAKE_MATCH_1}")
     endif()
-    if(STAMPED MATCHES "LIBERNT_BUILD_COMMIT +\"([^\"]*)\"")
+    if(STAMPED MATCHES "RELIEFWIN_BUILD_COMMIT +\"([^\"]*)\"")
         set(STAMPED_COMMIT "${CMAKE_MATCH_1}")
     endif()
-    if(STAMPED MATCHES "LIBERNT_BUILD_TIME +\"([^\"]*)\"")
+    if(STAMPED MATCHES "RELIEFWIN_BUILD_TIME +\"([^\"]*)\"")
         set(STAMPED_TIME "${CMAKE_MATCH_1}")
     endif()
-    if(STAMPED MATCHES "LIBERNT_BUILD_ARCH +\"([^\"]*)\"")
+    if(STAMPED MATCHES "RELIEFWIN_BUILD_ARCH +\"([^\"]*)\"")
         set(STAMPED_ARCH "${CMAKE_MATCH_1}")
     endif()
-    if(STAMPED MATCHES "LIBERNT_BUILD_TOOLCHAIN +\"([^\"]*)\"")
+    if(STAMPED MATCHES "RELIEFWIN_BUILD_TOOLCHAIN +\"([^\"]*)\"")
         set(STAMPED_TOOLCHAIN "${CMAKE_MATCH_1}")
     endif()
     if(STAMPED_TIME AND
@@ -84,16 +84,16 @@ string(RANDOM LENGTH 8 ALPHABET "0123456789abcdef" TEMPORARY)
 set(TEMPORARY "${OUTPUT}.${TEMPORARY}")
 file(WRITE "${TEMPORARY}"
 "/* Do not edit - Machine generated */
-#ifndef _INC_LIBERNT_BUILDSTAMP
-#define _INC_LIBERNT_BUILDSTAMP
+#ifndef _INC_RELIEFWIN_BUILDSTAMP
+#define _INC_RELIEFWIN_BUILDSTAMP
 
-#define LIBERNT_BUILD_BRANCH    \"${BUILD_BRANCH}\"
-#define LIBERNT_BUILD_COMMIT    \"${BUILD_COMMIT}\"
-#define LIBERNT_BUILD_ARCH      \"${BUILD_ARCH}\"
-#define LIBERNT_BUILD_TOOLCHAIN \"${BUILD_TOOLCHAIN}\"
-#define LIBERNT_BUILD_TIME      \"${BUILD_TIME}\"
-#define LIBERNT_BUILD_STAMP     \"${BUILD_STAMP}\"
-#define LIBERNT_BUILD_STAMP_W  L\"${BUILD_STAMP}\"
+#define RELIEFWIN_BUILD_BRANCH    \"${BUILD_BRANCH}\"
+#define RELIEFWIN_BUILD_COMMIT    \"${BUILD_COMMIT}\"
+#define RELIEFWIN_BUILD_ARCH      \"${BUILD_ARCH}\"
+#define RELIEFWIN_BUILD_TOOLCHAIN \"${BUILD_TOOLCHAIN}\"
+#define RELIEFWIN_BUILD_TIME      \"${BUILD_TIME}\"
+#define RELIEFWIN_BUILD_STAMP     \"${BUILD_STAMP}\"
+#define RELIEFWIN_BUILD_STAMP_W  L\"${BUILD_STAMP}\"
 
 #endif
 /* EOF */

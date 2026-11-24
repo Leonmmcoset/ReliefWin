@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Settings
+ * PROJECT:     ReliefWin Settings
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Gaming, accessibility, privacy and updates pages
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -15,9 +15,9 @@
 
 #define WINDOWS_NT_KEY L"SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion"
 #define ADVANCED_KEY L"Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced"
-#define UPDATE_KEY L"SOFTWARE\\LiberNT\\Update"
-#define UPDATE_REQUEST L"\\$LiberNT.~BT\\upgrade.ini"
-#define UPDATE_INVENTORY L"\\servicing\\LiberNT.files"
+#define UPDATE_KEY L"SOFTWARE\\ReliefWin\\Update"
+#define UPDATE_REQUEST L"\\$ReliefWin.~BT\\upgrade.ini"
+#define UPDATE_INVENTORY L"\\servicing\\ReliefWin.files"
 
 static std::wstring
 DriverValue(HKEY key, LPCWSTR name)
@@ -325,7 +325,7 @@ AddMouseKeys(PageBuilder &page)
 }
 
 #define APPEARANCE_SCHEMES_KEY L"Control Panel\\Appearance\\New Schemes"
-#define LIBERNT_SETTINGS_KEY L"Software\\LiberNT\\Settings"
+#define RELIEFWIN_SETTINGS_KEY L"Software\\ReliefWin\\Settings"
 #define THEME_MANAGER_KEY L"Software\\Microsoft\\Windows\\CurrentVersion\\ThemeManager"
 
 static const UINT ContrastSchemes[] = { 4, 5, 6, 7 };
@@ -378,9 +378,9 @@ ApplyContrastScheme(int index)
         if (!on)
             return;
         SetHighContrast(contrast.dwFlags & ~HCF_HIGHCONTRASTON, NULL);
-        style = ReadString(HKEY_CURRENT_USER, LIBERNT_SETTINGS_KEY, L"VisualStyle");
-        color = ReadString(HKEY_CURRENT_USER, LIBERNT_SETTINGS_KEY, L"VisualStyleColor");
-        size = ReadString(HKEY_CURRENT_USER, LIBERNT_SETTINGS_KEY, L"VisualStyleSize");
+        style = ReadString(HKEY_CURRENT_USER, RELIEFWIN_SETTINGS_KEY, L"VisualStyle");
+        color = ReadString(HKEY_CURRENT_USER, RELIEFWIN_SETTINGS_KEY, L"VisualStyleColor");
+        size = ReadString(HKEY_CURRENT_USER, RELIEFWIN_SETTINGS_KEY, L"VisualStyleSize");
         if (style.empty() && GetWindowsDirectoryW(windows, _countof(windows)))
             style = std::wstring(windows) + L"\\Resources\\Themes\\Aero\\aero.msstyles";
         SetSystemVisualStyle(style.c_str(), color.c_str(), size.c_str(), 0);
@@ -391,11 +391,11 @@ ApplyContrastScheme(int index)
     {
         if (ReadString(HKEY_CURRENT_USER, THEME_MANAGER_KEY, L"ThemeActive") == L"1")
         {
-            WriteString(HKEY_CURRENT_USER, LIBERNT_SETTINGS_KEY, L"VisualStyle",
+            WriteString(HKEY_CURRENT_USER, RELIEFWIN_SETTINGS_KEY, L"VisualStyle",
                         ReadString(HKEY_CURRENT_USER, THEME_MANAGER_KEY, L"DllName"));
-            WriteString(HKEY_CURRENT_USER, LIBERNT_SETTINGS_KEY, L"VisualStyleColor",
+            WriteString(HKEY_CURRENT_USER, RELIEFWIN_SETTINGS_KEY, L"VisualStyleColor",
                         ReadString(HKEY_CURRENT_USER, THEME_MANAGER_KEY, L"ColorName"));
-            WriteString(HKEY_CURRENT_USER, LIBERNT_SETTINGS_KEY, L"VisualStyleSize",
+            WriteString(HKEY_CURRENT_USER, RELIEFWIN_SETTINGS_KEY, L"VisualStyleSize",
                         ReadString(HKEY_CURRENT_USER, THEME_MANAGER_KEY, L"SizeName"));
         }
         SetSystemVisualStyle(NULL, NULL, NULL, 0);
@@ -596,6 +596,8 @@ static void
 ReadInstalledRelease(std::wstring &version, ULONG &build)
 {
     WCHAR path[MAX_PATH];
+    static const CHAR ReleasePrefix[] = "; ReliefWin ";
+    static const CHAR BuildPrefix[] = "\n; Build ";
     CHAR text[512];
     DWORD read = 0;
     HANDLE file;
@@ -613,15 +615,15 @@ ReadInstalledRelease(std::wstring &version, ULONG &build)
     CloseHandle(file);
     text[read] = '\0';
 
-    if (strncmp(text, "; LiberNT ", 10) == 0)
+    if (strncmp(text, ReleasePrefix, sizeof(ReleasePrefix) - 1) == 0)
     {
-        line = text + 10;
+        line = text + sizeof(ReleasePrefix) - 1;
         end = strpbrk(line, "\r\n");
         version.assign(line, end ? end : line + strlen(line));
     }
-    number = strstr(text, "\n; Build ");
+    number = strstr(text, BuildPrefix);
     if (number)
-        build = strtoul(number + 10, NULL, 10);
+        build = strtoul(number + sizeof(BuildPrefix) - 1, NULL, 10);
 }
 
 static std::wstring
@@ -665,7 +667,7 @@ BuildUpdate(PageBuilder &page)
 
     page.Group(Str(IDS_UPDATE_OPTIONS));
     page.Toggle(Str(IDS_UPDATE_AUTOMATIC), Str(IDS_UPDATE_AUTOMATIC_DESC), L"arrow_sync_20_regular",
-                ReadDword(HKEY_LOCAL_MACHINE, UPDATE_KEY, L"Enabled", 1) != 0,
+                ReadDword(HKEY_LOCAL_MACHINE, UPDATE_KEY, L"Enabled", 0) != 0,
                 [host](int on)
                 {
                     if (!WriteDword(HKEY_LOCAL_MACHINE, UPDATE_KEY, L"Enabled", on != 0))

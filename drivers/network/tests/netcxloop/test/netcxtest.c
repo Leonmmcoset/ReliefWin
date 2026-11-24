@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT network tests
+ * PROJECT:     ReliefWin network tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Installs the NetAdapterCx and WiFiCx test adapters and pings their simulated link peer
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif193.001@gmail.com>

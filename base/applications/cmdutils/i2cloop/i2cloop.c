@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT I2C Loopback Test
+ * PROJECT:     ReliefWin I2C Loopback Test
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Exercises the Intel I2C2 and I2C3 controllers wired to each other in master and target roles
  * COPYRIGHT:   Copyright 2026 Ahmed Arif <arif193@gmail.com>
@@ -13,7 +13,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <initguid.h>
-#include <libernt/drivers/inteli2c.h>
+#include <reliefwin/drivers/inteli2c.h>
 
 #define I2CLOOP_I2C2_DEVICE_ID 0x54ea
 #define I2CLOOP_I2C3_DEVICE_ID 0x54eb

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Animated lit gears reach the screen; reports their frame rate
  * COPYRIGHT:   Copyright 2026 Ostap Brehin <osbre@protonmail.com>

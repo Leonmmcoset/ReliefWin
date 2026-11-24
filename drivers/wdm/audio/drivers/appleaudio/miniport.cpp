@@ -1,5 +1,5 @@
 /*
- * PROJECT:         LiberNT Apple Silicon Audio Driver
+ * PROJECT:         ReliefWin Apple Silicon Audio Driver
  * LICENSE:         GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:         WaveRT and topology miniports for the headphone jack and the speakers
  * COPYRIGHT:       Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

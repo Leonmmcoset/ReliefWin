@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test AddLocalAlternateComputerNameA/W
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -51,9 +51,9 @@ TestInvalidParameters(VOID)
     ULONG Index;
 
     SetLastError(0xdeadbeef);
-    ok_long(pAddLocalAlternateComputerNameW(L"libernt-apitest-flags.example", 1), ERROR_INVALID_PARAMETER);
+    ok_long(pAddLocalAlternateComputerNameW(L"reliefwin-apitest-flags.example", 1), ERROR_INVALID_PARAMETER);
     ok_long(GetLastError(), 0xdeadbeef);
-    ok_long(pAddLocalAlternateComputerNameW(L"libernt-apitest-flags.example", 0x80000000), ERROR_INVALID_PARAMETER);
+    ok_long(pAddLocalAlternateComputerNameW(L"reliefwin-apitest-flags.example", 0x80000000), ERROR_INVALID_PARAMETER);
     ok_long(pAddLocalAlternateComputerNameW(NULL, 0), ERROR_INVALID_PARAMETER);
     ok_long(pAddLocalAlternateComputerNameW(L"", 0), ERROR_INVALID_PARAMETER);
     ok_long(pAddLocalAlternateComputerNameW(L"bad name.example", 0), ERROR_INVALID_PARAMETER);
@@ -74,7 +74,7 @@ TestInvalidParameters(VOID)
 
     if (pAddLocalAlternateComputerNameA)
     {
-        ok_long(pAddLocalAlternateComputerNameA("libernt-apitest-flags.example", 2), ERROR_INVALID_PARAMETER);
+        ok_long(pAddLocalAlternateComputerNameA("reliefwin-apitest-flags.example", 2), ERROR_INVALID_PARAMETER);
         ok_long(pAddLocalAlternateComputerNameA(NULL, 0), ERROR_INVALID_PARAMETER);
         ok_long(pAddLocalAlternateComputerNameA("", 0), ERROR_INVALID_PARAMETER);
         ok_long(pAddLocalAlternateComputerNameA("bad name.example", 0), ERROR_INVALID_PARAMETER);
@@ -90,7 +90,7 @@ TestAddNames(
     DWORD Error;
 
     SetLastError(0xdeadbeef);
-    Error = pAddLocalAlternateComputerNameW(L"libernt-apitest-alt1.example.com", 0);
+    Error = pAddLocalAlternateComputerNameW(L"reliefwin-apitest-alt1.example.com", 0);
     if (Error == ERROR_ACCESS_DENIED)
     {
         skip("AddLocalAlternateComputerNameW needs administrator rights\n");
@@ -98,25 +98,25 @@ TestAddNames(
     }
     ok_long(Error, ERROR_SUCCESS);
     ok_long(GetLastError(), 0xdeadbeef);
-    ok_long(CountListEntries(Key, L"libernt-apitest-alt1.example.com", &Type), 1);
+    ok_long(CountListEntries(Key, L"reliefwin-apitest-alt1.example.com", &Type), 1);
     ok_long(Type, REG_MULTI_SZ);
 
-    ok_long(pAddLocalAlternateComputerNameW(L"LIBERNT-APITEST-ALT1.example.com", 0), ERROR_SUCCESS);
-    ok_long(CountListEntries(Key, L"libernt-apitest-alt1.example.com", &Type), 1);
+    ok_long(pAddLocalAlternateComputerNameW(L"RELIEFWIN-APITEST-ALT1.example.com", 0), ERROR_SUCCESS);
+    ok_long(CountListEntries(Key, L"reliefwin-apitest-alt1.example.com", &Type), 1);
 
-    ok_long(pAddLocalAlternateComputerNameW(L"libernt-apitest-alt2.example.com", 0), ERROR_SUCCESS);
-    ok_long(CountListEntries(Key, L"libernt-apitest-alt1.example.com", &Type), 1);
-    ok_long(CountListEntries(Key, L"libernt-apitest-alt2.example.com", &Type), 1);
+    ok_long(pAddLocalAlternateComputerNameW(L"reliefwin-apitest-alt2.example.com", 0), ERROR_SUCCESS);
+    ok_long(CountListEntries(Key, L"reliefwin-apitest-alt1.example.com", &Type), 1);
+    ok_long(CountListEntries(Key, L"reliefwin-apitest-alt2.example.com", &Type), 1);
     ok_long(Type, REG_MULTI_SZ);
 
-    ok_long(pAddLocalAlternateComputerNameW(L"libernt_apitest_alt3.example.com", 0), ERROR_SUCCESS);
-    ok_long(CountListEntries(Key, L"libernt_apitest_alt3.example.com", &Type), 1);
+    ok_long(pAddLocalAlternateComputerNameW(L"reliefwin_apitest_alt3.example.com", 0), ERROR_SUCCESS);
+    ok_long(CountListEntries(Key, L"reliefwin_apitest_alt3.example.com", &Type), 1);
 
     if (pAddLocalAlternateComputerNameA)
     {
-        ok_long(pAddLocalAlternateComputerNameA("libernt-apitest-alt4.example.com", 0), ERROR_SUCCESS);
-        ok_long(CountListEntries(Key, L"libernt-apitest-alt4.example.com", &Type), 1);
-        ok_long(CountListEntries(Key, L"libernt-apitest-alt1.example.com", &Type), 1);
+        ok_long(pAddLocalAlternateComputerNameA("reliefwin-apitest-alt4.example.com", 0), ERROR_SUCCESS);
+        ok_long(CountListEntries(Key, L"reliefwin-apitest-alt4.example.com", &Type), 1);
+        ok_long(CountListEntries(Key, L"reliefwin-apitest-alt1.example.com", &Type), 1);
     }
 }
 

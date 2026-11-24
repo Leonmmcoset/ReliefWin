@@ -109,7 +109,7 @@ extern "C" {
 HRESULT WINAPI CLSIDFromProgIDEx(LPCOLESTR lpszProgID, LPCLSID lpclsid);
 HRESULT WINAPI CoGetCallerTID(LPDWORD lpdwTID);
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 HRESULT STDAPICALLTYPE CoAllowUnmarshalerCLSID(const IID *const clsid);
 HRESULT STDAPICALLTYPE CoInvalidateRemoteMachineBindings(LPOLESTR pszMachineName);
 HRESULT STDAPICALLTYPE CoRegisterDeviceCatalog(PCWSTR deviceInstanceId, CO_DEVICE_CATALOG_COOKIE *cookie);

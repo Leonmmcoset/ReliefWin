@@ -211,7 +211,7 @@ static void init_reactos_syscall_table(void)
     syscall_tables[0].ServiceLimit = ARRAY_SIZE(reactos_syscall_thunks);
     syscall_tables[0].ArgumentTable = reactos_syscall_args;
     if (missing)
-        WARN( "%u of %u ReactOS syscalls have no WoW64 thunk\n", missing, (UINT)ARRAY_SIZE(reactos_syscalls) );
+        WARN( "%u of %u ReliefWin syscalls have no WoW64 thunk\n", missing, (UINT)ARRAY_SIZE(reactos_syscalls) );
 }
 #endif
 

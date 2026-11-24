@@ -6,8 +6,8 @@
  */
 
 #include "app.h"
-#include <libernt/dwmframe.h>
-#include <libernt/dwmsettings.h>
+#include <reliefwin/dwmframe.h>
+#include <reliefwin/dwmsettings.h>
 
 #define FRAME_CLASS L"TaskManager11Frame"
 #define TRAY_ID 1

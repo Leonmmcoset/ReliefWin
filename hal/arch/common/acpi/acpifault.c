@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT HAL
+ * PROJECT:     ReliefWin HAL
  * LICENSE:     GPL-2.0-or-later (https://spdx.org/licenses/GPL-2.0-or-later)
  * PURPOSE:     What the firmware table parsers rejected, kept for the boot report
  * COPYRIGHT:   Copyright 2026 LiberNT contributors

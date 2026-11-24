@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT package manager
+ * PROJECT:     ReliefWin package manager
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Package dependency installation
  * COPYRIGHT:   Copyright 2026 Ahmed Arif

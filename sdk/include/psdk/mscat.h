@@ -204,7 +204,7 @@ BOOL WINAPI IsCatalogFile(HANDLE hFile, WCHAR * pwszFileName);
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 void WINAPI CryptCATSetCreatePageHashesFlag(HANDLE hCatalog, BOOL newCreatePageHashesFlag);
 
 #ifdef __cplusplus

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT WinUSB driver
+ * PROJECT:     ReliefWin WinUSB driver
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Generic USB function driver for WinUSB devices: definitions
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -14,7 +14,7 @@
 #include <usbioctl.h>
 #include <usbbusif.h>
 #include <winusbio.h>
-#include <libernt/drivers/lntwinusb.h>
+#include <reliefwin/drivers/lntwinusb.h>
 
 #define WINUSB_TAG 'BSUW'
 #define WINUSB_MAX_PIPES 32

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Apple RTKit Library
+ * PROJECT:     ReliefWin Apple RTKit Library
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     PMGR power-state register layout shared by the power helpers
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include <libernt/drivers/applepmgr.h>
+#include <reliefwin/drivers/applepmgr.h>
 
 #define PMGR_RESET              0x80000000
 #define PMGR_AUTO_ENABLE        0x10000000

@@ -142,7 +142,7 @@ extern "C" {
 HRESULT WINAPI GetDiskSpaceInformationA(LPCSTR rootPath, DISK_SPACE_INFORMATION *diskSpaceInfo);
 HRESULT WINAPI GetDiskSpaceInformationW(LPCWSTR rootPath, DISK_SPACE_INFORMATION *diskSpaceInfo);
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 WINBASEAPI BOOL WINAPI AreShortNamesEnabled(HANDLE Handle, BOOL *Enabled);
 WINBASEAPI HANDLE WINAPI CreateDirectory2A(LPCSTR lpPathName, DWORD dwDesiredAccess, DWORD dwShareMode, DIRECTORY_FLAGS DirectoryFlags, LPSECURITY_ATTRIBUTES lpSecurityAttributes);
 WINBASEAPI HANDLE WINAPI CreateDirectory2W(LPCWSTR lpPathName, DWORD dwDesiredAccess, DWORD dwShareMode, DIRECTORY_FLAGS DirectoryFlags, LPSECURITY_ATTRIBUTES lpSecurityAttributes);

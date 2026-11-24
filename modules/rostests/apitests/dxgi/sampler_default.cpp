@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Tests the default sampler a NULL sampler slot selects and device teardown with it bound
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

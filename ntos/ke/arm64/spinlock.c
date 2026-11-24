@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     arm64 spin lock exports beyond the common ones: Kf entry points and KeAcquireSpinLock
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

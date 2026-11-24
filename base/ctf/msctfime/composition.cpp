@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT msctfime.ime
+ * PROJECT:     ReliefWin msctfime.ime
  * LICENSE:     LGPL-2.1-or-later (https://spdx.org/licenses/LGPL-2.1-or-later)
  * PURPOSE:     Reflecting text service compositions into input contexts
  * COPYRIGHT:   Copyright 2026 mikuta0407 <mikuta0407@mikuta0407.net>

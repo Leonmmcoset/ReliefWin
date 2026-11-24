@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT SDK
+ * PROJECT:     ReliefWin SDK
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     ARM (Thumb-2) assembler offsets, named as in the SDK 10.0.16299 shared/ksarm.h
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

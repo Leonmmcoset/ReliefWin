@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test raw IPv4 sends with and without IP_HDRINCL
  * COPYRIGHT:   Copyright 2026 Ostap Brehin <osbre@protonmail.com>
@@ -10,6 +10,8 @@
 #define COM_NO_WINDOWS_H
 #include <apitest.h>
 #include <ws2tcpip.h>
+
+enum { PAYLOAD_SIZE = sizeof("ReliefWin!") - 1 };
 
 START_TEST(raw_send)
 {
@@ -40,8 +42,8 @@ START_TEST(raw_send)
     ZeroMemory(&Address, sizeof(Address));
     Address.sin_family = AF_INET;
     Address.sin_addr.s_addr = htonl(INADDR_LOOPBACK);
-    Result = sendto(Sender, "LiberNT!", 8, 0, (const SOCKADDR *)&Address, sizeof(Address));
-    ok(Result == 8, "sendto without IP_HDRINCL returned %d, error %d\n", Result, WSAGetLastError());
+    Result = sendto(Sender, "ReliefWin!", PAYLOAD_SIZE, 0, (const SOCKADDR *)&Address, sizeof(Address));
+    ok(Result == PAYLOAD_SIZE, "sendto without IP_HDRINCL returned %d, error %d\n", Result, WSAGetLastError());
 
     IncludeHeader = TRUE;
     Result = setsockopt(Sender, IPPROTO_IP, IP_HDRINCL, (const CHAR *)&IncludeHeader, sizeof(IncludeHeader));

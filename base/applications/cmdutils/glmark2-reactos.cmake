@@ -161,8 +161,8 @@ target_include_directories(glmark2 BEFORE PRIVATE
     ${GLMARK2_SOURCE_DIR}/src/glad/include
     ${GLMARK2_SOURCE_DIR}/src/libpng
     ${GLMARK2_SOURCE_DIR}/src/zlib
-    ${REACTOS_SOURCE_DIR}/sdk/include/libernt/libs/libjpeg
-    ${REACTOS_SOURCE_DIR}/sdk/include/libernt/libs/zlib)
+    ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/libs/libjpeg
+    ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/libs/zlib)
 target_compile_definitions(glmark2 PRIVATE
     GLMARK_VERSION="2023.01"
     GLMARK_DATA_PATH="C:/Windows/system32/glmark2"

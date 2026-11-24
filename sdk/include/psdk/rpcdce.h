@@ -232,7 +232,7 @@ typedef struct _SEC_WINNT_AUTH_IDENTITY_W
 } SEC_WINNT_AUTH_IDENTITY_W, *PSEC_WINNT_AUTH_IDENTITY_W;
 #endif
 
-/* FIXME: Windows leaves the ANSI record undefined after ntifs.h has defined _AUTH_IDENTITY_DEFINED; LiberNT always provides it once */
+/* FIXME: Windows leaves the ANSI record undefined after ntifs.h has defined _AUTH_IDENTITY_DEFINED; ReliefWin always provides it once */
 #ifndef _AUTH_IDENTITY_A_DEFINED
 #define _AUTH_IDENTITY_A_DEFINED
 typedef struct _SEC_WINNT_AUTH_IDENTITY_A
@@ -1250,7 +1250,7 @@ extern "C" {
 
 RPC_STATUS WINAPI RpcIfInqId(RPC_IF_HANDLE RpcIfHandle, RPC_IF_ID *RpcIfId);
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 RPCRTAPI RPC_STATUS RPC_ENTRY RpcBindingGetTrainingContextHandle(RPC_BINDING_HANDLE Binding, void **ContextHandle);
 RPCRTAPI RPC_STATUS RPC_ENTRY RpcIfIdVectorFree(RPC_IF_ID_VECTOR **IfIdVector);
 RPCRTAPI RPC_STATUS RPC_ENTRY RpcImpersonateClient2(RPC_BINDING_HANDLE BindingHandle);
@@ -1477,7 +1477,7 @@ struct RPC_INTERFACE_TEMPLATEW
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 RPCRTAPI RPC_STATUS RPC_ENTRY RpcBindingCreateA(RPC_BINDING_HANDLE_TEMPLATE_V1_A *Template, RPC_BINDING_HANDLE_SECURITY_V1_A *Security, RPC_BINDING_HANDLE_OPTIONS_V1 *Options, RPC_BINDING_HANDLE *Binding);
 RPCRTAPI RPC_STATUS RPC_ENTRY RpcBindingCreateW(RPC_BINDING_HANDLE_TEMPLATE_V1_W *Template, RPC_BINDING_HANDLE_SECURITY_V1_W *Security, RPC_BINDING_HANDLE_OPTIONS_V1 *Options, RPC_BINDING_HANDLE *Binding);
 RPCRTAPI RPC_STATUS RPC_ENTRY RpcServerInterfaceGroupCreateA(RPC_INTERFACE_TEMPLATEA *Interfaces, unsigned long NumIfs, RPC_ENDPOINT_TEMPLATEA *Endpoints, unsigned long NumEndpoints, unsigned long IdlePeriod, RPC_INTERFACE_GROUP_IDLE_CALLBACK_FN IdleCallbackFn, void *IdleCallbackContext, PRPC_INTERFACE_GROUP IfGroup);

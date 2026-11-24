@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Linux Subsystem
+ * PROJECT:     ReliefWin Linux Subsystem
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Key management: add_key, request_key, keyctl, /proc/keys and /proc/key-users
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

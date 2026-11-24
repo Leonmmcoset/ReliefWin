@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Apple RTKit Library
+ * PROJECT:     ReliefWin Apple RTKit Library
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Mailbox and RTKit management protocol of Apple silicon coprocessors
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -8,8 +8,8 @@
 #ifndef UNIT_TEST
 #include <ntddk.h>
 #endif
-#include <libernt/drivers/applertkit.h>
-#include <libernt/drivers/appleadmac.h>
+#include <reliefwin/drivers/applertkit.h>
+#include <reliefwin/drivers/appleadmac.h>
 
 #define MBOX_CONTROL_FULL       0x00010000
 #define MBOX_CONTROL_EMPTY      0x00020000

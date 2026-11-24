@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT CRT
+ * PROJECT:     ReliefWin CRT
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     __chkstk for ARM (Thumb-2)
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

@@ -60,26 +60,26 @@ if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
 endif()
 
 # Versioning
-include(sdk/include/libernt/version.cmake)
+include(sdk/include/reliefwin/version.cmake)
 
 # Build stamp: the branch, commit and time the build was made from. It is
 # written once here so the first compile has it, and again at every build so a
 # tree that moved is stamped with where it moved to.
-set(LIBERNT_BUILDSTAMP_HEADER "${REACTOS_BINARY_DIR}/sdk/include/libernt/buildstamp.h")
+set(RELIEFWIN_BUILDSTAMP_HEADER "${REACTOS_BINARY_DIR}/sdk/include/reliefwin/buildstamp.h")
 execute_process(COMMAND ${CMAKE_COMMAND}
     -DSOURCE_DIR=${REACTOS_SOURCE_DIR}
-    -DOUTPUT=${LIBERNT_BUILDSTAMP_HEADER}
+    -DOUTPUT=${RELIEFWIN_BUILDSTAMP_HEADER}
     -DBUILD_ARCH=${WINARCH}
     -DCOMPILER_ID=${CMAKE_C_COMPILER_ID}
     -P ${REACTOS_SOURCE_DIR}/sdk/cmake/buildstamp.cmake)
 add_custom_target(buildstamp ALL
     COMMAND ${CMAKE_COMMAND}
         -DSOURCE_DIR=${REACTOS_SOURCE_DIR}
-        -DOUTPUT=${LIBERNT_BUILDSTAMP_HEADER}
+        -DOUTPUT=${RELIEFWIN_BUILDSTAMP_HEADER}
         -DBUILD_ARCH=${WINARCH}
         -DCOMPILER_ID=${CMAKE_C_COMPILER_ID}
         -P ${REACTOS_SOURCE_DIR}/sdk/cmake/buildstamp.cmake
-    BYPRODUCTS ${LIBERNT_BUILDSTAMP_HEADER}
+    BYPRODUCTS ${RELIEFWIN_BUILDSTAMP_HEADER}
     COMMENT "Stamping the build with its branch, commit and time"
     VERBATIM)
 
@@ -387,16 +387,16 @@ Enable this if the module uses typeid or dynamic_cast. You will probably need to
         sdk/include/ddk
         sdk/include/ndk
         sdk/include/psdk
-        sdk/include/libernt
-        sdk/include/libernt/libs
+        sdk/include/reliefwin
+        sdk/include/reliefwin/libs
         sdk/include/vcruntime
         sdk/include/winrt
         ${REACTOS_BINARY_DIR}/sdk/include
         ${REACTOS_BINARY_DIR}/sdk/include/psdk
         ${REACTOS_BINARY_DIR}/sdk/include/ddk
         ${REACTOS_BINARY_DIR}/sdk/include/dxsdk
-        ${REACTOS_BINARY_DIR}/sdk/include/libernt
-        ${REACTOS_BINARY_DIR}/sdk/include/libernt/mc
+        ${REACTOS_BINARY_DIR}/sdk/include/reliefwin
+        ${REACTOS_BINARY_DIR}/sdk/include/reliefwin/mc
         sdk/include/dxsdk
         sdk/lib/pseh/include
     )
@@ -457,7 +457,7 @@ Enable this if the module uses typeid or dynamic_cast. You will probably need to
     # Create {bootcd, livecd, preinstall}.lst
     create_iso_lists()
 
-    file(MAKE_DIRECTORY ${REACTOS_BINARY_DIR}/sdk/include/libernt)
+    file(MAKE_DIRECTORY ${REACTOS_BINARY_DIR}/sdk/include/reliefwin)
 
     add_dependency_footer()
 endif()

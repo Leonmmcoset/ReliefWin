@@ -10,8 +10,8 @@
 /* INCLUDES *******************************************************************/
 
 #include <hal.h>
-#include <libernt/hal/msi.h>
-#include <libernt/hal/acpi_pci.h>
+#include <reliefwin/hal/msi.h>
+#include <reliefwin/hal/acpi_pci.h>
 #include "halext.h"
 #define NDEBUG
 #include <debug.h>

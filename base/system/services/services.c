@@ -21,7 +21,7 @@ int WINAPI RegisterServicesProcess(DWORD ServicesProcessId);
 
 /* GLOBALS ******************************************************************/
 
-/* Defined in include/libernt/services/services.h */
+/* Defined in include/reliefwin/services/services.h */
 // #define SCM_START_EVENT             L"SvcctrlStartEvent_A3752DX"
 #define SCM_AUTOSTARTCOMPLETE_EVENT L"SC_AutoStartComplete"
 
@@ -127,7 +127,7 @@ CheckForLiveCD(VOID)
 
     if (dwSetupInProgress == 1)
     {
-        DPRINT("LiberNT Setup currently in progress!\n");
+        DPRINT("ReliefWin Setup currently in progress!\n");
         ScmSetupInProgress = TRUE;
     }
 

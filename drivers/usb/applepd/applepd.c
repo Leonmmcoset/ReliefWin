@@ -1,14 +1,14 @@
 /*
- * PROJECT:     LiberNT Apple USB-C Power Delivery Driver
+ * PROJECT:     ReliefWin Apple USB-C Power Delivery Driver
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     SN201202x (ACE3) port controllers behind the Apple silicon SPMI controllers
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
  */
 
 #include <ntddk.h>
-#include <libernt/drivers/fdtdrv.h>
-#include <libernt/drivers/applepmgr.h>
-#include <libernt/drivers/appleacepd.h>
+#include <reliefwin/drivers/fdtdrv.h>
+#include <reliefwin/drivers/applepmgr.h>
+#include <reliefwin/drivers/appleacepd.h>
 
 #define APPLE_PD_TAG            'dPpA'
 #define APPLE_PD_MAX_PORTS      4

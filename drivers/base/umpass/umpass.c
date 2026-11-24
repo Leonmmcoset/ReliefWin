@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Pass-through function driver that only starts its device, for user-mode and component packages
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Boot Loader
+ * PROJECT:     ReliefWin Boot Loader
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Operating system loader main routine
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -31,7 +31,7 @@ PVOID UefiServiceStack;
 
 static const PCWSTR OslStorePaths[] =
 {
-    L"\\EFI\\LiberNT\\Boot\\BCD",
+    L"\\EFI\\ReliefWin\\Boot\\BCD",
     L"\\EFI\\Microsoft\\Boot\\BCD",
     L"\\Boot\\BCD",
 };
@@ -388,7 +388,7 @@ OslMain(VOID)
     if (!FwDebugEnabled && OslDebugRequested(Options))
     {
         FwDebugEnable();
-        FwDebugAnnounce("LiberNT OS Loader", FALSE);
+        FwDebugAnnounce("ReliefWin OS Loader", FALSE);
     }
     FwDebugScreen = OslHasDebugPort(Options, "SCREEN");
 
@@ -558,7 +558,7 @@ BlMain(VOID)
 {
     PUCHAR Stack;
 
-    FwDebugAnnounce("LiberNT OS Loader", FALSE);
+    FwDebugAnnounce("ReliefWin OS Loader", FALSE);
     OslTrace("OS loader: describing the platform");
     OslArchInitialize();
 

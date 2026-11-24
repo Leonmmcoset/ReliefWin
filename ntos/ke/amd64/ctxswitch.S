@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     amd64 thread startup and context switch
  * COPYRIGHT:   Copyright Timo kreuzer <timo.kreuzer@reactos.org>

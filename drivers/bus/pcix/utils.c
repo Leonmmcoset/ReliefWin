@@ -153,7 +153,7 @@ PciIsDatacenter(VOID)
     else
     {
         /* This scenario shouldn't happen yet, since SetupDD isn't used */
-        UNIMPLEMENTED_FATAL("ReactOS doesn't use SetupDD for its installation program. Therefore this scenario must not happen!\n");
+        UNIMPLEMENTED_FATAL("ReliefWin doesn't use SetupDD for its installation program. Therefore this scenario must not happen!\n");
     }
 
     /* Return if this is Datacenter or not */
@@ -559,7 +559,11 @@ PciSendIoctl(IN PDEVICE_OBJECT DeviceObject,
                                         0,
                                         &Event,
                                         &IoStatusBlock);
-    if (!Irp) return STATUS_INSUFFICIENT_RESOURCES;
+    if (!Irp)
+    {
+        ObDereferenceObject(AttachedDevice);
+        return STATUS_INSUFFICIENT_RESOURCES;
+    }
 
     /* Send the IOCTL to the driver */
     Status = IoCallDriver(AttachedDevice, Irp);
@@ -571,7 +575,7 @@ PciSendIoctl(IN PDEVICE_OBJECT DeviceObject,
                               KernelMode,
                               FALSE,
                               NULL);
-        Status = Irp->IoStatus.Status;
+        Status = IoStatusBlock.Status;
     }
 
     /* Take away the reference we took and return the result to the caller */
@@ -1465,7 +1469,7 @@ PciGetDeviceCapabilities(IN PDEVICE_OBJECT DeviceObject,
                               KernelMode,
                               FALSE,
                               NULL);
-        Status = Irp->IoStatus.Status;
+        Status = IoStatusBlock.Status;
     }
 
     /* Done, dereference the attached device and return the final result */

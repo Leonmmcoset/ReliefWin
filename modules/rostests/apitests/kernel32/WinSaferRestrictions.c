@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Tests for software restriction policy enforcement by CreateProcess
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -13,7 +13,7 @@
 
 #define SAFER_PARENT_PATH L"Software\\Policies\\Microsoft\\Windows"
 #define SAFER_POLICY_PATH SAFER_PARENT_PATH L"\\Safer\\CodeIdentifiers"
-#define TEST_MARKER L"LiberNTSaferApitest"
+#define TEST_MARKER L"ReliefWinSaferApitest"
 #define SAFER_LEVELID_DISALLOWED 0x00000
 #define SAFER_LEVELID_NORMALUSER 0x20000
 #ifndef CREATE_PRESERVE_CODE_AUTHZ_LEVEL

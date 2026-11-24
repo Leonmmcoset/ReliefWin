@@ -423,7 +423,7 @@ RPCRTAPI HRESULT RPC_ENTRY
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 #if (defined(WIN32) || defined(_M_AMD64))
 HRESULT WINAPI CStdAsyncStubBuffer2_Connect(IRpcStubBuffer *pthis, IUnknown *pUnkServer);
 void WINAPI CStdAsyncStubBuffer2_Disconnect(IRpcStubBuffer *pthis);

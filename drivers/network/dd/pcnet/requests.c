@@ -258,7 +258,7 @@ MiniportQueryInformation(
 
     case OID_GEN_VENDOR_DESCRIPTION:
         {
-          static UCHAR VendorDesc[] = "ReactOS Team";
+          static UCHAR VendorDesc[] = "ReliefWin Team";
           CopyFrom = VendorDesc;
           CopySize = sizeof(VendorDesc);
           break;

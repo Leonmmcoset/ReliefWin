@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     The state the kernel debugger keeps, and what the host reads of it
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -123,7 +123,7 @@ KDDEBUGGER_DATA64 KdDebuggerDataBlock =
 {
     .Header = {{0, 0}, 'GBDK', sizeof(KDDEBUGGER_DATA64)},
     .ThCallbackStack = FIELD_OFFSET(KTHREAD, CallbackStack),
-    /* TODO: NextCallback and FramePointer: the LiberNT callout frame has no such members */
+    /* TODO: NextCallback and FramePointer: the ReliefWin callout frame has no such members */
     .PaeEnabled = FALSE,
     .KiCallUserMode = ULPTR64_INITIALIZER(KI_USER_MODE_CALLBACK_ENTRY),
     .KeUserCallbackDispatcher = ULPTR64_INITIALIZER(&KeUserCallbackDispatcher),
@@ -131,14 +131,14 @@ KDDEBUGGER_DATA64 KdDebuggerDataBlock =
     .PsActiveProcessHead = ULPTR64_INITIALIZER(&PsActiveProcessHead),
     .PspCidTable = ULPTR64_INITIALIZER(&PspCidTable),
     .ExpSystemResourcesList = ULPTR64_INITIALIZER(&ExpSystemResourcesList),
-    /* TODO: ExpPagedPoolDescriptor and ExpNumberOfPagedPools: the LiberNT pool has no such globals */
+    /* TODO: ExpPagedPoolDescriptor and ExpNumberOfPagedPools: the ReliefWin pool has no such globals */
     .KeTimeIncrement = ULPTR64_INITIALIZER(&KeTimeIncrement),
     .KeBugCheckCallbackListHead = ULPTR64_INITIALIZER(&KeBugcheckCallbackListHead),
     .KiBugcheckData = ULPTR64_INITIALIZER(KiBugCheckData),
     .IopErrorLogListHead = ULPTR64_INITIALIZER(&IopErrorLogListHead),
     .ObpRootDirectoryObject = ULPTR64_INITIALIZER(&ObpRootDirectoryObject),
     .ObpTypeObjectType = ULPTR64_INITIALIZER(&ObpTypeObjectType),
-    /* TODO: the cache and pool extents are private to the LiberNT memory manager */
+    /* TODO: the cache and pool extents are private to the ReliefWin memory manager */
     .MmPfnDatabase = ULPTR64_INITIALIZER(&MmPfnDatabase),
     .MmNumberOfPagingFiles = ULPTR64_INITIALIZER(&MmNumberOfPagingFiles),
     .MmLowestPhysicalPage = ULPTR64_INITIALIZER(&MmLowestPhysicalPage),
@@ -158,7 +158,7 @@ KDDEBUGGER_DATA64 KdDebuggerDataBlock =
     .MmModifiedNoWritePageListHead = ULPTR64_INITIALIZER(&MmModifiedNoWritePageListHead),
     .MmAvailablePages = ULPTR64_INITIALIZER(&MmAvailablePages),
     .MmResidentAvailablePages = ULPTR64_INITIALIZER(&MmResidentAvailablePages),
-    /* TODO: PoolTrackTable and NonPagedPoolDescriptor: the LiberNT pool publishes neither */
+    /* TODO: PoolTrackTable and NonPagedPoolDescriptor: the ReliefWin pool publishes neither */
     .MmHighestUserAddress = ULPTR64_INITIALIZER(&MmHighestUserAddress),
     .MmSystemRangeStart = ULPTR64_INITIALIZER(&MmSystemRangeStart),
     .MmUserProbeAddress = ULPTR64_INITIALIZER(&MmUserProbeAddress),
@@ -169,10 +169,10 @@ KDDEBUGGER_DATA64 KdDebuggerDataBlock =
     .KdPrintRolloverCount = ULPTR64_INITIALIZER(&KdPrintRolloverCount),
     .MmLoadedUserImageList = ULPTR64_INITIALIZER(&MmLoadedUserImageList),
     .NtBuildLab = ULPTR64_INITIALIZER(NtBuildLab),
-    /* TODO: KiNormalSystemCall: LiberNT enters the kernel through its own stub */
+    /* TODO: KiNormalSystemCall: ReliefWin enters the kernel through its own stub */
     .KiProcessorBlock = ULPTR64_INITIALIZER(KiProcessorBlock),
     .MmUnloadedDrivers = ULPTR64_INITIALIZER(&MmUnloadedDrivers),
-    /* TODO: MmLastUnloadedDriver is not a published LiberNT global */
+    /* TODO: MmLastUnloadedDriver is not a published ReliefWin global */
     .MmTriageActionTaken = ULPTR64_INITIALIZER(&MmTriageActionTaken),
     .KernelVerifier = ULPTR64_INITIALIZER(&KernelVerifier),
     .MmVerifierData = ULPTR64_INITIALIZER(&MmVerifierData),
@@ -212,7 +212,7 @@ KDDEBUGGER_DATA64 KdDebuggerDataBlock =
     .OffsetPrcbDpcStack = FIELD_OFFSET(KPRCB, DpcStack),
     .OffsetKThreadWaitReason = FIELD_OFFSET(KTHREAD, WaitReason)
     /* TODO: the GDT selectors, the triage data blocks, the ETW debugger data,
-     * the retpoline stub table and PteBase have no LiberNT counterpart yet */
+     * the retpoline stub table and PteBase have no ReliefWin counterpart yet */
 };
 
 /* DEBUG FILTER STATE **********************************************************/

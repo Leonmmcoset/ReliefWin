@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Direct3D 9 HAL clears, draws, shaders and presents read back exactly
  * COPYRIGHT:   Copyright 2026 Ostap Brehin <osbre@protonmail.com>

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Boot logo and progress bar layout
  * COPYRIGHT:   Copyright 2020 Dmitry Borisov <di.sean@protonmail.com>

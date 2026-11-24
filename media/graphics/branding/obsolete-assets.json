@@ -1,0 +1,128 @@
+{
+  "03041cb514bdaa6b605339e19f26141fee48bd9f5682c6c0f980251e6fe4769b": [
+    "base/applications/screensavers/logon/res/0.bmp"
+  ],
+  "1a1b0bdd592d6c6bd9f06d474d1757d9d419eca5c2833b9e3989ab57fcd0643f": [
+    "media/graphics/branding/libernt-logo.png"
+  ],
+  "1c7054f7d9840ecff2e63d40deb249dba787bb8956230b4c69183bce81dbeb68": [
+    "base/system/userinit/res/rosbitmap.bmp",
+    "dll/cpl/sysdm/resources/rosbitmap.bmp"
+  ],
+  "28118640d51d90ec87c20c69a58dfdd363643905ac3e5a327160ff70af40f9a8": [
+    "dll/win32/shell32/res/bitmaps/aboutbanner.bmp"
+  ],
+  "28e0faae962bdb747e869f6c21fab78e9a711544a9fba87e634c6a39def61463": [
+    "media/graphics/start_menu_banner.svg"
+  ],
+  "28f5fa1780929091b58acbda0c07bc842bba1d0d04345961f20e671e3d976bd7": [
+    "base/shell/explorer/res/bmp/146.bmp"
+  ],
+  "3047384f2cc31a3ea2683dc834d5199393a9c4e32a4b499b637775ac3378b48e": [
+    "base/shell/explorer/res/bmp/158.bmp"
+  ],
+  "308392d22097b372b773d5e74fb613aa1974313935cbb344cfd0c78279a73f4c": [
+    "base/setup/libernt/res/watermark.bmp"
+  ],
+  "31a937110018c17e5c187586f791f5de6e386f040900cb8dec68c5b5ed80856a": [
+    "base/shell/explorer/res/bmp/148.bmp"
+  ],
+  "3aa7d53ccc88d8c6b0d281c8fc7fff3dd1f3ec5e52832f0ecc3e89ff4538fc0c": [
+    "base/applications/osk/res/reactos.ico"
+  ],
+  "3d8f83bcf438175d13fea00d7dbf50b25eb200550f41403edfd95be2a2e96b13": [
+    "media/graphics/start-button/pressed.png"
+  ],
+  "3eb4bc600c590bd81bc3655f9bfa22f58aa00267eca4aaed1a0873b60ce3ca90": [
+    "media/graphics/branding/libernt-mark.svg"
+  ],
+  "42d9c1eec3a8040659f69227f9103270c7924b2e99338585f9d8dc5837b4265c": [
+    "base/shell/explorer/res/bmp/170.bmp"
+  ],
+  "4c5477a1bac080c6167ccd5cd5b3ca14bad218d0fe2a7b324be4dff1fe003ec5": [
+    "base/shell/explorer/res/bmp/171.bmp"
+  ],
+  "4f32f59e6e52b5b03827beed5fc34ae0d5f9c132511b59a504793e54fb8c0c56": [
+    "base/shell/explorer/res/bmp/143.bmp"
+  ],
+  "5087930b205cdd5b472ee7a56d4449c871c8e7534b5aece19eb4988b4eca9178": [
+    "media/graphics/start-button/default.png"
+  ],
+  "512fac76fc2bc78381cff2464eb1f49cc9148e28d4df8ce33439f41a5e458d65": [
+    "media/graphics/start-button/hover.png"
+  ],
+  "5a20e2c834286206d0960db2fc32c9afe1ef8c971382a71e42bb27ba0949c883": [
+    "dll/cpl/sysdm/resources/reactos-banner.svg"
+  ],
+  "5bc9b5ee894e7d6080a7bdc51b7344fc6ccb3351b0ef4aa6fb401430b149f045": [
+    "base/shell/explorer/res/bmp/150.bmp"
+  ],
+  "6632da06b09b3f88a73377760c11336327719b5457e9e608dae474699b59a77a": [
+    "base/shell/explorer/res/bmp/151.bmp"
+  ],
+  "66f67523e9f1ae848ea9b300b20823513823e3fe600ae82abb16b66ded60bc21": [
+    "dll/win32/syssetup/resources/reactos.bmp"
+  ],
+  "6bb325184425577610ba328c277b2a7077794f517a657ab55a271b3b63436514": [
+    "base/shell/explorer/res/bmp/147.bmp"
+  ],
+  "752e145dd7d681d91948927b58809ca123fecc333c0bc68e79e228a7052fcef5": [
+    "ntos/inbv/resources/reactos_logo.bmp"
+  ],
+  "7a45f4e5c5e29c7525bfcf84604a25ae638a8c84a18bbdd44fccb1638bcf1f18": [
+    "media/graphics/start-button/reactos-start-hover.svg"
+  ],
+  "7ae2a02ddac9f902b7c7788bb1082f77205fe4250c866b40c897c3310884182b": [
+    "media/graphics/start-button/reactos-start-pressed.svg"
+  ],
+  "8ab94b38c8a3e77eab802d80391413f6f35e2a95a2ab930c8cbe464467d0ba1a": [
+    "base/shell/explorer/res/bmp/153.bmp"
+  ],
+  "8e4fd4dd21a5a6e78fafa80a4dad1197585e5a5b8806a38b76667e59e706276b": [
+    "ntos/inbv/resources/shutdown.bmp"
+  ],
+  "92c0abbd03706b1c2cfc4a7c3ff2afdc9a213d8fc8ebae34a7cfa4da102b7981": [
+    "base/system/logonui/res/123.bmp"
+  ],
+  "95aa1d2c3f2bbf7bb30c9fcc28df364eb623bb90fec50fc9e67a853c065bfdd7": [
+    "media/graphics/branding/libernt-banner.png"
+  ],
+  "9d560cfb4a89630f18caaba1667bb6199716eb0a4ca2c34158a15f7c1a5d08b4": [
+    "bootloader/gui/assets/logo.rgba"
+  ],
+  "a3e5917aa87f06ea3acfc13cad1c4cc379b05014f7538682311cdcce70304437": [
+    "base/shell/explorer/res/ico/258.ico",
+    "image/data/icon.ico"
+  ],
+  "a734e6b6b9236178467dd908f51008ced7e8e8fcebef292ba8376f9475c52747": [
+    "base/setup/libernt/res/libernt.ico"
+  ],
+  "be66fb6931bfea3629abdcac8541d3f2edeadf2b83943dd261bacae307a8bc63": [
+    "ntos/inbv/resources/copyright.bmp"
+  ],
+  "c403c06c827527aad3958b9a0a7b0e2aed97a8807ce0932e49b4a305dce1c928": [
+    "subsystems/win/win32k/user/user32/resources/oic_reactos.ico"
+  ],
+  "cdc372ffe2f0f4d9211b6164339a95e6bcf3162c7d034a0fbc525eaebee7ecdb": [
+    "media/graphics/start-button/reactos-start-color.svg"
+  ],
+  "cf8c43c20fdf365b1be6d246090c8acbadb50f16c5028b2eb3396334d9296204": [
+    "base/shell/explorer/res/bmp/149.bmp"
+  ],
+  "dc2064ec2040ea4c6ea0a48d685ca2e31cd1f7d2a67bc9533647d59e55a649ca": [
+    "base/system/userinit/res/rosbitmap_mask.bmp",
+    "dll/cpl/sysdm/resources/rosbitmap_mask.bmp"
+  ],
+  "e2d59cbae5d98bdfa84f44da8839383beb0ba50536c942fdb6ceea2347ce9488": [
+    "media/graphics/screenshots/libernt-desktop-arm64.png"
+  ],
+  "e61fbaf7566674839a56d5745ca21914167824d249ec82393d6d0f81d53ef65d": [
+    "base/shell/progman/res/roslogo.ico"
+  ],
+  "e7e3cb3236bc49fe776fbad839d08e1613e3329bbb761e536d90f15f4eec81cf": [
+    "ntos/inbv/resources/logo.bmp"
+  ],
+  "f4b2ad79f678c46f44e0912a8c855a334e47ad46070910946781ffc9708378b8": [
+    "base/shell/explorer/res/bmp/152.bmp"
+  ]
+}

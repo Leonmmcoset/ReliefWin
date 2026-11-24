@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT ext4 file system driver
+ * PROJECT:     ReliefWin ext4 file system driver
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Handle cleanup, deletion of a name and the closing of file objects
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

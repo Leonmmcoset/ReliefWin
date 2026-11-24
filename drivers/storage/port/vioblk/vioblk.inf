@@ -1,5 +1,5 @@
 ;
-; PROJECT:     LiberNT StorPort VirtIO block miniport
+; PROJECT:     ReliefWin StorPort VirtIO block miniport
 ; LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
 ; PURPOSE:     Installs the StorPort VirtIO block miniport on VirtIO block devices
 ; COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -70,7 +70,7 @@ HKR,,EventMessageFile,%REG_EXPAND_SZ%,"%%SystemRoot%%\System32\IoLogMsg.dll"
 HKR,,TypesSupported,%REG_DWORD%,7
 
 [Strings]
-ROS                     = "LiberNT"
+ROS                     = "ReliefWin"
 DeviceDesc              = "VirtIO Block Driver"
 VIOBLK.DeviceDesc       = "VirtIO Block Device"
 

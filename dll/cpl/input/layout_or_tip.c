@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT input.dll
+ * PROJECT:     ReliefWin input.dll
  * LICENSE:     GPL-2.0-or-later (https://spdx.org/licenses/GPL-2.0-or-later)
  * PURPOSE:     Keyboard layout and text service installation API
  * COPYRIGHT:   Copyright 2026 mikuta0407 <mikuta0407@mikuta0407.net>

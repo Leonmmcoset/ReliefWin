@@ -1441,7 +1441,7 @@ typedef struct _RAS_PROJECTION_INFO RAS_PROJECTION_INFO;
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 DWORD WINAPI RasGetPCscf(LPWSTR lpszPCscf);
 DWORD WINAPI RasGetProjectionInfoEx(HRASCONN hrasconn, PRAS_PROJECTION_INFO pRasProjection, LPDWORD lpdwSize);
 DWORD WINAPI RasUpdateConnection(HRASCONN hrasconn, struct tagRASUPDATECONN *lprasupdateconn);

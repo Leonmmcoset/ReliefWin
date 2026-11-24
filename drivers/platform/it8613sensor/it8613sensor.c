@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT ITE IT8613E Sensor Provider
+ * PROJECT:     ReliefWin ITE IT8613E Sensor Provider
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
  * LICENSE:     GPL-3.0-or-later
  * PURPOSE:     Read-only voltage monitoring for the LattePanda Mu
@@ -7,7 +7,7 @@
 
 #include <ntddk.h>
 #include <initguid.h>
-#include <libernt/drivers/sensorprovider.h>
+#include <reliefwin/drivers/sensorprovider.h>
 
 #define NDEBUG
 #include <debug.h>

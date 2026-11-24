@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test the fonts GDI selects for requested and CJK face names
  * COPYRIGHT:   Copyright 2026 mikuta0407 <mikuta0407@mikuta0407.net>
@@ -57,7 +57,7 @@ static void TestFixedPitchRequest(HDC hDC)
     }
     ok(cTested != 0, "no proportional face to test\n");
 
-    hFont = CreateFaceFont(L"LiberNT No Such Face", DEFAULT_CHARSET, FIXED_PITCH | FF_MODERN);
+    hFont = CreateFaceFont(L"ReliefWin No Such Face", DEFAULT_CHARSET, FIXED_PITCH | FF_MODERN);
     hOldFont = SelectObject(hDC, hFont);
     GetTextMetricsW(hDC, &tm);
     ok(!(tm.tmPitchAndFamily & TMPF_FIXED_PITCH), "an unknown face gave a proportional font\n");

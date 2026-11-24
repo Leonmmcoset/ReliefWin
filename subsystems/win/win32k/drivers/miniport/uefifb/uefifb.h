@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT UEFI GOP Framebuffer Miniport
+ * PROJECT:     ReliefWin UEFI GOP Framebuffer Miniport
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Shared declarations for the UEFI framebuffer video miniport.
  * COPYRIGHT:   Copyright 2026 Ahmed Arif <arif193@gmail.com>
@@ -17,7 +17,7 @@
 #undef __BROKEN__
 #include <video.h>
 #include <devioctl.h>
-#include <libernt/loader_framebuffer.h>
+#include <reliefwin/loader_framebuffer.h>
 
 /* DEVICE EXTENSION ***********************************************************/
 

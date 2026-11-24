@@ -264,7 +264,7 @@ int WINAPI VariantCompare(const VARIANT *const var1, const VARIANT *const var2);
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 void STDAPICALLTYPE ClearPropVariantArray(PROPVARIANT *rgPropVar, UINT cVars);
 void STDAPICALLTYPE ClearVariantArray(VARIANT *pvars, UINT cvars);
 HRESULT STDAPICALLTYPE InitPropVariantFromBooleanVector(const BOOL *prgf, ULONG cElems, PROPVARIANT *ppropvar);

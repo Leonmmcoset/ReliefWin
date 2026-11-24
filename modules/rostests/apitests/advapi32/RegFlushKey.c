@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test that flushed registry data reaches the hive file
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -75,7 +75,7 @@ TestFlushWithoutLog(VOID)
     LONG lRes;
 
     GetTempPathW(MAX_PATH, Dir);
-    StringCchCatW(Dir, MAX_PATH, L"LiberNTRegFlushNoLog");
+    StringCchCatW(Dir, MAX_PATH, L"ReliefWinRegFlushNoLog");
     CreateDirectoryW(Dir, NULL);
     StringCchPrintfW(Hive, MAX_PATH, L"%s\\hive", Dir);
     DeleteFileW(Hive);
@@ -119,7 +119,7 @@ START_TEST(RegFlushKey)
     FillPattern(First, 1);
     FillPattern(Second, 2);
     GetTempPathW(MAX_PATH, Path);
-    wcscat(Path, L"LiberNTRegFlushKey.dat");
+    wcscat(Path, L"ReliefWinRegFlushKey.dat");
     DeleteFileW(Path);
 
     lRes = RegLoadAppKeyW(Path, &hkApp, KEY_ALL_ACCESS, 0, 0);

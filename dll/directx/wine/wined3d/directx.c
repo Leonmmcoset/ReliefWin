@@ -4049,7 +4049,7 @@ static struct wined3d_adapter *wined3d_adapter_no3d_create(unsigned int ordinal,
     static const struct wined3d_gpu_description gpu_description =
     {
 #ifdef __REACTOS__
-        HW_VENDOR_SOFTWARE, CARD_WINE, "ReactOS Software Rasterizer", DRIVER_WINE, 128,
+        HW_VENDOR_SOFTWARE, CARD_WINE, "ReliefWin Software Rasterizer", DRIVER_WINE, 128,
 #else
         HW_VENDOR_SOFTWARE, CARD_WINE, "WineD3D DirectDraw Emulation", DRIVER_WINE, 128,
 #endif
@@ -4232,7 +4232,7 @@ HRESULT wined3d_init(struct wined3d *wined3d, uint32_t flags)
 #ifdef __REACTOS__
         if (!(flags & WINED3D_NO3D) && wined3d_settings.renderer == WINED3D_RENDERER_AUTO)
         {
-            WARN("The configured 3D renderer is unavailable; using the ReactOS software rasterizer.\n");
+            WARN("The configured 3D renderer is unavailable; using the ReliefWin software rasterizer.\n");
             flags |= WINED3D_NO3D;
             wined3d->flags = flags;
             wined3d->adapters[0] = wined3d_adapter_create(0, flags);

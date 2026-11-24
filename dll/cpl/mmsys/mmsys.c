@@ -46,15 +46,15 @@ static EVENT_LABEL_ITEM EventLabels[] =
 {
     {
         L"WindowsLogon",
-        L"LiberNT Logon",
+        L"ReliefWin Logon",
         IDS_REACTOS_LOGON,
-        L"ReactOS_Logon.wav"
+        L"ReliefWin_Logon.wav"
     },
     {
         L"WindowsLogoff",
-        L"LiberNT Logoff",
+        L"ReliefWin Logoff",
         IDS_REACTOS_LOGOFF,
-        L"ReactOS_Logoff.wav"
+        L"ReliefWin_Logoff.wav"
     },
     {
         NULL,
@@ -68,7 +68,7 @@ static SYSTEM_SCHEME_ITEM SystemSchemes[] =
 {
     {
         L".Default",
-        L"LiberNT Standard",
+        L"ReliefWin Standard",
         IDS_REACTOS_DEFAULT_SCHEME
     },
     {

@@ -333,7 +333,7 @@ typedef enum VDM_INFO_TYPE {
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 SHORT VDDAllocateDosHandle(ULONG pPDB, PVOID *ppSFT, PVOID *ppJFT);
 void VDDAssociateNtHandle(PVOID pSFT, HANDLE h32File, WORD wAccess);
 void VDDBlockUserHook(void);

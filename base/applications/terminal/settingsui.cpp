@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Terminal
+ * PROJECT:     ReliefWin Terminal
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Settings window: section tabs for profiles, colors, window options and keys
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -9,8 +9,8 @@
 
 #include <algorithm>
 
-#define SETTINGS_CLASS L"LiberNT.TerminalSettings"
-#define PAGE_CLASS L"LiberNT.TerminalSettingsPage"
+#define SETTINGS_CLASS L"ReliefWin.TerminalSettings"
+#define PAGE_CLASS L"ReliefWin.TerminalSettingsPage"
 
 namespace
 {

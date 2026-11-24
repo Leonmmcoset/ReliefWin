@@ -25,42 +25,49 @@ static HMODULE hShell32 = (HMODULE)-1;
  * It returns an error code.
  */
 // TODO: It seems that many of the functions involving printing could use this.
-DWORD UnicodeToAnsiInPlace(PWSTR pwszField)
+DWORD
+UnicodeToAnsiInPlace(PWSTR String)
 {
-    PSTR pszTemp;
-    DWORD cch;
+    SIZE_T cch;
+    SIZE_T cbWide;
+    INT cbAnsi;
+    INT cbConverted;
+    PSTR Buffer;
+    DWORD dwErrorCode;
 
-    /*
-     * Map the incoming Unicode pwszField string to an ANSI one here so that we can do
-     * in-place conversion. We read the Unicode input and then we write back the ANSI
-     * conversion into the same buffer for use with our GetPrinterDriverA function
-     */
-    PSTR pszField = (PSTR)pwszField;
-
-    if (!pwszField)
-    {
+    if (!String)
         return ERROR_SUCCESS;
+
+    cbAnsi = WideCharToMultiByte(CP_ACP, 0, String, -1, NULL, 0, NULL, NULL);
+    if (!cbAnsi)
+        return GetLastError();
+
+    cch = wcslen(String);
+    if (cch > ((SIZE_T)-1 / sizeof(WCHAR)) - 1)
+        return ERROR_ARITHMETIC_OVERFLOW;
+
+    cbWide = (cch + 1) * sizeof(WCHAR);
+    if ((SIZE_T)cbAnsi > cbWide)
+    {
+        /* TODO: Repack ANSI printer data that exceeds its UTF-16 slot; the current path fails safely. */
+        return ERROR_INSUFFICIENT_BUFFER;
     }
 
-    cch = wcslen(pwszField);
-    if (cch == 0)
-    {
-        return ERROR_SUCCESS;
-    }
-
-    pszTemp = HeapAlloc(hProcessHeap, 0, (cch + 1) * sizeof(CHAR));
-    if (!pszTemp)
-    {
-        ERR("HeapAlloc failed!\n");
+    Buffer = HeapAlloc(hProcessHeap, 0, cbAnsi);
+    if (!Buffer)
         return ERROR_NOT_ENOUGH_MEMORY;
+
+    cbConverted = WideCharToMultiByte(CP_ACP, 0, String, -1, Buffer, cbAnsi, NULL, NULL);
+    if (!cbConverted)
+        dwErrorCode = GetLastError();
+    else
+    {
+        CopyMemory(String, Buffer, cbConverted);
+        dwErrorCode = ERROR_SUCCESS;
     }
 
-    WideCharToMultiByte(CP_ACP, 0, pwszField, -1, pszTemp, cch + 1, NULL, NULL);
-    StringCchCopyA(pszField, cch + 1, pszTemp);
-
-    HeapFree(hProcessHeap, 0, pszTemp);
-
-    return ERROR_SUCCESS;
+    HeapFree(hProcessHeap, 0, Buffer);
+    return dwErrorCode;
 }
 
 static int multi_sz_lenW(const WCHAR *str)

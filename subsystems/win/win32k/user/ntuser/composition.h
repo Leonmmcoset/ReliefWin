@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Win32k / Desktop Window Manager
+ * PROJECT:     ReliefWin Win32k / Desktop Window Manager
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Kernel-side composition engine (DWM) — public interface.
  * COPYRIGHT:   Copyright 2026 Ahmed Arif <arif193@gmail.com>
@@ -24,7 +24,7 @@
 
 #pragma once
 
-#include <libernt/dwmframe.h>
+#include <reliefwin/dwmframe.h>
 
 extern BOOL gbCompositionEnabled;
 
@@ -120,7 +120,7 @@ VOID IntCompositionUnload(VOID);
 
 /* User-mode dwm.exe frame pull (ONEPARAM_ROUTINE_DWMGETFRAME): fills the
  * dwm-provided buffer with the Z-ordered compositable windows + their backing
- * pixels. See sdk/include/libernt/dwmframe.h for the layout. */
+ * pixels. See sdk/include/reliefwin/dwmframe.h for the layout. */
 NTSTATUS IntCompositionDwmGetFrame(_In_ PVOID pUser);
 NTSTATUS IntCompositionDwmFlush(VOID);
 NTSTATUS IntCompositionDwmPresented(_In_ DWORD_PTR Param);

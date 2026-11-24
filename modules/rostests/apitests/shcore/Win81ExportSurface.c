@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-only (https://spdx.org/licenses/GPL-3.0-only)
  * PURPOSE:     Torture the whole Windows 8.1 export surface added for explorer
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif193@gmail.com>
@@ -221,7 +221,7 @@ Test_ForwardersMatchHost(void)
             {
                 trace("%ls!%s %p vs %ls %p (%s)\n",
                       Fwd[i].pszForwarder, Fwd[i].pszName, pF, Fwd[i].pszHost, pH,
-                      (pF == pH) ? "shared, as on ReactOS" : "separate copies");
+                      (pF == pH) ? "shared, as on ReliefWin" : "separate copies");
             }
         }
         if (hF) FreeLibrary(hF);

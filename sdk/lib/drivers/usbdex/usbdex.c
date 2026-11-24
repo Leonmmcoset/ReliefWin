@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT USB driver support library
+ * PROJECT:     ReliefWin USB driver support library
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     USBD client handles, capability queries and URB allocation
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -8,7 +8,7 @@
 #include <ntddk.h>
 #include <usb.h>
 #include <usbdlib.h>
-#include <libernt/drivers/usbcapability.h>
+#include <reliefwin/drivers/usbcapability.h>
 
 #define USBDEX_HANDLE_SIGNATURE 'hdBU'
 

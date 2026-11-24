@@ -2,7 +2,7 @@
 
 RV64X lets x64 code emulated by felix86 and native riscv64 code call each other
 directly, the way ARM64EC does on ARM64. Unlike ARM64EC it adds no second ABI:
-LiberNT riscv64 user mode uses LP64 (soft-float), where every scalar argument
+ReliefWin riscv64 user mode uses LP64 (soft-float), where every scalar argument
 travels in `a0`-`a7` and then on the stack and every result in `a0`. Moving
 between that and the x64 calling convention only needs to know, per call, which
 values are floating point and how narrow integers are extended. An RV64X binary

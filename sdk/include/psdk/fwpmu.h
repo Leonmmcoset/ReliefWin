@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT PSDK headers
+ * PROJECT:     ReliefWin PSDK headers
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Windows Filtering Platform user-mode management API
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -209,7 +209,7 @@ typedef void (WINAPI *IPSEC_SA_CONTEXT_CALLBACK0)(void *, const IPSEC_SA_CONTEXT
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 DWORD WINAPI FwpmDynamicKeywordUnsubscribe0(HANDLE subscriptionHandle);
 DWORD WINAPI FwpmNetEventSubscribe0(HANDLE engineHandle, const FWPM_NET_EVENT_SUBSCRIPTION0 *subscription, FWPM_NET_EVENT_CALLBACK0 callback, void *context, HANDLE *eventsHandle);
 DWORD WINAPI FwpmNetEventSubscribe1(HANDLE engineHandle, const FWPM_NET_EVENT_SUBSCRIPTION0 *subscription, FWPM_NET_EVENT_CALLBACK1 callback, void *context, HANDLE *eventsHandle);

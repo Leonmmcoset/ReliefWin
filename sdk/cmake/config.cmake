@@ -214,7 +214,7 @@ cmake_dependent_option(ENABLE_ROSTESTS "Whether to build the ReactOS test suite.
 
 option(ENABLE_MESA_LLVMPIPE "Package the LLVMpipe OpenGL and Lavapipe Vulkan software ICDs." OFF)
 cmake_dependent_option(MESA_LLVMPIPE_FROM_SOURCE
-                       "Build LLVM and LLVMpipe into mesa_gallium.dll instead of using the LiberNT release payload." OFF
+                       "Build LLVM and LLVMpipe into mesa_gallium.dll instead of using the ReliefWin release payload." OFF
                        "ENABLE_MESA_LLVMPIPE" OFF)
 
 # TODO: build the Linux GPU renderer for riscv64
@@ -262,7 +262,7 @@ cmake_dependent_option(ENABLE_FFMPEG
                        "Build the H.264 and AAC Media Foundation decoders against the LGPL FFmpeg payload" ON
                        "ARCH STREQUAL i386 OR ARCH STREQUAL amd64 OR ARCH STREQUAL arm64;CMAKE_C_COMPILER_ID STREQUAL Clang;NOT MSVC" OFF)
 cmake_dependent_option(FFMPEG_FROM_SOURCE
-                       "Build the LGPL FFmpeg libraries from the ffmpeg feed instead of using the LiberNT release payload." OFF
+                       "Build the LGPL FFmpeg libraries from the ffmpeg feed instead of using the ReliefWin release payload." OFF
                        "ENABLE_FFMPEG" OFF)
 
 cmake_dependent_option(ENABLE_DXILCONV
@@ -358,7 +358,7 @@ set(USE_DUMMY_PSEH FALSE CACHE BOOL
 set(REACTOS_TARGET_NT "0xA00" CACHE STRING
 "Target NT version (0xA00 or later)")
 if(REACTOS_TARGET_NT LESS 0xA00)
-    message(FATAL_ERROR "LiberNT requires NT 10 or later")
+    message(FATAL_ERROR "ReliefWin requires NT 10 or later")
 endif()
 
 set(REACTOS_GRAPHICS_DRIVER_MODEL "WDDM" CACHE STRING

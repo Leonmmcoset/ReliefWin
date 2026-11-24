@@ -1,10 +1,10 @@
 
 include_directories(
-    ${REACTOS_SOURCE_DIR}/sdk/include/libernt/subsys
-    ${REACTOS_SOURCE_DIR}/sdk/include/libernt/idl
+    ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/subsys
+    ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/idl
     ${CMAKE_CURRENT_BINARY_DIR})
 
-add_rpc_files(server ${REACTOS_SOURCE_DIR}/sdk/include/libernt/idl/svcctl.idl)
+add_rpc_files(server ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/idl/svcctl.idl)
 
 list(APPEND SOURCE
     bootconfig.c

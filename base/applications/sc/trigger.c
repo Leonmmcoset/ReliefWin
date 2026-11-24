@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Services
+ * PROJECT:     ReliefWin Services
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Query and set the trigger parameters of a service
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arifing193@gmail.com>

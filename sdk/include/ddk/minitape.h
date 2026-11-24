@@ -1794,7 +1794,7 @@ typedef struct
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 BOOLEAN NTAPI TapeClassAllocateSrbBuffer(PSCSI_REQUEST_BLOCK Srb, ULONG SrbBufferSize);
 ULONG NTAPI TapeClassCompareMemory(PVOID Source1, PVOID Source2, ULONG Length);
 ULONG NTAPI TapeClassInitialize(PVOID Argument1, PVOID Argument2, PTAPE_INIT_DATA_EX TapeInitData);

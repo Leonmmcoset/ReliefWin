@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT KernelBase
+ * PROJECT:     ReliefWin KernelBase
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     ISO 15924 script lists of Unicode strings
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

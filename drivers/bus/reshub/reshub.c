@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Resource Hub
+ * PROJECT:     ReliefWin Resource Hub
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Broker firmware connection properties by connection ID
  */
@@ -7,8 +7,8 @@
 #include <ntifs.h>
 #include <initguid.h>
 #include <spb.h>
-#include <libernt/drivers/reshubio.h>
-#include <libernt/drivers/inteli2c.h>
+#include <reliefwin/drivers/reshubio.h>
+#include <reliefwin/drivers/inteli2c.h>
 #include <ntstrsafe.h>
 #include <pseh/pseh2.h>
 

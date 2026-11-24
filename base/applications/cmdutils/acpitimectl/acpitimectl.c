@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT ACPI Time and Alarm Control Utility
+ * PROJECT:     ReliefWin ACPI Time and Alarm Control Utility
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  */
 
@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <wchar.h>
 #include <initguid.h>
-#include <libernt/drivers/acpitime.h>
+#include <reliefwin/drivers/acpitime.h>
 
 static
 HANDLE

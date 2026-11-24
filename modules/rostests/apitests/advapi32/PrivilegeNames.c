@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Every well-known privilege value has its name and its own display name, and the name leads back to the value
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

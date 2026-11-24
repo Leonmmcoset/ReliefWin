@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT kernel-mode tests
+ * PROJECT:     ReliefWin kernel-mode tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     User mode tests for the access checks and alarms a subsystem audits
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -52,7 +52,7 @@ NtAccessCheckByTypeResultListAndAuditAlarm(
     _Out_ PNTSTATUS AccessStatus,
     _Out_ PBOOLEAN GenerateOnClose);
 
-static UNICODE_STRING Subsystem = RTL_CONSTANT_STRING(L"LiberNT audit test");
+static UNICODE_STRING Subsystem = RTL_CONSTANT_STRING(L"ReliefWin audit test");
 static UNICODE_STRING ObjectType = RTL_CONSTANT_STRING(L"Test object");
 static UNICODE_STRING ObjectName = RTL_CONSTANT_STRING(L"SeAuditAlarm");
 static UNICODE_STRING ServiceName = RTL_CONSTANT_STRING(L"SeAuditAlarm service");

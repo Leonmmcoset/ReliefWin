@@ -2,8 +2,8 @@
  * SPDX-FileCopyrightText: 2026 Ahmed ARIF <arif193@gmail.com>
  * Standalone userspace consumer of the shared profiling SDK.
  */
-#include <libernt/dwmprof.h>
-#include <libernt/dwmpresenttracenames.h>
+#include <reliefwin/dwmprof.h>
+#include <reliefwin/dwmpresenttracenames.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdarg.h>

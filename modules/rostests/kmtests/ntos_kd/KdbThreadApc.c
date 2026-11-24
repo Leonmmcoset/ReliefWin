@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT kernel-mode tests
+ * PROJECT:     ReliefWin kernel-mode tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Stops in the debugger with a kernel APC held back, for its thread and APC views
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

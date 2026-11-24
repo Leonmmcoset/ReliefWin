@@ -30,7 +30,6 @@ static DWORD dwFormInfo1Offsets[] = {
 
 static DWORD dwFormInfo2Offsets[] = {
     FIELD_OFFSET(FORM_INFO_2W, pName),
-    FIELD_OFFSET(FORM_INFO_2W, pKeyword),
     FIELD_OFFSET(FORM_INFO_2W, pMuiDll),
     FIELD_OFFSET(FORM_INFO_2W, pDisplayName),
     MAXDWORD
@@ -363,12 +362,13 @@ static void
 _LocalGetFormLevel2(PFORM_INFO_LIST pfil, PFORM_INFO_2W* ppFormInfo, PBYTE* ppFormInfoEnd, PDWORD pcbNeeded)
 {
     DWORD n;
-    PCWSTR pwszStrings[4];
+    SIZE_T cbKeyword = pfil->pKeyword ? strlen(pfil->pKeyword) + 1 : 0;
+    SIZE_T cbKeywordAligned = (cbKeyword + sizeof(WCHAR) - 1) / sizeof(WCHAR) * sizeof(WCHAR);
+    PCWSTR pwszStrings[3];
 
     pwszStrings[0] = pfil->pName;
-    pwszStrings[1] = (PCWSTR)pfil->pKeyword;
-    pwszStrings[2] = pfil->pMuiDll;
-    pwszStrings[3] = pfil->pDisplayName;
+    pwszStrings[1] = pfil->pMuiDll;
+    pwszStrings[2] = pfil->pDisplayName;
 
     // Calculate the string lengths.
     if (!ppFormInfo)
@@ -380,7 +380,7 @@ _LocalGetFormLevel2(PFORM_INFO_LIST pfil, PFORM_INFO_2W* ppFormInfo, PBYTE* ppFo
                 *pcbNeeded += (wcslen(pwszStrings[n]) + 1) * sizeof(WCHAR);
             }
         }
-        *pcbNeeded += sizeof(FORM_INFO_2W);
+        *pcbNeeded += sizeof(FORM_INFO_2W) + cbKeywordAligned;
         return;
     }
 
@@ -392,6 +392,14 @@ _LocalGetFormLevel2(PFORM_INFO_LIST pfil, PFORM_INFO_2W* ppFormInfo, PBYTE* ppFo
 
     // Finally copy the structure and advance to the next one in the output buffer.
     *ppFormInfoEnd = PackStrings(pwszStrings, (PBYTE)(*ppFormInfo), dwFormInfo2Offsets, *ppFormInfoEnd);
+    (*ppFormInfo)->pKeyword = NULL;
+    if (cbKeyword)
+    {
+        *ppFormInfoEnd -= cbKeywordAligned;
+        ZeroMemory(*ppFormInfoEnd, cbKeywordAligned);
+        CopyMemory(*ppFormInfoEnd, pfil->pKeyword, cbKeyword);
+        (*ppFormInfo)->pKeyword = (LPCSTR)*ppFormInfoEnd;
+    }
     (*ppFormInfo)++;
 }
 

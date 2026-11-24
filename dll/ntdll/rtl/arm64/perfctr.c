@@ -1,12 +1,12 @@
 /*
- * PROJECT:     LiberNT NT Library
+ * PROJECT:     ReliefWin NT Library
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     ARM64 user-mode read of the performance counter
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
  */
 
 #include <ntdll.h>
-#include <libernt/arm64/sysreg.h>
+#include <reliefwin/arm64/sysreg.h>
 
 #define RTL_ARM64_QPC_BYPASS_CONFIGURATION 0x0001
 

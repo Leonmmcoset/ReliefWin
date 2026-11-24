@@ -127,7 +127,7 @@ typedef void (NTAPI *PRX_TABLE_REMOVEENTRY)(PRX_PREFIX_TABLE, PRX_PREFIX_ENTRY);
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 void NTAPI RxFinalizePrefixTable(PRX_PREFIX_TABLE ThisTable);
 
 #ifdef __cplusplus

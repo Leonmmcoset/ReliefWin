@@ -495,7 +495,7 @@ ROSDATA VSC_LPWSTR extended_key_names[] =
   { 0x51, L"Avpág" },
   { 0x52, L"Ins" },
   { 0x53, L"Supr" },
-  { 0x54, L"<LiberNT>" },
+  { 0x54, L"<ReliefWin>" },
   { 0x55, L"Ayuda" },
   { 0x5b, L"Windows izq." },
   { 0x5c, L"Windows der." },

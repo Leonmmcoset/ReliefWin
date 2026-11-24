@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Task Manager
+ * PROJECT:     ReliefWin Task Manager
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Hand-off of the DirectX version probe between the UI and its worker thread
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

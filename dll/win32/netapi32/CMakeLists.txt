@@ -1,16 +1,16 @@
 
 include_directories(
-    ${REACTOS_SOURCE_DIR}/sdk/include/libernt/idl)
+    ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/idl)
 
 spec2def(netapi32.dll netapi32.spec ADD_IMPORTLIB)
 add_rpc_files(client
-    ${REACTOS_SOURCE_DIR}/sdk/include/libernt/idl/atsvc.idl
-    ${REACTOS_SOURCE_DIR}/sdk/include/libernt/idl/browser.idl
-    ${REACTOS_SOURCE_DIR}/sdk/include/libernt/idl/dssetup.idl
-    ${REACTOS_SOURCE_DIR}/sdk/include/libernt/idl/netdfs.idl
-    ${REACTOS_SOURCE_DIR}/sdk/include/libernt/idl/netlogon.idl
-    ${REACTOS_SOURCE_DIR}/sdk/include/libernt/idl/srvsvc.idl
-    ${REACTOS_SOURCE_DIR}/sdk/include/libernt/idl/wkssvc.idl)
+    ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/idl/atsvc.idl
+    ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/idl/browser.idl
+    ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/idl/dssetup.idl
+    ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/idl/netdfs.idl
+    ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/idl/netlogon.idl
+    ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/idl/srvsvc.idl
+    ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/idl/wkssvc.idl)
 
 add_definitions(-DWIN32_LEAN_AND_MEAN=)
 

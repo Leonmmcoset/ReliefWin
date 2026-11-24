@@ -2222,7 +2222,7 @@ extern "C" {
 
 NTSTATUS NTAPI RtlGenerateClass5Guid(const GUID *const NamespaceGuid, PVOID Buffer, ULONG BufferSize, GUID *Guid);
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 void BugCheckSecondaryMultiPartDumpDataCallback(KBUGCHECK_CALLBACK_REASON, struct _KBUGCHECK_REASON_CALLBACK_RECORD *, PVOID, ULONG);
 NTSTATUS NTAPI ClfsAddLogContainer(PLOG_FILE_OBJECT plfoLog, PULONGLONG pcbContainer, PUNICODE_STRING puszContainerPath);
 NTSTATUS NTAPI ClfsAddLogContainerSet(PLOG_FILE_OBJECT plfoLog, USHORT cContainers, PULONGLONG pcbContainer, PUNICODE_STRING rguszContainerPath);
@@ -2457,7 +2457,7 @@ typedef struct _KE_SRCU *PKE_SRCU;
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 NTKERNELAPI NTSTATUS NTAPI IoCreateDriverProxyExtension(PDRIVER_OBJECT OwningDriverObject, DRIVER_PROXY_EXTENSION_CREATION_FLAGS Flags, PDRIVER_PROXY_EXTENSION *DriverProxyExtension);
 NTKERNELAPI NTSTATUS NTAPI IoDriverProxyCreateHotSwappableWorkerThread(PDRIVER_PROXY_EXTENSION DriverProxyExtension, PHANDLE ThreadHandle, ULONG DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes, HANDLE ProcessHandle, PCLIENT_ID ClientId, PDRIVER_PROXY_HOTSWAP_WORKER_ROUTINE_START_CONTEXT WorkerStartContext);
 NTKERNELAPI NTSTATUS NTAPI IofGetDriverProxyWrapperFromEndpoint(PDRIVER_PROXY_EXTENSION DriverProxyExtension, PDRIVER_PROXY_ENDPOINT_FUNCTION Endpoint, PDRIVER_PROXY_WRAPPED_ENDPOINT_FUNCTION *Wrapper);
@@ -2598,7 +2598,7 @@ typedef struct _CLS_SCAN_CONTEXT **PPCLS_SCAN_CONTEXT;
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 NTSTATUS NTAPI ClfsAdvanceLogBase(PVOID pvMarshalContext, PCLFS_LSN plsnBase, ULONG fFlags);
 NTSTATUS NTAPI ClfsCreateScanContext(PLOG_FILE_OBJECT plfoLog, ULONG cFromContainer, ULONG cContainers, CLFS_SCAN_MODE eScanMode, PCLFS_SCAN_CONTEXT pcxScan);
 CLFS_LSN NTAPI ClfsEarlierLsn(PCLFS_LSN plsn);

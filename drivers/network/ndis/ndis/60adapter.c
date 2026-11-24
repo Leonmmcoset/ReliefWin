@@ -532,7 +532,7 @@ Ndis6ImSeedTcpipRegistry(_In_ PCUNICODE_STRING DeviceName)
     Key = Ndis6ImOpenKey(Path);
     if (Key != NULL)
     {
-        Ndis6ImSetSz(Key, L"DriverDesc", REG_SZ, L"ReactOS NDIS Virtual Miniport");
+        Ndis6ImSetSz(Key, L"DriverDesc", REG_SZ, L"ReliefWin NDIS Virtual Miniport");
         Ndis6ImSetSz(Key, L"NetCfgInstanceId", REG_SZ, Guid);
         ZwClose(Key);
     }

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT WDDM UI presentation diagnostics
+ * PROJECT:     ReliefWin WDDM UI presentation diagnostics
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Exercise popup-menu, cursor and overlapping-WGL presentation
  * COPYRIGHT:   Copyright 2026 Ahmed Arif <arif193@gmail.com>
@@ -11,8 +11,8 @@
 #include <tlhelp32.h>
 #include <d3dkmthk.h>
 #include <GL/gl.h>
-#include <libernt/dwmframe.h>
-#include <libernt/dwmprof.h>
+#include <reliefwin/dwmframe.h>
+#include <reliefwin/dwmprof.h>
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>
@@ -661,7 +661,7 @@ CreateHoverMenu(
         L"System Configuration",
         L"Hardware Diagnostics",
         L"Network Connections",
-        L"Shut Down ReactOS"
+        L"Shut Down ReliefWin"
     };
     HMENU Menu = CreatePopupMenu();
     UINT i;

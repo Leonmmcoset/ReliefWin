@@ -31,6 +31,7 @@ AddJobA(HANDLE hPrinter, DWORD Level, PBYTE pData, DWORD cbBuf, PDWORD pcbNeeded
         dwErrorCode = UnicodeToAnsiInPlace(addjobW->Path);
         if (dwErrorCode != ERROR_SUCCESS)
         {
+           SetLastError(dwErrorCode);
            ret = FALSE;
         }
     }
@@ -81,7 +82,8 @@ Cleanup:
 BOOL WINAPI
 EnumJobsA(HANDLE hPrinter, DWORD FirstJob, DWORD NoJobs, DWORD Level, PBYTE pJob, DWORD cbBuf, PDWORD pcbNeeded, PDWORD pcReturned)
 {
-    DWORD dwErrorCode, i;
+    DWORD dwErrorCode = ERROR_SUCCESS;
+    DWORD i;
     JOB_INFO_1W* pji1w = (JOB_INFO_1W*)pJob;
     JOB_INFO_2A* pji2a = (JOB_INFO_2A*)pJob;
     JOB_INFO_2W* pji2w = (JOB_INFO_2W*)pJob;
@@ -184,7 +186,11 @@ EnumJobsA(HANDLE hPrinter, DWORD FirstJob, DWORD NoJobs, DWORD Level, PBYTE pJob
                     }
                     if ( pji2w[i].pDevMode )
                     {
-                        RosConvertUnicodeDevModeToAnsiDevmode( pji2w[i].pDevMode, pji2a[i].pDevMode );
+                        dwErrorCode = RosConvertUnicodeDevModeToAnsiDevmode( pji2w[i].pDevMode, pji2a[i].pDevMode );
+                        if (dwErrorCode != ERROR_SUCCESS)
+                        {
+                            goto Cleanup;
+                        }
                     }
                 }
             }
@@ -193,6 +199,8 @@ EnumJobsA(HANDLE hPrinter, DWORD FirstJob, DWORD NoJobs, DWORD Level, PBYTE pJob
         return TRUE;
     }
 Cleanup:
+    if (dwErrorCode != ERROR_SUCCESS)
+        SetLastError(dwErrorCode);
     return FALSE;
 }
 
@@ -240,7 +248,7 @@ Cleanup:
 BOOL WINAPI
 GetJobA(HANDLE hPrinter, DWORD JobId, DWORD Level, PBYTE pJob, DWORD cbBuf, PDWORD pcbNeeded)
 {
-    DWORD dwErrorCode;
+    DWORD dwErrorCode = ERROR_SUCCESS;
     JOB_INFO_1W* pji1w = (JOB_INFO_1W*)pJob;
     JOB_INFO_2A* pji2a = (JOB_INFO_2A*)pJob;
     JOB_INFO_2W* pji2w = (JOB_INFO_2W*)pJob;
@@ -335,13 +343,19 @@ GetJobA(HANDLE hPrinter, DWORD JobId, DWORD Level, PBYTE pJob, DWORD cbBuf, PDWO
                 }
                 if ( pji2w->pDevMode )
                 {
-                    RosConvertUnicodeDevModeToAnsiDevmode( pji2w->pDevMode, pji2a->pDevMode );
+                    dwErrorCode = RosConvertUnicodeDevModeToAnsiDevmode( pji2w->pDevMode, pji2a->pDevMode );
+                    if (dwErrorCode != ERROR_SUCCESS)
+                    {
+                        goto Cleanup;
+                    }
                 }
                 break;
         }
         return TRUE;
     }
 Cleanup:
+    if (dwErrorCode != ERROR_SUCCESS)
+        SetLastError(dwErrorCode);
     return FALSE;
 }
 

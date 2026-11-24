@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT WDDM DirectX Graphics Kernel
+ * PROJECT:     ReliefWin WDDM DirectX Graphics Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     D3DKMT dispatch private declarations and type definitions
  * COPYRIGHT:   Copyright 2024 LiberNT WDDM Team
@@ -107,8 +107,8 @@ typedef struct _D3DKMT_SEGMENTSIZEINFO
  * All use METHOD_BUFFERED for safe user/kernel data transfer.
  * ====================================================================== */
 
-#include <libernt/rddm/rxgkinterface.h>
-#include <libernt/rddm/rxgkioctl.h>
+#include <reliefwin/rddm/rxgkinterface.h>
+#include <reliefwin/rddm/rxgkioctl.h>
 
 #define IOCTL_D3DKMT_ENUMADAPTERS \
     CTL_CODE(DXGKRNL_DEVICE_TYPE, 0x100, METHOD_BUFFERED, FILE_ANY_ACCESS)

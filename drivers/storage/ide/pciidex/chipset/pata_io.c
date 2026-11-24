@@ -8,7 +8,7 @@
 /* INCLUDES *******************************************************************/
 
 #include "pciidex.h"
-#include <libernt/drivers/dumpstor.h>
+#include <reliefwin/drivers/dumpstor.h>
 
 /* FUNCTIONS ******************************************************************/
 

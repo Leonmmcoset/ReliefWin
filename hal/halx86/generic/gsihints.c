@@ -1,12 +1,12 @@
 /*
- * PROJECT:     LiberNT HAL
+ * PROJECT:     ReliefWin HAL
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     MADT interrupt source override hints for IOAPIC RTE programming
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
  */
 
 #include <hal.h>
-#include <libernt/hal/acpi_pci.h>
+#include <reliefwin/hal/acpi_pci.h>
 #define NDEBUG
 #include <debug.h>
 

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Tests for installing a text service with the input.dll layout or TIP functions
  * COPYRIGHT:   Copyright 2026 mikuta0407 <mikuta0407@mikuta0407.net>
@@ -42,7 +42,7 @@ static const WCHAR s_szUserProfile[] = L"Control Panel\\International\\User Prof
 static const WCHAR s_szPreload[] = L"Keyboard Layout\\Preload";
 static const WCHAR s_szSortOrder[] = L"Software\\Microsoft\\CTF\\SortOrder\\AssemblyItem\\0x00000411\\{34745C63-B2F0-4784-8B67-5E12C8701A31}";
 static const WCHAR s_szUserTip[] = L"Software\\Microsoft\\CTF\\TIP\\{6B3A3F60-51D2-4C1E-9A37-1F528C0E4D71}";
-static const WCHAR s_szBackup[] = L"Software\\LiberNTTipProfileTest";
+static const WCHAR s_szBackup[] = L"Software\\ReliefWinTipProfileTest";
 
 static void CopyKey(LPCWSTR pszFrom, LPCWSTR pszTo)
 {

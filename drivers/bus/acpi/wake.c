@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT ACPI bus driver
+ * PROJECT:     ReliefWin ACPI bus driver
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Device wake: _PRW, wake GPEs and IRP_MN_WAIT_WAKE
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -606,7 +606,7 @@ AcpiD3ColdIdleWake(
         return STATUS_SUCCESS;
 
     *Depth = (ULONG)Value + 1;
-    /* FIXME: Windows 11 keys this on an ACPI extension flag; power-manageable is the nearest LiberNT state */
+    /* FIXME: Windows 11 keys this on an ACPI extension flag; power-manageable is the nearest ReliefWin state */
     if (*Depth == DeviceWakeDepthD3cold && !Device->flags.power_manageable)
         *Depth = DeviceWakeDepthD3hot;
     return STATUS_SUCCESS;

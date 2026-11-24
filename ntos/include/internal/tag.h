@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Pool tags of the kernel components
  * COPYRIGHT:   Copyright 2005 Steven Edwards <sedwards@reactos.com>

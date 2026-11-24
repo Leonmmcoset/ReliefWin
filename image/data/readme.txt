@@ -1,45 +1,25 @@
-1. What's LiberNT?
--------------------
-LiberNT is a free NT operating system, built out of love for the NT architecture. The name says it: liber is Latin for free. LiberNT targets Windows® 11 compatibility, with room for freestyle and experimental features.
+﻿ReliefWin
+=========
 
-LiberNT is based on ReactOS, the Open Source effort to develop an operating system that is compatible with applications and drivers written for the Microsoft Windows NT family of operating systems. It is a fork with extensive changes to kernel-space components and drivers, aimed at stability and modern hardware, and it focuses on 64-bit platforms: amd64, arm64 and riscv64.
+ReliefWin 是基于 LiberNT 和 ReactOS 的自由 NT 操作系统，目标是兼容 Windows 11，并支持现代硬件。
 
-Our goal is a system that stays maintainable in the long run: stable, reliable and efficient, running on embedded devices too, and able to support every feature a modern operating system should have.
+本系统默认使用简体中文，其他语言资源和英语回退仍然保留。
 
-2. What LiberNT Enables
------------------------
+系统使用维护者提供的新 Logo；名称、安装程序、启动界面、桌面和系统信息均使用 ReliefWin 品牌。
 
-LiberNT brings modern hardware and platforms to the NT architecture. The current focus is:
+目前尚未配置 ReliefWin 官网、公开下载仓库或更新服务。默认关闭自动系统更新；仅在维护者配置服务器后才能检查更新。
 
-    - 64-bit platform support on amd64, arm64 and riscv64: kernel, HAL and FreeLoader
-    - UEFI boot, GOP framebuffer, and early display support
-    - PCIe, PCI, PnP, USB/xHCI, SD/eMMC, and storage/bus drivers
-    - Board support, including the Raspberry Pi and its RP1 I/O controller
-    - Windows 11 (NT10) compatibility and driver-model work
+安装程序为 C:\<架构>\reliefwin.exe。安装可能格式化磁盘或删除分区，请先备份重要数据。
 
-This means it can potentially work on modern hardware, but it's not recommended to use it as your main operating system, because it's still an experiment at this stage.
+原作者和第三方组件的版权、许可证以及必要的兼容接口保持原样。LiberNT、ReactOS、Wine 和其他上游项目的名称只用于来源说明，不表示其认可或支持本发行版。
 
+源代码与构建
+------------
 
-3. Differences Between LiberNT and Upstream ReactOS
----------------------------------------------------
+在源码根目录执行 ./configure.sh，然后在对应构建目录中运行：
 
-Most of the source tree is shared with ReactOS, because it's a direct fork of ReactOS.
+    CCACHE_DISABLE=1 ninja reliefwinimg
 
-However, there are some differences between the two:
+输出镜像名称为 ReliefWin.img。安装光盘目标为 bootcd，输出为 bootcd.iso。
 
-    - Memory Management: NVS (NT Virtual Memory Subsystem) is LiberNT's clean-room virtual memory manager and kernel pool implementation, accompanied by a new cache manager that replaces the corresponding components inherited from ReactOS.
-    - ARM64 Support: The kernel, hardware abstraction layer (HAL), and the bootloader can run on ARM64-powered devices.
-    - App Compatibility: LiberNT uses WoW64 to allow running 32-bit apps on 64-bit processors. On ARM64-powered devices, x86 apps run through the FEX emulator with ARM64EC support.
-    - Graphics: The more modern WDDM display driver model and DWM desktop composition is used, like in Windows 11.
-    - USB: Generic USB RNDIS networking is supported. LiberNT also supports controllers like the PlayStation 5 DualSense, PlayStation 5 DualSense Edge, and the XBOX Series X|S controller.
-    - Single-Board Computers: Raspberry Pi display, network and audio drivers, with much more coming.
-
-
-4. AI Usage in LiberNT
-----------------------
-
-A lot of LiberNT's code is reviewed and generated with the assistance of AI. However, the code that the AI writes is reviewed, run, and validated with end-to-end tests by a real person before it reaches the main branch. We care about this project too much to let a regression slip through.
-It also helps us read documentation, extract definitions and fix bugs. For any given bug, it compares what the official Microsoft Learn documentation says with what our function actually does, so we can see exactly where our behavior differs.
-
-
-
+有关源代码许可和作者名单，请查阅源码中的 COPYING、CREDITS.md 和 TRADEMARK.md。

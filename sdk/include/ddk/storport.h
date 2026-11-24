@@ -7800,7 +7800,7 @@ typedef union _STOR_SLIST_HEADER
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 ULONG StorPortAcquireSpinLockEx(PVOID HwDeviceExtension, STOR_SPINLOCK SpinLock, PVOID LockContext, PSTOR_LOCK_HANDLE LockHandle);
 ULONG StorPortAllocateContiguousMemorySpecifyCacheNode(PVOID HwDeviceExtension, SIZE_T NumberOfBytes, PHYSICAL_ADDRESS LowestAcceptableAddress, PHYSICAL_ADDRESS HighestAcceptableAddress, PHYSICAL_ADDRESS BoundaryAddressMultiple, MEMORY_CACHING_TYPE CacheType, NODE_REQUIREMENT PreferredNode, PVOID *BufferPointer);
 ULONG StorPortCancelDpc(PVOID HwDeviceExtension, PSTOR_DPC Dpc, BOOLEAN *ReturnValue);
@@ -7913,7 +7913,7 @@ typedef struct _STOR_UNIT_NVME_ICE_INFORMATION STOR_UNIT_NVME_ICE_INFORMATION;
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 ULONG StorPortQueryNvmeIceSupport(PVOID HwDeviceExtension, ULONG SegmentAndBus, ULONG SlotNumber, PNVME_ICE_ENTRY *NvmeIceEntry);
 
 #ifdef __cplusplus

@@ -1,9 +1,9 @@
 /*
- * PROJECT:     LiberNT Desktop Window Manager
+ * PROJECT:     ReliefWin Desktop Window Manager
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     User-mode compositor: pulls frame metadata from win32k, maps
  *              the per-window section surfaces read-only and composes them
- *              into the primary. See sdk/include/libernt/dwmframe.h.
+ *              into the primary. See sdk/include/reliefwin/dwmframe.h.
  */
 
 #include <ntstatus.h>
@@ -11,9 +11,9 @@
 #include <windows.h>
 #include <math.h>
 #include <stdio.h>
-#include <libernt/dwmcore.h>
-#include <libernt/dwmframe.h>
-#include <libernt/ntdcomp.h>
+#include <reliefwin/dwmcore.h>
+#include <reliefwin/dwmframe.h>
+#include <reliefwin/ntdcomp.h>
 
 #include "dxsurface.h"
 #include "framebuttons.h"

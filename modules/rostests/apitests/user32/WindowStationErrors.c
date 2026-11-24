@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     A window station open or create that is refused reports why through GetLastError
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -26,7 +26,7 @@ START_TEST(WindowStationErrors)
         CloseWindowStation(hWinSta);
 
     SetLastError(0xdeadbeef);
-    hWinSta = CreateWindowStationW(L"LiberNTAnonymousTestStation", 0, WINSTA_ALL_ACCESS, NULL);
+    hWinSta = CreateWindowStationW(L"ReliefWinAnonymousTestStation", 0, WINSTA_ALL_ACCESS, NULL);
     Error = GetLastError();
     ok(hWinSta == NULL && Error == ERROR_ACCESS_DENIED, "anonymous create: %p, error %lu\n", hWinSta, Error);
     if (hWinSta != NULL)

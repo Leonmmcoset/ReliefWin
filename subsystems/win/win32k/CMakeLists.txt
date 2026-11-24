@@ -30,8 +30,8 @@ include_directories(
     include
     ${REACTOS_SOURCE_DIR}/ntos/include
     ${REACTOS_SOURCE_DIR}/sdk/lib/3rdparty/freetype/include
-    ${REACTOS_SOURCE_DIR}/sdk/include/libernt/subsys
-    ${REACTOS_SOURCE_DIR}/sdk/include/libernt/drivers)
+    ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/subsys
+    ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/drivers)
 
 add_definitions(
     -DLANGPACK

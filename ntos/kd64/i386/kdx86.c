@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     i386 kernel debugger target: context, control space, MSRs and I/O space
  * COPYRIGHT:   Copyright Alex Ionescu <alex.ionescu@reactos.org>

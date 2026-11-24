@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT WMI
+ * PROJECT:     ReliefWin WMI
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Persistent repository of namespaces, classes and static instances
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -74,9 +74,9 @@ WmiRepoPaths(WCHAR *Data, WCHAR *Lock, WCHAR *Temporary)
         return FALSE;
     wcscat(Directory, L"\\wbem\\Repository");
     CreateDirectoryW(Directory, NULL);
-    swprintf(Data, MAX_PATH, L"%ls\\LiberNT.repository", Directory);
-    swprintf(Lock, MAX_PATH, L"%ls\\LiberNT.repository.lock", Directory);
-    swprintf(Temporary, MAX_PATH, L"%ls\\LiberNT.repository.new", Directory);
+    swprintf(Data, MAX_PATH, L"%ls\\ReliefWin.repository", Directory);
+    swprintf(Lock, MAX_PATH, L"%ls\\ReliefWin.repository.lock", Directory);
+    swprintf(Temporary, MAX_PATH, L"%ls\\ReliefWin.repository.new", Directory);
     return TRUE;
 }
 

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Apple Display Coprocessor Driver
+ * PROJECT:     ReliefWin Apple Display Coprocessor Driver
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Apple silicon display coprocessor platform provider for the software GPU engine
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -9,7 +9,7 @@
 #include "softgpu.h"
 #include "softgpu_2d_core.h"
 #include "appledcp.h"
-#include <libernt/drivers/appleagx.h>
+#include <reliefwin/drivers/appleagx.h>
 
 static PDRIVER_DISPATCH DcpDxgkPnp;
 static DCP_INTERRUPT_RESOURCES DcpInterrupt;

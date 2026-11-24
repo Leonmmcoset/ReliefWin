@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT RISC-V HAL
+ * PROJECT:     ReliefWin RISC-V HAL
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Firmware hart discovery, SBI startup and remote interrupts
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF
@@ -8,7 +8,7 @@
 #include <ntifs.h>
 #include <arc/arc.h>
 #include <ndk/halfuncs.h>
-#include <libernt/fdtlib.h>
+#include <reliefwin/fdtlib.h>
 #include "halp.h"
 
 ULONG_PTR HalpRiscvHartIds[MAXIMUM_PROCESSORS];

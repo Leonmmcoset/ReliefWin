@@ -3,7 +3,7 @@ add_definitions(
     -DUNICODE -D_UNICODE
     -DDEBUG_NT4=1)
 
-include_directories(${REACTOS_SOURCE_DIR}/sdk/include/libernt/libs/sound)
+include_directories(${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/libs/sound)
 
 list(APPEND SOURCE
     detect.c

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Apple RTKit Library
+ * PROJECT:     ReliefWin Apple RTKit Library
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Link power states the platform and both ends of an Apple silicon PCIe link allow
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -8,7 +8,7 @@
 #ifndef UNIT_TEST
 #include <ntddk.h>
 #endif
-#include <libernt/drivers/applepcielink.h>
+#include <reliefwin/drivers/applepcielink.h>
 
 #define LINKCAP_ASPM(Value)         (((Value) >> 10) & 3)
 #define LINKCAP_L0S_EXIT(Value)     (((Value) >> 12) & 7)

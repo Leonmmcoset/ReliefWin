@@ -579,7 +579,7 @@ CheckCoreViews(
     RtlFreeHeap(RtlGetProcessHeap(), 0, CpuSets);
 }
 
-/* LIBERNT_TEST_CPU_TOPOLOGY gives the QEMU -smp topology of the run, as "sockets=2,dies=1,cores=2,threads=2" */
+/* RELIEFWIN_TEST_CPU_TOPOLOGY gives the QEMU -smp topology of the run, as "sockets=2,dies=1,cores=2,threads=2" */
 static
 void
 Test_LogicalProcessorRelationships(void)
@@ -661,7 +661,7 @@ Test_LogicalProcessorRelationships(void)
     CheckNested("Module", &Modules, &Dies);
     CheckNested("Die", &Dies, &Packages);
 
-    if (!GetEnvironmentVariableA("LIBERNT_TEST_CPU_TOPOLOGY", Topology, sizeof(Topology)) ||
+    if (!GetEnvironmentVariableA("RELIEFWIN_TEST_CPU_TOPOLOGY", Topology, sizeof(Topology)) ||
         sscanf(Topology, "sockets=%lu,dies=%lu,cores=%lu,threads=%lu", &Sockets, &DiesPerSocket, &CoresPerDie, &Threads) != 4 ||
         Sockets == 0 || DiesPerSocket == 0 || CoresPerDie == 0 || Threads == 0)
     {

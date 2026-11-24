@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT StorPort VirtIO block miniport
+ * PROJECT:     ReliefWin StorPort VirtIO block miniport
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Adapter discovery, interrupts and StorPort entry points
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

@@ -238,7 +238,7 @@
 #include "res.h"
 
 #ifdef __REACTOS__
-#include <libernt/undocuser.h>
+#include <reliefwin/undocuser.h>
 #endif
 
 #define STACK_SIZE_DEFAULT  100

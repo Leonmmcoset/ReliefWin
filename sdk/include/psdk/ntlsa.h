@@ -428,7 +428,7 @@ typedef NTSTATUS WINAPI LSA_AP_INITIALIZE_PACKAGE(ULONG, struct _LSA_DISPATCH_TA
 
 typedef void WINAPI LSA_AP_LOGON_TERMINATED(PLUID);
 
-/* FIXME: Windows declares LSA_TOKEN_INFORMATION_TYPE in ntlsa.h; LiberNT keeps it in ntsecpkg.h, so these need that header first */
+/* FIXME: Windows declares LSA_TOKEN_INFORMATION_TYPE in ntlsa.h; ReliefWin keeps it in ntsecpkg.h, so these need that header first */
 #ifdef _NTSECPKG_
 typedef NTSTATUS WINAPI LSA_AP_LOGON_USER(PLSA_CLIENT_REQUEST, SECURITY_LOGON_TYPE, PVOID, PVOID, ULONG, PVOID *, PULONG, PLUID, PNTSTATUS, PLSA_TOKEN_INFORMATION_TYPE, PVOID *, PLSA_UNICODE_STRING *, PLSA_UNICODE_STRING *);
 #endif
@@ -518,7 +518,7 @@ typedef struct _NEGOTIATE_PACKAGE_NAMES *PNEGOTIATE_PACKAGE_NAMES;
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 NTSTATUS WINAPI LsaChangePassword(PLSA_UNICODE_STRING ServerName, PLSA_UNICODE_STRING DomainName, PLSA_UNICODE_STRING AccountName, PLSA_UNICODE_STRING OldPassword, PLSA_UNICODE_STRING NewPassword);
 NTSTATUS WINAPI LsaCreateAgentAccount(PSID OwningUser, int OwningAppPackage, int AgentName);
 NTSTATUS WINAPI LsaDeleteAgentAccount(PSID OwningUser, int OwningAppPackage, int AgentName);
@@ -603,7 +603,7 @@ typedef enum _TRUSTED_INFORMATION_CLASS TRUSTED_INFORMATION_CLASS;
 
 NTSTATUS WINAPI LsaQueryInfoTrustedDomain(LSA_HANDLE TrustedDomainHandle, TRUSTED_INFORMATION_CLASS InformationClass, PVOID *Buffer);
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 NTSTATUS WINAPI LsaGetDeviceRegistrationInfo(PLSA_REGISTRATION_INFO *RegistrationInfo);
 
 #ifdef __cplusplus

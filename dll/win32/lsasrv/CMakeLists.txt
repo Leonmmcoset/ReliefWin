@@ -1,12 +1,12 @@
 
 include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}
-    ${REACTOS_SOURCE_DIR}/sdk/include/libernt/idl
-    ${REACTOS_SOURCE_DIR}/sdk/include/libernt/subsys/lsass)
+    ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/idl
+    ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/subsys/lsass)
 
 add_rpc_files(server
-    ${REACTOS_SOURCE_DIR}/sdk/include/libernt/idl/dssetup.idl
-    ${REACTOS_SOURCE_DIR}/sdk/include/libernt/idl/lsa.idl)
+    ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/idl/dssetup.idl
+    ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/idl/lsa.idl)
 spec2def(lsasrv.dll lsasrv.spec ADD_IMPORTLIB)
 
 list(APPEND SOURCE

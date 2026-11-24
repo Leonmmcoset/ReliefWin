@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT USB RNDIS Network Driver
+ * PROJECT:     ReliefWin USB RNDIS Network Driver
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Resource file
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -11,4 +11,4 @@
 #define REACTOS_STR_INTERNAL_NAME "usbrndis"
 #define REACTOS_STR_ORIGINAL_FILENAME "usbrndis.sys"
 
-#include <libernt/version.rc>
+#include <reliefwin/version.rc>

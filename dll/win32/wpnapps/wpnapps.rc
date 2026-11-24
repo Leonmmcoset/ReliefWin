@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Windows Runtime
+ * PROJECT:     ReliefWin Windows Runtime
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Version resource of the toast notification platform
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -10,4 +10,4 @@
 #define REACTOS_STR_INTERNAL_NAME       "wpnapps\0"
 #define REACTOS_STR_ORIGINAL_FILENAME   "wpnapps.dll\0"
 
-#include <libernt/version.rc>
+#include <reliefwin/version.rc>

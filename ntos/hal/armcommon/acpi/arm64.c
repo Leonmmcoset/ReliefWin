@@ -8,7 +8,7 @@
 #include <hal.h>
 #include <halacpi_arm64.h>
 #include <ntifs.h>
-#include <libernt/arm64/acpi.h>
+#include <reliefwin/arm64/acpi.h>
 #include "../halext.h"
 #define NDEBUG
 #include <debug.h>

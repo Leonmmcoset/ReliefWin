@@ -61,7 +61,7 @@ extern "C" {
 LPSNMP_MGR_SESSION WINAPI SnmpMgrOpen(LPSTR lpAgentAddress, LPSTR lpAgentCommunity, INT nTimeOut, INT nRetries);
 BOOL WINAPI SnmpMgrTrapListen(HANDLE *phTrapAvailable);
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 BOOL SNMP_FUNC_TYPE SnmpMgrClose(LPSNMP_MGR_SESSION session);
 BOOL SNMP_FUNC_TYPE SnmpMgrCtl(LPSNMP_MGR_SESSION session, DWORD dwCtlCode, LPVOID lpvInBuffer, DWORD cbInBuffer, LPVOID lpvOUTBuffer, DWORD cbOUTBuffer, LPDWORD lpcbBytesReturned);
 BOOL SNMP_FUNC_TYPE SnmpMgrGetTrap(AsnObjectIdentifier *enterprise, AsnNetworkAddress *IPAddress, AsnInteger32 *genericTrap, AsnInteger32 *specificTrap, AsnTimeticks *timeStamp, SnmpVarBindList *variableBindings);

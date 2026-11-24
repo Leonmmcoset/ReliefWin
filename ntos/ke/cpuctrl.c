@@ -1,12 +1,12 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Which processors exist, which are usable, and which one is asking
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
  */
 
 #include <ntoskrnl.h>
-#include <libernt/drivers/acpipagr.h>
+#include <reliefwin/drivers/acpipagr.h>
 #define NDEBUG
 #include <debug.h>
 

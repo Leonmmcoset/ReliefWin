@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT USB Camera Driver
+ * PROJECT:     ReliefWin USB Camera Driver
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Video processing, camera and extension unit controls
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

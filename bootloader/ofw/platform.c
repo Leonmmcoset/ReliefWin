@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Boot Loader
+ * PROJECT:     ReliefWin Boot Loader
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Open Firmware entry point and firmware services
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -78,7 +78,7 @@ static ULONG OfwMapCount;
 
 static const PCWSTR OfwStorePaths[] =
 {
-    L"\\EFI\\LiberNT\\Boot\\BCD",
+    L"\\EFI\\ReliefWin\\Boot\\BCD",
     L"\\Boot\\BCD",
 };
 
@@ -914,29 +914,29 @@ FwGetVolumeLabel(
 }
 
 #define FW_WINDOWS_MANAGER L"\\EFI\\Microsoft\\Boot\\bootmgfw.efi"
-#define FW_LIBERNT_MANAGER L"\\EFI\\LiberNT\\Boot\\bootmgfw.efi"
+#define FW_RELIEFWIN_MANAGER L"\\EFI\\ReliefWin\\Boot\\bootmgfw.efi"
 
 PCWSTR
 FwGetSystemManagerPath(
     _In_ BOOLEAN Windows)
 {
-    return Windows ? FW_WINDOWS_MANAGER : FW_LIBERNT_MANAGER;
+    return Windows ? FW_WINDOWS_MANAGER : FW_RELIEFWIN_MANAGER;
 }
 
 PCWSTR
 FwGetSystemStorePath(
     _In_ BOOLEAN Windows)
 {
-    return Windows ? L"\\EFI\\Microsoft\\Boot\\BCD" : L"\\EFI\\LiberNT\\Boot\\BCD";
+    return Windows ? L"\\EFI\\Microsoft\\Boot\\BCD" : L"\\EFI\\ReliefWin\\Boot\\BCD";
 }
 
 BOOLEAN
-FwIsLiberNTManager(
+FwIsReliefWinManager(
     _In_ PVOID Device,
     _In_ PCWSTR Path)
 {
     UNREFERENCED_PARAMETER(Device);
-    return _wcsicmp(Path, FW_LIBERNT_MANAGER) == 0;
+    return _wcsicmp(Path, FW_RELIEFWIN_MANAGER) == 0;
 }
 
 PCWSTR

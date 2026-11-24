@@ -1339,7 +1339,7 @@ typedef struct tagODBC_VS_ARGS *PODBC_VS_ARGS;
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 void SQL_API FireVSDebugEvent(PODBC_VS_ARGS);
 RETCODE SQL_API TraceVSControl(DWORD);
 

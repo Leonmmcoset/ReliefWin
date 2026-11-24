@@ -14825,7 +14825,7 @@ static void test_undefined_queue_id(void)
 }
 
 #ifdef __REACTOS__
-static void test_media_type_conversions_libernt(void)
+static void test_media_type_conversions_reliefwin(void)
 {
     static const struct
     {
@@ -15147,7 +15147,7 @@ START_TEST(mfplat)
     test_2dbuffer_copy();
     test_xvp_playback_mode();
 #ifdef __REACTOS__
-    test_media_type_conversions_libernt();
+    test_media_type_conversions_reliefwin();
 #endif
 
     CoUninitialize();

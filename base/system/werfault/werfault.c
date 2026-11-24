@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Windows Error Reporting host
+ * PROJECT:     ReliefWin Windows Error Reporting host
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Out-of-process crash and hang reporting, runtime exception modules and hang recovery
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

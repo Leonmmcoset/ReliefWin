@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT DDK
+ * PROJECT:     ReliefWin DDK
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     WPP recorder (inflight trace recorder) interface
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -321,7 +321,7 @@ typedef struct _RECORDER_LOG_CREATE_PARAMS_V1 {
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 #if (defined(_KERNEL_MODE))
 void RECORDER_LOG_CREATE_PARAMS_INIT_APPEND_POINTER(PRECORDER_LOG_CREATE_PARAMS Params, PCSTR LogIdentifier, const void *LogIdentifierAppendPointer);
 #endif

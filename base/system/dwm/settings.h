@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Desktop Window Manager
+ * PROJECT:     ReliefWin Desktop Window Manager
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Private live settings contract with the desktop settings panel
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif193@gmail.com>
@@ -8,7 +8,7 @@
 #pragma once
 
 #include <windows.h>
-#include <libernt/dwmsettings.h>
+#include <reliefwin/dwmsettings.h>
 
 #define DWM_SETTINGS_KEY REACTOS_DWM_SETTINGS_KEY
 #define DWM_SETTINGS_CLASS L"ReactOS.Dwm.Settings"

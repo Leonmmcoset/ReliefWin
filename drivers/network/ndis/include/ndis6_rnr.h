@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT NDIS library
+ * PROJECT:     ReliefWin NDIS library
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     6 GHz neighbor APs from IEEE 802.11ax Reduced Neighbor Report elements
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif193@gmail.com>

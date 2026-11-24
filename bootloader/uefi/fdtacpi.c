@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Boot Loader
+ * PROJECT:     ReliefWin Boot Loader
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Describe a device-tree-only ARM platform to the OS with ACPI tables
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -10,8 +10,8 @@
 #include <blefi.h>
 #include <edk2/Fdt.h>
 #include <drivers/acpi/acpi.h>
-#include <libernt/arm64/acpi.h>
-#include <libernt/fdtlib.h>
+#include <reliefwin/arm64/acpi.h>
+#include <reliefwin/fdtlib.h>
 
 #include <debug.h>
 DBG_DEFAULT_CHANNEL(WINDOWS);
@@ -743,10 +743,10 @@ FdtAcpiFillHeader(
     Header->Signature = Signature;
     Header->Length = Length;
     Header->Revision = Revision;
-    RtlCopyMemory(Header->OEMID, "LBRNT ", sizeof(Header->OEMID));
+    RtlCopyMemory(Header->OEMID, "RWIN  ", sizeof(Header->OEMID));
     RtlCopyMemory(Header->OEMTableID, "DTPLATFM", sizeof(Header->OEMTableID));
     Header->OEMRevision = 1;
-    RtlCopyMemory(Header->CreatorID, "LBRN", sizeof(Header->CreatorID));
+    RtlCopyMemory(Header->CreatorID, "RWIN", sizeof(Header->CreatorID));
     Header->CreatorRev = 1;
 }
 
@@ -1152,7 +1152,7 @@ FdtAcpiInstallTables(
 
     Rsdp = (PRSDP)(Base + RsdpOffset);
     Rsdp->Signature = RSDP_SIGNATURE;
-    RtlCopyMemory(Rsdp->OEMID, "LBRNT ", sizeof(Rsdp->OEMID));
+    RtlCopyMemory(Rsdp->OEMID, "RWIN  ", sizeof(Rsdp->OEMID));
     Rsdp->Revision = 2;
     Rsdp->Length = sizeof(RSDP);
     Rsdp->XsdtAddress.QuadPart = (LONGLONG)(Memory + XsdtOffset);

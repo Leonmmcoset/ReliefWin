@@ -1,4 +1,4 @@
-# LiberNT third-party reference: the Apple silicon graphics firmware interface
+# ReliefWin third-party reference: the Apple silicon graphics firmware interface
 # Update this file if more of this interface is taken, or if any of it is replaced.
 
 The Apple graphics processor is driven by a firmware the machine's boot chain loads, and that
@@ -6,7 +6,7 @@ firmware has a private interface: structure layouts, a layout magic, register se
 windows and operating-point selections. Apple publishes none of it, and no hardware specification
 for it exists.
 
-LiberNT's description of that interface is taken from the Apple graphics driver of
+ReliefWin's description of that interface is taken from the Apple graphics driver of
 aurora-silicon/linux, at drivers/gpu/drm/asahi, which offers it under either of two licences:
 
     Copyright (C) 2026 Eryk Wieliczko
@@ -16,16 +16,16 @@ aurora-silicon/linux, at drivers/gpu/drm/asahi, which offers it under either of 
     Repository:   https://github.com/aurora-silicon/linux
     Read at:      git commit c880586efacb808b1cf5406d6079b76bf07d8722 (2026-11-10)
 
-LiberNT takes the MIT option. MIT asks only that the notice travel with the material, which is
+ReliefWin takes the MIT option. MIT asks only that the notice travel with the material, which is
 why the files below carry it in their own headers as well as being listed here. The GPL-2.0-only
-option was equally available and would also be compatible should LiberNT ever move to
+option was equally available and would also be compatible should ReliefWin ever move to
 GPL-2.0-or-later; nothing here depends on which arm is chosen, and taking MIT keeps the material
 usable under both.
 
 What was taken is the description of the interface:
 
   sdk/lib/drivers/applertkit/agxinit.c
-  sdk/include/libernt/drivers/appleagxinit.h
+  sdk/include/reliefwin/drivers/appleagxinit.h
       - the initial data's objects and the addresses the firmware looks for them at
       - the root object's layout and its magic, 0x0c08e21e83800490, which names one firmware build
       - the address-table geometry and level descriptors
@@ -61,7 +61,7 @@ What was taken is the description of the interface:
 The render commands the driver accepts follow Mesa's copy of the same driver's user interface,
 include/drm-uapi/asahi_drm.h (SPDX-License-Identifier: MIT; Copyright (C) The Asahi Linux
 Contributors, 2018-2023 Collabora Ltd., 2014-2018 Broadcom), mirrored with NT types in
-sdk/include/libernt/drivers/appleagxuapi.h so that Mesa's Apple drivers can submit to it: render
+sdk/include/reliefwin/drivers/appleagxuapi.h so that Mesa's Apple drivers can submit to it: render
 and compute commands, attachments, queues and the submission with its command headers. Its
 layout was measured by compiling Mesa's header, and the mirror asserts every offset. The global
 parameters it answers take the G15S user address range, the kernel range minimum, the command and
@@ -75,11 +75,11 @@ were taken from the dual-licensed files named above instead.
 
 What was NOT taken, deliberately: that driver also carries generated board data - the hardware,
 globals and power images of one firmware build, captured from a running system rather than
-derived. LiberNT does not use it. Those objects of the initial data are therefore left empty, and
+derived. ReliefWin does not use it. Those objects of the initial data are therefore left empty, and
 the firmware is expected to object to that; what it says is the evidence the next work is built
 from.
 
-No code was taken. The implementation in LiberNT was written for LiberNT, in C, to NT's
+No code was taken. The implementation in ReliefWin was written for ReliefWin, in C, to NT's
 conventions, with its own structures and error handling. Where the machine itself can answer
 instead of the reference, it does: the graphics regions, the loaded firmware segments and the
 performance states are read from the Apple device tree the boot loader exports, and thirteen of

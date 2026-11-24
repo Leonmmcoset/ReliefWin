@@ -912,7 +912,7 @@ PDH_STATUS WINAPI PdhExpandCounterPathW(LPCWSTR szWildCardPath, PZZWSTR mszExpan
 PDH_STATUS WINAPI PdhExpandWildCardPathA(LPCSTR szDataSource, LPCSTR szWildCardPath, PZZSTR mszExpandedPathList, LPDWORD pcchPathListLength, DWORD dwFlags);
 PDH_STATUS WINAPI PdhExpandWildCardPathW(LPCWSTR szDataSource, LPCWSTR szWildCardPath, PZZWSTR mszExpandedPathList, LPDWORD pcchPathListLength, DWORD dwFlags);
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 PDH_STATUS WINAPI PdhBrowseCountersA(PPDH_BROWSE_DLG_CONFIG_A pBrowseDlgData);
 PDH_STATUS WINAPI PdhBrowseCountersHA(PPDH_BROWSE_DLG_CONFIG_HA pBrowseDlgData);
 PDH_STATUS WINAPI PdhBrowseCountersHW(PPDH_BROWSE_DLG_CONFIG_HW pBrowseDlgData);

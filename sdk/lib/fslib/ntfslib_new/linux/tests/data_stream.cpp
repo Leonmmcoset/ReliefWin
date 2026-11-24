@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT NTFS library tests
+ * PROJECT:     ReliefWin NTFS library tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     File data streamed through a mounted NTFS volume, checked byte for byte
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

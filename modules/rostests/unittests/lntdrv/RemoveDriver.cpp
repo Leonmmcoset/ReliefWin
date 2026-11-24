@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Driver Installer - Unit-tests
+ * PROJECT:     ReliefWin Driver Installer - Unit-tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test installing a package driver and removing it from every device that uses it
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -39,7 +39,7 @@ static const char TestInf[] =
     "AddService=,0x00000002\r\n"
     "\r\n"
     "[Strings]\r\n"
-    "Provider=\"LiberNT Test\"\r\n"
+    "Provider=\"ReliefWin Test\"\r\n"
     "Device=\"lntdrv remove test device\"\r\n";
 
 static bool IsTestDevice(HDEVINFO set, SP_DEVINFO_DATA *data)

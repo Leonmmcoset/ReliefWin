@@ -3,7 +3,7 @@
  */
 #include <windows.h>
 #include <string.h>
-#include <libernt/dwmprof.h>
+#include <reliefwin/dwmprof.h>
 
 typedef struct _DPT_CLIENT
 {

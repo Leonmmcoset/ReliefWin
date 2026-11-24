@@ -1368,7 +1368,7 @@ typedef struct _MDNS_QUERY_REQUEST *PMDNS_QUERY_REQUEST;
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 DNS_STATUS WINAPI DnsCancelQueryRaw(DNS_QUERY_RAW_CANCEL *cancelHandle);
 DWORD DnsConnectionDeletePolicyEntries(DNS_CONNECTION_POLICY_TAG PolicyEntryTag);
 DWORD DnsConnectionDeleteProxyInfo(PCWSTR pwszConnectionName, DNS_CONNECTION_PROXY_TYPE Type);
@@ -1469,7 +1469,7 @@ typedef struct _DNS_CONNECTION_PROXY_INFO_EX *PDNS_CONNECTION_PROXY_INFO_EX;
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 void DnsConnectionFreeProxyInfo(DNS_CONNECTION_PROXY_INFO *pProxyInfo);
 void DnsConnectionFreeProxyInfoEx(DNS_CONNECTION_PROXY_INFO_EX *pProxyInfoEx);
 void DnsConnectionFreeProxyList(DNS_CONNECTION_PROXY_LIST *pProxyList);
@@ -1561,7 +1561,7 @@ typedef struct _DNS_QUERY_REQUEST3 *PDNS_QUERY_REQUEST3;
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 void DnsFreeCustomServers(DWORD *pcServers, DNS_CUSTOM_SERVER **ppServers);
 DWORD DnsGetApplicationSettings(DWORD *pcServers, DNS_CUSTOM_SERVER **ppDefaultServers, DNS_APPLICATION_SETTINGS *pSettings);
 DNS_STATUS WINAPI DnsQueryRaw(DNS_QUERY_RAW_REQUEST *queryRequest, DNS_QUERY_RAW_CANCEL *cancelHandle);

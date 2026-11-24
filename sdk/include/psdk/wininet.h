@@ -2950,7 +2950,7 @@ typedef BOOL (WINAPI *pfnInternetInitializeAutoProxyDll)(DWORD, LPSTR, LPSTR, Au
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 BOOL FtpGetFileEx(HINTERNET hFtpSession, LPCSTR lpszRemoteFile, LPCWSTR lpszNewFile, BOOL fFailIfExists, DWORD dwFlagsAndAttributes, DWORD dwFlags, DWORD_PTR dwContext);
 BOOL FtpPutFileEx(HINTERNET hFtpSession, LPCWSTR lpszLocalFile, LPCSTR lpszNewRemoteFile, DWORD dwFlags, DWORD_PTR dwContext);
 DWORD HttpIsHostHstsEnabled(PCWSTR pcwszUrl, PBOOL pfIsHsts);

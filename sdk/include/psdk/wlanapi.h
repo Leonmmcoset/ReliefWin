@@ -1024,7 +1024,7 @@ typedef struct _WLAN_RAW_DATA_LIST WLAN_RAW_DATA_LIST;
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 DWORD WINAPI WFDCancelOpenSession(HANDLE hSessionHandle);
 DWORD WINAPI WFDCloseHandle(HANDLE hClientHandle);
 DWORD WINAPI WFDCloseSession(HANDLE hSessionHandle);

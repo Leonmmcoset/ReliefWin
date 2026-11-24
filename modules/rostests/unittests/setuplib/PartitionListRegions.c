@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Setup Library - Unit-tests
+ * PROJECT:     ReliefWin Setup Library - Unit-tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test that every region of the partition list lies inside its disk
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

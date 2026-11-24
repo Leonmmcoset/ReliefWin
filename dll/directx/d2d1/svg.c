@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Direct2D
+ * PROJECT:     ReliefWin Direct2D
  * LICENSE:     LGPL-2.1-or-later (https://spdx.org/licenses/LGPL-2.1-or-later)
  * PURPOSE:     SVG documents: parsing the documented SVG 1.1 subset and drawing it
  * COPYRIGHT:   Copyright 2026 Ahmed Arif <arif.ing@outlook.com>

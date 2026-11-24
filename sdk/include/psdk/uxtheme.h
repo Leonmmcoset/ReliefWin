@@ -432,7 +432,7 @@ typedef struct TA_TRANSFORM_OPACITY {
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 BOOL WINAPI BeginPanningFeedback(HWND hwnd);
 HRESULT DrawThemeParentBackgroundEx(HWND hwnd, HDC hdc, DWORD dwFlags, const RECT *prc);
 BOOL WINAPI EndPanningFeedback(HWND hwnd, BOOL fAnimateBack);

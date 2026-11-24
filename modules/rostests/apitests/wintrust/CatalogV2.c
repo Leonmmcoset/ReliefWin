@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test version 2 catalogs and the CAT_MEMBERINFO2 encoding
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -123,7 +123,7 @@ TestVersion2Catalog(VOID)
     ok(File != INVALID_HANDLE_VALUE, "cannot create the member file\n");
     if (File == INVALID_HANDLE_VALUE)
         return;
-    WriteFile(File, "LiberNT catalog member", 22, &Written, NULL);
+    WriteFile(File, "ReliefWin catalog member", sizeof("ReliefWin catalog member") - 1, &Written, NULL);
     CloseHandle(File);
 
     if (!CreateFlatIndirectData(Member, &Indirect, &Size))

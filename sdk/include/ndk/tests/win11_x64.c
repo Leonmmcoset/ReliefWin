@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT NDK tests
+ * PROJECT:     ReliefWin NDK tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Windows 11 24H2 x64 layouts of NDK structures
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

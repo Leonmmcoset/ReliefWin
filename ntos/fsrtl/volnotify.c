@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     What a file system tells the rest of the system about its volume
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

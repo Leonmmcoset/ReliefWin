@@ -1117,7 +1117,7 @@ extern "C" {
 typedef interface IBindStatusCallback IBindStatusCallback;
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 HRESULT STDAPICALLTYPE CoCreateStandardMalloc(DWORD memctx, IMalloc **ppMalloc);
 HRESULT STDAPICALLTYPE CoGetSystemSecurityPermissions(COMSD comSDType, PSECURITY_DESCRIPTOR *ppSD);
 HRESULT STDAPICALLTYPE CoInstall(IBindCtx *pbc, DWORD dwFlags, uCLSSPEC *pClassSpec, QUERYCONTEXT *pQuery, LPWSTR pszCodeBase);

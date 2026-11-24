@@ -724,7 +724,7 @@ extern "C" {
 NETIOAPI_API CreateSortedAddressPairs(const PSOCKADDR_IN6 SourceAddressList, ULONG SourceAddressCount, const PSOCKADDR_IN6 DestinationAddressList, ULONG DestinationAddressCount, ULONG AddressSortOptions, PSOCKADDR_IN6_PAIR *SortedAddressPairList, ULONG *SortedAddressPairCount);
 NETIOAPI_API SetInterfaceDnsSettings(GUID Interface, const DNS_INTERFACE_SETTINGS *Settings);
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 NETIOAPI_API ConvertCompartmentGuidToId(const GUID *CompartmentGuid, PNET_IF_COMPARTMENT_ID CompartmentId);
 NETIOAPI_API ConvertCompartmentIdToGuid(NET_IF_COMPARTMENT_ID CompartmentId, GUID *CompartmentGuid);
 NETIOAPI_API ConvertIpv4MaskToLength(ULONG Mask, PUINT8 MaskLength);

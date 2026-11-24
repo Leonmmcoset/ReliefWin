@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Composed colour of Direct3D 12 flip swap chains in each flip-model format
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arifing193@gmail.com>

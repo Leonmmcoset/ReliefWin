@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT DDK
+ * PROJECT:     ReliefWin DDK
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Power engine plugin interface
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -2122,7 +2122,7 @@ typedef struct _PEP_REGISTER_CRASHDUMP_DEVICE *PPEP_REGISTER_CRASHDUMP_DEVICE;
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 void PEP_ACPI_INITIALIZE_EXTENDED_IO_RESOURCE(BOOLEAN ResourceUsage, UCHAR Decode, BOOLEAN IsMinFixed, BOOLEAN IsMaxFixed, UCHAR ISARanges, ULONGLONG AddressGranularity, ULONGLONG AddressMinimum, ULONGLONG AddressMaximum, ULONGLONG AddressTranslation, ULONGLONG RangeLength, ULONGLONG TypeSpecificAttributes, PUNICODE_STRING DescriptorName, BOOLEAN TranslationTypeNonStatic, BOOLEAN TanslationSparseDensity, PPEP_ACPI_RESOURCE Resource);
 void PEP_ACPI_INITIALIZE_EXTENDED_MEMORY_RESOURCE(BOOLEAN ResourceUsage, UCHAR Decode, BOOLEAN IsMinFixed, BOOLEAN IsMaxFixed, UCHAR Cacheable, BOOLEAN ReadWrite, ULONGLONG AddressGranularity, ULONGLONG AddressMinimum, ULONGLONG AddressMaximum, ULONGLONG AddressTranslation, ULONGLONG RangeLength, ULONGLONG TypeSpecificAttributes, PUNICODE_STRING DescriptorName, UCHAR MemoryRangeType, BOOLEAN TranslationTypeNonStatic, PPEP_ACPI_RESOURCE Resource);
 void PEP_ACPI_INITIALIZE_SPB_SPI_RESOURCE(USHORT DeviceSelection, UCHAR DeviceSelectionPolarity, UCHAR WireMode, UCHAR DataBitLength, BOOLEAN SlaveMode, ULONG ConnectionSpeed, UCHAR ClockPolarity, UCHAR ClockPhase, PUNICODE_STRING ResourceSource, UCHAR ResourceSourceIndex, BOOLEAN ResourceUsage, BOOLEAN SharedMode, PCHAR VendorData, USHORT VendorDataLength, PPEP_ACPI_RESOURCE Resource);

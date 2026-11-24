@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT kernel-mode tests
+ * PROJECT:     ReliefWin kernel-mode tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     IoCreateFile access checks for kernel-mode requests issued in a user thread
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -7,7 +7,7 @@
 
 #include <kmt_test.h>
 
-static UNICODE_STRING FileName = RTL_CONSTANT_STRING(L"\\SystemRoot\\libernt_iocreate_access.tmp");
+static UNICODE_STRING FileName = RTL_CONSTANT_STRING(L"\\SystemRoot\\reliefwin_iocreate_access.tmp");
 
 static
 NTSTATUS

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT NT Library
+ * PROJECT:     ReliefWin NT Library
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Loader hooks for architectures without AMD64 supplemental unwind tables
  * COPYRIGHT:   Copyright 2026 LiberNT contributors

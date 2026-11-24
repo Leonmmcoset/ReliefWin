@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT kernel-mode tests
+ * PROJECT:     ReliefWin kernel-mode tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Interrupt object the i8042 port hands to the top of its device stack
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

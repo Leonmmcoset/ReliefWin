@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Boot Loader
+ * PROJECT:     ReliefWin Boot Loader
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     PC/AT BIOS disk access through the INT 13h extensions
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -42,7 +42,7 @@ typedef enum _BIOS_MANAGER
 {
     BiosManagerUnknown,
     BiosManagerNone,
-    BiosManagerLiberNT,
+    BiosManagerReliefWin,
     BiosManagerOther
 } BIOS_MANAGER;
 
@@ -524,7 +524,7 @@ BiosVolumeManager(
     if (Data)
     {
         Volume->Manager = (Size >= BIOS_STARTUP_INFO_OFFSET + sizeof(ULONG) &&
-                           LeUlong(Data + BIOS_STARTUP_INFO_OFFSET) == BIOS_STARTUP_MAGIC) ? BiosManagerLiberNT
+                           LeUlong(Data + BIOS_STARTUP_INFO_OFFSET) == BIOS_STARTUP_MAGIC) ? BiosManagerReliefWin
                                                                                           : BiosManagerOther;
         FwFreePages(Data, Size);
     }
@@ -674,11 +674,11 @@ FwGetSystemStorePath(
 }
 
 BOOLEAN
-FwIsLiberNTManager(
+FwIsReliefWinManager(
     _In_ PVOID Device,
     _In_ PCWSTR Path)
 {
-    return _wcsicmp(Path, BIOS_MANAGER_PATH) == 0 && BiosVolumeManager(BiosVolume(Device)) == BiosManagerLiberNT;
+    return _wcsicmp(Path, BIOS_MANAGER_PATH) == 0 && BiosVolumeManager(BiosVolume(Device)) == BiosManagerReliefWin;
 }
 
 /* A system's boot manager starts from its partition's boot record, run in real mode at 0:7C00 like the MBR would */

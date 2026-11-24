@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT HAL — ARM64 BCM2711 VideoCore property mailbox
+ * PROJECT:     ReliefWin HAL — ARM64 BCM2711 VideoCore property mailbox
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Broadcom BCM2711 (Raspberry Pi 4 / CM4) VideoCore firmware
  *              property-channel mailbox.  Provides the generic property
@@ -20,7 +20,7 @@
 #include <ioaccess.h>
 #include <halfuncs.h>
 #include <hal.h>
-#include <libernt/hal/halext.h>
+#include <reliefwin/hal/halext.h>
 #include "bcm2711_pci.h"
 #include "bcm2711_vc.h"
 

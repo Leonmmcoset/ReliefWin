@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     i386 initial thread frames and the second half of a context switch
  * COPYRIGHT:   Copyright Alex Ionescu <alex@relsoft.net>

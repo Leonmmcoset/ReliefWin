@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     The debugger's checks of itself: selftest
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -53,7 +53,7 @@ static BOOLEAN KdbpTestBreakPointUsed[KDB_TEST_MAX_BREAKPOINTS];
 /* Memory the memory and breakpoint commands are pointed at */
 static UCHAR KdbpTestBytes[64];
 static UCHAR KdbpTestCopy[64];
-static WCHAR KdbpTestWide[] = L"LiberNT";
+static WCHAR KdbpTestWide[] = L"ReliefWin";
 static PVOID KdbpTestPointers[2];
 static CHAR KdbpTestScriptText[] = "echo KDBTEST-S1\n\necho KDBTEST-S2\n";
 static LIST_ENTRY KdbpTestListHead;
@@ -322,7 +322,7 @@ static
 VOID
 KdbpTestPrepareMemory(VOID)
 {
-    static const CHAR Text[] = "LiberNT";
+    static const CHAR Text[] = "ReliefWin";
     ULONG Index;
 
     for (Index = 0; Index < sizeof(KdbpTestBytes); Index++)
@@ -479,11 +479,11 @@ KdbpTestMemory(VOID)
     KdbpTestFormat(Line, "dq 0x%p 1", Bytes);
     KdbpTestCommand(Line, "171615145aa51110", NULL);
     KdbpTestFormat(Line, "da 0x%p", &Bytes[32]);
-    KdbpTestCommand(Line, "\"LiberNT\"", NULL);
+    KdbpTestCommand(Line, "\"ReliefWin\"", NULL);
     KdbpTestFormat(Line, "da 0x%p 3", &Bytes[32]);
-    KdbpTestCommand(Line, "\"Lib\"", "LiberNT");
+    KdbpTestCommand(Line, "\"Rel\"", "ReliefWin");
     KdbpTestFormat(Line, "du 0x%p", KdbpTestWide);
-    KdbpTestCommand(Line, "\"LiberNT\"", NULL);
+    KdbpTestCommand(Line, "\"ReliefWin\"", NULL);
     KdbpTestFormat(Line, "dps 0x%p 1", KdbpTestPointers);
     KdbpTestCommand(Line, "KdbpCmdSelfTest", NULL);
     KdbpTestCommand("db 1", "??", NULL);
@@ -851,7 +851,7 @@ KdbpTestScripts(VOID)
                   "script ran both lines");
     KdbpTestCommand("script 1 4", "cannot be read", NULL);
 
-    KdbpTestCommand("version", "LiberNT", NULL);
+    KdbpTestCommand("version", "ReliefWin", NULL);
     KdbpTestCommand("log", "transcript", NULL);
     KdbpTestCommand("log zz", "not on, off, clear or show", NULL);
     KdbpTestCommand("kdbtest_no_such_command", "not something that can be typed", NULL);
@@ -1062,12 +1062,12 @@ KdbpTestMoreMemory(VOID)
     ULONG Index;
 
     KdbpTestPrepareMemory();
-    KdbpTestFormat(Line, "db 0x%p 8", &KdbpTestBytes[32]);
-    KdbpTestCommand(Line, " LiberNT.\n", NULL);
+    KdbpTestFormat(Line, "db 0x%p %u", &KdbpTestBytes[32], (ULONG)sizeof("ReliefWin"));
+    KdbpTestCommand(Line, " ReliefWin.\n", NULL);
     KdbpTestFormat(Line, "dc 0x%p 1", KdbpTestBytes);
     KdbpTestCommand(Line, "5aa51110", NULL);
     KdbpTestFormat(Line, "dc 0x%p 1", &KdbpTestBytes[32]);
-    KdbpTestCommand(Line, " Libe\n", NULL);
+    KdbpTestCommand(Line, " Reli\n", NULL);
 
     KdbpTestFormat(Line, "!vtop 0x%p", KdbpTestBytes);
     KdbpTestCommand(Line, "is physical 0x", NULL);

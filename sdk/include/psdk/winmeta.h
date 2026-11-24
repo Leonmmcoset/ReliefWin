@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT SDK
+ * PROJECT:     ReliefWin SDK
  * LICENSE:     MIT (https://spdx.org/licenses/MIT)
  * PURPOSE:     Standard event levels of the Windows event metadata
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

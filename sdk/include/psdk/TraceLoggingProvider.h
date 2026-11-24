@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT SDK
+ * PROJECT:     ReliefWin SDK
  * LICENSE:     MIT (https://spdx.org/licenses/MIT)
  * PURPOSE:     TraceLogging provider interface
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -309,7 +309,7 @@ typedef HRESULT TLG_STATUS;
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 void _tlg_CALL _tlgCreate1Sz_char(PEVENT_DATA_DESCRIPTOR pDesc, const char *psz);
 void _tlg_CALL _tlgCreate1Sz_wchar_t(PEVENT_DATA_DESCRIPTOR pDesc, const wchar_t *psz);
 void _tlg_CALL _tlgCreate2Binary(PEVENT_DATA_DESCRIPTOR pDesc, const void *pValue, ULONG cbValue);

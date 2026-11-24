@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT HAL
+ * PROJECT:     ReliefWin HAL
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Plug and Play devices described by the firmware device tree
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -8,7 +8,7 @@
 #ifndef UNIT_TEST
 #include <ntifs.h>
 #endif
-#include <libernt/fdtlib.h>
+#include <reliefwin/fdtlib.h>
 #include "../include/halpnp.h"
 #include "../include/halfdt.h"
 

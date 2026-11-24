@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT NTFS library
+ * PROJECT:     ReliefWin NTFS library
  * LICENSE:     MIT (https://spdx.org/licenses/MIT)
  * PURPOSE:     NTFS core environment and operations for the Linux kernel glue
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

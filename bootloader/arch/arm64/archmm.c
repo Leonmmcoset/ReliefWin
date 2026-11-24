@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Boot Loader
+ * PROJECT:     ReliefWin Boot Loader
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     ARM64 loader address space limits
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -8,12 +8,12 @@
 #include <blefi.h>
 #include <fdtacpi.h>
 #include <arm64.h>
-#include <libernt/arm64/early_uart.h>
+#include <reliefwin/arm64/early_uart.h>
 #include "../../winload/winload.h"
 
 BOOLEAN Arm64IsKernelVaMapped(ULONGLONG Va);
 
-#include <libernt/arm64/earlyfont.h>
+#include <reliefwin/arm64/earlyfont.h>
 
 #define OSL_FB_CELL_HEIGHT 14
 

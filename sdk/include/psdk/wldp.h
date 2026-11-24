@@ -243,7 +243,7 @@ typedef HRESULT (WINAPI *PWLDP_SETWINDOWSLOCKDOWNRESTRICTION_API)(WLDP_WINDOWS_L
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 HRESULT STDAPICALLTYPE WldpCanExecuteFileFromDetachedSignature(const GUID *const host, WLDP_EXECUTION_EVALUATION_OPTIONS options, HANDLE contentFileHandle, HANDLE signatureFileHandle, PCWSTR auditInfo, WLDP_EXECUTION_POLICY *result);
 HRESULT STDAPICALLTYPE WldpGetApplicationSettingBoolean(PCWSTR id, PCWSTR setting, BOOL *result);
 HRESULT STDAPICALLTYPE WldpGetApplicationSettingStringList(PCWSTR id, PCWSTR setting, SIZE_T dataCount, SIZE_T *requiredCount, PZZWSTR result);

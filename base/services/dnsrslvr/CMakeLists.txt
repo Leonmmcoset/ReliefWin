@@ -1,8 +1,8 @@
 
 include_directories(
-    ${REACTOS_SOURCE_DIR}/sdk/include/libernt/idl
-    ${REACTOS_SOURCE_DIR}/sdk/include/libernt/drivers)
-add_rpc_files(server ${REACTOS_SOURCE_DIR}/sdk/include/libernt/idl/dnsrslvr.idl)
+    ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/idl
+    ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/drivers)
+add_rpc_files(server ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/idl/dnsrslvr.idl)
 
 list(APPEND SOURCE
     cache.c

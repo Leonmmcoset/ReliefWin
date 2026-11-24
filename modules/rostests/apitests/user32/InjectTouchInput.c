@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Injected touch contacts tap, double tap and pan a list view with one or two fingers
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

@@ -726,7 +726,7 @@ typedef NODE_TYPE_CODE TYPE_OF_OPEN;
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 RX_FILE_TYPE RxInferFileType(PRX_CONTEXT RxContext);
 BOOLEAN RxLoudFcbMsg(PUCHAR msg, PUNICODE_STRING Name);
 

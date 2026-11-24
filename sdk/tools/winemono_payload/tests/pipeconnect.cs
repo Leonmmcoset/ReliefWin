@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test asynchronous connections to a managed named pipe server
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -28,7 +28,7 @@ public static class Program
 
     static void Connect(string name, PipeDirection direction, PipeTransmissionMode mode, bool clientFirst, bool clientCloses, bool clientProcess)
     {
-        string pipe = "libernt-pipeconnect-" + name;
+        string pipe = "reliefwin-pipeconnect-" + name;
         PipeDirection clientDirection = direction == PipeDirection.In ? PipeDirection.Out : direction == PipeDirection.Out ? PipeDirection.In : PipeDirection.InOut;
         Exception error = null;
         bool connected = false;
@@ -73,7 +73,7 @@ public static class Program
     static void DisposeWhileWaiting(PipeTransmissionMode mode)
     {
         string name = "server-disposed-" + mode.ToString().ToLowerInvariant();
-        NamedPipeServerStream server = new NamedPipeServerStream("libernt-pipeconnect-" + name, PipeDirection.In, 1, mode, PipeOptions.Asynchronous);
+        NamedPipeServerStream server = new NamedPipeServerStream("reliefwin-pipeconnect-" + name, PipeDirection.In, 1, mode, PipeOptions.Asynchronous);
         Exception error = null;
         bool ended = false;
 

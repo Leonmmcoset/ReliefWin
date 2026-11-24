@@ -189,7 +189,7 @@ extern "C" {
 HRESULT WINAPI OleConvertIStorageToOLESTREAMEx(LPSTORAGE pstg, CLIPFORMAT cfFormat, LONG lWidth, LONG lHeight, DWORD dwSize, LPSTGMEDIUM pmedium, LPOLESTREAM polestm);
 HRESULT WINAPI OleCreateFromFileEx(const IID *const rclsid, LPCOLESTR lpszFileName, const IID *const riid, DWORD dwFlags, DWORD renderopt, ULONG cFormats, DWORD *rgAdvf, LPFORMATETC rgFormatEtc, IAdviseSink *lpAdviseSink, DWORD *rgdwConnection, LPOLECLIENTSITE pClientSite, LPSTORAGE pStg, LPVOID *ppvObj);
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 HRESULT STDAPICALLTYPE OleConvertOLESTREAMToIStorage2(LPOLESTREAM lpolestream, LPSTORAGE pstg, const DVTARGETDEVICE *ptd, DWORD opt, PVOID pvCallbackContext, OLESTREAMQUERYCONVERTOLELINKCALLBACK pQueryConvertOLELinkCallback);
 HRESULT STDAPICALLTYPE OleConvertOLESTREAMToIStorageEx(LPOLESTREAM polestm, LPSTORAGE pstg, CLIPFORMAT *pcfFormat, LONG *plwWidth, LONG *plHeight, DWORD *pdwSize, LPSTGMEDIUM pmedium);
 HRESULT STDAPICALLTYPE OleConvertOLESTREAMToIStorageEx2(LPOLESTREAM polestm, LPSTORAGE pstg, CLIPFORMAT *pcfFormat, LONG *plwWidth, LONG *plHeight, DWORD *pdwSize, LPSTGMEDIUM pmedium, DWORD opt, PVOID pvCallbackContext, OLESTREAMQUERYCONVERTOLELINKCALLBACK pQueryConvertOLELinkCallback);

@@ -1,6 +1,6 @@
 
-include_directories(${REACTOS_SOURCE_DIR}/sdk/include/libernt/idl ${CMAKE_CURRENT_BINARY_DIR})
-add_rpc_files(server ${REACTOS_SOURCE_DIR}/sdk/include/libernt/idl/scardsvr.idl)
+include_directories(${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/idl ${CMAKE_CURRENT_BINARY_DIR})
+add_rpc_files(server ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/idl/scardsvr.idl)
 
 list(APPEND SOURCE
     scardsvr.c

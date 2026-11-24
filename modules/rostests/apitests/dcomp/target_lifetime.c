@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Tests that a composition swap chain keeps presenting after its visual's target window is gone
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arifing193@gmail.com>

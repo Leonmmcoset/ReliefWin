@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT kernel-mode tests
+ * PROJECT:     ReliefWin kernel-mode tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     User mode tests for the label, resource attribute and scoped policy parts of a SACL
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT GDI32
+ * PROJECT:     ReliefWin GDI32
  * LICENSE:     LGPL-2.1-or-later (https://spdx.org/licenses/LGPL-2.1-or-later)
  * PURPOSE:     D3DKMT entry points that read their descriptor in user mode
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

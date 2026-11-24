@@ -1,9 +1,9 @@
 
 include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}
-    ${REACTOS_SOURCE_DIR}/sdk/include/libernt/idl)
+    ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/idl)
 
-add_rpc_files(server ${REACTOS_SOURCE_DIR}/sdk/include/libernt/idl/sam.idl)
+add_rpc_files(server ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/idl/sam.idl)
 spec2def(samsrv.dll samsrv.spec ADD_IMPORTLIB)
 
 list(APPEND SOURCE

@@ -1,12 +1,12 @@
 /*
- * PROJECT:     LiberNT RISC-V HAL
+ * PROJECT:     ReliefWin RISC-V HAL
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF
  * PURPOSE:     Firmware-configured QEMU virt PCI host and device PMAs
  */
 
 #include <ntifs.h>
-#include <libernt/fdtlib.h>
+#include <reliefwin/fdtlib.h>
 #include "halp.h"
 
 #define RISCV_PCI_MAX_RANGES 8

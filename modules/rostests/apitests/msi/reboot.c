@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Restart prompts and results of REBOOT, ScheduleReboot and ForceReboot
  * COPYRIGHT:   Copyright 2026 Ostap Brehin <hello@astroshippers.com>
@@ -19,7 +19,7 @@ static const PCWSTR Base[] =
     L"INSERT INTO `Property` (`Property`, `Value`) VALUES ('ProductName', 'msi_apitest reboot')",
     L"INSERT INTO `Property` (`Property`, `Value`) VALUES ('ProductVersion', '1.0.0')",
     L"INSERT INTO `Property` (`Property`, `Value`) VALUES ('ProductLanguage', '1033')",
-    L"INSERT INTO `Property` (`Property`, `Value`) VALUES ('Manufacturer', 'LiberNT')",
+    L"INSERT INTO `Property` (`Property`, `Value`) VALUES ('Manufacturer', 'ReliefWin')",
     NULL
 };
 

@@ -21,7 +21,7 @@
 #include <portabledevicetypes.h>
 #include <sensorsapi.h>
 #include <sensors.h>
-#include <libernt/drivers/sensorprovider.h>
+#include <reliefwin/drivers/sensorprovider.h>
 
 #include <wine/debug.h>
 

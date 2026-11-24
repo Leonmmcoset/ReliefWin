@@ -1465,7 +1465,7 @@ int WINAPI StrCmpNICA(LPCSTR pszStr1, LPCSTR pszStr2, int nChar);
 int WINAPI StrCmpNICW(LPCWSTR pszStr1, LPCWSTR pszStr2, int nChar);
 HRESULT WINAPI UrlFixupW(PCWSTR pcszUrl, PWSTR pszTranslatedUrl, DWORD cchMax);
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 HRESULT STDAPICALLTYPE IStream_Copy(IStream *pstmFrom, IStream *pstmTo, DWORD cb);
 HRESULT STDAPICALLTYPE IStream_ReadStr(IStream *pstm, PWSTR *ppsz);
 HRESULT STDAPICALLTYPE IStream_WriteStr(IStream *pstm, PCWSTR psz);

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Win32k subsystem
+ * PROJECT:     ReliefWin Win32k subsystem
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Consumer control collections opened for system use
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -10,7 +10,7 @@
 #include <hidclass.h>
 #include <hidpi.h>
 #include <ntddvdeo.h>
-#include <libernt/rddm/rxgkmonitor.h>
+#include <reliefwin/rddm/rxgkmonitor.h>
 
 DBG_DEFAULT_CHANNEL(UserInput);
 

@@ -312,8 +312,8 @@ START_TEST(SetComputerNameExW)
 
     DoTestDnsSuffix(hKeyHN, L"", TRUE);
     DoTestDnsSuffix(hKeyHN, L"example", TRUE);
-    DoTestDnsSuffix(hKeyHN, L"libernt-apitest.example.com", TRUE);
-    DoTestDnsSuffix(hKeyHN, L"corp.libernt-apitest.example", TRUE);
+    DoTestDnsSuffix(hKeyHN, L"reliefwin-apitest.example.com", TRUE);
+    DoTestDnsSuffix(hKeyHN, L"corp.reliefwin-apitest.example", TRUE);
     DoTestDnsSuffix(hKeyHN, L"bad..example.com", FALSE);
     DoTestDnsSuffix(hKeyHN, L"bad suffix.example.com", FALSE);
     DoTestDnsSuffix(hKeyHN, L"bad:suffix.example.com", FALSE);

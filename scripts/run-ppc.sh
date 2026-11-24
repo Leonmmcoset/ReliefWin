@@ -55,9 +55,9 @@ if [ -z "${QEMU_MODULE_DIR:-}" ]; then
     done
 fi
 
-image=${disk_image:-"$build_dir/LiberNT.img"}
+image=${disk_image:-"$build_dir/ReliefWin.img"}
 if [ "$do_build" = yes ]; then
-    ninja -C "$build_dir" -j "${ROS_BUILD_JOBS:-8}" liberntimg
+    ninja -C "$build_dir" -j "${ROS_BUILD_JOBS:-8}" reliefwinimg
 fi
 
 # OpenBIOS reads SCSI before handoff; ReactOS accesses the AHCI view.

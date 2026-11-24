@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT System Libraries
+ * PROJECT:     ReliefWin System Libraries
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     ARMv7 fiber context switch
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

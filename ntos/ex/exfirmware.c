@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     What the firmware holds: its variables, its tables, its entries
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -7,8 +7,8 @@
 
 #include <ntoskrnl.h>
 #include <initguid.h>
-#include <libernt/drivers/acpi/acpi.h>
-#include <libernt/drivers/acpi/acpisystem.h>
+#include <reliefwin/drivers/acpi/acpi.h>
+#include <reliefwin/drivers/acpi/acpisystem.h>
 #define NDEBUG
 #include <debug.h>
 

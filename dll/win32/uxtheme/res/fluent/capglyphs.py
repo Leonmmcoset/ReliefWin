@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# PROJECT:     LiberNT uxtheme
+# PROJECT:     ReliefWin uxtheme
 # LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
 # PURPOSE:     Build the caption button glyph icons from rasterized Fluent UI System Icons
 # COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

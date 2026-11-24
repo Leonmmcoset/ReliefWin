@@ -1,4 +1,4 @@
-# PROJECT:     LiberNT host-native tests
+# PROJECT:     ReliefWin host-native tests
 # LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
 # PURPOSE:     A boot driver marked to run on one processor only stops a multiprocessor system before it starts
 # COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

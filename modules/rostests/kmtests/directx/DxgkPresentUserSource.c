@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT kernel-mode tests
+ * PROJECT:     ReliefWin kernel-mode tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Display device IOCTLs: dirty-rectangle presents refuse a user-mode source
  * COPYRIGHT:   Copyright 2026 Ahmed Arif <arif.ing@outlook.com>
@@ -7,7 +7,7 @@
 
 #include <kmt_test.h>
 #include <windef.h>
-#include <libernt/dwmframe.h>
+#include <reliefwin/dwmframe.h>
 
 #define SOURCE_PITCH  (4096 * sizeof(ULONG))
 #define SOURCE_ROWS   2304

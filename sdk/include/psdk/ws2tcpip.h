@@ -914,7 +914,7 @@ WSASetUdpRecvMaxCoalescedSize(
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 INT WINAPI WSAGetFailConnectOnIcmpError(SOCKET Socket, DWORD *Enabled);
 INT WINAPI WSAGetIPUserMtu(SOCKET Socket, DWORD *Mtu);
 INT WINAPI WSAGetReceivedProcessorOption(SOCKET Socket, BOOLEAN *Enabled);
@@ -934,7 +934,7 @@ INT WINAPI WSASetRecvIPEcn(SOCKET Socket, DWORD Enabled);
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 INT WINAPI WSAGetIcmpErrorInfo(SOCKET Socket, ICMP_ERROR_INFO *Info);
 
 #ifdef __cplusplus

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT WDDM DirectX Graphics Kernel
+ * PROJECT:     ReliefWin WDDM DirectX Graphics Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     WDDM miniport registration, adapter PnP/Power lifecycle,
  *              and DxgkCb* callbacks exported to miniport drivers
@@ -72,9 +72,9 @@
 #include <wdmguid.h>
 #include <drivers/acpi/acpi.h>
 #include <drivers/acpi/acpisystem.h>
-#include <libernt/arc/arc.h>
-#include <libernt/drivers/acpi/acpipci.h>
-#include <libernt/drivers/cmreslist.h>
+#include <reliefwin/arc/arc.h>
+#include <reliefwin/drivers/acpi/acpipci.h>
+#include <reliefwin/drivers/cmreslist.h>
 #define DXGKP_BUGCHECK_VIDEO_DXGKRNL_FATAL_ERROR 0x113
 #define DXGKP_FATAL_SURPRISE_REMOVAL_SUBTYPE 0x19
 #define DXGKP_FATAL_MMS2_LIFECYCLE_SUBTYPE 0x1A

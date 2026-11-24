@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     What the registry says about a device and how to reach it
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -797,7 +797,7 @@ IopSetDeviceInstanceData(
                       sizeof(Value));
     }
 
-    /* Windows keeps no class name in an instance key; earlier LiberNT builds wrote one there */
+    /* Windows keeps no class name in an instance key; earlier ReliefWin builds wrote one there */
     RtlInitUnicodeString(&ValueName, L"Class");
     ZwDeleteValueKey(InstanceKey, &ValueName);
 

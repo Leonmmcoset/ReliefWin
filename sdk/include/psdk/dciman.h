@@ -61,7 +61,7 @@ typedef void (WINAPI *WINWATCHNOTIFYPROC)(HWINWATCH, HWND, DWORD, LPARAM);
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 DCIRVAL WINAPI DCIBeginAccess(LPDCISURFACEINFO pdci, int x, int y, int dx, int dy);
 int WINAPI DCICreateOffscreen(HDC hdc, DWORD dwCompression, DWORD dwRedMask, DWORD dwGreenMask, DWORD dwBlueMask, DWORD dwWidth, DWORD dwHeight, DWORD dwDCICaps, DWORD dwBitCount, LPDCIOFFSCREEN *lplpSurface);
 int WINAPI DCICreateOverlay(HDC hdc, LPVOID lpOffscreenSurf, LPDCIOVERLAY *lplpSurface);

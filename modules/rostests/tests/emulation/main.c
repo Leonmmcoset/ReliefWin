@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Console program exercising a process that may run under an emulation host
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -1063,7 +1063,7 @@ TestMisalignedVectors(VOID)
 }
 
 #if defined(_M_AMD64) || defined(__x86_64__)
-#include <libernt/emuhost.h>
+#include <reliefwin/emuhost.h>
 #include "rv64xtest.h"
 
 #define RV64X_STRING2(Value) #Value

@@ -24,8 +24,8 @@
  */
 
 #include "precomp.h"
-#include <libernt/rpi5vc4_umd.h>
-#include <libernt/vc4cle.h>
+#include <reliefwin/rpi5vc4_umd.h>
+#include <reliefwin/vc4cle.h>
 
 #define SMOKE_DMA_PACKET_MAGIC       0x52355644u
 #define SMOKE_DMA_OP_V3D_JOB         2

@@ -10,8 +10,8 @@ DestinationDiskNumber = 0
 DestinationPartitionNumber = 1
 InstallationDirectory=Windows
 
-FullName="ReactOS User"
-ComputerName="REACTOS"
+FullName="ReliefWin User"
+ComputerName="RELIEFWIN"
 
 ; TimeZone is set GMT as default
 TimeZoneIndex=85
@@ -19,7 +19,7 @@ TimeZoneIndex=85
 ; set this option to automatically
 ; specify language in 2nd mode setup
 ; see hivesys.inf for available languages
-LocaleID = 409
+LocaleID = 804
 
 ; set product option
 ; 0: ReactOS Server

@@ -2,11 +2,11 @@
 #include <math.h>
 #include <commctrl.h>
 #include <windowsx.h>
-#include <libernt/dwmframe.h>
+#include <reliefwin/dwmframe.h>
 #include <shellframe.h>
 #include <winioctl.h>
 #include <ntddvdeo.h>
-#include <libernt/rddm/rxgkmonitor.h>
+#include <reliefwin/rddm/rxgkmonitor.h>
 
 static VOID TfyW11Position(HWND hwndOwner, const RECT *prcAnchor, SIZE size, BOOL bCenter, POINT *ppt);
 static VOID TrayNotifCenter_Open(HWND hwndCalendar);
@@ -4001,10 +4001,10 @@ HWND TrayMedia_FindSession(BOOL *pbPlaying)
     BOOL bBestPlaying = FALSE;
     DWORD dwBestTick = 0;
 
-    while ((hwnd = FindWindowExW(HWND_MESSAGE, hwnd, L"LiberNTMediaSession", NULL)) != NULL)
+    while ((hwnd = FindWindowExW(HWND_MESSAGE, hwnd, L"ReliefWinMediaSession", NULL)) != NULL)
     {
-        ULONG_PTR Status = (ULONG_PTR)GetPropW(hwnd, L"LiberNTMediaStatus");
-        DWORD dwTick = (DWORD)(ULONG_PTR)GetPropW(hwnd, L"LiberNTMediaTick");
+        ULONG_PTR Status = (ULONG_PTR)GetPropW(hwnd, L"ReliefWinMediaStatus");
+        DWORD dwTick = (DWORD)(ULONG_PTR)GetPropW(hwnd, L"ReliefWinMediaTick");
         BOOL bPlaying = (Status == 4);
 
         if (!Status)

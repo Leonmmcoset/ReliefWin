@@ -1,20 +1,20 @@
 # AGENTS.md
 
-This file introduces LiberNT and sets the working rules and engineering criteria for everyone who changes it: human contributors, AI agents and other automated tools. Start with the introduction; the rules follow it.
+This file introduces ReliefWin and sets the working rules and engineering criteria for everyone who changes it: human contributors, AI agents and other automated tools. Start with the introduction; the rules follow it.
 
-## About LiberNT
+## About ReliefWin
 
-LiberNT is a free NT operating system. It is a fork of ReactOS with extensive changes to kernel-space components and drivers, aimed at stability and modern hardware. It focuses on 64-bit platforms, amd64, arm64 and riscv64, and targets NT10/Windows 11 compatibility. LiberNT may collaborate with ReactOS occasionally, but the code written here is written for LiberNT first: never shape a change around sending it to ReactOS.
+ReliefWin is a free NT operating system. It is a fork of ReactOS with extensive changes to kernel-space components and drivers, aimed at stability and modern hardware. It focuses on 64-bit platforms, amd64, arm64 and riscv64, and targets NT10/Windows 11 compatibility. ReliefWin may collaborate with ReactOS occasionally, but the code written here is written for ReliefWin first: never shape a change around sending it to ReactOS.
 
 - Target architectures: amd64, i386 and arm64, with RISC-V64/PPC in progress.
 - Windows 11 is the compatibility reference.
 - A subdirectory can have its own `AGENTS.md`; its rules add to these for that subtree. The kernel has one for the memory manager.
 
-### How LiberNT differs from ReactOS
+### How ReliefWin differs from ReactOS
 
 Most of the tree is still shared with ReactOS, and the components synchronised with Wine are listed in `media/doc/WINESYNC.txt`. The main departures are:
 
-| Area | In LiberNT | Where |
+| Area | In ReliefWin | Where |
 |---|---|---|
 | Memory manager | NVS, the NT Virtual Memory Subsystem: a clean-room NT10 memory manager with its own kernel pool. | `ntos/mm` |
 | Cache manager | A clean-room cache manager. | `ntos/cc` |
@@ -51,7 +51,7 @@ Most of the tree is still shared with ReactOS, and the components synchronised w
 
 - Leaked code is strictly forbidden. Never read, copy, transcribe or reference leaked Microsoft source code, or any other code that was not lawfully published, in any form. Do not even look at it, and never open it in Ghidra, IDA, an IDE or any other tool. Any change that uses it is rejected, and whoever submitted it, directly or through an AI tool, will be permanently banned from the project, with no exception.
 - Say which source a definition came from.
-- LiberNT's own headers show what LiberNT declares today, not what is right. Check them against the sources above.
+- ReliefWin's own headers show what ReliefWin declares today, not what is right. Check them against the sources above.
 - Never transcribe disassembled or decompiled Windows code. Use Windows 11 as a black box. Inspect the Windows 11 binaries in the cleanroom store only when there is no way around it: no header, public symbol, documentation or Windows 11 run answers the question. Use what you read only to understand the behavior, never as the implementation: the Windows code itself is not necessarily correct. Record only the fact you needed (a layout, offset, constant or behavior), never the code.
 - Black-box study is the legal default. A lawful user may observe, study and test a program while running it to find the ideas and principles behind it (EU Software Directive 2009/24/EC, art. 5(3); in France, Code de la propriété intellectuelle L122-6-1 III).
 - Reading Windows binaries is decompilation and is allowed only within art. 6 of the same directive (L122-6-1 IV): by a lawful licensee, only when the information needed for interoperability is not otherwise readily available, and only for the parts needed for interoperability. Never use that information for another goal, never give it to others except for interoperability, and never use it to write a program substantially similar in its expression. The Windows licence forbids reverse engineering beyond what this law allows.
@@ -67,15 +67,15 @@ Most of the tree is still shared with ReactOS, and the components synchronised w
 ## Kernel structures and ABI
 
 - New kernel structure state goes in the field Windows 11 defines for it, at the offset its public symbols give. Fill in missing intermediate members from the symbols and add ARM64 `C_ASSERT(FIELD_OFFSET(...))` checks.
-- Never add LiberNT-private tail fields (`#if defined(__REACTOS__)`) to Windows structures. If Windows 11 has no field for the state, report `INFO_NEEDED`.
-- For every ARM64 layout decision (field, offset, size, constant, intrinsic, generated assembler offset), use the first evidence that exists: the public headers, Windows 11 public symbols, a Windows 11 runtime dump, or an existing LiberNT consumer. Reject a change that has none.
-- A field backed only by an existing LiberNT consumer is LiberNT-private scaffolding. Keep it stable until that code moves to the Windows field.
+- Never add ReliefWin-private tail fields (`#if defined(__REACTOS__)`) to Windows structures. If Windows 11 has no field for the state, report `INFO_NEEDED`.
+- For every ARM64 layout decision (field, offset, size, constant, intrinsic, generated assembler offset), use the first evidence that exists: the public headers, Windows 11 public symbols, a Windows 11 runtime dump, or an existing ReliefWin consumer. Reject a change that has none.
+- A field backed only by an existing ReliefWin consumer is ReliefWin-private scaffolding. Keep it stable until that code moves to the Windows field.
 - A field missing from the public SDK is private, not gone. Delete a field only after proving that nothing consumes it and Windows does not need it.
 - Each structure needs its own evidence. Verifying one field does not verify its neighbors.
 - Every generated assembler offset maps to a validated C field.
-- Layout test expectations come from the same evidence, never invented. When LiberNT lacks a field Windows has, keep the check visible as a logged note instead of deleting it.
-- When Windows 11 has something LiberNT lacks, record the gap. Do not silently rewrite Windows-mirrored headers.
-- Parity is not a clean build, a boot or a passing LiberNT test; those tests check their own constants.
+- Layout test expectations come from the same evidence, never invented. When ReliefWin lacks a field Windows has, keep the check visible as a logged note instead of deleting it.
+- When Windows 11 has something ReliefWin lacks, record the gap. Do not silently rewrite Windows-mirrored headers.
+- Parity is not a clean build, a boot or a passing ReliefWin test; those tests check their own constants.
 - Use the correct calling conventions and annotations, follow the existing error handling (`NTSTATUS`, `EFI_STATUS`), and respect IRQL, locking and paging constraints in kernel code.
 - In all kernel-mode projects, add as many meaningful assertions as needed to strictly verify every invariant and implicit state machine: check preconditions, postconditions, valid states and transitions, ownership, lifetimes, IRQL and locking assumptions at the points where they must hold. Keep assertions side-effect-free and retain runtime validation and error handling for external or otherwise untrusted inputs.
 
@@ -108,7 +108,7 @@ Most of the tree is still shared with ReactOS, and the components synchronised w
 ## Testing against Windows 11
 
 - Every feature and every bug fix comes with a test that pins its exact behavior, checked against Windows 11: a unit test, an API test or a kernel-mode test. The tests let the maintainer hold the level the OS has reached as it develops; a feature without one is not finished.
-- Before changing behavior to satisfy a LiberNT test, run the same test on Windows 11 and compare per-check results, not totals. Many LiberNT apitests are not Windows 11 clean.
+- Before changing behavior to satisfy a ReliefWin test, run the same test on Windows 11 and compare per-check results, not totals. Many ReliefWin apitests are not Windows 11 clean.
 - If Windows 11 fails a check too, the expectation is the bug.
 - Run the Windows 11 baseline once per test binary and reuse its results. Rerun it only when the test binary changes in a way that alters results, and batch those reruns.
 - Use Windows 11 as a black box only: observable status codes, outputs and sizes.
@@ -120,7 +120,7 @@ Most of the tree is still shared with ReactOS, and the components synchronised w
 
 - Reuse the existing build directories and artifacts. Do not duplicate build caches, executables or disk images, or create per-test, per-session, dated or prefixed output paths.
 - Run builds with `CCACHE_DISABLE=1`; compiler caching is disabled to avoid duplicate artifacts.
-- Keep one working log, overwritten in place. Use the existing build's `LiberNT.img` and one fixed test payload image. Pass the raw payload image to `--apps`; passing a directory creates additional cached images and overlays.
+- Keep one working log, overwritten in place. Use the existing build's `ReliefWin.img` and one fixed test payload image. Pass the raw payload image to `--apps`; passing a directory creates additional cached images and overlays.
 - Run `vm_monitor.py` with `--timeout 30 --stall 6`. Never use a timeout above 30 seconds or a stall timeout above 6 seconds.
 - Run without a display by setting `ROS_QEMU_DISPLAY=none`; omit screen arguments.
 - Never rebuild or repack a disk image while a VM is using it.
@@ -154,9 +154,9 @@ The debugger NIC is chosen in this order, whatever the mode:
 | `LOCAL_BROADCAST=1` | plain broadcast, as above | `kdnet.py --local <interface>` |
 | none | DHCP, encrypted session | `kdnet.py --key <key>` on the same network |
 | `HOST_IP=<host>` | DHCP, sends to that host | `kdnet.py --key <key>` on that host |
-| `HOST_NAME=libernt.com HOST_PORT=50000` (with `DEBUGPORT=FILE`, the boot menu's "Debugging") | DHCP, relay | `kdnet.py --relay libernt.com:50000 --key <key>` |
+| `HOST_NAME=debug-host.example HOST_PORT=50000` (with `DEBUGPORT=FILE`, the boot menu's "Debugging") | DHCP, relay | `kdnet.py --relay debug-host.example:50000 --key <key>` |
 
-The boot menu's "Debugging" also serves as remote assistance for a normal user: the debugger, the log file and the relay are all on, and the only thing it adds to the screen is the key. The boot screen and the desktop show the key once the machine has an address and has resolved the relay's name; the relay acknowledges nothing, so that is as close to "connected" as the target can tell. Add `DEBUGPORT=SCREEN` to the BCD's load options for the log on screen as well.
+With an explicitly configured HOST_IP or HOST_NAME, the boot menu's "Debugging" also serves as remote assistance for a normal user: the debugger, the log file and the relay are all on, and the only thing it adds to the screen is the key. The boot screen and the desktop show the key once the machine has an address and has resolved the relay's name; the relay acknowledges nothing, so that is as close to "connected" as the target can tell. Add `DEBUGPORT=SCREEN` to the BCD's load options for the log on screen as well.
 
 Test VMs must not reach the production relay, which records every machine that announces itself for 30 days. Boot "Debugging" in a VM only on a private network: `pc-bt/src/kdnet-pt/fakenet.py` on the development host is one that answers DHCP and DNS and carries the announcements to a local `kdrelay.py`. Otherwise use `HOST_IP`.
 
@@ -200,11 +200,11 @@ Apply these rules equally to new code, features and bug fixes.
 
 - No comments in code diffs, except the `TODO:` and `FIXME:` markers below and a single-line comment on a special case whose context another developer or agent could not recover from the code. Leave existing comments where they are instead of moving or re-adding them.
 - Mark a gap worth handling later but outside the current change with a one-line marker at that spot: `/* TODO: <what is missing> */` where a feature, flag, case or contract is left unimplemented, `/* FIXME: <what is wrong> */` where code knowingly behaves wrong or only approximates the contract. Name the gap and, if relevant, the current fallback; nothing else.
-- New files start with this header. `PROJECT` names the component, for example "LiberNT API tests" or "LiberNT Kernel"; tests use GPL-3.0-or-later.
+- New files start with this header. `PROJECT` names the component, for example "ReliefWin API tests" or "ReliefWin Kernel"; tests use GPL-3.0-or-later.
 
 ```c
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     <one line>
  * COPYRIGHT:   Copyright <year> <name> <email>

@@ -1,12 +1,12 @@
 /*
- * PROJECT:     LiberNT AMD64 emulation host
+ * PROJECT:     ReliefWin AMD64 emulation host
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Run the threads of an AMD64 process under the CPU core
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
  */
 
 #include "amd64emu.h"
-#include <libernt/wow64shared.h>
+#include <reliefwin/wow64shared.h>
 #include "felix86/bridge.h"
 
 #define EMU_PROCESS_UNINITIALIZED 0

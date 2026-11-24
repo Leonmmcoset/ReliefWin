@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Media Foundation
+ * PROJECT:     ReliefWin Media Foundation
  * LICENSE:     LGPL-2.1-or-later
  * PURPOSE:     Video capture media source over kernel streaming
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

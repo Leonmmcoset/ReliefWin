@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Win32 Base API
+ * PROJECT:     ReliefWin Win32 Base API
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Per-process Windows Error Reporting registration block
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

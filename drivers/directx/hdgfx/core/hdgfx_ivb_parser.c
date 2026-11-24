@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Intel HD Graphics Driver
+ * PROJECT:     ReliefWin Intel HD Graphics Driver
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Allow-list scan of Ivy Bridge user batches, which run privileged
  * COPYRIGHT:   Copyright 2026 Ostap Brehin <osbre@protonmail.com>

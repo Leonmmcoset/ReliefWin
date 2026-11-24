@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Apple Graphics Driver
+ * PROJECT:     ReliefWin Apple Graphics Driver
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Start data of the Apple G15 graphics firmware
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

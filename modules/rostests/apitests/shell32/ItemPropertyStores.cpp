@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Tests for SHGetPropertyStoreFromIDList and temporary item properties
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -46,7 +46,7 @@ static void test_store_from_idlist(PCIDLIST_ABSOLUTE pidl)
 
         hr = store->GetValue(PKEY_FileName, &pv);
         ok(hr == S_OK, "PKEY_FileName hr 0x%lx\n", hr);
-        ok(pv.vt == VT_LPWSTR && !lstrcmpiW(pv.pwszVal, L"libernt_props.txt"), "PKEY_FileName vt %u\n", pv.vt);
+        ok(pv.vt == VT_LPWSTR && !lstrcmpiW(pv.pwszVal, L"reliefwin_props.txt"), "PKEY_FileName vt %u\n", pv.vt);
         trace_value("PKEY_FileName", &pv);
         PropVariantClear(&pv);
         store->Release();
@@ -204,7 +204,7 @@ START_TEST(ItemPropertyStores)
     CoInitialize(NULL);
 
     GetTempPathW(MAX_PATH, path);
-    StringCchCatW(path, MAX_PATH, L"libernt_props.txt");
+    StringCchCatW(path, MAX_PATH, L"reliefwin_props.txt");
     file = CreateFileW(path, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
     ok(file != INVALID_HANDLE_VALUE, "CreateFileW failed: %lu\n", GetLastError());
     if (file == INVALID_HANDLE_VALUE)

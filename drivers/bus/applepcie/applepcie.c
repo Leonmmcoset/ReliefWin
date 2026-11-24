@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Apple Silicon PCIe Driver
+ * PROJECT:     ReliefWin Apple Silicon PCIe Driver
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Brings up the links of the Apple silicon PCIe controller
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -8,9 +8,9 @@
 #include <ntddk.h>
 #include <initguid.h>
 #include <wdmguid.h>
-#include <libernt/drivers/fdtdrv.h>
-#include <libernt/drivers/applepcie.h>
-#include <libernt/drivers/applesmc.h>
+#include <reliefwin/drivers/fdtdrv.h>
+#include <reliefwin/drivers/applepcie.h>
+#include <reliefwin/drivers/applesmc.h>
 
 #define APPLE_PCIE_SMC_WAIT_MS      30000
 #define APPLE_PCIE_SMC_STEP_MS      50

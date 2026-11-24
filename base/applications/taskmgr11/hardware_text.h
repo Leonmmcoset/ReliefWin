@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Task Manager
+ * PROJECT:     ReliefWin Task Manager
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Hardware display string normalization
  * COPYRIGHT:   Copyright 2026 OpenAI

@@ -7,7 +7,7 @@
  */
 
 #include <win32k.h>
-#include <libernt/dwmframe.h>
+#include <reliefwin/dwmframe.h>
 
 #define NDEBUG
 #include <debug.h>

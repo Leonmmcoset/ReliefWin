@@ -652,7 +652,7 @@ typedef struct BATTERY_MINIPORT_INFO_V1_2 *PBATTERY_MINIPORT_INFO_V1_2;
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 #if (!defined(_WINDOWS_))
 NTSTATUS NTAPI AdapterClassInitializeDevice(PADAPTER_MINIPORT_INFO MiniportInfo, PVOID *ClassData);
 NTSTATUS NTAPI AdapterClassStatusNotify(PVOID ClassData);

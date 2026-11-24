@@ -1,0 +1,6 @@
+[Version]
+Signature = "$Windows NT$"
+
+[AddReg]
+HKLM,"SOFTWARE\ReliefWin\Update","Server",0x00000002,""
+HKLM,"SOFTWARE\ReliefWin\Update","Enabled",0x00010003,0

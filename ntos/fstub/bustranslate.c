@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     The interrupt translator for a bus that changes nothing on the way through
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

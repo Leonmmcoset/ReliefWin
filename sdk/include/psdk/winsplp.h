@@ -1672,7 +1672,7 @@ typedef SPLCLIENT_INFO_INTERNAL *PSPLCLIENT_INFO_INTERNAL;
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 HRESULT WINAPI AddPrintDeviceObject(HANDLE hPrinter, HANDLE *phDeviceObject);
 DWORD WINAPI LogJobInfoForBranchOffice(HANDLE hPrinter, PBranchOfficeJobDataContainer pJobDataContainer);
 HRESULT WINAPI RemovePrintDeviceObject(HANDLE hDeviceObject);

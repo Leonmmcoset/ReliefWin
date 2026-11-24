@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test that a file deleted or renamed through a differently cased path is gone
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

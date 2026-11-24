@@ -1,14 +1,14 @@
 /*
- * PROJECT:     LiberNT Intel Power Management Controller Driver
+ * PROJECT:     ReliefWin Intel Power Management Controller Driver
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Alder Lake-N PMC ownership, S0ix diagnostics, and SMP suspend policy
  */
 
 #include <ntddk.h>
 #include <intrin.h>
-#include <libernt/drivers/acpi/acpisystem.h>
+#include <reliefwin/drivers/acpi/acpisystem.h>
 #include <initguid.h>
-#include <libernt/drivers/intelpmc.h>
+#include <reliefwin/drivers/intelpmc.h>
 
 #define NDEBUG
 #include <debug.h>

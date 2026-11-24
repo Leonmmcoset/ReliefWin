@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test ending threads that wait in the kernel or never started
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

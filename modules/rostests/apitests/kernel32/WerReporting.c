@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Tests for Windows Error Reporting: report API and store, crash reports, hang recovery
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -649,7 +649,7 @@ TestSubmit(
     StringCchPrintfW(EventName, ARRAYSIZE(EventName), L"LntWerApi%lu", GetCurrentProcessId());
     RtlZeroMemory(&Information, sizeof(Information));
     Information.dwSize = sizeof(Information);
-    StringCchCopyW(Information.wzDescription, ARRAYSIZE(Information.wzDescription), L"LiberNT report test");
+    StringCchCopyW(Information.wzDescription, ARRAYSIZE(Information.wzDescription), L"ReliefWin report test");
     hr = pWerReportCreate(EventName, WerReportNonCritical, &Information, &Report);
     ok_hex(hr, S_OK);
     if (FAILED(hr))

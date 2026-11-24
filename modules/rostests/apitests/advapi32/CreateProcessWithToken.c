@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     CreateProcessWithTokenW needs only the privilege to impersonate and starts the process in the caller's session
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

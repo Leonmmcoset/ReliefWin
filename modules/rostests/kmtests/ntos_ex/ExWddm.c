@@ -1,12 +1,12 @@
 /*
- * PROJECT:         LiberNT kernel-mode tests
+ * PROJECT:         ReliefWin kernel-mode tests
  * LICENSE:         GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:         Modern executive services used by WDDM class drivers
  * COPYRIGHT:       Copyright 2026 Ahmed Arif <arif.ing@outlook.com>
  */
 
 #include <kmt_test.h>
-#include <libernt/drivers/acpi/acpi.h>
+#include <reliefwin/drivers/acpi/acpi.h>
 
 #define NDEBUG
 #include <debug.h>

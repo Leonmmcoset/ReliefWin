@@ -25,7 +25,7 @@ Author:
 #include <umtypes.h>
 #include <mmtypes.h>
 #include <ldrtypes.h>
-#include <libernt/wow64shared.h>
+#include <reliefwin/wow64shared.h>
 
 #ifdef __cplusplus
 extern "C" {

@@ -1240,7 +1240,9 @@ public:
     HRESULT ExecResourceCmd(int id)
     {
         WCHAR szCommand[256];
+        WCHAR szExpandedCommand[256];
         WCHAR *pszParameters;
+        DWORD cchExpanded;
 
         if (!LoadStringW(hExplorerInstance,
                          id,
@@ -1250,14 +1252,20 @@ public:
             return E_FAIL;
         }
 
-        pszParameters = wcschr(szCommand, L'>');
+        cchExpanded = ExpandEnvironmentStringsW(szCommand, szExpandedCommand, _countof(szExpandedCommand));
+        if (!cchExpanded)
+            return HRESULT_FROM_WIN32(GetLastError());
+        if (cchExpanded > _countof(szExpandedCommand))
+            return HRESULT_FROM_WIN32(ERROR_INSUFFICIENT_BUFFER);
+
+        pszParameters = wcschr(szExpandedCommand, L'>');
         if (pszParameters)
         {
             *pszParameters = 0;
             pszParameters++;
         }
 
-        ShellExecuteW(m_hWnd, NULL, szCommand, pszParameters, NULL, SW_SHOWNORMAL);
+        ShellExecuteW(m_hWnd, NULL, szExpandedCommand, pszParameters, NULL, SW_SHOWNORMAL);
         return S_OK;
     }
 

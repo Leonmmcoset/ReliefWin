@@ -1,12 +1,12 @@
 /*
- * PROJECT:     LiberNT CPU profiler
+ * PROJECT:     ReliefWin CPU profiler
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     ARM64 generic timer and cycle counter reads
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
  */
 
 #include <windows.h>
-#include <libernt/arm64/sysreg.h>
+#include <reliefwin/arm64/sysreg.h>
 #include "../clock.h"
 
 ULONGLONG ReadClockTicks(void)

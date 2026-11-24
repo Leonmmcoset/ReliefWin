@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# PROJECT:     LiberNT build tools
+# PROJECT:     ReliefWin build tools
 # LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
 # PURPOSE:     Add the files that resource statements read (icons, cursors, bitmaps...) to a resource depfile
 # COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

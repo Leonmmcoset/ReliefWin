@@ -1,4 +1,4 @@
-include_directories(${REACTOS_SOURCE_DIR}/sdk/include/libernt/libs/zlib)
+include_directories(${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/libs/zlib)
 
 spec2def(opcservices.dll opcservices.spec ADD_IMPORTLIB)
 

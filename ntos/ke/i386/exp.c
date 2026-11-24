@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     i386 user exception frames and conversion between CONTEXT records and trap frames
  * COPYRIGHT:   Copyright Alex Ionescu <alex.ionescu@reactos.org>

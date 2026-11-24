@@ -28,7 +28,7 @@
 #include <ioaccess.h>
 #include <halfuncs.h>
 #include <halacpi_arm64.h>
-#include <libernt/arm64/sysreg.h>
+#include <reliefwin/arm64/sysreg.h>
 #include <halarch.h>
 #include <debug.h>
 

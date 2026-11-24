@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Tests synchronous and asynchronous GetAddrInfoExW, GetAddrInfoExCancel and GetAddrInfoExOverlappedResult
  * COPYRIGHT:   Copyright 2026 Ostap Brehin <osbre@protonmail.com>
@@ -246,7 +246,7 @@ TestCancel(VOID)
     InitHints(&Hints, 0);
     Result = InvalidPointer;
     Handle = NULL;
-    Error = pGetAddrInfoExW(L"libernt-cancel.example.com", L"80", NS_DNS, NULL, &Hints, &Result, NULL, &Overlapped, CompletionRoutine, &Handle);
+    Error = pGetAddrInfoExW(L"reliefwin-cancel.example.com", L"80", NS_DNS, NULL, &Hints, &Result, NULL, &Overlapped, CompletionRoutine, &Handle);
     ok_dec(Error, WSA_IO_PENDING);
     if (Error != WSA_IO_PENDING) return;
 

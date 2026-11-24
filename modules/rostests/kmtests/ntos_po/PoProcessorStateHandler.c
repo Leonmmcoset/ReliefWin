@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT kernel-mode tests
+ * PROJECT:     ReliefWin kernel-mode tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Idle and performance states registered through ProcessorStateHandler2 are used and reported
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

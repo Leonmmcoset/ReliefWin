@@ -145,7 +145,7 @@ RPC_STATUS RPC_ENTRY RpcNsBindingImportBeginW(unsigned long,unsigned short*,RPC_
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 RPC_STATUS WINAPI RpcNsBindingExportPnPA(unsigned long EntryNameSyntax, RPC_CSTR EntryName, RPC_IF_HANDLE IfSpec, UUID_VECTOR *ObjectVector);
 RPC_STATUS WINAPI RpcNsBindingExportPnPW(unsigned long EntryNameSyntax, RPC_WSTR EntryName, RPC_IF_HANDLE IfSpec, UUID_VECTOR *ObjectVector);
 RPC_STATUS WINAPI RpcNsBindingUnexportPnPA(unsigned long EntryNameSyntax, RPC_CSTR EntryName, RPC_IF_HANDLE IfSpec, UUID_VECTOR *ObjectVector);

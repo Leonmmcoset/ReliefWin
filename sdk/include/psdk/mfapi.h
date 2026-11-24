@@ -980,7 +980,7 @@ extern "C" {
 HRESULT WINAPI MFCreateMFByteStreamWrapper(IMFByteStream *pStream, IMFByteStream **ppStreamWrapper);
 HRESULT WINAPI MFLockWorkQueue(DWORD dwWorkQueue);
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 HRESULT STDAPICALLTYPE MFCalculateBitmapImageSize(const BITMAPINFOHEADER *pBMIH, UINT32 cbBufSize, UINT32 *pcbImageSize, BOOL *pbKnown);
 HRESULT STDAPICALLTYPE MFCombineSamples(IMFSample *pSample, IMFSample *pSampleToAdd, DWORD dwMaxMergedDurationInMS, BOOL *pMerged);
 HRESULT STDAPICALLTYPE MFConvertColorInfoFromDXVA(MFVIDEOFORMAT *pToFormat, DWORD dwFromDXVA);

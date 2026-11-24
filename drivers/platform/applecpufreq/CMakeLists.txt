@@ -1,5 +1,5 @@
 #
-# PROJECT:     LiberNT Apple CPU Performance Driver
+# PROJECT:     ReliefWin Apple CPU Performance Driver
 # LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
 # PURPOSE:     Build the driver of the Apple silicon CPU cluster performance states
 # COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

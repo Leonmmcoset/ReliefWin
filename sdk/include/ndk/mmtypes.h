@@ -296,7 +296,7 @@ typedef struct _CFG_CALL_TARGET_INFO
 } CFG_CALL_TARGET_INFO, *PCFG_CALL_TARGET_INFO;
 #endif
 
-#include <libernt/cfgtargets.h>
+#include <reliefwin/cfgtargets.h>
 
 #ifndef MEM_EXTENDED_PARAMETER_TYPE_BITS
 #define MEM_EXTENDED_PARAMETER_GRAPHICS            0x00000001

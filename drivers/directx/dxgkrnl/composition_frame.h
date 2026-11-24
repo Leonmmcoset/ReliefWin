@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT DirectX Graphics Kernel
+ * PROJECT:     ReliefWin DirectX Graphics Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Kernel composition frame ownership
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif193@gmail.com>
@@ -8,7 +8,7 @@
 #pragma once
 
 #include <ntddk.h>
-#include <libernt/dcompbatch.h>
+#include <reliefwin/dcompbatch.h>
 
 typedef struct _DXGK_COMPOSITION_FRAME_INTERFACE DXGK_COMPOSITION_FRAME_INTERFACE;
 typedef struct _DXGK_COMPOSITION_FRAME_COLLECTION DXGK_COMPOSITION_FRAME_COLLECTION;

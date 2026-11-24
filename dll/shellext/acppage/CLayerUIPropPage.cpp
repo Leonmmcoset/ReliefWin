@@ -413,7 +413,15 @@ LRESULT CLayerUIPropPage::OnEditModes(WORD wNotifyCode, WORD wID, HWND hWndCtl, 
 LRESULT CLayerUIPropPage::OnClickNotify(INT uCode, LPNMHDR hdr, BOOL& bHandled)
 {
     if (hdr->idFrom == IDC_INFOLINK)
-        ShellExecute(NULL, L"open", L"https://reactos.org/forum/viewforum.php?f=4", NULL, NULL, SW_SHOW);
+    {
+        WCHAR path[MAX_PATH];
+        UINT length = GetWindowsDirectoryW(path, _countof(path));
+        if (length && length < _countof(path) &&
+            SUCCEEDED(StringCchCatW(path, _countof(path), L"\\readme.txt")))
+        {
+            ShellExecuteW(m_hWnd, L"open", path, NULL, NULL, SW_SHOW);
+        }
+    }
     return 0;
 }
 

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Connection recovery after a failed roam attempt and a stalled 4-way handshake
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -28,8 +28,8 @@ static const UCHAR RoamBssid[6] = {0x02, 0x11, 0x22, 0x33, 0x44, 0x77};
 static const WCHAR Wpa2ProfileXml[] =
     L"<?xml version=\"1.0\"?>"
     L"<WLANProfile xmlns=\"http://www.microsoft.com/networking/WLAN/profile/v1\">"
-    L"<name>ReactOS-WPA2</name>"
-    L"<SSIDConfig><SSID><name>ReactOS-WPA2</name></SSID></SSIDConfig>"
+    L"<name>ReliefWin-WPA2</name>"
+    L"<SSIDConfig><SSID><name>ReliefWin-WPA2</name></SSID></SSIDConfig>"
     L"<connectionType>ESS</connectionType><connectionMode>manual</connectionMode>"
     L"<MSM><security><authEncryption><authentication>WPA2PSK</authentication>"
     L"<encryption>AES</encryption><useOneX>false</useOneX></authEncryption>"
@@ -40,8 +40,8 @@ static const WCHAR Wpa2ProfileXml[] =
 static const WCHAR RoamProfileXml[] =
     L"<?xml version=\"1.0\"?>"
     L"<WLANProfile xmlns=\"http://www.microsoft.com/networking/WLAN/profile/v1\">"
-    L"<name>ReactOS-Roam</name>"
-    L"<SSIDConfig><SSID><name>ReactOS-Roam</name></SSID></SSIDConfig>"
+    L"<name>ReliefWin-Roam</name>"
+    L"<SSIDConfig><SSID><name>ReliefWin-Roam</name></SSID></SSIDConfig>"
     L"<connectionType>ESS</connectionType><connectionMode>manual</connectionMode>"
     L"<MSM><security><authEncryption><authentication>open</authentication>"
     L"<encryption>none</encryption><useOneX>false</useOneX></authEncryption></security></MSM>"
@@ -190,7 +190,7 @@ TestStalledHandshake(HANDLE Client, const GUID *Interface)
 
     Mark = EventMark();
     Start = GetTickCount64();
-    if (ConnectProfile(Client, Interface, Wpa2ProfileXml, L"ReactOS-WPA2") != ERROR_SUCCESS)
+    if (ConnectProfile(Client, Interface, Wpa2ProfileXml, L"ReliefWin-WPA2") != ERROR_SUCCESS)
         return;
 
     Failed = WaitEvent(Mark, WLAN_NOTIFICATION_SOURCE_ACM, wlan_notification_acm_connection_attempt_fail,
@@ -208,7 +208,7 @@ TestStalledHandshake(HANDLE Client, const GUID *Interface)
     {
         WlanDisconnect(Client, Interface, NULL);
     }
-    WlanDeleteProfile(Client, Interface, L"ReactOS-WPA2", NULL);
+    WlanDeleteProfile(Client, Interface, L"ReliefWin-WPA2", NULL);
 }
 
 static VOID
@@ -222,11 +222,11 @@ TestRoamAfterFailedAttempt(HANDLE Client, const GUID *Interface)
     LONG RoamMark;
 
     Mark = EventMark();
-    if (ConnectProfile(Client, Interface, RoamProfileXml, L"ReactOS-Roam") != ERROR_SUCCESS)
+    if (ConnectProfile(Client, Interface, RoamProfileXml, L"ReliefWin-Roam") != ERROR_SUCCESS)
         return;
 
     ok(WaitEvent(Mark, WLAN_NOTIFICATION_SOURCE_ACM, wlan_notification_acm_connection_complete, 5000, &Reason),
-       "ReactOS-Roam did not connect\n");
+       "ReliefWin-Roam did not connect\n");
     ok(Reason == WLAN_REASON_CODE_SUCCESS, "Connection completed with reason 0x%lx\n", Reason);
 
     RoamMark = EventMark();
@@ -250,7 +250,7 @@ TestRoamAfterFailedAttempt(HANDLE Client, const GUID *Interface)
         WlanFreeMemory(Attributes);
 
     WlanDisconnect(Client, Interface, NULL);
-    WlanDeleteProfile(Client, Interface, L"ReactOS-Roam", NULL);
+    WlanDeleteProfile(Client, Interface, L"ReliefWin-Roam", NULL);
 }
 
 START_TEST(WlanConnectionRecovery)

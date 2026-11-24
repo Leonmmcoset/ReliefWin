@@ -9,7 +9,7 @@
 #include "precomp.h"
 
 #define TEST_STR    L".exe"
-#define VIEW_TEST_KEY L"Software\\LiberNTRegOpenKeyExWViewTest"
+#define VIEW_TEST_KEY L"Software\\ReliefWinRegOpenKeyExWViewTest"
 
 static void Test_ViewFlagsWithWriteAccess(void)
 {
@@ -48,7 +48,7 @@ static void Test_ViewFlagsInAppHive(void)
     LONG lRes;
 
     GetTempPathW(MAX_PATH, Path);
-    wcscat(Path, L"LiberNTRegOpenKeyExWAppHive.dat");
+    wcscat(Path, L"ReliefWinRegOpenKeyExWAppHive.dat");
     DeleteFileW(Path);
 
     lRes = RegLoadAppKeyW(Path, &hkApp, KEY_ALL_ACCESS, 0, 0);

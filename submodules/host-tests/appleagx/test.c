@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT host-native tests
+ * PROJECT:     ReliefWin host-native tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Apple graphics firmware data host regression test
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -13,7 +13,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <libernt/drivers/appleagxfw.h>
+#include <reliefwin/drivers/appleagxfw.h>
 
 #ifdef HAVE_APITEST
 #define CHECK(Expression) ok(!!(Expression), "%s\n", #Expression)

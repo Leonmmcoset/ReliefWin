@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Apple MTP HID Transport Driver
+ * PROJECT:     ReliefWin Apple MTP HID Transport Driver
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Internal keyboard of Apple silicon laptops behind the MTP coprocessor and DockChannel
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -8,11 +8,11 @@
 #include <ntddk.h>
 #include <hidport.h>
 #include <ntstrsafe.h>
-#include <libernt/drivers/fdtdrv.h>
-#include <libernt/drivers/applertkit.h>
-#include <libernt/drivers/appleadmac.h>
-#include <libernt/drivers/applesmc.h>
-#include <libernt/drivers/dumpstor.h>
+#include <reliefwin/drivers/fdtdrv.h>
+#include <reliefwin/drivers/applertkit.h>
+#include <reliefwin/drivers/appleadmac.h>
+#include <reliefwin/drivers/applesmc.h>
+#include <reliefwin/drivers/dumpstor.h>
 #include "touchpolicy.h"
 
 #define MTP_TAG 'pTMA'

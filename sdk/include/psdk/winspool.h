@@ -2024,7 +2024,7 @@ typedef PJOB_INFO_4W PJOB_INFO_4;
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 HRESULT WINAPI CorePrinterDriverInstalledA(LPCSTR pszServer, LPCSTR pszEnvironment, GUID CoreDriverGUID, FILETIME ftDriverDate, DWORDLONG dwlDriverVersion, BOOL *pbDriverInstalled);
 HRESULT WINAPI CorePrinterDriverInstalledW(LPCWSTR pszServer, LPCWSTR pszEnvironment, GUID CoreDriverGUID, FILETIME ftDriverDate, DWORDLONG dwlDriverVersion, BOOL *pbDriverInstalled);
 DWORD WINAPI DeleteJobNamedProperty(HANDLE hPrinter, DWORD JobId, PCWSTR pszName);

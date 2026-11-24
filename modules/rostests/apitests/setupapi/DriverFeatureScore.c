@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     The FeatureScore directive of an INF is a hexadecimal byte that ranks its driver
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -18,10 +18,10 @@ static const CHAR PlainInf[] =
     "Signature=\"$Windows NT$\"\r\n"
     "Class=Mouse\r\n"
     "ClassGuid={4d36e96f-e325-11ce-bfc1-08002be10318}\r\n"
-    "Provider=LiberNT\r\n"
+    "Provider=ReliefWin\r\n"
     "DriverVer=01/01/2026,1.0.0.0\r\n"
     "[Manufacturer]\r\n"
-    "LiberNT=Models\r\n"
+    "ReliefWin=Models\r\n"
     "[Models]\r\n"
     "\"Plain driver\"=Plain_Inst,ROOT\\LNTFEATURESCORE\r\n"
     "[Plain_Inst]\r\n";
@@ -31,10 +31,10 @@ static const CHAR ScoredInf[] =
     "Signature=\"$Windows NT$\"\r\n"
     "Class=Mouse\r\n"
     "ClassGuid={4d36e96f-e325-11ce-bfc1-08002be10318}\r\n"
-    "Provider=LiberNT\r\n"
+    "Provider=ReliefWin\r\n"
     "DriverVer=01/01/2025,1.0.0.0\r\n"
     "[Manufacturer]\r\n"
-    "LiberNT=Models\r\n"
+    "ReliefWin=Models\r\n"
     "[Models]\r\n"
     "\"Scored driver\"=Scored_Inst,ROOT\\LNTFEATUREOTHER,ROOT\\LNTFEATURESCORE\r\n"
     "[Scored_Inst]\r\n"

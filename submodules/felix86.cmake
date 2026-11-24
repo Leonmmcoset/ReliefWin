@@ -1,4 +1,4 @@
-# PROJECT:     LiberNT Build System
+# PROJECT:     ReliefWin Build System
 # LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
 # PURPOSE:     Describe the felix86 feed sources built into the AMD64 emulator
 # COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -34,7 +34,7 @@ execute_process(
     OUTPUT_VARIABLE _felix86_git_dir
     OUTPUT_STRIP_TRAILING_WHITESPACE
     ERROR_QUIET)
-set(_felix86_applied_patch "${_felix86_git_dir}/libernt-applied.patch")
+set(_felix86_applied_patch "${_felix86_git_dir}/reliefwin-applied.patch")
 execute_process(
     COMMAND "${FELIX86_GIT_EXECUTABLE}" apply --reverse --check "${_felix86_patch}"
     WORKING_DIRECTORY "${FELIX86_SOURCE_DIR}"

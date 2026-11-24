@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Intel HD Graphics Driver
+ * PROJECT:     ReliefWin Intel HD Graphics Driver
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Adapter lifecycle, interrupts, LVDS scan-out, display state readout, VBT and panel backlight
  * COPYRIGHT:   Copyright 2026 Ostap Brehin <osbre@protonmail.com>

@@ -1,12 +1,12 @@
 /*
- * PROJECT:         LiberNT HAL (ARM64)
+ * PROJECT:         ReliefWin HAL (ARM64)
  * LICENSE:         GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * COPYRIGHT:       Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
  */
 
 #include <ntddk.h>
 #include <halacpi_arm64.h>
-#include <libernt/hal/msi.h>
+#include <reliefwin/hal/msi.h>
 #define NDEBUG
 #include <debug.h>
 

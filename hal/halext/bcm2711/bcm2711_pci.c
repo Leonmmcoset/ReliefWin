@@ -19,11 +19,11 @@
 #include <ndk/kefuncs.h>
 #include <ioaccess.h>
 #include <halfuncs.h>
-#include <libernt/hal/acpi_pci.h>
-#include <libernt/drivers/acpi/acpi.h>
+#include <reliefwin/hal/acpi_pci.h>
+#include <reliefwin/drivers/acpi/acpi.h>
 #include <halacpi.h>
 #include <hal.h>
-#include <libernt/hal/halext.h>
+#include <reliefwin/hal/halext.h>
 #include "bcm2711_pci.h"
 
 #define NDEBUG

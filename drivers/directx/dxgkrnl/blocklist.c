@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT DirectX Graphics Kernel
+ * PROJECT:     ReliefWin DirectX Graphics Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Graphics driver block lists (GraphicsDrivers\BlockList\Kernel and Runtime)
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

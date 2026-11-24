@@ -14,7 +14,7 @@
 #include <cportlib/cportlib.h>
 #include <cportlib/uartinfo.h>
 #if defined(_M_ARM64)
-#include <libernt/arm64/early_uart.h>
+#include <reliefwin/arm64/early_uart.h>
 #endif
 
 /* GLOBALS ********************************************************************/

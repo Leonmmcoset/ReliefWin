@@ -74,7 +74,7 @@ VOID WINAPI DavUnregisterAuthCallback(OPAQUE_HANDLE);
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 DWORD WINAPI DavAddConnection(HANDLE *ConnectionHandle, LPCWSTR RemoteName, LPCWSTR UserName, LPCWSTR Password, PBYTE ClientCert, DWORD CertSize);
 DWORD WINAPI DavCancelConnectionsToServer(LPWSTR lpName, BOOL fForce);
 DWORD WINAPI DavDeleteConnection(HANDLE ConnectionHandle);

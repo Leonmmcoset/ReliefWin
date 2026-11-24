@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test the names NtQueryObject reports for a temporary object and a desktop
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -32,7 +32,7 @@ static void test_temporary_object(void)
     HANDLE Event;
     NTSTATUS Status;
 
-    _swprintf(Path, L"\\Sessions\\%lu\\BaseNamedObjects\\LiberNTNtQueryObjectName",
+    _swprintf(Path, L"\\Sessions\\%lu\\BaseNamedObjects\\ReliefWinNtQueryObjectName",
               NtCurrentPeb()->SessionId);
     RtlInitUnicodeString(&Name, Path);
     InitializeObjectAttributes(&Attributes, &Name, 0, NULL, NULL);

@@ -3,7 +3,7 @@ PROJECT(DEVMGR)
 spec2def(devmgr.dll devmgr.spec ADD_IMPORTLIB)
 
 include_directories(
-    ${REACTOS_SOURCE_DIR}/sdk/include/libernt/dll
+    ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/dll
     includes)
 
 list(APPEND SOURCE

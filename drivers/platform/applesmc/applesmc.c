@@ -1,15 +1,15 @@
 /*
- * PROJECT:     LiberNT Apple SMC Driver
+ * PROJECT:     ReliefWin Apple SMC Driver
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     System Management Controller of Apple silicon machines
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
  */
 
 #include <ntifs.h>
-#include <libernt/drivers/fdtdrv.h>
-#include <libernt/drivers/applertkit.h>
-#include <libernt/drivers/applesmc.h>
-#include <libernt/drivers/applespmi.h>
+#include <reliefwin/drivers/fdtdrv.h>
+#include <reliefwin/drivers/applertkit.h>
+#include <reliefwin/drivers/applesmc.h>
+#include <reliefwin/drivers/applespmi.h>
 #include <initguid.h>
 #include <poclass.h>
 

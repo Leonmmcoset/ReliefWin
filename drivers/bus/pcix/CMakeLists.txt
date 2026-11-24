@@ -1,7 +1,7 @@
 
 include_directories(
     ${REACTOS_SOURCE_DIR}/sdk/lib/drivers/arblib
-    ${REACTOS_SOURCE_DIR}/sdk/include/libernt/drivers)
+    ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/drivers)
 
 list(APPEND SOURCE
     arb/ar_busno.c

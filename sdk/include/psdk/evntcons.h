@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT SDK Headers
+ * PROJECT:     ReliefWin SDK Headers
  * LICENSE:     GPL-2.0-or-later (https://spdx.org/licenses/GPL-2.0-or-later)
  * PURPOSE:     Event tracing consumer definitions
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -212,7 +212,7 @@ typedef struct _EVENT_EXTENDED_ITEM_TS_ID {
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 void EtwGetTraitFromProviderTraits(PVOID ProviderTraits, UCHAR TraitType, PVOID *Trait, PUSHORT Size);
 ULONG EVNTAPI EventAccessControl(LPGUID Guid, ULONG Operation, PSID Sid, ULONG Rights, BOOLEAN AllowOrDeny);
 ULONG EVNTAPI EventAccessQuery(LPGUID Guid, PSECURITY_DESCRIPTOR Buffer, PULONG BufferSize);

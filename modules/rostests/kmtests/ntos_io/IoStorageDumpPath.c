@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT kernel-mode tests
+ * PROJECT:     ReliefWin kernel-mode tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Crash-time storage interface: polled writes at HIGH_LEVEL reach the medium
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -7,10 +7,10 @@
 
 #include <kmt_test.h>
 #include <ntdddisk.h>
-#include <libernt/drivers/dumpstor.h>
+#include <reliefwin/drivers/dumpstor.h>
 
 /* The test writes raw sectors: it only touches a disk whose last sector carries this text. */
-#define TEST_MARKER         "LIBERNT DUMP TEST DISK"
+#define TEST_MARKER         "RELIEFWIN DUMP TEST DISK"
 #define TEST_SECTOR         512
 #define TEST_MAX_DISKS      16
 #define TEST_AREA_BACK      (1024 * 1024)

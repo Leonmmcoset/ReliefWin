@@ -16,8 +16,8 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#ifndef LIBERNT_D2D1_RESOURCES_H
-#define LIBERNT_D2D1_RESOURCES_H
+#ifndef RELIEFWIN_D2D1_RESOURCES_H
+#define RELIEFWIN_D2D1_RESOURCES_H
 
 #include "d2d1_common.h"
 

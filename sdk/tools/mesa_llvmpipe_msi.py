@@ -66,10 +66,10 @@ def write_msi(stage, arch, release, version, output, work):
     wxs = work / "llvmpipe.wxs"
     wxs.write_text(f'''<?xml version="1.0" encoding="utf-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <Product Id="*" Name="LiberNT LLVMpipe {release}" Language="1033" Version="{version}"
-           Manufacturer="LiberNT" UpgradeCode="{upgrade}">
+  <Product Id="*" Name="ReliefWin LLVMpipe {release}" Language="1033" Version="{version}"
+           Manufacturer="ReliefWin" UpgradeCode="{upgrade}">
     <Package InstallerVersion="500" Compressed="yes" InstallScope="perMachine"/>
-    <MajorUpgrade DowngradeErrorMessage="A newer LiberNT LLVMpipe is already installed."/>
+    <MajorUpgrade DowngradeErrorMessage="A newer ReliefWin LLVMpipe is already installed."/>
     <Media Id="1" Cabinet="llvmpipe.cab" EmbedCab="yes"/>
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="{folder}">
@@ -101,7 +101,7 @@ def write_msi(stage, arch, release, version, output, work):
 ''')
     subprocess.run(["wixl", "-a", wixl_arch, "-o", str(output), str(wxs)], check=True)
     if arch == "arm64":
-        subprocess.run(["msibuild", str(output), "-s", f"LiberNT LLVMpipe {release}", "LiberNT",
+        subprocess.run(["msibuild", str(output), "-s", f"ReliefWin LLVMpipe {release}", "ReliefWin",
                         template, "{" + str(uuid.uuid4()).upper() + "}"], check=True)
 
 

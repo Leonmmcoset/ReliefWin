@@ -2,7 +2,7 @@
 include_directories(
     BEFORE include
     ../tdihelpers/include
-    ${REACTOS_SOURCE_DIR}/sdk/include/libernt/drivers)
+    ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/drivers)
 
 list(APPEND SOURCE
     afd/bind.c

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT HAL
+ * PROJECT:     ReliefWin HAL
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Raspberry Pi 5 (BCM2712) PCI configuration-space backend: the
  *              firmware MCFG windows decode only function xx:00.0
@@ -10,11 +10,11 @@
 #include <ndk/kefuncs.h>
 #include <ioaccess.h>
 #include <halfuncs.h>
-#include <libernt/hal/acpi_pci.h>
-#include <libernt/drivers/acpi/acpi.h>
+#include <reliefwin/hal/acpi_pci.h>
+#include <reliefwin/drivers/acpi/acpi.h>
 #include <halacpi.h>
 #include <hal.h>
-#include <libernt/hal/halext.h>
+#include <reliefwin/hal/halext.h>
 #include "bcm2712_pci.h"
 
 #define NDEBUG

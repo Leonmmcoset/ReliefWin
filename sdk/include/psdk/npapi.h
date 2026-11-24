@@ -276,7 +276,7 @@ typedef DWORD (WINAPI *PF_NPGetResourceParent)(LPNETRESOURCEW, LPVOID, LPDWORD);
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 DWORD WINAPI AddConnectNotify(LPNOTIFYINFO lpNotifyInfo, LPNOTIFYADD lpAddInfo);
 DWORD WINAPI CancelConnectNotify(LPNOTIFYINFO lpNotifyInfo, LPNOTIFYCANCEL lpCancelInfo);
 DWORD WINAPI NPAddConnection4(HWND hwndOwner, LPNETRESOURCEW lpNetResource, PVOID lpAuthBuffer, DWORD cbAuthBuffer, DWORD dwFlags, PBYTE lpUseOptions, DWORD cbUseOptions);

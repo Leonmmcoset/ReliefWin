@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT ext4 file system driver
+ * PROJECT:     ReliefWin ext4 file system driver
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Byte-range locks, device control, Plug and Play and requests the volume does not serve
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

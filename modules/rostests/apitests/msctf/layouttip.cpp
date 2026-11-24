@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Tests for installing a text service through the input.dll layout or TIP functions
  * COPYRIGHT:   Copyright 2026 mikuta0407 <mikuta0407@mikuta0407.net>
@@ -25,7 +25,7 @@ typedef UINT (WINAPI *FN_EnumEnabledLayoutOrTip)(LPCWSTR, LPCWSTR, LPCWSTR, LAYO
 
 static const WCHAR s_szUserProfile[] = L"Control Panel\\International\\User Profile";
 static const WCHAR s_szPreload[] = L"Keyboard Layout\\Preload";
-static const WCHAR s_szBackup[] = L"Software\\LiberNTMsctfLayoutTest";
+static const WCHAR s_szBackup[] = L"Software\\ReliefWinMsctfLayoutTest";
 
 static FN_InstallLayoutOrTip pInstallLayoutOrTip;
 static FN_EnumEnabledLayoutOrTip pEnumEnabledLayoutOrTip;

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Native WiFi (802.11) stack
+ * PROJECT:     ReliefWin Native WiFi (802.11) stack
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     DriverEntry and media-converting filter registration
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -63,7 +63,7 @@ NwifiFindAdapterByIndex(
     return Found;
 }
 
-static const WCHAR NwifiFilterFriendlyName[] = L"LiberNT Native WiFi Filter";
+static const WCHAR NwifiFilterFriendlyName[] = L"ReliefWin Native WiFi Filter";
 static const WCHAR NwifiFilterUniqueName[] = L"{DDB50DEB-F71C-464F-91D6-AC8825F5A2D9}";
 static const WCHAR NwifiFilterServiceName[] = L"Nwifi";
 

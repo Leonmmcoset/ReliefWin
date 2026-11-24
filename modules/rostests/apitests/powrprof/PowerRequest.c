@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Power request objects: create, set and clear each documented request type
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -41,7 +41,7 @@ START_TEST(PowerRequest)
 
     Context.Version = POWER_REQUEST_CONTEXT_VERSION;
     Context.Flags = POWER_REQUEST_CONTEXT_SIMPLE_STRING;
-    Context.Reason.SimpleReasonString = L"LiberNT power request test";
+    Context.Reason.SimpleReasonString = L"ReliefWin power request test";
 
     SetLastError(0xdeadbeef);
     Request = pPowerCreateRequest(&Context);

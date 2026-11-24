@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Apple RTKit Library
+ * PROJECT:     ReliefWin Apple RTKit Library
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Boot argument records an Apple silicon coprocessor reads from its memory when it starts
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -8,7 +8,7 @@
 #ifndef UNIT_TEST
 #include <ntddk.h>
 #endif
-#include <libernt/drivers/applertkit.h>
+#include <reliefwin/drivers/applertkit.h>
 
 #define RTKIT_BOOTARG_HEADER_SIZE   (2 * sizeof(ULONG))
 #define RTKIT_BOOTARG_MAX_BLOCK     0x10000

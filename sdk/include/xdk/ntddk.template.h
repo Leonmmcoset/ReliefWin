@@ -7058,7 +7058,7 @@ extern "C" {
 NTSTATUS NTAPI KeInitializeCrashDumpHeader(ULONG DumpType, ULONG Flags, PVOID Buffer, ULONG BufferSize, PULONG BufferNeeded);
 NTSTATUS NTAPI RtlIsApiSetImplemented(PCSTR apiSetName);
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 #if (defined(_AMD64_)) && (defined(_M_AMD64) && !defined(RC_INVOKED) && !defined(MIDL_PASS))
 LONG _ExInterlockedDecrementLong(PLONG Addend);
 ULONG _ExInterlockedExchangeUlong(PULONG Target, ULONG Value);
@@ -7229,7 +7229,7 @@ typedef struct _SILO_MONITOR *PSILO_MONITOR;
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 NTKERNELAPI ULONG NTAPI PsGetSiloMonitorContextSlot(PSILO_MONITOR Monitor);
 NTKERNELAPI NTSTATUS NTAPI PsRegisterSiloMonitor(PSILO_MONITOR_REGISTRATION Registration, PSILO_MONITOR *ReturnedMonitor);
 NTKERNELAPI NTSTATUS NTAPI PsStartSiloMonitor(PSILO_MONITOR Monitor);

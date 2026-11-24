@@ -1,12 +1,12 @@
 /*
- * PROJECT:     LiberNT Apple RTKit Library
+ * PROJECT:     ReliefWin Apple RTKit Library
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Interrupt-driven receive path of the Apple silicon coprocessor mailbox
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
  */
 
 #include <ntddk.h>
-#include <libernt/drivers/applertkit.h>
+#include <reliefwin/drivers/applertkit.h>
 
 #define RTKIT_IRQ_TAG 'iRpA'
 

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Core Audio
+ * PROJECT:     ReliefWin Core Audio
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Cross-process shared-mode capture engine
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -118,7 +118,7 @@ unlock_region(struct reactos_shared_capture_sink *endpoint)
 static void
 format_alive_event_name(WCHAR *name, SIZE_T name_cch, DWORD process_id, const FILETIME *process_start_time)
 {
-    swprintf(name, name_cch, L"Local\\LiberNT.CoreAudio.Alive.%lu.%lx.%lx", process_id,
+    swprintf(name, name_cch, L"Local\\ReliefWin.CoreAudio.Alive.%lu.%lx.%lx", process_id,
              process_start_time->dwHighDateTime, process_start_time->dwLowDateTime);
 }
 
@@ -253,7 +253,7 @@ create_endpoint(
         endpoint->transport_ops = *transport_ops;
     GetProcessTimes(GetCurrentProcess(), &endpoint->process_start_time, &exit_time, &kernel_time, &user_time);
 
-    swprintf(mapping_name, ARRAY_SIZE(mapping_name), L"Local\\LiberNT.CoreAudio.%s.%lu.v1",
+    swprintf(mapping_name, ARRAY_SIZE(mapping_name), L"Local\\ReliefWin.CoreAudio.%s.%lu.v1",
              loopback ? L"Loopback" : L"Capture", endpoint_index);
     swprintf(mutex_name, ARRAY_SIZE(mutex_name), L"%s.Lock", mapping_name);
     format_alive_event_name(alive_name, ARRAY_SIZE(alive_name), GetCurrentProcessId(), &endpoint->process_start_time);

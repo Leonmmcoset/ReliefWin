@@ -377,7 +377,7 @@ VWifiOidQuery(
 
         case OID_GEN_VENDOR_DESCRIPTION:
         {
-            static const CHAR Desc[] = "ReactOS Virtual Native 802.11 Adapter";
+            static const CHAR Desc[] = "ReliefWin Virtual Native 802.11 Adapter";
             return VWifiOidQueryBuffer(Request, (PVOID)Desc, sizeof(Desc));
         }
 

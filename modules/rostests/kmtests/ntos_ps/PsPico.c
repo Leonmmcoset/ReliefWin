@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT kernel-mode tests
+ * PROJECT:     ReliefWin kernel-mode tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Pico processes and threads made for a pico provider
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -7,7 +7,7 @@
 
 #include <kmt_test.h>
 #include <ndk/ketypes.h>
-#include <libernt/pico.h>
+#include <reliefwin/pico.h>
 
 #define NDEBUG
 #include <debug.h>

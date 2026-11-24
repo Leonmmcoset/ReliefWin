@@ -554,7 +554,7 @@ RxRemoveOperationFromBlockingQueue(
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 NTSTATUS NTAPI __RxSynchronizeBlockingOperations(PRX_CONTEXT RxContext, PFCB Fcb, PLIST_ENTRY BlockingIoQ, BOOLEAN DropFcbLock);
 NTSTATUS NTAPI RxSetMinirdrCancelRoutine(PRX_CONTEXT RxContext, PMRX_CALLDOWN MRxCancelRoutine);
 

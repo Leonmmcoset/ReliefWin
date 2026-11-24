@@ -451,7 +451,7 @@ typedef enum _HDAUDIO_CODEC_POWER_STATE {
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 void HDAUDIO_DEVICE_INFORMATION_INIT(PHDAUDIO_DEVICE_INFORMATION DeviceInfo);
 void HDAUDIO_DEVICE_INFORMATION_V2_INIT(PHDAUDIO_DEVICE_INFORMATION_V2 DeviceInfo);
 

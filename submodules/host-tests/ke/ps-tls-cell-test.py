@@ -1,4 +1,4 @@
-# PROJECT:     LiberNT host-native tests
+# PROJECT:     ReliefWin host-native tests
 # LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
 # PURPOSE:     Releasing a TLS index clears the cell the thread's own code uses, never an emulation layer's
 # COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

@@ -3971,7 +3971,7 @@ NTSTATUS NTAPI IPsecSaContextCreate1(HANDLE engineHandle, const IPSEC_TRAFFIC1 *
 NTSTATUS NTAPI IPsecSaContextGetSpi1(HANDLE engineHandle, UINT64 id, const IPSEC_GETSPI1 *getSpi, IPSEC_SA_SPI *inboundSpi);
 NTSTATUS NTAPI IPsecSaContextSetSpi0(HANDLE engineHandle, UINT64 id, const IPSEC_GETSPI1 *getSpi, IPSEC_SA_SPI inboundSpi);
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 NTSTATUS NTAPI IkeextGetStatistics0(HANDLE engineHandle, IKEEXT_STATISTICS0 *ikeextStatistics);
 NTSTATUS NTAPI IkeextGetStatistics1(HANDLE engineHandle, IKEEXT_STATISTICS1 *ikeextStatistics);
 NTSTATUS NTAPI IkeextSaCreateEnumHandle0(HANDLE engineHandle, const IKEEXT_SA_ENUM_TEMPLATE0 *enumTemplate, HANDLE *enumHandle);

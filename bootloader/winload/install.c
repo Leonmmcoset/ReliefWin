@@ -1,7 +1,7 @@
 /*
- * PROJECT:     LiberNT Boot Loader
+ * PROJECT:     ReliefWin Boot Loader
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
- * PURPOSE:     Installs a staged LiberNT image over the operating system volume
+ * PURPOSE:     Installs a staged ReliefWin image over the operating system volume
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
  */
 
@@ -29,7 +29,7 @@
 #define OSL_INSTALL_COMPUTER   32
 #define OSL_INSTALL_FIELDS     3
 #define OSL_INSTALL_INF_MAX    (4 * 1024 * 1024)
-#define OSL_INSTALL_INVENTORY  "servicing\\LiberNT.files"
+#define OSL_INSTALL_INVENTORY  "servicing\\ReliefWin.files"
 #define OSL_INSTALL_SETUP_INF  "txtsetup.sif"
 #define OSL_INSTALL_IMAGE_LINE "; Image "
 #define OSL_INSTALL_STATUS     "install.log"
@@ -39,7 +39,7 @@
 #define OSL_INSTALL_RECORD     4096
 #define OSL_INSTALL_UNDO_DIR   "Rollback\\"
 #define OSL_INSTALL_UNDO_LIST  "Rollback\\rollback.lst"
-#define OSL_INSTALL_UNDO_HEAD  "; LiberNT rollback "
+#define OSL_INSTALL_UNDO_HEAD  "; ReliefWin rollback "
 #define OSL_INSTALL_UNDO_END   "; end"
 #define OSL_INSTALL_UNDO_LINE  (OSL_INSTALL_PATH_CHARS + 16)
 #define OSL_INSTALL_UNDO_GROW  0x10000
@@ -1490,7 +1490,7 @@ OslUndoInstall(
 
     FwPrint(L"INSTALL: the update did not finish; restoring the %lu files it changed.\r\n", Install->Backups.Count);
     Install->Stage = "rollback";
-    Install->Activity = L"Restoring the previous LiberNT";
+    Install->Activity = L"Restoring the previous ReliefWin";
     Install->TotalBytes = Install->Backups.Count;
     OslRestoreFiles(Install);
 
@@ -1695,7 +1695,7 @@ OslVerifyImage(
         if (Percent != Shown)
         {
             Shown = Percent;
-            FwPrint(L"\rChecking the LiberNT update... %lu%%", Percent);
+            FwPrint(L"\rChecking the ReliefWin update... %lu%%", Percent);
         }
     }
     BlSha256Final(&Context, Digest);
@@ -1752,7 +1752,7 @@ OslInstallOpenedImage(
 
     if (!OslIndexImage(Install))
     {
-        FwPrint(L"INSTALL: %hs is not a LiberNT image; starting the installed system.\r\n", ImagePath);
+        FwPrint(L"INSTALL: %hs is not a ReliefWin image; starting the installed system.\r\n", ImagePath);
         OslFail(Install, "image", STATUS_FILE_CORRUPT_ERROR);
         return;
     }
@@ -1907,7 +1907,7 @@ OslInstallImage(
     if (Name)
         RtlStringCbCopyNA(Install->StageRoot, sizeof(Install->StageRoot), ImagePath, Name + 1 - ImagePath);
     Install->Percent = MAXULONG;
-    Install->Activity = L"Installing LiberNT";
+    Install->Activity = L"Installing ReliefWin";
     Install->Buffer = FwAllocatePages(OSL_INSTALL_CHUNK);
 
     Status = NtfsBlMount(OsDevice);

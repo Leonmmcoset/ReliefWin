@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     A video memory budget query costs about one kernel call, because graphics drivers make it per submit
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

@@ -1566,7 +1566,7 @@ extern "C" {
 
 ULONG WINAPI HttpReceiveRequestEntityBody(HANDLE RequestQueueHandle, HTTP_REQUEST_ID RequestId, ULONG Flags, PVOID EntityBuffer, ULONG EntityBufferLength, PULONG BytesReturned, LPOVERLAPPED Overlapped);
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 ULONG WINAPI HttpAddFragmentToCache(HANDLE RequestQueueHandle, PCWSTR UrlPrefix, PHTTP_DATA_CHUNK DataChunk, PHTTP_CACHE_POLICY CachePolicy, LPOVERLAPPED Overlapped);
 ULONG WINAPI HttpCancelHttpRequest(HANDLE RequestQueueHandle, HTTP_REQUEST_ID RequestId, LPOVERLAPPED Overlapped);
 ULONG WINAPI HttpDeclarePush(HANDLE RequestQueueHandle, HTTP_REQUEST_ID RequestId, HTTP_VERB Verb, PCWSTR Path, PCSTR Query, PHTTP_REQUEST_HEADERS Headers);

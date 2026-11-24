@@ -262,7 +262,7 @@ typedef struct _PATCH_OLD_FILE_INFO *PPATCH_OLD_FILE_INFO;
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 BOOL CreatePatchFileA(LPCSTR OldFileName, LPCSTR NewFileName, LPCSTR PatchFileName, ULONG OptionFlags, PPATCH_OPTION_DATA OptionData);
 BOOL CreatePatchFileByHandles(HANDLE OldFileHandle, HANDLE NewFileHandle, HANDLE PatchFileHandle, ULONG OptionFlags, PPATCH_OPTION_DATA OptionData);
 BOOL CreatePatchFileByHandlesEx(ULONG OldFileCount, PPATCH_OLD_FILE_INFO_H OldFileInfoArray, HANDLE NewFileHandle, HANDLE PatchFileHandle, ULONG OptionFlags, PPATCH_OPTION_DATA OptionData, PPATCH_PROGRESS_CALLBACK ProgressCallback, PVOID CallbackContext);

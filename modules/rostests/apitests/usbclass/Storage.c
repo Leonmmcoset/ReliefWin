@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test reading and writing a USB mass storage volume
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -15,7 +15,7 @@
 #include <cfgmgr32.h>
 
 #define MARKER_NAME "USBCLASS.TXT"
-#define MARKER_TEXT "LiberNT USB storage marker\r\n"
+#define MARKER_TEXT "ReliefWin USB storage marker\r\n"
 #define SCSI_ADAPTER_CLASS "{4d36e97b-e325-11ce-bfc1-08002be10318}"
 #define USB_CLASS "{36fc9e60-c465-11cf-8056-444553540000}"
 #define STATUS_CHECK_CONDITION 0x02

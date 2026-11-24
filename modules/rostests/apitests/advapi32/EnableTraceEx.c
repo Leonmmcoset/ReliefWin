@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test for EnableTraceEx
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -11,7 +11,7 @@
 #include <evntrace.h>
 #include <strsafe.h>
 
-#define SESSION_NAME L"LiberNT EnableTraceEx test"
+#define SESSION_NAME L"ReliefWin EnableTraceEx test"
 
 typedef ULONG (WINAPI *PFN_ENABLE_TRACE_EX)(LPCGUID, LPCGUID, TRACEHANDLE, ULONG, UCHAR, ULONGLONG, ULONGLONG, ULONG,
                                             PEVENT_FILTER_DESCRIPTOR);

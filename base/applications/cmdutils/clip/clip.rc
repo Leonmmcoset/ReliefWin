@@ -4,10 +4,10 @@
 
 LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
 
-#define REACTOS_STR_FILE_DESCRIPTION    "LiberNT Clip Command"
+#define REACTOS_STR_FILE_DESCRIPTION    "ReliefWin Clip Command"
 #define REACTOS_STR_INTERNAL_NAME       "clip"
 #define REACTOS_STR_ORIGINAL_FILENAME   "clip.exe"
-#include <libernt/version.rc>
+#include <reliefwin/version.rc>
 
 /* UTF-8 */
 #pragma code_page(65001)

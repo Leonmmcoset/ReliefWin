@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test response headers longer than one network packet
  * COPYRIGHT:   Copyright 2026 mikuta0407 <mikuta0407@mikuta0407.net>
@@ -102,7 +102,7 @@ START_TEST(LongHeader)
     }
     Thread = CreateThread(NULL, 0, ServerThread, NULL, 0, NULL);
 
-    Session = WinHttpOpen(L"LiberNT apitest", WINHTTP_ACCESS_TYPE_NO_PROXY, NULL, NULL, 0);
+    Session = WinHttpOpen(L"ReliefWin apitest", WINHTTP_ACCESS_TYPE_NO_PROXY, NULL, NULL, 0);
     ok(Session != NULL, "WinHttpOpen failed with %lu\n", GetLastError());
     WinHttpSetTimeouts(Session, 5000, 5000, 5000, 5000);
     Connect = WinHttpConnect(Session, L"127.0.0.1", ntohs(Address.sin_port), 0);

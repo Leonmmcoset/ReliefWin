@@ -921,7 +921,7 @@ typedef void *RPC_SS_THREAD_HANDLE;
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 void *__RPC_USER I_RpcDefaultAllocate(handle_t bh, size_t size, void *(*RealAlloc)(size_t));
 void __RPC_USER I_RpcDefaultFree(handle_t bh, void *, void (*RealFree)(void *));
 RPCRTAPI void RPC_ENTRY Ndr64AsyncServerCall(PRPC_MESSAGE pRpcMsg);

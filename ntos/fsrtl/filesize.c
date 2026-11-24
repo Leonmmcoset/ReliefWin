@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Asking a file system how long one of its files is
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

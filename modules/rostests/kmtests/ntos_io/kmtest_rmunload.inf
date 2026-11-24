@@ -53,6 +53,6 @@ ioremoveunload_drv.sys,,,0x10
 ioremoveunload_drv.sys=1
 
 [Strings]
-Provider="LiberNT kernel tests"
+Provider="ReliefWin kernel tests"
 Device="Kmtest remove-and-unload fixture"
 Disk="Kmtest driver package"

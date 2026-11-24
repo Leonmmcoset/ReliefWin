@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Apple RTKit Library
+ * PROJECT:     ReliefWin Apple RTKit Library
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Address translations of the Apple silicon graphics processor
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -7,9 +7,9 @@
 
 #ifndef UNIT_TEST
 #include <ntddk.h>
-#include <libernt/arm64/sysreg.h>
+#include <reliefwin/arm64/sysreg.h>
 #endif
-#include <libernt/drivers/appleuat.h>
+#include <reliefwin/drivers/appleuat.h>
 
 #define UAT_TAG                     'tUpA'
 #define UAT_TYPE_MASK               0x3ULL

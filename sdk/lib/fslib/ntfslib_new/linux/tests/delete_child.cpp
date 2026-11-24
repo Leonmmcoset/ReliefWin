@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT NTFS tests
+ * PROJECT:     ReliefWin NTFS tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Delete names through a child record the caller already looked up
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

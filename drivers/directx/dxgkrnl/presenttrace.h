@@ -3,7 +3,7 @@
  */
 #pragma once
 #define DPT_KERNEL
-#include <libernt/dwmpresenttracecore.h>
+#include <reliefwin/dwmpresenttracecore.h>
 extern DPT_BANK g_DxgPresentTrace;
 enum DXGK_TRACE_PRODUCER_STAGE
 {

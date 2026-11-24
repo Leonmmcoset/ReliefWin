@@ -59,10 +59,10 @@ if(DEFINED EFI_PLATFORM_ID AND EXISTS "${REACTOS_SOURCE_DIR}/bootloader/arch/${A
         set(_uefi_media_store media)
     endif()
     set(_uefi_loader_files
-        -mkdir EFI/LiberNT
-        -mkdir EFI/LiberNT/Boot
-        -add $<TARGET_FILE:winload> EFI/LiberNT/Boot/winload.efi
-        -add ${REACTOS_BINARY_DIR}/bootloader/image/${_uefi_media_store}/BCD EFI/LiberNT/Boot/BCD)
+        -mkdir EFI/ReliefWin
+        -mkdir EFI/ReliefWin/Boot
+        -add $<TARGET_FILE:winload> EFI/ReliefWin/Boot/winload.efi
+        -add ${REACTOS_BINARY_DIR}/bootloader/image/${_uefi_media_store}/BCD EFI/ReliefWin/Boot/BCD)
     set(_uefi_loader_deps bootmgfw winload bootloader${_uefi_media_store}bcd)
     set(_efisys_sectors 16384)
     set_property(GLOBAL PROPERTY BOOTLOADER_UEFI TRUE)
@@ -149,8 +149,8 @@ endif()
 file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/bootfiles.sort ${ISO_SORT_FILE_DATA})
 
 # ISO image identifier names
-set(ISO_MANUFACTURER "LiberNT Project") # For both the publisher and the preparer
-set(ISO_VOLNAME      "LiberNT")         # For both the Volume ID and the Volume set ID
+set(ISO_MANUFACTURER "ReliefWin Project") # For both the publisher and the preparer
+set(ISO_VOLNAME      "ReliefWin")         # For both the Volume ID and the Volume set ID
 
 # ISO image options
 # Preserve Windows DLL names such as avformat-62.dll in the primary ISO directory.
@@ -185,7 +185,7 @@ endif()
 set(BOOTCD_HYBRID_DEPENDS)
 set(BOOTCD_HYBRID_COMMAND)
 if(DEFINED EFI_PLATFORM_ID)
-    string(UUID _bootcd_disk NAMESPACE 354fa6e5-5e45-49af-91bf-1fd2754e470a NAME "LiberNT boot CD" TYPE SHA1)
+    string(UUID _bootcd_disk NAMESPACE 354fa6e5-5e45-49af-91bf-1fd2754e470a NAME "ReliefWin boot CD" TYPE SHA1)
     string(SUBSTRING "${_bootcd_disk}" 0 8 _bootcd_signature)
     set(BOOTCD_HYBRID_DEPENDS native-mkdiskimg)
     set(BOOTCD_HYBRID_COMMAND
@@ -260,8 +260,8 @@ function(image_list_command _image _var)
         -DOUTPUT=${CMAKE_CURRENT_BINARY_DIR}/${_image}.effective.lst
         -DSYSTEM_DIR=Windows
         -DINVENTORY=${CMAKE_CURRENT_BINARY_DIR}/${_image}.files
-        "-DINVENTORY_HEADER=LiberNT ${KERNEL_VERSION} ${KERNEL_VERSION_BUILD}-${REVISION}"
-        -DINVENTORY_BUILD=${LIBERNT_BUILD_NUMBER}
+        "-DINVENTORY_HEADER=ReliefWin ${KERNEL_VERSION} ${KERNEL_VERSION_BUILD}-${REVISION}"
+        -DINVENTORY_BUILD=${RELIEFWIN_BUILD_NUMBER}
         -DINVENTORY_IMAGE=${_image}
         -P ${REACTOS_SOURCE_DIR}/sdk/cmake/optional_files.cmake PARENT_SCOPE)
 endfunction()
@@ -290,8 +290,8 @@ endif()
 # the same "image/path=host/path" format as livecd.cmake.lst. This keeps
 # externally supplied diagnostic and hardware payloads outside the source tree
 # while making their contents part of the generated image build graph.
-set(LIVECD_EXTRA_FILE_LIST "" CACHE FILEPATH "Additional file manifest(s) for ReactOS LiveCD images (semicolon separated)")
-set(LIVECD_EXTRA_REGISTRY_INF "" CACHE FILEPATH "Additional registry INF(s) for ReactOS LiveCD hives (semicolon separated)")
+set(LIVECD_EXTRA_FILE_LIST "" CACHE FILEPATH "Additional file manifest(s) for ReliefWin LiveCD images (semicolon separated)")
+set(LIVECD_EXTRA_REGISTRY_INF "" CACHE FILEPATH "Additional registry INF(s) for ReliefWin LiveCD hives (semicolon separated)")
 set(_livecd_overlay_deps)
 foreach(_livecd_extra_file_list IN LISTS LIVECD_EXTRA_FILE_LIST)
     if(_livecd_extra_file_list STREQUAL "")
@@ -355,7 +355,7 @@ add_custom_target(bootcd
     VERBATIM)
 
 
-## LiberNTImg
+## ReliefWinImg
 # Create the file list
 file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/preinstall.cmake.lst "")
 # The NTFS image importer requires every entry to map an image path to a host path.
@@ -363,9 +363,9 @@ file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/preinstall.cmake.lst "")
 set(_preinstall_boot_partition_file ${CMAKE_CURRENT_BINARY_DIR}/partition.boot.fat)
 set(_preinstall_system_partition_file ${CMAKE_CURRENT_BINARY_DIR}/partition.ntfs)
 set(_preinstall_vhd_partition_file ${CMAKE_CURRENT_BINARY_DIR}/partition.vhd.ntfs)
-set(_preinstall_image_file ${REACTOS_BINARY_DIR}/LiberNT.img)
-set(_preinstall_vhd_file ${REACTOS_BINARY_DIR}/LiberNT.vhd)
-set(_preinstall_vhdx_file ${REACTOS_BINARY_DIR}/LiberNT.vhdx)
+set(_preinstall_image_file ${REACTOS_BINARY_DIR}/ReliefWin.img)
+set(_preinstall_vhd_file ${REACTOS_BINARY_DIR}/ReliefWin.vhd)
+set(_preinstall_vhdx_file ${REACTOS_BINARY_DIR}/ReliefWin.vhdx)
 # Keep ROSBOOT as an active MBR ESP. UEFI discovers it by type, while the BIOS
 # MBR follows the active flag and loads its FAT32 boot sector. The Raspberry Pi
 # 1-3 boot ROM only scans for FAT MBR ids and skips 0xEF, so the Raspberry Pi
@@ -400,7 +400,7 @@ endif()
 # Keep external payloads outside the source tree while still making their
 # contents and dependencies part of the generated image build graph.
 set(PREINSTALL_EXTRA_FILE_LIST "" CACHE FILEPATH
-    "Additional file manifest for preinstalled ReactOS disk images")
+    "Additional file manifest for preinstalled ReliefWin disk images")
 set(_preinstall_overlay_deps)
 if(PREINSTALL_EXTRA_FILE_LIST)
     get_filename_component(_preinstall_extra_file_list
@@ -651,14 +651,14 @@ if(_preinstall_rpi_overlays)
 endif()
 set(_preinstall_partition_deps native-fatten native-ntfsimg
     ${_preinstall_overlay_deps} ${ARM64_BOOT_FILE_DEPS})
-set(_liberntimg_mbr_args)
-set(_liberntimg_deps native-mkdiskimg)
-set(_liberntimg_leading_args)
-set(_liberntimg_boot_partition_args)
-set(_liberntimg_system_partition_args)
+set(_reliefwinimg_mbr_args)
+set(_reliefwinimg_deps native-mkdiskimg)
+set(_reliefwinimg_leading_args)
+set(_reliefwinimg_boot_partition_args)
+set(_reliefwinimg_system_partition_args)
 if(SPACEMIT_K1_SUPPORT)
-    list(APPEND _liberntimg_mbr_args -gpt -mbr ${SPACEMIT_K1_BOOTINFO})
-    list(APPEND _liberntimg_leading_args
+    list(APPEND _reliefwinimg_mbr_args -gpt -mbr ${SPACEMIT_K1_BOOTINFO})
+    list(APPEND _reliefwinimg_leading_args
         -data ${SPACEMIT_K1_OPENSBI}
         -start ${SPACEMIT_K1_OPENSBI_START}
         -type da
@@ -674,8 +674,8 @@ if(SPACEMIT_K1_SUPPORT)
         -raw ${SPACEMIT_K1_FSBL}
         -at ${SPACEMIT_K1_FSBL_BACKUP_SECTOR})
     set(_preinstall_boot_partition_fs fat32)
-    list(APPEND _liberntimg_boot_partition_args -name bootfs)
-    list(APPEND _liberntimg_system_partition_args -name ReactOS)
+    list(APPEND _reliefwinimg_boot_partition_args -name bootfs)
+    list(APPEND _reliefwinimg_system_partition_args -name ReliefWin)
     list(APPEND _preinstall_boot_partition_files
         -add ${SPACEMIT_K1_UBOOT_ENV} env_k1-x.txt
         -add ${SPACEMIT_K1_BOOT_SCRIPT} boot.scr
@@ -683,7 +683,7 @@ if(SPACEMIT_K1_SUPPORT)
         -add ${SPACEMIT_K1_RV2_DTB} dtb/x1_orangepi-rv2.dtb)
     list(APPEND _preinstall_partition_deps
         ${SPACEMIT_K1_UBOOT_ENV} ${SPACEMIT_K1_BOOT_SCRIPT} ${SPACEMIT_K1_RV2_DTB})
-    list(APPEND _liberntimg_deps
+    list(APPEND _reliefwinimg_deps
         ${SPACEMIT_K1_BOOTINFO} ${SPACEMIT_K1_FSBL} ${SPACEMIT_K1_OPENSBI} ${SPACEMIT_K1_UBOOT})
 endif()
 if(STARFIVE_JH7110_SUPPORT)
@@ -695,21 +695,21 @@ if(STARFIVE_JH7110_SUPPORT)
         -add ${STARFIVE_JH7110_UENV} vf2_uEnv.txt)
     list(APPEND _preinstall_partition_deps ${STARFIVE_JH7110_DTB} ${STARFIVE_JH7110_UENV})
 endif()
-macro(libernt_standard_disk_ids)
-    string(UUID _standard_disk NAMESPACE 354fa6e5-5e45-49af-91bf-1fd2754e470a NAME "LiberNT standard disk" TYPE SHA1)
-    libernt_standard_disk_signature(_standard_signature)
-    string(UUID _standard_system NAMESPACE 354fa6e5-5e45-49af-91bf-1fd2754e470a NAME "LiberNT standard system partition" TYPE SHA1)
-    if(";${_liberntimg_mbr_args};" MATCHES ";-gpt;")
-        list(APPEND _liberntimg_mbr_args -diskid ${_standard_disk})
-        list(APPEND _liberntimg_system_partition_args -id ${_standard_system})
-        set_property(GLOBAL PROPERTY LIBERNT_STANDARD_GPT_DISK ${_standard_disk})
-        set_property(GLOBAL PROPERTY LIBERNT_STANDARD_GPT_SYSTEM ${_standard_system})
+macro(reliefwin_standard_disk_ids)
+    string(UUID _standard_disk NAMESPACE 354fa6e5-5e45-49af-91bf-1fd2754e470a NAME "ReliefWin standard disk" TYPE SHA1)
+    reliefwin_standard_disk_signature(_standard_signature)
+    string(UUID _standard_system NAMESPACE 354fa6e5-5e45-49af-91bf-1fd2754e470a NAME "ReliefWin standard system partition" TYPE SHA1)
+    if(";${_reliefwinimg_mbr_args};" MATCHES ";-gpt;")
+        list(APPEND _reliefwinimg_mbr_args -diskid ${_standard_disk})
+        list(APPEND _reliefwinimg_system_partition_args -id ${_standard_system})
+        set_property(GLOBAL PROPERTY RELIEFWIN_STANDARD_GPT_DISK ${_standard_disk})
+        set_property(GLOBAL PROPERTY RELIEFWIN_STANDARD_GPT_SYSTEM ${_standard_system})
     else()
-        list(APPEND _liberntimg_mbr_args -signature ${_standard_signature})
+        list(APPEND _reliefwinimg_mbr_args -signature ${_standard_signature})
     endif()
-    set_property(GLOBAL PROPERTY LIBERNT_STANDARD_SIGNATURE ${_standard_signature})
-    set_property(GLOBAL PROPERTY LIBERNT_STANDARD_SYSTEM_START ${_preinstall_system_partition_start})
-    set_property(GLOBAL PROPERTY LIBERNT_STANDARD_OPTIONS "${BOOTLOADER_PREINSTALL_OPTIONS}")
+    set_property(GLOBAL PROPERTY RELIEFWIN_STANDARD_SIGNATURE ${_standard_signature})
+    set_property(GLOBAL PROPERTY RELIEFWIN_STANDARD_SYSTEM_START ${_preinstall_system_partition_start})
+    set_property(GLOBAL PROPERTY RELIEFWIN_STANDARD_OPTIONS "${BOOTLOADER_PREINSTALL_OPTIONS}")
 endmacro()
 
 if(BOOTLOADER_OFW)
@@ -720,7 +720,7 @@ if(BOOTLOADER_OFW)
         -add ${REACTOS_BINARY_DIR}/bootloader/bootmgr.bin bootmgr.bin
         -add ${REACTOS_BINARY_DIR}/bootloader/image/standard/BCD Boot/BCD)
     list(APPEND _preinstall_partition_deps bootmgrppc bootloaderstandardbcd)
-    libernt_standard_disk_ids()
+    reliefwin_standard_disk_ids()
     # TODO: boot the PowerPC boot CD; bootmgr reads no ISO 9660 and bootcd.iso carries no BCD
 endif()
 if((ARCH STREQUAL "i386" OR ARCH STREQUAL "amd64") AND NOT MSVC)
@@ -731,8 +731,8 @@ if((ARCH STREQUAL "i386" OR ARCH STREQUAL "amd64") AND NOT MSVC)
         -mkdir Boot
         -add ${REACTOS_BINARY_DIR}/bootloader/image/standardpcat/BCD Boot/BCD)
     list(APPEND _preinstall_partition_deps bootmgrbios bootloaderstandardpcatbcd)
-    list(APPEND _liberntimg_mbr_args -mbr ${REACTOS_BINARY_DIR}/bootloader/mbr.bin)
-    list(APPEND _liberntimg_deps bootmgrbios)
+    list(APPEND _reliefwinimg_mbr_args -mbr ${REACTOS_BINARY_DIR}/bootloader/mbr.bin)
+    list(APPEND _reliefwinimg_deps bootmgrbios)
 endif()
 if(DEFINED EFI_PLATFORM_ID)
     list(APPEND _preinstall_boot_partition_files
@@ -742,17 +742,17 @@ if(DEFINED EFI_PLATFORM_ID)
     list(APPEND _preinstall_partition_deps ${_uefi_loader})
     if(BOOTLOADER_UEFI)
         list(APPEND _preinstall_boot_partition_files
-            -mkdir EFI/LiberNT
-            -mkdir EFI/LiberNT/Boot
-            -add $<TARGET_FILE:bootmgfw> EFI/LiberNT/Boot/bootmgfw.efi
-            -add ${REACTOS_BINARY_DIR}/bootloader/image/standard/BCD EFI/LiberNT/Boot/BCD)
+            -mkdir EFI/ReliefWin
+            -mkdir EFI/ReliefWin/Boot
+            -add $<TARGET_FILE:bootmgfw> EFI/ReliefWin/Boot/bootmgfw.efi
+            -add ${REACTOS_BINARY_DIR}/bootloader/image/standard/BCD EFI/ReliefWin/Boot/BCD)
         list(APPEND _preinstall_partition_deps bootloaderstandardbcd)
         if((BOOTLOADER_HTTP_BOOT AND BOOTLOADER_HTTP_BOOT_URL) OR BOOTLOADER_HTTP_IMAGE_URL)
             list(APPEND _preinstall_boot_partition_files
-                -add $<TARGET_FILE:winload> EFI/LiberNT/Boot/winload.efi)
+                -add $<TARGET_FILE:winload> EFI/ReliefWin/Boot/winload.efi)
             list(APPEND _preinstall_partition_deps winload)
         endif()
-        libernt_standard_disk_ids()
+        reliefwin_standard_disk_ids()
     endif()
     set(_preinstall_uefi_driver_files ${_uefi_driver_files})
     if(BOOTLOADER_UEFI AND BOOTLOADER_HTTP_BOOT AND BOOTLOADER_HTTP_SYNC AND NOT _preinstall_uefi_driver_files)
@@ -786,7 +786,7 @@ add_custom_target(preinstall_partition
         -DPACKAGE_PDBS=${ROSPROFILER_PACKAGE_IMAGE_PDBS}
         -P ${REACTOS_SOURCE_DIR}/sdk/cmake/pack_rosprofiler_symbols.cmake
     COMMAND native-fatten ${_preinstall_boot_partition_file}
-        -format ${_preinstall_boot_partition_sectors} ${_preinstall_boot_partition_fs} LIBERNTBOOT
+        -format ${_preinstall_boot_partition_sectors} ${_preinstall_boot_partition_fs} RELIEFWINBT
         ${_preinstall_boot_partition_options}
         ${_preinstall_boot_partition_files}
     COMMAND native-ntfsimg
@@ -795,7 +795,7 @@ add_custom_target(preinstall_partition
         ${_preinstall_system_partition_sectors}
         ${_preinstall_system_partition_start}
         ${_preinstall_ntfs_sectors_per_cluster}
-        LiberNT
+        ReliefWin
     COMMAND native-ntfsimg
         --addfiles
         ${_preinstall_system_partition_file}
@@ -807,36 +807,36 @@ add_custom_target(preinstall_partition
     DEPENDS ${_preinstall_partition_deps}
     VERBATIM)
 
-add_custom_target(liberntimg
+add_custom_target(reliefwinimg
     COMMAND ${CMAKE_COMMAND} -E rm -f ${_preinstall_image_file}
     COMMAND native-mkdiskimg
         -o ${_preinstall_image_file}
-        ${_liberntimg_mbr_args}
-        ${_liberntimg_leading_args}
+        ${_reliefwinimg_mbr_args}
+        ${_reliefwinimg_leading_args}
         -partition ${_preinstall_boot_partition_file}
         -start ${_preinstall_boot_partition_start}
         -type ${_preinstall_boot_partition_type}
-        ${_liberntimg_boot_partition_args}
+        ${_reliefwinimg_boot_partition_args}
         -partition ${_preinstall_system_partition_file}
         -start ${_preinstall_system_partition_start}
         -type 07
-        ${_liberntimg_system_partition_args}
-    DEPENDS ${_liberntimg_deps}
+        ${_reliefwinimg_system_partition_args}
+    DEPENDS ${_reliefwinimg_deps}
     VERBATIM)
-add_dependencies(liberntimg preinstall_partition)
+add_dependencies(reliefwinimg preinstall_partition)
 
-set(LIBERNT_RAM_IMAGE_FREE_MB 512 CACHE STRING
-    "Free space in MB added to the payload of the RAM disk image system partition (liberntramimg)")
-set(_preinstall_ram_image_file ${REACTOS_BINARY_DIR}/LiberNT-ram.img)
+set(RELIEFWIN_RAM_IMAGE_FREE_MB 512 CACHE STRING
+    "Free space in MB added to the payload of the RAM disk image system partition (reliefwinramimg)")
+set(_preinstall_ram_image_file ${REACTOS_BINARY_DIR}/ReliefWin-ram.img)
 set(_preinstall_ram_partition_file ${CMAKE_CURRENT_BINARY_DIR}/partition.ram.ntfs)
 if(TARGET native-ntfsimg)
     set(_preinstall_ram_ntfsimg $<TARGET_FILE:native-ntfsimg>)
 else()
     set(_preinstall_ram_ntfsimg native-ntfsimg)
 endif()
-string(UUID _ram_disk NAMESPACE 354fa6e5-5e45-49af-91bf-1fd2754e470a NAME "LiberNT RAM disk image" TYPE SHA1)
+string(UUID _ram_disk NAMESPACE 354fa6e5-5e45-49af-91bf-1fd2754e470a NAME "ReliefWin RAM disk image" TYPE SHA1)
 string(SUBSTRING "${_ram_disk}" 0 8 _ram_signature)
-add_custom_target(liberntramimg
+add_custom_target(reliefwinramimg
     COMMAND ${CMAKE_COMMAND} -E rm -f ${_preinstall_ram_image_file} ${_preinstall_ram_partition_file}
     COMMAND ${CMAKE_COMMAND}
         -DNTFSIMG=${_preinstall_ram_ntfsimg}
@@ -844,8 +844,8 @@ add_custom_target(liberntramimg
         -DPARTITION=${_preinstall_ram_partition_file}
         -DHIDDEN_SECTORS=${_preinstall_system_partition_start}
         -DSECTORS_PER_CLUSTER=${_preinstall_ntfs_sectors_per_cluster}
-        -DFREE_MB=${LIBERNT_RAM_IMAGE_FREE_MB}
-        -DLABEL=LiberNT
+        -DFREE_MB=${RELIEFWIN_RAM_IMAGE_FREE_MB}
+        -DLABEL=ReliefWin
         -P ${REACTOS_SOURCE_DIR}/sdk/cmake/format_ram_partition.cmake
     COMMAND native-ntfsimg
         --addfiles
@@ -862,9 +862,9 @@ add_custom_target(liberntramimg
         -start ${_preinstall_system_partition_start}
         -type 07
     COMMAND ${CMAKE_COMMAND} -E rm -f ${_preinstall_ram_partition_file}
-    DEPENDS ${_liberntimg_deps} native-ntfsimg native-mkdiskimg
+    DEPENDS ${_reliefwinimg_deps} native-ntfsimg native-mkdiskimg
     VERBATIM)
-add_dependencies(liberntramimg preinstall_partition)
+add_dependencies(reliefwinramimg preinstall_partition)
 
 set(_ntfstest_image_file ${REACTOS_BINARY_DIR}/ntfstest.img)
 set(_ntfstest_partition_file ${CMAKE_CURRENT_BINARY_DIR}/ntfstest.ntfs)
@@ -877,7 +877,7 @@ add_custom_command(
     DEPENDS native-ntfsimg native-mkdiskimg
     VERBATIM)
 add_custom_target(ntfstestimg DEPENDS ${_ntfstest_image_file})
-add_dependencies(liberntimg ntfstestimg)
+add_dependencies(reliefwinimg ntfstestimg)
 
 if(STARFIVE_JH7110_SUPPORT)
     set(_jh7110_boot_partition_file ${CMAKE_CURRENT_BINARY_DIR}/jh7110-bootfs.img)
@@ -885,7 +885,7 @@ if(STARFIVE_JH7110_SUPPORT)
     add_custom_target(jh7110sdimg
         COMMAND ${CMAKE_COMMAND} -E rm -f ${_jh7110_boot_partition_file} ${_jh7110_sd_image_file}
         COMMAND native-fatten ${_jh7110_boot_partition_file}
-            -format ${STARFIVE_JH7110_BOOT_SECTORS} fat32 LIBERNTSD
+            -format ${STARFIVE_JH7110_BOOT_SECTORS} fat32 RELIEFWINSD
             -add ${STARFIVE_JH7110_BOOT_SCRIPT} boot.scr
             -add ${STARFIVE_JH7110_BOOT_SCRIPT_SOURCE} boot.cmd
         COMMAND native-mkdiskimg
@@ -910,33 +910,33 @@ if(STARFIVE_JH7110_SUPPORT)
             ${STARFIVE_JH7110_SPL} ${STARFIVE_JH7110_UBOOT}
             ${STARFIVE_JH7110_BOOT_SCRIPT} ${STARFIVE_JH7110_BOOT_SCRIPT_SOURCE}
         VERBATIM)
-    add_dependencies(liberntimg jh7110sdimg)
+    add_dependencies(reliefwinimg jh7110sdimg)
 endif()
 
 if(NINTENDO_SWITCH_SUPPORT)
     set(_switch_media_dir ${REACTOS_BINARY_DIR}/bootloader/image/mediawim)
     set(_switch_partition_file ${CMAKE_CURRENT_BINARY_DIR}/switch-sd.fat)
-    set(_switch_sd_image_file ${REACTOS_BINARY_DIR}/LiberNT-switch-sd.img)
+    set(_switch_sd_image_file ${REACTOS_BINARY_DIR}/ReliefWin-switch-sd.img)
     add_custom_target(switchsdimg
         COMMAND ${CMAKE_COMMAND} -E rm -f ${_switch_partition_file} ${_switch_sd_image_file}
         COMMAND native-fatten ${_switch_partition_file}
-            -format ${NINTENDO_SWITCH_SD_SECTORS} fat32 LIBERNT
+            -format ${NINTENDO_SWITCH_SD_SECTORS} fat32 RELIEFWIN
             -mkdir bootloader
             -mkdir bootloader/ini
             -mkdir switchroot
-            -mkdir switchroot/libernt
+            -mkdir switchroot/reliefwin
             -mkdir EFI
             -mkdir EFI/BOOT
-            -mkdir EFI/LiberNT
-            -mkdir EFI/LiberNT/Boot
-            -add ${NINTENDO_SWITCH_HEKATE_INI} bootloader/ini/libernt.ini
-            -add ${NINTENDO_SWITCH_BL33} switchroot/libernt/bl33.bin
-            -add ${NINTENDO_SWITCH_BOOT_SCRIPT} switchroot/libernt/boot.scr
-            -add ${NINTENDO_SWITCH_BOOT_SCRIPT_SOURCE} switchroot/libernt/boot.cmd
-            -add ${NINTENDO_SWITCH_README} switchroot/libernt/README.txt
+            -mkdir EFI/ReliefWin
+            -mkdir EFI/ReliefWin/Boot
+            -add ${NINTENDO_SWITCH_HEKATE_INI} bootloader/ini/reliefwin.ini
+            -add ${NINTENDO_SWITCH_BL33} switchroot/reliefwin/bl33.bin
+            -add ${NINTENDO_SWITCH_BOOT_SCRIPT} switchroot/reliefwin/boot.scr
+            -add ${NINTENDO_SWITCH_BOOT_SCRIPT_SOURCE} switchroot/reliefwin/boot.cmd
+            -add ${NINTENDO_SWITCH_README} switchroot/reliefwin/README.txt
             -add $<TARGET_FILE:bootmgfw> EFI/BOOT/BOOTAA64.EFI
-            -add $<TARGET_FILE:winload> EFI/LiberNT/Boot/winload.efi
-            -add ${_switch_media_dir}/BCD EFI/LiberNT/Boot/BCD
+            -add $<TARGET_FILE:winload> EFI/ReliefWin/Boot/winload.efi
+            -add ${_switch_media_dir}/BCD EFI/ReliefWin/Boot/BCD
             -add ${_switch_media_dir}/boot.wim boot.wim
         COMMAND native-mkdiskimg
             -o ${_switch_sd_image_file}
@@ -951,18 +951,18 @@ if(NINTENDO_SWITCH_SUPPORT)
     add_dependencies(switchsdimg bootloaderwimcd)
 endif()
 
-set(_liberntvhd_layout_args
-    ${_liberntimg_mbr_args}
-    ${_liberntimg_leading_args}
+set(_reliefwinvhd_layout_args
+    ${_reliefwinimg_mbr_args}
+    ${_reliefwinimg_leading_args}
     -partition ${_preinstall_boot_partition_file}
     -start ${_preinstall_boot_partition_start}
     -type ${_preinstall_boot_partition_type}
-    ${_liberntimg_boot_partition_args}
+    ${_reliefwinimg_boot_partition_args}
     -partition ${_preinstall_vhd_partition_file}
     -start ${_preinstall_system_partition_start}
     -type 07
-    ${_liberntimg_system_partition_args})
-add_custom_target(liberntvhd
+    ${_reliefwinimg_system_partition_args})
+add_custom_target(reliefwinvhd
     COMMAND ${CMAKE_COMMAND} -E rm -f ${_preinstall_vhd_file} ${_preinstall_vhdx_file} ${_preinstall_vhd_partition_file}
     COMMAND native-ntfsimg
         --format
@@ -970,7 +970,7 @@ add_custom_target(liberntvhd
         ${_preinstall_vhd_partition_sectors}
         ${_preinstall_system_partition_start}
         ${_preinstall_ntfs_sectors_per_cluster}
-        LiberNT
+        ReliefWin
     COMMAND native-ntfsimg
         --addfiles
         ${_preinstall_vhd_partition_file}
@@ -979,12 +979,12 @@ add_custom_target(liberntvhd
         --apply-security
         ${_preinstall_vhd_partition_file}
         ${REACTOS_SOURCE_DIR}/image/data/filesecurity.txt
-    COMMAND native-mkdiskimg -o ${_preinstall_vhd_file} ${_liberntvhd_layout_args} -vhd
-    COMMAND native-mkdiskimg -o ${_preinstall_vhdx_file} ${_liberntvhd_layout_args} -vhdx
+    COMMAND native-mkdiskimg -o ${_preinstall_vhd_file} ${_reliefwinvhd_layout_args} -vhd
+    COMMAND native-mkdiskimg -o ${_preinstall_vhdx_file} ${_reliefwinvhd_layout_args} -vhdx
     COMMAND ${CMAKE_COMMAND} -E rm -f ${_preinstall_vhd_partition_file}
-    DEPENDS ${_liberntimg_deps} native-ntfsimg
+    DEPENDS ${_reliefwinimg_deps} native-ntfsimg
     VERBATIM)
-add_dependencies(liberntvhd preinstall_partition)
+add_dependencies(reliefwinvhd preinstall_partition)
 
 
 if(DEFINED EFI_PLATFORM_ID)

@@ -1,12 +1,12 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF
  * PURPOSE:     RISC-V boot-hart identification from the device tree and SBI
  */
 
 #include <ntoskrnl.h>
-#include <libernt/fdtlib.h>
+#include <reliefwin/fdtlib.h>
 #define NDEBUG
 #include <debug.h>
 

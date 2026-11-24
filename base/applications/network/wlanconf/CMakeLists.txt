@@ -1,7 +1,7 @@
 
 include_directories(
     BEFORE include
-    ${REACTOS_SOURCE_DIR}/sdk/include/libernt/drivers/ndisuio)
+    ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/drivers/ndisuio)
 
 add_executable(wlanconf wlanconf.c wlanconf.rc)
 set_module_type(wlanconf win32cui UNICODE)

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT host-side USBCCGP tests
+ * PROJECT:     ReliefWin host-side USBCCGP tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test function select-configuration requests that pick another alternate setting
  * COPYRIGHT:   Copyright 2026 mikuta0407 <mikuta0407@mikuta0407.net>

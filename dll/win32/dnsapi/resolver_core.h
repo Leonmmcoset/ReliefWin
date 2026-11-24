@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT DNS API
+ * PROJECT:     ReliefWin DNS API
  * LICENSE:     LGPL-2.1-or-later (https://spdx.org/licenses/LGPL-2.1-or-later)
  * PURPOSE:     Which DNS servers each attempt of a query asks, and how long it waits
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT HAL
+ * PROJECT:     ReliefWin HAL
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Runs the HAL extensions the loader loaded and holds the services they register
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -11,8 +11,8 @@
 #include <ndk/ldrtypes.h>
 #include <ioaccess.h>
 #include <halfuncs.h>
-#include <libernt/hal/acpi_pci.h>
-#include <libernt/drivers/acpi/acpi.h>
+#include <reliefwin/hal/acpi_pci.h>
+#include <reliefwin/drivers/acpi/acpi.h>
 #include <halacpi.h>
 #include <hal.h>
 #include "halext.h"

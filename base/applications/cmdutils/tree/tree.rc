@@ -4,10 +4,10 @@
 
 LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
 
-#define REACTOS_STR_FILE_DESCRIPTION    "LiberNT Tree Command"
+#define REACTOS_STR_FILE_DESCRIPTION    "ReliefWin Tree Command"
 #define REACTOS_STR_INTERNAL_NAME       "tree"
 #define REACTOS_STR_ORIGINAL_FILENAME   "tree.com"
-#include <libernt/version.rc>
+#include <reliefwin/version.rc>
 
 /* UTF-8 */
 #pragma code_page(65001)

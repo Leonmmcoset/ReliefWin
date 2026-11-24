@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     msiexec /norestart, /forcerestart and /promptrestart
  * COPYRIGHT:   Copyright 2026 Ostap Brehin <hello@astroshippers.com>
@@ -23,7 +23,7 @@ static const PCWSTR Tables[] =
     L"INSERT INTO `Property` (`Property`, `Value`) VALUES ('ProductName', 'msiexec_apitest')",
     L"INSERT INTO `Property` (`Property`, `Value`) VALUES ('ProductVersion', '1.0.0')",
     L"INSERT INTO `Property` (`Property`, `Value`) VALUES ('ProductLanguage', '1033')",
-    L"INSERT INTO `Property` (`Property`, `Value`) VALUES ('Manufacturer', 'LiberNT')",
+    L"INSERT INTO `Property` (`Property`, `Value`) VALUES ('Manufacturer', 'ReliefWin')",
     L"INSERT INTO `InstallExecuteSequence` (`Action`, `Sequence`) VALUES ('LaunchConditions', 100)",
 };
 

@@ -1,4 +1,4 @@
-; PROJECT:     LiberNT Apple SMC Driver
+; PROJECT:     ReliefWin Apple SMC Driver
 ; LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
 ; COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
 
@@ -6,7 +6,7 @@
 Signature = "$Windows NT$"
 Class = System
 ClassGUID = {4D36E97D-E325-11CE-BFC1-08002BE10318}
-Provider = %LiberNT%
+Provider = %ReliefWin%
 DriverVer = 11/06/2026,1.0.0.0
 
 [DestinationDirs]
@@ -43,7 +43,7 @@ ServiceBinary = %12%\applesmc.sys
 LoadOrderGroup = Extended Base
 
 [Strings]
-LiberNT = "LiberNT Project"
+ReliefWin = "ReliefWin Project"
 StdMfg = "(Standard system devices)"
 AppleSmc.DeviceDesc = "Apple System Management Controller"
 AppleSmc.ServiceDesc = "Apple SMC Driver"

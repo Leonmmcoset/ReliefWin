@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test the UpdateDriverForPlugAndPlayDevicesW errors
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -15,8 +15,8 @@
 
 static const char TestInf[] =
     "[Version]\r\nSignature=\"$WINDOWS NT$\"\r\nClass=System\r\n"
-    "ClassGuid={4d36e97d-e325-11ce-bfc1-08002be10318}\r\nProvider=LiberNT\r\nDriverVer=01/01/2026,1.0.0.0\r\n"
-    "[Manufacturer]\r\nLiberNT=Models,NTamd64,NTarm64,NTx86\r\n"
+    "ClassGuid={4d36e97d-e325-11ce-bfc1-08002be10318}\r\nProvider=ReliefWin\r\nDriverVer=01/01/2026,1.0.0.0\r\n"
+    "[Manufacturer]\r\nReliefWin=Models,NTamd64,NTarm64,NTx86\r\n"
     "[Models.NTamd64]\r\nDevice=Install,ROOT\\LNTNEWDEV_MISSING\r\n"
     "[Models.NTarm64]\r\nDevice=Install,ROOT\\LNTNEWDEV_MISSING\r\n"
     "[Models.NTx86]\r\nDevice=Install,ROOT\\LNTNEWDEV_MISSING\r\n"

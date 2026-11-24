@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test that a device install records the KMDF version of its INF Wdf section in the service key
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -53,8 +53,8 @@ static const char WdfInf[] =
     "KmdfLibraryVersion=1.15\r\n"
     "\r\n"
     "[Strings]\r\n"
-    "Lnt=\"LiberNT tests\"\r\n"
-    "Dev=\"LiberNT KMDF section test device\"\r\n";
+    "Lnt=\"ReliefWin tests\"\r\n"
+    "Dev=\"ReliefWin KMDF section test device\"\r\n";
 
 static BOOL
 WriteInf(PCWSTR Path)

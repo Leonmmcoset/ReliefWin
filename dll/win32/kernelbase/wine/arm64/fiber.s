@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT kernelbase.dll
+ * PROJECT:     ReliefWin kernelbase.dll
  * LICENSE:     LGPL-2.1-or-later (https://spdx.org/licenses/LGPL-2.1-or-later)
  * PURPOSE:     ARM64 fiber switch for MSVC builds
  * COPYRIGHT:   Copyright 2019 Alexandre Julliard

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     What a filter hangs off a stream, a file and a file object
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

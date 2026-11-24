@@ -1,5 +1,5 @@
 /*
- * PROJECT:         LiberNT Kernel
+ * PROJECT:         ReliefWin Kernel
  * LICENSE:         GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * FILE:            ntoskrnl/ke/arm64/ipi.c
  * PURPOSE:         Inter-processor interrupt stubs for ARM64
@@ -7,7 +7,7 @@
  */
 
 #include <ntoskrnl.h>
-#include <libernt/smpdbg.h>
+#include <reliefwin/smpdbg.h>
 
 #ifdef CONFIG_SMP
 static struct

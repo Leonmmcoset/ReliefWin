@@ -4660,7 +4660,7 @@ PciD3ColdGetIdleWakeInfo(
     if (SystemPowerState != PowerSystemWorking)
         return STATUS_NOT_IMPLEMENTED;
 
-    /* FIXME: Windows 11 derives an S0 depth from PME support and the parent bus for some functions; LiberNT reports not wakeable */
+    /* FIXME: Windows 11 derives an S0 depth from PME support and the parent bus for some functions; ReliefWin reports not wakeable */
     *DeepestWakeableDstate = DeviceWakeDepthNotWakeable;
     return STATUS_SUCCESS;
 }
@@ -4683,7 +4683,7 @@ PciD3ColdGetCapability(
         return STATUS_SUCCESS;
     }
 
-    /* FIXME: Windows 11 takes the answer from a parent bus value for functions without ACPI objects; LiberNT reports FALSE */
+    /* FIXME: Windows 11 takes the answer from a parent bus value for functions without ACPI objects; ReliefWin reports FALSE */
     *D3ColdSupported = FALSE;
     return STATUS_SUCCESS;
 }

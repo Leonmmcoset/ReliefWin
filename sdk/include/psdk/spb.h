@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Simple Peripheral Bus interface
+ * PROJECT:     ReliefWin Simple Peripheral Bus interface
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Windows-compatible SPB transfer definitions
  */
@@ -194,7 +194,7 @@ typedef struct SPB_MULTI_SPI_WRITE_TRANSFER {
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 void SPB_MULTI_SPI_READ_TRANSFER_INIT(SPB_MULTI_SPI_READ_TRANSFER *SpiTransfer, SPB_MULTI_SPI_TRANSFER_MODE Mode, ULONG WritePhaseSingleSpiByteCount, ULONG WaitCycleByteCount);
 void SPB_MULTI_SPI_TRANSFER_INIT(SPB_MULTI_SPI_TRANSFER *SpiTransfer, SPB_MULTI_SPI_TRANSFER_MODE Mode, ULONG TransferPhaseCount, ULONG WritePhaseSingleSpiByteCount, ULONG WaitCycleByteCount);
 void SPB_MULTI_SPI_WRITE_TRANSFER_INIT(SPB_MULTI_SPI_WRITE_TRANSFER *SpiTransfer, SPB_MULTI_SPI_TRANSFER_MODE Mode, ULONG WritePhaseSingleSpiByteCount, ULONG WaitCycleByteCount);

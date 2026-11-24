@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Intel PMC Diagnostic Utility
+ * PROJECT:     ReliefWin Intel PMC Diagnostic Utility
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  */
 
@@ -7,7 +7,7 @@
 #include <setupapi.h>
 #include <stdio.h>
 #include <initguid.h>
-#include <libernt/drivers/intelpmc.h>
+#include <reliefwin/drivers/intelpmc.h>
 
 static
 HANDLE

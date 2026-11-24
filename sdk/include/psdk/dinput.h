@@ -5437,7 +5437,7 @@ extern "C" {
 MMRESULT WINAPI joyConfigChanged(DWORD dwFlags);
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 LPCDIDATAFORMAT WINAPI GetdfDIJoystick(void);
 void WINAPI ShowJoyCPL(HWND hWnd);
 

@@ -368,7 +368,7 @@ typedef USBD_FUNCTION_HANDLE *PUSBD_FUNCTION_HANDLE;
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 void COMPOSITE_DEVICE_CAPABILITIES_INIT(PCOMPOSITE_DEVICE_CAPABILITIES CapabilityFlags);
 void UsbBuildOpenStaticStreamsRequest(PURB Urb, USBD_PIPE_HANDLE PipeHandle, USHORT NumberOfStreams, PUSBD_STREAM_INFORMATION StreamInfoArray);
 void NTAPI USBD_BuildRegisterCompositeDevice(USBD_HANDLE USBDHandle, COMPOSITE_DEVICE_CAPABILITIES CapabilityFlags, ULONG FunctionCount, PREGISTER_COMPOSITE_DEVICE RegisterCompositeDevice);

@@ -1,5 +1,5 @@
 ##
-## PROJECT:     LiberNT Build
+## PROJECT:     ReliefWin Build
 ## LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
 ## PURPOSE:     Raspberry Pi 3 in 32-bit mode (ARMv7) target profile
 ## COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

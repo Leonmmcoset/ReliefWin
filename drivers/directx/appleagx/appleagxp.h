@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Apple Graphics Driver
+ * PROJECT:     ReliefWin Apple Graphics Driver
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     State shared by the parts of the Apple silicon graphics driver
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -8,13 +8,13 @@
 #pragma once
 
 #include <ntddk.h>
-#include <libernt/drivers/appleadt.h>
-#include <libernt/drivers/applertkit.h>
-#include <libernt/drivers/appleuat.h>
-#include <libernt/drivers/appleagx.h>
-#include <libernt/drivers/appleagxinit.h>
-#include <libernt/drivers/appleagxfw.h>
-#include <libernt/drivers/fdtdrv.h>
+#include <reliefwin/drivers/appleadt.h>
+#include <reliefwin/drivers/applertkit.h>
+#include <reliefwin/drivers/appleuat.h>
+#include <reliefwin/drivers/appleagx.h>
+#include <reliefwin/drivers/appleagxinit.h>
+#include <reliefwin/drivers/appleagxfw.h>
+#include <reliefwin/drivers/fdtdrv.h>
 
 #define AGX_REGION_CONTEXTS         0
 #define AGX_REGION_KERNEL_ROOT      1

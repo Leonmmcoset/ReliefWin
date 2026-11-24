@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Tests that a 32-bit child of a 64-bit process starts under WoW64 and runs to its own exit code
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

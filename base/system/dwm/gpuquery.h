@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Desktop Window Manager
+ * PROJECT:     ReliefWin Desktop Window Manager
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Interprets the answer of a D3D11 event query poll
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

@@ -2080,8 +2080,8 @@ LRESULT CALLBACK SearchProc(HWND window, UINT message, WPARAM wParam, LPARAM lPa
 
 void ShowAbout(HWND owner)
 {
-    const std::wstring text = L"lntget " + WideFromUtf8(Version) +
-                              L"\nLiberNT package manager for the WinGet community repository\n\n"
+    const std::wstring text = L"ReliefWin Package Manager " + WideFromUtf8(Version) +
+                              L"\nReliefWin package manager for the WinGet community repository\n\n"
                               L"Copyright (C) 2026 Ahmed Arif\n"
                               L"Licensed under the GNU General Public License, version 3 or later.\n\n"
                               L"WinGet community repository and source index:\n"
@@ -2092,7 +2092,7 @@ void ShowAbout(HWND owner)
     params.hwndOwner = owner;
     params.hInstance = GetModuleHandleW(nullptr);
     params.lpszText = text.c_str();
-    params.lpszCaption = L"About lntget";
+    params.lpszCaption = L"About ReliefWin Package Manager";
     params.dwStyle = MB_OK | MB_USERICON;
     params.lpszIcon = MAKEINTRESOURCEW(IDI_LNTGET);
     MessageBoxIndirectW(&params);
@@ -2104,7 +2104,7 @@ void CreateChildren(CatalogWindow &state)
     state.treeWidth = state.theme.Px(210);
     state.infoHeight = state.theme.Px(230);
 
-    state.appTitle = CreateWindowExW(0, L"STATIC", L"lntget", WS_CHILD | WS_VISIBLE | SS_LEFT | SS_NOPREFIX,
+    state.appTitle = CreateWindowExW(0, L"STATIC", L"ReliefWin Package Manager", WS_CHILD | WS_VISIBLE | SS_LEFT | SS_NOPREFIX,
                                      0, 0, 10, 10, state.window, reinterpret_cast<HMENU>(IdAppTitle), instance, nullptr);
     state.appSubtitle = CreateWindowExW(0, L"STATIC", L"Signed software catalog", WS_CHILD | WS_VISIBLE | SS_LEFT | SS_NOPREFIX,
                                         0, 0, 10, 10, state.window, reinterpret_cast<HMENU>(IdAppSubtitle), instance, nullptr);
@@ -2548,7 +2548,7 @@ LRESULT CALLBACK CatalogProc(HWND window, UINT message, WPARAM wParam, LPARAM lP
                 ListView_SetItemState(state->list, 0, LVIS_SELECTED | LVIS_FOCUSED, LVIS_SELECTED | LVIS_FOCUSED);
                 ListView_EnsureVisible(state->list, 0, FALSE);
             }
-            std::wstring caption = L"lntget — winget catalog (" + FormatCount(state->catalog.packages.size()) + L" packages)";
+            std::wstring caption = L"ReliefWin Package Manager — winget catalog (" + FormatCount(state->catalog.packages.size()) + L" packages)";
             SetWindowTextW(window, caption.c_str());
             return 0;
         }
@@ -2651,7 +2651,7 @@ Status RunCatalogGui(SourceManager &source, const std::string &initialQuery)
     SystemParametersInfoW(SPI_GETWORKAREA, 0, &work, 0);
     const int width = std::min<int>(state.theme.Px(1040), work.right - work.left - 40);
     const int height = std::min<int>(state.theme.Px(700), work.bottom - work.top - 40);
-    HWND window = CreateWindowExW(0, L"LntGetCatalog", L"lntget — winget catalog",
+    HWND window = CreateWindowExW(0, L"LntGetCatalog", L"ReliefWin Package Manager — winget catalog",
                                   WS_OVERLAPPEDWINDOW,
                                   work.left + (work.right - work.left - width) / 2,
                                   work.top + (work.bottom - work.top - height) / 2,
@@ -2679,8 +2679,8 @@ Status RunCatalogGui(SourceManager &source, const std::string &initialQuery)
     UpdateActionButtons(state);
 
     MessageBoxW(window,
-                L"The winget catalog contains applications published for Windows. Some packages may not install or run correctly on LiberNT yet.",
-                L"lntget compatibility notice", MB_OK | MB_ICONWARNING);
+                L"The winget catalog contains applications published for Windows. Some packages may not install or run correctly on ReliefWin yet.",
+                L"ReliefWin Package Manager compatibility notice", MB_OK | MB_ICONWARNING);
 
     MSG message{};
     while (GetMessageW(&message, nullptr, 0, 0) > 0)

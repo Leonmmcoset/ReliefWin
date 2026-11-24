@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT NT Virtual Memory Subsystem
+ * PROJECT:     ReliefWin NT Virtual Memory Subsystem
  * FILE:        ntoskrnl/nvs/arch/arm/archdef.h
  * PURPOSE:     ARMv7 LPAE memory manager architecture definitions
  *

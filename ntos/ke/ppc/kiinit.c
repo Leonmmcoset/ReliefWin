@@ -134,7 +134,7 @@ KiPpcSystemStartup(_Inout_ PLOADER_PARAMETER_BLOCK LoaderBlock)
     if (Failure != KiPpcStartupNoFailure)
         KiPpcStartupStop(Failure);
 
-    KiPpcConsoleWrite("\nReactOS PowerPC kernel starting, image base ", 44);
+    KiPpcConsoleWrite("\nReliefWin PowerPC kernel starting, image base ", sizeof("\nReliefWin PowerPC kernel starting, image base ") - 1);
     KiPpcStartupPrintHex((ULONG_PTR)&__ImageBase);
     KiPpcConsoleWrite("\n", 1);
 
@@ -156,7 +156,7 @@ KiPpcSystemStartup(_Inout_ PLOADER_PARAMETER_BLOCK LoaderBlock)
 
     if (!KiPpcInstallVectors())
         KiPpcStartupStop(KiPpcStartupVectorFailure);
-    KiPpcConsoleWrite("ReactOS PowerPC kernel: vectors installed\n", 42);
+    KiPpcConsoleWrite("ReliefWin PowerPC kernel: vectors installed\n", sizeof("ReliefWin PowerPC kernel: vectors installed\n") - 1);
     KiPpcIdentifyProcessor(LoaderBlock);
 
     KeSetDmaIoCoherency(1);

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT WinUSB driver
+ * PROJECT:     ReliefWin WinUSB driver
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Bulk and interrupt pipe queues, transfers, policies, cancellation and timeouts
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

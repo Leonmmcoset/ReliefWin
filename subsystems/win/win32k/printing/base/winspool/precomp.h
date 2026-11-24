@@ -70,7 +70,7 @@ VOID UpdateTrayIcon(HANDLE hPrinter, DWORD JobId);
 // devmode.c
 extern void RosConvertAnsiDevModeToUnicodeDevmode(PDEVMODEA pDevModeInput, PDEVMODEW *pDevModeOutput);
 
-extern void RosConvertUnicodeDevModeToAnsiDevmode(PDEVMODEW pDevModeInput, PDEVMODEA pDevModeOutput);
+extern DWORD RosConvertUnicodeDevModeToAnsiDevmode(PDEVMODEW pDevModeInput, PDEVMODEA pDevModeOutput);
 
 //
 // [MS-EMF] 2.2.27 UniversalFontId Object

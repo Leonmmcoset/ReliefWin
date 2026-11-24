@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Terminal
+ * PROJECT:     ReliefWin Terminal
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Terminal window: tab strip, sessions, actions and find bar
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -9,7 +9,7 @@
 
 #include <vssym32.h>
 
-#define WINDOW_CLASS L"LiberNT.Terminal"
+#define WINDOW_CLASS L"ReliefWin.Terminal"
 #define TIMER_SETTINGS 10
 #define FIND_EDIT_ID 900
 #define STRIP_HEIGHT 40
@@ -136,7 +136,7 @@ void
 TerminalWindow::OnCreate()
 {
     ApplyTheme();
-    m_Band.Create(m_hwnd, this, NULL, L"LiberNT.TerminalTabBand");
+    m_Band.Create(m_hwnd, this, NULL, L"ReliefWin.TerminalTabBand");
     m_Band.SetMenuButton(TRUE);
     UpdateTabFont();
     m_View.Create(m_hwnd);

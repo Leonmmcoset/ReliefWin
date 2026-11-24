@@ -387,7 +387,7 @@ extern "C" {
 
 HRESULT WINAPI LoadIFilter(PCWSTR pwcsPath, IUnknown *pUnkOuter, void **ppIUnk);
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 HRESULT BindIFilterFromStorage(IStorage *pStg, IUnknown *pUnkOuter, void **ppIUnk);
 HRESULT BindIFilterFromStream(IStream *pStm, IUnknown *pUnkOuter, void **ppIUnk);
 HRESULT LoadIFilterEx(PCWSTR pwcsPath, DWORD dwFlags, const IID *const riid, void **ppIUnk);

@@ -28,7 +28,7 @@ void help(void)
 {
     fprintf(stdout,
             "\n"
-            "ReactOS File Concatenation Tool\n"
+            "ReliefWin File Concatenation Tool\n"
             "\n"
             "Usage: cat [options] [file [...]]\n"
             "options - Currently ignored\n");

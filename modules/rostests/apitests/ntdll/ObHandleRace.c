@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Close a handle value from another thread while the handle is being created
  * COPYRIGHT:   Copyright 2026 Ostap Brehin <osbre@protonmail.com>
@@ -155,7 +155,7 @@ START_TEST(ObHandleRace)
     RaceSource = NULL;
     RaceRun(RaceCreate, NULL);
 
-    _snwprintf(Buffer, RTL_NUMBER_OF(Buffer) - 1, L"\\BaseNamedObjects\\LiberNTObHandleRace%lu", GetCurrentProcessId());
+    _snwprintf(Buffer, RTL_NUMBER_OF(Buffer) - 1, L"\\BaseNamedObjects\\ReliefWinObHandleRace%lu", GetCurrentProcessId());
     Buffer[RTL_NUMBER_OF(Buffer) - 1] = UNICODE_NULL;
     RtlInitUnicodeString(&Name, Buffer);
     InitializeObjectAttributes(&ObjectAttributes, &Name, 0, NULL, NULL);

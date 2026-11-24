@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 # SPDX-FileCopyrightText: 2026 Ahmed ARIF <arif.ing@outlook.com>
-# Nested build of the GPU renderer of the Linux subsystem with the LiberNT SDK: libepoxy and virglrenderer
+# Nested build of the GPU renderer of the Linux subsystem with the ReliefWin SDK: libepoxy and virglrenderer
 # (MIT, upstream release sources; virglrenderer carries virglrenderer-windows.patch) as static libraries
 # linked into lxgpu.exe.
 

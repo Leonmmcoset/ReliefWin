@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test connection reuse after a gzip response sent in chunks
  * COPYRIGHT:   Copyright 2026 mikuta0407 <mikuta0407@mikuta0407.net>
@@ -143,7 +143,7 @@ static void RunServer(BOOL Close)
     }
     Thread = CreateThread(NULL, 0, ServerThread, NULL, 0, NULL);
 
-    Session = WinHttpOpen(L"LiberNT apitest", WINHTTP_ACCESS_TYPE_NO_PROXY, NULL, NULL, 0);
+    Session = WinHttpOpen(L"ReliefWin apitest", WINHTTP_ACCESS_TYPE_NO_PROXY, NULL, NULL, 0);
     ok(Session != NULL, "WinHttpOpen failed with %lu\n", GetLastError());
     ok(WinHttpSetOption(Session, WINHTTP_OPTION_DECOMPRESSION, &Decompression, sizeof(Decompression)),
        "WinHttpSetOption failed with %lu\n", GetLastError());

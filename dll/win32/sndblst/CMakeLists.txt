@@ -1,6 +1,6 @@
 
 add_definitions(-DDEBUG_NT4)
-include_directories(${REACTOS_SOURCE_DIR}/sdk/include/libernt/libs/sound)
+include_directories(${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/libs/sound)
 spec2def(sndblst.dll sndblst.spec)
 
 list(APPEND SOURCE

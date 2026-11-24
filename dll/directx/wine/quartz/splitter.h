@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT DirectShow
+ * PROJECT:     ReliefWin DirectShow
  * LICENSE:     LGPL-2.1-or-later (https://spdx.org/licenses/LGPL-2.1-or-later)
  * PURPOSE:     Native pull-model splitter filters
  * COPYRIGHT:   Copyright 2010 Maarten Lankhorst for CodeWeavers

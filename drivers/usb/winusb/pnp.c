@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT WinUSB driver
+ * PROJECT:     ReliefWin WinUSB driver
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Plug and Play, configuration and device interfaces
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

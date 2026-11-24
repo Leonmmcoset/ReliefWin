@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Apple ISP Camera Driver
+ * PROJECT:     ReliefWin Apple ISP Camera Driver
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Shared declarations of the Apple silicon ISP camera driver
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -12,9 +12,9 @@
 #include <ks.h>
 #include <ksmedia.h>
 #include <ntstrsafe.h>
-#include <libernt/drivers/fdtdrv.h>
-#include <libernt/drivers/appledart.h>
-#include <libernt/drivers/applepmgr.h>
+#include <reliefwin/drivers/fdtdrv.h>
+#include <reliefwin/drivers/appledart.h>
+#include <reliefwin/drivers/applepmgr.h>
 #include "ispwire.h"
 
 #define ISP_TAG                     'pIpA'

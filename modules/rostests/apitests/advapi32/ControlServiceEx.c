@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Tests for ControlServiceExA/W and NotifyServiceStatusChangeA
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -344,7 +344,7 @@ static void test_server(void)
         return;
     }
 
-    StringCbPrintfW(service_nameW, sizeof(service_nameW), L"LiberNTCtlEx%lu", GetTickCount());
+    StringCbPrintfW(service_nameW, sizeof(service_nameW), L"ReliefWinCtlEx%lu", GetTickCount());
     service = register_serviceW(scm, L"ControlServiceEx", service_nameW, NULL);
     if (!service)
     {

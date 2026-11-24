@@ -1,4 +1,4 @@
-; PROJECT:     LiberNT network tests
+; PROJECT:     ReliefWin network tests
 ; LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
 ; PURPOSE:     Installs the WiFiCx simulated link peer test adapter
 ; COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif193.001@gmail.com>
@@ -7,7 +7,7 @@
 Signature = "$Windows NT$"
 Class = Net
 ClassGUID = {4d36e972-e325-11ce-bfc1-08002be10318}
-Provider = %LiberNT%
+Provider = %ReliefWin%
 DriverVer = 10/29/2026,1.0.0.0
 PnpLockdown = 1
 
@@ -21,12 +21,12 @@ wifiloop.sys = 1,,
 DefaultDestDir = 12
 
 [Manufacturer]
-%LiberNT% = LiberNT,NTamd64,NTarm64
+%ReliefWin% = ReliefWin,NTamd64,NTarm64
 
-[LiberNT.NTamd64]
+[ReliefWin.NTamd64]
 %WifiLoop.DeviceDesc% = WifiLoop_Device, ROOT\WIFILOOP
 
-[LiberNT.NTarm64]
+[ReliefWin.NTarm64]
 %WifiLoop.DeviceDesc% = WifiLoop_Device, ROOT\WIFILOOP
 
 [WifiLoop_Device.NT]
@@ -67,7 +67,7 @@ KmdfService = WifiLoop, WifiLoop_WdfSection
 KmdfLibraryVersion = 1.33
 
 [Strings]
-LiberNT = "LiberNT Project"
-DiskName = "LiberNT NetAdapterCx test disk"
-WifiLoop.DeviceDesc = "LiberNT WiFiCx Test Adapter"
-WifiLoop.ServiceDesc = "LiberNT WiFiCx Test Adapter Service"
+ReliefWin = "ReliefWin Project"
+DiskName = "ReliefWin NetAdapterCx test disk"
+WifiLoop.DeviceDesc = "ReliefWin WiFiCx Test Adapter"
+WifiLoop.ServiceDesc = "ReliefWin WiFiCx Test Adapter Service"

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Tests that glyph run analyses of one font face keep each em size's bounds and pixels when sizes alternate
  * COPYRIGHT:   Copyright 2026 Ahmed Arif <arif.ing@outlook.com>

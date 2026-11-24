@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Boot Loader
+ * PROJECT:     ReliefWin Boot Loader
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Stop the Apple watchdog the firmware leaves running
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -8,7 +8,7 @@
 #include <bl.h>
 #include <arm64.h>
 #include <edk2/Fdt.h>
-#include <libernt/fdtlib.h>
+#include <reliefwin/fdtlib.h>
 
 #define APPLE_WDT_WD1_CUR_TIME   0x10
 #define APPLE_WDT_WD1_BITE_TIME  0x14

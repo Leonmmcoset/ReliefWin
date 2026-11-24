@@ -1,4 +1,4 @@
-# PROJECT:     LiberNT host-native tests
+# PROJECT:     ReliefWin host-native tests
 # LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
 # PURPOSE:     The processor set helpers kernel code under test expects, for fixtures of up to 64 processors
 # COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

@@ -42,7 +42,7 @@
 #include <rosdhcp.h>
 
 #define NDEBUG
-#include <libernt/debug.h>
+#include <reliefwin/debug.h>
 
 //#include <sys/ioctl.h>
 

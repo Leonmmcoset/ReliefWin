@@ -17,7 +17,7 @@
 #include <ide.h>
 #include <ata.h>
 #include <scsi.h>
-#include <libernt/drivers/ata/ata_shared.h>
+#include <reliefwin/drivers/ata/ata_shared.h>
 
 #define NDEBUG
 #include <debug.h>

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test the bytes a hub reports for IOCTL_USB_GET_NODE_CONNECTION_INFORMATION_EX
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

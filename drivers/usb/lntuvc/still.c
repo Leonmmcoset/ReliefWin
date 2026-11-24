@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT USB Camera Driver
+ * PROJECT:     ReliefWin USB Camera Driver
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Still image pin, its trigger and the status interrupt endpoint
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

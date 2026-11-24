@@ -1,20 +1,20 @@
 /*
- * PROJECT:     LiberNT Apple Silicon Audio Driver
+ * PROJECT:     ReliefWin Apple Silicon Audio Driver
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Headphone jack and speaker hardware: MCA, ADMAC, NCO, CS42L84 and TAS2764
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
  */
 
 #include <ntddk.h>
-#include <libernt/drivers/fdtdrv.h>
-#include <libernt/drivers/applepmgr.h>
-#include <libernt/drivers/appledart.h>
-#include <libernt/drivers/applegpio.h>
-#include <libernt/drivers/applei2c.h>
-#include <libernt/drivers/applenco.h>
-#include <libernt/drivers/appleadmac.h>
-#include <libernt/drivers/applemca.h>
-#include <libernt/drivers/applertkit.h>
+#include <reliefwin/drivers/fdtdrv.h>
+#include <reliefwin/drivers/applepmgr.h>
+#include <reliefwin/drivers/appledart.h>
+#include <reliefwin/drivers/applegpio.h>
+#include <reliefwin/drivers/applei2c.h>
+#include <reliefwin/drivers/applenco.h>
+#include <reliefwin/drivers/appleadmac.h>
+#include <reliefwin/drivers/applemca.h>
+#include <reliefwin/drivers/applertkit.h>
 #include "hardware.h"
 #include "tas2764.h"
 #include "protect.h"

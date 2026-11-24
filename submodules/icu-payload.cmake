@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-only
 # SPDX-FileCopyrightText: 2026 Ahmed ARIF
 #
-# Full ICU icu.dll of a LiberNT release. The image keeps the stub icu.dll; the
+# Full ICU icu.dll of a ReliefWin release. The image keeps the stub icu.dll; the
 # second stage installs libernt-icu-<release>-<arch>.msi over it. The build
 # only catalogs the payload icu.dll so code integrity accepts the installed one.
 # sdk/tools/icu_payload.py builds the payload.
@@ -34,7 +34,7 @@ else()
         return()
     endif()
     set(_payload_zip "${_payload_dir}/${_payload_name}")
-    libernt_download_payload(LiberNT/LiberNT "icu-${ICU_PAYLOAD_RELEASE}" "${_payload_name}"
+    reliefwin_download_payload(LiberNT/LiberNT "icu-${ICU_PAYLOAD_RELEASE}" "${_payload_name}"
         "${_payload_zip}" "${_payload_hash}" _payload_error)
     if(NOT _payload_error STREQUAL "")
         message(STATUS "ICU: downloading the payload failed (${_payload_error}); "

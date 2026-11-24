@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT runtime loader
+ * PROJECT:     ReliefWin runtime loader
  * LICENSE:     GPL-2.0-or-later
  * PURPOSE:     Module dependency nodes and load references
  * COPYRIGHT:   Copyright 2026 LiberNT contributors

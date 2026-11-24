@@ -23,7 +23,7 @@
 #include <atlwin.h>
 #include <atlstr.h>
 #include <setupapi.h>
-#include <libernt/trayicons.h>
+#include <reliefwin/trayicons.h>
 #include <shellapi.h>
 
 #include <wine/debug.h>

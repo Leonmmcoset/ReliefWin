@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT USB Port Driver
+ * PROJECT:     ReliefWin USB Port Driver
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * COPYRIGHT:   Copyright 2025 Ahmed ARIF <arif.ing@outlook.com>
  */
@@ -16,7 +16,7 @@
 #include <usbdlib.h>
 #include <drivers/usbport/usbmport.h>
 #include <drivers/kdusbshare.h>
-#include <libernt/drivers/usbcapability.h>
+#include <reliefwin/drivers/usbcapability.h>
 
 #include "hardware.h"
 

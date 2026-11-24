@@ -1,7 +1,7 @@
 #include <user32.h>
 #include <ndk/cmfuncs.h>
 #include <strsafe.h>
-#include <libernt/colorscheme.h>
+#include <reliefwin/colorscheme.h>
 
 #define MAX_USER_MODE_DRV_BUFFER 526
 

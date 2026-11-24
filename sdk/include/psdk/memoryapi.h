@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT PSDK
+ * PROJECT:     ReliefWin PSDK
  * LICENSE:     MIT (https://spdx.org/licenses/MIT)
  * PURPOSE:     Memory management API set
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -340,7 +340,7 @@ BOOL WINAPI SetProcessValidCallTargets(HANDLE hProcess, PVOID VirtualAddress, SI
 LPVOID WINAPI VirtualAllocExNuma(HANDLE hProcess, LPVOID lpAddress, SIZE_T dwSize, DWORD flAllocationType, DWORD flProtect, DWORD nndPreferred);
 BOOL WINAPI VirtualProtectFromApp(PVOID Address, SIZE_T Size, ULONG NewProtection, PULONG OldProtection);
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 WINBASEAPI BOOL WINAPI AllocateUserPhysicalPages2(HANDLE ObjectHandle, PULONG_PTR NumberOfPages, PULONG_PTR PageArray, PMEM_EXTENDED_PARAMETER ExtendedParameters, ULONG ExtendedParameterCount);
 WINBASEAPI BOOL WINAPI GetMemoryErrorHandlingCapabilities(PULONG Capabilities);
 WINBASEAPI BOOL WINAPI GetNumaNodeMemoryClosestInitiatorNode(USHORT TargetNodeNumber, USHORT *InitiatorNodeNumber);

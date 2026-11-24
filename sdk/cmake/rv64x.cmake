@@ -1,4 +1,4 @@
-# PROJECT:     LiberNT Build System
+# PROJECT:     ReliefWin Build System
 # PURPOSE:     Optional RV64X compiler (dll/win32/amd64emu/RV64X.md)
 # LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
 # COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

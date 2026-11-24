@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     What the configuration manager keeps to itself
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -40,7 +40,7 @@ typedef struct _CM_CALLBACK_ENTRY
  * Being told when one of the hives the machine is made of has been read in.
  * INFO_NEEDED: Windows 11 exports CmRegisterMachineHiveLoadedNotification but
  * publishes neither its argument's layout nor its callback, and nothing in the
- * tree calls it, so this is the shape LiberNT uses.
+ * tree calls it, so this is the shape ReliefWin uses.
  */
 typedef VOID
 (NTAPI *PCM_MACHINE_HIVE_LOADED_CALLBACK)(

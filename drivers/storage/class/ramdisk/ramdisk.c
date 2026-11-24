@@ -24,7 +24,7 @@
 #include <iotypes.h>
 #include <rtlfuncs.h>
 #include <arc/arc.h>
-#include <libernt/drivers/ntddrdsk.h>
+#include <reliefwin/drivers/ntddrdsk.h>
 #include "../../../filesystems/fs_rec/fs_rec.h"
 #include <stdio.h>
 #include <limits.h>

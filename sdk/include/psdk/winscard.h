@@ -617,7 +617,7 @@ typedef struct READER_SEL_REQUEST *PREADER_SEL_REQUEST;
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 LONG WINAPI GetOpenCardNameA(LPOPENCARDNAMEA);
 LONG WINAPI GetOpenCardNameW(LPOPENCARDNAMEW);
 LONG WINAPI SCardAudit(SCARDCONTEXT hContext, DWORD dwEvent);

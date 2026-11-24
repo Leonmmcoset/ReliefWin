@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT HAL
+ * PROJECT:     ReliefWin HAL
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Apple AIC2/AIC3 interrupt backend with timer and fast-IPI FIQs
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -10,10 +10,10 @@
 #include <ndk/kefuncs.h>
 #include <ioaccess.h>
 #include <halfuncs.h>
-#include <libernt/arm64/sysreg.h>
-#include <libernt/hal/halext.h>
+#include <reliefwin/arm64/sysreg.h>
+#include <reliefwin/hal/halext.h>
 #include "apple_aic.h"
-#include <libernt/drivers/applepcie.h>
+#include <reliefwin/drivers/applepcie.h>
 
 #define NDEBUG
 #include <debug.h>

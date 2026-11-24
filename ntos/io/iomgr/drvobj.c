@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Driver objects, their extensions and their coming and going
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

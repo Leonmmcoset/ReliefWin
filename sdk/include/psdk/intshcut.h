@@ -174,7 +174,7 @@ typedef struct IUniformResourceLocatorWVtbl IUniformResourceLocatorWVtbl;
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 HRESULT WINAPI MIMEAssociationDialogA(HWND hwndParent, DWORD dwInFlags, PCSTR pcszFile, PCSTR pcszMIMEContentType, PSTR pszAppBuf, UINT ucAppBufLen);
 HRESULT WINAPI MIMEAssociationDialogW(HWND hwndParent, DWORD dwInFlags, PCWSTR pcszFile, PCWSTR pcszMIMEContentType, PWSTR pszAppBuf, UINT ucAppBufLen);
 HRESULT WINAPI URLAssociationDialogA(HWND hwndParent, DWORD dwInFlags, PCSTR pcszFile, PCSTR pcszURL, PSTR pszAppBuf, UINT ucAppBufLen);

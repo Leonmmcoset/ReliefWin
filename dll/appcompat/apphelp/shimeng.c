@@ -1531,7 +1531,7 @@ BOOL WINAPI SE_DynamicShim(LPCWSTR ProcessImage, HSDB hsdb, PVOID pQueryResult, 
 {
     if (g_bShimEngInitialized)
     {
-        SHIMENG_MSG("ReactOS HACK(CORE-13283): ShimEng already initialized!\n");
+        SHIMENG_MSG("ReliefWin HACK(CORE-13283): ShimEng already initialized!\n");
         return TRUE;
     }
 

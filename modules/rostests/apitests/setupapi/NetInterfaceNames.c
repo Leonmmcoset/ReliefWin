@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Network adapter interfaces are registered under names without embedded NULs
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -13,7 +13,7 @@
 #include <ndisguid.h>
 
 #define NET_CLASS_KEY L"SYSTEM\\CurrentControlSet\\Control\\DeviceClasses\\{cac88484-7515-4c03-82e6-71a87abac361}"
-#define COPY_TARGET_KEY L"Software\\LiberNTApiTest\\NetInterfaceNames"
+#define COPY_TARGET_KEY L"Software\\ReliefWinApiTest\\NetInterfaceNames"
 
 typedef LSTATUS (WINAPI *PFN_REG_COPY_TREE_W)(HKEY, LPCWSTR, HKEY);
 
@@ -92,7 +92,7 @@ TestRegistryNames(VOID)
             ok(Error == ERROR_SUCCESS, "RegCopyTreeW(network interface class) returned %ld\n", Error);
             RegCloseKey(Target);
             RegDeleteTreeW(HKEY_CURRENT_USER, COPY_TARGET_KEY);
-            RegDeleteKeyW(HKEY_CURRENT_USER, L"Software\\LiberNTApiTest");
+            RegDeleteKeyW(HKEY_CURRENT_USER, L"Software\\ReliefWinApiTest");
         }
     }
 

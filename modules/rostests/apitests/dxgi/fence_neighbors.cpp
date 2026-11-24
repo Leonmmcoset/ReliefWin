@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     GPU signals of D3D11 fences while other devices come and go beside their pages
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arifing193@gmail.com>

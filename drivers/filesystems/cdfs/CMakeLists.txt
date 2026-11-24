@@ -1,5 +1,5 @@
 
-include_directories(${REACTOS_SOURCE_DIR}/sdk/include/libernt/drivers)
+include_directories(${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/drivers)
 
 list(APPEND SOURCE
     allocsup.c

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     IRegisteredTask::Run starts the task's Exec action with its parameters
  * COPYRIGHT:   Copyright 2026 Ahmed Arif <arif193@gmail.com>
@@ -11,7 +11,7 @@
 #include <initguid.h>
 #include <taskschd.h>
 
-#define TASK_NAME L"LiberNTRunTaskTest"
+#define TASK_NAME L"ReliefWinRunTaskTest"
 
 static const WCHAR TaskXml[] =
     L"<?xml version=\"1.0\" encoding=\"UTF-16\"?>\n"
@@ -86,7 +86,7 @@ static void TestRun(ITaskFolder *Root, PCWSTR Output)
     if (Task == NULL)
         return;
     V_VT(&Params) = VT_BSTR;
-    V_BSTR(&Params) = SysAllocString(L"liberntran");
+    V_BSTR(&Params) = SysAllocString(L"reliefwinran");
     Start = GetTickCount();
     hr = IRegisteredTask_Run(Task, Params, &Running);
     VariantClear(&Params);
@@ -102,7 +102,7 @@ static void TestRun(ITaskFolder *Root, PCWSTR Output)
     if (hr == S_OK)
     {
         ok(ReadOutput(Output, Text, sizeof(Text)), "the action wrote nothing to %s\n", wine_dbgstr_w(Output));
-        ok(strstr(Text, "liberntran") != NULL, "the action did not get its parameter: %s\n", Text);
+        ok(strstr(Text, "reliefwinran") != NULL, "the action did not get its parameter: %s\n", Text);
         trace("the action ran within %lu ms\n", GetTickCount() - Start);
     }
     IRegisteredTask_Release(Task);
@@ -151,7 +151,7 @@ START_TEST(RunTask)
     if (SUCCEEDED(hr))
     {
         GetTempPathW(ARRAYSIZE(Output), Output);
-        wcscat(Output, L"libernt_runtask.txt");
+        wcscat(Output, L"reliefwin_runtask.txt");
         DeleteFileW(Output);
         TestRun(Root, Output);
         TestRefused(Root, L"false", L"true", SCHED_E_TASK_DISABLED, Output);

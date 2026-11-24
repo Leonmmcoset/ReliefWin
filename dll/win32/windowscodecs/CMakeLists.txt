@@ -7,10 +7,10 @@ add_definitions(
 remove_definitions(-D_CRT_NON_CONFORMING_SWPRINTFS)
 
 include_directories(
-    ${REACTOS_SOURCE_DIR}/sdk/include/libernt/libs/libjpeg
-    ${REACTOS_SOURCE_DIR}/sdk/include/libernt/libs/zlib
-    ${REACTOS_SOURCE_DIR}/sdk/include/libernt/libs/libpng
-    ${REACTOS_SOURCE_DIR}/sdk/include/libernt/libs/libtiff)
+    ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/libs/libjpeg
+    ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/libs/zlib
+    ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/libs/libpng
+    ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/libs/libtiff)
 
 spec2def(windowscodecs.dll windowscodecs.spec ADD_IMPORTLIB)
 add_rpcproxy_files(windowscodecs_wincodec.idl)

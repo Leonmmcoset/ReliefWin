@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Linux Subsystem
+ * PROJECT:     ReliefWin Linux Subsystem
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     virtio-gpu DRM render node backed by a Windows GPU renderer process
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

@@ -1,4 +1,4 @@
-# PROJECT:     LiberNT host-native tests
+# PROJECT:     ReliefWin host-native tests
 # LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
 # PURPOSE:     ext4 driver core on real mkfs.ext4 images, checked by e2fsck: file operations, growing and shrinking
 # COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

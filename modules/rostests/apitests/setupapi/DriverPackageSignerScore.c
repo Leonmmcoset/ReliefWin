@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test the signer score the driver database records for each driver package
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -34,8 +34,8 @@ static const char TestInf[] =
     "AddService=,2\r\n"
     "\r\n"
     "[Strings]\r\n"
-    "Provider=\"LiberNT Signer Score Test\"\r\n"
-    "Device=\"LiberNT signer score test device\"\r\n";
+    "Provider=\"ReliefWin Signer Score Test\"\r\n"
+    "Device=\"ReliefWin signer score test device\"\r\n";
 
 static BOOL
 ReadSignerScore(HKEY Packages, const WCHAR *Package, DWORD *Score)

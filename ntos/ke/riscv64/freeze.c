@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later),
  *              with portions under MIT (https://spdx.org/licenses/MIT)
  * PURPOSE:     riscv64 processor freeze and thaw for the kernel debugger

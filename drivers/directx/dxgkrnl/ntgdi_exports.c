@@ -1,12 +1,12 @@
 /*
- * PROJECT:     LiberNT WDDM DirectX Graphics Kernel
+ * PROJECT:     ReliefWin WDDM DirectX Graphics Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Windows 11 public NtGdi D3DKMT export entry points
  * COPYRIGHT:   Copyright 2026 LiberNT Contributors
  */
 
 #include "dxgkrnl_private.h"
-#include <libernt/rddm/rxgkntgdi.h>
+#include <reliefwin/rddm/rxgkntgdi.h>
 
 /*
  * Windows keeps these syscall entry points in dxgkrnl.  ReactOS keeps user

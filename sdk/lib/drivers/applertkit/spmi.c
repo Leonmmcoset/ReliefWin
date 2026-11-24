@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Apple RTKit Library
+ * PROJECT:     ReliefWin Apple RTKit Library
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Apple silicon SPMI controller and PMU NVMEM cell reads
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -8,8 +8,8 @@
 #ifndef UNIT_TEST
 #include <ntddk.h>
 #endif
-#include <libernt/drivers/applepmgr.h>
-#include <libernt/drivers/applespmi.h>
+#include <reliefwin/drivers/applepmgr.h>
+#include <reliefwin/drivers/applespmi.h>
 
 #define SPMI_STATUS                 0x00
 #define SPMI_STATUS_RX_EMPTY        0x01000000

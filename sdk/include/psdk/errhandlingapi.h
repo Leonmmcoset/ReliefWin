@@ -43,7 +43,7 @@ extern "C" {
 
 BOOL WINAPI SetThreadErrorMode(DWORD dwNewMode, LPDWORD lpOldMode);
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 WINBASEAPI void WINAPI TerminateProcessOnMemoryExhaustion(SIZE_T FailedAllocationSize);
 
 #ifdef __cplusplus

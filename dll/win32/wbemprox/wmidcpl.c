@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT WMI
+ * PROJECT:     ReliefWin WMI
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Decoupled providers: IWbemDecoupledRegistrar and the requests sent to the provider process
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -18,7 +18,7 @@
 #include <assert.h>
 #include "wmirepo.h"
 
-#define WMI_DECOUPLED_KEY L"SOFTWARE\\LiberNT\\Wbem\\Decoupled"
+#define WMI_DECOUPLED_KEY L"SOFTWARE\\ReliefWin\\Wbem\\Decoupled"
 #define WMI_PROVIDER_TIMEOUT 60000
 #define WMI_PIPE_BUFFER 0x10000
 #define WMI_MAX_MESSAGE (64 * 1024 * 1024)
@@ -691,7 +691,7 @@ WmiRegistrar_Register(IWbemDecoupledBasicEventProvider *Iface, LONG Flags, IWbem
     }
     if (SUCCEEDED(hr) && Registrar->Provider)
     {
-        swprintf(Registrar->PipeName, ARRAYSIZE(Registrar->PipeName), L"\\\\.\\pipe\\LiberNT.Wmi.%lu.%p", ProcessId,
+        swprintf(Registrar->PipeName, ARRAYSIZE(Registrar->PipeName), L"\\\\.\\pipe\\ReliefWin.Wmi.%lu.%p", ProcessId,
                  Registrar);
         ResetEvent(Registrar->Stop);
         ResetEvent(Registrar->Ready);

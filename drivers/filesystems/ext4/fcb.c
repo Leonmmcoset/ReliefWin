@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT ext4 file system driver
+ * PROJECT:     ReliefWin ext4 file system driver
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Names, lookups, file control blocks and the mapping of inode attributes
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

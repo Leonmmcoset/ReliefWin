@@ -14,10 +14,10 @@
 #include <arm64.h>
 #include <blefi.h>
 #include <drivers/acpi/acpi.h>
-#include <libernt/arm64/acpi.h>
-#include <libernt/arm64/early_uart.h>
+#include <reliefwin/arm64/acpi.h>
+#include <reliefwin/arm64/early_uart.h>
 #include <edk2/Fdt.h>
-#include <libernt/fdtlib.h>
+#include <reliefwin/fdtlib.h>
 extern EFI_SYSTEM_TABLE *GlobalSystemTable;
 DBG_DEFAULT_CHANNEL(WINDOWS);
 

@@ -38,7 +38,7 @@ typedef struct IAMDirectSoundVtbl IAMDirectSoundVtbl;
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 HRESULT AMValidateAndFixWaveFormatEx(WAVEFORMATEX *pwfx, DWORD cb);
 
 #ifdef __cplusplus

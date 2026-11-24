@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Timers, the table that holds them, and what happens when one comes due
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

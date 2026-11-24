@@ -1,4 +1,4 @@
-# PROJECT:     LiberNT host-native tests
+# PROJECT:     ReliefWin host-native tests
 # LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
 # PURPOSE:     The kernel's own wait and signal routines, run by host threads standing for processors, lose no wake with or without the dispatcher database lock
 # COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

@@ -12,10 +12,10 @@
 #include <ntdll.h>
 #include <winnls.h>
 #include <apisets.h>
-#include <libernt/chpe.h>
+#include <reliefwin/chpe.h>
 
 #ifdef WOW64_I386_RUNTIME
-#include <libernt/wow64shared.h>
+#include <reliefwin/wow64shared.h>
 #define EXPLICIT_64BIT
 #include <ndk/peb_teb.h>
 #undef EXPLICIT_64BIT

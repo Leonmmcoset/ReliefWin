@@ -3,6 +3,6 @@
 #define REACTOS_STR_INTERNAL_NAME	"d3d8thk\0"
 #define REACTOS_STR_ORIGINAL_FILENAME	"d3d8thk.dll\0"
 
-#include <libernt/reactx.h>
+#include <reliefwin/reactx.h>
 
-#include <libernt/version.rc>
+#include <reliefwin/version.rc>

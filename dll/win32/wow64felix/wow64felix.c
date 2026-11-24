@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT WoW64 x86 CPU
+ * PROJECT:     ReliefWin WoW64 x86 CPU
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Run 32-bit x86 code of WoW64 processes with the felix86 recompiler
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -13,7 +13,7 @@
 #include <ntstatus.h>
 #include <ndk/ntndk.h>
 #include <pseh/pseh2.h>
-#include <libernt/wow64shared.h>
+#include <reliefwin/wow64shared.h>
 #include "../amd64emu/felix86/bridge.h"
 
 #define FELIX_TLS_THREAD     2

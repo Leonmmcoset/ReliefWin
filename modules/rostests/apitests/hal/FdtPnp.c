@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Unit tests for the HAL Plug and Play enumeration of device-tree devices
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -11,7 +11,7 @@
 #include <ndk/ntndk.h>
 #include <winreg.h>
 #include <wchar.h>
-#include <libernt/fdtlib.h>
+#include <reliefwin/fdtlib.h>
 
 #define UNIT_TEST
 

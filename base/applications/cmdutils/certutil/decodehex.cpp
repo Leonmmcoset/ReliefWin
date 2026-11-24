@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT certutil
+ * PROJECT:     ReliefWin certutil
  * LICENSE:     MIT (https://spdx.org/licenses/MIT)
  * PURPOSE:     CertUtil decodehex implementation
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

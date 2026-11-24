@@ -21,7 +21,7 @@
 /* If you want to see the DPRINT() output in your debugger,
  * remove the following line (or comment it out): */
 #define NDEBUG
-#include <libernt/debug.h>
+#include <reliefwin/debug.h>
 
 static NTSTATUS TdiCall(
     PIRP Irp,

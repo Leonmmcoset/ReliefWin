@@ -6495,7 +6495,7 @@ WINUSERAPI void WINAPI UnregisterUserApiHook(void);
 #endif /* __WINESRC__ */
 
 #ifdef _WINE
-#include "libernt/undocuser.h"
+#include "reliefwin/undocuser.h"
 #endif
 
 #ifdef _MSC_VER
@@ -7763,7 +7763,7 @@ typedef struct tagTOUCHPAD_PARAMETERS_V2 TOUCHPAD_PARAMETERS_V2;
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 #if (NTDDI_VERSION >= NTDDI_WIN11_GE)
 WINUSERAPI BOOL WINAPI ApplyWindowAction(HWND hwnd, WINDOW_ACTION *pAction);
 WINUSERAPI BOOL WINAPI ConvertPrimaryPointerToMouseDrag(void);
@@ -7992,7 +7992,7 @@ typedef const TOUCHINPUT *PCTOUCHINPUT;
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 WINUSERAPI BOOL WINAPI CloseGestureInfoHandle(HGESTUREINFO hGestureInfo);
 WINUSERAPI BOOL WINAPI CloseTouchInputHandle(HTOUCHINPUT hTouchInput);
 WINUSERAPI BOOL WINAPI GetDisplayAutoRotationPreferences(ORIENTATION_PREFERENCE *pOrientation);

@@ -700,7 +700,7 @@ DWORD WINAPI WNetGetResourceParentW(LPNETRESOURCEW lpNetResource, LPVOID lpBuffe
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 DWORD WINAPI WNetAddConnection4A(HWND hwndOwner, LPNETRESOURCEA lpNetResource, PVOID pAuthBuffer, DWORD cbAuthBuffer, DWORD dwFlags, PBYTE lpUseOptions, DWORD cbUseOptions);
 DWORD WINAPI WNetAddConnection4W(HWND hwndOwner, LPNETRESOURCEW lpNetResource, PVOID pAuthBuffer, DWORD cbAuthBuffer, DWORD dwFlags, PBYTE lpUseOptions, DWORD cbUseOptions);
 DWORD WINAPI WNetRestoreSingleConnectionW(HWND hwndParent, LPCWSTR lpDevice, BOOL fUseUI);

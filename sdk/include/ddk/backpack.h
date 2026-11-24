@@ -25,7 +25,7 @@ typedef struct _THROTTLING_STATE
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 void NTAPI RxInitiateOrContinueThrottling(PTHROTTLING_STATE pBP);
 BOOLEAN NTAPI RxShouldRequestBeThrottled(PTHROTTLING_STATE pBP);
 

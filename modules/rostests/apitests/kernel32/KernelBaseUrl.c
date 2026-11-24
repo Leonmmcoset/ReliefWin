@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Tests for the KernelBase URL functions UrlEscapeA, UrlFixupW, UrlIsA, UrlIsW and IsInternetESCEnabled
  * COPYRIGHT:   Copyright 2026 Ahmed Arif <arif.ing@outlook.com>

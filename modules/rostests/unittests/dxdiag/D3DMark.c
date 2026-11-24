@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test the rotating mark of the DirectX Diagnostic Tool's Direct3D tests
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -15,10 +15,10 @@
 #define VIEW_HEIGHT 180
 #define FRAME_STEP_MS 80
 #define FRAME_LAST_MS 12000
-#define MARK_BLUE 0xff0161b6
-#define MARK_WIDTH 407.0
-#define MARK_HEIGHT 356.0
-#define MARK_STROKE 88.0
+#define MARK_BLUE 0xff005b9e
+#define MARK_LIGHT_BLUE 0xff0178d4
+#define MARK_WIDTH 478.0
+#define MARK_HEIGHT 460.0
 
 static DWORD Painted[VIEW_HEIGHT][VIEW_WIDTH];
 static FLOAT PaintedRhw[VIEW_HEIGHT][VIEW_WIDTH];
@@ -123,9 +123,22 @@ static VOID TestDrawOrder(VOID)
 
 static VOID TestFacingTheViewer(VOID)
 {
-    LONG Left = VIEW_WIDTH, Right = -1, Top = VIEW_HEIGHT, Bottom = -1, Row, x, y;
-    LONG Runs[4][2];
-    UINT RunCount = 0;
+    static const struct
+    {
+        FLOAT x;
+        FLOAT y;
+        DWORD Color;
+    } Samples[] =
+    {
+        {0.25f, 0.25f, MARK_LIGHT_BLUE},
+        {0.75f, 0.65f, MARK_BLUE},
+        {0.5f, 0.5f, MARK_BLUE},
+        {0.1f, 0.1f, 0},
+        {0.3f, 0.35f, 0},
+        {0.7f, 0.5f, 0},
+    };
+    LONG Left = VIEW_WIDTH, Right = -1, Top = VIEW_HEIGHT, Bottom = -1, x, y;
+    UINT Light = 0, Dark = 0, i;
     double Width, Height;
 
     if (!Render(0))
@@ -134,41 +147,30 @@ static VOID TestFacingTheViewer(VOID)
     {
         for (x = 0; x < VIEW_WIDTH; ++x)
         {
-            if (Painted[y][x] != MARK_BLUE)
+            if (!Painted[y][x])
                 continue;
             Left = min(Left, x);
             Right = max(Right, x);
             Top = min(Top, y);
             Bottom = max(Bottom, y);
+            Light += Painted[y][x] == MARK_LIGHT_BLUE;
+            Dark += Painted[y][x] == MARK_BLUE;
         }
     }
-    ok(Right >= Left && Bottom >= Top, "No face in the mark's colour\n");
+    ok(Light > 0 && Dark > 0, "Mark has %u light and %u dark blue pixels\n", Light, Dark);
     if (Right < Left || Bottom < Top)
         return;
 
     Width = Right - Left + 1;
     Height = Bottom - Top + 1;
     ok(fabs(Height / Width - MARK_HEIGHT / MARK_WIDTH) < 0.02, "Mark is %.0f x %.0f pixels\n", Width, Height);
-    ok(Painted[VIEW_HEIGHT / 2][VIEW_WIDTH / 2] == 0, "The middle of the mark is drawn: 0x%08lx\n", Painted[VIEW_HEIGHT / 2][VIEW_WIDTH / 2]);
-
-    Row = (Top + Bottom) / 2;
-    for (x = Left; x <= Right && RunCount < ARRAYSIZE(Runs); ++x)
+    for (i = 0; i < ARRAYSIZE(Samples); ++i)
     {
-        if (Painted[Row][x] != MARK_BLUE || (x > Left && Painted[Row][x - 1] == MARK_BLUE))
-            continue;
-        Runs[RunCount][0] = x;
-        while (x <= Right && Painted[Row][x] == MARK_BLUE)
-            ++x;
-        Runs[RunCount++][1] = x - 1;
+        x = (LONG)(VIEW_WIDTH * 0.5f + (Samples[i].x - 0.5f) * 2.2f * VIEW_HEIGHT * 0.3f);
+        y = (LONG)(VIEW_HEIGHT * 0.5f + (Samples[i].y - 0.5f) * 2.2f * MARK_HEIGHT / MARK_WIDTH * VIEW_HEIGHT * 0.3f);
+        ok(Painted[y][x] == Samples[i].Color, "Mark sample %u is 0x%08lx, expected 0x%08lx\n",
+           i, Painted[y][x], Samples[i].Color);
     }
-    ok(RunCount == 2, "%u strokes cross the middle row\n", RunCount);
-    if (RunCount != 2)
-        return;
-    ok(fabs((Runs[0][1] - Runs[0][0] + 1) - Width * MARK_STROKE / MARK_WIDTH) <= 1.5,
-       "Left stroke is %ld pixels of %.0f\n", Runs[0][1] - Runs[0][0] + 1, Width);
-    ok(fabs((Runs[1][1] - Runs[1][0] + 1) - Width * MARK_STROKE / MARK_WIDTH) <= 1.5,
-       "Right stroke is %ld pixels of %.0f\n", Runs[1][1] - Runs[1][0] + 1, Width);
-    ok(Runs[0][0] == Left && Runs[1][1] == Right, "Strokes span %ld-%ld, mark %ld-%ld\n", Runs[0][0], Runs[1][1], Left, Right);
 }
 
 static VOID TestClipSpace(VOID)
@@ -181,7 +183,7 @@ static VOID TestClipSpace(VOID)
     };
     static const FLOAT Expected[ARRAYSIZE(Input)][8] =
     {
-        { -1.0f, 1.0f, 0.25f, 1.0f, 1.0f / 255.0f, 97.0f / 255.0f, 182.0f / 255.0f, 1.0f },
+        { -1.0f, 1.0f, 0.25f, 1.0f, 0.0f, 91.0f / 255.0f, 158.0f / 255.0f, 1.0f },
         { 1.0f, -1.0f, 0.75f, 1.0f, 1.0f, 0.0f, 0.0f, 128.0f / 255.0f },
         { 0.0f, 0.5f, 0.5f, 1.0f, 0.0f, 1.0f, 0.0f, 1.0f },
     };

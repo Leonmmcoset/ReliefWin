@@ -580,7 +580,7 @@ NTAPI
 HalpAcpiFirmwareDescribesDevices(VOID)
 {
     return HalAcpiGetTable(NULL, FADT_SIGNATURE) != NULL &&
-           HaliGetCachedAcpiTable(FADT_SIGNATURE, "LBRNT", "DTPLATFM") == NULL;
+           HaliGetCachedAcpiTable(FADT_SIGNATURE, "RWIN", "DTPLATFM") == NULL;
 }
 
 static

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     IDXGIDevice residency queries, resource offers and reclaims of a Direct3D 11 device
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arifing193@gmail.com>

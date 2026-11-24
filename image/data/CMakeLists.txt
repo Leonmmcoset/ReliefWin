@@ -146,122 +146,122 @@ set(dir_quicklaunch             "reactos/system32/config/systemprofile/AppData/R
 
 cmdenvvar(envvar_systemdrive "SystemDrive" TRUE)
 cmdenvvar(envvar_archdir     "PROCESSOR_ARCHITECTURE:x86=I386" TRUE)
-add_livecd_shortcut("Install LiberNT"
+add_livecd_shortcut("安装 ReliefWin"
     "shell:system\\cmd.exe"
-    CMDLINE_ARGS "/D /E:ON /C \"start ${envvar_systemdrive}\\${envvar_archdir}\\libernt.exe\""
-    ICON "${envvar_systemdrive}\\${ARCH}\\libernt.exe"
+    CMDLINE_ARGS "/D /E:ON /C \"start ${envvar_systemdrive}\\${envvar_archdir}\\reliefwin.exe\""
+    ICON "${envvar_systemdrive}\\${ARCH}\\reliefwin.exe"
     MINIMIZE
     DESTINATION "${dir_allusers_desktop}")
-add_livecd_shortcut("Finish Setup"
+add_livecd_shortcut("完成设置"
     "shell:system\\oobe\\oobe.exe" ICON_INDEX 0
     DESTINATION "${dir_startmenu_programs}"
     FOR preinstall)
 
-add_livecd_shortcut("Read Me"
+add_livecd_shortcut("使用说明"
     "shell:windows\\readme.txt"
     ICON "${envvar_systemroot}\\system32\\shell32.dll" ICON_INDEX -152
     DESTINATION "${dir_allusers_desktop}")
-add_livecd_shortcut("LiberNT Explorer"
+add_livecd_shortcut("ReliefWin 资源管理器"
     "shell:windows\\explorer.exe" ICON_INDEX 1
     WORKDIR "${envvar_homedrive}${envvar_homepath}"
     DESTINATION "${dir_startmenu_programs}" "${dir_quicklaunch}")
-add_livecd_shortcut("Terminal"
+add_livecd_shortcut("终端"
     "shell:system\\terminal.exe" ICON_INDEX 0
     WORKDIR "${envvar_homedrive}${envvar_homepath}"
     DESTINATION "${dir_startmenu_accessories}" "${dir_quicklaunch}")
-add_livecd_shortcut("Command Prompt"
+add_livecd_shortcut("命令提示符"
     "shell:system\\cmd.exe" ICON_INDEX 0
     WORKDIR "${envvar_homedrive}${envvar_homepath}"
     DESTINATION "${dir_startmenu_accessories}")
-add_livecd_shortcut("Applications Manager"
+add_livecd_shortcut("应用程序管理器"
     "shell:system\\rapps.exe" ICON_INDEX 0
     DESTINATION "${dir_startmenu_programs}")
-add_livecd_shortcut("Device Manager"
+add_livecd_shortcut("设备管理器"
     "shell:system\\devmgmt.exe" ICON_INDEX 0
     DESTINATION "${dir_startmenu_admintools}")
-add_livecd_shortcut("Disk Management"
+add_livecd_shortcut("磁盘管理"
     "shell:system\\diskmgmt.exe" ICON_INDEX 0
     DESTINATION "${dir_startmenu_admintools}")
-add_livecd_shortcut("Event Viewer"
+add_livecd_shortcut("事件查看器"
     "shell:system\\eventvwr.exe" ICON_INDEX 0
     DESTINATION "${dir_startmenu_admintools}")
-add_livecd_shortcut("Service Manager"
+add_livecd_shortcut("服务"
     "shell:system\\servman.exe" ICON_INDEX 0
     DESTINATION "${dir_startmenu_admintools}")
-add_livecd_shortcut("System Configuration"
+add_livecd_shortcut("系统配置程序"
     "shell:system\\msconfig.exe" ICON_INDEX 0
     DESTINATION "${dir_startmenu_admintools}")
-add_livecd_shortcut("Magnify"
+add_livecd_shortcut("放大镜"
     "shell:system\\magnify.exe" ICON_INDEX 0
     DESTINATION "${dir_startmenu_accessibility}")
-add_livecd_shortcut("On-Screen Keyboard"
+add_livecd_shortcut("屏幕键盘"
     "shell:system\\osk.exe" ICON_INDEX 0
     DESTINATION "${dir_startmenu_accessibility}")
-add_livecd_shortcut("Remote Desktop Connection"
+add_livecd_shortcut("远程桌面连接"
     "shell:system\\mstsc.exe" ICON_INDEX 0
     WORKDIR "${envvar_homedrive}${envvar_homepath}"
     DESTINATION "${dir_startmenu_comms}")
-add_livecd_shortcut("Multimedia Player"
+add_livecd_shortcut("媒体播放器"
     "shell:system\\mplay32.exe" ICON_INDEX 0
     WORKDIR "${envvar_homedrive}${envvar_homepath}"
     DESTINATION "${dir_startmenu_entertainment}")
-add_livecd_shortcut("Sound Recorder"
+add_livecd_shortcut("录音机"
     "shell:system\\sndrec32.exe" ICON_INDEX 0
     WORKDIR "${envvar_homedrive}${envvar_homepath}"
     DESTINATION "${dir_startmenu_entertainment}")
-add_livecd_shortcut("Character Map"
+add_livecd_shortcut("字符映射表"
     "shell:system\\charmap.exe" ICON_INDEX 0
     DESTINATION "${dir_startmenu_systemtools}")
-add_livecd_shortcut("Clipboard Viewer"
+add_livecd_shortcut("剪贴簿查看器"
     "shell:system\\clipbrd.exe" ICON_INDEX 0
     DESTINATION "${dir_startmenu_systemtools}")
-add_livecd_shortcut("Keyboard Layout Switcher"
+add_livecd_shortcut("键盘布局切换器"
     "shell:system\\kbswitch.exe" ICON_INDEX 0
     DESTINATION "${dir_startmenu_systemtools}")
-add_livecd_shortcut("ReactX Diagnostic"
+add_livecd_shortcut("ReactX 诊断程序"
     "shell:system\\dxdiag.exe" ICON_INDEX 0
     DESTINATION "${dir_startmenu_systemtools}")
-add_livecd_shortcut("Registry Editor"
+add_livecd_shortcut("注册表编辑器"
     "shell:windows\\regedit.exe" ICON_INDEX 0
     DESTINATION "${dir_startmenu_systemtools}")
-add_livecd_shortcut("Task Manager"
+add_livecd_shortcut("任务管理器"
     "shell:system\\taskmgr.exe" ICON_INDEX 0
     DESTINATION "${dir_startmenu_systemtools}")
-add_livecd_shortcut("Task Manager 11"
+add_livecd_shortcut("任务管理器 11"
     "shell:system\\taskmgr11.exe" ICON_INDEX 0
     DESTINATION "${dir_startmenu_systemtools}")
-add_livecd_shortcut("LntGet"
+add_livecd_shortcut("ReliefWin Package Manager"
     "shell:system\\lntget.exe" ICON_INDEX 0 CMDLINE_ARGS "gui"
     DESTINATION "${dir_startmenu_systemtools}")
-add_livecd_shortcut("LiberNT Driver Installer"
+add_livecd_shortcut("ReliefWin 驱动程序安装程序"
     "shell:system\\lntdrv.exe" ICON_INDEX 0
     DESTINATION "${dir_startmenu_systemtools}")
-add_livecd_shortcut("Optional Components"
+add_livecd_shortcut("可选组件"
     "shell:system\\oobe\\oobe.exe" ICON_INDEX 0 CMDLINE_ARGS "/components"
     DESTINATION "${dir_startmenu_systemtools}")
-add_livecd_shortcut("Calculator"
+add_livecd_shortcut("计算器"
     "shell:system\\calc.exe" ICON_INDEX 0
     WORKDIR "${envvar_homedrive}${envvar_homepath}"
     DESTINATION "${dir_startmenu_accessories}")
-add_livecd_shortcut("Paint"
+add_livecd_shortcut("画图"
     "shell:system\\mspaint.exe" ICON_INDEX 0
     WORKDIR "${envvar_homedrive}${envvar_homepath}"
     DESTINATION "${dir_startmenu_accessories}")
-add_livecd_shortcut("Notepad"
+add_livecd_shortcut("记事本"
     "shell:system\\notepad.exe" ICON_INDEX 0
     WORKDIR "${envvar_homedrive}${envvar_homepath}"
     DESTINATION "${dir_startmenu_accessories}")
-add_livecd_shortcut("WordPad"
+add_livecd_shortcut("写字板"
     "shell:system\\wordpad.exe" ICON_INDEX 0
     WORKDIR "${envvar_homedrive}${envvar_homepath}"
     DESTINATION "${dir_startmenu_accessories}")
-add_livecd_shortcut("Solitaire"
+add_livecd_shortcut("纸牌"
     "shell:system\\sol.exe" ICON_INDEX 0
     DESTINATION "${dir_startmenu_games}")
-add_livecd_shortcut("Spider Solitaire"
+add_livecd_shortcut("蜘蛛纸牌"
     "shell:system\\spider.exe" ICON_INDEX 0
     DESTINATION "${dir_startmenu_games}")
-add_livecd_shortcut("WineMine"
+add_livecd_shortcut("扫雷"
     "shell:system\\winmine.exe" ICON_INDEX 0
     DESTINATION "${dir_startmenu_games}")
 

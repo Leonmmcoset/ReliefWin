@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     OpenGL keeps rendering while the monitor is turned off and on
  * COPYRIGHT:   Copyright 2026 Ostap Brehin <osbre@protonmail.com>

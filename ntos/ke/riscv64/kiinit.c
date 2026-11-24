@@ -1,12 +1,12 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF
  * PURPOSE:     RISC-V boot-hart loader contract adoption
  */
 
 #include <ntoskrnl.h>
-#include <libernt/fdt.h>
+#include <reliefwin/fdt.h>
 #define NDEBUG
 #include <debug.h>
 

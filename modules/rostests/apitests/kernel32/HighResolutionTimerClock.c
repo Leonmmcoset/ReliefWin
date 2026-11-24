@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Tests that a high-resolution waitable timer leaves no finer clock behind once it is done
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

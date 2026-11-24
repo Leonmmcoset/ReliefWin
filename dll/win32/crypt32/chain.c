@@ -2750,7 +2750,7 @@ static void CRYPT_VerifyChainRevocation(const CertificateChainEngine *engine,
              pChainPara->dwRevocationFreshnessTime;
         }
 #ifdef __REACTOS__
-        /* FIXME: Windows 11 spends 27-28 s on a single unreachable CRL URL of a chain built without a timeout; LiberNT spends the 15 s per-URL default */
+        /* FIXME: Windows 11 spends 27-28 s on a single unreachable CRL URL of a chain built without a timeout; ReliefWin spends the 15 s per-URL default */
         if (!revocationPara.dwUrlRetrievalTimeout)
             revocationPara.dwUrlRetrievalTimeout = engine->dwUrlRetrievalTimeout;
         if (!revocationPara.dwUrlRetrievalTimeout && (chainFlags & CERT_CHAIN_REVOCATION_ACCUMULATIVE_TIMEOUT))

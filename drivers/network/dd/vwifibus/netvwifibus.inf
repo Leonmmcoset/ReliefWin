@@ -1,4 +1,4 @@
-; LiberNT Virtual WiFi Bus Driver Installation File
+; ReliefWin Virtual WiFi Bus Driver Installation File
 ; Native 802.11 miniport INFs include the [VWiFiBus.*] sections of this file
 ; through Include/Needs directives; the section names are the contract those
 ; INFs rely on and must not be renamed.
@@ -8,7 +8,7 @@
 Signature   = "$Windows NT$"
 Class       = System
 ClassGUID   = {4d36e97d-e325-11ce-bfc1-08002be10318}
-Provider    = %LiberNT%
+Provider    = %ReliefWin%
 PnpLockdown = 1
 DriverVer   = 06/02/2026,1.0.0.0
 
@@ -16,7 +16,7 @@ DriverVer   = 06/02/2026,1.0.0.0
 VWiFiBus.CopyFilesInternal = 12
 
 [Manufacturer]
-%LiberNT% = VWiFiBusMfg,NTamd64,NTARM64
+%ReliefWin% = VWiFiBusMfg,NTamd64,NTARM64
 
 [VWiFiBusMfg]
 %vwifibus.DeviceDesc% = VWiFiBus
@@ -72,7 +72,7 @@ CopyFiles = VWiFiBus.CopyFilesInternal
 vwifibus.sys = 1
 
 [Strings]
-LiberNT               = "LiberNT Team"
+ReliefWin               = "ReliefWin Team"
 vwifibus.DeviceDesc   = "Virtual WiFi Bus Device"
-vwifibus.ServiceDesc  = "LiberNT Virtual WiFi Bus Driver"
-DiskName              = "LiberNT Virtual WiFi Bus Driver Installation Disk"
+vwifibus.ServiceDesc  = "ReliefWin Virtual WiFi Bus Driver"
+DiskName              = "ReliefWin Virtual WiFi Bus Driver Installation Disk"

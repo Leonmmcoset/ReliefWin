@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# PROJECT:     LiberNT host-native tests
+# PROJECT:     ReliefWin host-native tests
 # LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
 # PURPOSE:     A detached desktop never presents into the shared primary of a source without a VidPN path
 # COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

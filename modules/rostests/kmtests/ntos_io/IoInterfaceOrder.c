@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT kernel-mode tests
+ * PROJECT:     ReliefWin kernel-mode tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     IoGetDeviceInterfaces lists the present interfaces of a class in the order they were enabled, an unchanged state is reported, the instances of a device share the link named without their reference strings, an alias keeps the reference string, the Linked value is written with APCs enabled, and IoUnregisterPlugPlayNotificationEx waits for a running notification
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

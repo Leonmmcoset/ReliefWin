@@ -518,9 +518,9 @@ HKR,"Parameters\PersistentRoutes",,0x00000010
 [tcpip_AddReg]
 HKR,"Parameters","DataBasePath",0x00020000,"%SystemRoot%\System32\drivers\etc"
 HKR,"Parameters","Domain",0x00000000,""
-HKR,"Parameters","Hostname",0x00000000,"LBRNT"
+HKR,"Parameters","Hostname",0x00000000,"RELIEFWIN"
 HKR,"Parameters","NV Domain",0x00000000,""
-HKR,"Parameters","NV Hostname",0x00000000,"LBRNT"
+HKR,"Parameters","NV Hostname",0x00000000,"RELIEFWIN"
 HKR,"Parameters","NameServer",0x00000000,""
 HKR,"Parameters","ForwardBroadcasts",0x00010001,0x00000000
 HKR,"Parameters","IPEnableRouter",0x00010001,0x00000000
@@ -564,7 +564,7 @@ HKR,"Parameters","ServiceDll",0x00020000,"%SystemRoot%\system32\dnsrslvr.dll"
 
 [Strings]
 ; Non-localizable
-ReactOS = "LiberNT Project"
+ReactOS = "ReliefWin Project"
 
 ; Localizable
 MS_TCPIP.DisplayName = "Internet Protocol Version 4 (TCP/IPv4)"

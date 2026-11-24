@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT WDDM DirectX Graphics Kernel
+ * PROJECT:     ReliefWin WDDM DirectX Graphics Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     D3DKMT IOCTL dispatch and user-mode API implementation
  * COPYRIGHT:   Copyright 2024 LiberNT WDDM Team
@@ -33,9 +33,9 @@
 #include "vidpn.h"
 #include "present.h"
 #include "pnp.h"
-#include <libernt/rddm/rxgkadvcolor.h>
-#include <libernt/rddm/rxgktarget.h>
-#include <libernt/rddm/rxgkmonitor.h>
+#include <reliefwin/rddm/rxgkadvcolor.h>
+#include <reliefwin/rddm/rxgktarget.h>
+#include <reliefwin/rddm/rxgkmonitor.h>
 #include "caps_core.h"
 #include "paging_core.h"
 #if (REACTOS_WDDM_TARGET_LEVEL >= 3200)

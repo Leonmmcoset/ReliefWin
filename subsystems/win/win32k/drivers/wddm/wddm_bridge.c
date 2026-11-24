@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Display Driver Model - Win32k/dxgkrnl Bridge
+ * PROJECT:     ReliefWin Display Driver Model - Win32k/dxgkrnl Bridge
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Kernel-to-kernel communication channel to \Device\DxgKrnl
  * COPYRIGHT:   Copyright 2025 LiberNT Contributors
@@ -30,8 +30,8 @@
 #include <ntifs.h>
 #include <windef.h>
 #include <d3dkmthk.h>
-#include <libernt/rddm/rxgkinterface.h>
-#include <libernt/rddm/rxgkioctl.h>
+#include <reliefwin/rddm/rxgkinterface.h>
+#include <reliefwin/rddm/rxgkioctl.h>
 #include "wddm_bridge.h"
 #define NDEBUG
 #include <debug.h>

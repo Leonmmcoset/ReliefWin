@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Power request objects: what PowerCreateRequest, PowerSetRequest and PowerClearRequest act on
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

@@ -1,7 +1,7 @@
 /*
- * PROJECT:     LiberNT WinUSB
+ * PROJECT:     ReliefWin WinUSB
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
- * PURPOSE:     WinUSB API on top of the LiberNT winusb.sys driver
+ * PURPOSE:     WinUSB API on top of the ReliefWin winusb.sys driver
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
  */
 
@@ -15,7 +15,7 @@
 #undef WIN32_NO_STATUS
 #include <ntstatus.h>
 #include <winusb.h>
-#include <libernt/drivers/lntwinusb.h>
+#include <reliefwin/drivers/lntwinusb.h>
 
 #define WINUSB_HANDLE_MAGIC 0x42535557
 #define WINUSB_INFORMATION_SIZE (FIELD_OFFSET(LNT_WINUSB_INFORMATION, Configuration) + 0x10000)

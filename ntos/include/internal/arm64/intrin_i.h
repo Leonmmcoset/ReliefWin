@@ -6,4 +6,4 @@
 #pragma once
 
 #include <ndk/arm64/ketypes.h>
-#include <libernt/arm64/sysreg.h>
+#include <reliefwin/arm64/sysreg.h>

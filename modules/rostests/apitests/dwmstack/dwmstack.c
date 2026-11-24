@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Native-paired DWM module ABI and error-contract tests
@@ -12,7 +12,7 @@
 #include <dwmapi.h>
 #include <objbase.h>
 #include <wincodec.h>
-#include <libernt/dwmcore.h>
+#include <reliefwin/dwmcore.h>
 
 #define DWM_E_ENGINE_NOT_INITIALIZED ((HRESULT)0x8000000EL)
 #define DWM_E_CHANNEL_UNAVAILABLE    ((HRESULT)0x88980416L)
@@ -359,7 +359,7 @@ static const char * const DwmApiOrdinalNames[] =
     "DwmpDxPublishWindowGpuSurface",
 };
 
-/* Windows' ordinals 100-207, then the LiberNT DwmpDx extensions from 208. */
+/* Windows' ordinals 100-207, then the ReliefWin DwmpDx extensions from 208. */
 C_ASSERT(sizeof(DwmApiOrdinalNames) / sizeof(DwmApiOrdinalNames[0]) == 111);
 
 static const WORD DwmApiFormerStubOrdinals[] =

@@ -1,4 +1,4 @@
-set(LIBWIM_PUBLIC_INCLUDE ${REACTOS_SOURCE_DIR}/sdk/include/libernt/libs/libwim)
+set(LIBWIM_PUBLIC_INCLUDE ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/libs/libwim)
 
 set(LIBWIM_CORE_SOURCE
     lzx.c

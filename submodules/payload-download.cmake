@@ -7,7 +7,7 @@
 
 include_guard(GLOBAL)
 
-function(_libernt_find_release_asset repo tag name token url_var error_var transient_var)
+function(_reliefwin_find_release_asset repo tag name token url_var error_var transient_var)
     set(${transient_var} FALSE PARENT_SCOPE)
     set(_release_file "${CMAKE_BINARY_DIR}/CMakeFiles/release-${tag}.json")
     file(DOWNLOAD "https://api.github.com/repos/${repo}/releases/tags/${tag}" "${_release_file}"
@@ -44,7 +44,7 @@ function(_libernt_find_release_asset repo tag name token url_var error_var trans
     set(${error_var} "release ${tag} has no asset ${name}" PARENT_SCOPE)
 endfunction()
 
-function(libernt_download_payload repo tag name file sha256 error_var)
+function(reliefwin_download_payload repo tag name file sha256 error_var)
     if(EXISTS "${file}")
         file(SHA256 "${file}" _have_hash)
         if(_have_hash STREQUAL sha256)
@@ -74,7 +74,7 @@ function(libernt_download_payload repo tag name file sha256 error_var)
                 STATUS _status)
         else()
             if(_asset_url STREQUAL "")
-                _libernt_find_release_asset("${repo}" "${tag}" "${name}" "${_token}" _asset_url _error _transient)
+                _reliefwin_find_release_asset("${repo}" "${tag}" "${name}" "${_token}" _asset_url _error _transient)
                 if(NOT _error STREQUAL "" AND _transient)
                     continue()
                 elseif(NOT _error STREQUAL "")

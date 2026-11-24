@@ -1050,7 +1050,7 @@ typedef struct _PCI_EXPRESS_VIRTUAL_CHANNEL_CAPABILITY *PPCI_EXPRESS_VIRTUAL_CHA
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 #if (!defined(RC_INVOKED) && !defined(MIDL_PASS))
 LONG FASTCALL AddRaw(volatile LONG *Destination, LONG Value);
 LONG64 FASTCALL AddRaw64(volatile LONG64 *Destination, LONG64 Value);

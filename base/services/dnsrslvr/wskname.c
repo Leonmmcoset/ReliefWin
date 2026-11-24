@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT DNS Client service
+ * PROJECT:     ReliefWin DNS Client service
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Resolves the names NETIO's kernel WSK clients ask for
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

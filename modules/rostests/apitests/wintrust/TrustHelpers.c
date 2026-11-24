@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test the wintrust helper, default usage and backup pause functions
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -207,8 +207,8 @@ TestSelfSigned(HMODULE Wintrust)
     ok(SelfSigned != NULL, "WTHelperCertIsSelfSigned is not exported\n");
     if (!SelfSigned)
         return;
-    if (!CertStrToNameW(X509_ASN_ENCODING, L"CN=LiberNT self signed", CERT_X500_NAME_STR, NULL, NameData, &Name.cbData, NULL) ||
-        !CertStrToNameW(X509_ASN_ENCODING, L"CN=LiberNT issuer", CERT_X500_NAME_STR, NULL, IssuerData, &Issuer.cbData, NULL))
+    if (!CertStrToNameW(X509_ASN_ENCODING, L"CN=ReliefWin self signed", CERT_X500_NAME_STR, NULL, NameData, &Name.cbData, NULL) ||
+        !CertStrToNameW(X509_ASN_ENCODING, L"CN=ReliefWin issuer", CERT_X500_NAME_STR, NULL, IssuerData, &Issuer.cbData, NULL))
     {
         skip("CertStrToNameW failed\n");
         return;

@@ -1,12 +1,12 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     ARM64 early framebuffer console for DEBUGPORT=SCREEN before boot video starts
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
  */
 
 #include <ntoskrnl.h>
-#include <libernt/arm64/earlyfont.h>
+#include <reliefwin/arm64/earlyfont.h>
 
 #define KI_EARLY_SCREEN_CELL_HEIGHT   14
 #define KI_EARLY_SCREEN_CACHE_LINE    64
@@ -243,7 +243,7 @@ KiArm64EarlyScreenInitialize(
     KiEarlyScreenRow = 0;
     KiEarlyScreenColumn = 0;
 
-    KiEarlyScreenPrint("LiberNT kernel started: early screen console %lux%lu stride %lu masks %08lx/%08lx/%08lx\n",
+    KiEarlyScreenPrint("ReliefWin kernel started: early screen console %lux%lu stride %lu masks %08lx/%08lx/%08lx\n",
                        KiEarlyScreenWidth, KiEarlyScreenHeight, KiEarlyScreenStride,
                        FrameBuffer->RedMask, FrameBuffer->GreenMask, FrameBuffer->BlueMask);
     KiEarlyScreenPrint("options: %s\n", LoaderBlock->LoadOptions);

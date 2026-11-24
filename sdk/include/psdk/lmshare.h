@@ -325,7 +325,7 @@ typedef struct _SHARE_INFO_1503 {
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 DWORD NET_API_FUNCTION NetServerAliasAdd(LPWSTR servername, DWORD level, LPBYTE buf);
 DWORD NET_API_FUNCTION NetServerAliasDel(LPWSTR servername, DWORD level, LPBYTE buf);
 DWORD NET_API_FUNCTION NetServerAliasEnum(LPWSTR servername, DWORD level, LPBYTE *bufptr, DWORD prefmaxlen, LPDWORD entriesread, LPDWORD totalentries, LPDWORD resumehandle);

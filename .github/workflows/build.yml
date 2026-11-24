@@ -149,7 +149,7 @@ jobs:
       run: |
         . "$HOME/.local/opt/rosbe/rosbe-env.sh"
         TARGETS=bootcd
-        [ "$BUILD_TYPE" = "debug" ] && TARGETS="$TARGETS liberntimg liberntvhd"
+        [ "$BUILD_TYPE" = "debug" ] && TARGETS="$TARGETS reliefwinimg reliefwinvhd"
         ninja -C ${{steps.configure.outputs.outdir}} $TARGETS -k0
 
     - name: Print ccache statistics
@@ -197,26 +197,26 @@ jobs:
         path: ${{steps.configure.outputs.outdir}}/bootcd-${{steps.images.outputs.tag}}.iso
         archive: false
 
-    - name: Upload LiberNT.img
+    - name: Upload ReliefWin.img
       if: ${{ env.BUILD_TYPE == 'debug' && env.CCACHE_SEED != 'true' }}
       uses: actions/upload-artifact@v7
       with:
-        name: LiberNT-img-${{steps.images.outputs.tag}}
-        path: ${{steps.configure.outputs.outdir}}/LiberNT.img
+        name: ReliefWin-img-${{steps.images.outputs.tag}}
+        path: ${{steps.configure.outputs.outdir}}/ReliefWin.img
 
-    - name: Upload LiberNT.vhd
+    - name: Upload ReliefWin.vhd
       if: ${{ env.BUILD_TYPE == 'debug' && env.CCACHE_SEED != 'true' }}
       uses: actions/upload-artifact@v7
       with:
-        name: LiberNT-vhd-${{steps.images.outputs.tag}}
-        path: ${{steps.configure.outputs.outdir}}/LiberNT.vhd
+        name: ReliefWin-vhd-${{steps.images.outputs.tag}}
+        path: ${{steps.configure.outputs.outdir}}/ReliefWin.vhd
 
-    - name: Upload LiberNT.vhdx
+    - name: Upload ReliefWin.vhdx
       if: ${{ env.BUILD_TYPE == 'debug' && env.CCACHE_SEED != 'true' }}
       uses: actions/upload-artifact@v7
       with:
-        name: LiberNT-vhdx-${{steps.images.outputs.tag}}
-        path: ${{steps.configure.outputs.outdir}}/LiberNT.vhdx
+        name: ReliefWin-vhdx-${{steps.images.outputs.tag}}
+        path: ${{steps.configure.outputs.outdir}}/ReliefWin.vhdx
 
     - name: Check build dependencies
       run: python3 sdk/tools/depcheck.py ${{steps.configure.outputs.outdir}} --mode depfiles --nested --fail-on-gaps
@@ -251,7 +251,7 @@ jobs:
         $tools = "$env:RUNNER_TEMP\winflexbison"
         Expand-Archive $zip -DestinationPath $tools -Force
         python -m pip install --upgrade mako pyyaml packaging
-        # LiberNT's CMake looks for flex/bison; winflexbison ships them as
+        # ReliefWin's CMake looks for flex/bison; winflexbison ships them as
         # win_flex/win_bison, so expose both names on PATH.
         Copy-Item "$tools\win_flex.exe" "$tools\flex.exe" -Force
         Copy-Item "$tools\win_bison.exe" "$tools\bison.exe" -Force

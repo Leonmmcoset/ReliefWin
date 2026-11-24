@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Shell Frame
+ * PROJECT:     ReliefWin Shell Frame
  * LICENSE:     LGPL-2.1-or-later (https://spdx.org/licenses/LGPL-2.1-or-later)
  * PURPOSE:     Tab band shared by File Explorer and the terminal
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -12,7 +12,7 @@
 #include <strsafe.h>
 #include <uxtheme.h>
 #include <commoncontrols.h>
-#include <libernt/dwmframe.h>
+#include <reliefwin/dwmframe.h>
 
 namespace ShellFrame
 {

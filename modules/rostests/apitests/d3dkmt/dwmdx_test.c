@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT D3DKMT API Tests
+ * PROJECT:     ReliefWin D3DKMT API Tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Windows parity for the DWM D3DKMT window redirection surface
  * COPYRIGHT:   Copyright 2026 LiberNT WDDM Team
@@ -16,7 +16,7 @@
 #include <winioctl.h>
 #include <winreg.h>
 #include <wchar.h>
-#include <libernt/dwmframe.h>
+#include <reliefwin/dwmframe.h>
 
 #ifndef STATUS_INVALID_HANDLE
 #define STATUS_INVALID_HANDLE           ((NTSTATUS)0xC0000008L)
@@ -103,7 +103,7 @@ RunningOnReactOS(void)
             Type == REG_SZ)
         {
             Product[ARRAYSIZE(Product) - 1] = L'\0';
-            if (wcsstr(Product, L"LiberNT") != NULL)
+            if (wcsstr(Product, L"ReliefWin") != NULL)
                 Cached = 1;
         }
         RegCloseKey(Key);

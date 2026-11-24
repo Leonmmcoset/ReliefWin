@@ -2844,9 +2844,9 @@ typedef struct timeval FAR *LPTIMEVAL;
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 WINSOCK_API_LINKAGE int WSAAPI GetHostNameW(PWSTR name, int namelen);
-/* FIXME: Windows needs no _MINWINBASE_ check here; LiberNT users built with _INC_WINDOWS lack OVERLAPPED_ENTRY */
+/* FIXME: Windows needs no _MINWINBASE_ check here; ReliefWin users built with _INC_WINDOWS lack OVERLAPPED_ENTRY */
 #if (!defined(__midl)) && defined(_MINWINBASE_)
 FORCEINLINE
 UINT32

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test GetNamedPipeClientComputerNameA/W on local pipe clients
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -8,7 +8,7 @@
 #include "precomp.h"
 #include <ndk/iofuncs.h>
 
-#define PIPE_NAME L"\\\\.\\pipe\\libernt_apitest_client_computer_name"
+#define PIPE_NAME L"\\\\.\\pipe\\reliefwin_apitest_client_computer_name"
 
 typedef BOOL (WINAPI *FN_GetNamedPipeClientComputerNameW)(HANDLE, LPWSTR, ULONG);
 typedef BOOL (WINAPI *FN_GetNamedPipeClientComputerNameA)(HANDLE, LPSTR, ULONG);

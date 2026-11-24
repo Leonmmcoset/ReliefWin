@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API Tests
+ * PROJECT:     ReliefWin API Tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Tests that a TCP connect to the unspecified address fails with WSAEADDRNOTAVAIL
  * COPYRIGHT:   Copyright 2026 Ahmed Arif <arif.ing@outlook.com>

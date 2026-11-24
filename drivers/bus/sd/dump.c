@@ -1,12 +1,12 @@
 /*
- * PROJECT:     LiberNT SD/SDIO/eMMC Bus Driver
+ * PROJECT:     ReliefWin SD/SDIO/eMMC Bus Driver
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Polled crash-time storage path for memory cards on SDHCI hosts
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
  */
 
 #include "sdbus.h"
-#include <libernt/drivers/dumpstor.h>
+#include <reliefwin/drivers/dumpstor.h>
 
 #define NDEBUG
 #include <debug.h>

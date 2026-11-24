@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test driver verification and trust helpers on catalogs and images signed at run time
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -22,7 +22,7 @@ typedef PCCERT_CONTEXT (WINAPI *PFN_FIND_ISSUER)(PCCERT_CONTEXT, DWORD, HCERTSTO
 typedef LONG (WINAPI *PFN_FILE_HASH)(LPCWSTR, DWORD, PVOID, BYTE *, DWORD *, ALG_ID *);
 typedef HRESULT (WINAPI *PFN_FIND_CERTS)(PCERT_CHAIN, DWORD *, DWORD *, BYTE *, DWORD, LPCWSTR, DWORD);
 
-#define TEST_CONTAINER L"LiberNT wintrust apitest"
+#define TEST_CONTAINER L"ReliefWin wintrust apitest"
 #define TEST_OS_ATTR L"2:10.0,2:6.3,2:6.1"
 
 static const GUID PeSubject = { 0xC689AAB8, 0x8E78, 0x11D0, { 0x8C,0x47,0x00,0xC0,0x4F,0xC2,0x95,0xEE } };
@@ -455,7 +455,7 @@ CheckDriverVersion(LONG Result, DRIVER_VER_INFO *Version, LONG ExpectedResult, c
     ok(!wcscmp(Version->wszVersion, ExpectedVersion), "version '%ls', expected '%ls'\n", Version->wszVersion, ExpectedVersion);
     if (ExpectedSigner)
     {
-        ok(!wcscmp(Version->wszSignedBy, L"LiberNT wintrust test leaf"), "signed by '%ls'\n", Version->wszSignedBy);
+        ok(!wcscmp(Version->wszSignedBy, L"ReliefWin wintrust test leaf"), "signed by '%ls'\n", Version->wszSignedBy);
         ok(Version->pcSignerCertContext && CertCompareCertificate(X509_ASN_ENCODING, Version->pcSignerCertContext->pCertInfo,
                                                                   Leaf->pCertInfo), "unexpected signer certificate\n");
     }
@@ -755,7 +755,7 @@ CreateSignedMsi(VOID)
 
     ZeroMemory(&Sip, sizeof(Sip));
     Sip.cbSize = sizeof(Sip);
-    if (!WriteMsiStream(L"Data", "LiberNT signed MSI", 18, TRUE) || !CryptSIPLoad(&MsiSubject, 0, &Sip))
+    if (!WriteMsiStream(L"Data", "ReliefWin signed MSI", sizeof("ReliefWin signed MSI") - 1, TRUE) || !CryptSIPLoad(&MsiSubject, 0, &Sip))
         return FALSE;
     ZeroMemory(&Info, sizeof(Info));
     Info.cbSize = sizeof(Info);
@@ -807,9 +807,9 @@ TestMsi(VOID)
         return;
     }
     ok_hex(VerifyMsi(), ERROR_SUCCESS);
-    ok(WriteMsiStream(L"Data", "LiberNT signed MSi", 18, FALSE), "Cannot change the MSI\n");
+    ok(WriteMsiStream(L"Data", "ReliefWin signed MSi", sizeof("ReliefWin signed MSi") - 1, FALSE), "Cannot change the MSI\n");
     ok_hex(VerifyMsi(), TRUST_E_BAD_DIGEST);
-    ok(WriteMsiStream(L"Data", "LiberNT signed MSI", 18, FALSE), "Cannot restore the MSI\n");
+    ok(WriteMsiStream(L"Data", "ReliefWin signed MSI", sizeof("ReliefWin signed MSI") - 1, FALSE), "Cannot restore the MSI\n");
     ok_hex(VerifyMsi(), ERROR_SUCCESS);
     ok(WriteMsiStream(L"Other", "", 0, FALSE), "Cannot add an empty stream\n");
     ok_hex(VerifyMsi(), TRUST_E_BAD_DIGEST);
@@ -869,8 +869,8 @@ static
 BOOL
 SetupFixture(VOID)
 {
-    static const char MemberText[] = "LiberNT signed catalog member\r\n";
-    static const char OtherText[] = "LiberNT other file\r\n";
+    static const char MemberText[] = "ReliefWin signed catalog member\r\n";
+    static const char OtherText[] = "ReliefWin other file\r\n";
     HCRYPTKEY Key;
 
     GetTempPathW(RTL_NUMBER_OF(TempDir), TempDir);
@@ -889,12 +889,12 @@ SetupFixture(VOID)
         return FALSE;
     CryptDestroyKey(Key);
 
-    Root = CreateCertificate(L"CN=LiberNT wintrust test root", NULL, TRUE, NULL);
-    Leaf = Root ? CreateCertificate(L"CN=LiberNT wintrust test leaf", Root, FALSE, NULL) : NULL;
-    Tsa = Root ? CreateCertificate(L"CN=LiberNT wintrust test TSA", Root, FALSE, szOID_PKIX_KP_TIMESTAMP_SIGNING) : NULL;
-    CodeSigner = Root ? CreateCertificate(L"CN=LiberNT wintrust test code signer", Root, FALSE, szOID_PKIX_KP_CODE_SIGNING) : NULL;
-    RogueTsa = CreateCertificate(L"CN=LiberNT wintrust test rogue TSA", NULL, FALSE, szOID_PKIX_KP_TIMESTAMP_SIGNING);
-    ExpiredSigner = Root ? CreateCertificateValid(L"CN=LiberNT wintrust test expired signer", Root, FALSE, NULL, 36, 35) :
+    Root = CreateCertificate(L"CN=ReliefWin wintrust test root", NULL, TRUE, NULL);
+    Leaf = Root ? CreateCertificate(L"CN=ReliefWin wintrust test leaf", Root, FALSE, NULL) : NULL;
+    Tsa = Root ? CreateCertificate(L"CN=ReliefWin wintrust test TSA", Root, FALSE, szOID_PKIX_KP_TIMESTAMP_SIGNING) : NULL;
+    CodeSigner = Root ? CreateCertificate(L"CN=ReliefWin wintrust test code signer", Root, FALSE, szOID_PKIX_KP_CODE_SIGNING) : NULL;
+    RogueTsa = CreateCertificate(L"CN=ReliefWin wintrust test rogue TSA", NULL, FALSE, szOID_PKIX_KP_TIMESTAMP_SIGNING);
+    ExpiredSigner = Root ? CreateCertificateValid(L"CN=ReliefWin wintrust test expired signer", Root, FALSE, NULL, 36, 35) :
                            NULL;
     if (!Leaf || !Tsa || !CodeSigner || !RogueTsa || !ExpiredSigner)
         return FALSE;

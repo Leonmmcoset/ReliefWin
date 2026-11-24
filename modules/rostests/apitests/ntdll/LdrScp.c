@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Verify AMD64 supplemental unwind registration on load and unload
  * COPYRIGHT:   Copyright 2026 LiberNT contributors
@@ -7,7 +7,7 @@
 
 #include "precomp.h"
 #include <psapi.h>
-#include <libernt/wow64shared.h>
+#include <reliefwin/wow64shared.h>
 
 #define SECTION_RVA 0x1000
 #define SECTION_RAW 0x200

@@ -190,7 +190,7 @@ void CCABManager::Usage()
  * FUNCTION: Display usage information on screen
  */
 {
-    printf("ReactOS Cabinet Manager\n\n");
+    printf("ReliefWin Cabinet Manager\n\n");
     printf("CABMAN [-D | -E] [-A] [-L dir] cabinet [filename ...]\n");
     printf("CABMAN [-M mode] -C dirfile [-I] [-RC file] [-P dir]\n");
     printf("CABMAN [-M mode] -S cabinet filename [-F folder] [filename] [...]\n");
@@ -577,7 +577,7 @@ bool CCABManager::Run()
 {
     if (Verbose)
     {
-        printf("ReactOS Cabinet Manager\n\n");
+        printf("ReliefWin Cabinet Manager\n\n");
     }
 
     switch (Mode)

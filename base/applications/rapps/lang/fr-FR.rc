@@ -171,11 +171,10 @@ END
 
 STRINGTABLE
 BEGIN
-    IDS_APPTITLE "Gestionnaire d'applications ReactOS"
+    IDS_APPTITLE "Gestionnaire d'applications ReliefWin"
     IDS_APP_AUTHORS "Copyright 2009 Dmitry Chapyshev"
-    IDS_WELCOME_TITLE "Bienvenue dans ReactOS Applications Manager !"
-    IDS_WELCOME_TEXT "Choisissez une catégorie à gauche, ensuite choisissez une application à installer ou désinstaller.\nSite internet de LiberNT : "
-    IDS_WELCOME_URL "https://reactos.org"
+    IDS_WELCOME_TITLE "Bienvenue dans ReliefWin Applications Manager !"
+    IDS_WELCOME_TEXT "Choisissez une catégorie à gauche, ensuite choisissez une application à installer ou désinstaller."
 
     IDS_APPWIZ_TITLE "Ajout/Suppression de programmes" // "Ajouter/Supprimer des Programmes"
     IDS_APPWIZ_TEXT1 "Choisissez ""Applications"" ou ""Mises à jour"" pour voir la liste des programmes ou des mises à jour installés sur votre système."

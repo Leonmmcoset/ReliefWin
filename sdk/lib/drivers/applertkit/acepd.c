@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Apple RTKit Library
+ * PROJECT:     ReliefWin Apple RTKit Library
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Apple SN201202x (ACE3) USB-C power delivery controllers over SPMI
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -8,7 +8,7 @@
 #ifndef UNIT_TEST
 #include <ntddk.h>
 #endif
-#include <libernt/drivers/appleacepd.h>
+#include <reliefwin/drivers/appleacepd.h>
 
 #define ACE_READ_WINDOW         0x20
 #define ACE_WRITE_WINDOW        0xa0

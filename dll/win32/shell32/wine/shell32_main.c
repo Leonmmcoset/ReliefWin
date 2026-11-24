@@ -1264,8 +1264,8 @@ HRESULT WINAPI SHCreateDataObject(PCIDLIST_ABSOLUTE pidl_folder, UINT count, PCU
 #include <wine/debug.h>
 #include <wine/unicode.h>
 
-#include <libernt/version.h>
-#include <libernt/buildno.h>
+#include <reliefwin/version.h>
+#include <reliefwin/buildno.h>
 
 WINE_DEFAULT_DEBUG_CHANNEL(shell);
 

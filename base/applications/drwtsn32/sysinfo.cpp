@@ -8,8 +8,8 @@
 #include "precomp.h"
 #include <udmihelp.h>
 #include <winreg.h>
-#include <libernt/buildno.h>
-#include <libernt/stubs.h>
+#include <reliefwin/buildno.h>
+#include <reliefwin/stubs.h>
 
 static const char* Exception2Str(DWORD code)
 {
@@ -57,7 +57,7 @@ void PrintSystemInfo(FILE* output, DumpData& data)
 {
     SYSTEMTIME LocalTime;
     GetLocalTime(&LocalTime);
-    xfprintf(output, NEWLINE "LiberNT " KERNEL_VERSION_STR " DrWtsn32" NEWLINE NEWLINE);
+    xfprintf(output, NEWLINE "ReliefWin " KERNEL_VERSION_STR " DrWtsn32" NEWLINE NEWLINE);
     xfprintf(output, "Application exception occurred:" NEWLINE);
     xfprintf(output, "    App: %ls (pid=%d, tid=0x%x)" NEWLINE, data.ProcessName.c_str(), data.ProcessID, data.ThreadID);
     xfprintf(output, "    When: %d/%d/%d @ %02d:%02d:%02d.%d" NEWLINE,

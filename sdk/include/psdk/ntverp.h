@@ -163,9 +163,9 @@
 // Company and Trademarks
 //
 #define VER_COMPANYNAME_STR                 \
-    "ReactOS Project"
+    "ReliefWin Project"
 #define VER_PRODUCTNAME_STR                 \
-    "LiberNT Operating System"
+    "ReliefWin Operating System"
 #define VER_LEGALTRADEMARKS_STR             \
     "ReactOS is a registered trademark of ReactOS Deutschland e.V."
 

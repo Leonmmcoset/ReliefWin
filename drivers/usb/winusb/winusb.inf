@@ -1,5 +1,5 @@
 ;
-; PROJECT:     LiberNT WinUSB driver
+; PROJECT:     ReliefWin WinUSB driver
 ; LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
 ; PURPOSE:     Installs WinUSB on devices with the WINUSB Microsoft OS compatible ID
 ; COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -9,7 +9,7 @@
 Signature = "$Windows NT$"
 Class     = USBDevice
 ClassGuid = {88BAE032-5A81-49F0-BC3D-A4FF138216D6}
-Provider  = %LiberNT%
+Provider  = %ReliefWin%
 DriverVer = 11/11/2026,10.0.26100.1
 
 [ClassInstall32]
@@ -55,7 +55,7 @@ ErrorControl  = %SERVICE_ERROR_NORMAL%
 ServiceBinary = %12%\winusb.sys
 
 [Strings]
-LiberNT = "LiberNT Project"
+ReliefWin = "ReliefWin Project"
 SPSVCINST_ASSOCSERVICE = 0x00000002
 SERVICE_KERNEL_DRIVER = 1
 SERVICE_DEMAND_START = 3

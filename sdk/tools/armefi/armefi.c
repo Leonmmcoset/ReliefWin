@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Build
+ * PROJECT:     ReliefWin Build
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Prepare an ARMv7 UEFI application: Thumb machine type and self-applied base relocations
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -9,7 +9,7 @@
  * UEFI firmware applies the base relocations of the image it loads, and some
  * firmware knows only the absolute ones: it refuses the MOVW/MOVT pairs
  * (IMAGE_REL_BASED_THUMB_MOV32) Thumb-2 code is full of. The entry code of a
- * LiberNT boot application applies its relocations itself, from the table this
+ * ReliefWin boot application applies its relocations itself, from the table this
  * tool hands it in a descriptor inside the image, and the firmware is left an
  * empty table.
  */

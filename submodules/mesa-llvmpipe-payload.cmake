@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 # SPDX-FileCopyrightText: 2026 Ahmed ARIF <arif.ing@outlook.com>
-# Prebuilt LLVMpipe OpenGL and Lavapipe Vulkan ICDs from the LiberNT release payload.
+# Prebuilt LLVMpipe OpenGL and Lavapipe Vulkan ICDs from the ReliefWin release payload.
 # The second stage installs them from the release MSI; the build only catalogs them.
 
 if(NOT ARCH MATCHES "^(amd64|arm64|riscv64)$")
@@ -34,7 +34,7 @@ else()
         message(FATAL_ERROR "No published LLVMpipe payload for ${ARCH} release ${MESA_LLVMPIPE_PAYLOAD_RELEASE}; set MESA_LLVMPIPE_PAYLOAD or MESA_LLVMPIPE_FROM_SOURCE.")
     endif()
     set(_payload_zip "${_payload_dir}/${_payload_name}")
-    libernt_download_payload(LiberNT/LiberNT "mesa-llvmpipe-${MESA_LLVMPIPE_PAYLOAD_RELEASE}" "${_payload_name}"
+    reliefwin_download_payload(LiberNT/LiberNT "mesa-llvmpipe-${MESA_LLVMPIPE_PAYLOAD_RELEASE}" "${_payload_name}"
         "${_payload_zip}" "${_payload_hash}" _payload_error)
     if(NOT _payload_error STREQUAL "")
         message(FATAL_ERROR "Downloading the LLVMpipe payload failed: ${_payload_error}")

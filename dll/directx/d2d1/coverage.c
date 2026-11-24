@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Direct2D
+ * PROJECT:     ReliefWin Direct2D
  * LICENSE:     LGPL-2.1-or-later (https://spdx.org/licenses/LGPL-2.1-or-later)
  * PURPOSE:     CPU area coverage of tessellated fill geometry
  * COPYRIGHT:   Copyright 2026 Earzu Chan <contact@earzuchan.me>

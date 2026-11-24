@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Broadcom/Cypress CYW43xx Native 802.11 Miniport
+ * PROJECT:     ReliefWin Broadcom/Cypress CYW43xx Native 802.11 Miniport
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     PCIe dongle bus and message buffer protocol definitions
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

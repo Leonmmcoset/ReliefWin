@@ -4856,7 +4856,7 @@ extern "C" {
 HRESULT WINAPI DebugConnect(PCSTR RemoteOptions, const IID *const InterfaceId, PVOID *Interface);
 HRESULT WINAPI DebugCreateEx(const IID *const InterfaceId, DWORD DbgEngOptions, PVOID *Interface);
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 void DebugCommandException(ULONG Command, ULONG ArgSize, PVOID Arg);
 HRESULT STDAPICALLTYPE DebugConnectWide(PCWSTR RemoteOptions, const IID *const InterfaceId, PVOID *Interface);
 

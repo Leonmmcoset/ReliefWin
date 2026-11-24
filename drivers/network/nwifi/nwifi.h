@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Native WiFi (802.11) stack
+ * PROJECT:     ReliefWin Native WiFi (802.11) stack
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Native WiFi intermediate driver shared definitions
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -13,7 +13,7 @@
 
 #include <ndis.h>
 #include <windot11.h>
-#include <libernt/nwifi_ioctl.h>
+#include <reliefwin/nwifi_ioctl.h>
 
 #define NWIFI_TAG  'FIWN'   /* 'NWIF' */
 #define NWIFI_BSS_LIST_ATTEMPTS 3

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Configuration manager inline helpers: hashing, cached cells, KCB locks
  * COPYRIGHT:   Copyright Alex Ionescu <alex.ionescu@reactos.org>

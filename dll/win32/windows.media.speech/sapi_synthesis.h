@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT WinRT Speech
+ * PROJECT:     ReliefWin WinRT Speech
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Speech synthesis through the installed SAPI voices
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

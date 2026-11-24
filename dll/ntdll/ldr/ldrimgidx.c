@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT NT User-Mode Library
+ * PROJECT:     ReliefWin NT User-Mode Library
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Index of the loaded images by address, kept by the loader instead of read from the PEB lists
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

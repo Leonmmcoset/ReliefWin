@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Tests Windows.ApplicationModel.Core.CoreApplication properties
  * COPYRIGHT:   Copyright 2026 Ostap Brehin <osbre@protonmail.com>
@@ -33,7 +33,7 @@ START_TEST(CoreApplication)
     ICoreApplication *Core = NULL;
     IMap_HSTRING_IInspectable *First = NULL, *Second = NULL;
     IInspectable *Found = NULL;
-    HSTRING Key = CreateHString(L"LiberNT.CoreApplication.Test");
+    HSTRING Key = CreateHString(L"ReliefWin.CoreApplication.Test");
     boolean Replaced = TRUE, Has = FALSE;
     HRESULT hr;
 

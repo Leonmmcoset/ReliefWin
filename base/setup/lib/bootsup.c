@@ -232,11 +232,11 @@ InstallMbrBootCodeToDisk(
 #define EFI_LOAD_OPTION_MAX             4096
 #define EFI_BOOT_ORDER_MAX              512
 #define EFI_BOOT_OPTION_SEARCH_MAX      0x1000
-#define EFI_BOOT_MANAGER_DESCRIPTION    L"LiberNT Boot Manager"
-#define EFI_BOOT_MANAGER_FILE           L"\\EFI\\LiberNT\\Boot\\bootmgfw.efi"
+#define EFI_BOOT_MANAGER_DESCRIPTION    L"ReliefWin Boot Manager"
+#define EFI_BOOT_MANAGER_FILE           L"\\EFI\\ReliefWin\\Boot\\bootmgfw.efi"
 #define EFI_WINDOWS_BOOT_MANAGER_FILE   L"\\EFI\\Microsoft\\Boot\\bootmgfw.efi"
-#define EFI_HOST_SETUP_DIRECTORY        L"EFI\\LiberNT\\Setup"
-#define EFI_HOST_SETUP_MANAGER_FILE     L"\\EFI\\LiberNT\\Setup\\bootmgfw.efi"
+#define EFI_HOST_SETUP_DIRECTORY        L"EFI\\ReliefWin\\Setup"
+#define EFI_HOST_SETUP_MANAGER_FILE     L"\\EFI\\ReliefWin\\Setup\\bootmgfw.efi"
 #define GPT_HEADER_ENTRIES_LBA_OFFSET   72
 #define GPT_HEADER_ENTRY_COUNT_OFFSET   80
 #define GPT_HEADER_ENTRY_SIZE_OFFSET    84
@@ -1152,8 +1152,8 @@ InstallBcdStore(
     _In_ PCUNICODE_STRING DestinationArcPath,
     _In_ BOOLEAN PcAt)
 {
-    PCWSTR StoreDirectory = PcAt ? L"Boot" : L"EFI\\LiberNT\\Boot";
-    PCWSTR BootManagerFile = PcAt ? L"bootmgr" : L"EFI\\LiberNT\\Boot\\bootmgfw.efi";
+    PCWSTR StoreDirectory = PcAt ? L"Boot" : L"EFI\\ReliefWin\\Boot";
+    PCWSTR BootManagerFile = PcAt ? L"bootmgr" : L"EFI\\ReliefWin\\Boot\\bootmgfw.efi";
     static UNICODE_STRING MountPoint = RTL_CONSTANT_STRING(L"\\Registry\\Machine\\SetupBcd");
     OBJECT_ATTRIBUTES KeyAttributes, FileAttributes;
     UCHAR SystemElement[BCD_DEVICE_ELEMENT_SIZE];
@@ -1224,10 +1224,10 @@ InstallBcdStore(
     Status = RtlAdjustPrivilege(SE_BACKUP_PRIVILEGE, TRUE, FALSE, &PrivilegeSet[1]);
     if (NT_SUCCESS(Status))
     {
-        /* The store of another LiberNT installation keeps its entries; any other store is replaced */
+        /* The store of another ReliefWin installation keeps its entries; any other store is replaced */
         Kept.Count = 0;
         if (DoesFileExist(NULL, StorePath) &&
-            (!PcAt || GetPcatBootManagerOwner(SystemRootPath->Buffer) == BootManagerLiberNT) &&
+            (!PcAt || GetPcatBootManagerOwner(SystemRootPath->Buffer) == BootManagerReliefWin) &&
             NT_SUCCESS(NtLoadKey(&KeyAttributes, &FileAttributes)))
         {
             KeepOtherBcdEntries(OsElement, &Kept);

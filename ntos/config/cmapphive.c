@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Hives that belong to one process, and waiting for one to go
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

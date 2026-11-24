@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test delivery of received IPv4 datagrams to raw sockets
  * COPYRIGHT:   Copyright 2026 Ostap Brehin <osbre@protonmail.com>
@@ -78,12 +78,14 @@ CheckRawDatagram(
     ok(memcmp(Buffer + 20, Payload, PayloadSize) == 0, "%s: unexpected payload\n", Name);
 }
 
+enum { PAYLOAD_SIZE = sizeof("ReliefWin!") - 1 };
+
 START_TEST(raw_receive)
 {
     WSADATA WsaData;
     SOCKET Raw = INVALID_SOCKET, Sender = INVALID_SOCKET, Udp = INVALID_SOCKET;
     SOCKADDR_IN RawAddress, UdpAddress;
-    UCHAR Datagram[16];
+    UCHAR Datagram[8 + PAYLOAD_SIZE];
     UCHAR Buffer[128];
     USHORT Value;
     INT Result;
@@ -101,10 +103,10 @@ START_TEST(raw_receive)
         goto Cleanup;
     }
 
-    Result = sendto(Sender, "LiberNT!", 8, 0, (const SOCKADDR *)&RawAddress, sizeof(RawAddress));
-    ok(Result == 8, "raw sendto returned %d, error %d\n", Result, WSAGetLastError());
+    Result = sendto(Sender, "ReliefWin!", PAYLOAD_SIZE, 0, (const SOCKADDR *)&RawAddress, sizeof(RawAddress));
+    ok(Result == PAYLOAD_SIZE, "raw sendto returned %d, error %d\n", Result, WSAGetLastError());
     Result = ReceiveWithin(Raw, Buffer, sizeof(Buffer));
-    CheckRawDatagram("unknown protocol", Buffer, Result, EXPERIMENTAL_PROTOCOL, "LiberNT!", 8);
+    CheckRawDatagram("unknown protocol", Buffer, Result, EXPERIMENTAL_PROTOCOL, "ReliefWin!", PAYLOAD_SIZE);
     closesocket(Raw);
     closesocket(Sender);
 
@@ -114,10 +116,10 @@ START_TEST(raw_receive)
     if (Raw == INVALID_SOCKET || Udp == INVALID_SOCKET || Sender == INVALID_SOCKET)
         goto Cleanup;
 
-    Result = sendto(Sender, "LiberNT!", 8, 0, (const SOCKADDR *)&UdpAddress, sizeof(UdpAddress));
-    ok(Result == 8, "UDP sendto returned %d, error %d\n", Result, WSAGetLastError());
+    Result = sendto(Sender, "ReliefWin!", PAYLOAD_SIZE, 0, (const SOCKADDR *)&UdpAddress, sizeof(UdpAddress));
+    ok(Result == PAYLOAD_SIZE, "UDP sendto returned %d, error %d\n", Result, WSAGetLastError());
     Result = ReceiveWithin(Udp, Buffer, sizeof(Buffer));
-    ok(Result == 8, "UDP socket received %d bytes\n", Result);
+    ok(Result == PAYLOAD_SIZE, "UDP socket received %d bytes\n", Result);
     Result = ReceiveWithin(Raw, Buffer, sizeof(Buffer));
     ok(Result == -1, "raw UDP socket received %d bytes\n", Result);
 
@@ -127,13 +129,13 @@ START_TEST(raw_receive)
     Value = htons(sizeof(Datagram));
     memcpy(Datagram + 4, &Value, sizeof(Value));
     ZeroMemory(Datagram + 6, 2);
-    memcpy(Datagram + 8, "LiberNT!", 8);
+    memcpy(Datagram + 8, "ReliefWin!", PAYLOAD_SIZE);
     Result = sendto(Raw, (const CHAR *)Datagram, sizeof(Datagram), 0, (const SOCKADDR *)&UdpAddress, sizeof(UdpAddress));
     ok(Result == sizeof(Datagram), "raw UDP sendto returned %d, error %d\n", Result, WSAGetLastError());
     Result = ReceiveWithin(Udp, Buffer, sizeof(Buffer));
-    ok(Result == 8, "UDP socket received %d bytes from the raw UDP socket\n", Result);
-    if (Result == 8)
-        ok(memcmp(Buffer, "LiberNT!", 8) == 0, "UDP payload from the raw UDP socket mismatch\n");
+    ok(Result == PAYLOAD_SIZE, "UDP socket received %d bytes from the raw UDP socket\n", Result);
+    if (Result == PAYLOAD_SIZE)
+        ok(memcmp(Buffer, "ReliefWin!", PAYLOAD_SIZE) == 0, "UDP payload from the raw UDP socket mismatch\n");
 
 Cleanup:
     if (Raw != INVALID_SOCKET)

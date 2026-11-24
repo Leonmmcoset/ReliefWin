@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel Undefined Behavior Sanitizer
+ * PROJECT:     ReliefWin Kernel Undefined Behavior Sanitizer
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Report the undefined behavior -fsanitize=undefined catches in kernel-mode modules
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

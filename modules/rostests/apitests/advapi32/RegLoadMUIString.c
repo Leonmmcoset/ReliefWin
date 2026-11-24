@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Test the parameter checks of RegLoadMUIStringW
  * COPYRIGHT:   Copyright 2026 mikuta0407 <mikuta0407@mikuta0407.net>
@@ -7,7 +7,7 @@
 
 #include "precomp.h"
 
-#define TEST_KEY L"Software\\LiberNT-apitest-RegLoadMUIString"
+#define TEST_KEY L"Software\\ReliefWin-apitest-RegLoadMUIString"
 #define MUI_VALUE L"@%SystemRoot%\\system32\\shell32.dll,-8964"
 
 static

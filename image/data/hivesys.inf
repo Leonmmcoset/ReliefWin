@@ -519,7 +519,7 @@ HKLM,"SYSTEM\CurrentControlSet\Control\CoDeviceInstallers","{4D36E967-E325-11CE-
 
 ; Default computer name settings
 HKLM,"SYSTEM\CurrentControlSet\Control\ComputerName",,0x00000012
-HKLM,"SYSTEM\CurrentControlSet\Control\ComputerName\ComputerName","ComputerName",0x00000002,"LBRNT"
+HKLM,"SYSTEM\CurrentControlSet\Control\ComputerName\ComputerName","ComputerName",0x00000002,"RELIEFWIN"
 
 ; Crash Control
 HKLM,"SYSTEM\CurrentControlSet\Control\Cryptography\Configuration\Local\Default","Flags",0x00010001,0x00000000
@@ -1196,9 +1196,9 @@ HKLM,"SYSTEM\CurrentControlSet\Control\Nls\CodePage","28604",0x00000000,"c_28604
 HKLM,"SYSTEM\CurrentControlSet\Control\Nls\CodePage","28605",0x00000000,"c_28605.nls"
 HKLM,"SYSTEM\CurrentControlSet\Control\Nls\CodePage","28606",0x00000000,"c_28606.nls"
 HKLM,"SYSTEM\CurrentControlSet\Control\Nls\CodePage","29001",0x00000000,"c_29001.nls"
-HKLM,"SYSTEM\CurrentControlSet\Control\Nls\CodePage","ACP",0x00000000,"1252"
-HKLM,"SYSTEM\CurrentControlSet\Control\Nls\CodePage","OEMCP",0x00000000,"437"
-HKLM,"SYSTEM\CurrentControlSet\Control\Nls\CodePage","MACCP",0x00000000,"10000"
+HKLM,"SYSTEM\CurrentControlSet\Control\Nls\CodePage","ACP",0x00000000,"936"
+HKLM,"SYSTEM\CurrentControlSet\Control\Nls\CodePage","OEMCP",0x00000000,"936"
+HKLM,"SYSTEM\CurrentControlSet\Control\Nls\CodePage","MACCP",0x00000000,"10008"
 ;HKLM,"SYSTEM\CurrentControlSet\Control\Nls\CodePage","OEMHAL",0x00000000,"vgaoem.fon"
 
 HKLM,"SYSTEM\CurrentControlSet\Control\Nls\CodePage\EUDCCodeRange","932",2,"F040-F9FC"
@@ -1334,8 +1334,8 @@ HKLM,"SYSTEM\CurrentControlSet\Control\Nls\Language","0455",0x00000000,"l_intl.n
 HKLM,"SYSTEM\CurrentControlSet\Control\Nls\Language","0456",0x00000000,"l_intl.nls"
 HKLM,"SYSTEM\CurrentControlSet\Control\Nls\Language","048f",0x00000000,"l_intl.nls"
 HKLM,"SYSTEM\CurrentControlSet\Control\Nls\Language","0490",0x00000000,"l_intl.nls"
-HKLM,"SYSTEM\CurrentControlSet\Control\Nls\Language","Default",0x00000000,"0409"
-HKLM,"SYSTEM\CurrentControlSet\Control\Nls\Language","InstallLanguage",0x00000000,"0409"
+HKLM,"SYSTEM\CurrentControlSet\Control\Nls\Language","Default",0x00000000,"0804"
+HKLM,"SYSTEM\CurrentControlSet\Control\Nls\Language","InstallLanguage",0x00000000,"0804"
 
 ; Supported and installed locales
 ; If you add/uncomment an entry here, please also add the appropriate Language
@@ -2048,7 +2048,7 @@ HKLM,"SYSTEM\CurrentControlSet\Services\Nwifi","Start",0x00010001,0x00000001
 HKLM,"SYSTEM\CurrentControlSet\Services\Nwifi","ErrorControl",0x00010001,0x00000001
 HKLM,"SYSTEM\CurrentControlSet\Services\Nwifi","ImagePath",0x00020000,"system32\drivers\nwifi.sys"
 HKLM,"SYSTEM\CurrentControlSet\Services\Nwifi","Group",0x00000000,"NDIS"
-HKLM,"SYSTEM\CurrentControlSet\Services\Nwifi","DisplayName",0x00000000,"ReactOS Native WiFi Service"
+HKLM,"SYSTEM\CurrentControlSet\Services\Nwifi","DisplayName",0x00000000,"ReliefWin Native WiFi Service"
 
 ; Packet driver
 HKLM,"SYSTEM\CurrentControlSet\Services\Packet","ErrorControl",0x00010001,0x00000001
@@ -2713,7 +2713,7 @@ DCOMLAUNCH_SERVICE_DESCRIPTION="DcomLaunch service stub."
 EVENTLOG_SERVICE="Windows Event Log"
 EVENTLOG_SERVICE_DESCRIPTION="Logs events or messages sent by the operating system in a database accessible via the event log viewer."
 
-MSISERVER_SERVICE="LiberNT Installer"
+MSISERVER_SERVICE="ReliefWin Installer"
 MSISERVER_SERVICE_DESCRIPTION="Controls installation, maintenance, and removal of software packaged as an MSI (Windows Installer)."
 
 NETLOGON_SERVICE="Net Logon"
@@ -2745,13 +2745,13 @@ SPOOLER_SERVICE_DESCRIPTION="Loads files to memory for later printing."
 TCPSVCS_SERVICE="Simple TCP/IP Services"
 TCPSVCS_SERVICE_DECRIPTION="Supports the following TCP/IP services: Chargen, Daytime, Discard, Echo, QOTD."
 
-TELNETD_SERVICE="LiberNT Telnet Service"
-TELNETD_SERVICE_DESCRIPTION="LiberNT Telnet Service"
+TELNETD_SERVICE="ReliefWin Telnet Service"
+TELNETD_SERVICE_DESCRIPTION="ReliefWin Telnet Service"
 
 THEMES_SERVICE="Themes"
 THEMES_SERVICE_DESCRIPTION="Themes support"
 
-WINMGMT_SERVICE="LiberNT Management Infrastructure"
+WINMGMT_SERVICE="ReliefWin Management Infrastructure"
 WINMGMT_SERVICE_DESCRIPTION="Provides interface to system management information."
 
 WLANSVC_SERVICE="WLAN Service"
@@ -2861,7 +2861,7 @@ VIETNAMESE = "Vietnamese"
 [Strings.000A]
 
 ; Services names and descriptions
-AUDIO_SERVICE="Audio de LiberNT"
+AUDIO_SERVICE="Audio de ReliefWin"
 AUDIO_SERVICE_DESCRIPTION="Proporciona facilidades de audio para las aplicaciones."
 
 BITS_SERVICE="Servicio de transferencia inteligente en segundo plano (BITS)"
@@ -2876,7 +2876,7 @@ DCOMLAUNCH_SERVICE_DESCRIPTION="Servicio simulado del iniciador Dcom."
 EVENTLOG_SERVICE="Registrador de Eventos"
 EVENTLOG_SERVICE_DESCRIPTION="Registro de eventos o mensajes enviados por el sistema operativo en una base de datos accesible desde el Visor de Eventos."
 
-MSISERVER_SERVICE="Instalador MSI de LiberNT"
+MSISERVER_SERVICE="Instalador MSI de ReliefWin"
 MSISERVER_SERVICE_DESCRIPTION="Controla la instalación, mantenimiento y desinstalado del software empaquetado en un MSI (Windows Installer)."
 
 NETLOGON_SERVICE="Net Logon"
@@ -2906,13 +2906,13 @@ SPOOLER_SERVICE_DESCRIPTION="Carga los archivos a la memoria para una posterior 
 TCPSVCS_SERVICE="Servicios sencillos TCP/IP"
 TCPSVCS_SERVICE_DECRIPTION="Soporta los siguientes servicios de TCP/IP: Chargen, Daytime, Discard, Echo, QOTD."
 
-TELNETD_SERVICE="Servicio Telnet de LiberNT"
-TELNETD_SERVICE_DESCRIPTION="Servicio Telnet de LiberNT."
+TELNETD_SERVICE="Servicio Telnet de ReliefWin"
+TELNETD_SERVICE_DESCRIPTION="Servicio Telnet de ReliefWin."
 
 THEMES_SERVICE="Temas"
 THEMES_SERVICE_DESCRIPTION="Soporte para los diferentes Temas."
 
-WINMGMT_SERVICE="Instrumental de administración de LiberNT"
+WINMGMT_SERVICE="Instrumental de administración de ReliefWin"
 WINMGMT_SERVICE_DESCRIPTION="Proporciona una interfaz para la gestión de la información del sistema (winmgmt)."
 
 WLANSVC_SERVICE="Servicio de WLAN"
@@ -3036,7 +3036,7 @@ DCOMLAUNCH_SERVICE_DESCRIPTION="Namiastka usługi DcomLaunch"
 EVENTLOG_SERVICE="Dziennik zdarzeń"
 EVENTLOG_SERVICE_DESCRIPTION="Zapisuje zdarzenia lub wiadomości wysyłane przez system operacyjny do bazy danych dostępnej za pomocą podglądu zdarzeń."
 
-MSISERVER_SERVICE="Instalator LiberNT"
+MSISERVER_SERVICE="Instalator ReliefWin"
 MSISERVER_SERVICE_DESCRIPTION="Dodaje, modyfikuje i usuwa aplikacje dostarczane jako pakiet MSI (Windows Installer)."
 
 NETLOGON_SERVICE="Logowanie do sieci"
@@ -3066,13 +3066,13 @@ SPOOLER_SERVICE_DESCRIPTION="Ładuje pliki do pamięci w celu późniejszego wyd
 TCPSVCS_SERVICE="Podstawowe usługi TCP/IP"
 TCPSVCS_SERVICE_DECRIPTION="Oferuje następujące usługi TCP/IP: Chargen, Daytime, Discard, Echo, QOTD."
 
-TELNETD_SERVICE="Usługa LiberNT Telnet"
-TELNETD_SERVICE_DESCRIPTION="Usługa LiberNT Telnet"
+TELNETD_SERVICE="Usługa ReliefWin Telnet"
+TELNETD_SERVICE_DESCRIPTION="Usługa ReliefWin Telnet"
 
 THEMES_SERVICE="Motywy"
 THEMES_SERVICE_DESCRIPTION="Oferuje wsparcie dla motywów."
 
-WINMGMT_SERVICE="Infrastruktura zarządzania LiberNT"
+WINMGMT_SERVICE="Infrastruktura zarządzania ReliefWin"
 WINMGMT_SERVICE_DESCRIPTION="Dostarcza interfejs w celu uzyskiwania dostępu do informacji zarządzania o systemie operacyjnym, urządzeniach, aplikacjach i usługach."
 
 WLANSVC_SERVICE="Usługa WLAN"
@@ -3181,7 +3181,7 @@ VIETNAMESE = "Wietnamski"
 [Strings.0016]
 
 ; Services names and descriptions
-AUDIO_SERVICE="Serviços de Audio do LiberNT"
+AUDIO_SERVICE="Serviços de Audio do ReliefWin"
 AUDIO_SERVICE_DESCRIPTION="Fornece recursos de áudio para aplicações"
 
 BITS_SERVICE="Serviço de transferência inteligente em segundo plano"
@@ -3196,7 +3196,7 @@ DCOMLAUNCH_SERVICE_DESCRIPTION="Fornece funcionalidades de lançamento para serv
 EVENTLOG_SERVICE="Registo de Eventos"
 EVENTLOG_SERVICE_DESCRIPTION="Regista eventos ou mensagens enviadas pelo sistema operativo num banco de dados acessíveis através do visualizador de eventos."
 
-MSISERVER_SERVICE="Instalador do LiberNT"
+MSISERVER_SERVICE="Instalador do ReliefWin"
 MSISERVER_SERVICE_DESCRIPTION="Controla a instalação, manutenção e remoção de software empacotado como um MSI (Instalador do Windows)."
 
 NETLOGON_SERVICE="Inicio de sessão de rede"
@@ -3226,13 +3226,13 @@ SPOOLER_SERVICE_DESCRIPTION="Carrega ficheiros na memória para impressão poste
 TCPSVCS_SERVICE="Serviços TCP/IP simples"
 TCPSVCS_SERVICE_DECRIPTION="Soporta os seguintes serviços TCP/IP: Chargen, Daytime, Discard, Echo, QOTD."
 
-TELNETD_SERVICE="Serviço Telnet do LiberNT"
+TELNETD_SERVICE="Serviço Telnet do ReliefWin"
 TELNETD_SERVICE_DESCRIPTION="Permite que um utilizador remoto inicie sessão e execute programas neste computador."
 
 THEMES_SERVICE="Temas"
 THEMES_SERVICE_DESCRIPTION="Fornece a gestão de temas por parte dos utilizadores.."
 
-WINMGMT_SERVICE="Infra-estrutura de gestão do LiberNT"
+WINMGMT_SERVICE="Infra-estrutura de gestão do ReliefWin"
 WINMGMT_SERVICE_DESCRIPTION="Fornece interface para informações de gestão do sistema."
 
 WLANSVC_SERVICE="Serviço WLAN"
@@ -3242,7 +3242,7 @@ WORKSTATION_SERVICE="Estação de trabalho"
 WORKSTATION_SERVICE_DESCRIPTION="Cria e mantém cliente de ligações de rede a servidores remotos."
 
 WUAUSERV_SERVICE="Actualizações automáticas"
-WUAUSERV_SERVICE_DESCRIPTION="Permite a transferência e instalação de actualizações do LiberNT."
+WUAUSERV_SERVICE_DESCRIPTION="Permite a transferência e instalação de actualizações do ReliefWin."
 
 ; Keyboard layouts
 ALBANIAN = "Albanês"
@@ -3353,7 +3353,7 @@ DCOMLAUNCH_SERVICE_DESCRIPTION="Serviciu simulat de lansare Dcom."
 EVENTLOG_SERVICE="Jurnal de evenimente"
 EVENTLOG_SERVICE_DESCRIPTION="Jurnalizează mesajele sau evenimentele transmise de sistemul de operare într-o bază de date accesibilă cu instrumentul „observator de evenimente”."
 
-MSISERVER_SERVICE="Instalare LiberNT"
+MSISERVER_SERVICE="Instalare ReliefWin"
 MSISERVER_SERVICE_DESCRIPTION="Controlează instalarea, mentenanța, și eliminarea de programe de instalare MSI (Windows Installer)."
 
 NETLOGON_SERVICE="Autentificare în rețea"
@@ -3384,7 +3384,7 @@ TCPSVCS_SERVICE="Servicii TCP/IP simple"
 TCPSVCS_SERVICE_DECRIPTION="Permite următoarele servicii (protocoale) TCP/IP: Chargen, Daytime, Discard, Echo, QOTD."
 
 TELNETD_SERVICE="Serviciu Telnet"
-TELNETD_SERVICE_DESCRIPTION="Serviciul Telnet al LiberNT."
+TELNETD_SERVICE_DESCRIPTION="Serviciul Telnet al ReliefWin."
 
 THEMES_SERVICE="Teme"
 THEMES_SERVICE_DESCRIPTION="Permite teme pentru interfața grafică de utilizare."
@@ -3513,7 +3513,7 @@ DCOMLAUNCH_SERVICE_DESCRIPTION="DcomLaunch service stub."
 EVENTLOG_SERVICE="Журнал событий"
 EVENTLOG_SERVICE_DESCRIPTION="Регистрирует события или сообщения, отправленные операционной системой в базе данных, доступной через средство просмотра журнала событий."
 
-MSISERVER_SERVICE="Установщик LiberNT"
+MSISERVER_SERVICE="Установщик ReliefWin"
 MSISERVER_SERVICE_DESCRIPTION="Управляет установкой, изменением и удалением программ, упакованных в MSI (установщик Windows)."
 
 NETLOGON_SERVICE="Сетевой вход в систему"
@@ -3543,13 +3543,13 @@ SPOOLER_SERVICE_DESCRIPTION="Загружает файлы в память дл�
 TCPSVCS_SERVICE="Простые службы TCP/IP"
 TCPSVCS_SERVICE_DECRIPTION="Поддержка следующих служб TCP/IP: Chargen, Daytime, Discard, Echo, QOTD."
 
-TELNETD_SERVICE="Служба LiberNT Telnet"
-TELNETD_SERVICE_DESCRIPTION="Служба LiberNT Telnet"
+TELNETD_SERVICE="Служба ReliefWin Telnet"
+TELNETD_SERVICE_DESCRIPTION="Служба ReliefWin Telnet"
 
 THEMES_SERVICE="Темы"
 THEMES_SERVICE_DESCRIPTION="Поддержка тем оформления."
 
-WINMGMT_SERVICE="Инструментарий управления LiberNT"
+WINMGMT_SERVICE="Инструментарий управления ReliefWin"
 WINMGMT_SERVICE_DESCRIPTION="Предоставляет общий интерфейс для доступа к информации об управлении операционной системой."
 
 WLANSVC_SERVICE="Беспроводная локальная сеть (WLAN)"
@@ -3673,7 +3673,7 @@ DCOMLAUNCH_SERVICE_DESCRIPTION="DcomLaunch hizmetinin taslağı."
 EVENTLOG_SERVICE="Olay Günlüğü"
 EVENTLOG_SERVICE_DESCRIPTION="İşletim sisteminin gönderdiği olayları veya iletileri, olay görüntüsü ile erişilebilen bir veritabanına kaydeder."
 
-MSISERVER_SERVICE="LiberNT Yükleyicisi"
+MSISERVER_SERVICE="ReliefWin Yükleyicisi"
 MSISERVER_SERVICE_DESCRIPTION="MSI (Windows Yükleyicisi) olarak paketlenmiş yazılımların yüklenmesini, bakımını ve kaldırılmasını denetler."
 
 NETLOGON_SERVICE="Ağda Oturum Açma"
@@ -3703,13 +3703,13 @@ SPOOLER_SERVICE_DESCRIPTION="Dosyaları, sonra yazdırılması için belleğe y�
 TCPSVCS_SERVICE="Basit TCP/IP Hizmetleri"
 TCPSVCS_SERVICE_DECRIPTION="Şu TCP/IP hizmetlerini destekler: Güçlendirme, Günışığı, Kesme, Yankı ve QOTD."
 
-TELNETD_SERVICE="LiberNT Telnet Hizmeti"
-TELNETD_SERVICE_DESCRIPTION="LiberNT Telnet Hizmeti"
+TELNETD_SERVICE="ReliefWin Telnet Hizmeti"
+TELNETD_SERVICE_DESCRIPTION="ReliefWin Telnet Hizmeti"
 
 THEMES_SERVICE="Temalar"
 THEMES_SERVICE_DESCRIPTION="Tema desteği"
 
-WINMGMT_SERVICE="LiberNT Yönetim Altyapısı"
+WINMGMT_SERVICE="ReliefWin Yönetim Altyapısı"
 WINMGMT_SERVICE_DESCRIPTION="Sistem yönetim bilgisine arayüz sağlar."
 
 WLANSVC_SERVICE="WLAN Hizmeti"

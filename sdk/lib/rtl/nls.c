@@ -9,7 +9,7 @@
 /* INCLUDES *****************************************************************/
 
 #include <rtl.h>
-#include <libernt/unaligned.h>
+#include <reliefwin/unaligned.h>
 
 #define NDEBUG
 #include <debug.h>

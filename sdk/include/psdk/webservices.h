@@ -3386,7 +3386,7 @@ struct _WS_ASYNC_OPERATION
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 HRESULT WINAPI WsAbandonCall(WS_SERVICE_PROXY *serviceProxy, ULONG callId, WS_ERROR *error);
 HRESULT WINAPI WsAbandonMessage(WS_CHANNEL *channel, WS_MESSAGE *message, WS_ERROR *error);
 HRESULT WINAPI WsAbortListener(WS_LISTENER *listener, WS_ERROR *error);
@@ -3464,7 +3464,7 @@ typedef struct _WS_XML_TOKEN_MESSAGE_SECURITY_BINDING WS_XML_TOKEN_MESSAGE_SECUR
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 HRESULT WINAPI WsAbortServiceHost(WS_SERVICE_HOST *serviceHost, WS_ERROR *error);
 HRESULT WINAPI WsCloseServiceHost(WS_SERVICE_HOST *serviceHost, const WS_ASYNC_CONTEXT *asyncContext, WS_ERROR *error);
 HRESULT WINAPI WsCreateMetadata(const WS_METADATA_PROPERTY *properties, ULONG propertyCount, WS_METADATA **metadata, WS_ERROR *error);

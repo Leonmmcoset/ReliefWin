@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Run-Time Library
+ * PROJECT:     ReliefWin Run-Time Library
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     ARM (Thumb-2) policy for the shared exception-raising helpers
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

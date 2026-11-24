@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Modern Boot Status
+ * PROJECT:     ReliefWin Modern Boot Status
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Borderless boot-status surface
  * COPYRIGHT:   Copyright 2026 Ahmed Arif <arif.ing@outlook.com>
@@ -10,7 +10,7 @@
 #include <wingdi.h>
 #include <winuser.h>
 
-#include <libernt/bootstatus.h>
+#include <reliefwin/bootstatus.h>
 
 #include <debug.h>
 

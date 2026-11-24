@@ -110,7 +110,7 @@ RxInitializeMRxDispatcher(
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 NTSTATUS RxSpinDownMRxDispatcher(PRDBSS_DEVICE_OBJECT pMRxDeviceObject);
 NTSTATUS RxTearDownDispatcher(void);
 

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Tests for the NUMA node query and NUMA-preferred allocation APIs
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -318,7 +318,7 @@ Test_NodeNumberFromHandle(void)
         CloseHandle(File);
     }
 
-    File = CreateNamedPipeW(L"\\\\.\\pipe\\LiberNTNumaApis", PIPE_ACCESS_DUPLEX, 0, 1, 512, 512, 0, NULL);
+    File = CreateNamedPipeW(L"\\\\.\\pipe\\ReliefWinNumaApis", PIPE_ACCESS_DUPLEX, 0, 1, 512, 512, 0, NULL);
     ok(File != INVALID_HANDLE_VALUE, "CreateNamedPipeW failed: %lu\n", GetLastError());
     if (File != INVALID_HANDLE_VALUE)
     {
@@ -517,7 +517,7 @@ Test_FileMappingNuma(ULONG HighestNode)
         CloseHandle(Mapping);
 
     SetLastError(0xDEADBEEF);
-    Mapping = pCreateFileMappingNumaA(INVALID_HANDLE_VALUE, NULL, PAGE_READWRITE, 0, 0x10000, "LiberNTNumaMapping", 0);
+    Mapping = pCreateFileMappingNumaA(INVALID_HANDLE_VALUE, NULL, PAGE_READWRITE, 0, 0x10000, "ReliefWinNumaMapping", 0);
     ok(Mapping != NULL, "CreateFileMappingNumaA failed: %lu\n", GetLastError());
     ok(GetLastError() == ERROR_SUCCESS, "CreateFileMappingNumaA: LastError = %lu\n", GetLastError());
     if (Mapping)
@@ -525,14 +525,14 @@ Test_FileMappingNuma(ULONG HighestNode)
         HANDLE Second;
 
         SetLastError(0xDEADBEEF);
-        Second = pCreateFileMappingNumaA(INVALID_HANDLE_VALUE, NULL, PAGE_READWRITE, 0, 0x10000, "LiberNTNumaMapping", 0);
+        Second = pCreateFileMappingNumaA(INVALID_HANDLE_VALUE, NULL, PAGE_READWRITE, 0, 0x10000, "ReliefWinNumaMapping", 0);
         ok(Second != NULL, "Second CreateFileMappingNumaA failed: %lu\n", GetLastError());
         ok(GetLastError() == ERROR_ALREADY_EXISTS, "Second CreateFileMappingNumaA: LastError = %lu\n", GetLastError());
         if (Second)
             CloseHandle(Second);
 
         SetLastError(0xDEADBEEF);
-        Second = pCreateFileMappingNumaA(INVALID_HANDLE_VALUE, NULL, PAGE_READWRITE, 0, 0x10000, "LiberNTNumaMapping", HighestNode + 1);
+        Second = pCreateFileMappingNumaA(INVALID_HANDLE_VALUE, NULL, PAGE_READWRITE, 0, 0x10000, "ReliefWinNumaMapping", HighestNode + 1);
         ok(Second == NULL, "Existing name, node %lu: expected failure\n", HighestNode + 1);
         ok(GetLastError() == ERROR_INVALID_PARAMETER, "Existing name, node %lu: LastError = %lu\n", HighestNode + 1, GetLastError());
         if (Second)

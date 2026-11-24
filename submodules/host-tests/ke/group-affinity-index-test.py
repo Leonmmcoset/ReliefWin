@@ -1,4 +1,4 @@
-# PROJECT:     LiberNT host-native tests
+# PROJECT:     ReliefWin host-native tests
 # LICENSE:     GPL-3.0-or-later
 # PURPOSE:     Verify processor indices against group-relative affinity masks
 import argparse

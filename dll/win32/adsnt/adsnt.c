@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT ADSI WinNT provider
+ * PROJECT:     ReliefWin ADSI WinNT provider
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     WinNT:// namespace for the local computer's groups and users
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

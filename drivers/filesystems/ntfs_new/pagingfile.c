@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Kernel
+ * PROJECT:     ReliefWin Kernel
  * LICENSE:     MIT (https://spdx.org/licenses/MIT)
  * PURPOSE:     Paging file I/O that takes no file system lock and allocates no memory
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

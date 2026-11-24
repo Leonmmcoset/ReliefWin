@@ -2,7 +2,7 @@ HKCR
 {
     NoRemove CLSID
     {
-        '{1D9AB4B8-5861-469B-8D18-9EE9A23E5D2A}' = s 'LiberNT Text-to-Speech Engine'
+        '{1D9AB4B8-5861-469B-8D18-9EE9A23E5D2A}' = s 'ReliefWin Text-to-Speech Engine'
         {
             InprocServer32 = s '%MODULE%'
             {
@@ -24,17 +24,17 @@ HKLM
                     val DefaultDefaultTokenId = s 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\LNTTTS_enUS_Voice'
                     NoRemove Tokens
                     {
-                        ForceRemove LNTTTS_enUS_Voice = s 'LiberNT Voice - English (United States)'
+                        ForceRemove LNTTTS_enUS_Voice = s 'ReliefWin Voice - English (United States)'
                         {
-                            val 409 = s 'LiberNT Voice - English (United States)'
+                            val 409 = s 'ReliefWin Voice - English (United States)'
                             val CLSID = s '{1D9AB4B8-5861-469B-8D18-9EE9A23E5D2A}'
                             Attributes
                             {
                                 val Age = s 'Adult'
                                 val Gender = s 'Male'
                                 val Language = s '409'
-                                val Name = s 'LiberNT Voice'
-                                val Vendor = s 'LiberNT'
+                                val Name = s 'ReliefWin Voice'
+                                val Vendor = s 'ReliefWin'
                                 val Version = s '1.0'
                             }
                         }
@@ -47,17 +47,17 @@ HKLM
                 {
                     NoRemove Tokens
                     {
-                        ForceRemove LNTTTS_enUS_Voice = s 'LiberNT Voice - English (United States)'
+                        ForceRemove LNTTTS_enUS_Voice = s 'ReliefWin Voice - English (United States)'
                         {
-                            val 409 = s 'LiberNT Voice - English (United States)'
+                            val 409 = s 'ReliefWin Voice - English (United States)'
                             val CLSID = s '{1D9AB4B8-5861-469B-8D18-9EE9A23E5D2A}'
                             Attributes
                             {
                                 val Age = s 'Adult'
                                 val Gender = s 'Male'
                                 val Language = s '409'
-                                val Name = s 'LiberNT Voice'
-                                val Vendor = s 'LiberNT'
+                                val Name = s 'ReliefWin Voice'
+                                val Vendor = s 'ReliefWin'
                                 val Version = s '1.0'
                             }
                         }

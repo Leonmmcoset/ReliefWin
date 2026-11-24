@@ -250,7 +250,7 @@ typedef BOOL (WINAPI *pCryptSIPGetSealedDigest)(SIP_SUBJECTINFO *, const BYTE *,
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 BOOL WINAPI CryptSIPGetSealedDigest(SIP_SUBJECTINFO *pSubjectInfo, const BYTE *pSig, DWORD dwSig, BYTE *pbDigest, DWORD *pcbDigest);
 
 #ifdef __cplusplus

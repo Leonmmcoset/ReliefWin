@@ -518,7 +518,7 @@ typedef struct _AUTHZ_INIT_INFO *PAUTHZ_INIT_INFO;
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 BOOL WINAPI AuthzEvaluateSacl(AUTHZ_CLIENT_CONTEXT_HANDLE AuthzClientContext, PAUTHZ_ACCESS_REQUEST pRequest, PACL Sacl, ACCESS_MASK GrantedAccess, BOOL AccessGranted, PBOOL pbGenerateAudit);
 BOOL WINAPI AuthzFreeCentralAccessPolicyCache(void);
 BOOL WINAPI AuthzInitializeCompoundContext(AUTHZ_CLIENT_CONTEXT_HANDLE UserContext, AUTHZ_CLIENT_CONTEXT_HANDLE DeviceContext, PAUTHZ_CLIENT_CONTEXT_HANDLE phCompoundContext);

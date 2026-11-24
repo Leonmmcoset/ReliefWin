@@ -419,7 +419,7 @@ SQLRETURN SQL_API SQLSetStmtAttr(SQLHSTMT,SQLINTEGER,SQLPOINTER,SQLINTEGER);
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 SQLRETURN SQL_API SQLCancelHandle(SQLSMALLINT HandleType, SQLHANDLE InputHandle);
 SQLRETURN SQL_API SQLCompleteAsync(SQLSMALLINT HandleType, SQLHANDLE Handle, RETCODE *AsyncRetCodePtr);
 

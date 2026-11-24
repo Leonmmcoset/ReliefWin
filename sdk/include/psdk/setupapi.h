@@ -3317,7 +3317,7 @@ WINSETUPAPI BOOL WINAPI SetupVerifyInfFileW(PCWSTR InfName, PSP_ALTPLATFORM_INFO
 #endif
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 WINSETUPAPI BOOL WINAPI SetupConfigureWmiFromInfSectionA(HINF InfHandle, PCSTR SectionName, DWORD Flags);
 WINSETUPAPI BOOL WINAPI SetupConfigureWmiFromInfSectionW(HINF InfHandle, PCWSTR SectionName, DWORD Flags);
 WINSETUPAPI BOOL WINAPI SetupDiGetClassPropertyExW(const GUID *ClassGuid, const DEVPROPKEY *PropertyKey, DEVPROPTYPE *PropertyType, PBYTE PropertyBuffer, DWORD PropertyBufferSize, PDWORD RequiredSize, DWORD Flags, PCWSTR MachineName, PVOID Reserved);
@@ -3345,7 +3345,7 @@ typedef DWORDLONG SP_LOG_TOKEN;
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 WINSETUPAPI SP_LOG_TOKEN WINAPI SetupGetThreadLogToken(void);
 WINSETUPAPI void WINAPI SetupSetThreadLogToken(SP_LOG_TOKEN LogToken);
 WINSETUPAPI void SetupWriteTextLog(SP_LOG_TOKEN LogToken, DWORD Category, DWORD Flags, PCSTR MessageStr, ...);

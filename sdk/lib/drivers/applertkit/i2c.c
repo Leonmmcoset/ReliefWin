@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT Apple RTKit Library
+ * PROJECT:     ReliefWin Apple RTKit Library
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Apple silicon I2C controller
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -8,9 +8,9 @@
 #ifndef UNIT_TEST
 #include <ntddk.h>
 #endif
-#include <libernt/drivers/applepmgr.h>
-#include <libernt/drivers/applegpio.h>
-#include <libernt/drivers/applei2c.h>
+#include <reliefwin/drivers/applepmgr.h>
+#include <reliefwin/drivers/applegpio.h>
+#include <reliefwin/drivers/applei2c.h>
 
 #define I2C_TX_FIFO             0x00
 #define I2C_RX_FIFO             0x04

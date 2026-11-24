@@ -53,7 +53,7 @@
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 HWND HwndMSWheel(PUINT puiMsh_MsgMouseWheel, PUINT puiMsh_Msg3DSupport, PUINT puiMsh_MsgScrollLines, PBOOL pf3DSupport, PINT piScrollLines);
 
 #ifdef __cplusplus

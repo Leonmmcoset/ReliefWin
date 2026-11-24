@@ -29,7 +29,7 @@ AppendFixedTime(stringstream& Stream, DWORD Milliseconds, DWORD Unit)
 static void
 IntPrintUsage()
 {
-    cout << "rosautotest - ReactOS Automatic Testing Utility" << endl
+    cout << "rosautotest - ReliefWin Automatic Testing Utility" << endl
          << "Usage: rosautotest [options] [module] [test]" << endl
          << "  options:" << endl
          << "    /?           - Shows this help." << endl
@@ -40,8 +40,8 @@ IntPrintUsage()
          << "                   A name is a category (\"graphics\") or one of its" << endl
          << "                   sub-categories (\"core:exceptions\"). \"/g ?\" lists them." << endl
          << "    /n           - Do not print test output to console" << endl
-         << "    /r           - Maintain information to resume from ReactOS crashes" << endl
-         << "                   Can only be run under ReactOS and relies on sysreg2," << endl
+         << "    /r           - Maintain information to resume from ReliefWin crashes" << endl
+         << "                   Can only be run under ReliefWin and relies on sysreg2," << endl
          << "                   so incompatible with /w" << endl
          << "    /s           - Shut down the system after finishing the tests." << endl
          << "    /t <num>     - Repeat the test <num> times (1-10000)" << endl

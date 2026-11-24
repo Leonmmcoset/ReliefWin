@@ -2,7 +2,7 @@
 # SPDX-FileCopyrightText: 2026 Ahmed ARIF <arif.ing@outlook.com>
 # GPU renderer of the Linux subsystem: lxgpu.exe with virglrenderer (OpenGL and the venus Vulkan renderer)
 # and libepoxy, MIT, from pinned upstream release sources with the Windows patch below, built with the
-# LiberNT SDK and packaged next to lxwinhost.exe, which starts it.
+# ReliefWin SDK and packaged next to lxwinhost.exe, which starts it.
 
 if(ARM64EC_RUNTIME)
     return()

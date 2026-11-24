@@ -1,4 +1,4 @@
-# PROJECT:     LiberNT host-native tests
+# PROJECT:     ReliefWin host-native tests
 # LICENSE:     GPL-3.0-or-later
 # PURPOSE:     Exercise the working-set watch while a user copy is outstanding
 import argparse

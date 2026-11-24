@@ -77,7 +77,7 @@ extern UINT         MyHelpMessage;
 extern "C" {
 #endif
 
-/* TODO: LiberNT does not implement the functions below yet */
+/* TODO: ReliefWin does not implement the functions below yet */
 void WINAPI ScreenSaverChangePassword(HWND hParent);
 
 #ifdef __cplusplus

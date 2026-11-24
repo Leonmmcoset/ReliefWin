@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT kernel-mode tests
+ * PROJECT:     ReliefWin kernel-mode tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     WFP listen authorization of a WSK socket
  * COPYRIGHT:   Copyright 2026 Ostap Brehin <osbre@protonmail.com>
@@ -162,7 +162,7 @@ AddListenBlock(
 
     RtlZeroMemory(&SubLayer, sizeof(SubLayer));
     SubLayer.subLayerKey = TEST_SUBLAYER;
-    SubLayer.displayData.name = L"LiberNT WFP listen test sublayer";
+    SubLayer.displayData.name = L"ReliefWin WFP listen test sublayer";
     SubLayer.weight = 0x100;
     Status = FwpmSubLayerAdd0(Engine, &SubLayer, NULL);
     if (!NT_SUCCESS(Status))
@@ -172,7 +172,7 @@ AddListenBlock(
 
     RtlZeroMemory(&Management, sizeof(Management));
     Management.calloutKey = TEST_LISTEN_CALLOUT;
-    Management.displayData.name = L"LiberNT WFP listen test callout";
+    Management.displayData.name = L"ReliefWin WFP listen test callout";
     Management.applicableLayer = FWPM_LAYER_ALE_AUTH_LISTEN_V4;
     Status = FwpmCalloutAdd0(Engine, &Management, NULL, NULL);
     if (!NT_SUCCESS(Status))
@@ -189,7 +189,7 @@ AddListenBlock(
     RtlZeroMemory(&Filter, sizeof(Filter));
     Filter.layerKey = FWPM_LAYER_ALE_AUTH_LISTEN_V4;
     Filter.subLayerKey = TEST_SUBLAYER;
-    Filter.displayData.name = L"LiberNT WFP listen test filter";
+    Filter.displayData.name = L"ReliefWin WFP listen test filter";
     Filter.action.type = FWP_ACTION_CALLOUT_TERMINATING;
     Filter.action.calloutKey = TEST_LISTEN_CALLOUT;
     Filter.weight.type = FWP_EMPTY;

@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT API tests
+ * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Custom actions that run an executable named by a property
  * COPYRIGHT:   Copyright 2026 mikuta0407 <mikuta0407@mikuta0407.net>
@@ -21,7 +21,7 @@ static const PCWSTR Base[] =
     L"INSERT INTO `Property` (`Property`, `Value`) VALUES ('ProductCode', '{7C1A5E93-2D4B-4F68-8B0E-3A9D6C2F1E57}')",
     L"INSERT INTO `Property` (`Property`, `Value`) VALUES ('ProductVersion', '1.0.0')",
     L"INSERT INTO `Property` (`Property`, `Value`) VALUES ('ProductLanguage', '1033')",
-    L"INSERT INTO `Property` (`Property`, `Value`) VALUES ('Manufacturer', 'LiberNT')",
+    L"INSERT INTO `Property` (`Property`, `Value`) VALUES ('Manufacturer', 'ReliefWin')",
     L"INSERT INTO `InstallExecuteSequence` (`Action`, `Sequence`) VALUES ('CostInitialize', 100)",
     L"INSERT INTO `InstallExecuteSequence` (`Action`, `Sequence`) VALUES ('SetProgram', 200)",
     L"INSERT INTO `InstallExecuteSequence` (`Action`, `Sequence`) VALUES ('Run', 300)",

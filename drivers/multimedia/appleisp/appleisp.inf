@@ -1,4 +1,4 @@
-; PROJECT:     LiberNT Apple ISP Camera Driver
+; PROJECT:     ReliefWin Apple ISP Camera Driver
 ; LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
 ; PURPOSE:     Apple silicon FaceTime camera driver installation file
 ; COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
@@ -7,7 +7,7 @@
 Signature = "$Windows NT$"
 Class = Camera
 ClassGUID = {ca3e7ab9-b4c3-4ae6-8251-579ef933890f}
-Provider = %LiberNT%
+Provider = %ReliefWin%
 DriverVer = 11/11/2026,1.0.0.0
 
 [ClassInstall32.NT]
@@ -21,9 +21,9 @@ HKR, , Icon, 0, "-1"
 DefaultDestDir = 12
 
 [Manufacturer]
-%LiberNT% = LiberNT,NTarm64
+%ReliefWin% = ReliefWin,NTarm64
 
-[LiberNT.NTarm64]
+[ReliefWin.NTarm64]
 %AppleIsp.DeviceDesc% = AppleIsp_Inst,FDT\apple_t6030-isp
 
 [AppleIsp_Inst.NT]
@@ -51,7 +51,7 @@ ServiceBinary = %12%\appleisp.sys
 LoadOrderGroup = Base
 
 [Strings]
-LiberNT = "LiberNT Project"
+ReliefWin = "ReliefWin Project"
 MediaCategories = "SYSTEM\CurrentControlSet\Control\MediaCategories"
 ClassName = "Cameras"
 CapturePinName = "Capture"

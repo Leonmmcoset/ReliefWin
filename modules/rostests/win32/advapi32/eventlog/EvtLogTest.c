@@ -424,7 +424,7 @@ int wmain(int argc, WCHAR* argv[])
     UINT Choice = 0;
 
     wprintf(L"\n"
-            L"EventLog API interactive tester for ReactOS\n"
+            L"EventLog API interactive tester for ReliefWin\n"
             L"===========================================\n"
             L"\n");
 

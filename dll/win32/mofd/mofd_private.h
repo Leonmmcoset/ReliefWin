@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT WMI MOF compiler
+ * PROJECT:     ReliefWin WMI MOF compiler
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     Shared definitions of the MOF parser and the repository store phase
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

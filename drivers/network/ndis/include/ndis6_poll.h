@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT NDIS library
+ * PROJECT:     ReliefWin NDIS library
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
  * PURPOSE:     States of an NDIS Poll object between a request and the end of polling
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>

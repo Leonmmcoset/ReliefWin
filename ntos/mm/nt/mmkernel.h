@@ -1,5 +1,5 @@
 /*
- * PROJECT:     LiberNT NT Virtual Memory Subsystem
+ * PROJECT:     ReliefWin NT Virtual Memory Subsystem
  * LICENSE:     GPL-3.0-only (https://spdx.org/licenses/GPL-3.0-only)
  * PURPOSE:     Memory manager globals shared with the rest of the kernel
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
