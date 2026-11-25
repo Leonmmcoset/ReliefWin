@@ -580,7 +580,7 @@ ReOpenFile(IN HANDLE hOriginalFile,
    IO_STATUS_BLOCK IoStatusBlock;
    NTSTATUS Status;
    HANDLE FileHandle;
-   ULONG Options = FILE_NON_DIRECTORY_FILE;
+   ULONG Options = dwFlags & FILE_FLAG_BACKUP_SEMANTICS ? 0 : FILE_NON_DIRECTORY_FILE;
 
    if (dwFlags & 0x7FFFF)
    {

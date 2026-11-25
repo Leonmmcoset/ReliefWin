@@ -119,6 +119,7 @@ list(APPEND SOURCE
     LoadLibraryExW.c
     LockFileClose.c
     LockFileEx.c
+    ReOpenFile.c
     OpenFileByIdRename.c
     LoaderLock.c
     PagingFileOpen.c

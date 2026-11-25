@@ -675,6 +675,7 @@ PeLoadModuleFrom(
     if (!NT_SUCCESS(RtlStringCbPrintfA(Path, sizeof(Path), "%s%s", Directory, FileName)))
         return FALSE;
 
+    BmUiBootProgress(FileName, MAXULONG);
     Base = PeLoadImage(Device, Path, MemoryType);
     if (!Base)
         return FALSE;

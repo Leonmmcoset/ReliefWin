@@ -28,6 +28,7 @@ list(APPEND SOURCE
     ## res.c    ## Optional? Needs SEH
     ${NTOS_RTL_SOURCE_DIR}/time.c
     ${NTOS_RTL_SOURCE_DIR}/unicode.c
+    ${NTOS_RTL_SOURCE_DIR}/utf8.c
     ${NTOS_RTL_SOURCE_DIR}/rtl.h)
 
 if(ARCH STREQUAL "i386")

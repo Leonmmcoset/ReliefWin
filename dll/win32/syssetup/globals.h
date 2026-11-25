@@ -73,6 +73,9 @@ BOOL
 InstallSysSetupInfComponents(
     _In_ UINT Flags);
 
+DWORD
+InstallReliefOffice(VOID);
+
 BOOL
 InitializeProgramFilesDir(VOID);
 

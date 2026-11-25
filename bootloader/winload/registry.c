@@ -389,6 +389,7 @@ OslLoadBootDrivers(
     PBOOT_DRIVER_LIST_ENTRY Driver;
     PKLDR_DATA_TABLE_ENTRY Module;
     PSTR FileName;
+    ULONG Total = 0, Completed = 0;
 
     OslDisableLegacyBootServices();
 
@@ -399,8 +400,12 @@ OslLoadBootDrivers(
         return FALSE;
     }
 
+    for (Link = Head->Flink; Link != Head; Link = Link->Flink)
+        Total++;
+
     for (Link = Head->Flink; Link != Head; Link = Next)
     {
+        BmUiBootProgress(NULL, 3000 + (ULONG)(((ULONGLONG)Completed++ * 1500) / Total));
         Next = Link->Flink;
         Node = CONTAINING_RECORD(Link, BOOT_DRIVER_NODE, ListEntry.Link);
         Driver = &Node->ListEntry;
@@ -443,6 +448,7 @@ OslLoadBootDrivers(
             Node->Group.Buffer = PaToVa(Node->Group.Buffer);
     }
 
+    BmUiBootProgress(NULL, 4500);
     return TRUE;
 }
 

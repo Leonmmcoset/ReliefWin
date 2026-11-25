@@ -368,6 +368,34 @@ Fat32MatchShortName(
     return (_stricmp(Reconstructed, LeafName) == 0);
 }
 
+static
+BOOLEAN
+Fat32DecodeName(
+    _In_ PCSTR Name,
+    _Out_writes_(256) PWCHAR UnicodeName,
+    _Out_ PULONG NameLength)
+{
+    SIZE_T NameBytes = strlen(Name);
+    ULONG UnicodeBytes;
+    ULONG Index;
+
+    if (NameBytes >= 256 ||
+        RtlUTF8ToUnicodeN(UnicodeName, 255 * sizeof(WCHAR), &UnicodeBytes,
+                         Name, (ULONG)NameBytes) != STATUS_SUCCESS)
+    {
+        return FALSE;
+    }
+
+    *NameLength = UnicodeBytes / sizeof(WCHAR);
+    for (Index = 0; Index < *NameLength; Index++)
+    {
+        if (UnicodeName[Index] == 0xFFFF)
+            return FALSE;
+    }
+    UnicodeName[*NameLength] = UNICODE_NULL;
+    return TRUE;
+}
+
 /*
  * Reconstruct a long filename from collected LFN entries and compare
  * against a target name. LFN entries are stored in reverse order
@@ -379,9 +407,10 @@ BOOLEAN
 Fat32MatchLfnName(
     _In_ const LFN_DIRENTRY *LfnEntries,
     _In_ ULONG LfnCount,
-    _In_ PCSTR LeafName)
+    _In_reads_(NameLength) PCWSTR LeafName,
+    _In_ ULONG NameLength)
 {
-    CHAR Reconstructed[256];
+    WCHAR Reconstructed[256];
     SIZE_T Pos = 0;
     ULONG Seq;
 
@@ -402,16 +431,21 @@ Fat32MatchLfnName(
                 goto done_reconstructing;
             if (Chars[j] == 0xFFFF)
                 goto done_reconstructing;
-            if (Pos >= sizeof(Reconstructed) - 1)
+            if (Pos >= RTL_NUMBER_OF(Reconstructed) - 1)
                 return FALSE; /* Name too long */
-            /* Simple UTF-16 to ASCII (our names are ASCII) */
-            Reconstructed[Pos++] = (CHAR)(Chars[j] & 0xFF);
+            Reconstructed[Pos++] = Chars[j];
         }
     }
 
 done_reconstructing:
-    Reconstructed[Pos] = '\0';
-    return (_stricmp(Reconstructed, LeafName) == 0);
+    if (Pos != NameLength)
+        return FALSE;
+    for (Seq = 0; Seq < NameLength; Seq++)
+    {
+        if (RtlUpcaseUnicodeChar(Reconstructed[Seq]) != RtlUpcaseUnicodeChar(LeafName[Seq]))
+            return FALSE;
+    }
+    return TRUE;
 }
 
 /*
@@ -433,6 +467,11 @@ Fat32FindEntryInDirectory(
     /* Buffer to collect LFN entries for the current sequence */
     LFN_DIRENTRY LfnBuffer[20]; /* Max 20 LFN entries = 260 chars */
     ULONG LfnCount = 0;
+    WCHAR UnicodeName[256];
+    ULONG NameLength;
+
+    if (!Fat32DecodeName(LeafName, UnicodeName, &NameLength))
+        return 0;
 
     while (Cluster != 0)
     {
@@ -493,7 +532,7 @@ Fat32FindEntryInDirectory(
 
                 /* First try matching the long name if we have LFN entries */
                 if (LfnCount > 0)
-                    Matched = Fat32MatchLfnName(LfnBuffer, LfnCount, LeafName);
+                    Matched = Fat32MatchLfnName(LfnBuffer, LfnCount, UnicodeName, NameLength);
 
                 /* Also try matching the short name */
                 if (!Matched)
@@ -681,8 +720,11 @@ Fat32AddDirectoryEntry(
     UCHAR CaseFlags;
     ULONG SlotsNeeded;
     PDIRENTRY Slots;
+    WCHAR UnicodeName[256];
+    ULONG NameLen;
 
-    if (!Fat32GenerateShortName(LeafName, ShortName, &NeedsLfn, &CaseFlags))
+    if (!Fat32DecodeName(LeafName, UnicodeName, &NameLen) ||
+        !Fat32GenerateShortName(LeafName, ShortName, &NeedsLfn, &CaseFlags))
         return FALSE;
 
     /* Handle short name collisions */
@@ -710,7 +752,6 @@ Fat32AddDirectoryEntry(
     /* Calculate how many LFN entries we need */
     if (NeedsLfn)
     {
-        SIZE_T NameLen = strlen(LeafName);
         SlotsNeeded = (ULONG)((NameLen + 12) / 13) + 1; /* LFN entries + 1 short name entry */
     }
     else
@@ -730,7 +771,6 @@ Fat32AddDirectoryEntry(
     if (NeedsLfn)
     {
         UCHAR Checksum = Fat32LfnChecksum(ShortName);
-        SIZE_T NameLen = strlen(LeafName);
         ULONG LfnCount = SlotsNeeded - 1;
         ULONG Seq;
 
@@ -755,7 +795,7 @@ Fat32AddDirectoryEntry(
             {
                 SIZE_T Idx = CharOffset + j;
                 if (Idx < NameLen)
-                    Lfn->Name0_4[j] = (WCHAR)(UCHAR)LeafName[Idx];
+                    Lfn->Name0_4[j] = UnicodeName[Idx];
                 else if (Idx == NameLen)
                     Lfn->Name0_4[j] = 0x0000;
                 else
@@ -765,7 +805,7 @@ Fat32AddDirectoryEntry(
             {
                 SIZE_T Idx = CharOffset + 5 + j;
                 if (Idx < NameLen)
-                    Lfn->Name5_10[j] = (WCHAR)(UCHAR)LeafName[Idx];
+                    Lfn->Name5_10[j] = UnicodeName[Idx];
                 else if (Idx == NameLen)
                     Lfn->Name5_10[j] = 0x0000;
                 else
@@ -775,7 +815,7 @@ Fat32AddDirectoryEntry(
             {
                 SIZE_T Idx = CharOffset + 11 + j;
                 if (Idx < NameLen)
-                    Lfn->Name11_12[j] = (WCHAR)(UCHAR)LeafName[Idx];
+                    Lfn->Name11_12[j] = UnicodeName[Idx];
                 else if (Idx == NameLen)
                     Lfn->Name11_12[j] = 0x0000;
                 else
@@ -824,6 +864,8 @@ Fat32ResolvePath(
     PCSTR p = Path;
     PCSTR SlashPos;
     ULONG CurrentCluster;
+    WCHAR UnicodeName[256];
+    ULONG NameLength;
 
     /* Skip leading slashes */
     while (*p == '/')
@@ -861,6 +903,8 @@ Fat32ResolvePath(
 
         RtlCopyMemory(Component, p, Len);
         Component[Len] = '\0';
+        if (!Fat32DecodeName(Component, UnicodeName, &NameLength))
+            return FALSE;
 
         if (SlashPos)
         {

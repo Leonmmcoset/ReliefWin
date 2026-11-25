@@ -47,7 +47,7 @@ typedef struct _TARGET_REGISTRATION
 } TARGET_REGISTRATION, *PTARGET_REGISTRATION;
 
 #define LIVE_CONFIG_PATH L"\\\\?\\GLOBALROOT\\SystemRoot\\System32\\config\\"
-#define LIVE_SAVE_SUFFIX L".lntsave"
+#define LIVE_SAVE_SUFFIX L".reliefwinsave"
 
 static HANDLE hTargetDosDevices = NULL;
 static HANDLE hTargetDriveLink = NULL;
@@ -173,12 +173,12 @@ OpenTargetKey(
     UNICODE_STRING KeyName;
     OBJECT_ATTRIBUTES ObjectAttributes;
 
-    StringCchCopyW(Buffer, ARRAYSIZE(Buffer), Path);
-    if (SubPath)
-    {
-        StringCchCatW(Buffer, ARRAYSIZE(Buffer), L"\\");
-        StringCchCatW(Buffer, ARRAYSIZE(Buffer), SubPath);
-    }
+    *KeyHandle = NULL;
+    if (FAILED(StringCchCopyW(Buffer, ARRAYSIZE(Buffer), Path)) ||
+        (SubPath &&
+         (FAILED(StringCchCatW(Buffer, ARRAYSIZE(Buffer), L"\\")) ||
+          FAILED(StringCchCatW(Buffer, ARRAYSIZE(Buffer), SubPath)))))
+        return STATUS_NAME_TOO_LONG;
 
     RtlInitUnicodeString(&KeyName, Buffer);
     InitializeObjectAttributes(&ObjectAttributes, &KeyName, OBJ_CASE_INSENSITIVE, NULL, NULL);
@@ -258,13 +258,13 @@ SetTargetProfileEnvironment(
     WCHAR Profile[MAX_PATH];
     WCHAR Buffer[MAX_PATH];
 
-    StringCchPrintfW(Profile, ARRAYSIZE(Profile), L"%s\\system32\\config\\systemprofile", Settings->SystemRoot);
+    StringCchPrintfW(Profile, ARRAYSIZE(Profile), L"%ls\\system32\\config\\systemprofile", Settings->SystemRoot);
     SetEnvironmentVariableW(L"USERPROFILE", Profile);
 
-    StringCchPrintfW(Buffer, ARRAYSIZE(Buffer), L"%s\\AppData\\Roaming", Profile);
+    StringCchPrintfW(Buffer, ARRAYSIZE(Buffer), L"%ls\\AppData\\Roaming", Profile);
     SetEnvironmentVariableW(L"APPDATA", Buffer);
 
-    StringCchPrintfW(Buffer, ARRAYSIZE(Buffer), L"%s\\AppData\\Local", Profile);
+    StringCchPrintfW(Buffer, ARRAYSIZE(Buffer), L"%ls\\AppData\\Local", Profile);
     SetEnvironmentVariableW(L"LOCALAPPDATA", Buffer);
 }
 
@@ -360,7 +360,7 @@ WriteTargetSystemRoot(
     SetRegDword(hKey, L"InstallDate", (DWORD)time(NULL));
     RegCloseKey(hKey);
 
-    StringCchPrintfW(Buffer, ARRAYSIZE(Buffer), L"%s\\system", Settings->SystemRoot);
+    StringCchPrintfW(Buffer, ARRAYSIZE(Buffer), L"%ls\\system", Settings->SystemRoot);
     CreateDirectoryW(Buffer, NULL);
 
     return ERROR_SUCCESS;
@@ -756,7 +756,7 @@ ScheduleFirstBootComponents(
     HKEY hKey;
     LONG Error;
 
-    if (FAILED(StringCchPrintfW(Path, ARRAYSIZE(Path), L"%s\\system32\\oobe\\oobe.exe", Settings->SystemRoot)) ||
+    if (FAILED(StringCchPrintfW(Path, ARRAYSIZE(Path), L"%ls\\system32\\oobe\\oobe.exe", Settings->SystemRoot)) ||
         GetFileAttributesW(Path) == INVALID_FILE_ATTRIBUTES)
     {
         return ERROR_FILE_NOT_FOUND;
@@ -1060,7 +1060,7 @@ SaveTargetHive(
 {
     WCHAR Path[MAX_PATH];
 
-    StringCchPrintfW(Path, ARRAYSIZE(Path), L"%s\\System32\\config\\%s", Settings->SystemRoot, FileName);
+    StringCchPrintfW(Path, ARRAYSIZE(Path), L"%ls\\System32\\config\\%ls", Settings->SystemRoot, FileName);
     return SaveHive(LiveKeyName, Path);
 }
 
@@ -1087,14 +1087,14 @@ ScheduleLiveSecurityRestore(VOID)
 
     for (i = 0; i < ARRAYSIZE(Hives); i++)
     {
-        StringCchPrintfW(Hive, ARRAYSIZE(Hive), LIVE_CONFIG_PATH L"%s", Hives[i]);
-        StringCchPrintfW(Saved, ARRAYSIZE(Saved), L"%s" LIVE_SAVE_SUFFIX, Hive);
+        StringCchPrintfW(Hive, ARRAYSIZE(Hive), LIVE_CONFIG_PATH L"%ls", Hives[i]);
+        StringCchPrintfW(Saved, ARRAYSIZE(Saved), L"%ls" LIVE_SAVE_SUFFIX, Hive);
         if (!MoveFileExW(Saved, Hive, MOVEFILE_REPLACE_EXISTING | MOVEFILE_DELAY_UNTIL_REBOOT))
             DPRINT1("Restoring %S at the next start failed (Error %lu)\n", Hive, GetLastError());
 
         for (j = 0; j < ARRAYSIZE(Logs); j++)
         {
-            StringCchPrintfW(Log, ARRAYSIZE(Log), L"%s%s", Hive, Logs[j]);
+            StringCchPrintfW(Log, ARRAYSIZE(Log), L"%ls%ls", Hive, Logs[j]);
             if (GetFileAttributesW(Log) != INVALID_FILE_ATTRIBUTES)
                 MoveFileExW(Log, NULL, MOVEFILE_DELAY_UNTIL_REBOOT);
         }
@@ -1126,7 +1126,7 @@ CopyTargetSamKey(
     if (!NT_SUCCESS(Status))
         goto done;
 
-    StringCchPrintfW(TargetPath, ARRAYSIZE(TargetPath), L"%s\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\SamKey",
+    StringCchPrintfW(TargetPath, ARRAYSIZE(TargetPath), L"%ls\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\SamKey",
                      Settings->MachineKey);
     RtlInitUnicodeString(&TargetName, TargetPath);
     if (!ConvertStringSecurityDescriptorToSecurityDescriptorW(L"D:P(A;;KA;;;SY)", SDDL_REVISION_1, &Sd, NULL))
@@ -1187,7 +1187,7 @@ CreateTargetBootStatusData(
     DWORD Written;
     BOOL Success;
 
-    StringCchPrintfW(Path, ARRAYSIZE(Path), L"%s\\bootstat.dat", Settings->SystemRoot);
+    StringCchPrintfW(Path, ARRAYSIZE(Path), L"%ls\\bootstat.dat", Settings->SystemRoot);
     hFile = CreateFileW(Path,
                         GENERIC_READ | GENERIC_WRITE,
                         0,
@@ -1305,6 +1305,9 @@ ConfigureTargetSystem(
 
     ReportTargetPhase(6);
     InstallStartMenuItems(&ItemsData);
+    Error = InstallReliefOffice();
+    if (Error != ERROR_SUCCESS)
+        return Error;
 
     ReportTargetPhase(7);
     if (!Settings->Upgrade)

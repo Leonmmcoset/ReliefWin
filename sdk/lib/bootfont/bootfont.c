@@ -69,7 +69,8 @@ BootFontLoadGlyph(
     _In_ UCHAR Character,
     _In_ ULONG Style)
 {
-    WCHAR Unicode = BootFontCp437ToUnicode(Character);
+    WCHAR Unicode = (Style == BOOT_FONT_STYLE_LIGHT && Character == 0x85) ?
+                    0x2026 : BootFontCp437ToUnicode(Character);
     FT_UInt GlyphIndex = FT_Get_Char_Index(Face, Unicode);
     FT_Int32 Flags;
 

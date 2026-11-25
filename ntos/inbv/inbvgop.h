@@ -25,6 +25,11 @@ NTAPI
 InbvQueryBgrtInfo(
     _Out_opt_ PLOADER_PARAMETER_BGRT BgrtInfo);
 
+CODE_SEG("INIT")
+VOID
+NTAPI
+InbvInitializeBootStatus(VOID);
+
 VOID
 NTAPI
 InbvGopLogoComplete(VOID);

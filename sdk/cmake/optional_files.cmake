@@ -36,7 +36,7 @@ endfunction()
 
 set(_optional_entries "")
 if(DEFINED OPTIONAL AND EXISTS "${OPTIONAL}")
-    file(STRINGS "${OPTIONAL}" _optional_entries)
+    file(STRINGS "${OPTIONAL}" _optional_entries ENCODING UTF-8)
 endif()
 
 if(MODE STREQUAL "list")

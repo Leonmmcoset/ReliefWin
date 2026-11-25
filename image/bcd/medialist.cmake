@@ -5,7 +5,7 @@
 ## COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
 ##
 
-file(STRINGS "${LIST}" _entries)
+file(STRINGS "${LIST}" _entries ENCODING UTF-8)
 set(_output "")
 
 if(WIM)

@@ -570,10 +570,10 @@ StartWow64Registration(VOID)
     {
         return;
     }
-    if (FAILED(StringCchPrintfW(Rundll32, ARRAYSIZE(Rundll32), L"%s\\rundll32.exe", Wow64Dir)) ||
+    if (FAILED(StringCchPrintfW(Rundll32, ARRAYSIZE(Rundll32), L"%ls\\rundll32.exe", Wow64Dir)) ||
         GetFileAttributesW(Rundll32) == INVALID_FILE_ATTRIBUTES ||
         FAILED(StringCchPrintfW(CommandLine, ARRAYSIZE(CommandLine),
-                                L"\"%s\" setupapi.dll,InstallHinfSection Wow64Registration 128 %s\\inf\\syssetup.inf",
+                                L"\"%ls\" setupapi.dll,InstallHinfSection Wow64Registration 128 %ls\\inf\\syssetup.inf",
                                 Rundll32, WindowsDir)))
     {
         return;
@@ -786,7 +786,7 @@ DisplayDeviceBootStatus(
 
     if (!LoadStringW(hDllInstance, IDS_STATUS_INSTALL_DEV, Phase, ARRAYSIZE(Phase)))
         Phase[0] = UNICODE_NULL;
-    StringCchPrintfW(Text, ARRAYSIZE(Text), L"%s %lu%%\r\n", Phase,
+    StringCchPrintfW(Text, ARRAYSIZE(Text), L"%ls %lu%%\r\n", Phase,
                      Total == 0 ? 0 : Completed >= Total ? 100 : Completed * 100 / Total);
     RtlInitUnicodeString(&String, Text);
     NtDisplayString(&String);
@@ -1378,6 +1378,46 @@ LoadSystemProfile(VOID)
     CloseHandle(hToken);
 }
 
+DWORD
+InstallReliefOffice(VOID)
+{
+    WCHAR Directory[MAX_PATH], InfPath[MAX_PATH];
+    HKEY Key;
+    HINF Inf;
+    DWORD Error, Size = sizeof(Directory), Type;
+
+    Error = RegOpenKeyExW(HKEY_LOCAL_MACHINE,
+                          L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion",
+                          0, KEY_QUERY_VALUE, &Key);
+    if (Error != ERROR_SUCCESS)
+        return Error;
+    Error = RegQueryValueExW(Key, L"ProgramFilesDir", NULL, &Type,
+                             (PBYTE)Directory, &Size);
+    RegCloseKey(Key);
+    if (Error != ERROR_SUCCESS)
+        return Error;
+    if (Type != REG_SZ || Size < sizeof(WCHAR) || Size > sizeof(Directory) ||
+        Size % sizeof(WCHAR) ||
+        Directory[Size / sizeof(WCHAR) - 1] != UNICODE_NULL)
+        return ERROR_INVALID_DATA;
+    if (FAILED(StringCchCatW(Directory, ARRAYSIZE(Directory), L"\\ReliefOffice")) ||
+        FAILED(StringCchPrintfW(InfPath, ARRAYSIZE(InfPath), L"%ls\\reliefoffice.inf", Directory)))
+        return ERROR_FILENAME_EXCED_RANGE;
+
+    Inf = SetupOpenInfFileW(InfPath, NULL, INF_STYLE_WIN4, NULL);
+    if (Inf == INVALID_HANDLE_VALUE)
+        return GetLastError();
+    if (!SetupSetDirectoryIdW(Inf, DIRID_USER, Directory) ||
+        !SetupInstallFromInfSectionW(NULL, Inf, L"DefaultInstall",
+                                     SPINST_REGISTRY | SPINST_PROFILEITEMS,
+                                     NULL, NULL, 0, NULL, NULL, NULL, NULL))
+        Error = GetLastError();
+    else
+        Error = ERROR_SUCCESS;
+    SetupCloseInfFile(Inf);
+    return Error;
+}
+
 static
 DWORD
 InstallLiveCD(VOID)
@@ -1464,6 +1504,14 @@ InstallLiveCD(VOID)
         Status = CreateTargetAccount(UserName, L"");
         if (!NT_SUCCESS(Status) && Status != STATUS_USER_EXISTS)
             goto error;
+        {
+            DWORD Error = InstallReliefOffice();
+            if (Error != ERROR_SUCCESS)
+            {
+                DPRINT1("ReliefOffice registration failed (Error %lu)\n", Error);
+                goto error;
+            }
+        }
         ScheduleFirstBootSetup();
         if (EndSystemSetup() != ERROR_SUCCESS)
             goto error;

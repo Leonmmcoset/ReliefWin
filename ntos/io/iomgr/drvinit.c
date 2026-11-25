@@ -452,6 +452,7 @@ IopInitializeDriverModule(
      * A module with no entry point of its own is a driver library: what it has
      * instead is the DllInitialize it exports, and it owns no driver object.
      */
+    InbvBootDriver(&ModuleObject->BaseDllName);
     NtHeaders = RtlImageNtHeader(ModuleObject->DllBase);
 
     if ((NtHeaders == NULL) ||
@@ -780,6 +781,7 @@ IopInitializeBootDrivers(VOID)
     PLIST_ENTRY ListEntry;
     NTSTATUS Status;
     HANDLE ServiceHandle;
+    ULONG Total = 0, Completed = 0;
 
     PAGED_CODE();
 
@@ -798,9 +800,14 @@ IopInitializeBootDrivers(VOID)
         DPRINT1("I/O: the boot DLLs could not be initialized (%lx)\n", Status);
     }
 
+    for (ListEntry = IopLoaderBlock->BootDriverListHead.Flink;
+         ListEntry != &IopLoaderBlock->BootDriverListHead; ListEntry = ListEntry->Flink)
+        Total++;
+
     ListEntry = IopLoaderBlock->BootDriverListHead.Flink;
     while (ListEntry != &IopLoaderBlock->BootDriverListHead)
     {
+        InbvBootProgress(NULL, 7000 + (ULONG)(((ULONGLONG)Completed++ * 1000) / Total));
         BootEntry = CONTAINING_RECORD(ListEntry,
                                       BOOT_DRIVER_LIST_ENTRY,
                                       Link);
@@ -857,6 +864,7 @@ IopInitializeBootDrivers(VOID)
         if (DriverObject != NULL) ObDereferenceObject(DriverObject);
     }
 
+    InbvBootProgress("Plug and Play", 8000);
     PnPBootDriversLoaded = TRUE;
 
     /* The boot drivers now build the device stacks the boot volume sits on */
@@ -975,6 +983,7 @@ IopInitializeSystemDrivers(VOID)
 
     for (Index = 0; Index < Order.Count; Index++)
     {
+        InbvBootProgress(NULL, 8000 + (ULONG)(((ULONGLONG)Index * 1000) / Order.Count));
         Status = IopOpenRegistryKeyEx(&ServiceHandle,
                                       ServicesHandle,
                                       &Order.Services[Index].Name,
@@ -993,6 +1002,7 @@ IopInitializeSystemDrivers(VOID)
         ZwClose(ServiceHandle);
     }
 
+    InbvBootProgress("Plug and Play", 9000);
     IopFreeSystemStartServices(&Order);
 
     ExFreePoolWithTag(Information, TAG_IO);

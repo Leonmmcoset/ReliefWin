@@ -199,16 +199,36 @@ core_utf16le_to_utf8(
 
     *out = NULL;
 
+    if ((!utf16 && len != 0) || len > (SIZE_MAX - 1) / 3)
+        return -1;
+
     buffer = (char*)core_alloc(ctx, len * 3 + 1);
     if (!buffer)
         return -1;
 
     for (i = 0; i < len; ++i)
     {
-        uint16_t c = utf16[i];
+        uint32_t c = core_read_u16((const uint8_t*)utf16 + i * 2);
 
         if (c == 0)
             break;
+
+        if (c >= 0xD800 && c <= 0xDBFF)
+        {
+            uint16_t low;
+
+            if (i + 1 >= len)
+                goto failure;
+            low = core_read_u16((const uint8_t*)utf16 + (i + 1) * 2);
+            if (low < 0xDC00 || low > 0xDFFF)
+                goto failure;
+            c = 0x10000 + ((c - 0xD800) << 10) + (low - 0xDC00);
+            ++i;
+        }
+        else if (c >= 0xDC00 && c <= 0xDFFF)
+        {
+            goto failure;
+        }
 
         if (c < 0x80)
         {
@@ -219,9 +239,16 @@ core_utf16le_to_utf8(
             buffer[pos++] = (char)(0xC0 | (c >> 6));
             buffer[pos++] = (char)(0x80 | (c & 0x3F));
         }
-        else
+        else if (c < 0x10000)
         {
             buffer[pos++] = (char)(0xE0 | (c >> 12));
+            buffer[pos++] = (char)(0x80 | ((c >> 6) & 0x3F));
+            buffer[pos++] = (char)(0x80 | (c & 0x3F));
+        }
+        else
+        {
+            buffer[pos++] = (char)(0xF0 | (c >> 18));
+            buffer[pos++] = (char)(0x80 | ((c >> 12) & 0x3F));
             buffer[pos++] = (char)(0x80 | ((c >> 6) & 0x3F));
             buffer[pos++] = (char)(0x80 | (c & 0x3F));
         }
@@ -230,6 +257,10 @@ core_utf16le_to_utf8(
     buffer[pos] = '\0';
     *out = buffer;
     return 0;
+
+failure:
+    core_free(ctx, buffer);
+    return -1;
 }
 
 static int
@@ -765,7 +796,8 @@ core_deserialize_one_dentry(
     uint16_t file_name_nbytes;
     size_t off = 8;
 
-    if (!ctx || !buffer || !dentry || !next_offset || offset + 8 > buffer_length)
+    if (!ctx || !buffer || !dentry || !next_offset ||
+        offset > buffer_length || buffer_length - offset < 8)
         return 0;
 
     entry_length = core_read_u64(buffer + offset);
@@ -775,7 +807,7 @@ core_deserialize_one_dentry(
         return 0;
     }
 
-    if (entry_length < WIMCORE_DENTRY_FIXED_SIZE || offset + entry_length > buffer_length)
+    if (entry_length < WIMCORE_DENTRY_FIXED_SIZE || entry_length > buffer_length - offset)
         return 0;
 
     core_dentry_init(dentry);
@@ -798,7 +830,10 @@ core_deserialize_one_dentry(
     (void)num_streams;
     (void)short_name_nbytes;
 
-    if (file_name_nbytes > 0 && off + file_name_nbytes <= entry_length)
+    if (file_name_nbytes % sizeof(uint16_t) != 0 || off + file_name_nbytes > entry_length)
+        return -1;
+
+    if (file_name_nbytes > 0)
     {
         size_t utf16_count = file_name_nbytes / sizeof(uint16_t);
 
@@ -809,7 +844,10 @@ core_deserialize_one_dentry(
         memcpy(dentry->name_utf16, p + off, file_name_nbytes);
         dentry->name_utf16_len = utf16_count;
         if (core_utf16le_to_utf8(ctx, dentry->name_utf16, utf16_count, &dentry->name_utf8) != 0)
+        {
+            core_dentry_free(ctx, dentry);
             return -1;
+        }
     }
 
     *next_offset = offset + entry_length;
@@ -863,7 +901,13 @@ core_deserialize_dentry_tree(
 
             core_dentry_init(&child);
             status = core_deserialize_one_dentry(ctx, buffer, length, offset, &child, &next_offset);
-            if (status <= 0)
+            if (status < 0)
+            {
+                core_dentry_free(ctx, &child);
+                core_free(ctx, queue);
+                return -1;
+            }
+            if (status == 0)
                 break;
 
             if (core_add_child(ctx, parent, &child) != 0)

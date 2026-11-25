@@ -1,0 +1,89 @@
+[Version]
+Signature="$Windows NT$"
+
+[DefaultInstall]
+AddReg=Office.Uninstall,Office.Associations
+ProfileItems=Office.Word,Office.Excel,Office.PPT,Office.Todo,Office.Diagram,Office.MathPP,Office.Math
+
+[Office.Uninstall]
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\ReliefOffice","DisplayName",0x00000000,"ReliefOffice"
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\ReliefOffice","DisplayVersion",0x00000000,"1.0"
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\ReliefOffice","Publisher",0x00000000,"ReliefWin contributors"
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\ReliefOffice","InstallLocation",0x00000000,"%32768%"
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\ReliefOffice","DisplayIcon",0x00000000,"%32768%\reliefword.exe"
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\ReliefOffice","UninstallString",0x00000000,"""%32768%\reliefoffice-maintenance.exe"" /uninstall"
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\ReliefOffice","QuietUninstallString",0x00000000,"""%32768%\reliefoffice-maintenance.exe"" /uninstall /quiet"
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\ReliefOffice","NoModify",0x00010001,1
+HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\ReliefOffice","NoRepair",0x00010001,1
+
+[Office.Associations]
+HKLM,"SOFTWARE\Classes\.rword",,0x00000002,"ReliefOffice.Word"
+HKLM,"SOFTWARE\Classes\ReliefOffice.Word",,0x00000000,"ReliefWord document"
+HKLM,"SOFTWARE\Classes\ReliefOffice.Word\shell\open\command",,0x00000000,"""%32768%\reliefword.exe"" ""%1"""
+HKLM,"SOFTWARE\Classes\ReliefOffice.Word\DefaultIcon",,0x00000000,"%32768%\reliefword.exe,0"
+HKLM,"SOFTWARE\Classes\.rexl",,0x00000002,"ReliefOffice.Excel"
+HKLM,"SOFTWARE\Classes\ReliefOffice.Excel",,0x00000000,"ReliefExcel document"
+HKLM,"SOFTWARE\Classes\ReliefOffice.Excel\shell\open\command",,0x00000000,"""%32768%\reliefexcel.exe"" ""%1"""
+HKLM,"SOFTWARE\Classes\ReliefOffice.Excel\DefaultIcon",,0x00000000,"%32768%\reliefexcel.exe,0"
+HKLM,"SOFTWARE\Classes\.rppt",,0x00000002,"ReliefOffice.PPT"
+HKLM,"SOFTWARE\Classes\ReliefOffice.PPT",,0x00000000,"ReliefPPT document"
+HKLM,"SOFTWARE\Classes\ReliefOffice.PPT\shell\open\command",,0x00000000,"""%32768%\reliefppt.exe"" ""%1"""
+HKLM,"SOFTWARE\Classes\ReliefOffice.PPT\DefaultIcon",,0x00000000,"%32768%\reliefppt.exe,0"
+HKLM,"SOFTWARE\Classes\.rtodo",,0x00000002,"ReliefOffice.Todo"
+HKLM,"SOFTWARE\Classes\ReliefOffice.Todo",,0x00000000,"ReliefTodo document"
+HKLM,"SOFTWARE\Classes\ReliefOffice.Todo\shell\open\command",,0x00000000,"""%32768%\relieftodo.exe"" ""%1"""
+HKLM,"SOFTWARE\Classes\ReliefOffice.Todo\DefaultIcon",,0x00000000,"%32768%\relieftodo.exe,0"
+HKLM,"SOFTWARE\Classes\.rdiagram",,0x00000002,"ReliefOffice.Diagram"
+HKLM,"SOFTWARE\Classes\ReliefOffice.Diagram",,0x00000000,"ReliefDiagram document"
+HKLM,"SOFTWARE\Classes\ReliefOffice.Diagram\shell\open\command",,0x00000000,"""%32768%\reliefdiagram.exe"" ""%1"""
+HKLM,"SOFTWARE\Classes\ReliefOffice.Diagram\DefaultIcon",,0x00000000,"%32768%\reliefdiagram.exe,0"
+HKLM,"SOFTWARE\Classes\.rmathpp",,0x00000002,"ReliefOffice.MathPP"
+HKLM,"SOFTWARE\Classes\ReliefOffice.MathPP",,0x00000000,"ReliefMathPP document"
+HKLM,"SOFTWARE\Classes\ReliefOffice.MathPP\shell\open\command",,0x00000000,"""%32768%\reliefmathpp.exe"" ""%1"""
+HKLM,"SOFTWARE\Classes\ReliefOffice.MathPP\DefaultIcon",,0x00000000,"%32768%\reliefmathpp.exe,0"
+HKLM,"SOFTWARE\Classes\.rmath",,0x00000002,"ReliefOffice.Math"
+HKLM,"SOFTWARE\Classes\ReliefOffice.Math",,0x00000000,"ReliefMath document"
+HKLM,"SOFTWARE\Classes\ReliefOffice.Math\shell\open\command",,0x00000000,"""%32768%\reliefmath.exe"" ""%1"""
+HKLM,"SOFTWARE\Classes\ReliefOffice.Math\DefaultIcon",,0x00000000,"%32768%\reliefmath.exe,0"
+
+[Office.Word]
+Name=ReliefWord,0
+SubDir=ReliefOffice
+CmdLine=32768,,reliefword.exe
+WorkingDir=32768
+
+[Office.Excel]
+Name=ReliefExcel,0
+SubDir=ReliefOffice
+CmdLine=32768,,reliefexcel.exe
+WorkingDir=32768
+
+[Office.PPT]
+Name=ReliefPPT,0
+SubDir=ReliefOffice
+CmdLine=32768,,reliefppt.exe
+WorkingDir=32768
+
+[Office.Todo]
+Name=ReliefTodo,0
+SubDir=ReliefOffice
+CmdLine=32768,,relieftodo.exe
+WorkingDir=32768
+
+[Office.Diagram]
+Name=ReliefDiagram,0
+SubDir=ReliefOffice
+CmdLine=32768,,reliefdiagram.exe
+WorkingDir=32768
+
+[Office.MathPP]
+Name=ReliefMathPP,0
+SubDir=ReliefOffice
+CmdLine=32768,,reliefmathpp.exe
+WorkingDir=32768
+
+[Office.Math]
+Name=ReliefMath,0
+SubDir=ReliefOffice
+CmdLine=32768,,reliefmath.exe
+WorkingDir=32768

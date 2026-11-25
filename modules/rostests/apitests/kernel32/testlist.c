@@ -114,6 +114,7 @@ extern void func_LoadLibraryAlteredSearchPath(void);
 extern void func_LoadLibraryExW(void);
 extern void func_LockFileClose(void);
 extern void func_LockFileEx(void);
+extern void func_ReOpenFile(void);
 extern void func_QuantumRoundRobin(void);
 extern void func_RegisterWaitPeriodic(void);
 extern void func_ProcessMitigationPolicy(void);
@@ -350,6 +351,7 @@ const struct test winetest_testlist[] =
     { "LoadLibraryExW",              func_LoadLibraryExW },
     { "LockFileClose",               func_LockFileClose },
     { "LockFileEx",                  func_LockFileEx },
+    { "ReOpenFile",                  func_ReOpenFile },
     { "SystemImageCatalog",            func_SystemImageCatalog },
     { "SystemTimeChangeTimers",      func_SystemTimeChangeTimers },
     { "TzSpecificLocalTimeEx",       func_TzSpecificLocalTimeEx },

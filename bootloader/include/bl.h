@@ -224,3 +224,5 @@ BOOLEAN
 OslGetParameters(
     _In_ PBM_ENTRY Entry,
     _Out_ POSL_PARAMETERS Parameters);
+
+#include <bmui.h>

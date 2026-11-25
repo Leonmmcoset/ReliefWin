@@ -235,6 +235,15 @@ function(create_txtsetup_sif)
     file(GENERATE
          OUTPUT ${REACTOS_BINARY_DIR}/boot/bootdata/txtsetup.$<CONFIG>.sif
          INPUT ${_source})
+
+    file(READ ${_source} _bootcd_content)
+    get_property(_bootcd_trees GLOBAL PROPERTY BOOTCD_SYSTEM_TREES)
+    string(REPLACE ";" "\n" _bootcd_trees "${_bootcd_trees}")
+    string(REPLACE "[SystemTrees]" "[SystemTrees]\n${_bootcd_trees}"
+        _bootcd_content "${_bootcd_content}")
+    file(GENERATE
+         OUTPUT ${REACTOS_BINARY_DIR}/boot/bootdata/txtsetup.bootcd.$<CONFIG>.sif
+         CONTENT "${_bootcd_content}")
 endfunction()
 
 function(create_iso_lists)
@@ -281,7 +290,7 @@ endif()
     unset(_filelist)
     # Also, append the file contents list of the LiveImage to the BootCD file list
     file(APPEND ${REACTOS_BINARY_DIR}/boot/bootcd.cmake.lst "\n")
-    file(STRINGS ${REACTOS_BINARY_DIR}/boot/livecd.cmake.lst _filelist)
+    file(STRINGS ${REACTOS_BINARY_DIR}/boot/livecd.cmake.lst _filelist ENCODING UTF-8)
     set(_livecd_entries "")
     foreach(_entry IN LISTS _filelist)
         string(REGEX REPLACE "=.*$" "" _destination "${_entry}")

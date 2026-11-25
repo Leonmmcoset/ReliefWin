@@ -1,0 +1,33 @@
+include(cairo.cmake)
+set(_math_common reliefmath/model.cpp reliefmath/protocol.cpp reliefmath/render_types.cpp)
+file(GLOB _math_ui CONFIGURE_DEPENDS reliefmath/*.cpp)
+list(REMOVE_ITEM _math_ui ${CMAKE_CURRENT_SOURCE_DIR}/reliefmath/process.cpp)
+add_rc_deps(reliefmath/app.rc ${CMAKE_CURRENT_SOURCE_DIR}/icons/reliefmath.ico)
+add_executable(reliefmath ${_math_ui} entry.c reliefmath/app.rc)
+set_module_type(reliefmath win32gui)
+target_link_libraries(reliefmath reliefoffice_fltk reliefoffice_locale reliefoffice_platform reliefoffice_cppstl)
+add_importlibs(reliefmath user32 gdi32 comdlg32 comctl32 shell32 advapi32 ole32 ucrtbase kernel32 ntdll)
+file(GLOB _math_worker CONFIGURE_DEPENDS reliefmath/worker/*.cpp)
+add_executable(reliefmath_render ${_math_worker} reliefmath/worker/freetype_debug.c ${_math_common} reliefmath/runtime.cpp)
+set_target_properties(reliefmath_render PROPERTIES OUTPUT_NAME reliefmath-render)
+set_module_type(reliefmath_render win32cui)
+target_link_libraries(reliefmath_render reliefoffice_cairo freetype reliefoffice_platform reliefoffice_cppstl)
+add_importlibs(reliefmath_render user32 shell32 ucrtbase kernel32 ntdll)
+foreach(_math_target reliefmath reliefmath_render)
+    set_target_properties(${_math_target} PROPERTIES CXX_STANDARD 17 CXX_STANDARD_REQUIRED YES)
+    add_cd_file(TARGET ${_math_target} DESTINATION "Program Files/ReliefOffice" FOR preinstall)
+    add_cd_file(TARGET ${_math_target} DESTINATION "deployment/ReliefOffice" FOR bootcd)
+endforeach()
+add_cd_file(FILE ${CMAKE_CURRENT_SOURCE_DIR}/ReliefMath/STIXTwoMath-Regular.otf
+    DESTINATION "Program Files/ReliefOffice/ReliefMath" FOR preinstall)
+add_cd_file(FILE ${CMAKE_CURRENT_SOURCE_DIR}/ReliefMath/STIXTwoMath-Regular.otf
+    DESTINATION "deployment/ReliefOffice/ReliefMath" FOR bootcd)
+
+add_executable(reliefmath_tests tests/math/win32.cpp ${_math_common}
+    reliefmath/document.cpp reliefmath/file_io.cpp reliefmath/recovery.cpp
+    reliefmath/jobs.cpp reliefmath/process_win32.cpp reliefmath/runtime.cpp)
+set_target_properties(reliefmath_tests PROPERTIES CXX_STANDARD 17 CXX_STANDARD_REQUIRED YES)
+target_include_directories(reliefmath_tests PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/reliefmath)
+set_module_type(reliefmath_tests win32cui)
+target_link_libraries(reliefmath_tests reliefoffice_platform reliefoffice_cppstl)
+add_importlibs(reliefmath_tests user32 shell32 ucrtbase kernel32 ntdll)

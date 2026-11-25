@@ -1,0 +1,14 @@
+{
+  "revision": "bb8682976cb491fde58d97644697a98893a2df3b",
+  "generator": "../format-fixtures.cpp",
+  "environment": "GNU C++17; original unmodified Unix model/document implementations; C locale",
+  "sha256": {
+    "fixture.rdiagram": "9a9619d9720f6be7561d7265fdb1dd8d0eb234f1123129d70b1a3489657891fc",
+    "fixture.rexl": "cf54d642e875ab0bac1dba6747a481bce848722614aebc4007243c4badd5143c",
+    "fixture.rmath": "814a45f2ef3a756b22bcddb40b08d3b0c08c742636697361e4906b0235c9c9a9",
+    "fixture.rmathpp": "a75ea73897d2ceb9b85029aa5f14496043f5c6bf716448948bd565135f9b880b",
+    "fixture.rppt": "a175e2125dd62a18ea955b0ccdad60af1adcbd6aaa557c27c548f75a5f0790e5",
+    "fixture.rtodo": "e41aa478b7acad85dd59bbdbf90974625198e4a511e798ed90902e8a69ad1c4f",
+    "fixture.rword": "71d2429bddc603de5a8be4988a4b102a8a9175379db368cbdae7fd926eda0a64"
+  }
+}

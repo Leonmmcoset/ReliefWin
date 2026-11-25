@@ -1092,7 +1092,6 @@ ExpStartBootDisplay(
 
     DisplayBootBitmap();
 
-    /* TODO: SOS only enables the status text; nothing names the drivers as they load */
     if (ExpFindLoadOption(Options, "SOS") != NULL)
     {
         InbvEnableDisplayString(TRUE);
@@ -1129,11 +1128,13 @@ Phase1InitializationDiscard(
     InbvDriverInitialize(LoaderBlock, 0);
     ExpStartBootDisplay(LoaderBlock);
 
+    InbvBootProgress("power manager", 5100);
     if (!PoInitSystem(1))
     {
         KeBugCheck(PHASE1_INITIALIZATION_FAILED);
     }
 
+    InbvBootProgress("processors", 5200);
     KeStartAllProcessors();
     KiCompleteProcessorNumbering();
 
@@ -1151,16 +1152,19 @@ Phase1InitializationDiscard(
      * everything below: a name is looked up from the root, and until this
      * returns there is no root to look up from.
      */
+    InbvBootProgress("object manager", 5300);
     if (!ObInitSystem())
     {
         KeBugCheck(OBJECT1_INITIALIZATION_FAILED);
     }
 
+    InbvBootProgress("executive", 5400);
     if (!ExInitSystem())
     {
         KeBugCheck(PHASE1_INITIALIZATION_FAILED);
     }
 
+    InbvBootProgress("kernel", 5500);
     if (!KeInitSystem())
     {
         KeBugCheck(PHASE1_INITIALIZATION_FAILED);
@@ -1168,6 +1172,7 @@ Phase1InitializationDiscard(
 
     KdInitSystem(1, LoaderBlock);
 
+    InbvBootProgress("security manager", 5600);
     if (!SeInitSystem())
     {
         KeBugCheck(SECURITY1_INITIALIZATION_FAILED);
@@ -1178,11 +1183,13 @@ Phase1InitializationDiscard(
      * moves its own registers to kernel addresses there and the architecture
      * hook above retires the early mappings it was using until then.
      */
+    InbvBootProgress("memory manager", 5700);
     if (!MmInitSystem(1, LoaderBlock))
     {
         KeBugCheck(PHASE1_INITIALIZATION_FAILED);
     }
 
+    InbvBootProgress("process manager", 5800);
     if (!PsInitSystem(LoaderBlock))
     {
         KeBugCheck(PROCESS1_INITIALIZATION_FAILED);
@@ -1190,23 +1197,27 @@ Phase1InitializationDiscard(
 
     DbgkInitialize();
 
+    InbvBootProgress("local procedure calls", 5900);
     if (!LpcInitSystem())
     {
         KeBugCheck(LPC_INITIALIZATION_FAILED);
     }
 
     /* The reference monitor serves its command port, so it starts once ports exist */
+    InbvBootProgress("security reference monitor", 6000);
     if (!SeRmInitPhase1())
     {
         KeBugCheck(SECURITY_INITIALIZATION_FAILED);
     }
 
     /* The registry keeps its transactions with the transaction manager, whose objects come first */
+    InbvBootProgress("transaction manager", 6100);
     if (!TmpInitSystem())
     {
         KeBugCheck(PHASE1_INITIALIZATION_FAILED);
     }
 
+    InbvBootProgress("registry", 6200);
     if (!CmInitSystem1())
     {
         KeBugCheck(CONFIG_INITIALIZATION_FAILED);
@@ -1219,11 +1230,13 @@ Phase1InitializationDiscard(
         ExUpdateSystemTimeFromCmos(FALSE, 0);
     }
 
+    InbvBootProgress("file system runtime", 6300);
     if (!FsRtlInitSystem())
     {
         KeBugCheck(FILE_INITIALIZATION_FAILED);
     }
 
+    InbvBootProgress("cache manager", 6400);
     if (!CcInitializeCacheManager())
     {
         KeBugCheck(CACHE_INITIALIZATION_FAILED);
@@ -1248,26 +1261,31 @@ Phase1InitializationDiscard(
 
     KseInitialize();
 
+    InbvBootProgress("I/O manager", 6500);
     if (!IoInitSystem(LoaderBlock))
     {
         KeBugCheck(IO1_INITIALIZATION_FAILED);
     }
 
+    InbvBootProgress("power manager", 9100);
     if (!PoInitSystem(2))
     {
         KeBugCheck(PHASE1_INITIALIZATION_FAILED);
     }
 
+    InbvBootProgress("NLS", 9200);
     if (!ExpInitNlsSection())
     {
         KeBugCheck(PHASE1_INITIALIZATION_FAILED);
     }
 
+    InbvBootProgress("ntdll.dll", 9400);
     if (!NT_SUCCESS(PsLocateSystemDll()))
     {
         KeBugCheck(PROCESS1_INITIALIZATION_FAILED);
     }
 
+    InbvBootProgress("smss.exe", 9800);
     ExpLoadInitialProcess(&ProcessInformation);
 
     /* The first process is created with its thread held; it starts here */

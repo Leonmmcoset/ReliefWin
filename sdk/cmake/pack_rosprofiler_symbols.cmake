@@ -38,7 +38,7 @@ endfunction()
 
 set(_base_bytes 0)
 if(EXISTS "${PREINSTALL_LIST}")
-    file(STRINGS "${PREINSTALL_LIST}" _entries)
+    file(STRINGS "${PREINSTALL_LIST}" _entries ENCODING UTF-8)
     foreach(_entry IN LISTS _entries)
         if(_entry MATCHES "^[^=]+=(.*)$")
             set(_host_path "${CMAKE_MATCH_1}")

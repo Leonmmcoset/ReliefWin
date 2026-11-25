@@ -1389,8 +1389,6 @@ PiProcessStartDevice(
 
     PopFxNotifyDeviceStarted(DeviceNode->PhysicalDeviceObject);
 
-    InbvIndicateProgress();
-
     /* A device that just started is asked for its children */
     PiSetDevNodeFlag(DeviceNode, DNF_REENUMERATE);
 

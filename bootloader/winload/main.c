@@ -331,10 +331,13 @@ OslLoadCoreImage(
     CHAR Path[OSL_PATH_CHARS];
     PKLDR_DATA_TABLE_ENTRY Entry;
     PVOID Base;
+    PCSTR Name;
 
     if (!NT_SUCCESS(RtlStringCbPrintfA(Path, sizeof(Path), "%s%ws", Directory, FileName)))
         return NULL;
 
+    Name = strrchr(Path, '\\');
+    BmUiBootProgress(Name ? Name + 1 : Path, MAXULONG);
     Base = PeLoadImage(Device, Path, MemoryType);
     if (!Base)
     {
@@ -392,6 +395,9 @@ OslMain(VOID)
     }
     FwDebugScreen = OslHasDebugPort(Options, "SCREEN");
 
+    if (!OslHasDebugPort(Options, "SCREEN") && !strstr(Options, "NOGUIBOOT"))
+        BmUiBeginBoot();
+
     Length = strlen(SystemRoot);
     if (Length == 0 || SystemRoot[Length - 1] != '\\')
         RtlStringCbCatA(SystemRoot, sizeof(SystemRoot), "\\");
@@ -400,6 +406,8 @@ OslMain(VOID)
 
     if (OslParameters.OsDevice.Ramdisk)
     {
+        RtlStringCbPrintfA(Directory, sizeof(Directory), "%ws", OslParameters.OsDevice.RamdiskPath);
+        BmUiBootProgress(Directory, 0);
         if (OslGetOption(Options, OSL_DOWNLOAD_URL_OPTION, Url, sizeof(Url)))
         {
             Image = FwDownloadFile(Url,
@@ -457,6 +465,7 @@ OslMain(VOID)
 
     LoaderBlock->ConfigurationRoot = OslBuildConfigurationTree(LoaderBlock);
 
+    BmUiBootProgress("SYSTEM", 1000);
     OslTrace("OS loader: loading the SYSTEM hive");
     if (!OslLoadSystemHive(LoaderBlock, &OsDevice, SystemRoot))
     {
@@ -464,6 +473,7 @@ OslMain(VOID)
         return;
     }
 
+    BmUiBootProgress("ntoskrnl.exe", 1500);
     OslTrace("OS loader: loading %ls and %ls", OslParameters.KernelFile, OslParameters.HalFile);
     Kernel = OslLoadCoreImage(LoaderBlock,
                               &OsDevice,
@@ -500,6 +510,7 @@ OslMain(VOID)
 
     OslLoadHalExtensions(LoaderBlock, &OsDevice, Directory);
 
+    BmUiBootProgress("NLS", 2500);
     OslTrace("OS loader: loading the NLS files");
     if (!OslLoadNlsData(LoaderBlock, &OsDevice, SystemRoot))
     {
@@ -507,6 +518,7 @@ OslMain(VOID)
         return;
     }
 
+    BmUiBootProgress("boot drivers", 3000);
     OslTrace("OS loader: loading the boot drivers");
     if (!OslLoadBootDrivers(LoaderBlock, &OsDevice, SystemRoot))
     {
@@ -514,6 +526,7 @@ OslMain(VOID)
         return;
     }
 
+    BmUiBootProgress("drvmain.sdb", 4500);
     OslLoadDriverDatabase(LoaderBlock, &OsDevice, SystemRoot);
 
     if (!OslFinalizeLoaderBlock(LoaderBlock, &OsDevice, SystemRoot, Options))
@@ -522,6 +535,8 @@ OslMain(VOID)
         return;
     }
 
+    BmUiBootProgress("ntoskrnl.exe", 5000);
+    BmUiEndBoot();
     OslTrace("OS loader: preparing the kernel address space");
     if (!OslArchPrepareHandoff(LoaderBlock))
     {
@@ -551,6 +566,7 @@ ExecuteLoaderCleanly(
 {
     UefiServiceStack = PreviousStack;
     OslMain();
+    BmUiEndBoot();
 }
 
 VOID

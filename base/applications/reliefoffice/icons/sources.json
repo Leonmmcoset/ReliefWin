@@ -1,0 +1,51 @@
+{
+  "reliefdiagram.svg": {
+    "sha256": "5f5ca0acf6216f69ff6201673a8ca6d38da5f6ed7873683b37983329d395ea6f",
+    "width": 32,
+    "height": 32,
+    "license": "MIT; media/doc/FluentIcons-LICENSE.txt",
+    "source": "https://github.com/microsoft/fluentui-system-icons/blob/main/assets/Flowchart/SVG/ic_fluent_flowchart_32_regular.svg"
+  },
+  "reliefexcel.svg": {
+    "sha256": "2a34af821720843a88aca29880f3ed92cf3fa2efaef3a71fe347b7f227bbba19",
+    "width": 32,
+    "height": 32,
+    "license": "MIT; media/doc/FluentIcons-LICENSE.txt",
+    "source": "https://github.com/microsoft/fluentui-system-icons/blob/main/assets/Table/SVG/ic_fluent_table_32_regular.svg"
+  },
+  "reliefmath.svg": {
+    "sha256": "cad595404d908e24d7b0020566f1905b1cfb4208850865a6abce1a0ed43072ad",
+    "width": 32,
+    "height": 32,
+    "license": "MIT; media/doc/FluentIcons-LICENSE.txt",
+    "source": "https://github.com/microsoft/fluentui-system-icons/blob/main/assets/Math%20Formula/SVG/ic_fluent_math_formula_32_regular.svg"
+  },
+  "reliefmathpp.svg": {
+    "sha256": "142c592dd1e26abd4395507b32b7ae1dc9a3d18fee30c4e7653d7b8811701d3d",
+    "width": 24,
+    "height": 24,
+    "license": "MIT; media/doc/FluentIcons-LICENSE.txt",
+    "source": "https://github.com/microsoft/fluentui-system-icons/blob/main/assets/Calculator/SVG/ic_fluent_calculator_24_regular.svg"
+  },
+  "reliefppt.svg": {
+    "sha256": "30fa7668ff6e76a6767df8790faeb1d7d2f8704b672ff5b8dc43a5123a37ab37",
+    "width": 24,
+    "height": 24,
+    "license": "MIT; media/doc/FluentIcons-LICENSE.txt",
+    "source": "https://github.com/microsoft/fluentui-system-icons/blob/main/assets/Presenter/SVG/ic_fluent_presenter_24_regular.svg"
+  },
+  "relieftodo.svg": {
+    "sha256": "617379e778b87bb754628b65efcd61a55e4a0a70732e13bdd522b8cdc2011f4d",
+    "width": 24,
+    "height": 24,
+    "license": "MIT; media/doc/FluentIcons-LICENSE.txt",
+    "source": "https://github.com/microsoft/fluentui-system-icons/blob/main/assets/Checkbox%20Checked/SVG/ic_fluent_checkbox_checked_24_regular.svg"
+  },
+  "reliefword.svg": {
+    "sha256": "a0eca6676179b53999d2a2e932cd3a53ad6b7574942797d60cabaa59d2576be5",
+    "width": 32,
+    "height": 32,
+    "license": "MIT; media/doc/FluentIcons-LICENSE.txt",
+    "source": "https://github.com/microsoft/fluentui-system-icons/blob/main/assets/Document%20Text/SVG/ic_fluent_document_text_32_regular.svg"
+  }
+}

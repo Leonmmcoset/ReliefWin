@@ -1,7 +1,7 @@
 
 
 # Setup settings file
-add_cd_file(FILE ${REACTOS_BINARY_DIR}/boot/bootdata/txtsetup.$<CONFIG>.sif DESTINATION reactos NO_CAB NAME_ON_CD txtsetup.sif FOR bootcd)
+add_cd_file(FILE ${REACTOS_BINARY_DIR}/boot/bootdata/txtsetup.bootcd.$<CONFIG>.sif DESTINATION reactos NO_CAB NAME_ON_CD txtsetup.sif FOR bootcd)
 add_cd_file(FILE ${REACTOS_BINARY_DIR}/boot/bootdata/txtsetup.$<CONFIG>.sif DESTINATION ${ARCH} NAME_ON_CD txtsetup.sif FOR preinstall)
 
 add_custom_target(converted_caroots_inf DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/caroots.inf)

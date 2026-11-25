@@ -10,6 +10,7 @@
 #include <ft2build.h>
 #include FT_FREETYPE_H
 #include "bootui_mono.h"
+#include "bootui_logo.h"
 
 #define BMUI_GRAPHICS_COLUMNS   100
 #define BMUI_TEXT_COLUMNS       80
@@ -46,6 +47,8 @@ static SIZE_T BmUiPixelBytes;
 static FT_Library BmUiLibrary;
 static FT_Face BmUiMono;
 static BOOLEAN BmUiGraphics;
+static BOOLEAN BmUiBootActive;
+static ULONG BmUiBootProgressValue;
 
 static
 VOID
@@ -297,7 +300,8 @@ BmUiInitialize(VOID)
     BmUiGraphics = FALSE;
     BmUiColumns = BMUI_TEXT_COLUMNS;
 
-    if (BmUiWidth == 0 || BmUiHeight == 0)
+    if (BmUiWidth == 0 || BmUiHeight == 0 ||
+        BmUiWidth > MAXULONG / sizeof(ULONG) / BmUiHeight)
         return TRUE;
 
     BmUiPixelBytes = (SIZE_T)BmUiWidth * BmUiHeight * sizeof(ULONG);
@@ -342,6 +346,102 @@ BmUiSetMonoSize(VOID)
     FT_F26Dot6 Width = (FT_F26Dot6)BmUiCellWidth * BmUiMono->units_per_EM * 64 / BmUiMono->max_advance_width;
 
     FT_Set_Char_Size(BmUiMono, Width, Height, 72, 72);
+}
+
+BOOLEAN
+BmUiBootProgress(
+    _In_opt_ PCSTR Component,
+    _In_ ULONG Progress)
+{
+    WCHAR Line[128];
+    ULONG Width, Left, Top, Height, Count, i;
+
+    if (!BmUiBootActive)
+        return FALSE;
+    if (Progress != MAXULONG)
+        BmUiBootProgressValue = max(BmUiBootProgressValue, min(Progress, 10000UL));
+
+    if (BmUiGraphics)
+    {
+        Height = max(1UL, BmUiCellHeight / 4);
+        Width = (ULONG)(((ULONGLONG)BmUiWidth * BmUiBootProgressValue) / 10000);
+        BmUiFill(0, 0, BmUiWidth, Height, 0x303030);
+        BmUiFill(0, 0, Width, Height, BMUI_WHITE);
+        BmUiPresent(0, Height);
+    }
+
+    if (!Component || !Component[0])
+        return TRUE;
+
+    Count = min((ULONG)RTL_NUMBER_OF(Line) - 10, BmUiColumns > 10 ? BmUiColumns - 10 : 0);
+    RtlCopyMemory(Line, L"Loading ", 8 * sizeof(WCHAR));
+    for (i = 0; i < Count && Component[i]; i++)
+        Line[8 + i] = (WCHAR)(UCHAR)Component[i];
+    Line[8 + i] = 0x2026;
+    Line[9 + i] = UNICODE_NULL;
+
+    if (BmUiGraphics)
+    {
+        Width = (8 + i + 1) * BmUiCellWidth;
+        Left = (BmUiWidth > Width) ? (BmUiWidth - Width) / 2 : 0;
+        Top = (ULONG)(((ULONGLONG)BmUiHeight * 13) / 16);
+        Top = Top > 20 + BmUiCellHeight / 2 ? Top - 20 - BmUiCellHeight / 2 : 0;
+        Top = min(Top, BmUiHeight - BmUiCellHeight);
+        BmUiFill(0, Top, BmUiWidth, BmUiCellHeight, BMUI_BLACK);
+        BmUiSetMonoSize();
+        BmUiDrawText(BmUiMono, Left,
+                     Top + (BmUiCellHeight + (BmUiMono->size->metrics.ascender >> 6) +
+                            (BmUiMono->size->metrics.descender >> 6)) / 2,
+                     Line, BMUI_WHITE);
+        BmUiPresent(Top, BmUiCellHeight);
+    }
+    else
+    {
+        Line[8 + i] = '.';
+        BmUiPutText(19, 0, BMUI_TEXT_COLUMNS, L"", BMUI_ATTR_NORMAL);
+        BmUiPutText(19, (BMUI_TEXT_COLUMNS - 9 - i) / 2,
+                     BMUI_TEXT_COLUMNS, Line, BMUI_ATTR_BRIGHT);
+    }
+    return TRUE;
+}
+
+VOID
+BmUiBeginBoot(VOID)
+{
+    ULONG Left, Top, X, Y;
+
+    BmUiInitialize();
+    BmUiBootActive = TRUE;
+    BmUiBootProgressValue = 0;
+    BmUiClear(BMUI_BLACK, BMUI_ATTR_NORMAL);
+    if (BmUiGraphics)
+    {
+        Left = BmUiWidth > 48 ? (BmUiWidth - 48) / 2 : 0;
+        Top = BmUiHeight / 4;
+        for (Y = 0; Y < 42 && Top + Y < BmUiHeight; Y++)
+        {
+            for (X = 0; X < 48 && Left + X < BmUiWidth; X++)
+            {
+                const UCHAR *Pixel = bootui_logo + (Y * 48 + X) * 4;
+                BmUiPixels[(SIZE_T)(Top + Y) * BmUiWidth + Left + X] =
+                    ((ULONG)Pixel[0] << 16) | ((ULONG)Pixel[1] << 8) | Pixel[2];
+            }
+        }
+        BmUiPresent(0, BmUiHeight);
+    }
+    BmUiBootProgress("winload.exe", 0);
+}
+
+VOID
+BmUiEndBoot(VOID)
+{
+    if (!BmUiBootActive)
+        return;
+    if (BmUiPixels)
+        FwFreePages(BmUiPixels, BmUiPixelBytes);
+    BmUiPixels = NULL;
+    BmUiGraphics = FALSE;
+    BmUiBootActive = FALSE;
 }
 
 static

@@ -95,3 +95,14 @@ BmUiStartupSettings(
     _In_reads_(Count) PCSTR* Descriptions,
     _In_ ULONG Count,
     _Out_ PULONG Choice);
+
+VOID
+BmUiBeginBoot(VOID);
+
+BOOLEAN
+BmUiBootProgress(
+    _In_opt_ PCSTR Component,
+    _In_ ULONG Progress);
+
+VOID
+BmUiEndBoot(VOID);

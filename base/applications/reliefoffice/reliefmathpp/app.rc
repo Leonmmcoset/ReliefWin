@@ -1,0 +1,8 @@
+#include <windef.h>
+#include <winuser.rh>
+#define REACTOS_STR_FILE_DESCRIPTION "ReliefMath++"
+#define REACTOS_STR_INTERNAL_NAME "reliefmathpp"
+#define REACTOS_STR_ORIGINAL_FILENAME "reliefmathpp.exe"
+#include <reliefwin/version.rc>
+101 ICON "../icons/reliefmathpp.ico"
+#include <reliefwin/manifest_exe.rc>

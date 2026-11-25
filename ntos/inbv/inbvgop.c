@@ -26,23 +26,9 @@
 #define INBV_WORDMARK_BGRT_SAFE_TOP 0.35f
 #define INBV_CENTERMARK_VPOS        0.625f
 
-#define INBV_LOGO_FRAME_MS          15
-#define INBV_LOGO_DEFAULT_INCREMENT 100000UL
 #define INBV_LOGO_POOL_TAG          'oLbI'
-#define INBV_LOGO_WIDTH             120
-#define INBV_LOGO_TOP_WIDTH         120
-#define INBV_LOGO_LIFT              20
-#define INBV_LOGO_UNITS             400
-#define INBV_LOGO_PROGRESS_MAX      10000
-#define INBV_LOGO_PROGRESS_CEILING  9500
-#define INBV_LOGO_PROGRESS_SHARE    5
-#define INBV_LOGO_PROGRESS_RATE     16000
-#define INBV_LOGO_BAR_LENGTH        7000
-#define INBV_LOGO_LOOP_CYCLE_MS     2500
-#define INBV_LOGO_MAX_RECTS         8
-#define INBV_LOGO_RED               0xE0
-#define INBV_LOGO_GREEN             0xE0
-#define INBV_LOGO_BLUE              0xE0
+#define INBV_BOOT_PROGRESS_MAX      10000
+#define INBV_BOOT_PROGRESS_START    5000
 
 typedef struct _INBV_GOP_RECT
 {
@@ -51,37 +37,6 @@ typedef struct _INBV_GOP_RECT
     ULONG Width;
     ULONG Height;
 } INBV_GOP_RECT, *PINBV_GOP_RECT;
-
-typedef struct _INBV_LOGO_RECT
-{
-    LONG Left;
-    LONG Top;
-    LONG Right;
-    LONG Bottom;
-} INBV_LOGO_RECT, *PINBV_LOGO_RECT;
-
-static const INBV_LOGO_RECT InbvLogoShape[2][2] =
-{
-    { {   0,   0,  10,  10 }, {  10,   0, 200,  10 } },
-    { { 390,   0, 400,  10 }, { 200,   0, 390,  10 } },
-};
-
-typedef struct _INBV_LOGO_STATE
-{
-    ULONG Left, Top;
-    ULONG Width, Height;
-    INBV_LOGO_RECT Shape[2][2];
-    LONG LineX[2];
-    LONG LineY[2];
-    LONG HalfX, HalfY;
-    LONG Perimeter;
-    LONG LineTail;
-    LONG LineLength;
-    ULONG FillEnd;
-    ULONG Lut[256];
-    ULONGLONG FrameInterval;
-    PULONG Frame;
-} INBV_LOGO_STATE;
 
 typedef struct _INBV_STATUS_LINE
 {
@@ -98,12 +53,11 @@ typedef struct _INBV_STATUS_LINE
     BOOLEAN Ready;
 } INBV_STATUS_LINE;
 
-static INBV_LOGO_STATE g_Logo;
 static INBV_STATUS_LINE g_Status;
-static LONG    g_LogoTarget;
-static KEVENT  g_LogoStop;
-static KEVENT  g_LogoDone;
-static BOOLEAN g_LogoReady = FALSE;
+static ULONG InbvBootProgressValue = INBV_BOOT_PROGRESS_START;
+
+static VOID NTAPI InbvGopDisplayFilter(_Inout_ PCSTR *String);
+static VOID InbvDisplayStatusLocked(_In_ PCSTR String);
 
 static VOID
 InbvGopFillStatusBand(VOID)
@@ -120,8 +74,6 @@ InbvGopStatusFree(
         ExFreePoolWithTag(Coverage, INBV_LOGO_POOL_TAG);
     if (Row)
         ExFreePoolWithTag(Row, INBV_LOGO_POOL_TAG);
-    g_Status.Coverage = NULL;
-    g_Status.Row = NULL;
 }
 
 extern VOID NTAPI InbvAcquireLock(VOID);
@@ -294,498 +246,190 @@ InbvGopComputeWordmarkRect(
 }
 
 static VOID
-InbvGopLogoResetState(VOID)
+InbvDrawBootProgressLocked(VOID)
 {
-    if (g_Logo.Frame)
-        ExFreePoolWithTag(g_Logo.Frame, INBV_LOGO_POOL_TAG);
-    RtlZeroMemory(&g_Logo, sizeof(g_Logo));
-}
+    ULONG Height, Filled;
 
-static BOOLEAN
-InbvGopLogoBlit(VOID)
-{
-    const INBV_LOGO_STATE *S = &g_Logo;
-
-    InbvAcquireLock();
-    if (!InbvIsBootDriverInstalled() ||
-        InbvGetDisplayState() != INBV_DISPLAY_STATE_OWNED)
-    {
-        InbvReleaseLock();
-        return FALSE;
-    }
-    VidBufferToScreenBlt((PUCHAR)S->Frame, S->Left, S->Top,
-                         S->Width, S->Height, S->Width * sizeof(ULONG));
-    InbvReleaseLock();
-    return TRUE;
-}
-
-static LONG
-InbvGopLogoOverlap(LONG Low, LONG High, LONG Pixel)
-{
-    LONG Start = max(Low, Pixel * 256);
-    LONG End = min(High, (Pixel + 1) * 256);
-    return (End > Start) ? (End - Start) : 0;
-}
-
-static VOID
-InbvGopLogoCover(
-    _In_reads_(Count) const INBV_LOGO_RECT *Rects,
-    _In_ ULONG Count)
-{
-    const INBV_LOGO_STATE *S = &g_Logo;
-    LONG OverlapY[INBV_LOGO_MAX_RECTS];
-    ULONG i, x, y;
-
-    for (y = 0; y < S->Height; y++)
-    {
-        PULONG Row = S->Frame + (SIZE_T)y * S->Width;
-
-        for (i = 0; i < Count; i++)
-            OverlapY[i] = InbvGopLogoOverlap(Rects[i].Top, Rects[i].Bottom, (LONG)y);
-
-        for (x = 0; x < S->Width; x++)
-        {
-            ULONG Coverage = 0;
-
-            for (i = 0; i < Count; i++)
-            {
-                if (OverlapY[i])
-                {
-                    Coverage += (ULONG)(OverlapY[i] *
-                                        InbvGopLogoOverlap(Rects[i].Left, Rects[i].Right, (LONG)x));
-                }
-            }
-
-            Coverage = (Coverage * 255 + 32768) >> 16;
-            Row[x] = S->Lut[min(Coverage, 255UL)];
-        }
-    }
-}
-
-static VOID
-InbvGopLogoRasterize(
-    _In_ ULONG Progress)
-{
-    const INBV_LOGO_STATE *S = &g_Logo;
-    INBV_LOGO_RECT Rects[4];
-    ULONG Arm;
-
-    for (Arm = 0; Arm < 2; Arm++)
-    {
-        PINBV_LOGO_RECT Stem = &Rects[Arm * 2];
-        PINBV_LOGO_RECT Foot = &Rects[Arm * 2 + 1];
-        LONG StemLength, FootLength, Length, StemFill, FootFill;
-
-        *Stem = S->Shape[Arm][0];
-        *Foot = S->Shape[Arm][1];
-        StemLength = Stem->Bottom - Stem->Top;
-        FootLength = Foot->Right - Foot->Left;
-        Length = (LONG)(((ULONGLONG)Progress * (ULONG)(StemLength + FootLength)) /
-                        INBV_LOGO_PROGRESS_MAX);
-        StemFill = min(Length, StemLength);
-        FootFill = Length - StemFill;
-
-        if (Arm == 0)
-        {
-            Stem->Bottom = Stem->Top + StemFill;
-            Foot->Right = Foot->Left + FootFill;
-        }
-        else
-        {
-            Stem->Top = Stem->Bottom - StemFill;
-            Foot->Left = Foot->Right - FootFill;
-        }
-    }
-
-    InbvGopLogoCover(Rects, RTL_NUMBER_OF(Rects));
-}
-
-static VOID
-InbvGopLogoLinePoint(
-    _In_ ULONG Side,
-    _In_ LONG Distance,
-    _Out_ PLONG X,
-    _Out_ PLONG Y)
-{
-    const INBV_LOGO_STATE *S = &g_Logo;
-
-    switch (Side)
-    {
-        case 0:
-            *X = S->LineX[0];
-            *Y = S->LineY[0] + Distance;
-            break;
-        case 1:
-            *X = S->LineX[0] + Distance;
-            *Y = S->LineY[1];
-            break;
-        case 2:
-            *X = S->LineX[1];
-            *Y = S->LineY[1] - Distance;
-            break;
-        default:
-            *X = S->LineX[1] - Distance;
-            *Y = S->LineY[0];
-            break;
-    }
-}
-
-static ULONG
-InbvGopLogoLineRects(
-    _In_ LONG Tail,
-    _Inout_updates_(INBV_LOGO_MAX_RECTS) PINBV_LOGO_RECT Rects,
-    _In_ ULONG Count)
-{
-    const INBV_LOGO_STATE *S = &g_Logo;
-    const LONG Height = S->LineY[1] - S->LineY[0];
-    const LONG Width = S->LineX[1] - S->LineX[0];
-    const LONG Start[4] = { 0, Height, Height + Width, 2 * Height + Width };
-    const LONG Length[4] = { Height, Width, Height, Width };
-    LONG Shift, From, To, Low, High, X0, Y0, X1, Y1;
-    ULONG Side;
-
-    for (Shift = 0; Shift <= S->Perimeter; Shift += S->Perimeter)
-    {
-        From = Tail - Shift;
-        To = From + S->LineLength;
-
-        for (Side = 0; Side < 4; Side++)
-        {
-            Low = max(From, Start[Side]);
-            High = min(To, Start[Side] + Length[Side]);
-            if (High <= Low)
-                continue;
-            if (Count >= INBV_LOGO_MAX_RECTS)
-                return Count;
-
-            InbvGopLogoLinePoint(Side, Low - Start[Side], &X0, &Y0);
-            InbvGopLogoLinePoint(Side, High - Start[Side], &X1, &Y1);
-            Rects[Count].Left = min(X0, X1) - S->HalfX;
-            Rects[Count].Top = min(Y0, Y1) - S->HalfY;
-            Rects[Count].Right = max(X0, X1) + S->HalfX;
-            Rects[Count].Bottom = max(Y0, Y1) + S->HalfY;
-            Count++;
-        }
-    }
-    return Count;
-}
-
-static VOID NTAPI
-InbvGopLogoThread(PVOID Context)
-{
-    const INBV_LOGO_STATE *S = &g_Logo;
-    const ULONGLONG Cycle = (ULONGLONG)INBV_LOGO_LOOP_CYCLE_MS * 10000;
-    LARGE_INTEGER Delay;
-    INBV_LOGO_RECT Rects[INBV_LOGO_MAX_RECTS];
-    ULONGLONG Now, Last, Next, LoopStart = 0;
-    ULONG Shown = 0, Target, Count;
-    LONG Tail;
-
-    UNREFERENCED_PARAMETER(Context);
-    Last = Next = KeQueryInterruptTime();
-
-    for (;;)
-    {
-        Now = KeQueryInterruptTime();
-        if (Shown < INBV_LOGO_PROGRESS_MAX)
-        {
-            Target = (ULONG)ReadNoFence(&g_LogoTarget);
-            if (Shown < Target)
-            {
-                Shown = (ULONG)min((ULONGLONG)Target,
-                                   Shown + (Now - Last) * INBV_LOGO_PROGRESS_RATE / 10000000);
-                InbvGopLogoRasterize((ULONG)(((ULONGLONG)Shown * S->FillEnd) /
-                                             INBV_LOGO_PROGRESS_MAX));
-                if (!InbvGopLogoBlit())
-                    break;
-                LoopStart = Now;
-            }
-        }
-        else
-        {
-            Tail = (LONG)((S->LineTail + (Now - LoopStart) * (ULONG)S->Perimeter / Cycle) %
-                          (ULONG)S->Perimeter);
-            Count = InbvGopLogoLineRects(Tail, Rects, 0);
-            Count = InbvGopLogoLineRects((Tail + S->Perimeter / 2) % S->Perimeter, Rects, Count);
-            InbvGopLogoCover(Rects, Count);
-            if (!InbvGopLogoBlit())
-                break;
-        }
-
-        Last = Now;
-        Next += S->FrameInterval;
-        Now = KeQueryInterruptTime();
-        if (Next <= Now)
-            Next = Now + S->FrameInterval;
-        Delay.QuadPart = (LONGLONG)(Now - Next);
-        if (KeWaitForSingleObject(&g_LogoStop,
-                                  Executive,
-                                  KernelMode,
-                                  FALSE,
-                                  &Delay) != STATUS_TIMEOUT)
-        {
-            break;
-        }
-    }
-
-    InbvGopLogoRasterize(INBV_LOGO_PROGRESS_MAX);
-    InbvGopLogoBlit();
-
-    InbvGopLogoResetState();
-    KeSetEvent(&g_LogoDone, IO_NO_INCREMENT, FALSE);
-    PsTerminateSystemThread(STATUS_SUCCESS);
+    ASSERT(g_Status.Ready);
+    ASSERT(g_Status.Width != 0);
+    ASSERT(InbvBootProgressValue <= INBV_BOOT_PROGRESS_MAX);
+    Height = max(1UL, g_Status.Height / 4);
+    Filled = (ULONG)(((ULONGLONG)g_Status.Width * InbvBootProgressValue) /
+                     INBV_BOOT_PROGRESS_MAX);
+    VidSolidColorFill(0, 0, g_Status.Width - 1, Height - 1, BV_COLOR_DARK_GRAY);
+    if (Filled)
+        VidSolidColorFill(0, 0, Filled - 1, Height - 1, BV_COLOR_WHITE);
 }
 
 CODE_SEG("INIT")
-static LONG
-InbvGopLogoScale(ULONG Units, ULONG Width)
-{
-    return (LONG)((Units * Width + INBV_LOGO_UNITS / 2) / INBV_LOGO_UNITS) * 256;
-}
-
-CODE_SEG("INIT")
-static BOOLEAN
-InbvGopLogoSetup(
-    _In_ ULONG ScreenWidth,
-    _In_ ULONG ScreenHeight)
-{
-    INBV_LOGO_STATE *S = &g_Logo;
-    LOADER_PARAMETER_FRAMEBUFFER FbInfo;
-    ULONG RedShift, GreenShift, BlueShift;
-    ULONG RedMax, GreenMax, BlueMax;
-    ULONG HalfHeight, CenterY, TopHalf, Lift, Arm, Part, i, Root;
-    ULONG Increment, Frame100ns;
-    LONG StemLength, Total, Reach, Head;
-
-    RtlZeroMemory(S, sizeof(*S));
-
-    if (!InbvGopQueryInfo(&FbInfo))
-        return FALSE;
-
-    S->Width = InbvGopScaleForDpi(INBV_LOGO_WIDTH, FbInfo.Dpi);
-    for (Arm = 0; Arm < 2; Arm++)
-    {
-        for (Part = 0; Part < 2; Part++)
-        {
-            const INBV_LOGO_RECT *Source = &InbvLogoShape[Arm][Part];
-            PINBV_LOGO_RECT Rect = &S->Shape[Arm][Part];
-
-            Rect->Left = InbvGopLogoScale(Source->Left, S->Width);
-            Rect->Top = InbvGopLogoScale(Source->Top, S->Width);
-            Rect->Right = InbvGopLogoScale(Source->Right, S->Width);
-            Rect->Bottom = InbvGopLogoScale(Source->Bottom, S->Width);
-            S->Height = max(S->Height, (ULONG)Rect->Bottom / 256);
-        }
-    }
-
-    if (S->Width == 0 ||
-        S->Height == 0 ||
-        S->Width > ScreenWidth ||
-        S->Height > ScreenHeight)
-    {
-        return FALSE;
-    }
-
-    S->HalfX = max(S->Shape[0][0].Right - S->Shape[0][0].Left,
-                   S->Shape[1][0].Right - S->Shape[1][0].Left) / 2;
-    S->HalfY = max(S->Shape[0][1].Bottom - S->Shape[0][1].Top,
-                   S->Shape[1][1].Bottom - S->Shape[1][1].Top) / 2;
-    S->LineX[0] = (S->Shape[0][0].Left + S->Shape[0][0].Right) / 2;
-    S->LineX[1] = (S->Shape[1][0].Left + S->Shape[1][0].Right) / 2;
-    S->LineY[0] = (S->Shape[1][1].Top + S->Shape[1][1].Bottom) / 2;
-    S->LineY[1] = (S->Shape[0][1].Top + S->Shape[0][1].Bottom) / 2;
-    S->Perimeter = 2 * ((S->LineY[1] - S->LineY[0]) + (S->LineX[1] - S->LineX[0]));
-    if (S->Perimeter <= 0)
-        return FALSE;
-
-    StemLength = S->Shape[0][0].Bottom - S->Shape[0][0].Top;
-    Total = StemLength + S->Shape[0][1].Right - S->Shape[0][1].Left;
-    if (Total <= 0)
-        return FALSE;
-
-    Reach = (LONG)(((ULONGLONG)INBV_LOGO_BAR_LENGTH * (ULONG)(S->Perimeter / 2)) /
-                   INBV_LOGO_PROGRESS_MAX);
-    S->FillEnd = (ULONG)min(((ULONGLONG)(ULONG)Reach * INBV_LOGO_PROGRESS_MAX) / (ULONG)Total,
-                            (ULONGLONG)INBV_LOGO_PROGRESS_MAX);
-    Reach = (LONG)(((ULONGLONG)S->FillEnd * (ULONG)Total) / INBV_LOGO_PROGRESS_MAX);
-    S->LineTail = S->Shape[0][0].Top + S->HalfY - S->LineY[0];
-    if (Reach <= StemLength)
-        Head = S->Shape[0][0].Top + Reach - S->HalfY - S->LineY[0];
-    else
-        Head = (S->LineY[1] - S->LineY[0]) + Reach - StemLength;
-    S->LineLength = max(Head - S->LineTail, 1);
-
-    S->Left = (ScreenWidth - S->Width) / 2;
-
-    HalfHeight = ScreenHeight / 2;
-    CenterY = (ULONG)(HalfHeight +
-                      (ScreenHeight - HalfHeight) * INBV_CENTERMARK_VPOS);
-    TopHalf = (ULONG)(((ULONGLONG)S->Height * INBV_LOGO_TOP_WIDTH) / (2 * INBV_LOGO_WIDTH));
-    Lift = InbvGopScaleForDpi(INBV_LOGO_LIFT, FbInfo.Dpi);
-    S->Top = (CenterY > TopHalf + Lift) ? (CenterY - TopHalf - Lift) : 0;
-    if (S->Top + S->Height > ScreenHeight)
-        S->Top = ScreenHeight - S->Height;
-
-    {
-        VID_DISPLAY_INFO DisplayInfo;
-        ULONG LogoBottom;
-
-        InbvQueryDisplayInfo(&DisplayInfo);
-        if (DisplayInfo.PhysicalHeight && DisplayInfo.Height && DisplayInfo.Width &&
-            DisplayInfo.CharacterWidth && DisplayInfo.CharacterHeight < DisplayInfo.Height)
-        {
-            LogoBottom = (ULONG)(((ULONGLONG)(S->Top + S->Height) * DisplayInfo.Height) /
-                                 DisplayInfo.PhysicalHeight);
-            g_Status.Width = DisplayInfo.Width;
-            g_Status.CharWidth = DisplayInfo.CharacterWidth;
-            g_Status.Height = DisplayInfo.CharacterHeight;
-            g_Status.Top = (LogoBottom + DisplayInfo.Height) / 2 - DisplayInfo.CharacterHeight / 2;
-            if (g_Status.Top + g_Status.Height > DisplayInfo.Height)
-                g_Status.Top = DisplayInfo.Height - g_Status.Height;
-            g_Status.PixelTop = (ULONG)(((ULONGLONG)g_Status.Top * DisplayInfo.PhysicalHeight) /
-                                        DisplayInfo.Height);
-            g_Status.PixelHeight = (ULONG)(((ULONGLONG)g_Status.Height * DisplayInfo.PhysicalHeight) /
-                                           DisplayInfo.Height);
-            g_Status.PixelWidth = DisplayInfo.PhysicalWidth;
-            if (g_Status.PixelWidth && g_Status.PixelHeight)
-            {
-                g_Status.Coverage = ExAllocatePoolWithTag(NonPagedPool,
-                                                          (SIZE_T)g_Status.PixelWidth *
-                                                          g_Status.PixelHeight,
-                                                          INBV_LOGO_POOL_TAG);
-                g_Status.Row = ExAllocatePoolWithTag(NonPagedPool,
-                                                     (SIZE_T)g_Status.PixelWidth * sizeof(ULONG),
-                                                     INBV_LOGO_POOL_TAG);
-                if (!g_Status.Coverage || !g_Status.Row)
-                    InbvGopStatusFree(g_Status.Coverage, g_Status.Row);
-            }
-            g_Status.Ready = TRUE;
-        }
-    }
-
-    RedShift   = InbvMaskShift(FbInfo.RedMask);
-    GreenShift = InbvMaskShift(FbInfo.GreenMask);
-    BlueShift  = InbvMaskShift(FbInfo.BlueMask);
-    RedMax     = InbvMaskMax(FbInfo.RedMask   >> RedShift);
-    GreenMax   = InbvMaskMax(FbInfo.GreenMask >> GreenShift);
-    BlueMax    = InbvMaskMax(FbInfo.BlueMask  >> BlueShift);
-
-    for (i = 0; i < RTL_NUMBER_OF(S->Lut); ++i)
-    {
-        S->Lut[i] = InbvPackColor(FbInfo.RedMask, FbInfo.GreenMask, FbInfo.BlueMask,
-                                  RedShift, GreenShift, BlueShift,
-                                  RedMax, GreenMax, BlueMax,
-                                  (UCHAR)(INBV_LOGO_RED * i / 255),
-                                  (UCHAR)(INBV_LOGO_GREEN * i / 255),
-                                  (UCHAR)(INBV_LOGO_BLUE * i / 255));
-        for (Root = 0; (Root + 1) * (Root + 1) <= i * 255; Root++);
-        if (i * 255 - Root * Root > Root)
-            Root++;
-        g_Status.Lut[i] = InbvPackColor(FbInfo.RedMask, FbInfo.GreenMask, FbInfo.BlueMask,
-                                        RedShift, GreenShift, BlueShift,
-                                        RedMax, GreenMax, BlueMax,
-                                        (UCHAR)(INBV_LOGO_RED * Root / 255),
-                                        (UCHAR)(INBV_LOGO_GREEN * Root / 255),
-                                        (UCHAR)(INBV_LOGO_BLUE * Root / 255));
-    }
-
-    Increment = KeQueryTimeIncrement();
-    if (Increment == 0)
-        Increment = INBV_LOGO_DEFAULT_INCREMENT;
-
-    Frame100ns = (ULONG)INBV_LOGO_FRAME_MS * 10000;
-    Frame100ns = ((Frame100ns + Increment - 1) / Increment) * Increment;
-    if (Frame100ns == 0)
-        Frame100ns = Increment;
-
-    S->FrameInterval = Frame100ns;
-
-    S->Frame = ExAllocatePoolWithTag(NonPagedPool,
-                                     (SIZE_T)S->Width * S->Height * sizeof(ULONG),
-                                     INBV_LOGO_POOL_TAG);
-    if (!S->Frame)
-        return FALSE;
-
-    return TRUE;
-}
-
-CODE_SEG("INIT")
-static VOID
-InbvGopLogoStart(
-    _In_ ULONG ScreenWidth,
-    _In_ ULONG ScreenHeight)
-{
-    HANDLE Thread;
-    OBJECT_ATTRIBUTES ObjAttr;
-
-    if (g_LogoReady)
-        return;
-
-    if (!InbvGopLogoSetup(ScreenWidth, ScreenHeight))
-        return;
-
-    KeInitializeEvent(&g_LogoStop, NotificationEvent, FALSE);
-    KeInitializeEvent(&g_LogoDone, NotificationEvent, FALSE);
-    g_LogoReady = TRUE;
-
-    InitializeObjectAttributes(&ObjAttr, NULL, OBJ_KERNEL_HANDLE, NULL, NULL);
-    if (NT_SUCCESS(PsCreateSystemThread(&Thread, 0, &ObjAttr, NULL, NULL,
-                                        InbvGopLogoThread, NULL)))
-    {
-        ZwClose(Thread);
-    }
-    else
-    {
-        InbvGopLogoResetState();
-        g_LogoReady = FALSE;
-    }
-}
-
 VOID
 NTAPI
-InbvIndicateProgress(VOID)
+InbvInitializeBootStatus(VOID)
 {
-    LONG Old, New;
+    LOADER_PARAMETER_FRAMEBUFFER FbInfo;
+    VID_DISPLAY_INFO DisplayInfo;
+    ULONG RedShift, GreenShift, BlueShift;
+    ULONG RedMax, GreenMax, BlueMax;
+    ULONG i, Root, Center;
 
-    do
+    if (g_Status.Ready)
+        return;
+
+    if (!InbvQueryDisplayInfo(&DisplayInfo) || !DisplayInfo.Width ||
+        !DisplayInfo.CharacterWidth || !DisplayInfo.CharacterHeight ||
+        DisplayInfo.CharacterHeight >= DisplayInfo.Height)
+        return;
+
+    RtlZeroMemory(&g_Status, sizeof(g_Status));
+    g_Status.Width = DisplayInfo.Width;
+    g_Status.CharWidth = DisplayInfo.CharacterWidth;
+    g_Status.Height = DisplayInfo.CharacterHeight;
+    Center = (ULONG)(((ULONGLONG)DisplayInfo.Height * 13) / 16);
+    g_Status.Top = (Center > 20 + g_Status.Height / 2) ?
+                   Center - 20 - g_Status.Height / 2 : 0;
+    g_Status.Top = min(g_Status.Top, DisplayInfo.Height - g_Status.Height);
+
+    if (InbvGopQueryInfo(&FbInfo) && DisplayInfo.PhysicalWidth &&
+        DisplayInfo.PhysicalHeight)
     {
-        Old = ReadNoFence(&g_LogoTarget);
-        New = Old + (INBV_LOGO_PROGRESS_CEILING - Old) / INBV_LOGO_PROGRESS_SHARE;
-        if (New <= Old)
-            return;
-    } while (InterlockedCompareExchange(&g_LogoTarget, New, Old) != Old);
+        g_Status.PixelTop = (ULONG)(((ULONGLONG)g_Status.Top * DisplayInfo.PhysicalHeight) /
+                                    DisplayInfo.Height);
+        g_Status.PixelHeight = (ULONG)(((ULONGLONG)g_Status.Height * DisplayInfo.PhysicalHeight) /
+                                       DisplayInfo.Height);
+        g_Status.PixelWidth = DisplayInfo.PhysicalWidth;
+        if (g_Status.PixelHeight &&
+            g_Status.PixelWidth <= MAXULONG / sizeof(ULONG) &&
+            g_Status.PixelWidth <= MAXULONG_PTR / g_Status.PixelHeight)
+        {
+            g_Status.Coverage = ExAllocatePoolWithTag(NonPagedPool,
+                                                      (SIZE_T)g_Status.PixelWidth * g_Status.PixelHeight,
+                                                      INBV_LOGO_POOL_TAG);
+            g_Status.Row = ExAllocatePoolWithTag(NonPagedPool,
+                                                 (SIZE_T)g_Status.PixelWidth * sizeof(ULONG),
+                                                 INBV_LOGO_POOL_TAG);
+            if (!g_Status.Coverage || !g_Status.Row)
+            {
+                InbvGopStatusFree(g_Status.Coverage, g_Status.Row);
+                g_Status.Coverage = NULL;
+                g_Status.Row = NULL;
+            }
+        }
+
+        RedShift = InbvMaskShift(FbInfo.RedMask);
+        GreenShift = InbvMaskShift(FbInfo.GreenMask);
+        BlueShift = InbvMaskShift(FbInfo.BlueMask);
+        RedMax = InbvMaskMax(FbInfo.RedMask >> RedShift);
+        GreenMax = InbvMaskMax(FbInfo.GreenMask >> GreenShift);
+        BlueMax = InbvMaskMax(FbInfo.BlueMask >> BlueShift);
+        for (i = 0; i < RTL_NUMBER_OF(g_Status.Lut); ++i)
+        {
+            for (Root = 0; (Root + 1) * (Root + 1) <= i * 255; Root++);
+            if (i * 255 - Root * Root > Root)
+                Root++;
+            g_Status.Lut[i] = InbvPackColor(FbInfo.RedMask, FbInfo.GreenMask, FbInfo.BlueMask,
+                                            RedShift, GreenShift, BlueShift,
+                                            RedMax, GreenMax, BlueMax,
+                                            (UCHAR)Root, (UCHAR)Root, (UCHAR)Root);
+        }
+    }
+
+    InbvAcquireLock();
+    g_Status.Ready = TRUE;
+    InbvBootProgressValue = INBV_BOOT_PROGRESS_START;
+    if (InbvIsBootDriverInstalled() && InbvGetDisplayState() == INBV_DISPLAY_STATE_OWNED)
+        InbvDrawBootProgressLocked();
+    InbvReleaseLock();
+    InbvInstallDisplayStringFilter(InbvGopDisplayFilter);
+    InbvBootProgress("ntoskrnl.exe", INBV_BOOT_PROGRESS_START);
 }
 
 VOID
 NTAPI
 InbvGopLogoComplete(VOID)
 {
-    InterlockedExchange(&g_LogoTarget, INBV_LOGO_PROGRESS_MAX);
+    InbvBootProgress("smss.exe", INBV_BOOT_PROGRESS_MAX);
 }
 
 VOID
 NTAPI
 InbvGopLogoStop(VOID)
 {
-    if (!g_LogoReady)
-        return;
-
-    KeSetEvent(&g_LogoStop, IO_NO_INCREMENT, FALSE);
-    KeWaitForSingleObject(&g_LogoDone, Executive, KernelMode, FALSE, NULL);
-    g_LogoReady = FALSE;
+    InbvGopClearStatus();
 }
 
-BOOLEAN
+static ULONG
+InbvFormatBootComponent(
+    _In_ PCSTR Component,
+    _In_ ULONG MaxChars,
+    _Out_writes_(128) PCHAR Line)
+{
+    ULONG Length = 0;
+
+    MaxChars = min(MaxChars, 127UL);
+    Line[0] = ANSI_NULL;
+    if (!Component || !Component[0] || MaxChars < 10)
+        return 0;
+    RtlCopyMemory(Line, "Loading ", 8);
+    while (Length < MaxChars - 9 && Component[Length])
+    {
+        Line[8 + Length] = Component[Length];
+        Length++;
+    }
+    Line[8 + Length] = (CHAR)0x85;
+    Line[9 + Length] = ANSI_NULL;
+    return Length + 9;
+}
+
+VOID
 NTAPI
-InbvGopDisplayStatus(
+InbvBootProgress(
+    _In_opt_ PCSTR Component,
+    _In_ ULONG Progress)
+{
+    CHAR Line[128];
+    ULONG MaxChars;
+
+    if (!g_Status.Ready)
+        return;
+
+    InbvAcquireLock();
+    if (g_Status.Ready && InbvIsBootDriverInstalled() &&
+        InbvGetDisplayState() == INBV_DISPLAY_STATE_OWNED)
+    {
+        if (Progress != MAXULONG)
+            InbvBootProgressValue = max(InbvBootProgressValue, min(Progress, INBV_BOOT_PROGRESS_MAX));
+        InbvDrawBootProgressLocked();
+        MaxChars = g_Status.Width / g_Status.CharWidth;
+        MaxChars = MaxChars > 2 ? MaxChars - 2 : 0;
+        if (InbvFormatBootComponent(Component, MaxChars, Line))
+            InbvDisplayStatusLocked(Line);
+    }
+    InbvReleaseLock();
+}
+
+VOID
+NTAPI
+InbvBootDriver(
+    _In_ PCUNICODE_STRING Name)
+{
+    CHAR Component[113];
+
+    if (!g_Status.Ready || !Name || !Name->Buffer || !Name->Length)
+        return;
+    RtlStringCbPrintfA(Component, sizeof(Component), "%wZ", Name);
+    InbvBootProgress(Component, MAXULONG);
+}
+
+static VOID
+InbvDisplayStatusLocked(
     _In_ PCSTR String)
 {
     CHAR Line[128];
     SIZE_T Start, End, Length, MaxChars;
     ULONG Left, x, y;
 
-    if (!g_Status.Ready)
-        return FALSE;
+    ASSERT(g_Status.Ready);
+    ASSERT(g_Status.CharWidth != 0);
 
     End = strlen(String);
     while (End != 0 && (String[End - 1] == '\r' || String[End - 1] == '\n' || String[End - 1] == ' '))
@@ -804,46 +448,61 @@ InbvGopDisplayStatus(
     if (Length > MaxChars)
         Length = MaxChars;
     if (Length == 0)
-        return TRUE;
+        return;
     RtlCopyMemory(Line, String + Start, Length);
     Line[Length] = '\0';
 
-    InbvAcquireLock();
-    if (g_Status.Ready &&
-        InbvIsBootDriverInstalled() &&
-        InbvGetDisplayState() == INBV_DISPLAY_STATE_OWNED)
+    if (g_Status.Coverage &&
+        VidRenderStatusText(Line, g_Status.Coverage, g_Status.PixelWidth, g_Status.PixelHeight))
     {
-        if (g_Status.Coverage &&
-            VidRenderStatusText(Line, g_Status.Coverage, g_Status.PixelWidth, g_Status.PixelHeight))
+        for (y = 0; y < g_Status.PixelHeight; y++)
         {
-            for (y = 0; y < g_Status.PixelHeight; y++)
-            {
-                const UCHAR *Source = g_Status.Coverage + (SIZE_T)y * g_Status.PixelWidth;
+            const UCHAR *Source = g_Status.Coverage + (SIZE_T)y * g_Status.PixelWidth;
 
-                for (x = 0; x < g_Status.PixelWidth; x++)
-                    g_Status.Row[x] = g_Status.Lut[Source[x]];
-                VidBufferToScreenBlt((PUCHAR)g_Status.Row,
-                                     0,
-                                     g_Status.PixelTop + y,
-                                     g_Status.PixelWidth,
-                                     1,
-                                     g_Status.PixelWidth * sizeof(ULONG));
-            }
-        }
-        else
-        {
-            InbvGopFillStatusBand();
-            Left = (g_Status.Width - (ULONG)Length * g_Status.CharWidth + g_Status.CharWidth) /
-                   (2 * g_Status.CharWidth) * g_Status.CharWidth;
-            VidSetScrollRegion(Left,
-                               g_Status.Top,
-                               min(Left + ((ULONG)Length + 1) * g_Status.CharWidth, g_Status.Width) - 1,
-                               g_Status.Top + g_Status.Height - 1);
-            VidDisplayString(Line);
+            for (x = 0; x < g_Status.PixelWidth; x++)
+                g_Status.Row[x] = g_Status.Lut[Source[x]];
+            VidBufferToScreenBlt((PUCHAR)g_Status.Row,
+                                 0,
+                                 g_Status.PixelTop + y,
+                                 g_Status.PixelWidth,
+                                 1,
+                                 g_Status.PixelWidth * sizeof(ULONG));
         }
     }
+    else
+    {
+        InbvGopFillStatusBand();
+        Left = (g_Status.Width - (ULONG)Length * g_Status.CharWidth + g_Status.CharWidth) /
+               (2 * g_Status.CharWidth) * g_Status.CharWidth;
+        VidSetScrollRegion(Left,
+                           g_Status.Top,
+                           min(Left + ((ULONG)Length + 1) * g_Status.CharWidth, g_Status.Width) - 1,
+                           g_Status.Top + g_Status.Height - 1);
+        for (x = 0; x < Length; x++)
+        {
+            if ((UCHAR)Line[x] == 0x85)
+                Line[x] = '.';
+        }
+        VidDisplayString(Line);
+    }
+}
+
+BOOLEAN
+NTAPI
+InbvGopDisplayStatus(
+    _In_ PCSTR String)
+{
+    BOOLEAN Displayed = FALSE;
+
+    InbvAcquireLock();
+    if (g_Status.Ready && InbvIsBootDriverInstalled() &&
+        InbvGetDisplayState() == INBV_DISPLAY_STATE_OWNED)
+    {
+        InbvDisplayStatusLocked(String);
+        Displayed = TRUE;
+    }
     InbvReleaseLock();
-    return TRUE;
+    return Displayed;
 }
 
 VOID
@@ -874,11 +533,18 @@ InbvGopClearStatus(VOID)
         return;
 
     InbvAcquireLock();
+    if (!g_Status.Ready)
+    {
+        InbvReleaseLock();
+        return;
+    }
     if (InbvIsBootDriverInstalled() && InbvGetDisplayState() == INBV_DISPLAY_STATE_OWNED)
         InbvGopFillStatusBand();
     g_Status.Ready = FALSE;
     Coverage = g_Status.Coverage;
     Row = g_Status.Row;
+    g_Status.Coverage = NULL;
+    g_Status.Row = NULL;
     InbvReleaseLock();
 
     InbvGopStatusFree(Coverage, Row);
@@ -1335,10 +1001,8 @@ InbvGopHandleBootBitmap(VOID)
         return FALSE;
 
     InbvSetTextColor(BV_COLOR_WHITE);
-    InbvInstallDisplayStringFilter(InbvGopDisplayFilter);
-
     WordmarkDrawn = InbvGopDrawWordmark(Width, Height, NULL);
-    InbvGopLogoStart(Width, Height);
+    InbvInitializeBootStatus();
 
     if (!WordmarkDrawn)
     {

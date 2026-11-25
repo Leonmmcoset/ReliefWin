@@ -93,7 +93,14 @@ InbvUseCompactFont(VOID);
 
 VOID
 NTAPI
-InbvIndicateProgress(VOID);
+InbvBootProgress(
+    _In_opt_ PCSTR Component,
+    _In_ ULONG Progress);
+
+VOID
+NTAPI
+InbvBootDriver(
+    _In_ PCUNICODE_STRING Name);
 
 VOID
 NTAPI

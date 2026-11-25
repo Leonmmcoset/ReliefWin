@@ -140,6 +140,7 @@ DisplayBootBitmap(VOID)
 
     InbvSetTextColor(BV_COLOR_WHITE);
     InbvSetScrollRegion(0, 0, DisplayInfo.Width - 1, DisplayInfo.Height - 1);
+    InbvInitializeBootStatus();
 }
 
 CODE_SEG("INIT")
@@ -147,7 +148,6 @@ VOID
 NTAPI
 FinalizeBootLogo(VOID)
 {
-    /* The logo stays up, turning, until a display driver takes the screen */
     InbvGopLogoComplete();
 }
 

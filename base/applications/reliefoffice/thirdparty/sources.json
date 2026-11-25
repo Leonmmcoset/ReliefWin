@@ -1,0 +1,25 @@
+{
+  "fltk": {
+    "version": "1.4.4",
+    "url": "https://github.com/fltk/fltk/releases/download/release-1.4.4/fltk-1.4.4-source.tar.gz",
+    "archive_sha256": "94b464cce634182c8407adac1be5fc49678986ca93285699b444352af89b4efe",
+    "selection": "FL/, src/, configuration templates and upstream license/build metadata; unused tools, tests and bundled external libraries excluded"
+  },
+  "libpng": {
+    "version": "1.6.47",
+    "url": "https://download.sourceforge.net/libpng/libpng-1.6.47.tar.xz",
+    "archive_sha256": "b213cb381fbb1175327bd708a77aab708a05adde7b471bc267bd15ac99893631"
+  },
+  "cairo": {
+    "version": "1.18.4",
+    "url": "https://cairographics.org/releases/cairo-1.18.4.tar.xz",
+    "archive_sha256": "445ed8208a6e4823de1226a74ca319d3600e83f6369f99b14265006599c32ccb",
+    "selection": "Released source and license files; static image/recording/PNG Cairo and generic Pixman paths."
+  },
+  "pixman": {
+    "version": "0.44.2",
+    "url": "https://cairographics.org/releases/pixman-0.44.2.tar.gz",
+    "archive_sha256": "6349061ce1a338ab6952b92194d1b0377472244208d47ff25bef86fc71973466",
+    "selection": "Released source and license files; static image/recording/PNG Cairo and generic Pixman paths."
+  }
+}

@@ -70,7 +70,8 @@ RdAdvance(
     if (Percent / 10 != RdPercent / 10)
         OslTrace("RAM disk: %lu%% of %I64u MB", Percent, RdTotalBytes >> 20);
     RdPercent = Percent;
-    FwPrint(L"\rLoading files... %lu%%", Percent);
+    if (!BmUiBootProgress(NULL, Percent * 10))
+        FwPrint(L"\rLoading files... %lu%%", Percent);
 }
 
 static

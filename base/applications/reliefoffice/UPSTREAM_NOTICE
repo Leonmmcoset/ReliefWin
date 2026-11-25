@@ -1,0 +1,154 @@
+ReliefOS NOTICE
+===============
+
+This NOTICE file records attribution and license information for the ReliefOS
+distribution. It is not a license and does not change the license of any
+component. Project-owned source is governed by the root LICENSE file. Each
+third-party component remains governed by its own license.
+
+Complete license texts are kept with the corresponding source, submodule,
+generated SDK, or installed program package. The paths below refer to the
+repository unless an installed path is explicitly shown.
+
+ReliefOS-owned code
+-----------------
+
+Copyright and licensing terms for code written for ReliefOS are specified by
+the root LICENSE file. Third-party source must not be relicensed under that
+file merely because it is distributed in the same repository or image.
+
+Runtime, libraries, and applications
+------------------------------------
+
+* GNU GRUB 2: GPL-3.0-or-later. See the GRUB source and boot artifacts.
+* Mbed TLS 3.6.7: Apache-2.0 OR GPL-2.0-or-later. See
+  resources/licenses/mbedtls3-LICENSE.
+* musl 1.2.6: MIT and upstream notices; see third_party/musl/COPYRIGHT.
+* mimalloc 3.5.1: MIT; see third_party/mimalloc/LICENSE.
+* zlib 1.4: zlib License. See resources/licenses/zlib-LICENSE.
+  Copyright (C) 1995-2026 Jean-loup Gailly and Mark Adler.
+* libpng 1.6.59: libpng License. See resources/licenses/libpng-LICENSE.
+* SQLite 3.53.4: public-domain dedication and blessing. See
+  resources/licenses/sqlite-LICENSE.
+* BusyBox 1.36.1: GPL-2.0-only. See third_party/busybox/LICENSE.
+* GNU findutils 4.10.0: GPL-3.0-or-later. The unmodified official Alpine APK
+  and its pinned checksum are recorded in configs/openrc-packages.json.
+* sudo 1.9.17p2: ISC and upstream file-specific terms; see LICENSE.md.
+* Linux-PAM 1.7.2: upstream BSD/GPL alternatives and file-specific terms;
+  see Copyright and the recorded platform patch in patches/linux-pam/.
+* util-linux 2.42.4 (su/runuser and storage utilities/libraries): unmodified
+  signed official Alpine APKs. See resources/licenses/util-linux-README.licensing
+  for upstream GPL/LGPL/BSD/MIT and file-specific terms. Archive hashes,
+  recipe commits and package licenses are in configs/dependencies.lock.json.
+  blkid/uuid development inputs are isolated for building exfatprogs.
+* libeconf 0.8.4: MIT, Copyright (c) 2019 SUSE LLC. See
+  resources/licenses/libeconf-LICENSE (upstream v0.8.4 LICENSE).
+* utmps 0.1.3.4 and skalibs 2.16.0.0 runtime libraries: ISC. See
+  resources/licenses/utmps-COPYING (the upstream 0.1.3.4 release) and
+  /usr/share/licenses/skalibs/COPYING from the signed skalibs-doc APK.
+  All three dependencies use original signed Alpine APKs with recipe commits,
+  versions and archive hashes in configs/dependencies.lock.json.
+* e2fsprogs 1.47.4 and dosfstools 4.2: unmodified signed Alpine APKs,
+  including their split runtime libraries and documentation. Versions,
+  archive hashes, recipe commits and package licenses are recorded in
+  configs/dependencies.lock.json. See resources/licenses/e2fsprogs-NOTICE
+  and the dosfstools-doc package's /usr/share/doc/dosfstools/COPYING.
+  exfatprogs 1.4.4 remains source-built; see its COPYING and source headers,
+  configs/storage-upstream.json and /usr/share/licenses/exfatprogs/.
+* libxcrypt 4.5.2: LGPL-2.1-or-later and file-specific terms; see COPYING.LIB
+  and LICENSING.
+* shadow-utils 4.20.2: BSD-3-Clause and file-specific SPDX terms; see COPYING.
+* libbsd 0.12.2: unmodified signed Alpine runtime/documentation APKs;
+  development APKs are extracted only for building shadow. See
+  resources/licenses/libbsd-LICENSE for BSD/ISC/MIT and file-specific terms,
+  and configs/dependencies.lock.json for archive identities.
+* libmd 1.3.0: unmodified signed Alpine runtime/documentation APKs under
+  BSD/ISC/Beerware/public-domain and file-specific terms. Full notices are in
+  /usr/share/licenses/libmd/COPYING from libmd-doc. The official development
+  APK is extracted only into shadow's isolated build inputs. Versions,
+  recipe commits and archive hashes are in configs/dependencies.lock.json.
+* Vim (vim, vim-common, xxd): Vim License. Installed from signed Alpine APKs;
+  versions and archive hashes are recorded in configs/dependencies.lock.json.
+* ncurses 6.6: MIT-style license. See resources/licenses/ncurses-LICENSE.
+* Mesa 26.3.0 and LLVM 23 runtime libraries: original signed Alpine edge APKs
+  pinned in configs/dependencies.lock.json. Mesa uses MIT and file-specific
+  terms; LLVM uses Apache-2.0 WITH LLVM-exception and file-specific terms.
+  Original package license metadata and recipe identities are retained.
+  These packages provide unmodified VirGL/OpenGL userspace drivers; they
+  do not change the license of the independent ReliefNT driver.
+* Dyne musl 2.2.0 native toolchain: GCC 15.1.0 and GNU binutils 2.44
+  (GPL-3.0-or-later), musl (MIT), and the upstream bundled static libraries.
+  GCC runtime libraries use the GCC Runtime Library Exception where applicable.
+  See userland/musl-gcc/README.rst, COPYING3 and COPYING.RUNTIME; installed
+  provenance and upstream file hashes are in /share/licenses/musl-gcc/.
+  Source/build recipes: https://github.com/dyne/musl/tree/2.2.0.
+* less: GPL-3.0-or-later OR BSD-2-Clause. Installed from the signed Alpine APK;
+  package license metadata is in .PKGINFO.
+* Fastfetch 2.68.1 (VasilyZa/fastfetch release): MIT. See userland/fastfetch/LICENSE.
+* file/libmagic: BSD-2-Clause. Installed from signed Alpine APKs; package
+  license metadata is in .PKGINFO.
+* StardustUI: MIT. See third_party/stardustui/LICENSE.
+* PL Editor (LeonOS fork): MIT. See third_party/pl_editor/LICENSE.
+* sl: permissive upstream license. See resources/licenses/sl-LICENSE.
+* ab_glyph_rasterizer 0.1.10: Apache-2.0. See the nested StardustUI
+  dependency at third_party/stardustui/third_party/ab_glyph_rasterizer/upstream.
+* minimp3: CC0-1.0/public-domain dedication. See
+  third_party/minimp3/minimp3.h.
+* DoomGeneric: GPL-2.0-only. See third_party/doomgeneric/LICENSE.
+
+Data, dictionaries, and visual resources
+-----------------------------------------
+
+* Freedoom IWAD: BSD-3-Clause. See
+  third_party/doomgeneric/FREEDOOM-COPYING.txt. The same notice is bundled in
+  the optional reliefos-doom APK.
+* rime-pinyin-simp dictionary: Apache-2.0. See
+  third_party/rime-pinyin-simp/LICENSE and ATTRIBUTION.txt. Both files are
+  bundled in the optional reliefos-oschinpt APK.
+* Microsoft font files in system/fonts (Deng.ttf, times.ttf, and simsun.ttc)
+  are subject to the applicable Microsoft license terms. They are not covered
+  by the root LICENSE; verify redistribution rights before publishing
+  an image containing them.
+* Mozilla CA root certificates distributed as the curl CA Extract:
+  system/certs/cacert.pem. The file contains Mozilla certificate data and its
+  source, conversion, date, and checksum comments. See
+  https://curl.se/ca/caextract.html and the links recorded in that file.
+
+Distribution requirements
+-------------------------
+
+When distributing binaries or an ISO containing copyleft components, provide
+the corresponding source and build/porting changes required by that component's
+license. Preserve copyright notices, license texts, disclaimers, and required
+attribution in the source tree and in the installed image. Do not describe the
+entire distribution as Apache-2.0 unless the statement is explicitly limited
+to ReliefOS-owned code and all third-party terms remain visible.
+
+Linux Kbuild and Kconfig build tools
+----------------------------------
+The build/configuration files listed in scripts/kbuild-source.json come from
+Linux 6.12 (https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.12.tar.xz).
+Their original SPDX identifiers and copyright notices are preserved. They are
+covered by their own GPL-2.0 terms, with texts in LICENSES/preferred/GPL-2.0
+and LICENSES/kbuild/COPYING. Project compiler-policy adapters are separate
+files. These build-tool terms do not relabel the ReliefOS-owned application
+or operating-system source.
+
+The SDK's Linux VirtGPU and sync_file headers come from ReliefNT's installed
+UAPI. Their original notices remain in the headers. The SDK also includes
+ReliefNT's NOTICE, GPL version 2 text and Linux-syscall-note exception in
+share/licenses/reliefnt/. See kernel/reliefnt/NOTICE for the pinned upstream
+revision and the BSD, MIT and GPL-1.0-or-later WITH Linux-syscall-note terms.
+
+The SDK also includes VMware's vmwgfx_drm.h under its MIT license option.
+ReliefNT's VMware SVGA II backend uses VMware's public SVGA protocol headers
+under their MIT option and adapts VMware host messaging and statistics code
+under MIT. The headers and sources retain VMware's copyright and permission
+notices. See kernel/reliefnt/NOTICE for the pinned upstream revision and file
+origins.
+
+Binary dependencies sl, ncurses, zlib, libpng, SQLite and mbedtls3 are distributed
+as unmodified signed Alpine v3.24 APKs. Exact versions, archive URLs, SHA256 and
+license metadata are recorded in configs/dependencies.lock.json. Source recipes
+are available at https://gitlab.alpinelinux.org/alpine/aports (v3.24). SDK archives
+include matching development/static inputs and their original .PKGINFO records.
