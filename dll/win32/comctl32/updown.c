@@ -516,6 +516,26 @@ static void UPDOWN_DrawDownArrow(const UPDOWN_INFO *infoPtr, HDC hdc)
  */
 static LRESULT UPDOWN_Draw (const UPDOWN_INFO *infoPtr, HDC hdc)
 {
+#if __WINE_COMCTL32_VERSION == 6
+    HWND window = infoPtr->Self;
+    HTHEME theme = GetWindowTheme(window);
+
+    if (theme)
+    {
+        int up_part, up_state, down_part, down_state;
+
+        UPDOWN_GetUpArrowThemePartAndState(infoPtr, &up_part, &up_state);
+        UPDOWN_GetDownArrowThemePartAndState(infoPtr, &down_part, &down_state);
+        if (IsThemeBackgroundPartiallyTransparent(theme, up_part, up_state) ||
+            IsThemeBackgroundPartiallyTransparent(theme, down_part, down_state))
+        {
+            DrawThemeParentBackground(window, hdc, NULL);
+            if (GetWindowLongPtrW(window, 0) != (LONG_PTR)infoPtr)
+                return 0;
+        }
+    }
+#endif
+
     /* Draw the common border between ourselves and our buddy */
     if (UPDOWN_NeedBuddyBackground(infoPtr))
         UPDOWN_DrawBuddyBackground(infoPtr, hdc);
@@ -538,10 +558,12 @@ static LRESULT UPDOWN_Draw (const UPDOWN_INFO *infoPtr, HDC hdc)
 static LRESULT UPDOWN_Paint (const UPDOWN_INFO *infoPtr, HDC hdc)
 {
     PAINTSTRUCT ps;
+    HWND window = infoPtr->Self;
+
     if (hdc) return UPDOWN_Draw (infoPtr, hdc);
-    hdc = BeginPaint (infoPtr->Self, &ps);
+    hdc = BeginPaint (window, &ps);
     UPDOWN_Draw (infoPtr, hdc);
-    EndPaint (infoPtr->Self, &ps);
+    EndPaint (window, &ps);
     return 0;
 }
 

@@ -8,6 +8,7 @@
 
 #include "uxthemep.h"
 #include <reliefwin/colorscheme.h>
+#include <pseh/pseh2.h>
 
 USERAPIHOOK g_user32ApiHook;
 BYTE gabDWPmessages[UAHOWP_MAX_SIZE];
@@ -25,6 +26,8 @@ typedef struct _WND_DATA_ENTRY
     ULONG References;
     ULONG AppRegionGeneration;
     ULONG AppRegionOperations;
+    HTHEME ControlScrollbarTheme;
+    ULONG ControlScrollbarGeneration;
 } WND_DATA_ENTRY, *PWND_DATA_ENTRY;
 
 static PWND_DATA_ENTRY g_WndDataBuckets[WND_DATA_BUCKETS];
@@ -93,6 +96,8 @@ PWND_DATA ThemeGetWndData(HWND hWnd)
     Entry->References = 1;
     Entry->AppRegionGeneration = 0;
     Entry->AppRegionOperations = 0;
+    Entry->ControlScrollbarTheme = NULL;
+    Entry->ControlScrollbarGeneration = 0;
     Entry->Next = *Bucket;
     *Bucket = Entry;
     ReleaseSRWLockExclusive(&g_WndDataLock);
@@ -146,11 +151,88 @@ ThemeDereferenceWndData(PWND_DATA_ENTRY Entry)
     }
 }
 
+static BOOL
+ThemeIsScrollbarControl(HWND hWnd)
+{
+    WCHAR ClassName[32];
+
+    return RealGetWindowClassW(hWnd, ClassName, ARRAYSIZE(ClassName)) &&
+           !lstrcmpiW(ClassName, L"ScrollBar");
+}
+
+static void
+ThemeClearScrollbarProperty(HWND hWnd, HTHEME Theme)
+{
+    if (Theme && GetWindowTheme(hWnd) == Theme)
+        RemovePropW(hWnd, L"ux_theme");
+}
+
+static void
+ThemeCloseScrollbarControl(HWND hWnd)
+{
+    PWND_DATA_ENTRY Entry = ThemeReferenceWndData(hWnd);
+    HTHEME Theme = NULL;
+
+    if (!Entry)
+        return;
+    AcquireSRWLockExclusive(&g_WndDataLock);
+    if (ThemeWndDataCurrentLocked(Entry))
+    {
+        ++Entry->ControlScrollbarGeneration;
+        Theme = Entry->ControlScrollbarTheme;
+        Entry->ControlScrollbarTheme = NULL;
+        ThemeClearScrollbarProperty(hWnd, Theme);
+    }
+    ReleaseSRWLockExclusive(&g_WndDataLock);
+    if (Theme)
+        CloseThemeData(Theme);
+    ThemeDereferenceWndData(Entry);
+}
+
+static void
+ThemeOpenScrollbarControl(HWND hWnd)
+{
+    PWND_DATA_ENTRY Entry;
+    HTHEME Theme;
+    ULONG Generation;
+    BOOL Keep = FALSE;
+
+    if (!ThemeIsScrollbarControl(hWnd) || !UXTHEME_IsAppThemed() ||
+        !(GetThemeAppProperties() & STAP_ALLOW_CONTROLS))
+        return;
+    Entry = ThemeReferenceWndData(hWnd);
+    if (!Entry)
+        return;
+    AcquireSRWLockExclusive(&g_WndDataLock);
+    Generation = ++Entry->ControlScrollbarGeneration;
+    if (!ThemeWndDataCurrentLocked(Entry) || Entry->ControlScrollbarTheme)
+    {
+        ReleaseSRWLockExclusive(&g_WndDataLock);
+        ThemeDereferenceWndData(Entry);
+        return;
+    }
+    ReleaseSRWLockExclusive(&g_WndDataLock);
+    Theme = UXTHEME_OpenNcThemeData(hWnd, L"ScrollBar", 0);
+    AcquireSRWLockExclusive(&g_WndDataLock);
+    if (Theme && ThemeWndDataCurrentLocked(Entry) &&
+        Entry->ControlScrollbarGeneration == Generation && !Entry->ControlScrollbarTheme &&
+        SetPropW(hWnd, L"ux_theme", Theme))
+    {
+        Entry->ControlScrollbarTheme = Theme;
+        Keep = TRUE;
+    }
+    ReleaseSRWLockExclusive(&g_WndDataLock);
+    if (Theme && !Keep)
+        CloseThemeData(Theme);
+    ThemeDereferenceWndData(Entry);
+}
+
 static void ThemeDestroyWndDataInternal(HWND hWnd, BOOL ClearRegion)
 {
     PWND_DATA_ENTRY Entry = NULL, *Link;
     PWND_DATA pwndData;
     DWORD ProcessId;
+    HTHEME ControlTheme = NULL;
 
     /*Do not destroy WND_DATA of a window that belong to another process */
     GetWindowThreadProcessId(hWnd, &ProcessId);
@@ -166,6 +248,10 @@ static void ThemeDestroyWndDataInternal(HWND hWnd, BOOL ClearRegion)
         {
             Entry = *Link;
             *Link = Entry->Next;
+            ControlTheme = Entry->ControlScrollbarTheme;
+            Entry->ControlScrollbarTheme = NULL;
+            ++Entry->ControlScrollbarGeneration;
+            ThemeClearScrollbarProperty(hWnd, ControlTheme);
             break;
         }
     }
@@ -177,6 +263,9 @@ static void ThemeDestroyWndDataInternal(HWND hWnd, BOOL ClearRegion)
     }
 
     pwndData = Entry->Data;
+
+    if (ControlTheme)
+        CloseThemeData(ControlTheme);
 
     if (ClearRegion && pwndData->HasThemeRgn)
     {
@@ -605,6 +694,8 @@ ThemePreWindowProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam, ULONG_PTR 
         {
             PWND_DATA pwndData = ThemeGetWndData(hWnd);
 
+            ThemeCloseScrollbarControl(hWnd);
+
             if (GetAncestor(hWnd, GA_PARENT) == GetDesktopWindow())
                 UXTHEME_ReloadTheme(TRUE);
 
@@ -661,10 +752,17 @@ ThemePostWindowProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam, ULONG_PTR
 {
     switch(Msg)
     {
+        case WM_CREATE:
+            if (*(LRESULT *)ret != -1)
+                ThemeOpenScrollbarControl(hWnd);
+            return 0;
         case WM_THEMECHANGED:
         {
             DWORD style = GetWindowLongW(hWnd, GWL_STYLE);
             UXTHEME_DestroyDialogBrush(hWnd);
+            ThemeOpenScrollbarControl(hWnd);
+            if (ThemeIsScrollbarControl(hWnd))
+                RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE | RDW_ERASE);
 
             if ((style & WS_CAPTION) == WS_CAPTION)
             {
@@ -973,25 +1071,53 @@ dodefault:
 
 INT WINAPI ThemeSetScrollInfo(HWND hWnd, int fnBar, LPCSCROLLINFO lpsi, BOOL bRedraw)
 {
-    PWND_DATA pwndData;
+    PWND_DATA_ENTRY Entry;
     SCROLLINFO siout;
-    LPSCROLLINFO lpsiout = &siout;
+    UINT Size;
     BOOL IsThemed = FALSE;
+    BOOL Copied = FALSE;
 
-    pwndData = ThemeGetWndData(hWnd);
-
-    if (!pwndData)
-        goto dodefault;
-
-    if (pwndData->hthemeScrollbar)
-        IsThemed = TRUE;
-
-    memcpy(&siout, lpsi, sizeof(SCROLLINFO));
+    Entry = ThemeReferenceWndData(hWnd);
+    if (Entry)
+    {
+        AcquireSRWLockShared(&g_WndDataLock);
+        if (ThemeWndDataCurrentLocked(Entry))
+            IsThemed = fnBar == SB_CTL ? Entry->ControlScrollbarTheme != NULL :
+                                       Entry->Data->hthemeScrollbar != NULL;
+        ReleaseSRWLockShared(&g_WndDataLock);
+        ThemeDereferenceWndData(Entry);
+    }
     if (IsThemed)
-        siout.fMask |= SIF_THEMED;
+    {
+        _SEH2_TRY
+        {
+            ZeroMemory(&siout, sizeof(siout));
+            Size = lpsi ? lpsi->cbSize : 0;
+            if (Size == sizeof(siout) || Size == sizeof(siout) - sizeof(INT))
+            {
+                memcpy(&siout, lpsi, Size);
+                siout.cbSize = Size;
+                siout.fMask |= SIF_THEMED;
+                Copied = TRUE;
+            }
+        }
+        _SEH2_EXCEPT(EXCEPTION_EXECUTE_HANDLER)
+        {
+            Copied = FALSE;
+        }
+        _SEH2_END;
+    }
+    return g_user32ApiHook.SetScrollInfo(hWnd, fnBar, Copied ? &siout : lpsi, bRedraw);
+}
 
-dodefault:
-    return g_user32ApiHook.SetScrollInfo(hWnd, fnBar, lpsiout, bRedraw);
+static BOOL WINAPI
+ThemeEnableScrollBar(HWND hWnd, UINT Bar, UINT Flags)
+{
+    BOOL Result = g_user32ApiHook.EnableScrollBar(hWnd, Bar, Flags);
+
+    if (Result && Bar == SB_CTL && ThemeIsScrollbarControl(hWnd))
+        RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE | RDW_UPDATENOW);
+    return Result;
 }
 
 /**********************************************************************
@@ -1037,6 +1163,7 @@ ThemeInitApiHook(UAPIHK State, PUSERAPIHOOK puah)
     puah->SetWindowRgn = ThemeSetWindowRgn;
     puah->GetScrollInfo = ThemeGetScrollInfo;
     puah->SetScrollInfo = ThemeSetScrollInfo;
+    puah->EnableScrollBar = ThemeEnableScrollBar;
 
     UAH_HOOK_MESSAGE(puah->DefWndProcArray, WM_NCPAINT);
     UAH_HOOK_MESSAGE(puah->DefWndProcArray, WM_NCACTIVATE);

@@ -10,6 +10,12 @@ Files used:
 - assets/Subtract/SVG/ic_fluent_subtract_16_regular.svg
 - assets/Square/SVG/ic_fluent_square_16_regular.svg
 - assets/Square Multiple/SVG/ic_fluent_square_multiple_16_regular.svg
+- assets/Chevron Down/SVG/ic_fluent_chevron_down_12_regular.svg
+- assets/Chevron Up/SVG/ic_fluent_chevron_up_12_regular.svg
+- assets/Chevron Left/SVG/ic_fluent_chevron_left_12_regular.svg
+- assets/Chevron Right/SVG/ic_fluent_chevron_right_12_regular.svg
+- assets/Checkmark/SVG/ic_fluent_checkmark_12_regular.svg
+- assets/Subtract/SVG/ic_fluent_subtract_12_regular.svg
 
 The SVG files are preserved unmodified. captionbuttons_fluent.py uses the
 16-pixel regular Dismiss, Subtract, Square and Square Multiple assets at their
@@ -26,3 +32,18 @@ SHA-256 of the four regular caption SVG sources:
 663f8030c439784943e978023348c52c5e24f629b4d85e85da70b61ffb3e5f6f  ic_fluent_subtract_16_regular.svg
 474c2b224afeec2a522542335ab93bf5cdf0dda6b3b525347eec254be0cb44b1  ic_fluent_square_16_regular.svg
 3e10bcc784b7bfa841f171837a164eae5caf174a64281b1a397947ddfc528e7b  ic_fluent_square_multiple_16_regular.svg
+
+modern_controls.py uses the six native 12-pixel regular assets listed above.
+Chevron Down, Up and Right are byte-identical to the existing shellframe SVGs
+from this same revision. Chevron Left, Checkmark and Subtract were downloaded
+from this revision in the official Microsoft repository. The complete SVGs and
+path coordinates remain unmodified; rendering uses the intrinsic 12 x 12 size.
+Only foreground colors change by state. Glyphs are placed as complete native
+cells, with no path shifts, rotation, resizing or gamma adjustment. The control
+surface is separate from the glyph. Pin hashes are enforced by the generator:
+91dfae66b43cb13d5e869a90b43a0f0a40a24f7fa1e7e79f996ac3709483ed60  ic_fluent_chevron_down_12_regular.svg
+2b141c0979131530f9ae91f13d1388ba33bfe17e848dfaaccb93b86866b23d21  ic_fluent_chevron_up_12_regular.svg
+708c00270c632b1d5c7605ea832ace5b222f58dd382d018bacc05f178100b24c  ic_fluent_chevron_left_12_regular.svg
+3a2b5a4d900ea90e03a87937d87c9a39db2a6490b5fd8cf8d2824ebf3f1b0b91  ic_fluent_chevron_right_12_regular.svg
+c2d6a0ffd428ecfb47c54d1a36b9c958b51300a407dac4947c43d973daae649a  ic_fluent_checkmark_12_regular.svg
+1b2a6415d84d0cb9e1eda7fb9abfad3e6474eaad6a427ead9902a659e2d9eb64  ic_fluent_subtract_12_regular.svg

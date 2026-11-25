@@ -1,0 +1,1633 @@
+{
+  "schema": 1,
+  "environment": {
+    "guest": "ReliefWin AMD64, Simplified Chinese, ReliefUser",
+    "vm": "QEMU q35, TCG, max CPU, 2 vCPU, 2048 MiB, no NIC",
+    "display": "headless, 1280x900, 96 DPI",
+    "image": "output-Clang-amd64-debug/ReliefWin.img",
+    "payload": "/tmp/reliefwin-branding-fat.img",
+    "monitor_options": [
+      "--timeout",
+      "30",
+      "--stall",
+      "6",
+      "--keep",
+      "--continue-after-observation"
+    ],
+    "runtime_limits": [
+      "No Windows 11 reference run",
+      "No i386 or ARM64 runtime run",
+      "High DPI verified by theme resource APIs only"
+    ],
+    "working_log": "/tmp/reliefwin-controls.log"
+  },
+  "evidence_recovery": {
+    "host_reboot": "2026-11-25 15:30:29 UTC",
+    "effect": "All prior /tmp harnesses, payload, JSON records and logs were lost; repository, build artifacts and installed ReliefWin.img survived.",
+    "history_source": "Earlier actual tool results preserved in conversation and media/doc/RELIEFWIN_CONTROLS_VALIDATION.md. Historical hashes are recorded evidence; the old raw logs cannot be reread.",
+    "restoration": "Recreate only the original fixed payload path and harness paths; reuse the existing main image and build directories."
+  },
+  "history": {
+    "rounded_six_groups": {
+      "binary_sha256": "228a9220c43848c1d7f6569311250bb2665c9a655568c9a120a2b2d01b7435a7",
+      "theme_sha256": "6f9e39436085fbda6724844e5ab9ffd187b3afce935d7004cd94f289e139655c",
+      "log_sha256": "63e1db8c4a35c318cd1989b480ab513db686b829a9ec803e4e196e026f8ee4c0",
+      "log_available": false,
+      "tests": {
+        "RoundedControls": {
+          "checks": 9219,
+          "failures": 0,
+          "skips": 0,
+          "exit": 0
+        },
+        "RoundedControlLifetime": {
+          "checks": 85,
+          "failures": 0,
+          "skips": 0,
+          "exit": 0
+        },
+        "RoundedControlDpi": {
+          "checks": 146,
+          "failures": 0,
+          "skips": 0,
+          "exit": 0
+        },
+        "ParentBackgroundClip": {
+          "checks": 34,
+          "failures": 0,
+          "skips": 0,
+          "exit": 0
+        },
+        "ParentBackgroundSiblings": {
+          "checks": 153,
+          "failures": 0,
+          "skips": 0,
+          "exit": 0
+        },
+        "DrawThemeParentBackground": {
+          "checks": 42,
+          "failures": 0,
+          "skips": 0,
+          "exit": 0
+        }
+      },
+      "total_checks": 9679,
+      "monitor_exit": 0,
+      "done": true,
+      "orderly_shutdown": true,
+      "note": "Historical palette coverage limitation is documented; do not claim confirmed dark/light coverage for this earlier binary."
+    },
+    "rounded_comparisons": {
+      "theme": {
+        "checks": 9005,
+        "old_failures": 3144,
+        "new_failures": 80,
+        "binary_sha256": "f719a0d925c07fe3b9a56f3d326758ffb26ec621d2550093088c137d4b80d314"
+      },
+      "native": {
+        "checks": 9219,
+        "old_failures": 84,
+        "new_failures": 0,
+        "binary_sha256": "d16c276a706d86827830f583e7ad6c04da83b130299d97f998d37a78a607ddaf"
+      },
+      "dpi": {
+        "checks": 146,
+        "old_failures": 32,
+        "new_failures": 0,
+        "binary_sha256": "175571975c27ef917b84993e8fb24cb84ff7ac1d89c57e37cabc902a2cb64bf1"
+      },
+      "parent_clip": {
+        "checks": 34,
+        "old_failures": 3,
+        "old_exit": 3,
+        "new_failures": 0,
+        "new_exit": 0,
+        "binary_sha256": "228a9220c43848c1d7f6569311250bb2665c9a655568c9a120a2b2d01b7435a7",
+        "old_failure_excerpt": [
+          "prc=NULL changed 18432 pixels outside child",
+          "explicit rectangle mapped 32 interior pixels incorrectly without existing clip",
+          "explicit rectangle mapped 22 interior pixels incorrectly with existing clip"
+        ]
+      },
+      "parent_siblings": {
+        "checks": 153,
+        "old_failures": 54,
+        "old_exit": 54,
+        "new_failures": 0,
+        "new_exit": 0,
+        "binary_sha256": "228a9220c43848c1d7f6569311250bb2665c9a655568c9a120a2b2d01b7435a7"
+      },
+      "note": "Lifetime entries ran on fixed products only. GDI resource checks passed before and after; no reproduced old leak is claimed."
+    },
+    "trackbar_pixel_comparison": {
+      "binary_sha256": "c3bbf6d019aaf29d39756d41f67c1601353f8c4f51d681b8fe9894ddafd248a0",
+      "source_sha256": {
+        "modules/rostests/apitests/uxtheme/TrackbarCenter.c": "3fa779d6729a97aa13bda313315cffdfe90d9b07944ece5e80b374ebd16a6a1c",
+        "modules/rostests/apitests/uxtheme/RoundedControls.c": "807b2474f0a03c25ee5a9d2d975b814d14dad593926d37f55b6f38cc7e4c775b",
+        "dll/win32/comctl32/trackbar.c": "c54f68a63187e82beb619540880ae0ea1e06cb4d877f9e0b08ee954b8987154f"
+      },
+      "theme_sha256": "6f9e39436085fbda6724844e5ab9ffd187b3afce935d7004cd94f289e139655c",
+      "same_binary": true,
+      "unchanged_theme_and_uxtheme": true,
+      "baseline": {
+        "tests": {
+          "TrackbarCenter": {
+            "checks": 7762,
+            "failures": 792,
+            "skips": 0,
+            "exit": 255
+          }
+        },
+        "log_sha256": "55fe5051f4850da1bb0d9c8aff12862cdef72525670342d3874996cec4d2e46d",
+        "monitor_exit": 0,
+        "done": true,
+        "orderly_shutdown": true,
+        "failure_excerpt": [
+          "palette 0 axis0-style0-fixed0-created track and round thumb are off axis: twice centers 21 and 24, delta 3 half pixels",
+          "palette 0 style0-created-pos50 track and round thumb are off axis: twice centers 21 and 24, delta 3 half pixels"
+        ],
+        "failure_categories": {
+          "off axis": 792
+        }
+      },
+      "fixed": {
+        "tests": {
+          "TrackbarCenter": {
+            "checks": 7762,
+            "failures": 0,
+            "skips": 0,
+            "exit": 0
+          },
+          "TrackbarBuddyLifetime": {
+            "checks": 61,
+            "failures": 0,
+            "skips": 0,
+            "exit": 0
+          }
+        },
+        "log_sha256": "7a5a6e0658720e891edf86f0daa10b351c8a6d549d6caca32abe1969256665eb",
+        "monitor_exit": 0,
+        "done": true,
+        "orderly_shutdown": true,
+        "installed_v6_sha256": {
+          "amd64": "7a690797b732cc52f27531eb7bbadca52d24166403b6a1c0fe30075cc03b4e9a",
+          "i386": "179ea1439fc5808361f3e3b8457eda03a3cf5315f7d69288868573fc48b2c7c5"
+        }
+      },
+      "log_available": false,
+      "note": "BuddyLifetime ran fixed-only. Current later Refresh/Paint edits were not in these tested DLLs."
+    },
+    "trackbar_builds": {
+      "compiler_cache": "CCACHE_DISABLE=1",
+      "test_builds": {
+        "amd64": {
+          "command": [
+            "ninja",
+            "-C",
+            "/root/reliefwin.2/output-Clang-amd64-debug",
+            "-j2",
+            "uxtheme_apitest"
+          ],
+          "exit": 0,
+          "binary_sha256": "c3bbf6d019aaf29d39756d41f67c1601353f8c4f51d681b8fe9894ddafd248a0",
+          "configure_on_exit": 0,
+          "configure_off_exit": 0,
+          "ENABLE_ROSTESTS_restored_OFF": true
+        },
+        "i386": {
+          "command": [
+            "ninja",
+            "-C",
+            "/root/reliefwin.2/output-Clang-i386-debug",
+            "-j2",
+            "uxtheme_apitest"
+          ],
+          "exit": 0,
+          "binary_sha256": "41a10328b34db6acc8fccebdaedf72ab615f993d11639e00482569b8ec3ebb66",
+          "configure_on_exit": 0,
+          "configure_off_exit": 0,
+          "ENABLE_ROSTESTS_restored_OFF": true
+        },
+        "arm64": {
+          "command": [
+            "ninja",
+            "-C",
+            "/root/reliefwin.2/output-Clang-arm64-debug",
+            "-j2",
+            "uxtheme_apitest"
+          ],
+          "exit": 0,
+          "binary_sha256": "9646faa07b9beb4c189c74afbb1706d836b4f5a34f1dc7c4efb93311472a2331",
+          "configure_on_exit": 0,
+          "configure_off_exit": 0,
+          "ENABLE_ROSTESTS_restored_OFF": true
+        }
+      },
+      "product_builds": {
+        "amd64": {
+          "command": [
+            "ninja",
+            "-C",
+            "/root/reliefwin.2/output-Clang-amd64-debug",
+            "-j2",
+            "comctl32",
+            "comctl32_v6"
+          ],
+          "exit": 0
+        },
+        "i386": {
+          "command": [
+            "ninja",
+            "-C",
+            "/root/reliefwin.2/output-Clang-i386-debug",
+            "-j2",
+            "comctl32",
+            "comctl32_v6"
+          ],
+          "exit": 0
+        },
+        "arm64": {
+          "command": [
+            "ninja",
+            "-C",
+            "/root/reliefwin.2/output-Clang-arm64-debug",
+            "-j2",
+            "comctl32",
+            "comctl32_v6"
+          ],
+          "exit": 0
+        }
+      },
+      "log_available": false
+    }
+  },
+  "builds": {
+    "native": {
+      "targets": [
+        "user32",
+        "uxtheme"
+      ],
+      "environment": {
+        "CCACHE_DISABLE": "1"
+      },
+      "source": {
+        "subsystems/win/win32k/user/user32/controls/scrollbar.c": "cb1bc1067b21871bc6408999405c26ecc0b319a27f254852a1376c252a0be42a",
+        "dll/win32/uxtheme/themehooks.c": "54db07fa3748517ff85f9f9f8e8250e0d40bc7842f3ea472cda0583b0ad573c8",
+        "dll/win32/uxtheme/uxtheme.spec": "5ab2eaf2dc03a20e352fa95680cc18cacc9141518ab6a8dc76739069e620b0ca",
+        "dll/win32/uxtheme/draw.c": "0184fb541e5f7d7d606e355075b837135841657aaf96b357f0488f834a0d8eb7"
+      },
+      "architectures": {
+        "amd64": {
+          "build": {
+            "command": [
+              "ninja",
+              "-C",
+              "/root/reliefwin.2/output-Clang-amd64-debug",
+              "-j2",
+              "user32",
+              "uxtheme"
+            ],
+            "exit": 0,
+            "seconds": 1.1805213330001152
+          },
+          "artifacts": {
+            "user32": {
+              "path": "/root/reliefwin.2/output-Clang-amd64-debug/subsystems/win/win32k/user/user32/user32.dll",
+              "sha256": "9ec58de8763c0cf474df38439b2caae0b9e7d86651ab384efa9bb4f97d1df3d0",
+              "size": 4036608,
+              "pe_machine": "0x8664"
+            },
+            "uxtheme": {
+              "path": "/root/reliefwin.2/output-Clang-amd64-debug/dll/win32/uxtheme/uxtheme.dll",
+              "sha256": "a7fc21cb88ce8ad5ccac1cd554f9d81b794dd7f7aedb1f46c745eedb2a95ef03",
+              "size": 678912,
+              "pe_machine": "0x8664"
+            }
+          },
+          "ENABLE_ROSTESTS_restored_OFF": true
+        },
+        "i386": {
+          "build": {
+            "command": [
+              "ninja",
+              "-C",
+              "/root/reliefwin.2/output-Clang-i386-debug",
+              "-j2",
+              "user32",
+              "uxtheme"
+            ],
+            "exit": 0,
+            "seconds": 1.039503416999878
+          },
+          "artifacts": {
+            "user32": {
+              "path": "/root/reliefwin.2/output-Clang-i386-debug/subsystems/win/win32k/user/user32/user32.dll",
+              "sha256": "52a2c0612200b7ec17e76a1eb4fd073592d3581406f5d505f4b6c1afc079f3eb",
+              "size": 4045824,
+              "pe_machine": "0x14c"
+            },
+            "uxtheme": {
+              "path": "/root/reliefwin.2/output-Clang-i386-debug/dll/win32/uxtheme/uxtheme.dll",
+              "sha256": "00355e67d05368be1de147e9ecbb073bbfa4f57550425a4cc6ab9cb0714848ea",
+              "size": 649728,
+              "pe_machine": "0x14c"
+            }
+          },
+          "ENABLE_ROSTESTS_restored_OFF": true
+        },
+        "arm64": {
+          "build": {
+            "command": [
+              "ninja",
+              "-C",
+              "/root/reliefwin.2/output-Clang-arm64-debug",
+              "-j2",
+              "user32",
+              "uxtheme"
+            ],
+            "exit": 0,
+            "seconds": 0.7435669110000163
+          },
+          "artifacts": {
+            "user32": {
+              "path": "/root/reliefwin.2/output-Clang-arm64-debug/subsystems/win/win32k/user/user32/user32.dll",
+              "sha256": "317b11fc941c564f5aeba485b2622def1295c482eb677459f2ca8dd4a46dc1cd",
+              "size": 3972096,
+              "pe_machine": "0xaa64"
+            },
+            "uxtheme": {
+              "path": "/root/reliefwin.2/output-Clang-arm64-debug/dll/win32/uxtheme/uxtheme.dll",
+              "sha256": "74b3a348ff38ffeb03e51a9ef656bbed51e40b7e3f12c938e1f05a6e9c849006",
+              "size": 631296,
+              "pe_machine": "0xaa64"
+            }
+          },
+          "ENABLE_ROSTESTS_restored_OFF": true
+        }
+      },
+      "log": "/tmp/reliefwin-controls-build.log",
+      "source_still_matches": true,
+      "retry_history": [
+        {
+          "attempt": "initial frozen source",
+          "architectures": {
+            "amd64": {
+              "command": [
+                "ninja",
+                "-C",
+                "output-Clang-amd64-debug",
+                "-j2",
+                "user32",
+                "uxtheme"
+              ],
+              "exit": 1,
+              "cause": "user32 link failed: undefined symbol TrackMouseEvent from scrollbar.c"
+            }
+          },
+          "resolution": "Replaced public wrapper call with declared NtUserTrackMouseEvent syscall after root verified ntuser.h prototype and win32u service export."
+        },
+        {
+          "attempt": "after link correction",
+          "architectures": {
+            "amd64": {
+              "exit": 0,
+              "command": [
+                "ninja",
+                "-C",
+                "output-Clang-amd64-debug",
+                "-j2",
+                "user32",
+                "uxtheme"
+              ]
+            },
+            "i386": {
+              "exit": 0,
+              "command": [
+                "ninja",
+                "-C",
+                "output-Clang-i386-debug",
+                "-j2",
+                "user32",
+                "uxtheme"
+              ]
+            },
+            "arm64": {
+              "exit": 0,
+              "command": [
+                "ninja",
+                "-C",
+                "output-Clang-arm64-debug",
+                "-j2",
+                "user32",
+                "uxtheme"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "uxtheme_freeze": {
+      "command_template": [
+        "ninja",
+        "-C",
+        "output-Clang-{amd64,i386,arm64}-debug",
+        "-j2",
+        "uxtheme"
+      ],
+      "CCACHE_DISABLE": "1",
+      "architectures": {
+        "amd64": {
+          "command": [
+            "ninja",
+            "-C",
+            "/root/reliefwin.2/output-Clang-amd64-debug",
+            "-j2",
+            "uxtheme"
+          ],
+          "exit": 0,
+          "seconds": 0.42221729600009894,
+          "artifact": {
+            "sha256": "a7fc21cb88ce8ad5ccac1cd554f9d81b794dd7f7aedb1f46c745eedb2a95ef03",
+            "size": 678912,
+            "pe_machine": "0x8664"
+          }
+        },
+        "i386": {
+          "command": [
+            "ninja",
+            "-C",
+            "/root/reliefwin.2/output-Clang-i386-debug",
+            "-j2",
+            "uxtheme"
+          ],
+          "exit": 0,
+          "seconds": 1.0828535309999552,
+          "artifact": {
+            "sha256": "00355e67d05368be1de147e9ecbb073bbfa4f57550425a4cc6ab9cb0714848ea",
+            "size": 649728,
+            "pe_machine": "0x14c"
+          }
+        },
+        "arm64": {
+          "command": [
+            "ninja",
+            "-C",
+            "/root/reliefwin.2/output-Clang-arm64-debug",
+            "-j2",
+            "uxtheme"
+          ],
+          "exit": 0,
+          "seconds": 0.6610449879999578,
+          "artifact": {
+            "sha256": "74b3a348ff38ffeb03e51a9ef656bbed51e40b7e3f12c938e1f05a6e9c849006",
+            "size": 631296,
+            "pe_machine": "0xaa64"
+          }
+        }
+      },
+      "source_sha256": {
+        "dll/win32/uxtheme/themehooks.c": "54db07fa3748517ff85f9f9f8e8250e0d40bc7842f3ea472cda0583b0ad573c8",
+        "dll/win32/uxtheme/uxtheme.spec": "5ab2eaf2dc03a20e352fa95680cc18cacc9141518ab6a8dc76739069e620b0ca",
+        "dll/win32/uxtheme/draw.c": "0184fb541e5f7d7d606e355075b837135841657aaf96b357f0488f834a0d8eb7"
+      }
+    },
+    "all": {
+      "targets": [
+        "user32",
+        "uxtheme",
+        "comctl32",
+        "comctl32_v6",
+        "uxtheme_apitest"
+      ],
+      "environment": {
+        "CCACHE_DISABLE": "1"
+      },
+      "source": {
+        "subsystems/win/win32k/user/user32/controls/scrollbar.c": "cb1bc1067b21871bc6408999405c26ecc0b319a27f254852a1376c252a0be42a",
+        "dll/win32/uxtheme/themehooks.c": "54db07fa3748517ff85f9f9f8e8250e0d40bc7842f3ea472cda0583b0ad573c8",
+        "dll/win32/uxtheme/uxtheme.spec": "5ab2eaf2dc03a20e352fa95680cc18cacc9141518ab6a8dc76739069e620b0ca",
+        "dll/win32/uxtheme/draw.c": "0184fb541e5f7d7d606e355075b837135841657aaf96b357f0488f834a0d8eb7",
+        "dll/win32/comctl32/trackbar.c": "30b406735ea019d80e97db6204d16e0689891cc85c1db484caaf679a9a13b761",
+        "dll/win32/comctl32/progress.c": "5b0e0e0589f7f559e5ef9c6c4543417b57421c627ed3b9d2e08dcbe569a14f82",
+        "dll/win32/comctl32/updown.c": "91bf3cf3715e42ca63b95c4944afb2cbc98abf5aa3a73d55c676f61676bbd14c",
+        "modules/rostests/apitests/uxtheme/NativeScrollbarTheme.c": "66d6a5782c9b6c46f434ff5a8c3449edec94a1002958bdd622d00b6fe817c832",
+        "modules/rostests/apitests/uxtheme/TrackbarCenter.c": "3fa779d6729a97aa13bda313315cffdfe90d9b07944ece5e80b374ebd16a6a1c",
+        "modules/rostests/apitests/uxtheme/TrackbarPaintLifetime.c": "54013462d9356cd2f58667b004ab1681dff7b3bdf7d29d6702ccd61177f11697",
+        "modules/rostests/apitests/uxtheme/RoundedControls.c": "807b2474f0a03c25ee5a9d2d975b814d14dad593926d37f55b6f38cc7e4c775b",
+        "modules/rostests/apitests/uxtheme/CMakeLists.txt": "5cfc1ba53fb32e808cc3b568ebcf4dfa6926b4b70fadf8ab46eda16cdeb399ab",
+        "modules/rostests/apitests/uxtheme/testlist.c": "001b9d8b4f4a1eea4c0e3dad395cab0c3d1a01dcd493a5aeacab26f10544310f"
+      },
+      "architectures": {
+        "amd64": {
+          "configure_on": {
+            "command": [
+              "/root/.local/lib/python3.10/site-packages/cmake/data/bin/cmake",
+              "-S",
+              "/root/reliefwin.2",
+              "-B",
+              "/root/reliefwin.2/output-Clang-amd64-debug",
+              "-DENABLE_ROSTESTS=ON"
+            ],
+            "exit": 0,
+            "seconds": 8.59176072299988
+          },
+          "build": {
+            "command": [
+              "ninja",
+              "-C",
+              "/root/reliefwin.2/output-Clang-amd64-debug",
+              "-j2",
+              "user32",
+              "uxtheme",
+              "comctl32",
+              "comctl32_v6",
+              "uxtheme_apitest"
+            ],
+            "exit": 0,
+            "seconds": 2.5339478739997503
+          },
+          "artifacts": {
+            "user32": {
+              "path": "/root/reliefwin.2/output-Clang-amd64-debug/subsystems/win/win32k/user/user32/user32.dll",
+              "sha256": "9ec58de8763c0cf474df38439b2caae0b9e7d86651ab384efa9bb4f97d1df3d0",
+              "size": 4036608,
+              "pe_machine": "0x8664"
+            },
+            "uxtheme": {
+              "path": "/root/reliefwin.2/output-Clang-amd64-debug/dll/win32/uxtheme/uxtheme.dll",
+              "sha256": "a7fc21cb88ce8ad5ccac1cd554f9d81b794dd7f7aedb1f46c745eedb2a95ef03",
+              "size": 678912,
+              "pe_machine": "0x8664"
+            },
+            "comctl32": {
+              "path": "/root/reliefwin.2/output-Clang-amd64-debug/dll/win32/comctl32/comctl32.dll",
+              "sha256": "62ff0428cb9ceab37f1bcb1b92c45bd63aa279db31569b9a9003a3291585657c",
+              "size": 1478656,
+              "pe_machine": "0x8664"
+            },
+            "comctl32_v6": {
+              "path": "/root/reliefwin.2/output-Clang-amd64-debug/dll/win32/comctl32_v6/comctl32.dll",
+              "sha256": "c42e5b26b58585f05ebbf880c72010525f5f1797ae367b54ecf109187abb3c03",
+              "size": 1778176,
+              "pe_machine": "0x8664"
+            },
+            "uxtheme_apitest": {
+              "path": "/root/reliefwin.2/output-Clang-amd64-debug/modules/rostests/apitests/uxtheme/uxtheme_apitest.exe",
+              "sha256": "f15c31906d9240c9958d650590ffb86dfa39f8c8f78895799c035dc6a0b8d76b",
+              "size": 313856,
+              "pe_machine": "0x8664"
+            }
+          },
+          "compdb_exit": 0,
+          "actual_test_compile_entries": {
+            "NativeScrollbarTheme.c": 1,
+            "TrackbarCenter.c": 1,
+            "TrackbarPaintLifetime.c": 1,
+            "RoundedControls.c": 1,
+            "testlist.c": 359
+          },
+          "configure_off": {
+            "command": [
+              "/root/.local/lib/python3.10/site-packages/cmake/data/bin/cmake",
+              "-S",
+              "/root/reliefwin.2",
+              "-B",
+              "/root/reliefwin.2/output-Clang-amd64-debug",
+              "-DENABLE_ROSTESTS=OFF"
+            ],
+            "exit": 0,
+            "seconds": 5.924870093999743
+          },
+          "ENABLE_ROSTESTS_restored_OFF": true
+        },
+        "i386": {
+          "configure_on": {
+            "command": [
+              "/root/.local/lib/python3.10/site-packages/cmake/data/bin/cmake",
+              "-S",
+              "/root/reliefwin.2",
+              "-B",
+              "/root/reliefwin.2/output-Clang-i386-debug",
+              "-DENABLE_ROSTESTS=ON"
+            ],
+            "exit": 0,
+            "seconds": 7.263401529000021
+          },
+          "build": {
+            "command": [
+              "ninja",
+              "-C",
+              "/root/reliefwin.2/output-Clang-i386-debug",
+              "-j2",
+              "user32",
+              "uxtheme",
+              "comctl32",
+              "comctl32_v6",
+              "uxtheme_apitest"
+            ],
+            "exit": 0,
+            "seconds": 2.211082888999954
+          },
+          "artifacts": {
+            "user32": {
+              "path": "/root/reliefwin.2/output-Clang-i386-debug/subsystems/win/win32k/user/user32/user32.dll",
+              "sha256": "52a2c0612200b7ec17e76a1eb4fd073592d3581406f5d505f4b6c1afc079f3eb",
+              "size": 4045824,
+              "pe_machine": "0x14c"
+            },
+            "uxtheme": {
+              "path": "/root/reliefwin.2/output-Clang-i386-debug/dll/win32/uxtheme/uxtheme.dll",
+              "sha256": "00355e67d05368be1de147e9ecbb073bbfa4f57550425a4cc6ab9cb0714848ea",
+              "size": 649728,
+              "pe_machine": "0x14c"
+            },
+            "comctl32": {
+              "path": "/root/reliefwin.2/output-Clang-i386-debug/dll/win32/comctl32/comctl32.dll",
+              "sha256": "1067dca1afc1f05159575416da015beed9bde44decaf6541519c78efa78c624b",
+              "size": 1473536,
+              "pe_machine": "0x14c"
+            },
+            "comctl32_v6": {
+              "path": "/root/reliefwin.2/output-Clang-i386-debug/dll/win32/comctl32_v6/comctl32.dll",
+              "sha256": "3884255edd35355c4ba73c80c19ccac8c97cd735c9b5b73f9745e0bd2d6e8b57",
+              "size": 1794560,
+              "pe_machine": "0x14c"
+            },
+            "uxtheme_apitest": {
+              "path": "/root/reliefwin.2/output-Clang-i386-debug/modules/rostests/apitests/uxtheme/uxtheme_apitest.exe",
+              "sha256": "a51d5907981d1985c28d6559796f9cb27a29f2f334b98d74402b4f21c0c4cabd",
+              "size": 331264,
+              "pe_machine": "0x14c"
+            }
+          },
+          "configure_off": {
+            "command": [
+              "/root/.local/lib/python3.10/site-packages/cmake/data/bin/cmake",
+              "-S",
+              "/root/reliefwin.2",
+              "-B",
+              "/root/reliefwin.2/output-Clang-i386-debug",
+              "-DENABLE_ROSTESTS=OFF"
+            ],
+            "exit": 0,
+            "seconds": 4.914871924000181
+          },
+          "ENABLE_ROSTESTS_restored_OFF": true
+        },
+        "arm64": {
+          "configure_on": {
+            "command": [
+              "/root/.local/lib/python3.10/site-packages/cmake/data/bin/cmake",
+              "-S",
+              "/root/reliefwin.2",
+              "-B",
+              "/root/reliefwin.2/output-Clang-arm64-debug",
+              "-DENABLE_ROSTESTS=ON"
+            ],
+            "exit": 0,
+            "seconds": 9.787133137000183
+          },
+          "build": {
+            "command": [
+              "ninja",
+              "-C",
+              "/root/reliefwin.2/output-Clang-arm64-debug",
+              "-j2",
+              "user32",
+              "uxtheme",
+              "comctl32",
+              "comctl32_v6",
+              "uxtheme_apitest"
+            ],
+            "exit": 0,
+            "seconds": 1.329656081000394
+          },
+          "artifacts": {
+            "user32": {
+              "path": "/root/reliefwin.2/output-Clang-arm64-debug/subsystems/win/win32k/user/user32/user32.dll",
+              "sha256": "317b11fc941c564f5aeba485b2622def1295c482eb677459f2ca8dd4a46dc1cd",
+              "size": 3972096,
+              "pe_machine": "0xaa64"
+            },
+            "uxtheme": {
+              "path": "/root/reliefwin.2/output-Clang-arm64-debug/dll/win32/uxtheme/uxtheme.dll",
+              "sha256": "74b3a348ff38ffeb03e51a9ef656bbed51e40b7e3f12c938e1f05a6e9c849006",
+              "size": 631296,
+              "pe_machine": "0xaa64"
+            },
+            "comctl32": {
+              "path": "/root/reliefwin.2/output-Clang-arm64-debug/dll/win32/comctl32/comctl32.dll",
+              "sha256": "df16e9e9c78c8b22df6dc3ad5c01ec5580613e608215822e119acb70c79dcdde",
+              "size": 1410560,
+              "pe_machine": "0xaa64"
+            },
+            "comctl32_v6": {
+              "path": "/root/reliefwin.2/output-Clang-arm64-debug/dll/win32/comctl32_v6/comctl32.dll",
+              "sha256": "d20a16e3b12d8faf95d6bab45db4a6c6a807da067a74be9ded60b16c4cca70bd",
+              "size": 1689088,
+              "pe_machine": "0xaa64"
+            },
+            "uxtheme_apitest": {
+              "path": "/root/reliefwin.2/output-Clang-arm64-debug/modules/rostests/apitests/uxtheme/uxtheme_apitest.exe",
+              "sha256": "5ef04c4f9a377708fe6fd6895065e5906e734c9608fc3dfc7c49df059c73fbc1",
+              "size": 321024,
+              "pe_machine": "0xaa64"
+            }
+          },
+          "configure_off": {
+            "command": [
+              "/root/.local/lib/python3.10/site-packages/cmake/data/bin/cmake",
+              "-S",
+              "/root/reliefwin.2",
+              "-B",
+              "/root/reliefwin.2/output-Clang-arm64-debug",
+              "-DENABLE_ROSTESTS=OFF"
+            ],
+            "exit": 0,
+            "seconds": 6.155475727000066
+          },
+          "ENABLE_ROSTESTS_restored_OFF": true
+        }
+      },
+      "log": "/tmp/reliefwin-controls-build.log",
+      "source_still_matches": true,
+      "status": "successful all3 build before final trackbar OOM/overflow review; product outputs are superseded and must be rebuilt after fix"
+    },
+    "test": {
+      "source_sha256": {
+        "modules/rostests/apitests/uxtheme/TrackbarPaintLifetime.c": "36352c4904746a9576d24d04fa103edb83db1e5e3e75cfcedfed50003c092e6c",
+        "modules/rostests/apitests/uxtheme/NativeScrollbarTheme.c": "66d6a5782c9b6c46f434ff5a8c3449edec94a1002958bdd622d00b6fe817c832",
+        "modules/rostests/apitests/uxtheme/TrackbarCenter.c": "3fa779d6729a97aa13bda313315cffdfe90d9b07944ece5e80b374ebd16a6a1c",
+        "modules/rostests/apitests/uxtheme/RoundedControls.c": "807b2474f0a03c25ee5a9d2d975b814d14dad593926d37f55b6f38cc7e4c775b",
+        "modules/rostests/apitests/uxtheme/testlist.c": "001b9d8b4f4a1eea4c0e3dad395cab0c3d1a01dcd493a5aeacab26f10544310f",
+        "modules/rostests/apitests/uxtheme/CMakeLists.txt": "5cfc1ba53fb32e808cc3b568ebcf4dfa6926b4b70fadf8ab46eda16cdeb399ab"
+      },
+      "architectures": {
+        "amd64": {
+          "exit": 0,
+          "command": [
+            "ninja",
+            "-C",
+            "/root/reliefwin.2/output-Clang-amd64-debug",
+            "-j2",
+            "comctl32",
+            "comctl32_v6",
+            "uxtheme_apitest"
+          ],
+          "artifact": {
+            "path": "/root/reliefwin.2/output-Clang-amd64-debug/modules/rostests/apitests/uxtheme/uxtheme_apitest.exe",
+            "sha256": "62d51c8de0fbb5273f19a22105ed6be5b853dd072926fda7cdbb19e1d4d8597e",
+            "size": 316928,
+            "pe_machine": "0x8664"
+          }
+        },
+        "i386": {
+          "exit": 0,
+          "command": [
+            "ninja",
+            "-C",
+            "/root/reliefwin.2/output-Clang-i386-debug",
+            "-j2",
+            "comctl32",
+            "comctl32_v6",
+            "uxtheme_apitest"
+          ],
+          "artifact": {
+            "path": "/root/reliefwin.2/output-Clang-i386-debug/modules/rostests/apitests/uxtheme/uxtheme_apitest.exe",
+            "sha256": "22b6841c37f04f7f06949bd531d4d4e57ad1e0cbe0a02be19f85b3708bb464b7",
+            "size": 334848,
+            "pe_machine": "0x14c"
+          }
+        },
+        "arm64": {
+          "exit": 0,
+          "command": [
+            "ninja",
+            "-C",
+            "/root/reliefwin.2/output-Clang-arm64-debug",
+            "-j2",
+            "comctl32",
+            "comctl32_v6",
+            "uxtheme_apitest"
+          ],
+          "artifact": {
+            "path": "/root/reliefwin.2/output-Clang-arm64-debug/modules/rostests/apitests/uxtheme/uxtheme_apitest.exe",
+            "sha256": "a2857f838e2f0cf82b3e723567e5c3e49edcc68e473d8329786e700dd038a19f",
+            "size": 324096,
+            "pe_machine": "0xaa64"
+          }
+        }
+      },
+      "CCACHE_DISABLE": "1",
+      "ENABLE_ROSTESTS_restored_OFF": true,
+      "status": "final freeze build; not yet run"
+    },
+    "comctl": {
+      "source_sha256": "30b406735ea019d80e97db6204d16e0689891cc85c1db484caaf679a9a13b761",
+      "status": "all3 target build succeeded before subsequent OOM/overflow review; not deployed; rebuild required after source fix"
+    },
+    "comctl_test": {
+      "targets": [
+        "comctl32",
+        "comctl32_v6",
+        "uxtheme_apitest"
+      ],
+      "environment": {
+        "CCACHE_DISABLE": "1"
+      },
+      "source": {
+        "subsystems/win/win32k/user/user32/controls/scrollbar.c": "cb1bc1067b21871bc6408999405c26ecc0b319a27f254852a1376c252a0be42a",
+        "dll/win32/uxtheme/themehooks.c": "54db07fa3748517ff85f9f9f8e8250e0d40bc7842f3ea472cda0583b0ad573c8",
+        "dll/win32/uxtheme/uxtheme.spec": "5ab2eaf2dc03a20e352fa95680cc18cacc9141518ab6a8dc76739069e620b0ca",
+        "dll/win32/uxtheme/draw.c": "0184fb541e5f7d7d606e355075b837135841657aaf96b357f0488f834a0d8eb7",
+        "dll/win32/comctl32/trackbar.c": "bfd618c9f4e50e42366c34f870651943eb4c751a40dc3c9200985b53900d6c56",
+        "dll/win32/comctl32/progress.c": "5b0e0e0589f7f559e5ef9c6c4543417b57421c627ed3b9d2e08dcbe569a14f82",
+        "dll/win32/comctl32/updown.c": "91bf3cf3715e42ca63b95c4944afb2cbc98abf5aa3a73d55c676f61676bbd14c",
+        "modules/rostests/apitests/uxtheme/NativeScrollbarTheme.c": "66d6a5782c9b6c46f434ff5a8c3449edec94a1002958bdd622d00b6fe817c832",
+        "modules/rostests/apitests/uxtheme/TrackbarCenter.c": "3fa779d6729a97aa13bda313315cffdfe90d9b07944ece5e80b374ebd16a6a1c",
+        "modules/rostests/apitests/uxtheme/TrackbarPaintLifetime.c": "36352c4904746a9576d24d04fa103edb83db1e5e3e75cfcedfed50003c092e6c",
+        "modules/rostests/apitests/uxtheme/RoundedControls.c": "807b2474f0a03c25ee5a9d2d975b814d14dad593926d37f55b6f38cc7e4c775b",
+        "modules/rostests/apitests/uxtheme/CMakeLists.txt": "5cfc1ba53fb32e808cc3b568ebcf4dfa6926b4b70fadf8ab46eda16cdeb399ab",
+        "modules/rostests/apitests/uxtheme/testlist.c": "001b9d8b4f4a1eea4c0e3dad395cab0c3d1a01dcd493a5aeacab26f10544310f"
+      },
+      "architectures": {
+        "amd64": {
+          "configure_on": {
+            "command": [
+              "/root/.local/lib/python3.10/site-packages/cmake/data/bin/cmake",
+              "-S",
+              "/root/reliefwin.2",
+              "-B",
+              "/root/reliefwin.2/output-Clang-amd64-debug",
+              "-DENABLE_ROSTESTS=ON"
+            ],
+            "exit": 0,
+            "seconds": 7.275670732000435
+          },
+          "build": {
+            "command": [
+              "ninja",
+              "-C",
+              "/root/reliefwin.2/output-Clang-amd64-debug",
+              "-j2",
+              "comctl32",
+              "comctl32_v6",
+              "uxtheme_apitest"
+            ],
+            "exit": 0,
+            "seconds": 1.7114680070008035
+          },
+          "artifacts": {
+            "comctl32": {
+              "path": "/root/reliefwin.2/output-Clang-amd64-debug/dll/win32/comctl32/comctl32.dll",
+              "sha256": "51900325a426f229b8c7d31da9a76087ab4e41ad3a82a101e8b21df6d2ff3ad2",
+              "size": 1480192,
+              "pe_machine": "0x8664"
+            },
+            "comctl32_v6": {
+              "path": "/root/reliefwin.2/output-Clang-amd64-debug/dll/win32/comctl32_v6/comctl32.dll",
+              "sha256": "40790fdd02a4e1e170782aebc24de3b4d2bc7892ca212ef8485fb0745c11f317",
+              "size": 1795072,
+              "pe_machine": "0x8664"
+            },
+            "uxtheme_apitest": {
+              "path": "/root/reliefwin.2/output-Clang-amd64-debug/modules/rostests/apitests/uxtheme/uxtheme_apitest.exe",
+              "sha256": "62d51c8de0fbb5273f19a22105ed6be5b853dd072926fda7cdbb19e1d4d8597e",
+              "size": 316928,
+              "pe_machine": "0x8664"
+            }
+          },
+          "compdb_exit": 0,
+          "actual_test_compile_entries": {
+            "NativeScrollbarTheme.c": 1,
+            "TrackbarCenter.c": 1,
+            "TrackbarPaintLifetime.c": 1,
+            "RoundedControls.c": 1,
+            "testlist.c": 359
+          },
+          "configure_off": {
+            "command": [
+              "/root/.local/lib/python3.10/site-packages/cmake/data/bin/cmake",
+              "-S",
+              "/root/reliefwin.2",
+              "-B",
+              "/root/reliefwin.2/output-Clang-amd64-debug",
+              "-DENABLE_ROSTESTS=OFF"
+            ],
+            "exit": 0,
+            "seconds": 5.83079106400146
+          },
+          "ENABLE_ROSTESTS_restored_OFF": true
+        },
+        "i386": {
+          "configure_on": {
+            "command": [
+              "/root/.local/lib/python3.10/site-packages/cmake/data/bin/cmake",
+              "-S",
+              "/root/reliefwin.2",
+              "-B",
+              "/root/reliefwin.2/output-Clang-i386-debug",
+              "-DENABLE_ROSTESTS=ON"
+            ],
+            "exit": 0,
+            "seconds": 6.172278790001656
+          },
+          "build": {
+            "command": [
+              "ninja",
+              "-C",
+              "/root/reliefwin.2/output-Clang-i386-debug",
+              "-j2",
+              "comctl32",
+              "comctl32_v6",
+              "uxtheme_apitest"
+            ],
+            "exit": 0,
+            "seconds": 1.5776797159996931
+          },
+          "artifacts": {
+            "comctl32": {
+              "path": "/root/reliefwin.2/output-Clang-i386-debug/dll/win32/comctl32/comctl32.dll",
+              "sha256": "188be9e8d5daf841e02a1f0b8a568d30cbcb2ea04282c080afaa1cd6006d4244",
+              "size": 1475072,
+              "pe_machine": "0x14c"
+            },
+            "comctl32_v6": {
+              "path": "/root/reliefwin.2/output-Clang-i386-debug/dll/win32/comctl32_v6/comctl32.dll",
+              "sha256": "2b8d52cebfdbbce04a89e822fe642ef7525058c1a413fe060151f32b160bb44b",
+              "size": 1795584,
+              "pe_machine": "0x14c"
+            },
+            "uxtheme_apitest": {
+              "path": "/root/reliefwin.2/output-Clang-i386-debug/modules/rostests/apitests/uxtheme/uxtheme_apitest.exe",
+              "sha256": "22b6841c37f04f7f06949bd531d4d4e57ad1e0cbe0a02be19f85b3708bb464b7",
+              "size": 334848,
+              "pe_machine": "0x14c"
+            }
+          },
+          "configure_off": {
+            "command": [
+              "/root/.local/lib/python3.10/site-packages/cmake/data/bin/cmake",
+              "-S",
+              "/root/reliefwin.2",
+              "-B",
+              "/root/reliefwin.2/output-Clang-i386-debug",
+              "-DENABLE_ROSTESTS=OFF"
+            ],
+            "exit": 0,
+            "seconds": 4.721262581999326
+          },
+          "ENABLE_ROSTESTS_restored_OFF": true
+        },
+        "arm64": {
+          "configure_on": {
+            "command": [
+              "/root/.local/lib/python3.10/site-packages/cmake/data/bin/cmake",
+              "-S",
+              "/root/reliefwin.2",
+              "-B",
+              "/root/reliefwin.2/output-Clang-arm64-debug",
+              "-DENABLE_ROSTESTS=ON"
+            ],
+            "exit": 0,
+            "seconds": 7.719229811000332
+          },
+          "build": {
+            "command": [
+              "ninja",
+              "-C",
+              "/root/reliefwin.2/output-Clang-arm64-debug",
+              "-j2",
+              "comctl32",
+              "comctl32_v6",
+              "uxtheme_apitest"
+            ],
+            "exit": 0,
+            "seconds": 0.9998374409988173
+          },
+          "artifacts": {
+            "comctl32": {
+              "path": "/root/reliefwin.2/output-Clang-arm64-debug/dll/win32/comctl32/comctl32.dll",
+              "sha256": "401f9e44e7939c5ed9fbbed52f6d6b5b7a2d352350baa42e19d89120c3098860",
+              "size": 1395200,
+              "pe_machine": "0xaa64"
+            },
+            "comctl32_v6": {
+              "path": "/root/reliefwin.2/output-Clang-arm64-debug/dll/win32/comctl32_v6/comctl32.dll",
+              "sha256": "d6e6fa17ae891255e592637e5999a483aad0f4396c3ad99ce9f445fc0ee0f59e",
+              "size": 1690112,
+              "pe_machine": "0xaa64"
+            },
+            "uxtheme_apitest": {
+              "path": "/root/reliefwin.2/output-Clang-arm64-debug/modules/rostests/apitests/uxtheme/uxtheme_apitest.exe",
+              "sha256": "a2857f838e2f0cf82b3e723567e5c3e49edcc68e473d8329786e700dd038a19f",
+              "size": 324096,
+              "pe_machine": "0xaa64"
+            }
+          },
+          "configure_off": {
+            "command": [
+              "/root/.local/lib/python3.10/site-packages/cmake/data/bin/cmake",
+              "-S",
+              "/root/reliefwin.2",
+              "-B",
+              "/root/reliefwin.2/output-Clang-arm64-debug",
+              "-DENABLE_ROSTESTS=OFF"
+            ],
+            "exit": 0,
+            "seconds": 6.106881956000507
+          },
+          "ENABLE_ROSTESTS_restored_OFF": true
+        }
+      },
+      "log": "/tmp/reliefwin-controls-build.log",
+      "source_still_matches": true,
+      "status": "final frozen lifecycle and OOM source built all3",
+      "final_freeze": {
+        "trackbar.c": "bfd618c9f4e50e42366c34f870651943eb4c751a40dc3c9200985b53900d6c56",
+        "TrackbarPaintLifetime.c": "36352c4904746a9576d24d04fa103edb83db1e5e3e75cfcedfed50003c092e6c"
+      }
+    }
+  },
+  "runs": {
+    "native-baseline": {
+      "mode": "native-baseline",
+      "binary_sha256": "2019ba05df71caac8401c9cbef2870eea2f502e6fe552756847b5807c0c15a79",
+      "log_sha256": "aa4ff50aa8f70d20f118791b145131521a579b86df60d81e513c50013de5f9e2",
+      "done": "done",
+      "qemu_exited": true,
+      "tests": {
+        "NativeScrollbarRendering": {
+          "checks": 782,
+          "failures": 97,
+          "skips": 0,
+          "exit": 97
+        }
+      },
+      "source_sha256": {
+        "modules/rostests/apitests/uxtheme/NativeScrollbarTheme.c": "66d6a5782c9b6c46f434ff5a8c3449edec94a1002958bdd622d00b6fe817c832",
+        "modules/rostests/apitests/uxtheme/TrackbarCenter.c": "3fa779d6729a97aa13bda313315cffdfe90d9b07944ece5e80b374ebd16a6a1c",
+        "modules/rostests/apitests/uxtheme/TrackbarPaintLifetime.c": "c23a6afe1371ba3c0f4c0a8784e621d6abe276147c5cf69f85a58b971543c593",
+        "modules/rostests/apitests/uxtheme/RoundedControls.c": "807b2474f0a03c25ee5a9d2d975b814d14dad593926d37f55b6f38cc7e4c775b",
+        "dll/win32/comctl32/trackbar.c": "f6cb974a076b32f59342e2f6e6961f3b4aee8ba18f120c87b15f97fb69e84886",
+        "subsystems/win/win32k/user/user32/controls/scrollbar.c": "cb1bc1067b21871bc6408999405c26ecc0b319a27f254852a1376c252a0be42a",
+        "dll/win32/uxtheme/themehooks.c": "54db07fa3748517ff85f9f9f8e8250e0d40bc7842f3ea472cda0583b0ad573c8"
+      },
+      "failure_lines": [
+        "NativeScrollbarTheme.c:345: Test failed: palette 0 native scrollbar has no creation lifetime theme owner",
+        "NativeScrollbarTheme.c:209: Test failed: palette 0 created has 6400 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 0 SetScrollInfo has 6400 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 0 SetScrollPos has 6400 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 0 SBM_SETSCROLLINFO has 6400 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 0 SBM_SETPOS has 6400 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 0 SBM_SETRANGEREDRAW has 6400 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 0 arrow-disabled has 6400 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 0 arrows-enabled has 6400 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 0 control-disabled has 6400 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 0 control-enabled has 6400 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 0 arrow-pressed has 6400 mismatched native pixels; first (0,0) a0a0a0 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 0 arrow-released has 6400 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 0 thumb-pressed has 6392 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 0 thumb-moving has 6392 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 0 thumb-released has 6400 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 0 empty-range has 6400 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 0 page-covers-range has 6400 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 0 range-restored has 6400 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 0 empty-track has 400 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 0 bounds-restored has 6400 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 0 custom-track-brush has 1400 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:683: Test failed: native scrollbar failed to restore its lifetime theme owner",
+        "NativeScrollbarTheme.c:209: Test failed: palette 0 optout-restored has 6400 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:345: Test failed: palette 0 native scrollbar has no creation lifetime theme owner",
+        "NativeScrollbarTheme.c:209: Test failed: palette 0 created has 4000 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 0 SetScrollInfo has 4000 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 0 SetScrollPos has 4000 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 0 SBM_SETSCROLLINFO has 4000 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 0 SBM_SETPOS has 4000 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 0 SBM_SETRANGEREDRAW has 4000 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 0 arrow-disabled has 4000 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 0 arrows-enabled has 4000 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 0 control-disabled has 4000 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 0 control-enabled has 4000 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 0 arrow-pressed has 4000 mismatched native pixels; first (0,0) a0a0a0 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 0 arrow-released has 4000 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 0 thumb-pressed has 3992 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 0 thumb-moving has 3992 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 0 thumb-released has 4000 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 0 empty-range has 4000 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 0 page-covers-range has 4000 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 0 range-restored has 4000 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 0 empty-track has 400 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 0 bounds-restored has 4000 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 0 custom-track-brush has 1100 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:683: Test failed: native scrollbar failed to restore its lifetime theme owner",
+        "NativeScrollbarTheme.c:209: Test failed: palette 0 optout-restored has 4000 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:345: Test failed: palette 1 native scrollbar has no creation lifetime theme owner",
+        "NativeScrollbarTheme.c:209: Test failed: palette 1 created has 6392 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 1 SetScrollInfo has 6392 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 1 SetScrollPos has 6392 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 1 SBM_SETSCROLLINFO has 6392 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 1 SBM_SETPOS has 6392 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 1 SBM_SETRANGEREDRAW has 6392 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 1 arrow-disabled has 6392 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 1 arrows-enabled has 6392 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 1 control-disabled has 6390 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 1 control-enabled has 6392 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 1 arrow-pressed has 6392 mismatched native pixels; first (0,0) a0a0a0 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 1 arrow-released has 6392 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 1 thumb-pressed has 6392 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 1 thumb-moving has 6392 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 1 thumb-released has 6392 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 1 empty-range has 6391 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 1 page-covers-range has 6400 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 1 range-restored has 6392 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 1 empty-track has 400 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 1 bounds-restored has 6392 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 1 custom-track-brush has 1400 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:683: Test failed: native scrollbar failed to restore its lifetime theme owner",
+        "NativeScrollbarTheme.c:209: Test failed: palette 1 optout-restored has 6392 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:345: Test failed: palette 1 native scrollbar has no creation lifetime theme owner",
+        "NativeScrollbarTheme.c:209: Test failed: palette 1 created has 3992 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 1 SetScrollInfo has 3992 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 1 SetScrollPos has 3992 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 1 SBM_SETSCROLLINFO has 3992 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 1 SBM_SETPOS has 3992 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 1 SBM_SETRANGEREDRAW has 3992 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 1 arrow-disabled has 3992 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 1 arrows-enabled has 3992 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 1 control-disabled has 3990 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 1 control-enabled has 3992 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 1 arrow-pressed has 3992 mismatched native pixels; first (0,0) a0a0a0 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 1 arrow-released has 3992 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 1 thumb-pressed has 3992 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 1 thumb-moving has 3992 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 1 thumb-released has 3992 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 1 empty-range has 3990 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 1 page-covers-range has 4000 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 1 range-restored has 3992 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 1 empty-track has 400 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 1 bounds-restored has 3992 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:209: Test failed: palette 1 custom-track-brush has 1100 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:683: Test failed: native scrollbar failed to restore its lifetime theme owner",
+        "NativeScrollbarTheme.c:209: Test failed: palette 1 optout-restored has 3992 mismatched native pixels; first (0,0) e3e3e3 expected b539a6",
+        "NativeScrollbarTheme.c:742: Test failed: native scrollbar palettes produced equal signatures c80b084a,c80b084a"
+      ],
+      "built_source_sha256": {
+        "subsystems/win/win32k/user/user32/controls/scrollbar.c": "cb1bc1067b21871bc6408999405c26ecc0b319a27f254852a1376c252a0be42a",
+        "dll/win32/uxtheme/themehooks.c": "54db07fa3748517ff85f9f9f8e8250e0d40bc7842f3ea472cda0583b0ad573c8",
+        "dll/win32/comctl32/trackbar.c": "2087f34e03e5be193b7c1f1ba302da1b281367fa89fc84254efb99f010ff43cf",
+        "modules/rostests/apitests/uxtheme/NativeScrollbarTheme.c": "66d6a5782c9b6c46f434ff5a8c3449edec94a1002958bdd622d00b6fe817c832",
+        "modules/rostests/apitests/uxtheme/TrackbarCenter.c": "3fa779d6729a97aa13bda313315cffdfe90d9b07944ece5e80b374ebd16a6a1c",
+        "modules/rostests/apitests/uxtheme/TrackbarPaintLifetime.c": "f400e920f2869f1fe48f0fa82877fb655a77a367976c55652f95c9d8cdc9aee0",
+        "modules/rostests/apitests/uxtheme/RoundedControls.c": "807b2474f0a03c25ee5a9d2d975b814d14dad593926d37f55b6f38cc7e4c775b"
+      },
+      "source_sha256_note": "source_sha256 is the workspace state when collecting after orderly guest shutdown; built_source_sha256 identifies the actual test/product inputs recorded at build time.",
+      "current_relevant_source_sha256": {
+        "dll/win32/comctl32/trackbar.c": "f6cb974a076b32f59342e2f6e6961f3b4aee8ba18f120c87b15f97fb69e84886",
+        "modules/rostests/apitests/uxtheme/TrackbarPaintLifetime.c": "c23a6afe1371ba3c0f4c0a8784e621d6abe276147c5cf69f85a58b971543c593"
+      }
+    },
+    "fixed": {
+      "mode": "fixed",
+      "binary_sha256": "62d51c8de0fbb5273f19a22105ed6be5b853dd072926fda7cdbb19e1d4d8597e",
+      "log_sha256": "8dc54c675b07e75aadf2f3335bbb84d09b96ac2cd72edca9d04a52a901facd2e",
+      "done": "done",
+      "qemu_exited": true,
+      "tests": {
+        "RoundedControls": {
+          "checks": 9229,
+          "failures": 0,
+          "skips": 0,
+          "exit": 0
+        },
+        "RoundedControlLifetime": {
+          "checks": 95,
+          "failures": 0,
+          "skips": 0,
+          "exit": 0
+        },
+        "RoundedControlDpi": {
+          "checks": 146,
+          "failures": 0,
+          "skips": 0,
+          "exit": 0
+        },
+        "ParentBackgroundClip": {
+          "checks": 34,
+          "failures": 0,
+          "skips": 0,
+          "exit": 0
+        },
+        "ParentBackgroundSiblings": {
+          "checks": 153,
+          "failures": 0,
+          "skips": 0,
+          "exit": 0
+        },
+        "DrawThemeParentBackground": {
+          "checks": 42,
+          "failures": 0,
+          "skips": 0,
+          "exit": 0
+        },
+        "TrackbarCenter": {
+          "checks": 7762,
+          "failures": 0,
+          "skips": 0,
+          "exit": 0
+        },
+        "TrackbarBuddyLifetime": {
+          "checks": 61,
+          "failures": 0,
+          "skips": 0,
+          "exit": 0
+        },
+        "TrackbarPaintLifetime": {
+          "checks": 920,
+          "failures": 0,
+          "skips": 0,
+          "exit": 0
+        },
+        "NativeScrollbarRendering": {
+          "checks": 782,
+          "failures": 0,
+          "skips": 0,
+          "exit": 0
+        },
+        "NativeScrollbarTheme": {
+          "checks": 966,
+          "failures": 0,
+          "skips": 0,
+          "exit": 0
+        },
+        "NativeScrollbarThemeShutdown": {
+          "checks": 20,
+          "failures": 0,
+          "skips": 0,
+          "exit": 0
+        }
+      },
+      "source_sha256": {
+        "modules/rostests/apitests/uxtheme/NativeScrollbarTheme.c": "66d6a5782c9b6c46f434ff5a8c3449edec94a1002958bdd622d00b6fe817c832",
+        "modules/rostests/apitests/uxtheme/TrackbarCenter.c": "3fa779d6729a97aa13bda313315cffdfe90d9b07944ece5e80b374ebd16a6a1c",
+        "modules/rostests/apitests/uxtheme/TrackbarPaintLifetime.c": "36352c4904746a9576d24d04fa103edb83db1e5e3e75cfcedfed50003c092e6c",
+        "modules/rostests/apitests/uxtheme/RoundedControls.c": "807b2474f0a03c25ee5a9d2d975b814d14dad593926d37f55b6f38cc7e4c775b",
+        "dll/win32/comctl32/trackbar.c": "bfd618c9f4e50e42366c34f870651943eb4c751a40dc3c9200985b53900d6c56",
+        "subsystems/win/win32k/user/user32/controls/scrollbar.c": "cb1bc1067b21871bc6408999405c26ecc0b319a27f254852a1376c252a0be42a",
+        "dll/win32/uxtheme/themehooks.c": "54db07fa3748517ff85f9f9f8e8250e0d40bc7842f3ea472cda0583b0ad573c8"
+      },
+      "failure_lines": [],
+      "installed_sha256": {
+        "/Windows/system32/user32.dll": "9ec58de8763c0cf474df38439b2caae0b9e7d86651ab384efa9bb4f97d1df3d0",
+        "/Windows/SysWOW64/user32.dll": "52a2c0612200b7ec17e76a1eb4fd073592d3581406f5d505f4b6c1afc079f3eb",
+        "/Windows/system32/uxtheme.dll": "a7fc21cb88ce8ad5ccac1cd554f9d81b794dd7f7aedb1f46c745eedb2a95ef03",
+        "/Windows/SysWOW64/uxtheme.dll": "00355e67d05368be1de147e9ecbb073bbfa4f57550425a4cc6ab9cb0714848ea",
+        "/Windows/system32/comctl32.dll": "51900325a426f229b8c7d31da9a76087ab4e41ad3a82a101e8b21df6d2ff3ad2",
+        "/Windows/SysWOW64/comctl32.dll": "188be9e8d5daf841e02a1f0b8a568d30cbcb2ea04282c080afaa1cd6006d4244",
+        "/Windows/winsxs/amd64_microsoft.windows.common-controls_6595b64144ccf1df_5.82.2600.2982_none_deadbeef/comctl32.dll": "51900325a426f229b8c7d31da9a76087ab4e41ad3a82a101e8b21df6d2ff3ad2",
+        "/Windows/winsxs/x86_microsoft.windows.common-controls_6595b64144ccf1df_5.82.2600.2982_none_deadbeef/comctl32.dll": "188be9e8d5daf841e02a1f0b8a568d30cbcb2ea04282c080afaa1cd6006d4244",
+        "/Windows/winsxs/amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.2600.2982_none_deadbeef/comctl32.dll": "40790fdd02a4e1e170782aebc24de3b4d2bc7892ca212ef8485fb0745c11f317",
+        "/Windows/winsxs/x86_microsoft.windows.common-controls_6595b64144ccf1df_6.0.2600.2982_none_deadbeef/comctl32.dll": "2b8d52cebfdbbce04a89e822fe642ef7525058c1a413fe060151f32b160bb44b"
+      },
+      "installed_matches_deployment": true,
+      "total_checks": 20210,
+      "total_failures": 0,
+      "total_skips": 0,
+      "monitor_exit": 0,
+      "orderly_shutdown": true
+    },
+    "paint-only": {
+      "mode": "paint-only",
+      "binary_sha256": "62d51c8de0fbb5273f19a22105ed6be5b853dd072926fda7cdbb19e1d4d8597e",
+      "log_sha256": "d219d8dfa9f8d7f694fbd6d36594c578b417ac31922b7fef9c8cff833d6dfbd8",
+      "done": "done",
+      "qemu_exited": true,
+      "tests": {
+        "TrackbarPaintLifetime": {
+          "checks": 920,
+          "failures": 0,
+          "skips": 0,
+          "exit": 0
+        }
+      },
+      "source_sha256": {
+        "modules/rostests/apitests/uxtheme/NativeScrollbarTheme.c": "66d6a5782c9b6c46f434ff5a8c3449edec94a1002958bdd622d00b6fe817c832",
+        "modules/rostests/apitests/uxtheme/TrackbarCenter.c": "3fa779d6729a97aa13bda313315cffdfe90d9b07944ece5e80b374ebd16a6a1c",
+        "modules/rostests/apitests/uxtheme/TrackbarPaintLifetime.c": "36352c4904746a9576d24d04fa103edb83db1e5e3e75cfcedfed50003c092e6c",
+        "modules/rostests/apitests/uxtheme/RoundedControls.c": "807b2474f0a03c25ee5a9d2d975b814d14dad593926d37f55b6f38cc7e4c775b",
+        "dll/win32/comctl32/trackbar.c": "bfd618c9f4e50e42366c34f870651943eb4c751a40dc3c9200985b53900d6c56",
+        "subsystems/win/win32k/user/user32/controls/scrollbar.c": "cb1bc1067b21871bc6408999405c26ecc0b319a27f254852a1376c252a0be42a",
+        "dll/win32/uxtheme/themehooks.c": "54db07fa3748517ff85f9f9f8e8250e0d40bc7842f3ea472cda0583b0ad573c8"
+      },
+      "failure_lines": []
+    }
+  },
+  "static_analysis": {
+    "prior_attempts": {
+      "status": "incomplete",
+      "reason": "Built-in cppcheck parser stopped at existing errno_t declaration; Clang importer dropped --target and invoked host target. Neither was counted as passing. Prior logs lost at reboot."
+    },
+    "current_attempt": {
+      "updated_utc": "2026-11-25T18:14:23.492770+00:00",
+      "status": "INCOMPLETE",
+      "source_sha256": {
+        "dll/win32/comctl32/trackbar.c": "bfd618c9f4e50e42366c34f870651943eb4c751a40dc3c9200985b53900d6c56",
+        "modules/rostests/apitests/uxtheme/TrackbarPaintLifetime.c": "36352c4904746a9576d24d04fa103edb83db1e5e3e75cfcedfed50003c092e6c"
+      },
+      "compdb_path": ".git/reliefwin-controls-analysis-compdb.json",
+      "compdb_sha256": "c994ed0646a765250c76a1cfe3fe6a508539568bad3e19b9dff8d7bdccdd0d28",
+      "filtered_target_compdb_path": ".git/reliefwin-controls-analysis/final-target-compdb.json",
+      "filtered_target_compdb_sha256": "dd6e62e9f8f5fa7a8a9fff1aa2820c8c328b1a47e934d24a8cb897112deed9f9",
+      "compiler": "Clang 24 actual amd64 compilation database commands; output/dependency options removed and -E used",
+      "cppcheck": "Cppcheck 2.7; --enable=warning,performance,portability; --platform=win64; --inline-suppr; -Uerrno_t",
+      "summary": "Clang preprocessing succeeded. Cppcheck completed on trackbar.c in both comctl32 v5 and v6 preprocessed variants; its only finding is an invalidPointerCast portability diagnostic in unchanged sdk/include/crt/math.h:325. TrackbarPaintLifetime.c preprocessing succeeded but Cppcheck parsing is incomplete at the existing valid enum member SIID_SERVER = 15 in sdk/include/psdk/shellapi.h:895. Direct project-mode checks were incomplete because the full database references missing generated iads_i.c, and the filtered database reports #error Only Win32 target is supported! at vadefs.h:10 because Cppcheck does not model the Clang target builtins.",
+      "full_project_load_attempt": {
+        "status": "INCOMPLETE",
+        "project_compdb": ".git/reliefwin-controls-analysis-compdb.json",
+        "project_compdb_sha256": "c994ed0646a765250c76a1cfe3fe6a508539568bad3e19b9dff8d7bdccdd0d28",
+        "cppcheck_version": "Cppcheck 2.7",
+        "cppcheck_exit": 1,
+        "cppcheck_command": "cppcheck --project=.git/reliefwin-controls-analysis-compdb.json --file-filter=<one target file> --enable=warning,performance,portability --platform=win64 --inline-suppr -Uerrno_t --xml --xml-version=2",
+        "filters_attempted": [
+          "*trackbar.c",
+          "*TrackbarPaintLifetime.c"
+        ],
+        "stdout_log": ".git/reliefwin-controls-analysis/final_full_project_trackbar.stdout",
+        "stdout_sha256": "4c1946eeba759f261f940acf5436255e7d8a72c4238ad618bc87a4873413d22e",
+        "cppcheck_stdout": "cppcheck: error: '/root/reliefwin.2/output-Clang-amd64-debug/sdk/include/psdk/iads_i.c' from compilation database does not exist\ncppcheck: error: failed to load project '.git/reliefwin-controls-analysis-compdb.json'. An error occurred.\n",
+        "stderr_log": ".git/reliefwin-controls-analysis/final_full_project_trackbar.stderr",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "cppcheck_stderr": "",
+        "reason": "The full compilation database cannot load because it contains the missing generated source output-Clang-amd64-debug/sdk/include/psdk/iads_i.c; the file filter is not applied before project loading."
+      },
+      "files": [
+        {
+          "source": "dll/win32/comctl32/trackbar.c",
+          "source_sha256": "bfd618c9f4e50e42366c34f870651943eb4c751a40dc3c9200985b53900d6c56",
+          "project_mode": [
+            {
+              "source": "dll/win32/comctl32/trackbar.c",
+              "variant": "cppcheck-project-filtered",
+              "source_sha256": "bfd618c9f4e50e42366c34f870651943eb4c751a40dc3c9200985b53900d6c56",
+              "status": "INCOMPLETE",
+              "parser_complete": false,
+              "build_variants": [
+                "comctl32_v5",
+                "comctl32_v6"
+              ],
+              "project_compdb": ".git/reliefwin-controls-analysis/final-target-compdb.json",
+              "project_compdb_sha256": "dd6e62e9f8f5fa7a8a9fff1aa2820c8c328b1a47e934d24a8cb897112deed9f9",
+              "original_compdb_sha256": "c994ed0646a765250c76a1cfe3fe6a508539568bad3e19b9dff8d7bdccdd0d28",
+              "cppcheck_version": "Cppcheck 2.7",
+              "file_filter": "*trackbar.c",
+              "cppcheck_command": "cppcheck --project=.git/reliefwin-controls-analysis/final-target-compdb.json --file-filter=*trackbar.c --enable=warning,performance,portability --platform=win64 --inline-suppr -Uerrno_t --xml --xml-version=2",
+              "cppcheck_exit": 0,
+              "cppcheck_xml": ".git/reliefwin-controls-analysis/final_project_trackbar.xml",
+              "cppcheck_xml_sha256": "5c4e7c1d4d45479b8bb5b8fa2fa8f142382fb3def5a28a6067d1414af7767312",
+              "reason": "Cppcheck reported preprocessorErrorDirective: #error Only Win32 target is supported! at output-Clang-amd64-debug/sdk/include/vadefs.h:10. It did not model Clang target builtins from the build command."
+            }
+          ],
+          "compiler_preprocessed_mode": [
+            {
+              "variant": "comctl32_v5",
+              "preprocessed_sha256": "f05241a072af9e64b2ef84d3ebde9c8670c017cdaa1a0a662005a51cf924b7b2",
+              "preprocessed_bytes": 2775471,
+              "compiler_exit": 0,
+              "cppcheck_version": "Cppcheck 2.7",
+              "cppcheck_exit": 0,
+              "parser_complete": true,
+              "status": "COMPLETE_WITH_FINDINGS",
+              "cppcheck_xml": ".git/reliefwin-controls-analysis/final_comctl32_v5_trackbar.c.xml",
+              "cppcheck_xml_sha256": "ca0f3930d4e3820994613faebf14b2a82e29f2102f5eaccc1b1212b06fad4165",
+              "findings": [
+                {
+                  "id": "invalidPointerCast",
+                  "severity": "portability",
+                  "msg": "Casting between long double * and double * which have an incompatible binary data representation.",
+                  "file0": "/root/reliefwin.2/.git/reliefwin-controls-analysis/preprocessed/final_comctl32_v5.i",
+                  "locations": [
+                    {
+                      "file": "/root/reliefwin.2/sdk/include/crt/math.h",
+                      "line": "325",
+                      "column": "185"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "variant": "comctl32_v6",
+              "preprocessed_sha256": "1b75c30d16d3b02c9d6eeec29f5365583e90f1e1265dae4880162f15551aee67",
+              "preprocessed_bytes": 2779077,
+              "compiler_exit": 0,
+              "cppcheck_version": "Cppcheck 2.7",
+              "cppcheck_exit": 0,
+              "parser_complete": true,
+              "status": "COMPLETE_WITH_FINDINGS",
+              "cppcheck_xml": ".git/reliefwin-controls-analysis/final_comctl32_v6_trackbar.c.xml",
+              "cppcheck_xml_sha256": "a0e28a38e44d878f8fe281ac7e6c57c88632fa3a649cc8d7f1a8a9d2ac29ecec",
+              "findings": [
+                {
+                  "id": "invalidPointerCast",
+                  "severity": "portability",
+                  "msg": "Casting between long double * and double * which have an incompatible binary data representation.",
+                  "file0": "/root/reliefwin.2/.git/reliefwin-controls-analysis/preprocessed/final_comctl32_v6.i",
+                  "locations": [
+                    {
+                      "file": "/root/reliefwin.2/sdk/include/crt/math.h",
+                      "line": "325",
+                      "column": "185"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "source": "modules/rostests/apitests/uxtheme/TrackbarPaintLifetime.c",
+          "source_sha256": "36352c4904746a9576d24d04fa103edb83db1e5e3e75cfcedfed50003c092e6c",
+          "project_mode": [
+            {
+              "source": "modules/rostests/apitests/uxtheme/TrackbarPaintLifetime.c",
+              "variant": "cppcheck-project-filtered",
+              "source_sha256": "36352c4904746a9576d24d04fa103edb83db1e5e3e75cfcedfed50003c092e6c",
+              "status": "INCOMPLETE",
+              "parser_complete": false,
+              "build_variants": [
+                "uxtheme_apitest"
+              ],
+              "project_compdb": ".git/reliefwin-controls-analysis/final-target-compdb.json",
+              "project_compdb_sha256": "dd6e62e9f8f5fa7a8a9fff1aa2820c8c328b1a47e934d24a8cb897112deed9f9",
+              "original_compdb_sha256": "c994ed0646a765250c76a1cfe3fe6a508539568bad3e19b9dff8d7bdccdd0d28",
+              "cppcheck_version": "Cppcheck 2.7",
+              "file_filter": "*TrackbarPaintLifetime.c",
+              "cppcheck_command": "cppcheck --project=.git/reliefwin-controls-analysis/final-target-compdb.json --file-filter=*TrackbarPaintLifetime.c --enable=warning,performance,portability --platform=win64 --inline-suppr -Uerrno_t --xml --xml-version=2",
+              "cppcheck_exit": 0,
+              "cppcheck_xml": ".git/reliefwin-controls-analysis/final_project_trackbar_paint.xml",
+              "cppcheck_xml_sha256": "5c4e7c1d4d45479b8bb5b8fa2fa8f142382fb3def5a28a6067d1414af7767312",
+              "reason": "Cppcheck reported preprocessorErrorDirective: #error Only Win32 target is supported! at output-Clang-amd64-debug/sdk/include/vadefs.h:10. It did not model Clang target builtins from the build command."
+            }
+          ],
+          "compiler_preprocessed_mode": [
+            {
+              "variant": "uxtheme_apitest",
+              "preprocessed_sha256": "d82146537650da8972fb39d7dfd7951ffd52bcdb453a40c52841743200b2feb6",
+              "preprocessed_bytes": 3803055,
+              "compiler_exit": 0,
+              "cppcheck_version": "Cppcheck 2.7",
+              "cppcheck_exit": 0,
+              "parser_complete": false,
+              "status": "INCOMPLETE",
+              "cppcheck_xml": ".git/reliefwin-controls-analysis/final_uxtheme_apitest_TrackbarPaintLifetime.c.xml",
+              "cppcheck_xml_sha256": "64bdeb6e4aae968914017a9aae1cdfd6b2bd3ae90b1dcf9dfc358fd1a09a13f4",
+              "findings": [
+                {
+                  "id": "syntaxError",
+                  "severity": "error",
+                  "msg": "syntax error: 15 =",
+                  "file0": "/root/reliefwin.2/.git/reliefwin-controls-analysis/preprocessed/final_uxtheme_apitest.i",
+                  "locations": [
+                    {
+                      "file": "/root/reliefwin.2/sdk/include/psdk/shellapi.h",
+                      "line": "895",
+                      "column": "13"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "analysis_compdb": {
+    "path": "/root/reliefwin.2/.git/reliefwin-controls-analysis-compdb.json",
+    "sha256": "c994ed0646a765250c76a1cfe3fe6a508539568bad3e19b9dff8d7bdccdd0d28",
+    "entries": 37455,
+    "configure_on_exit": 0,
+    "compdb_exit": 0,
+    "configure_off_exit": 0,
+    "ENABLE_ROSTESTS_restored_OFF": true,
+    "actual_amd64_clang_compile_entries": {
+      "RoundedControls.c": 1,
+      "TrackbarCenter.c": 1,
+      "TrackbarPaintLifetime.c": 1,
+      "NativeScrollbarTheme.c": 1,
+      "testlist.c": 359
+    }
+  },
+  "deployments": {
+    "final": {
+      "files": {
+        "/Windows/system32/user32.dll": {
+          "arch": "amd64",
+          "sha256": "9ec58de8763c0cf474df38439b2caae0b9e7d86651ab384efa9bb4f97d1df3d0",
+          "size": 4036608,
+          "machine": "0x8664",
+          "old_sha256": "9290713488253ce1cf737b25dd5ada573a83b836ab7dc25910faa9f453700ff0"
+        },
+        "/Windows/SysWOW64/user32.dll": {
+          "arch": "i386",
+          "sha256": "52a2c0612200b7ec17e76a1eb4fd073592d3581406f5d505f4b6c1afc079f3eb",
+          "size": 4045824,
+          "machine": "0x14c",
+          "old_sha256": "743585ec4bcc53bada30e755cdd207a7f9bb26ef4c32680ecc21d4a905a65567"
+        },
+        "/Windows/system32/uxtheme.dll": {
+          "arch": "amd64",
+          "sha256": "a7fc21cb88ce8ad5ccac1cd554f9d81b794dd7f7aedb1f46c745eedb2a95ef03",
+          "size": 678912,
+          "machine": "0x8664",
+          "old_sha256": "d6a50f4d8b6f15a68f9586eecb6b0c96d03dc61a8f969af83f0aa4c973060bc9"
+        },
+        "/Windows/SysWOW64/uxtheme.dll": {
+          "arch": "i386",
+          "sha256": "00355e67d05368be1de147e9ecbb073bbfa4f57550425a4cc6ab9cb0714848ea",
+          "size": 649728,
+          "machine": "0x14c",
+          "old_sha256": "f9905e83e5bb1f9d6250539886d0dd75c4e0fba7dd2bfa3865c6acef0a326ad9"
+        },
+        "/Windows/system32/comctl32.dll": {
+          "arch": "amd64",
+          "sha256": "51900325a426f229b8c7d31da9a76087ab4e41ad3a82a101e8b21df6d2ff3ad2",
+          "size": 1480192,
+          "machine": "0x8664",
+          "old_sha256": "6c2d4f8647f87003d12d1255545b206aac98bbb8517016ee88693e2d853ba676"
+        },
+        "/Windows/SysWOW64/comctl32.dll": {
+          "arch": "i386",
+          "sha256": "188be9e8d5daf841e02a1f0b8a568d30cbcb2ea04282c080afaa1cd6006d4244",
+          "size": 1475072,
+          "machine": "0x14c",
+          "old_sha256": "46cdb4c925de14a86fe3ebacca27fc539f886b86c1be61abc261a769019a4cac"
+        },
+        "/Windows/winsxs/amd64_microsoft.windows.common-controls_6595b64144ccf1df_5.82.2600.2982_none_deadbeef/comctl32.dll": {
+          "arch": "amd64",
+          "sha256": "51900325a426f229b8c7d31da9a76087ab4e41ad3a82a101e8b21df6d2ff3ad2",
+          "size": 1480192,
+          "machine": "0x8664",
+          "old_sha256": "6c2d4f8647f87003d12d1255545b206aac98bbb8517016ee88693e2d853ba676"
+        },
+        "/Windows/winsxs/x86_microsoft.windows.common-controls_6595b64144ccf1df_5.82.2600.2982_none_deadbeef/comctl32.dll": {
+          "arch": "i386",
+          "sha256": "188be9e8d5daf841e02a1f0b8a568d30cbcb2ea04282c080afaa1cd6006d4244",
+          "size": 1475072,
+          "machine": "0x14c",
+          "old_sha256": "46cdb4c925de14a86fe3ebacca27fc539f886b86c1be61abc261a769019a4cac"
+        },
+        "/Windows/winsxs/amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.2600.2982_none_deadbeef/comctl32.dll": {
+          "arch": "amd64",
+          "sha256": "40790fdd02a4e1e170782aebc24de3b4d2bc7892ca212ef8485fb0745c11f317",
+          "size": 1795072,
+          "machine": "0x8664",
+          "old_sha256": "7a690797b732cc52f27531eb7bbadca52d24166403b6a1c0fe30075cc03b4e9a"
+        },
+        "/Windows/winsxs/x86_microsoft.windows.common-controls_6595b64144ccf1df_6.0.2600.2982_none_deadbeef/comctl32.dll": {
+          "arch": "i386",
+          "sha256": "2b8d52cebfdbbce04a89e822fe642ef7525058c1a413fe060151f32b160bb44b",
+          "size": 1795584,
+          "machine": "0x14c",
+          "old_sha256": "179ea1439fc5808361f3e3b8457eda03a3cf5315f7d69288868573fc48b2c7c5"
+        }
+      },
+      "untouched": {
+        "/Windows/system32/uxtheme.dll": "a7fc21cb88ce8ad5ccac1cd554f9d81b794dd7f7aedb1f46c745eedb2a95ef03",
+        "/Windows/system32/user32.dll": "9ec58de8763c0cf474df38439b2caae0b9e7d86651ab384efa9bb4f97d1df3d0",
+        "/Windows/system32/comctl32.dll": "51900325a426f229b8c7d31da9a76087ab4e41ad3a82a101e8b21df6d2ff3ad2",
+        "/Windows/SysWOW64/comctl32.dll": "188be9e8d5daf841e02a1f0b8a568d30cbcb2ea04282c080afaa1cd6006d4244",
+        "/Windows/winsxs/amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.2600.2982_none_deadbeef/comctl32.dll": "40790fdd02a4e1e170782aebc24de3b4d2bc7892ca212ef8485fb0745c11f317",
+        "/Windows/winsxs/x86_microsoft.windows.common-controls_6595b64144ccf1df_6.0.2600.2982_none_deadbeef/comctl32.dll": "2b8d52cebfdbbce04a89e822fe642ef7525058c1a413fe060151f32b160bb44b",
+        "/Windows/winsxs/amd64_microsoft.windows.common-controls_6595b64144ccf1df_5.82.2600.2982_none_deadbeef/comctl32.dll": "51900325a426f229b8c7d31da9a76087ab4e41ad3a82a101e8b21df6d2ff3ad2",
+        "/Windows/winsxs/x86_microsoft.windows.common-controls_6595b64144ccf1df_5.82.2600.2982_none_deadbeef/comctl32.dll": "188be9e8d5daf841e02a1f0b8a568d30cbcb2ea04282c080afaa1cd6006d4244"
+      },
+      "runtime_pending": false
+    }
+  },
+  "runtime_after_reboot": {
+    "cold_boot_desktop_verified": true,
+    "test_run": "fixed",
+    "total_checks": 20210,
+    "total_failures": 0,
+    "total_skips": 0,
+    "qemu_running_for_screenshot": true,
+    "screenshots": [
+      {
+        "path": "media/graphics/screenshots/rounded-controls.png",
+        "sha256": "c79ad8286b771786bf7300083495cb66e7b9ed7dd472fe7b218ea7018757609c",
+        "capture": "QMP screen dump; final cold boot"
+      },
+      {
+        "path": "media/graphics/screenshots/rounded-controls-slider.png",
+        "sha256": "6a33d028c4674b7ec51411c5a1c3c75a0db00091fd1fa4b6e9c123c8770a6ff8",
+        "capture": "Earlier QMP desktop screen crop after the center fix, before native scrollbar theme update"
+      },
+      {
+        "path": "media/graphics/screenshots/rounded-controls-settings.png",
+        "sha256": "8dcae2c5bc4f7821a0c55ae9f6f46c69709b0665a309f28d462f7d5a462a86c7",
+        "capture": "Earlier live ReliefWin desktop capture"
+      }
+    ]
+  }
+}

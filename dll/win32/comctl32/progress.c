@@ -310,10 +310,11 @@ static const ProgressDrawProc drawProcThemed[8] = {
 };
 #endif /* __WINE_COMCTL32_VERSION == 6 */
 
-static void PROGRESS_DrawBackground (const PROGRESS_INFO *infoPtr, HDC hdc, ProgressDrawInfo *pdi)
+static BOOL PROGRESS_DrawBackground (const PROGRESS_INFO *infoPtr, HDC hdc, ProgressDrawInfo *pdi)
 {
 #if __WINE_COMCTL32_VERSION == 6
-    HTHEME theme = GetWindowTheme (infoPtr->Self);
+    HWND window = infoPtr->Self;
+    HTHEME theme = GetWindowTheme (window);
 
     if (theme)
     {
@@ -322,19 +323,21 @@ static void PROGRESS_DrawBackground (const PROGRESS_INFO *infoPtr, HDC hdc, Prog
 
         GetThemeBackgroundContentRect (theme, hdc, part, 0, &pdi->rect, &content_rect);
 
-        /* Exclude content rect - content background will be drawn later */
-        ExcludeClipRect (hdc, content_rect.left, content_rect.top, content_rect.right, content_rect.bottom);
         if (IsThemeBackgroundPartiallyTransparent (theme, part, 0))
-            DrawThemeParentBackground (infoPtr->Self, hdc, NULL);
+        {
+            DrawThemeParentBackground (window, hdc, NULL);
+            if (GetWindowLongPtrW (window, 0) != (LONG_PTR)infoPtr || GetWindowTheme (window) != theme)
+                return FALSE;
+        }
         DrawThemeBackground (theme, hdc, part, 0, &pdi->rect, NULL);
-        SelectClipRgn (hdc, NULL);
         pdi->rect = content_rect;
-        return;
+        return TRUE;
     }
 #endif
 
     FrameRect (hdc, &pdi->rect, pdi->hbrBk);
     InflateRect (&pdi->rect, -1, -1);
+    return TRUE;
 }
 
 static BOOL PROGRESS_IsSmooth(HWND hwnd)
@@ -380,9 +383,39 @@ static void PROGRESS_DrawStripes( ProgressDrawInfo *pdi, const ProgressDrawProc 
     HDC tintDc;
     int pos;
 
+    if (IsRectEmpty( r ))
+        return;
+
     drawProcs[0]( pdi, 0, barSize );
     if (SaveDC( pdi->hdc ) == 0)
         return;
+
+#if __WINE_COMCTL32_VERSION == 6
+    {
+        HTHEME theme = GetWindowTheme( pdi->infoPtr->Self );
+        int part = (style & PBS_VERTICAL) ? PP_FILLVERT : PP_FILL;
+
+        if (theme && IsThemeBackgroundPartiallyTransparent( theme, part, pdi->infoPtr->State ))
+        {
+            HRGN region = NULL;
+            int clipped;
+
+            if (FAILED(GetThemeBackgroundRegion( theme, pdi->hdc, part, pdi->infoPtr->State, r, &region )) ||
+                !region)
+            {
+                RestoreDC( pdi->hdc, -1 );
+                return;
+            }
+            clipped = ExtSelectClipRgn( pdi->hdc, region, RGN_AND );
+            DeleteObject( region );
+            if (clipped == ERROR)
+            {
+                RestoreDC( pdi->hdc, -1 );
+                return;
+            }
+        }
+    }
+#endif
 
     BeginPath( pdi->hdc );
     for (pos = offset - period; pos < barSize + band; pos += period)
@@ -432,6 +465,8 @@ static LRESULT PROGRESS_Draw (PROGRESS_INFO *infoPtr, HDC hdc)
     BOOL barSmooth;
     const ProgressDrawProc* drawProcs;
     ProgressDrawInfo pdi;
+    HWND window = infoPtr->Self;
+    COLORREF colorBar = infoPtr->ColorBar, colorBk = infoPtr->ColorBk;
 
     TRACE("(infoPtr=%p, hdc=%p)\n", infoPtr, hdc);
 
@@ -439,26 +474,27 @@ static LRESULT PROGRESS_Draw (PROGRESS_INFO *infoPtr, HDC hdc)
     pdi.hdc = hdc;
 
     /* get the required bar brush */
-    if (infoPtr->ColorBar == CLR_DEFAULT)
+    if (colorBar == CLR_DEFAULT)
         pdi.hbrBar = GetSysColorBrush(COLOR_HIGHLIGHT);
     else
-        pdi.hbrBar = CreateSolidBrush (infoPtr->ColorBar);
+        pdi.hbrBar = CreateSolidBrush (colorBar);
 
-    if (infoPtr->ColorBk == CLR_DEFAULT)
+    if (colorBk == CLR_DEFAULT)
         pdi.hbrBk = GetSysColorBrush(COLOR_3DFACE);
     else
-        pdi.hbrBk = CreateSolidBrush(infoPtr->ColorBk);
+        pdi.hbrBk = CreateSolidBrush(colorBk);
 
     /* get the window style */
-    dwStyle = GetWindowLongW (infoPtr->Self, GWL_STYLE);
+    dwStyle = GetWindowLongW (window, GWL_STYLE);
 
     /* get client rectangle */
-    GetClientRect (infoPtr->Self, &pdi.rect);
-    PROGRESS_DrawBackground (infoPtr, hdc, &pdi);
+    GetClientRect (window, &pdi.rect);
+    if (!PROGRESS_DrawBackground (infoPtr, hdc, &pdi))
+        goto cleanup;
 
     /* compute some drawing parameters */
-    barSmooth = PROGRESS_IsSmooth(infoPtr->Self);
-    drawProcs = PROGRESS_GetDrawProcs(infoPtr->Self, barSmooth, dwStyle);
+    barSmooth = PROGRESS_IsSmooth(window);
+    drawProcs = PROGRESS_GetDrawProcs(window, barSmooth, dwStyle);
     barSize = get_bar_size( dwStyle, &pdi.rect );
 
     if (!barSmooth)
@@ -468,7 +504,7 @@ static LRESULT PROGRESS_Draw (PROGRESS_INFO *infoPtr, HDC hdc)
 #ifdef __REACTOS__
     if (dwStyle & PBS_MARQUEE)
     {
-        PROGRESS_DrawStripes( &pdi, PROGRESS_GetDrawProcs( infoPtr->Self, TRUE, dwStyle ), dwStyle, barSize );
+        PROGRESS_DrawStripes( &pdi, PROGRESS_GetDrawProcs( window, TRUE, dwStyle ), dwStyle, barSize );
     }
     else
 #endif
@@ -513,9 +549,10 @@ static LRESULT PROGRESS_Draw (PROGRESS_INFO *infoPtr, HDC hdc)
         drawProcs[1]( &pdi, barEnd, barSize);
     }
 
+cleanup:
     /* delete bar brush */
-    if (infoPtr->ColorBar != CLR_DEFAULT) DeleteObject (pdi.hbrBar);
-    if (infoPtr->ColorBk != CLR_DEFAULT) DeleteObject (pdi.hbrBk);
+    if (colorBar != CLR_DEFAULT) DeleteObject (pdi.hbrBar);
+    if (colorBk != CLR_DEFAULT) DeleteObject (pdi.hbrBk);
 
     return 0;
 }
@@ -528,10 +565,12 @@ static LRESULT PROGRESS_Draw (PROGRESS_INFO *infoPtr, HDC hdc)
 static LRESULT PROGRESS_Paint (PROGRESS_INFO *infoPtr, HDC hdc)
 {
     PAINTSTRUCT ps;
+    HWND window = infoPtr->Self;
+
     if (hdc) return PROGRESS_Draw (infoPtr, hdc);
-    hdc = BeginPaint (infoPtr->Self, &ps);
+    hdc = BeginPaint (window, &ps);
     PROGRESS_Draw (infoPtr, hdc);
-    EndPaint (infoPtr->Self, &ps);
+    EndPaint (window, &ps);
     return 0;
 }
 

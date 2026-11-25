@@ -100,10 +100,9 @@ BOOL WINAPI IsThemeDialogTextureEnabled(HWND hwnd)
 HRESULT WINAPI DrawThemeParentBackground(HWND hwnd, HDC hdc, RECT *prc)
 {
     RECT rt;
-    POINT org;
+    POINT origin = {0};
     HWND hParent;
-    HRGN clip = NULL;
-    int hasClip = -1;
+    int saved;
     HRESULT hr = S_OK;
 
     TRACE("(%p,%p,%p)\n", hwnd, hdc, prc);
@@ -121,23 +120,21 @@ HRESULT WINAPI DrawThemeParentBackground(HWND hwnd, HDC hdc, RECT *prc)
     if (HandleToUlong(GetPropW(hParent, UXTHEME_PARENTBKGND_PROP)) & UXTHEME_PARENTBKGND_DRAWING)
         return S_FALSE;
 
-    if(prc) {
+    if (prc)
         rt = *prc;
-        MapWindowPoints(hwnd, hParent, (LPPOINT)&rt, 2);
+    else if (!GetClientRect(hwnd, &rt))
+        return E_HANDLE;
 
-        clip = CreateRectRgn(0,0,1,1);
-        hasClip = GetClipRgn(hdc, clip);
-        if(hasClip == -1)
-            TRACE("Failed to get original clipping region\n");
-        else
-            IntersectClipRect(hdc, prc->left, prc->top, prc->right, prc->bottom);
+    MapWindowPoints(hwnd, hParent, &origin, 1);
+    saved = SaveDC(hdc);
+    if (!saved)
+        return E_FAIL;
+    if (IntersectClipRect(hdc, rt.left, rt.top, rt.right, rt.bottom) == ERROR ||
+        !OffsetViewportOrgEx(hdc, -origin.x, -origin.y, NULL))
+    {
+        RestoreDC(hdc, saved);
+        return E_FAIL;
     }
-    else {
-        GetClientRect(hwnd, &rt);
-        MapWindowPoints(hwnd, hParent, (LPPOINT)&rt, 2);
-    }
-
-    OffsetViewportOrgEx(hdc, -rt.left, -rt.top, &org);
 
     SetPropW(hParent, UXTHEME_PARENTBKGND_PROP, UlongToHandle(UXTHEME_PARENTBKGND_DRAWING));
     SendMessageW(hParent, WM_ERASEBKGND, (WPARAM)hdc, 0);
@@ -146,14 +143,8 @@ HRESULT WINAPI DrawThemeParentBackground(HWND hwnd, HDC hdc, RECT *prc)
         hr = S_FALSE;
     RemovePropW(hParent, UXTHEME_PARENTBKGND_PROP);
 
-    SetViewportOrgEx(hdc, org.x, org.y, NULL);
-    if(prc) {
-        if(hasClip == 0)
-            SelectClipRgn(hdc, NULL);
-        else if(hasClip == 1)
-            SelectClipRgn(hdc, clip);
-        DeleteObject(clip);
-    }
+    if (!RestoreDC(hdc, saved))
+        return E_FAIL;
     return hr;
 }
 
@@ -2054,8 +2045,8 @@ static HRESULT create_image_bg_region(HTHEME theme, int part, int state, const R
 
     if (FAILED(DrawThemeBackground(theme, dc, part, state, &r, NULL))) {
         WARN("DrawThemeBackground failed\n");
-        DeleteObject(bmp);
         DeleteDC(dc);
+        DeleteObject(bmp);
         return E_FAIL;
     }
 
@@ -2080,8 +2071,8 @@ static HRESULT create_image_bg_region(HTHEME theme, int part, int state, const R
 
     *rgn = hrgn;
 
-    DeleteObject(bmp);
     DeleteDC(dc);
+    DeleteObject(bmp);
 
     return S_OK;
 }

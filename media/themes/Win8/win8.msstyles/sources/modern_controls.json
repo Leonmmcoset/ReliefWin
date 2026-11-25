@@ -1,0 +1,1172 @@
+{
+  "NORMAL_MODERNBUTTON.bmp": {
+    "states": 5,
+    "size": [
+      32,
+      24
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "bfb069f6310be1db958a2451a7e5ad54f9205a367e1d2994f22a0204f645a6e4"
+  },
+  "NORMAL_MODERNEDIT.bmp": {
+    "states": 8,
+    "size": [
+      32,
+      24
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "8cf3801100e66eeaee7904a4d3cf211d02b5182a60cb7b0ef2ee3061e693142f"
+  },
+  "NORMAL_MODERNFIELDBORDER.bmp": {
+    "states": 4,
+    "size": [
+      32,
+      24
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "011b59430351f295c88a433aadbac4da17a6338d05cfbb4578e89b4a8895fa84"
+  },
+  "NORMAL_MODERNCOMBO.bmp": {
+    "states": 4,
+    "size": [
+      32,
+      24
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "011b59430351f295c88a433aadbac4da17a6338d05cfbb4578e89b4a8895fa84"
+  },
+  "NORMAL_MODERNCOMBOARROW.bmp": {
+    "states": 4,
+    "size": [
+      24,
+      24
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "ef7dac9eeb71c4511b1d602fdd1ea5dd4063a87aa0494a3c21c9e630f64ff6c8"
+  },
+  "NORMAL_MODERNCOMBOARROWLEFT.bmp": {
+    "states": 4,
+    "size": [
+      24,
+      24
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "c9b50d1b747bc80780edbde615cd9a0ec20d65c9290e4aaa32339be64462bba3"
+  },
+  "NORMAL_MODERNCHECK.bmp": {
+    "states": 12,
+    "size": [
+      16,
+      16
+    ],
+    "margins": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "radius": 4,
+    "sha256": "052b2fabb47e4f494dece01ddae3e0b1a7594247ac4a253b3c9d42b08a13c8cb"
+  },
+  "NORMAL_MODERNRADIO.bmp": {
+    "states": 8,
+    "size": [
+      16,
+      16
+    ],
+    "margins": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "radius": 8,
+    "sha256": "52962a125e1cb7cfe31d9d90743dfd90fc8d065973901facb6fca7499a8c6408"
+  },
+  "NORMAL_MODERNGROUP.bmp": {
+    "states": 2,
+    "size": [
+      32,
+      24
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "c6c2506d5f05a5624ec5291d5124316556abb91108249643a68fdab2d3518fa5"
+  },
+  "NORMAL_MODERNSCROLLTHUMBH.bmp": {
+    "states": 4,
+    "size": [
+      24,
+      12
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "ffab50eda136ff83af67c4410667e4c4a2a0d15490fedb7f7656d8700f996740"
+  },
+  "NORMAL_MODERNSCROLLTRACKH.bmp": {
+    "states": 4,
+    "size": [
+      24,
+      12
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "c92c7d25ca9ed22c3d231923432d2d53da116b5d777b1aa8729ca140b73e06d9"
+  },
+  "NORMAL_MODERNSCROLLTHUMBV.bmp": {
+    "states": 4,
+    "size": [
+      12,
+      24
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "d84d0b2347c1f3126873ff76312017899abc9136f1be16d65b80148747658a6b"
+  },
+  "NORMAL_MODERNSCROLLTRACKV.bmp": {
+    "states": 4,
+    "size": [
+      12,
+      24
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "88939df5305593b4c7c78c82260d08bc9216edd061b3300dee70bb6e9818bd5a"
+  },
+  "NORMAL_MODERNSCROLLARROW.bmp": {
+    "states": 16,
+    "size": [
+      24,
+      24
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "22f5b427cda0a5cac5e498cad7f6bbaabf38c90e5a55e8d3119912c012a2fca4"
+  },
+  "NORMAL_MODERNSCROLLGLYPH.bmp": {
+    "states": 16,
+    "size": [
+      12,
+      12
+    ],
+    "margins": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "radius": 0,
+    "sha256": "39dd89e84f073f4af672653d61d466fbc3491f7ed63432626385eed61c6a126a"
+  },
+  "NORMAL_MODERNPROGRESSTRACKH.bmp": {
+    "states": 1,
+    "size": [
+      32,
+      12
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "d1d12305b59fc4cc1887618f202c5ac1419f0d761855eef200ab547a45ce3e83"
+  },
+  "NORMAL_MODERNPROGRESSFILLH.bmp": {
+    "states": 4,
+    "size": [
+      32,
+      12
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "6fe670e143b790717831f69f3c5c7ea3a07adfed9b67b77b3bbf326e94f7733e"
+  },
+  "NORMAL_MODERNPROGRESSTRACKV.bmp": {
+    "states": 1,
+    "size": [
+      12,
+      32
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "2348d372c3c9151d96d6b5c4e336dff0f364e2b28fc31b95fd38399d8db34c5f"
+  },
+  "NORMAL_MODERNPROGRESSFILLV.bmp": {
+    "states": 4,
+    "size": [
+      12,
+      32
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "5d9281d603763273201b29292888f14ec32f71d49d30cbc384a8934df53c403c"
+  },
+  "NORMAL_MODERNTAB.bmp": {
+    "states": 5,
+    "size": [
+      32,
+      24
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "fc621cc644274447d10beb80582b849eacc6769b943500a4e281ce47372ea9b6"
+  },
+  "NORMAL_MODERNPANE.bmp": {
+    "states": 1,
+    "size": [
+      32,
+      24
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "8128817c3bb84a739f7c8fe91d8530c170fb2dd746fc1227bed4729c2f8ffb61"
+  },
+  "NORMAL_MODERNSPINUP.bmp": {
+    "states": 4,
+    "size": [
+      24,
+      24
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "7898ef221651e4456b73b3170fd070c6fae216f2b8ad8ff6e9b170363e470a1c"
+  },
+  "NORMAL_MODERNUPGLYPH.bmp": {
+    "states": 4,
+    "size": [
+      12,
+      12
+    ],
+    "margins": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "radius": 0,
+    "sha256": "d21cd39efa5a174b5ca54168f5e4adac4925b3c8acbd67dee062b6d5df28a3fe"
+  },
+  "NORMAL_MODERNSPINDOWN.bmp": {
+    "states": 4,
+    "size": [
+      24,
+      24
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "40f1be8baed7deb3f46836a6d6822b08fc5748b902cce48f7ea49551a36866ed"
+  },
+  "NORMAL_MODERNDOWNGLYPH.bmp": {
+    "states": 4,
+    "size": [
+      12,
+      12
+    ],
+    "margins": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "radius": 0,
+    "sha256": "68d0a87dad25d2e23a30ff42402e31336d2ddd6da78afdcd981bcfc8cc30e89b"
+  },
+  "NORMAL_MODERNSPINLEFT.bmp": {
+    "states": 4,
+    "size": [
+      24,
+      24
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "c9b50d1b747bc80780edbde615cd9a0ec20d65c9290e4aaa32339be64462bba3"
+  },
+  "NORMAL_MODERNLEFTGLYPH.bmp": {
+    "states": 4,
+    "size": [
+      12,
+      12
+    ],
+    "margins": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "radius": 0,
+    "sha256": "c45c9613e99185fe715d84cac9a65f3eac08564b8654693b2cd7401eab4a44a4"
+  },
+  "NORMAL_MODERNSPINRIGHT.bmp": {
+    "states": 4,
+    "size": [
+      24,
+      24
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "ef7dac9eeb71c4511b1d602fdd1ea5dd4063a87aa0494a3c21c9e630f64ff6c8"
+  },
+  "NORMAL_MODERNRIGHTGLYPH.bmp": {
+    "states": 4,
+    "size": [
+      12,
+      12
+    ],
+    "margins": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "radius": 0,
+    "sha256": "c78a7867eebcf32af941c4dc35162ac94787e9944c3d013ed0fad47e67200e28"
+  },
+  "NORMAL_MODERNTRACKTHUMB.bmp": {
+    "states": 5,
+    "size": [
+      20,
+      20
+    ],
+    "margins": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "radius": 10,
+    "sha256": "5c0a482a58967e124bb9e3d2eefe4b750616976932a71641f2214e64cd66c7a5"
+  },
+  "NORMAL_MODERNTRACKH.bmp": {
+    "states": 1,
+    "size": [
+      32,
+      8
+    ],
+    "margins": [
+      5,
+      5,
+      3,
+      3
+    ],
+    "radius": 4,
+    "sha256": "8acaa827bb1c5738e5303bd6a7014bad747f622dca6cff40103d75b93023946b"
+  },
+  "NORMAL_MODERNTRACKV.bmp": {
+    "states": 1,
+    "size": [
+      8,
+      32
+    ],
+    "margins": [
+      3,
+      3,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "92128bba0ad397261174fb650c95a75a4c8a71f07128141134d626e9c4e44f06"
+  },
+  "NORMAL_MODERNTOOLBAR.bmp": {
+    "states": 6,
+    "size": [
+      24,
+      24
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "fe6a4dbab67460753bfa25db509edc228780a61ebae987ba6c1055beb3a656e6"
+  },
+  "NORMAL_MODERNTOOLBARSPLIT.bmp": {
+    "states": 6,
+    "size": [
+      24,
+      24
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "4332cd301bbff795c4ed13400919e99506e619490dc0e67be1fce74ae1b6129a"
+  },
+  "NORMAL_MODERNTOOLBARDROP.bmp": {
+    "states": 6,
+    "size": [
+      24,
+      24
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "3d5c615dcde5c6dc3c8fbbd42c1be758b39eeb329ea8daf4e1a982d3f6f12db7"
+  },
+  "NORMAL_MODERNTOOLBARGLYPH.bmp": {
+    "states": 6,
+    "size": [
+      12,
+      12
+    ],
+    "margins": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "radius": 0,
+    "sha256": "c3bd304a61183bcba7b4e41b18f35cdb07eab68d614857d1a5db8ceb37163181"
+  },
+  "NORMAL_MODERNLISTITEM.bmp": {
+    "states": 6,
+    "size": [
+      32,
+      24
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "0e5362eca1ff55848c5e2e152fbf5ed8deda90ecbf019107021b16a55186f65c"
+  },
+  "NORMAL_MODERNTREEITEM.bmp": {
+    "states": 6,
+    "size": [
+      32,
+      24
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "0e5362eca1ff55848c5e2e152fbf5ed8deda90ecbf019107021b16a55186f65c"
+  },
+  "NORMAL_MODERNEMPTY.bmp": {
+    "states": 4,
+    "size": [
+      1,
+      1
+    ],
+    "margins": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "radius": 0,
+    "sha256": "156a26ef050df49b119fb43e1f9c059d966d40a42acc184ae7a49b9e60a38175"
+  },
+  "LIGHT_MODERNBUTTON.bmp": {
+    "states": 5,
+    "size": [
+      32,
+      24
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "b79f1d57bd9411ee51378f7c7fb818fa434325cd132af6ab3c6f8895a52262d7"
+  },
+  "LIGHT_MODERNEDIT.bmp": {
+    "states": 8,
+    "size": [
+      32,
+      24
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "212a0bfe325f96c0e0ec60a3f82adcbc6bd02cbfc494a55d97d6e3537f45cafa"
+  },
+  "LIGHT_MODERNFIELDBORDER.bmp": {
+    "states": 4,
+    "size": [
+      32,
+      24
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "fb68d3b1e954f0052361cb43ab3b50927a05b151cfdf4857246c1840080b61d0"
+  },
+  "LIGHT_MODERNCOMBO.bmp": {
+    "states": 4,
+    "size": [
+      32,
+      24
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "fb68d3b1e954f0052361cb43ab3b50927a05b151cfdf4857246c1840080b61d0"
+  },
+  "LIGHT_MODERNCOMBOARROW.bmp": {
+    "states": 4,
+    "size": [
+      24,
+      24
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "96a5c2ee1fc14d95a6cdb85ec3d07d54df43f04a609d6e9b86f04f924565ff1e"
+  },
+  "LIGHT_MODERNCOMBOARROWLEFT.bmp": {
+    "states": 4,
+    "size": [
+      24,
+      24
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "750da43f9f214469b497f8aef491b61408f16119aa8945f20f29ee4e274e483d"
+  },
+  "LIGHT_MODERNCHECK.bmp": {
+    "states": 12,
+    "size": [
+      16,
+      16
+    ],
+    "margins": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "radius": 4,
+    "sha256": "e74be24087d98d8104b2f238808be9805da694136d297544cf13037ca3499600"
+  },
+  "LIGHT_MODERNRADIO.bmp": {
+    "states": 8,
+    "size": [
+      16,
+      16
+    ],
+    "margins": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "radius": 8,
+    "sha256": "808f75b2982ad2ae76f59bf0b03f30ff78adfa29f5c9f94b77e29c958a3eb491"
+  },
+  "LIGHT_MODERNGROUP.bmp": {
+    "states": 2,
+    "size": [
+      32,
+      24
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "feab77f70a2b68665026e99e8107145dd2402db4d72bc32214754bdb14cd7cce"
+  },
+  "LIGHT_MODERNSCROLLTHUMBH.bmp": {
+    "states": 4,
+    "size": [
+      24,
+      12
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "7c7370322b42ba4848f2af4601dd46af418be07464d1ce39e5da22d7cc2869f6"
+  },
+  "LIGHT_MODERNSCROLLTRACKH.bmp": {
+    "states": 4,
+    "size": [
+      24,
+      12
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "ef3eb80f17b08c94458c960bd6085ab61587055c71f3c603458233dec1328d8c"
+  },
+  "LIGHT_MODERNSCROLLTHUMBV.bmp": {
+    "states": 4,
+    "size": [
+      12,
+      24
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "349742d108eecfd4b0271101f5fb19e16caf2034c9b28c727c696b885c5574f7"
+  },
+  "LIGHT_MODERNSCROLLTRACKV.bmp": {
+    "states": 4,
+    "size": [
+      12,
+      24
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "7d929008286ca777413057f35401d2726c573df9ee4107060d7a3d6fc9b217b4"
+  },
+  "LIGHT_MODERNSCROLLARROW.bmp": {
+    "states": 16,
+    "size": [
+      24,
+      24
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "6bb951f917c3c49c6ce415f028992b64f0b9264c2d64a358b1708d61feb0193b"
+  },
+  "LIGHT_MODERNSCROLLGLYPH.bmp": {
+    "states": 16,
+    "size": [
+      12,
+      12
+    ],
+    "margins": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "radius": 0,
+    "sha256": "50505e4d88b17447f5dc1135a463db9eec56bfd74be8d8a7b1eeadabbfacf961"
+  },
+  "LIGHT_MODERNPROGRESSTRACKH.bmp": {
+    "states": 1,
+    "size": [
+      32,
+      12
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "7c4c783f12f6d4ef232f49252a7d0149050c7bfbf6fd28c7822f6b9296eb744c"
+  },
+  "LIGHT_MODERNPROGRESSFILLH.bmp": {
+    "states": 4,
+    "size": [
+      32,
+      12
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "13a036ae1f6f7b8a109ae853b1d30990a25d0c8d582216f8733b555e18def8da"
+  },
+  "LIGHT_MODERNPROGRESSTRACKV.bmp": {
+    "states": 1,
+    "size": [
+      12,
+      32
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "c850a8af1bb1e83a89f50f59bd4a77df7041285e5a95a8114fe79bfde09aaabb"
+  },
+  "LIGHT_MODERNPROGRESSFILLV.bmp": {
+    "states": 4,
+    "size": [
+      12,
+      32
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "65fe43c9b841ec0cca3674cfe34c7077067f039f710665c2b3a1704c55a39ba4"
+  },
+  "LIGHT_MODERNTAB.bmp": {
+    "states": 5,
+    "size": [
+      32,
+      24
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "d9a418c097decd953fdf85375c98e966adf393ef1f2f50d16518116a595b4b88"
+  },
+  "LIGHT_MODERNPANE.bmp": {
+    "states": 1,
+    "size": [
+      32,
+      24
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "ac742b63cb7e3538573fe10cb624ba690e8ac34eb49d564fee738e871279a6fa"
+  },
+  "LIGHT_MODERNSPINUP.bmp": {
+    "states": 4,
+    "size": [
+      24,
+      24
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "8d6e0193e836063ca8dd4067d08031876c9a961e838e9d6dc8e36a8236b04e23"
+  },
+  "LIGHT_MODERNUPGLYPH.bmp": {
+    "states": 4,
+    "size": [
+      12,
+      12
+    ],
+    "margins": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "radius": 0,
+    "sha256": "0c49920542f2aba4161b4872285932aa5451073177fec11295b942529b5242aa"
+  },
+  "LIGHT_MODERNSPINDOWN.bmp": {
+    "states": 4,
+    "size": [
+      24,
+      24
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "14c78e40250c51cc99f99f2082de1c343117726233caefa2345cbfbbb3928c33"
+  },
+  "LIGHT_MODERNDOWNGLYPH.bmp": {
+    "states": 4,
+    "size": [
+      12,
+      12
+    ],
+    "margins": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "radius": 0,
+    "sha256": "0ed8e295b3740840501d65d297a5a96274c61802fcca3e52c2a3d4a481421139"
+  },
+  "LIGHT_MODERNSPINLEFT.bmp": {
+    "states": 4,
+    "size": [
+      24,
+      24
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "750da43f9f214469b497f8aef491b61408f16119aa8945f20f29ee4e274e483d"
+  },
+  "LIGHT_MODERNLEFTGLYPH.bmp": {
+    "states": 4,
+    "size": [
+      12,
+      12
+    ],
+    "margins": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "radius": 0,
+    "sha256": "75b41c75a99219727fe091546086d97c664a68edfb2867b2f9e3ffe6e2ae2e91"
+  },
+  "LIGHT_MODERNSPINRIGHT.bmp": {
+    "states": 4,
+    "size": [
+      24,
+      24
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "96a5c2ee1fc14d95a6cdb85ec3d07d54df43f04a609d6e9b86f04f924565ff1e"
+  },
+  "LIGHT_MODERNRIGHTGLYPH.bmp": {
+    "states": 4,
+    "size": [
+      12,
+      12
+    ],
+    "margins": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "radius": 0,
+    "sha256": "f128b611f3cff56f31e8c8b787e4b802ad6e5889e7b252364eafb38083150a0b"
+  },
+  "LIGHT_MODERNTRACKTHUMB.bmp": {
+    "states": 5,
+    "size": [
+      20,
+      20
+    ],
+    "margins": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "radius": 10,
+    "sha256": "c7150f142a455f9d450367713091e17a7a3203620258647ad3c415d8df8e04bb"
+  },
+  "LIGHT_MODERNTRACKH.bmp": {
+    "states": 1,
+    "size": [
+      32,
+      8
+    ],
+    "margins": [
+      5,
+      5,
+      3,
+      3
+    ],
+    "radius": 4,
+    "sha256": "81fb74ede1961695fc523c03d8c7b36aec871ecfe4280d56207c623d4fef383e"
+  },
+  "LIGHT_MODERNTRACKV.bmp": {
+    "states": 1,
+    "size": [
+      8,
+      32
+    ],
+    "margins": [
+      3,
+      3,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "161da985e74d00d40d31dd57ee9575a124530adfc411ad2c2eae19520c700f9b"
+  },
+  "LIGHT_MODERNTOOLBAR.bmp": {
+    "states": 6,
+    "size": [
+      24,
+      24
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "aead802cc394116ef4e3631fb063a7951f60c90a68a61f6a66cd0ebdfea0c011"
+  },
+  "LIGHT_MODERNTOOLBARSPLIT.bmp": {
+    "states": 6,
+    "size": [
+      24,
+      24
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "3ca7038858bc43656eb7f840f3609b2945d430d10acfc77d79c7241c1d1654e8"
+  },
+  "LIGHT_MODERNTOOLBARDROP.bmp": {
+    "states": 6,
+    "size": [
+      24,
+      24
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "2315eaf3954473f7c9d380d1fb0f129637a6c626e8423743d04d7786b09507d3"
+  },
+  "LIGHT_MODERNTOOLBARGLYPH.bmp": {
+    "states": 6,
+    "size": [
+      12,
+      12
+    ],
+    "margins": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "radius": 0,
+    "sha256": "72946f05f7a7eb59d280706b1b31b6726046d464ec23f8bab319823bf66e54a2"
+  },
+  "LIGHT_MODERNLISTITEM.bmp": {
+    "states": 6,
+    "size": [
+      32,
+      24
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "3ffd1e49c8a76f575f9705ca9f89507baa23ff877d5be28a938a30b7905cc452"
+  },
+  "LIGHT_MODERNTREEITEM.bmp": {
+    "states": 6,
+    "size": [
+      32,
+      24
+    ],
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "3ffd1e49c8a76f575f9705ca9f89507baa23ff877d5be28a938a30b7905cc452"
+  },
+  "LIGHT_MODERNEMPTY.bmp": {
+    "states": 4,
+    "size": [
+      1,
+      1
+    ],
+    "margins": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "radius": 0,
+    "sha256": "156a26ef050df49b119fb43e1f9c059d966d40a42acc184ae7a49b9e60a38175"
+  }
+}

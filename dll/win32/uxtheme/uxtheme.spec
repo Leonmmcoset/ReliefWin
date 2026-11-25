@@ -141,3 +141,4 @@
 @ stdcall ThemeDwmDrawCaptionButton(ptr ptr long long long long)
 @ stdcall ThemeDwmFrameChanged(ptr)
 @ stdcall ThemeInitApiHook(long ptr)
+@ cdecl -private UXTHEME_OpenNcThemeData(ptr wstr long)

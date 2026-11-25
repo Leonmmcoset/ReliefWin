@@ -27,6 +27,8 @@
  */
 
 #include <user32.h>
+#include <uxtheme.h>
+#include <vsstyle.h>
 
 WINE_DEFAULT_DEBUG_CHANNEL(scrollbar);
 
@@ -114,6 +116,254 @@ IntGetSBData(PWND pwnd, INT Bar)
 }
 #endif
 
+typedef struct
+{
+   HWND Window;
+   HTHEME Theme;
+   HTHEME Owner;
+   HTHEME (__cdecl *Open)(HWND, LPCWSTR, DWORD);
+   HTHEME (WINAPI *WindowTheme)(HWND);
+   HRESULT (WINAPI *Close)(HTHEME);
+   HRESULT (WINAPI *Draw)(HTHEME, HDC, int, int, const RECT *, const RECT *);
+   HRESULT (WINAPI *Parent)(HWND, HDC, RECT *);
+} SCROLL_THEME;
+
+static BOOL
+IntScrollOpenTheme(HWND Window, SCROLL_THEME *Theme)
+{
+   HMODULE Module;
+
+   ZeroMemory(Theme, sizeof(*Theme));
+   LoadUserApiHook();
+   if (!BeginIfHookedUserApiHook())
+      return FALSE;
+   Module = ghmodUserApiHook;
+   Theme->Open = (void *)GetProcAddress(Module, "UXTHEME_OpenNcThemeData");
+   Theme->WindowTheme = (void *)GetProcAddress(Module, "GetWindowTheme");
+   Theme->Close = (void *)GetProcAddress(Module, "CloseThemeData");
+   Theme->Draw = (void *)GetProcAddress(Module, "DrawThemeBackground");
+   Theme->Parent = (void *)GetProcAddress(Module, "DrawThemeParentBackground");
+   if (!Theme->Open || !Theme->WindowTheme || !Theme->Close || !Theme->Draw || !Theme->Parent)
+   {
+      EndUserApiHook();
+      return FALSE;
+   }
+   Theme->Owner = Theme->WindowTheme(Window);
+   if (!Theme->Owner)
+   {
+      EndUserApiHook();
+      return FALSE;
+   }
+   Theme->Theme = Theme->Open(Window, L"ScrollBar", 0);
+   if (!Theme->Theme)
+   {
+      EndUserApiHook();
+      return FALSE;
+   }
+   Theme->Window = Window;
+   return TRUE;
+}
+
+static void
+IntScrollCloseTheme(SCROLL_THEME *Theme)
+{
+   Theme->Close(Theme->Theme);
+   EndUserApiHook();
+}
+
+static BOOL
+IntScrollThemeCurrent(const SCROLL_THEME *Theme)
+{
+   return IsWindow(Theme->Window) && Theme->WindowTheme(Theme->Window) == Theme->Owner;
+}
+
+static BOOL
+IntScrollHasTheme(HWND Window)
+{
+   SCROLL_THEME Theme;
+
+   if (!IntScrollOpenTheme(Window, &Theme))
+      return FALSE;
+   IntScrollCloseTheme(&Theme);
+   return TRUE;
+}
+
+static int
+IntScrollThemeState(HWND Window, PSCROLLBARINFO Info, UINT Index, const RECT *Rect)
+{
+   POINT Point;
+
+   if (!IsWindowEnabled(Window) || (Info->rgstate[Index] & STATE_SYSTEM_UNAVAILABLE))
+      return SCRBS_DISABLED;
+   if ((Info->rgstate[Index] & STATE_SYSTEM_PRESSED) ||
+       (Index == SCROLL_THUMB && ScrollTrackingWin == Window &&
+        ScrollTrackHitTest == SCROLL_THUMB && GetCapture() == Window))
+      return SCRBS_PRESSED;
+   if (GetCursorPos(&Point) && ScreenToClient(Window, &Point) && PtInRect(Rect, Point))
+      return SCRBS_HOT;
+   return SCRBS_NORMAL;
+}
+
+static BOOL
+IntScrollThemePart(SCROLL_THEME *Theme, HDC Dc, int Part, int State, RECT *Rect, BOOL Background, BOOL *Aborted)
+{
+   int Saved;
+   BOOL Result = FALSE;
+
+   if (!IntScrollThemeCurrent(Theme))
+   {
+      *Aborted = TRUE;
+      return FALSE;
+   }
+   if (IsRectEmpty(Rect))
+      return TRUE;
+   Saved = SaveDC(Dc);
+   if (!Saved)
+      return FALSE;
+   if (IntersectClipRect(Dc, Rect->left, Rect->top, Rect->right, Rect->bottom) == ERROR)
+      goto Cleanup;
+   if (Background)
+   {
+      Theme->Parent(Theme->Window, Dc, Rect);
+      if (!IntScrollThemeCurrent(Theme))
+      {
+         *Aborted = TRUE;
+         goto Cleanup;
+      }
+   }
+   Result = SUCCEEDED(Theme->Draw(Theme->Theme, Dc, Part, State, Rect, NULL));
+   if (!IntScrollThemeCurrent(Theme))
+      *Aborted = TRUE;
+
+Cleanup:
+   if (!RestoreDC(Dc, Saved))
+      Result = FALSE;
+   return Result;
+}
+
+static BOOL
+IntScrollThemeArrows(HWND Window, HDC Dc, INT Bar, PSCROLLBARINFO Info, BOOL Vertical, BOOL *Aborted)
+{
+   SCROLL_THEME Theme;
+   RECT First = Info->rcScrollBar, Last = First;
+   int FirstState, LastState;
+   BOOL Result;
+
+   *Aborted = FALSE;
+
+   if (Bar != SB_CTL || !IntScrollOpenTheme(Window, &Theme))
+      return FALSE;
+   if (Vertical)
+   {
+      First.bottom = First.top + Info->dxyLineButton;
+      Last.top = Last.bottom - Info->dxyLineButton;
+   }
+   else
+   {
+      First.right = First.left + Info->dxyLineButton;
+      Last.left = Last.right - Info->dxyLineButton;
+   }
+   FirstState = (Vertical ? ABS_UPNORMAL : ABS_LEFTNORMAL) +
+                IntScrollThemeState(Window, Info, SCROLL_TOP_ARROW, &First) - SCRBS_NORMAL;
+   LastState = (Vertical ? ABS_DOWNNORMAL : ABS_RIGHTNORMAL) +
+               IntScrollThemeState(Window, Info, SCROLL_BOTTOM_ARROW, &Last) - SCRBS_NORMAL;
+   Result = IntScrollThemePart(&Theme, Dc, SBP_ARROWBTN, FirstState, &First, TRUE, Aborted);
+   if (Result && !*Aborted)
+      Result = IntScrollThemePart(&Theme, Dc, SBP_ARROWBTN, LastState, &Last, TRUE, Aborted);
+   IntScrollCloseTheme(&Theme);
+   return Result || *Aborted;
+}
+
+static BOOL
+IntScrollThemeInterior(HWND Window, HDC Dc, INT Bar, BOOL Vertical, PSCROLLBARINFO Info)
+{
+   SCROLL_THEME Theme;
+   RECT Track = Info->rcScrollBar, Thumb, First, Last;
+   HBRUSH Brush, DefaultBrush;
+   BOOL Result = FALSE, Aborted = FALSE;
+   int Saved, State, TrackPart;
+
+   if (Bar != SB_CTL || !IntScrollOpenTheme(Window, &Theme))
+      return FALSE;
+   if (Vertical)
+   {
+      Track.top += Info->dxyLineButton;
+      Track.bottom -= Info->dxyLineButton;
+   }
+   else
+   {
+      Track.left += Info->dxyLineButton;
+      Track.right -= Info->dxyLineButton;
+   }
+   Saved = SaveDC(Dc);
+   if (!Saved)
+      goto Done;
+   if (IsRectEmpty(&Track))
+   {
+      Result = TRUE;
+      goto Cleanup;
+   }
+   if (IntersectClipRect(Dc, Track.left, Track.top, Track.right, Track.bottom) == ERROR)
+      goto Cleanup;
+   Theme.Parent(Window, Dc, &Track);
+   if (!IntScrollThemeCurrent(&Theme))
+   {
+      Aborted = TRUE;
+      goto Cleanup;
+   }
+   DefaultBrush = DefWndControlColor(Dc, CTLCOLOR_SCROLLBAR);
+   Brush = GetControlBrush(Window, Dc, WM_CTLCOLORSCROLLBAR);
+   if (!IntScrollThemeCurrent(&Theme))
+   {
+      Aborted = TRUE;
+      goto Cleanup;
+   }
+   TrackPart = Vertical ? SBP_LOWERTRACKVERT : SBP_LOWERTRACKHORZ;
+   State = !IsWindowEnabled(Window) ? SCRBS_DISABLED : SCRBS_NORMAL;
+   if (Brush && Brush != DefaultBrush)
+      Result = FillRect(Dc, &Track, Brush) != 0;
+   else
+      Result = IntScrollThemePart(&Theme, Dc, TrackPart, State, &Track, FALSE, &Aborted);
+   if (!Result || Info->xyThumbTop <= 0 || Info->xyThumbBottom <= Info->xyThumbTop)
+      goto Cleanup;
+   Thumb = First = Last = Track;
+   if (Vertical)
+   {
+      Thumb.top = Info->rcScrollBar.top + Info->xyThumbTop;
+      Thumb.bottom = Info->rcScrollBar.top + Info->xyThumbBottom;
+      First.bottom = Thumb.top;
+      Last.top = Thumb.bottom;
+   }
+   else
+   {
+      Thumb.left = Info->rcScrollBar.left + Info->xyThumbTop;
+      Thumb.right = Info->rcScrollBar.left + Info->xyThumbBottom;
+      First.right = Thumb.left;
+      Last.left = Thumb.right;
+   }
+   if (!Brush || Brush == DefaultBrush)
+   {
+      Result = IntScrollThemePart(&Theme, Dc, Vertical ? SBP_UPPERTRACKVERT : SBP_UPPERTRACKHORZ,
+                                 IntScrollThemeState(Window, Info, SCROLL_TOP_RECT, &First),
+                                 &First, FALSE, &Aborted);
+      if (Result)
+         Result = IntScrollThemePart(&Theme, Dc, TrackPart,
+                                    IntScrollThemeState(Window, Info, SCROLL_BOTTOM_RECT, &Last),
+                                    &Last, FALSE, &Aborted);
+   }
+   if (Result)
+      Result = IntScrollThemePart(&Theme, Dc, Vertical ? SBP_THUMBBTNVERT : SBP_THUMBBTNHORZ,
+                                 IntScrollThemeState(Window, Info, SCROLL_THUMB, &Thumb),
+                                 &Thumb, FALSE, &Aborted);
+
+Cleanup:
+   if (!RestoreDC(Dc, Saved))
+      Result = FALSE;
+Done:
+   IntScrollCloseTheme(&Theme);
+   return Result || Aborted;
+}
+
 static void
 IntDrawScrollInterior(HWND hWnd, HDC hDC, INT nBar, BOOL Vertical,
    PSCROLLBARINFO ScrollBarInfo)
@@ -123,6 +373,11 @@ IntDrawScrollInterior(HWND hWnd, HDC hDC, INT nBar, BOOL Vertical,
    RECT Rect;
    HBRUSH hSaveBrush, hBrush;
    BOOL TopSelected = FALSE, BottomSelected = FALSE;
+
+   if (IntScrollThemeInterior(hWnd, hDC, nBar, Vertical, ScrollBarInfo))
+      return;
+   if (!IsWindow(hWnd))
+      return;
 
    if (ScrollBarInfo->rgstate[SCROLL_TOP_RECT] & STATE_SYSTEM_PRESSED)
       TopSelected = TRUE;
@@ -137,6 +392,8 @@ IntDrawScrollInterior(HWND hWnd, HDC hDC, INT nBar, BOOL Vertical,
    if (nBar == SB_CTL)
    {
       hBrush = GetControlBrush( hWnd, hDC, WM_CTLCOLORSCROLLBAR);
+      if (!IsWindow(hWnd))
+         return;
       if (!hBrush)
          hBrush = GetSysColorBrush(COLOR_SCROLLBAR);
    }
@@ -229,11 +486,17 @@ IntDrawScrollInterior(HWND hWnd, HDC hDC, INT nBar, BOOL Vertical,
    SelectObject(hDC, hSaveBrush);
 }
 
-static VOID FASTCALL
-IntDrawScrollArrows(HDC hDC, PSCROLLBARINFO ScrollBarInfo, BOOL Vertical)
+static BOOL FASTCALL
+IntDrawScrollArrows(HWND Window, HDC hDC, INT Bar, PSCROLLBARINFO ScrollBarInfo, BOOL Vertical)
 {
   RECT RectLT, RectRB;
   INT ScrollDirFlagLT, ScrollDirFlagRB;
+  BOOL Aborted;
+
+  if (IntScrollThemeArrows(Window, hDC, Bar, ScrollBarInfo, Vertical, &Aborted))
+      return !Aborted;
+  if (!IsWindow(Window))
+      return FALSE;
 
   RectLT = RectRB = ScrollBarInfo->rcScrollBar;
   if (Vertical)
@@ -270,6 +533,7 @@ IntDrawScrollArrows(HDC hDC, PSCROLLBARINFO ScrollBarInfo, BOOL Vertical)
 
    DrawFrameControl(hDC, &RectLT, DFC_SCROLL, ScrollDirFlagLT);
    DrawFrameControl(hDC, &RectRB, DFC_SCROLL, ScrollDirFlagRB);
+   return TRUE;
 }
 
 static VOID FASTCALL
@@ -336,7 +600,7 @@ IntUpdateScrollArrows(HWND Wnd, HDC hDC, PSCROLLBARINFO ScrollBarInfo,
    info->rgstate[Arrow] = ScrollBarInfo->rgstate[Arrow];
    NtUserSetScrollBarInfo(Wnd, IntScrollGetObjectId(SBType), info);
 
-   IntDrawScrollArrows(hDC, ScrollBarInfo, Vertical);
+   IntDrawScrollArrows(Wnd, hDC, SBType, ScrollBarInfo, Vertical);
 }
 
 void
@@ -384,13 +648,16 @@ IntDrawScrollBar(HWND Wnd, HDC DC, INT Bar)
    */
   if (Info.dxyLineButton)
   {
-      IntDrawScrollArrows(DC, &Info, Vertical);
+      if (!IntDrawScrollArrows(Wnd, DC, Bar, &Info, Vertical) || !IsWindow(Wnd))
+          return;
   }
 
   /*
    * Draw the interior.
    */
   IntDrawScrollInterior(Wnd, DC, Bar, Vertical, &Info);
+  if (!IsWindow(Wnd))
+      return;
 
   /*
    * If scroll bar has focus, reposition the caret.
@@ -848,6 +1115,8 @@ IntScrollHandleScrollEvent(HWND Wnd, INT SBType, UINT Msg, POINT Pt)
   }
 
   Dc = GetDCEx(Wnd, 0, DCX_CACHE | ((SB_CTL == SBType) ? 0 : DCX_WINDOW));
+  if (!Dc)
+      return;
   if (SB_VERT == SBType)
   {
       Vertical = TRUE;
@@ -874,11 +1143,17 @@ IntScrollHandleScrollEvent(HWND Wnd, INT SBType, UINT Msg, POINT Pt)
         TrackThumbPos = ScrollBarInfo.xyThumbTop;
         PrevPt = Pt;
         if (SBType == SB_CTL && (GetWindowLongPtrW(Wnd, GWL_STYLE) & WS_TABSTOP)) SetFocus(Wnd);
+        if (!IsWindow(Wnd))
+            goto Cleanup;
         SetCapture(Wnd);
+        if (!IsWindow(Wnd))
+            goto Cleanup;
         /* Don't update scrollbar if disabled. */
         if (ScrollBarInfo.rgstate[ScrollTrackHitTest] != STATE_SYSTEM_UNAVAILABLE)
         {
             IntUpdateScrollArrows (Wnd, Dc, &ScrollBarInfo, &NewInfo, SBType, ScrollTrackHitTest, Vertical, TRUE);
+            if (!IsWindow(Wnd))
+                goto Cleanup;
         }
         break;
 
@@ -890,13 +1165,19 @@ IntScrollHandleScrollEvent(HWND Wnd, INT SBType, UINT Msg, POINT Pt)
       case WM_LBUTTONUP:
         HitTest = SCROLL_NOWHERE;
         ReleaseCapture();
+        if (!IsWindow(Wnd))
+            goto Cleanup;
         /* if scrollbar has focus, show back caret */
         if (Wnd == GetFocus()) ShowCaret(Wnd);
         /* Don't update scrollbar if disabled. */
         if (ScrollBarInfo.rgstate[ScrollTrackHitTest] != STATE_SYSTEM_UNAVAILABLE)
         {
             IntUpdateScrollArrows (Wnd, Dc, &ScrollBarInfo, &NewInfo, SBType, ScrollTrackHitTest, Vertical, FALSE);
+            if (!IsWindow(Wnd))
+                goto Cleanup;
             IntDrawScrollInterior(Wnd,Dc,SBType,Vertical,&ScrollBarInfo);
+            if (!IsWindow(Wnd))
+                goto Cleanup;
         }
         break;
 
@@ -906,7 +1187,7 @@ IntScrollHandleScrollEvent(HWND Wnd, INT SBType, UINT Msg, POINT Pt)
         break;
 
       default:
-          return;  /* Should never happen */
+          goto Cleanup;  /* Should never happen */
   }
 
   TRACE("Event: hwnd=%p bar=%d msg=%s pt=%d,%d hit=%d\n",
@@ -924,6 +1205,8 @@ IntScrollHandleScrollEvent(HWND Wnd, INT SBType, UINT Msg, POINT Pt)
               {
                 SendMessageW(WndOwner, Vertical ? WM_VSCROLL : WM_HSCROLL,
                              SB_LINEUP, (LPARAM) WndCtl);
+                if (!IsWindow(Wnd))
+                    goto Cleanup;
               }
 	    SetSystemTimer(Wnd, SCROLL_TIMER, (WM_LBUTTONDOWN == Msg) ?
                            SCROLL_FIRST_DELAY : SCROLL_REPEAT_DELAY,
@@ -933,12 +1216,16 @@ IntScrollHandleScrollEvent(HWND Wnd, INT SBType, UINT Msg, POINT Pt)
                if (!(ScrollBarInfo.rgstate[ScrollTrackHitTest] &= STATE_SYSTEM_PRESSED))
                {
                   IntUpdateScrollArrows (Wnd, Dc, &ScrollBarInfo, &NewInfo, SBType, ScrollTrackHitTest, Vertical, TRUE);
+                  if (!IsWindow(Wnd))
+                      goto Cleanup;
                }
             }
           }
         else
           {
             IntUpdateScrollArrows (Wnd, Dc, &ScrollBarInfo, &NewInfo, SBType, ScrollTrackHitTest, Vertical, FALSE);
+            if (!IsWindow(Wnd))
+                goto Cleanup;
             KillSystemTimer(Wnd, SCROLL_TIMER);
           }
         break;
@@ -950,6 +1237,8 @@ IntScrollHandleScrollEvent(HWND Wnd, INT SBType, UINT Msg, POINT Pt)
               {
                 SendMessageW(WndOwner, Vertical ? WM_VSCROLL : WM_HSCROLL,
                              SB_PAGEUP, (LPARAM) WndCtl);
+                if (!IsWindow(Wnd))
+                    goto Cleanup;
               }
             SetSystemTimer(Wnd, SCROLL_TIMER, (WM_LBUTTONDOWN == Msg) ?
                            SCROLL_FIRST_DELAY : SCROLL_REPEAT_DELAY,
@@ -972,12 +1261,16 @@ IntScrollHandleScrollEvent(HWND Wnd, INT SBType, UINT Msg, POINT Pt)
             NewInfo.nTrackPos = ScrollTrackingVal;
             NtUserSetScrollBarInfo(Wnd, IntScrollGetObjectId(SBType), &NewInfo);
             IntScrollDrawMovingThumb(Dc, &ScrollBarInfo, Vertical);
+            if (!IsWindow(Wnd))
+                goto Cleanup;
           }
         else if (Msg == WM_LBUTTONUP)
           {
             ScrollTrackingWin = 0;
             ScrollTrackingVal = 0;
             IntDrawScrollInterior(Wnd, Dc, SBType, Vertical, &ScrollBarInfo);
+            if (!IsWindow(Wnd))
+                goto Cleanup;
           }
         else  /* WM_MOUSEMOVE */
           {
@@ -1002,9 +1295,13 @@ IntScrollHandleScrollEvent(HWND Wnd, INT SBType, UINT Msg, POINT Pt)
                 NewInfo.nTrackPos = ScrollTrackingVal;
                 NtUserSetScrollBarInfo(Wnd, IntScrollGetObjectId(SBType), &NewInfo);
                 IntScrollDrawMovingThumb(Dc, &ScrollBarInfo, Vertical);
+                if (!IsWindow(Wnd))
+                    goto Cleanup;
                 SendMessageW(WndOwner, Vertical ? WM_VSCROLL : WM_HSCROLL,
                              MAKEWPARAM(SB_THUMBTRACK, ScrollTrackingVal),
                              (LPARAM) WndCtl);
+                if (!IsWindow(Wnd))
+                    goto Cleanup;
              }
         }
         break;
@@ -1016,6 +1313,8 @@ IntScrollHandleScrollEvent(HWND Wnd, INT SBType, UINT Msg, POINT Pt)
               {
                 SendMessageW(WndOwner, Vertical ? WM_VSCROLL : WM_HSCROLL,
                              SB_PAGEDOWN, (LPARAM) WndCtl);
+                if (!IsWindow(Wnd))
+                    goto Cleanup;
               }
             SetSystemTimer(Wnd, SCROLL_TIMER, (WM_LBUTTONDOWN == Msg) ?
                            SCROLL_FIRST_DELAY : SCROLL_REPEAT_DELAY,
@@ -1034,6 +1333,8 @@ IntScrollHandleScrollEvent(HWND Wnd, INT SBType, UINT Msg, POINT Pt)
               {
                 SendMessageW(WndOwner, Vertical ? WM_VSCROLL : WM_HSCROLL,
                              SB_LINEDOWN, (LPARAM) WndCtl);
+                if (!IsWindow(Wnd))
+                    goto Cleanup;
               }
 	    SetSystemTimer(Wnd, SCROLL_TIMER, (WM_LBUTTONDOWN == Msg) ?
                            SCROLL_FIRST_DELAY : SCROLL_REPEAT_DELAY,
@@ -1044,12 +1345,16 @@ IntScrollHandleScrollEvent(HWND Wnd, INT SBType, UINT Msg, POINT Pt)
                {
                   TRACE("Set Arrow\n");
                   IntUpdateScrollArrows (Wnd, Dc, &ScrollBarInfo, &NewInfo, SBType, ScrollTrackHitTest, Vertical, TRUE);
+                  if (!IsWindow(Wnd))
+                      goto Cleanup;
                }
             }
           }
         else
         {
             IntUpdateScrollArrows (Wnd, Dc, &ScrollBarInfo, &NewInfo, SBType, ScrollTrackHitTest, Vertical, FALSE);
+            if (!IsWindow(Wnd))
+                goto Cleanup;
             KillSystemTimer(Wnd, SCROLL_TIMER);
         }
         break;
@@ -1063,6 +1368,8 @@ IntScrollHandleScrollEvent(HWND Wnd, INT SBType, UINT Msg, POINT Pt)
                                           TrackThumbPos + LastMousePos - LastClickPos);
           SendMessageW(WndOwner, Vertical ? WM_VSCROLL : WM_HSCROLL,
                        MAKEWPARAM(SB_THUMBTRACK, Val), (LPARAM) WndCtl);
+          if (!IsWindow(Wnd))
+              goto Cleanup;
         }
     }
 
@@ -1077,15 +1384,29 @@ IntScrollHandleScrollEvent(HWND Wnd, INT SBType, UINT Msg, POINT Pt)
                                           TrackThumbPos + LastMousePos - LastClickPos);
           SendMessageW(WndOwner, Vertical ? WM_VSCROLL : WM_HSCROLL,
                        MAKEWPARAM(SB_THUMBPOSITION, Val), (LPARAM) WndCtl);
+          if (!IsWindow(Wnd))
+              goto Cleanup;
         }
       /* SB_ENDSCROLL doesn't report thumb position */
       SendMessageW(WndOwner, Vertical ? WM_VSCROLL : WM_HSCROLL,
                    SB_ENDSCROLL, (LPARAM) WndCtl);
+      if (!IsWindow(Wnd))
+          goto Cleanup;
 
       /* Terminate tracking */
       ScrollTrackingWin = 0;
     }
 
+Cleanup:
+  if (!IsWindow(Wnd))
+  {
+      if (ScrollTrackingWin == Wnd)
+          ScrollTrackingWin = NULL;
+      ScrollTrackHitTest = SCROLL_NOWHERE;
+      ScrollMovingThumb = FALSE;
+      if (GetCapture() == Wnd)
+          ReleaseCapture();
+  }
   ReleaseDC(Wnd, Dc);
 }
 
@@ -1213,6 +1534,8 @@ ScrollTrackScrollBar(HWND Wnd, INT SBType, POINT Pt)
   }
 
   IntScrollHandleScrollEvent(Wnd, SBType, WM_LBUTTONDOWN, Pt);
+  if (!IsWindow(Wnd) || GetCapture() != Wnd)
+      return;
 
   do
   {
@@ -1243,7 +1566,31 @@ ScrollTrackScrollBar(HWND Wnd, INT SBType, POINT Pt)
 static DWORD FASTCALL
 IntSetScrollInfo(HWND Wnd, LPCSCROLLINFO Info, BOOL bRedraw)
 {
-   return NtUserSetScrollInfo(Wnd, SB_CTL, Info, bRedraw);
+   SCROLLINFO Themed;
+   UINT Size;
+   BOOL Copied = FALSE;
+
+   if (IntScrollHasTheme(Wnd))
+   {
+      _SEH2_TRY
+      {
+         ZeroMemory(&Themed, sizeof(Themed));
+         Size = Info ? Info->cbSize : 0;
+         if (Size == sizeof(Themed) || Size == sizeof(Themed) - sizeof(INT))
+         {
+            memcpy(&Themed, Info, Size);
+            Themed.cbSize = Size;
+            Themed.fMask |= SIF_THEMED;
+            Copied = TRUE;
+         }
+      }
+      _SEH2_EXCEPT(EXCEPTION_EXECUTE_HANDLER)
+      {
+         Copied = FALSE;
+      }
+      _SEH2_END;
+   }
+   return NtUserSetScrollInfo(Wnd, SB_CTL, Copied ? &Themed : Info, bRedraw);
 }
 
 
@@ -1359,7 +1706,19 @@ ScrollBarWndProc_common(WNDPROC DefWindowProc, HWND Wnd, UINT Msg, WPARAM wParam
           Pt.x = (short)LOWORD(lParam);
           Pt.y = (short)HIWORD(lParam);
           IntScrollHandleScrollEvent(Wnd, SB_CTL, Msg, Pt);
+          if (Msg == WM_MOUSEMOVE && GetCapture() != Wnd && IntScrollHasTheme(Wnd))
+          {
+             TRACKMOUSEEVENT Track = {sizeof(Track), TME_LEAVE, Wnd, 0};
+
+             NtUserTrackMouseEvent(&Track);
+             RedrawWindow(Wnd, NULL, NULL, RDW_INVALIDATE | RDW_UPDATENOW);
+          }
         }
+        break;
+
+      case WM_MOUSELEAVE:
+        if (GetCapture() != Wnd && IntScrollHasTheme(Wnd))
+           RedrawWindow(Wnd, NULL, NULL, RDW_INVALIDATE | RDW_UPDATENOW);
         break;
 
       case WM_KEYDOWN:
@@ -1430,6 +1789,9 @@ ScrollBarWndProc_common(WNDPROC DefWindowProc, HWND Wnd, UINT Msg, WPARAM wParam
         InvalidateRect(Wnd, NULL, TRUE);
         break;
 
+      case WM_PRINTCLIENT:
+        if (!wParam || !(lParam & PRF_CLIENT))
+           return 0;
       case WM_PAINT:
         {
           PAINTSTRUCT Ps;
