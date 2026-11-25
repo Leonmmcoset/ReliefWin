@@ -7,9 +7,22 @@ Files used:
 - assets/Dismiss/SVG/ic_fluent_dismiss_12_regular.svg
 - assets/Dismiss/SVG/ic_fluent_dismiss_16_regular.svg
 - assets/Subtract/SVG/ic_fluent_subtract_16_filled.svg
+- assets/Subtract/SVG/ic_fluent_subtract_16_regular.svg
 - assets/Square/SVG/ic_fluent_square_16_regular.svg
 - assets/Square Multiple/SVG/ic_fluent_square_multiple_16_regular.svg
 
-The Win8 theme bitmap strips preserve these paths and apply only the theme's
-per-state colors. The minimize path is translated three pixels downward inside
-its 16-pixel caption glyph cell to match caption-button baseline placement.
+The SVG files are preserved unmodified. captionbuttons_fluent.py uses the
+16-pixel regular Dismiss, Subtract, Square and Square Multiple assets at their
+native size, centered as complete 16 x 16 cells in 46 x 32 caption buttons.
+No path or glyph is translated, scaled, clipped, overlaid, gamma-adjusted or
+otherwise changed. Raster alpha coverage receives only the theme's state
+colors. In particular, the minimize glyph is not moved toward the baseline.
+The regular Subtract source is byte-identical to the existing shellframe icon
+from this same recorded upstream revision. The older filled Subtract and
+12-pixel Dismiss sources remain available for their existing consumers.
+
+SHA-256 of the four regular caption SVG sources:
+118c94c171be3364e5104983a97ba3d37d53b21ebc4d6f127eef31dc4aa76716  ic_fluent_dismiss_16_regular.svg
+663f8030c439784943e978023348c52c5e24f629b4d85e85da70b61ffb3e5f6f  ic_fluent_subtract_16_regular.svg
+474c2b224afeec2a522542335ab93bf5cdf0dda6b3b525347eec254be0cb44b1  ic_fluent_square_16_regular.svg
+3e10bcc784b7bfa841f171837a164eae5caf174a64281b1a397947ddfc528e7b  ic_fluent_square_multiple_16_regular.svg

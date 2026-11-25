@@ -1,42 +1,53 @@
-import os
-import sys
+import argparse
+import io
+from pathlib import Path
 from PIL import Image
 
 PALETTES = {
-    "NORMAL": ({0: (28, 32, 40), 1: (39, 43, 51)}, {0: (83, 87, 95), 1: (91, 95, 103)}, (0, 0, 0)),
-    "LIGHT": ({0: (238, 238, 238), 1: (243, 243, 243)}, {0: (255, 255, 255), 1: (255, 255, 255)}, (160, 160, 160)),
+    "NORMAL": {0: (28, 32, 40), 1: (39, 43, 51)},
+    "LIGHT": {0: (238, 238, 238), 1: (243, 243, 243)},
 }
 
 
-def frame(w, h, states, left, right, top, bottom, palette):
-    key, light_line, dark_line = palette
+def frame(w, h, states, palette):
     im = Image.new("RGB", (w, h * states))
-    px = im.load()
     for s in range(states):
-        y0 = s * h
-        for y in range(h):
-            for x in range(w):
-                dark = (left and x == 0) or (right and x == w - 1) or (top and y == 0) or (bottom and y == h - 1)
-                light = (left and x == 1) or (right and x == w - 2) or (top and y == 1) or (bottom and y == h - 2)
-                px[x, y0 + y] = dark_line if dark else light_line[s] if light else key[s]
+        im.paste(palette[s], (0, s * h, w, (s + 1) * h))
     return im
 
 
 def main():
-    out = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(__file__), "..", "bitmaps")
+    parser = argparse.ArgumentParser(description="Generate uniform caption and resize-frame surfaces without outlines")
+    parser.add_argument("output", nargs="?", type=Path,
+                        default=Path(__file__).resolve().parent.parent / "bitmaps")
+    parser.add_argument("--check", action="store_true")
+    args = parser.parse_args()
+    failures = []
     for prefix, palette in PALETTES.items():
         def save(im, name):
-            im.save(os.path.join(out, prefix + "_" + name + ".bmp"))
+            path = args.output / (prefix + "_" + name + ".bmp")
+            buffer = io.BytesIO()
+            im.save(buffer, format="BMP")
+            data = buffer.getvalue()
+            if path.is_file() and path.read_bytes() == data:
+                return
+            if args.check:
+                failures.append(str(path))
+            else:
+                path.write_bytes(data)
 
-        save(frame(8, 30, 2, True, True, True, False, palette), "FRAMECAPTION")
-        save(frame(8, 22, 2, True, True, True, False, palette), "SMALLFRAMECAPTION")
-        save(frame(8, 30, 2, True, True, True, True, palette), "FRAMECAPTIONMIN")
-        save(frame(6, 8, 2, True, False, False, False, palette), "FRAMELEFT")
-        save(frame(6, 8, 2, False, True, False, False, palette), "FRAMERIGHT")
-        save(frame(8, 6, 2, True, True, False, True, palette), "FRAMEBOTTOM")
-        save(frame(40, 20, 2, False, False, False, False, palette), "FRAMECAPTIONSIZING")
-        save(frame(40, 20, 2, False, False, False, False, palette), "SMALLFRAMECAPTIONSIZING")
-        save(frame(8, 30, 2, False, False, False, False, palette), "FRAMEMAXIMIZED")
+        save(frame(8, 30, 2, palette), "FRAMECAPTION")
+        save(frame(8, 22, 2, palette), "SMALLFRAMECAPTION")
+        save(frame(8, 30, 2, palette), "FRAMECAPTIONMIN")
+        save(frame(6, 8, 2, palette), "FRAMELEFT")
+        save(frame(6, 8, 2, palette), "FRAMERIGHT")
+        save(frame(8, 6, 2, palette), "FRAMEBOTTOM")
+        save(frame(40, 20, 2, palette), "FRAMECAPTIONSIZING")
+        save(frame(40, 20, 2, palette), "SMALLFRAMECAPTIONSIZING")
+        save(frame(8, 30, 2, palette), "FRAMEMAXIMIZED")
+    if failures:
+        parser.exit(1, "Frame bitmap differs or is missing:\n" + "\n".join(failures) + "\n")
+    print("18 frame bitmaps " + ("verified" if args.check else "generated"))
 
 
 if __name__ == "__main__":

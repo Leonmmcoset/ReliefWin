@@ -2,6 +2,8 @@
 
 这些截图来自本次源码构建的 amd64 `ReliefWin.img` 或 `bootcd.iso`，通过无显示窗口的 QEMU 实际启动并用 QMP 转储屏幕，分辨率为 1280 × 900。PNG 是屏幕像素的无损转换，没有合成或修饰。默认界面为简体中文。
 
+窗口外观的后续更新见[Windows 11 风格三键与统一底色的边缘](caption-buttons.png)及[关闭键悬停](caption-buttons-hover.png)：亮色内圈与黑色外圈均已改为对应窗口边框底色。它们来自部署新版默认主题后的已安装系统，ReliefWord 通过原生文档关联实际启动。下列较早截图与 ISO 录屏保留其原始拍摄状态。变更范围与验证限制见[窗口按钮验证记录](../../doc/RELIEFWIN_CAPTION_VALIDATION.md)。
+
 ![ReliefWin 桌面](desktop.png)
 
 [完整开机到桌面录屏（MP4，55 秒）](boot-to-desktop.mp4)来自最终 `f425257c…` ISO 新装系统，使用恢复套件后的镜像和普通启动项进行正常冷启动。从虚拟 CPU 开始执行前采集，连续保留实际时间，没有裁剪等待或加速；桌面约在 29.6 秒出现。顶部白色进度条与居中的实际加载组件文字见同次录屏即插即用阶段的[新版开机画面](boot-progress.png)。当前桌面截图由同一新装系统的 `ReliefUser` 会话通过 QMP 重新取得。
