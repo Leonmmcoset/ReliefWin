@@ -554,7 +554,7 @@
 @ stdcall MapVirtualKeyExW(long long long)
 @ stdcall MapVirtualKeyW(long long)
 @ stdcall MapWindowPoints(long long ptr long)
-@ stdcall MenuItemFromPoint(long long double) NtUserMenuItemFromPoint
+@ stdcall MenuItemFromPoint(ptr ptr int64)
 @ stdcall MenuWindowProcA (long ptr long long long)
 @ stdcall MenuWindowProcW (long ptr long long long)
 @ stdcall MessageBeep(long)

@@ -40,3 +40,5 @@
 启动进度与 Office 移植的构建和实测记录见[补充验证记录](../../doc/RELIEFWIN_OFFICE_VALIDATION.md)。Office 截图通过已注册的原生文件关联打开来自 Unix 源码的格式样例。
 
 Live 桌面和离线安装完成两图来自修正 RAM Unicode 文件名后的最终 ISO。“安装 ReliefWin”和“使用说明”显示正常，从安装图标启动安装器后，在无网络 VM 上清除旧 GPT、重新分区并格式化 NTFS，完成全新安装；没有预先运行手工注册助手。
+
+原生菜单的后续更新见[菜单栏、弹出菜单与子菜单](modern-menus.png)和[系统桌面右键菜单](modern-context-menu.png)。它们来自本次菜单相关模块部署后的已安装系统，默认 96 DPI；前者使用真实原生菜单测试窗口，后者直接在桌面打开并展开“排列图标”。两张画面均由 QMP 原样取得。改前／改后同程序对照、三架构构建、字体测试修正及未验证范围见[菜单验证记录](../../doc/RELIEFWIN_MENUS_VALIDATION.md)。

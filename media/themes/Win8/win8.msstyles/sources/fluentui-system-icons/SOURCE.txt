@@ -16,6 +16,7 @@ Files used:
 - assets/Chevron Right/SVG/ic_fluent_chevron_right_12_regular.svg
 - assets/Checkmark/SVG/ic_fluent_checkmark_12_regular.svg
 - assets/Subtract/SVG/ic_fluent_subtract_12_regular.svg
+- assets/Circle/SVG/ic_fluent_circle_12_filled.svg
 
 The SVG files are preserved unmodified. captionbuttons_fluent.py uses the
 16-pixel regular Dismiss, Subtract, Square and Square Multiple assets at their
@@ -47,3 +48,11 @@ surface is separate from the glyph. Pin hashes are enforced by the generator:
 3a2b5a4d900ea90e03a87937d87c9a39db2a6490b5fd8cf8d2824ebf3f1b0b91  ic_fluent_chevron_right_12_regular.svg
 c2d6a0ffd428ecfb47c54d1a36b9c958b51300a407dac4947c43d973daae649a  ic_fluent_checkmark_12_regular.svg
 1b2a6415d84d0cb9e1eda7fb9abfad3e6474eaad6a427ead9902a659e2d9eb64  ic_fluent_subtract_12_regular.svg
+
+modern_menus.py reuses the native 12-pixel Checkmark, Chevron Right, Chevron
+Left, Chevron Up and Chevron Down files, and uses the native 12-pixel filled Circle from this same pinned
+revision for radio menu selections. Their entire SVGs remain unchanged. The
+shared menuart.h arrays and menu bitmap cells contain exactly the alpha coverage
+of the intrinsic 12 x 12 Cairo raster, with no transform, translation, clipping,
+overlay, gamma adjustment or path editing. State colors do not change coverage.
+8b4bbbbe4a87608f37cfcd45e046698b91137ee09bb8549c1b38b6d962ff542d  ic_fluent_circle_12_filled.svg

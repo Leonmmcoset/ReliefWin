@@ -798,7 +798,8 @@ UserDpiSetScale(_In_ HDC hDC, _In_ LONG WindowExtent, _In_ LONG ViewportExtent)
     if (pdc == NULL)
         return;
     IntGdiSetMapMode(pdc, MM_ANISOTROPIC);
-    pdc->pdcattr->szlWindowExt.cx = WindowExtent;
+    pdc->pdcattr->szlWindowExt.cx =
+        (pdc->pdcattr->dwLayout & LAYOUT_RTL) ? -WindowExtent : WindowExtent;
     pdc->pdcattr->szlWindowExt.cy = WindowExtent;
     pdc->pdcattr->szlViewportExt.cx = ViewportExtent;
     pdc->pdcattr->szlViewportExt.cy = ViewportExtent;

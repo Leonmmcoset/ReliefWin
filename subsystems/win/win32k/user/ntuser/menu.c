@@ -8,6 +8,7 @@
 
 #include <win32k.h>
 #include <reliefwin/dwmframe.h>
+#include <reliefwin/menuart.h>
 DBG_DEFAULT_CHANNEL(UserMenu);
 
 /* INTERNAL ******************************************************************/
@@ -33,7 +34,7 @@ BOOL fInEndMenu = FALSE;
 
 /* internal flags for menu tracking */
 
-#define TF_ENDMENU              0x10000
+#define TF_ENDMENU              0x10000000
 #define TF_SUSPENDPOPUP         0x20000
 #define TF_SKIPREMOVE           0x40000
 #define TF_ENDED                0x80000
@@ -81,10 +82,9 @@ BOOL fInEndMenu = FALSE;
 #define MENU_THEME_CHECKBG_RIGHT (6)
 #define MENU_THEME_TEXT_LEFT (4)
 #define MENU_THEME_TEXT_RIGHT (20)
-#define MENU_THEME_ITEM_MARGIN (1)
-#define MENU_THEME_SEPARATOR_HEIGHT (5)
+#define MENU_THEME_ITEM_MARGIN RELIEF_MENU_ROW_MARGIN
+#define MENU_THEME_SEPARATOR_HEIGHT RELIEF_MENU_SEPARATOR_HEIGHT
 #define MENU_THEME_SUBMENU_RIGHT (7)
-#define MENU_THEME_SUBMENU_SIZE (9)
 #define MENU_THEME_BARITEM_MARGIN (7)
 
 typedef struct
@@ -99,6 +99,10 @@ typedef struct
 static MTRACKER *pActiveTracker = NULL;
 static UINT ActiveTrackFlags = 0;
 static BOOL fTrackingExited = FALSE;
+
+static BOOL FASTCALL MENU_Themed(PMENU Menu);
+static INT FASTCALL MENU_ScrollArrowHeight(PMENU Menu);
+static INT FASTCALL MENU_Scale(INT Value);
 
 static BOOL FASTCALL MENU_ExitTracking(PWND pWnd, PMENU Menu, BOOL bPopup, UINT wFlags);
 static VOID FASTCALL MENU_EndTracking(MTRACKER *pmt, UINT wFlags);
@@ -1505,10 +1509,44 @@ MENU_AdjustMenuItemRect(PMENU menu, PRECTL rect)
     if (menu->dwArrowsOn)
     {
         UINT arrow_bitmap_height;
-        arrow_bitmap_height = gpsi->oembmi[OBI_UPARROW].cy; ///// Menu up arrow! OBM_UPARROW
+        arrow_bitmap_height = MENU_ScrollArrowHeight(menu); ///// Menu up arrow! OBM_UPARROW
         rect->top += arrow_bitmap_height - menu->iTop;
         rect->bottom += arrow_bitmap_height - menu->iTop;
     }
+}
+
+static BOOL FASTCALL MENU_InsidePopupViewport(PMENU Menu, INT x, INT y)
+{
+    INT Inset, Arrow;
+
+    if (!(Menu->fFlags & MNF_POPUP) || !MENU_Themed(Menu))
+        return TRUE;
+    Inset = MENU_Scale(RELIEF_MENU_POPUP_INSET);
+    Arrow = Menu->dwArrowsOn ? MENU_ScrollArrowHeight(Menu) : 0;
+    return x >= Inset && x < (INT)Menu->cxMenu - Inset &&
+           y >= Inset + Arrow && y < (INT)Menu->cyMenu - Inset - Arrow;
+}
+
+static VOID FASTCALL MENU_ItemRectToScreen(PWND Window, PMENU Menu, PRECT Rect)
+{
+    LONG Left;
+
+    ASSERT(UserIsEntered());
+    if (Menu->fFlags & MNF_POPUP)
+    {
+        MENU_AdjustMenuItemRect(Menu, Rect);
+        if (Window->ExStyle & WS_EX_LAYOUTRTL)
+        {
+            Left = Rect->left;
+            Rect->left = Window->rcClient.right - Rect->right;
+            Rect->right = Window->rcClient.right - Left;
+            RECTL_vOffsetRect(Rect, 0, Window->rcClient.top);
+        }
+        else
+            RECTL_vOffsetRect(Rect, Window->rcClient.left, Window->rcClient.top);
+    }
+    else
+        RECTL_vOffsetRect(Rect, Window->rcWindow.left, Window->rcWindow.top);
 }
 
 /***********************************************************************
@@ -1522,21 +1560,21 @@ static ITEM *MENU_FindItemByCoords( MENU *menu, POINT pt, UINT *pos )
 {
     ITEM *item;
     UINT i;
-    INT cx, cy;
     RECT rect;
     PWND pWnd = ValidateHwndNoErr(menu->hWnd);
 
     if (!IntGetWindowRect(pWnd, &rect)) return NULL;
 
-    cx = UserGetSystemMetrics(SM_CXDLGFRAME);
-    cy = UserGetSystemMetrics(SM_CYDLGFRAME);
-    RECTL_vInflateRect(&rect, -cx, -cy);
+    if (menu->fFlags & MNF_POPUP)
+        rect = pWnd->rcClient;
 
     if (pWnd->ExStyle & WS_EX_LAYOUTRTL)
        pt.x = rect.right - 1 - pt.x;
     else
        pt.x -= rect.left;
     pt.y -= rect.top;
+    if (!MENU_InsidePopupViewport(menu, pt.x, pt.y))
+        return NULL;
     item = menu->rgItems;
     for (i = 0; i < menu->cItems; i++, item++)
     {
@@ -1707,8 +1745,11 @@ static BOOL FASTCALL MENU_Themed(PMENU Menu)
     UINT i;
 
     UserSystemParametersInfo(SPI_GETFLATMENU, 0, &flat, 0);
-    if (!flat || !Menu)
-        return flat;
+    ASSERT(UserIsEntered());
+    if (!Menu || Menu->hbrBack)
+        return FALSE;
+    if (!flat)
+        return FALSE;
 
     for (i = 0; i < Menu->cItems; i++)
     {
@@ -1731,6 +1772,14 @@ static INT FASTCALL MENU_ThemeGutter(PMENU Menu)
     if (((Menu->fFlags & MNS_STYLE_MASK) & MNS_NOCHECK) && !Menu->cxTextAlign)
         return 0;
     return MENU_ThemeCheckWidth(Menu) + MENU_Scale(MENU_THEME_CHECKBG_RIGHT);
+}
+
+static INT FASTCALL MENU_ScrollArrowHeight(PMENU Menu)
+{
+    if (MENU_Themed(Menu))
+        return min(max(RELIEF_MENU_GLYPH_SIZE, MENU_Scale(MENU_THEME_CHECK_SIZE)),
+                   max(0, ((INT)Menu->cyMenu - 2 * MENU_Scale(RELIEF_MENU_POPUP_INSET)) / 2));
+    return gpsi->oembmi[OBI_DNARROW].cy;
 }
 
 /***********************************************************************
@@ -2009,7 +2058,7 @@ static void FASTCALL MENU_CalcItemSize( HDC hdc, PITEM lpitem, PMENU Menu, PWND 
         if (lpitem->fType & MF_SEPARATOR)
         {
             lpitem->cxItem += gutter;
-            lpitem->cyItem += MENU_Scale(MENU_THEME_SEPARATOR_HEIGHT + 2 * MENU_THEME_ITEM_MARGIN);
+            lpitem->cyItem += MENU_Scale(MENU_THEME_SEPARATOR_HEIGHT);
             return;
         }
 
@@ -2054,7 +2103,7 @@ static void FASTCALL MENU_CalcItemSize( HDC hdc, PITEM lpitem, PMENU Menu, PWND 
         {
             lpitem->cxItem += MENU_Scale(MENU_THEME_TEXT_RIGHT);
         }
-        lpitem->cyItem += itemheight;
+        lpitem->cyItem += max(itemheight, MENU_Scale(RELIEF_MENU_ROW_MIN));
         return;
     }
 
@@ -2126,6 +2175,9 @@ static void FASTCALL MENU_CalcItemSize( HDC hdc, PITEM lpitem, PMENU Menu, PWND 
 
             lpitem->cxItem  += rc.right - rc.left;
             itemheight = max( max( itemheight, txtheight), UserGetSystemMetrics( SM_CYMENU) - 1);
+            if (MENU_Themed(Menu))
+                itemheight = max(itemheight, max(MENU_Scale(RELIEF_MENU_ROW_MIN),
+                                                 txtheight + 2 * MENU_Scale(RELIEF_MENU_ROW_MARGIN)));
 
             lpitem->cxItem += MENU_Themed(Menu) ? 2 * MENU_Scale(MENU_THEME_BARITEM_MARGIN) : 2 * MenuCharSize.cx;
         } else {
@@ -2224,10 +2276,10 @@ static void FASTCALL MENU_PopupMenuCalcSize(PMENU Menu, PWND WndOwner)
     while (start < Menu->cItems)
     {
       lpitem = &Menu->rgItems[start];
-      orgX = maxX;
+      orgX = maxX + ((themed && start == 0) ? MENU_Scale(RELIEF_MENU_POPUP_INSET) : 0);
       if( lpitem->fType & (MF_MENUBREAK | MF_MENUBARBREAK))
           orgX += MENU_COL_SPACE;
-      orgY = 0;
+      orgY = themed ? MENU_Scale(RELIEF_MENU_POPUP_INSET) : 0;
 
       maxTab = maxTabWidth = 0;
       /* Parse items until column break or end of menu */
@@ -2255,10 +2307,10 @@ static void FASTCALL MENU_PopupMenuCalcSize(PMENU Menu, PWND WndOwner)
            if (IS_STRING_ITEM(lpitem->fType) && lpitem->dxTab)
                lpitem->dxTab = maxTab;
       }
-      Menu->cyMenu = max(Menu->cyMenu, orgY);
+      Menu->cyMenu = max(Menu->cyMenu, orgY + (themed ? MENU_Scale(RELIEF_MENU_POPUP_INSET) : 0));
     }
 
-    Menu->cxMenu  = maxX;
+    Menu->cxMenu  = maxX + (themed ? MENU_Scale(RELIEF_MENU_POPUP_INSET) : 0);
     /* if none of the items have both text and bitmap then
      * the text and bitmaps are all aligned on the left. If there is at
      * least one item with both text and bitmap then bitmaps are
@@ -2360,18 +2412,156 @@ static void MENU_MenuBarCalcSize( HDC hdc, LPRECT lprect, PMENU lppop, PWND pwnd
     }
 }
 
-/***********************************************************************
- *           MENU_DrawScrollArrows
- *
- * Draw scroll arrows.
- */
+static COLORREF FASTCALL MENU_MixColor(COLORREF From, COLORREF To, INT Weight)
+{
+    ASSERT(Weight >= 0 && Weight <= 255);
+    return RGB(GetRValue(From) + ((INT)GetRValue(To) - (INT)GetRValue(From)) * Weight / 255,
+               GetGValue(From) + ((INT)GetGValue(To) - (INT)GetGValue(From)) * Weight / 255,
+               GetBValue(From) + ((INT)GetBValue(To) - (INT)GetBValue(From)) * Weight / 255);
+}
+
+static VOID FASTCALL MENU_FillColor(HDC hdc, const RECT *prc, COLORREF Color)
+{
+    if (prc->right <= prc->left || prc->bottom <= prc->top)
+        return;
+    IntSetDCBrushColor(hdc, Color);
+    FillRect(hdc, prc, NtGdiGetStockObject(DC_BRUSH));
+}
+
+static VOID FASTCALL MENU_FillRounded(HDC hdc, const RECT *Rect, INT Radius,
+                                     COLORREF Back, COLORREF Fill)
+{
+    RECT rc;
+    INT x, y, sx, sy, Coverage;
+    LONGLONG dx, dy, Diameter;
+
+    ASSERT(UserIsEntered());
+    if (Rect->right <= Rect->left || Rect->bottom <= Rect->top)
+        return;
+    Radius = min(Radius, min((Rect->right - Rect->left) / 2,
+                             (Rect->bottom - Rect->top) / 2));
+    if (Radius <= 0)
+    {
+        MENU_FillColor(hdc, Rect, Fill);
+        return;
+    }
+    rc = *Rect;
+    rc.left += Radius;
+    rc.right -= Radius;
+    MENU_FillColor(hdc, &rc, Fill);
+    rc = *Rect;
+    rc.top += Radius;
+    rc.bottom -= Radius;
+    MENU_FillColor(hdc, &rc, Fill);
+    Diameter = (LONGLONG)Radius * 8;
+    for (y = 0; y < Radius; ++y)
+    {
+        for (x = 0; x < Radius; ++x)
+        {
+            Coverage = 0;
+            for (sy = 0; sy < 4; ++sy)
+            {
+                dy = Diameter - (y * 8 + sy * 2 + 1);
+                for (sx = 0; sx < 4; ++sx)
+                {
+                    dx = Diameter - (x * 8 + sx * 2 + 1);
+                    if (dx * dx + dy * dy <= Diameter * Diameter)
+                        ++Coverage;
+                }
+            }
+            if (!Coverage)
+                continue;
+            RECTL_vSetRect(&rc, Rect->left + x, Rect->top + y,
+                           Rect->left + x + 1, Rect->top + y + 1);
+            MENU_FillColor(hdc, &rc, MENU_MixColor(Back, Fill, Coverage * 255 / 16));
+            RECTL_vOffsetRect(&rc, Rect->right - Rect->left - 2 * x - 1, 0);
+            MENU_FillColor(hdc, &rc, MENU_MixColor(Back, Fill, Coverage * 255 / 16));
+            RECTL_vOffsetRect(&rc, 0, Rect->bottom - Rect->top - 2 * y - 1);
+            MENU_FillColor(hdc, &rc, MENU_MixColor(Back, Fill, Coverage * 255 / 16));
+            RECTL_vOffsetRect(&rc, -(Rect->right - Rect->left - 2 * x - 1), 0);
+            MENU_FillColor(hdc, &rc, MENU_MixColor(Back, Fill, Coverage * 255 / 16));
+        }
+    }
+}
+
+static VOID FASTCALL MENU_DrawFluentGlyph(HDC hdc, const RECT *Rect, const BYTE *Alpha,
+                                         COLORREF Back, COLORREF Text)
+{
+    INT x, y;
+    INT Left = Rect->left + (Rect->right - Rect->left - RELIEF_MENU_GLYPH_SIZE) / 2;
+    INT Top = Rect->top + (Rect->bottom - Rect->top - RELIEF_MENU_GLYPH_SIZE) / 2;
+    RECT rc;
+    PDC Dc = DC_LockDc(hdc);
+    BOOL Rtl;
+
+    if (!Dc)
+        return;
+    Rtl = (Dc->pdcattr->dwLayout & LAYOUT_RTL) != 0;
+    DC_UnlockDc(Dc);
+    ASSERT(Alpha != NULL);
+    for (y = 0; y < RELIEF_MENU_GLYPH_SIZE; ++y)
+    {
+        if (Top + y < Rect->top || Top + y >= Rect->bottom)
+            continue;
+        for (x = 0; x < RELIEF_MENU_GLYPH_SIZE; ++x)
+        {
+            BYTE Coverage = Alpha[y * RELIEF_MENU_GLYPH_SIZE +
+                                  (Rtl ? RELIEF_MENU_GLYPH_SIZE - 1 - x : x)];
+
+            if (!Coverage || Left + x < Rect->left || Left + x >= Rect->right)
+                continue;
+            RECTL_vSetRect(&rc, Left + x, Top + y, Left + x + 1, Top + y + 1);
+            MENU_FillColor(hdc, &rc, MENU_MixColor(Back, Text, Coverage));
+        }
+    }
+}
+
+static VOID FASTCALL MENU_SetPopupLayout(PWND Window, PMENU Menu, HDC Dc)
+{
+    if (Window->ExStyle & WS_EX_LAYOUTRTL)
+    {
+        NtGdiSetLayout(Dc, -1, 0);
+        NtGdiSetLayout(Dc, Menu->cxMenu - 1, LAYOUT_RTL);
+    }
+}
+
 static void MENU_DrawScrollArrows(PMENU lppop, HDC hdc)
 {
-    UINT arrow_bitmap_height;
+    UINT arrow_bitmap_height = MENU_ScrollArrowHeight(lppop);
     RECT rect;
     UINT Flags = 0;
 
-    arrow_bitmap_height = gpsi->oembmi[OBI_DNARROW].cy;
+    if (MENU_Themed(lppop))
+    {
+        INT Inset = MENU_Scale(RELIEF_MENU_POPUP_INSET);
+        COLORREF Back = IntGetSysColor(COLOR_MENU);
+        COLORREF Text = IntGetSysColor(COLOR_MENUTEXT);
+        INT Saved = NtGdiSaveDC(hdc);
+
+        if (!Saved)
+            return;
+        if (!arrow_bitmap_height ||
+            NtGdiIntersectClipRect(hdc, Inset, Inset, lppop->cxMenu - Inset,
+                                   lppop->cyMenu - Inset) == ERROR)
+        {
+            NtGdiRestoreDC(hdc, Saved);
+            return;
+        }
+
+        RECTL_vSetRect(&rect, Inset, Inset, lppop->cxMenu - Inset,
+                       Inset + arrow_bitmap_height);
+        MENU_FillColor(hdc, &rect, Back);
+        MENU_DrawFluentGlyph(hdc, &rect, ReliefMenuChevronUpAlpha, Back,
+                             lppop->iTop ? Text : IntGetSysColor(COLOR_GRAYTEXT));
+        rect.top = lppop->cyMenu - Inset - arrow_bitmap_height;
+        rect.bottom = lppop->cyMenu - Inset;
+        MENU_FillColor(hdc, &rect, Back);
+        MENU_DrawFluentGlyph(hdc, &rect, ReliefMenuChevronDownAlpha, Back,
+                             lppop->iTop < lppop->iMaxTop - lppop->cyMenu + 2 * arrow_bitmap_height ?
+                                 Text : IntGetSysColor(COLOR_GRAYTEXT));
+        NtGdiRestoreDC(hdc, Saved);
+        return;
+    }
 
     rect.left = 0;
     rect.top = 0;
@@ -2383,62 +2573,9 @@ static void MENU_DrawScrollArrows(PMENU lppop, HDC hdc)
     rect.top = lppop->cyMenu - arrow_bitmap_height;
     rect.bottom = lppop->cyMenu;
     FillRect(hdc, &rect, IntGetSysColorBrush(COLOR_MENU));
-    if (!(lppop->iTop < lppop->iMaxTop - (MENU_GetMaxPopupHeight(lppop) - 2 * arrow_bitmap_height)))
+    if (!(lppop->iTop < lppop->iMaxTop - (lppop->cyMenu - 2 * arrow_bitmap_height)))
        Flags = DFCS_INACTIVE;
     UITOOLS95_DrawFrameMenu(hdc, &rect, Flags | DFCS_MENUARROWDOWN);
-}
-
-#define MENU_BOX_HOT (0)
-#define MENU_BOX_DISABLEDHOT (1)
-#define MENU_BOX_PUSHED (2)
-
-static const struct
-{
-    COLORREF Border;
-    BYTE BorderAlpha;
-    COLORREF Fill;
-    BYTE FillAlpha;
-} MENU_ThemeBoxArt[] =
-{
-    { RGB(0x00, 0x36, 0x6D), 0x80, RGB(0x00, 0x11, 0x21), 0x21 },
-    { RGB(0x36, 0x36, 0x36), 0x80, RGB(0x10, 0x10, 0x10), 0x21 },
-    { RGB(0x00, 0x41, 0x82), 0x99, RGB(0x00, 0x20, 0x40), 0x40 },
-};
-
-static COLORREF FASTCALL MENU_MixColor(COLORREF From, COLORREF To, INT Weight)
-{
-    return RGB(GetRValue(From) + ((INT)GetRValue(To) - (INT)GetRValue(From)) * Weight / 255,
-               GetGValue(From) + ((INT)GetGValue(To) - (INT)GetGValue(From)) * Weight / 255,
-               GetBValue(From) + ((INT)GetBValue(To) - (INT)GetBValue(From)) * Weight / 255);
-}
-
-static COLORREF FASTCALL MENU_BlendColor(COLORREF Back, COLORREF Art, BYTE Alpha)
-{
-    return RGB(min(255, GetRValue(Art) + (GetRValue(Back) * (255 - Alpha) + 127) / 255),
-               min(255, GetGValue(Art) + (GetGValue(Back) * (255 - Alpha) + 127) / 255),
-               min(255, GetBValue(Art) + (GetBValue(Back) * (255 - Alpha) + 127) / 255));
-}
-
-static VOID FASTCALL MENU_FillColor(HDC hdc, const RECT *prc, COLORREF Color)
-{
-    IntSetDCBrushColor(hdc, Color);
-    FillRect(hdc, prc, NtGdiGetStockObject(DC_BRUSH));
-}
-
-static VOID FASTCALL MENU_DrawBox(HDC hdc, const RECT *prc, COLORREF Border, COLORREF Fill)
-{
-    RECT rc = *prc;
-
-    MENU_FillColor(hdc, &rc, Border);
-    RECTL_vInflateRect(&rc, -1, -1);
-    MENU_FillColor(hdc, &rc, Fill);
-}
-
-static VOID FASTCALL MENU_DrawThemeBox(HDC hdc, const RECT *prc, COLORREF Back, UINT Box)
-{
-    MENU_DrawBox(hdc, prc,
-                 MENU_BlendColor(Back, MENU_ThemeBoxArt[Box].Border, MENU_ThemeBoxArt[Box].BorderAlpha),
-                 MENU_BlendColor(Back, MENU_ThemeBoxArt[Box].Fill, MENU_ThemeBoxArt[Box].FillAlpha));
 }
 
 static VOID FASTCALL MENU_DrawThemedPopupItem(PMENU Menu, PWND WndOwner, HDC hdc, PITEM lpitem,
@@ -2458,33 +2595,23 @@ static VOID FASTCALL MENU_DrawThemedPopupItem(PMENU Menu, PWND WndOwner, HDC hdc
     RECT rc, rcCheck;
 
     FillRect(hdc, prcItem, Menu->hbrBack ? Menu->hbrBack : IntGetSysColorBrush(COLOR_MENU));
-    if (gutter)
-    {
-        RECTL_vSetRect(&rc, prcItem->left + gutter - 1, prcItem->top, prcItem->left + gutter, prcItem->bottom);
-        MENU_FillColor(hdc, &rc, MENU_MixColor(back, text, 27));
-    }
-
+    ASSERT(UserIsEntered());
     if (lpitem->fType & MF_SEPARATOR)
     {
-        INT y = prcItem->top + MENU_Scale(MENU_THEME_ITEM_MARGIN) + MENU_Scale(2) +
-                (cyItem - MENU_Scale(MENU_THEME_SEPARATOR_HEIGHT + 2 * MENU_THEME_ITEM_MARGIN)) / 2;
+        INT y = prcItem->top + cyItem / 2;
 
-        RECTL_vSetRect(&rc, prcItem->left + gutter, y, prcItem->right, y + 1);
+        RECTL_vSetRect(&rc, prcItem->left + gutter + MENU_Scale(MENU_THEME_TEXT_LEFT), y,
+                       prcItem->right - MENU_Scale(MENU_THEME_TEXT_LEFT), y + 1);
         MENU_FillColor(hdc, &rc, MENU_MixColor(back, text, 27));
         return;
     }
 
     if (lpitem->fState & MF_HILITE)
     {
-        UINT box = grayed ? MENU_BOX_DISABLEDHOT : MENU_BOX_HOT;
+        COLORREF Fill = MENU_MixColor(back, text, grayed ? 8 : 18);
 
-        MENU_DrawThemeBox(hdc, prcItem, back, box);
-        if (gutter)
-        {
-            RECTL_vSetRect(&rc, prcItem->left + gutter - 1, prcItem->top + 1, prcItem->left + gutter, prcItem->bottom - 1);
-            MENU_FillColor(hdc, &rc, MENU_BlendColor(MENU_MixColor(back, text, 27), MENU_ThemeBoxArt[box].Fill,
-                                                     MENU_ThemeBoxArt[box].FillAlpha));
-        }
+        MENU_FillRounded(hdc, prcItem, MENU_Scale(RELIEF_MENU_ITEM_RADIUS), back, Fill);
+        back = Fill;
     }
 
     IntGdiSetBkMode(hdc, TRANSPARENT);
@@ -2497,12 +2624,6 @@ static VOID FASTCALL MENU_DrawThemedPopupItem(PMENU Menu, PWND WndOwner, HDC hdc
                    prcItem->left + MENU_ThemeCheckWidth(Menu), prcItem->top + (cyItem - checkH) / 2 + checkH);
     drawBmp = lpitem->hbmp && !(checked && !noCheck && ((Menu->fFlags & MNS_STYLE_MASK) & MNS_CHECKORBMP));
 
-    if (!noCheck && checked && !bm)
-    {
-        MENU_DrawBox(hdc, &rcCheck,
-                     grayed ? MENU_MixColor(back, text, 24) : RGB(0x26, 0xA0, 0xDA),
-                     MENU_BlendColor(back, grayed ? RGB(0x34, 0x34, 0x34) : RGB(0x09, 0x26, 0x34), 0x3D));
-    }
     RECTL_vInflateRect(&rcCheck, -margin, -margin);
 
     if (!noCheck && bm)
@@ -2519,14 +2640,9 @@ static VOID FASTCALL MENU_DrawThemedPopupItem(PMENU Menu, PWND WndOwner, HDC hdc
     }
     else if (!noCheck && checked && !drawBmp)
     {
-        INT size = MENU_Scale(MENU_THEME_CHECK_SIZE);
-
-        RECTL_vSetRect(&rc, rcCheck.left + (rcCheck.right - rcCheck.left - size) / 2,
-                       rcCheck.top + (rcCheck.bottom - rcCheck.top - size) / 2, 0, 0);
-        rc.right = rc.left + size;
-        rc.bottom = rc.top + size;
-        IntGdiSetTextColor(hdc, MENU_MixColor(text, back, grayed ? 119 : 36));
-        UITOOLS95_DrawFrameMenu(hdc, &rc, (lpitem->fType & MFT_RADIOCHECK) ? DFCS_MENUBULLET : DFCS_MENUCHECK);
+        MENU_DrawFluentGlyph(hdc, &rcCheck,
+                             (lpitem->fType & MFT_RADIOCHECK) ? ReliefMenuCircleFillAlpha : ReliefMenuCheckmarkAlpha,
+                             back, IntGetSysColor(grayed ? COLOR_GRAYTEXT : COLOR_MENUTEXT));
     }
 
     if (drawBmp)
@@ -2539,17 +2655,15 @@ static VOID FASTCALL MENU_DrawThemedPopupItem(PMENU Menu, PWND WndOwner, HDC hdc
 
     if (lpitem->spSubMenu)
     {
-        INT half = MENU_Scale(3);
-        INT x = prcItem->right - MENU_Scale(MENU_THEME_SUBMENU_RIGHT + MENU_THEME_SUBMENU_SIZE) + half;
-        INT y = prcItem->top + (cyItem - MENU_Scale(MENU_THEME_SUBMENU_SIZE)) / 2 + MENU_Scale(MENU_THEME_SUBMENU_SIZE) / 2;
-        INT i;
+        PWND Window = ValidateHwndNoErr(Menu->hWnd);
 
-        IntSetDCBrushColor(hdc, MENU_MixColor(text, back, grayed ? 119 : 43));
-        for (i = 0; i <= half; i++)
-        {
-            RECTL_vSetRect(&rc, x + i, y - (half - i), x + i + 1, y + (half - i) + 1);
-            FillRect(hdc, &rc, NtGdiGetStockObject(DC_BRUSH));
-        }
+        rc = *prcItem;
+        rc.right -= MENU_Scale(MENU_THEME_SUBMENU_RIGHT);
+        rc.left = rc.right - RELIEF_MENU_GLYPH_SIZE;
+
+        MENU_DrawFluentGlyph(hdc, &rc, Window && (Window->ExStyle & WS_EX_LAYOUTRTL) ?
+                             ReliefMenuChevronLeftAlpha : ReliefMenuChevronRightAlpha, back,
+                             IntGetSysColor(grayed ? COLOR_GRAYTEXT : COLOR_MENUTEXT));
     }
 
     if (lpitem->Xlpstr)
@@ -2731,7 +2845,18 @@ static void FASTCALL MENU_DrawMenuItem(PWND Wnd, PMENU Menu, PWND WndOwner, HDC 
 
     if (!menuBar && themed)
     {
-        MENU_DrawThemedPopupItem(Menu, WndOwner, hdc, lpitem, &rect, odaction);
+        INT Saved = NtGdiSaveDC(hdc);
+        INT Inset = MENU_Scale(RELIEF_MENU_POPUP_INSET);
+        INT Arrow = Menu->dwArrowsOn ? MENU_ScrollArrowHeight(Menu) : 0;
+
+        if (!Saved)
+            return;
+        MENU_SetPopupLayout(Wnd, Menu, hdc);
+        if ((INT)Menu->cxMenu > 2 * Inset && (INT)Menu->cyMenu > 2 * (Inset + Arrow) &&
+            NtGdiIntersectClipRect(hdc, Inset, Inset + Arrow,
+                                   Menu->cxMenu - Inset, Menu->cyMenu - Inset - Arrow) != ERROR)
+            MENU_DrawThemedPopupItem(Menu, WndOwner, hdc, lpitem, &rect, odaction);
+        NtGdiRestoreDC(hdc, Saved);
         return;
     }
 
@@ -2742,8 +2867,13 @@ static void FASTCALL MENU_DrawMenuItem(PWND Wnd, PMENU Menu, PWND WndOwner, HDC 
             FillRect(hdc, &rect, IntGetSysColorBrush(bkgnd));
             if (!(lpitem->fState & MF_GRAYED))
             {
-                MENU_DrawThemeBox(hdc, &rect, IntGetSysColor(bkgnd),
-                                  (lpitem->fState & MF_MOUSESELECT) ? MENU_BOX_PUSHED : MENU_BOX_HOT);
+                RECT Hot = rect;
+                COLORREF Back = IntGetSysColor(bkgnd);
+
+                RECTL_vInflateRect(&Hot, -MENU_Scale(2), -MENU_Scale(2));
+                MENU_FillRounded(hdc, &Hot, MENU_Scale(RELIEF_MENU_ITEM_RADIUS), Back,
+                                 MENU_MixColor(Back, IntGetSysColor(COLOR_MENUTEXT),
+                                               (lpitem->fState & MF_MOUSESELECT) ? 26 : 18));
             }
         }
         else if (flat_menu)
@@ -3034,6 +3164,29 @@ static void FASTCALL MENU_DrawPopupMenu(PWND wnd, HDC hdc, PMENU menu )
 
     IntGetClientRect( wnd, &rect );
 
+    if (menu && MENU_Themed(menu))
+    {
+        COLORREF Back = IntGetSysColor(COLOR_MENU);
+        COLORREF Border = MENU_MixColor(Back, IntGetSysColor(COLOR_MENUTEXT), 27);
+        INT Saved = NtGdiSaveDC(hdc);
+        UINT i;
+
+        if (!Saved)
+            return;
+        MENU_SetPopupLayout(wnd, menu, hdc);
+        NtGdiSelectFont(hdc, ghMenuFont);
+        MENU_FillColor(hdc, &rect, Back);
+        MENU_FillRounded(hdc, &rect, MENU_Scale(RELIEF_MENU_POPUP_RADIUS), Back, Border);
+        RECTL_vInflateRect(&rect, -1, -1);
+        MENU_FillRounded(hdc, &rect, max(0, MENU_Scale(RELIEF_MENU_POPUP_RADIUS) - 1), Border, Back);
+        for (i = 0; i < menu->cItems; ++i)
+            MENU_DrawMenuItem(wnd, menu, menu->spwndNotify, hdc, &menu->rgItems[i],
+                             menu->cyMenu, FALSE, ODA_DRAWENTIRE);
+        if (menu->dwArrowsOn)
+            MENU_DrawScrollArrows(menu, hdc);
+        NtGdiRestoreDC(hdc, Saved);
+        return;
+    }
     if (menu && menu->hbrBack) brush = menu->hbrBack;
     if((hPrevBrush = NtGdiSelectBrush( hdc, brush ))
         && (NtGdiSelectFont( hdc, ghMenuFont)))
@@ -3251,7 +3404,11 @@ static BOOL MENU_InitPopup( PWND pWndOwner, PMENU menu, UINT flags )
 
     RtlZeroMemory(&WindowName, sizeof(WindowName));
     RtlZeroMemory(&Cs, sizeof(Cs));
-    Cs.style = WS_POPUP | WS_CLIPSIBLINGS | WS_BORDER;
+    Cs.style = WS_POPUP | WS_CLIPSIBLINGS;
+    if (MENU_Themed(menu))
+        ex_style &= ~WS_EX_DLGMODALFRAME;
+    else
+        Cs.style |= WS_BORDER;
     Cs.dwExStyle = ex_style;
     Cs.hInstance = hModClient; // hModuleWin; // Server side winproc!
     Cs.lpszName = (LPCWSTR) &WindowName;
@@ -3337,7 +3494,7 @@ static BOOL RECTL_Intersect(const RECT* pRect, INT x, INT y, UINT width, UINT he
     return RECTL_bIntersectRect(&dum, pRect, &other);
 }
 
-static BOOL MENU_MoveRect(UINT flags, INT* x, INT* y, INT width, INT height, const RECT* pExclude, PMONITOR monitor)
+static BOOL MENU_MoveRect(UINT flags, INT* x, INT* y, INT width, INT height, const RECT* pExclude, const RECT* bounds)
 {
     /* Figure out if we should move vertical or horizontal */
     if (flags & TPM_VERTICAL)
@@ -3345,7 +3502,7 @@ static BOOL MENU_MoveRect(UINT flags, INT* x, INT* y, INT width, INT height, con
         /* Move in the vertical direction: TPM_BOTTOMALIGN means drop it above, otherways drop it below */
         if (flags & TPM_BOTTOMALIGN)
         {
-            if (pExclude->top - height >= monitor->rcMonitor.top)
+            if (pExclude->top - height >= bounds->top)
             {
                 *y = pExclude->top - height;
                 return TRUE;
@@ -3353,7 +3510,7 @@ static BOOL MENU_MoveRect(UINT flags, INT* x, INT* y, INT width, INT height, con
         }
         else
         {
-            if (pExclude->bottom + height < monitor->rcMonitor.bottom)
+            if (pExclude->bottom + height < bounds->bottom)
             {
                 *y = pExclude->bottom;
                 return TRUE;
@@ -3365,7 +3522,7 @@ static BOOL MENU_MoveRect(UINT flags, INT* x, INT* y, INT width, INT height, con
         /* Move in the horizontal direction: TPM_RIGHTALIGN means drop it to the left, otherways go right */
         if (flags & TPM_RIGHTALIGN)
         {
-            if (pExclude->left - width >= monitor->rcMonitor.left)
+            if (pExclude->left - width >= bounds->left)
             {
                 *x = pExclude->left - width;
                 return TRUE;
@@ -3373,7 +3530,7 @@ static BOOL MENU_MoveRect(UINT flags, INT* x, INT* y, INT width, INT height, con
         }
         else
         {
-            if (pExclude->right + width < monitor->rcMonitor.right)
+            if (pExclude->right + width < bounds->right)
             {
                 *x = pExclude->right;
                 return TRUE;
@@ -3389,10 +3546,13 @@ static BOOL MENU_MoveRect(UINT flags, INT* x, INT* y, INT width, INT height, con
  * Display a popup menu.
  */
 static BOOL FASTCALL MENU_ShowPopup(PWND pwndOwner, PMENU menu, UINT id, UINT flags,
-                              INT x, INT y, const RECT* pExclude)
+                              INT x, INT y, const RECT* pExclude, const POINT* pBoundsAnchor)
 {
-    INT width, height;
-    POINT ptx;
+    INT width, height, maxHeight;
+    DWORD style, ex_style;
+    POINT ptx = {x, y};
+    RECT bounds;
+    SIZE borders = {0, 0};
     PMONITOR monitor;
     PWND pWnd;
     USER_REFERENCE_ENTRY Ref;
@@ -3413,12 +3573,38 @@ static BOOL FASTCALL MENU_ShowPopup(PWND pwndOwner, PMENU menu, UINT id, UINT fl
 #endif
 
     menu->dwArrowsOn = 0;
+    menu->iTop = 0;
     MENU_PopupMenuCalcSize(menu, pwndOwner);
+
+    pWnd = ValidateHwndNoErr( menu->hWnd );
+
+    if (!pWnd)
+    {
+       ERR("menu->hWnd bad hwnd %p\n",menu->hWnd);
+       return FALSE;
+    }
+
+    if (pBoundsAnchor)
+        ptx = *pBoundsAnchor;
+    monitor = UserMonitorFromPoint( ptx, MONITOR_DEFAULTTONEAREST );
+    bounds = ((flags & TPM_WORKAREA) || RECTL_bPointInRect(&monitor->rcWork, ptx.x, ptx.y)) ?
+             monitor->rcWork : monitor->rcMonitor;
 
     /* adjust popup menu pos so that it fits within the desktop */
 
-    width = menu->cxMenu + UserGetSystemMetrics(SM_CXDLGFRAME) * 2;
-    height = menu->cyMenu + UserGetSystemMetrics(SM_CYDLGFRAME) * 2;
+    if (!MENU_Themed(menu))
+        UserGetWindowBorders(pWnd, pWnd->style | WS_BORDER,
+                            pWnd->ExStyle | WS_EX_DLGMODALFRAME, &borders, FALSE);
+    maxHeight = bounds.bottom - bounds.top - 2 * borders.cy;
+    if (maxHeight <= 0)
+        return FALSE;
+    if ((INT)menu->cyMenu > maxHeight)
+    {
+        menu->cyMenu = maxHeight;
+        menu->dwArrowsOn = 1;
+    }
+    width = menu->cxMenu + 2 * borders.cx;
+    height = menu->cyMenu + 2 * borders.cy;
 
     if (flags & TPM_LAYOUTRTL)
         flags ^= TPM_RIGHTALIGN;
@@ -3434,49 +3620,45 @@ static BOOL FASTCALL MENU_ShowPopup(PWND pwndOwner, PMENU menu, UINT id, UINT fl
         y -= height / 2;
 
     /* FIXME: should use item rect */
-    ptx.x = x;
-    ptx.y = y;
 #if SHOW_DEBUGRECT
     DebugPoint(x, y, RGB(0, 0, 255));
 #endif
-    monitor = UserMonitorFromPoint( ptx, MONITOR_DEFAULTTONEAREST );
-
     /* We are off the right side of the screen */
-    if (x + width > monitor->rcMonitor.right)
+    if (x + width > bounds.right)
     {
         /* Position menu at right edge of the screen */
-        x = monitor->rcMonitor.right - width;
+        x = bounds.right - width;
     }
 
     /* We are off the left side of the screen */
-    if (x < monitor->rcMonitor.left)
+    if (x < bounds.left)
     {
         /* Position menu at left edge of the screen */
         x = 0;
 
-        if (x < monitor->rcMonitor.left || x >= monitor->rcMonitor.right || bIsPopup)
-            x = monitor->rcMonitor.left;
+        if (x < bounds.left || x >= bounds.right || bIsPopup)
+            x = bounds.left;
     }
 
     /* Same here, but then the top */
-    if (y < monitor->rcMonitor.top)
+    if (y < bounds.top)
     {
         y += height;
 
-        if (y < monitor->rcMonitor.top || y >= monitor->rcMonitor.bottom || bIsPopup)
-            y = monitor->rcMonitor.top;
+        if (y < bounds.top || y >= bounds.bottom || bIsPopup)
+            y = bounds.top;
     }
 
     /* And the bottom */
-    if (y + height > monitor->rcMonitor.bottom)
+    if (y + height > bounds.bottom)
     {
-        if ((y - height) < monitor->rcMonitor.top || y >= monitor->rcMonitor.bottom)
-            y = monitor->rcMonitor.bottom - height;
+        if ((y - height) < bounds.top || y >= bounds.bottom)
+            y = bounds.bottom - height;
         else
         {
             INT adjHgt = y + UserGetSystemMetrics(SM_CYMENUSIZE) +
                          2 * UserGetSystemMetrics(SM_CYDLGFRAME);
-            if (adjHgt >= monitor->rcMonitor.bottom)
+            if (adjHgt >= bounds.bottom)
                 y -= height;
             else
                 y = adjHgt - height;
@@ -3487,7 +3669,7 @@ static BOOL FASTCALL MENU_ShowPopup(PWND pwndOwner, PMENU menu, UINT id, UINT fl
     {
         RECT Cleaned;
 
-        if (RECTL_bIntersectRect(&Cleaned, pExclude, &monitor->rcMonitor) &&
+        if (RECTL_bIntersectRect(&Cleaned, pExclude, &bounds) &&
             RECTL_Intersect(&Cleaned, x, y, width, height))
         {
             UINT flag_mods[] = {
@@ -3504,7 +3686,7 @@ static BOOL FASTCALL MENU_ShowPopup(PWND pwndOwner, PMENU menu, UINT id, UINT fl
                 INT ty = y;
 
                 /* Try to move a bit around */
-                if (MENU_MoveRect(flags ^ flag_mods[n], &tx, &ty, width, height, &Cleaned, monitor) &&
+                if (MENU_MoveRect(flags ^ flag_mods[n], &tx, &ty, width, height, &Cleaned, &bounds) &&
                     !RECTL_Intersect(&Cleaned, tx, ty, width, height))
                 {
                     x = tx;
@@ -3523,14 +3705,6 @@ static BOOL FASTCALL MENU_ShowPopup(PWND pwndOwner, PMENU menu, UINT id, UINT fl
     }
 #endif
 
-    pWnd = ValidateHwndNoErr( menu->hWnd );
-
-    if (!pWnd)
-    {
-       ERR("menu->hWnd bad hwnd %p\n",menu->hWnd);
-       return FALSE;
-    }
-
     if (!top_popup) {
         top_popup = menu->hWnd;
         top_popup_hmenu = UserHMGetHandle(menu);
@@ -3538,6 +3712,21 @@ static BOOL FASTCALL MENU_ShowPopup(PWND pwndOwner, PMENU menu, UINT id, UINT fl
 
     /* Display the window */
     UserRefObjectCo(pWnd, &Ref);
+    ASSERT(UserIsEnteredExclusive());
+    style = pWnd->style & ~WS_BORDER;
+    ex_style = pWnd->ExStyle & ~WS_EX_DLGMODALFRAME;
+    if (!MENU_Themed(menu))
+    {
+        style |= WS_BORDER;
+        ex_style |= WS_EX_DLGMODALFRAME;
+    }
+    if (style != pWnd->style)
+        co_UserSetWindowLong(menu->hWnd, GWL_STYLE, style, FALSE);
+    if (ex_style != pWnd->ExStyle)
+        co_UserSetWindowLong(menu->hWnd, GWL_EXSTYLE, ex_style, FALSE);
+    if (MENU_Themed(menu) && AtomDwmCornerRadius)
+        UserSetProp(pWnd, AtomDwmCornerRadius,
+                    (HANDLE)(ULONG_PTR)MENU_Scale(RELIEF_MENU_POPUP_RADIUS), FALSE);
     if (!(flags & TPM_NOANIMATION) && (gspv.dwUserPrefMask & UPM_MENUANIMATION) &&
         AtomDwmTransition != 0 && AtomDwmTransitionFromLT != 0 && AtomDwmTransitionFromRB != 0)
     {
@@ -3564,11 +3753,23 @@ static BOOL FASTCALL MENU_ShowPopup(PWND pwndOwner, PMENU menu, UINT id, UINT fl
         UserSetProp(pWnd, AtomDwmTransition,
                     (HANDLE)(ULONG_PTR)DWM_TRANSITION_PACK(MenuTransitionSeq, 0, 255, 150), FALSE);
     }
-    co_WinPosSetWindowPos( pWnd, 0, 0, 0, width, height, SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE);
+    co_WinPosSetWindowPos( pWnd, 0, 0, 0, width, height, SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE | SWP_FRAMECHANGED);
     if (!menu->cItems)
     {
         UserDerefObjectCo(pWnd);
         return FALSE;
+    }
+    if (MENU_Themed(menu) && !IntCompositionIsEnabled())
+    {
+        INT Diameter = 2 * MENU_Scale(RELIEF_MENU_POPUP_RADIUS);
+        HRGN Region = NtGdiCreateRoundRectRgn(0, 0, width + 1, height + 1,
+                                             Diameter, Diameter);
+
+        if (Region)
+        {
+            NtUserSetWindowRgn(menu->hWnd, Region, FALSE);
+            GreDeleteObject(Region);
+        }
     }
     co_WinPosSetWindowPos( pWnd, HWND_TOPMOST, x, y, width, height, SWP_SHOWWINDOW | SWP_NOACTIVATE | SWP_NOOWNERZORDER);
 
@@ -3589,7 +3790,7 @@ void MENU_EnsureMenuItemVisible(PMENU lppop, UINT wIndex, HDC hdc)
     if (lppop->dwArrowsOn)
     {
         ITEM *item = &lppop->rgItems[wIndex];
-        UINT nMaxHeight = MENU_GetMaxPopupHeight(lppop);
+        UINT nMaxHeight = lppop->cyMenu;
         UINT nOldPos = lppop->iTop;
         RECT rc;
         UINT arrow_bitmap_height;
@@ -3597,26 +3798,38 @@ void MENU_EnsureMenuItemVisible(PMENU lppop, UINT wIndex, HDC hdc)
 
         IntGetClientRect(pWnd, &rc);
 
-        arrow_bitmap_height = gpsi->oembmi[OBI_DNARROW].cy;
+        arrow_bitmap_height = MENU_ScrollArrowHeight(lppop);
 
         rc.top += arrow_bitmap_height;
         rc.bottom -= arrow_bitmap_height;
 
-        nMaxHeight -= UserGetSystemMetrics(SM_CYBORDER) + 2 * arrow_bitmap_height;
+        if (MENU_Themed(lppop))
+        {
+            INT Inset = MENU_Scale(RELIEF_MENU_POPUP_INSET);
+
+            RECTL_vInflateRect(&rc, -Inset, -Inset);
+            nMaxHeight = max(0, (INT)lppop->cyMenu - Inset - 2 * (INT)arrow_bitmap_height);
+        }
+        else
+            nMaxHeight -= UserGetSystemMetrics(SM_CYBORDER) + 2 * arrow_bitmap_height;
         UserRefObjectCo(pWnd, &Ref);
         if (item->cyItem > lppop->iTop + nMaxHeight)
         {
             lppop->iTop = item->cyItem - nMaxHeight;
-            IntScrollWindow(pWnd, 0, nOldPos - lppop->iTop, &rc, &rc);
-            MENU_DrawScrollArrows(lppop, hdc);
-            //ERR("Scroll Down iTop %d iMaxTop %d nMaxHeight %d\n",lppop->iTop,lppop->iMaxTop,nMaxHeight);
         }
-        else if (item->yItem < lppop->iTop)
+        else if (item->yItem < lppop->iTop + (MENU_Themed(lppop) ? MENU_Scale(RELIEF_MENU_POPUP_INSET) : 0))
         {
-            lppop->iTop = item->yItem;
-            IntScrollWindow(pWnd, 0, nOldPos - lppop->iTop, &rc, &rc);
-            MENU_DrawScrollArrows(lppop, hdc);
-            //ERR("Scroll Up   iTop %d iMaxTop %d nMaxHeight %d\n",lppop->iTop,lppop->iMaxTop,nMaxHeight);
+            lppop->iTop = item->yItem - (MENU_Themed(lppop) ? MENU_Scale(RELIEF_MENU_POPUP_INSET) : 0);
+        }
+        if (lppop->iTop != nOldPos)
+        {
+            if (MENU_Themed(lppop))
+                MENU_DrawPopupMenu(pWnd, hdc, lppop);
+            else
+            {
+                IntScrollWindow(pWnd, 0, nOldPos - lppop->iTop, &rc, &rc);
+                MENU_DrawScrollArrows(lppop, hdc);
+            }
         }
         UserDerefObjectCo(pWnd);
     }
@@ -3834,6 +4047,7 @@ static void FASTCALL MENU_HideSubPopups(PWND pWndOwner, PMENU Menu,
 static PMENU FASTCALL MENU_ShowSubPopup(PWND WndOwner, PMENU Menu, BOOL SelectFirst, UINT Flags)
 {
   RECT Rect, ParentRect;
+  POINT BoundsAnchor;
   ITEM *Item;
   HDC Dc;
   PWND pWnd;
@@ -3867,6 +4081,8 @@ static PMENU FASTCALL MENU_ShowSubPopup(PWND WndOwner, PMENU Menu, BOOL SelectFi
   Rect.bottom = Item->cyItem;
 
   pWnd = ValidateHwndNoErr(Menu->hWnd);
+  if (pWnd && (pWnd->ExStyle & WS_EX_LAYOUTRTL))
+      Flags |= TPM_LAYOUTRTL;
 
   /* Grab the rect of our (entire) parent menu, so we can try to not overlap it */
   if (Menu->fFlags & MNF_POPUP)
@@ -3878,7 +4094,8 @@ static PMENU FASTCALL MENU_ShowSubPopup(PWND WndOwner, PMENU Menu, BOOL SelectFi
     }
 
     /* Ensure we can slightly overlap our parent */
-    RECTL_vInflateRect(&ParentRect, -UserGetSystemMetrics(SM_CXEDGE) * 2, 0);
+    if (!MENU_Themed(Menu))
+        RECTL_vInflateRect(&ParentRect, -UserGetSystemMetrics(SM_CXEDGE) * 2, 0);
   }
   else
   {
@@ -3943,12 +4160,22 @@ static PMENU FASTCALL MENU_ShowSubPopup(PWND WndOwner, PMENU Menu, BOOL SelectFi
 
           /* The first item in the popup menu has to be at the
              same y position as the focused menu item */
-          if(Flags & TPM_LAYOUTRTL)
-             Rect.left += UserGetSystemMetrics(SM_CXDLGFRAME);
+          if (MENU_Themed(Menu))
+          {
+              Rect.left = (Flags & TPM_LAYOUTRTL) ? pWnd->rcClient.left : pWnd->rcClient.right;
+              Rect.top = pWnd->rcClient.top + rc.top;
+              if (MENU_Themed(Item->spSubMenu))
+                  Rect.top -= MENU_Scale(RELIEF_MENU_POPUP_INSET);
+          }
           else
-             Rect.left += rc.right - UserGetSystemMetrics(SM_CXDLGFRAME);
+          {
+              if(Flags & TPM_LAYOUTRTL)
+                 Rect.left += UserGetSystemMetrics(SM_CXDLGFRAME);
+              else
+                 Rect.left += rc.right - UserGetSystemMetrics(SM_CXDLGFRAME);
 
-          Rect.top += rc.top;
+              Rect.top += rc.top;
+          }
       }
       else
       {
@@ -3973,8 +4200,15 @@ static PMENU FASTCALL MENU_ShowSubPopup(PWND WndOwner, PMENU Menu, BOOL SelectFi
 
   MENU_InitPopup( WndOwner, Item->spSubMenu, Flags );
 
+  BoundsAnchor.x = Rect.left;
+  BoundsAnchor.y = Rect.top;
+  if (ParentRect.left < ParentRect.right && ParentRect.top < ParentRect.bottom)
+  {
+      BoundsAnchor.x = max(ParentRect.left, min(Rect.left, ParentRect.right - 1));
+      BoundsAnchor.y = max(ParentRect.top, min(Rect.top, ParentRect.bottom - 1));
+  }
   MENU_ShowPopup( WndOwner, Item->spSubMenu, Menu->iItem, Flags,
-                Rect.left, Rect.top, &ParentRect);
+                Rect.left, Rect.top, &ParentRect, &BoundsAnchor);
   if (SelectFirst)
   {
       MENU_MoveSelection(WndOwner, Item->spSubMenu, ITEM_NEXT);
@@ -5186,7 +5420,8 @@ IntTrackPopupMenuEx(
        if (menu->fFlags & MNF_SYSMENU)
           MENU_InitSysMenuPopup( menu, pWnd->style, pWnd->pcls->style, HTSYSMENU);
 
-       if (MENU_ShowPopup(pWnd, menu, 0, wFlags | TPM_POPUPMENU, x, y, lpTpm ? &lpTpm->rcExclude : NULL))
+       if (MENU_ShowPopup(pWnd, menu, 0, wFlags | TPM_POPUPMENU, x, y,
+                          lpTpm ? &lpTpm->rcExclude : NULL, NULL))
        {
           ret = MENU_TrackMenu( menu, wFlags | TPM_POPUPMENU, 0, 0, pWnd);
           MENU_ExitTracking(pWnd, menu, TRUE, wFlags);
@@ -5846,7 +6081,6 @@ IntGetMenuItemRect(
    UINT uItem,
    PRECTL Rect)
 {
-   LONG XMove, YMove;
    PITEM MenuItem;
    UINT I = uItem;
 
@@ -5869,21 +6103,7 @@ IntGetMenuItemRect(
       if (!(pWnd = UserGetWindowObject(hWnd))) return FALSE;
    }
 
-   if (Menu->fFlags & MNF_POPUP)
-   {
-     XMove = pWnd->rcClient.left;
-     YMove = pWnd->rcClient.top;
-   }
-   else
-   {
-     XMove = pWnd->rcWindow.left;
-     YMove = pWnd->rcWindow.top;
-   }
-
-   Rect->left   += XMove;
-   Rect->top    += YMove;
-   Rect->right  += XMove;
-   Rect->bottom += YMove;
+   MENU_ItemRectToScreen(pWnd, Menu, Rect);
 
    return TRUE;
 }
@@ -6642,9 +6862,17 @@ NtUserGetMenuBarInfo(
 
    if (idItem == 0)
    {
-      Ret = IntGetMenuItemRect(pWnd, Menu, 0, &kmbi.rcBar);
-      kmbi.rcBar.right = kmbi.rcBar.left + Menu->cxMenu;
-      kmbi.rcBar.bottom = kmbi.rcBar.top + max((LONG)Menu->cyMenu - 1, 0);
+      if (Menu->fFlags & MNF_POPUP)
+      {
+          kmbi.rcBar = pWnd->rcClient;
+          Ret = TRUE;
+      }
+      else
+      {
+          Ret = IntGetMenuItemRect(pWnd, Menu, 0, &kmbi.rcBar);
+          kmbi.rcBar.right = kmbi.rcBar.left + Menu->cxMenu;
+          kmbi.rcBar.bottom = kmbi.rcBar.top + max((LONG)Menu->cyMenu - 1, 0);
+      }
       TRACE("idItem a 0 %d\n",Ret);
    }
    else
@@ -6745,7 +6973,6 @@ NtUserGetMenuItemRect(
    PRECTL lprcItem)
 {
    PWND ReferenceWnd;
-   LONG XMove, YMove;
    RECTL Rect;
    PMENU Menu;
    PITEM MenuItem;
@@ -6781,21 +7008,7 @@ NtUserGetMenuItemRect(
    if (!(ReferenceWnd = UserGetWindowObject(hWnd)))
        goto Exit; // Return FALSE
 
-   if (Menu->fFlags & MNF_POPUP)
-   {
-     XMove = ReferenceWnd->rcClient.left;
-     YMove = ReferenceWnd->rcClient.top;
-   }
-   else
-   {
-     XMove = ReferenceWnd->rcWindow.left;
-     YMove = ReferenceWnd->rcWindow.top;
-   }
-
-   Rect.left   += XMove;
-   Rect.top    += YMove;
-   Rect.right  += XMove;
-   Rect.bottom += YMove;
+   MENU_ItemRectToScreen(ReferenceWnd, Menu, &Rect);
    if (UserDpiIsVirtualCaller())
       UserDpiRectToLogical((PRECT)&Rect);
 
@@ -6946,8 +7159,24 @@ NtUserMenuItemFromPoint(
       goto Exit; // Return -1
    }
 
-   X -= Window->rcWindow.left;
-   Y -= Window->rcWindow.top;
+   if (UserDpiIsVirtualCaller())
+   {
+       X = UserDpiToPhysical((LONG)X);
+       Y = UserDpiToPhysical((LONG)Y);
+   }
+   if (Menu->fFlags & MNF_POPUP)
+   {
+       X = (Window->ExStyle & WS_EX_LAYOUTRTL) ? Window->rcClient.right - 1 - X :
+                                                X - Window->rcClient.left;
+       Y -= Window->rcClient.top;
+   }
+   else
+   {
+       X -= Window->rcWindow.left;
+       Y -= Window->rcWindow.top;
+   }
+   if (!MENU_InsidePopupViewport(Menu, X, Y))
+       goto Exit;
 
    mi = Menu->rgItems;
    for (i = 0; i < Menu->cItems; i++, mi++)
@@ -6958,16 +7187,11 @@ NtUserMenuItemFromPoint(
       Rect.top    = mi->yItem;
       Rect.right  = mi->cxItem;
       Rect.bottom = mi->cyItem;
-
       MENU_AdjustMenuItemRect(Menu, &Rect);
-
       if (RECTL_bPointInRect(&Rect, X, Y))
-      {
          break;
-      }
    }
-
-   Ret = (i < Menu->cItems ? i : NO_SELECTED_ITEM);
+   Ret = (i < Menu->cItems ? (int)i : -1);
 
 Exit:
    UserLeave();
@@ -7262,7 +7486,7 @@ Cleanup:
     TPM_LAYOUTRTL | TPM_NOANIMATION | TPM_VERNEGANIMATION | TPM_VERPOSANIMATION | \
     TPM_HORNEGANIMATION | TPM_HORPOSANIMATION | TPM_RETURNCMD | \
     TPM_NONOTIFY | TPM_VERTICAL | TPM_BOTTOMALIGN | TPM_VCENTERALIGN | \
-    TPM_RIGHTALIGN | TPM_CENTERALIGN | TPM_RIGHTBUTTON | TPM_RECURSE \
+    TPM_RIGHTALIGN | TPM_CENTERALIGN | TPM_RIGHTBUTTON | TPM_RECURSE | TPM_WORKAREA \
 )
 
 /* @implemented */
@@ -7282,12 +7506,6 @@ NtUserTrackPopupMenuEx(
     USER_REFERENCE_ENTRY WndRef, MenuRef;
 
     TRACE("Enter NtUserTrackPopupMenuEx\n");
-
-    if (fuFlags & TPM_WORKAREA)
-    {
-        EngSetLastError(ERROR_INVALID_PARAMETER);
-        goto Exit0;
-    }
 
     if (fuFlags & ~VALID_TPM_FLAGS)
     {

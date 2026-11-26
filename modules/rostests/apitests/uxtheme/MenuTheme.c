@@ -32,45 +32,99 @@ test_draw_text(HTHEME Theme, int Part, int State)
 {
     BITMAPINFO Info = {{sizeof(BITMAPINFOHEADER), TEXT_WIDTH, -TEXT_HEIGHT, 1, 32, BI_RGB}};
     RECT Rect = {0, 0, TEXT_WIDTH, TEXT_HEIGHT};
+    RECT ReferenceRect = Rect;
     DTTOPTS Options = {sizeof(Options)};
-    HBITMAP Bitmap, OldBitmap;
-    DWORD *Bits;
-    HDC Dc;
+    HBITMAP Bitmap[2] = {NULL, NULL}, OldBitmap[2] = {NULL, NULL};
+    DWORD *Bits[2] = {NULL, NULL};
+    HDC Dc[2] = {NULL, NULL};
+    LOGFONTW Font;
+    HFONT ThemeFont = NULL;
+    HGDIOBJ ReferenceFont, OldFont = NULL;
     HRESULT hr;
-    int i, Lit = 0, Other = 0;
+    int i, j, Ink = 0, Differences = 0, Height;
 
-    Dc = CreateCompatibleDC(NULL);
-    ok(Dc != NULL, "CreateCompatibleDC failed\n");
-    Bitmap = CreateDIBSection(Dc, &Info, DIB_RGB_COLORS, (void **)&Bits, NULL, 0);
-    ok(Bitmap != NULL, "CreateDIBSection failed\n");
-    if (!Dc || !Bitmap)
+    for (i = 0; i < 2; i++)
+    {
+        Dc[i] = CreateCompatibleDC(NULL);
+        ok(Dc[i] != NULL, "CreateCompatibleDC %d failed\n", i);
+        if (!Dc[i])
+            goto Cleanup;
+        Bitmap[i] = CreateDIBSection(Dc[i], &Info, DIB_RGB_COLORS, (void **)&Bits[i], NULL, 0);
+        ok(Bitmap[i] != NULL, "CreateDIBSection %d failed\n", i);
+        if (!Bitmap[i])
+            goto Cleanup;
+        OldBitmap[i] = SelectObject(Dc[i], Bitmap[i]);
+        ok(OldBitmap[i] != NULL && OldBitmap[i] != HGDI_ERROR, "SelectObject bitmap %d failed\n", i);
+        if (!OldBitmap[i] || OldBitmap[i] == HGDI_ERROR)
+            goto Cleanup;
+        for (j = 0; j < TEXT_WIDTH * TEXT_HEIGHT; j++)
+            Bits[i][j] = TEXT_BACKGROUND;
+    }
+
+    hr = GetThemeFont(Theme, Dc[0], Part, State, TMT_FONT, &Font);
+    if (SUCCEEDED(hr))
+    {
+        ThemeFont = CreateFontIndirectW(&Font);
+        ok(ThemeFont != NULL, "cannot create the themed reference font\n");
+        if (!ThemeFont)
+            goto Cleanup;
+        ReferenceFont = ThemeFont;
+    }
+    else
+        ReferenceFont = GetCurrentObject(Dc[0], OBJ_FONT);
+    ok(ReferenceFont != NULL, "cannot obtain the reference font\n");
+    if (!ReferenceFont)
         goto Cleanup;
-    OldBitmap = SelectObject(Dc, Bitmap);
-    for (i = 0; i < TEXT_WIDTH * TEXT_HEIGHT; i++)
-        Bits[i] = TEXT_BACKGROUND;
+    OldFont = SelectObject(Dc[1], ReferenceFont);
+    ok(OldFont != NULL && OldFont != HGDI_ERROR, "cannot select the reference font\n");
+    if (!OldFont || OldFont == HGDI_ERROR)
+        goto Cleanup;
 
     Options.dwFlags = DTT_TEXTCOLOR;
     Options.crText = RGB(255, 255, 255);
-    hr = DrawThemeTextEx(Theme, Dc, Part, State, L"File", -1, DT_SINGLELINE | DT_CENTER | DT_VCENTER, &Rect, &Options);
+    hr = DrawThemeTextEx(Theme, Dc[0], Part, State, L"File", -1, DT_SINGLELINE | DT_CENTER | DT_VCENTER, &Rect, &Options);
     ok(hr == S_OK, "part %d state %d: DrawThemeTextEx returned 0x%08lx\n", Part, State, hr);
+    if (hr != S_OK)
+        goto Cleanup;
+    if (SetTextColor(Dc[1], Options.crText) == CLR_INVALID || !SetBkMode(Dc[1], TRANSPARENT))
+    {
+        ok(FALSE, "cannot configure the reference text colors\n");
+        goto Cleanup;
+    }
+    Height = DrawTextW(Dc[1], L"File", -1, &ReferenceRect, DT_SINGLELINE | DT_CENTER | DT_VCENTER);
+    ok(Height > 0, "part %d state %d: DrawTextW reference failed\n", Part, State);
+    if (Height <= 0)
+        goto Cleanup;
     GdiFlush();
     for (i = 0; i < TEXT_WIDTH * TEXT_HEIGHT; i++)
     {
-        if (Bits[i] == 0x00ffffff)
-            Lit++;
-        else if (Bits[i] != TEXT_BACKGROUND)
-            Other++;
+        if ((Bits[1][i] & 0x00ffffff) != TEXT_BACKGROUND)
+            Ink++;
+        if ((Bits[0][i] & 0x00ffffff) != (Bits[1][i] & 0x00ffffff))
+            Differences++;
     }
-    ok(Lit > 0, "part %d state %d: no pixel in the text color\n", Part, State);
-    ok(Lit + Other < TEXT_WIDTH * TEXT_HEIGHT / 2, "part %d state %d: %d of %d pixels changed\n",
-       Part, State, Lit + Other, TEXT_WIDTH * TEXT_HEIGHT);
-    SelectObject(Dc, OldBitmap);
+    ok(!Differences, "part %d state %d: themed text differs from the requested RGB reference at %d pixels\n",
+       Part, State, Differences);
+    ok(Ink > 0, "part %d state %d: reference text is empty\n", Part, State);
+    ok(Ink < TEXT_WIDTH * TEXT_HEIGHT / 2, "part %d state %d: reference changed %d of %d pixels\n",
+       Part, State, Ink, TEXT_WIDTH * TEXT_HEIGHT);
 
 Cleanup:
-    if (Bitmap)
-        DeleteObject(Bitmap);
-    if (Dc)
-        DeleteDC(Dc);
+    if (Dc[1] && OldFont && OldFont != HGDI_ERROR)
+        SelectObject(Dc[1], OldFont);
+    for (i = 0; i < 2; i++)
+    {
+        if (Dc[i])
+        {
+            if (OldBitmap[i] && OldBitmap[i] != HGDI_ERROR)
+                SelectObject(Dc[i], OldBitmap[i]);
+            DeleteDC(Dc[i]);
+        }
+        if (Bitmap[i])
+            DeleteObject(Bitmap[i]);
+    }
+    if (ThemeFont)
+        DeleteObject(ThemeFont);
 }
 
 START_TEST(MenuTheme)

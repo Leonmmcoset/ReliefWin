@@ -6,6 +6,7 @@ list(APPEND SOURCE
     DrawThemeParentBackground.c
     GetThemeParseErrorInfo.c
     MenuTheme.c
+    ModernMenu.c
     NativeScrollbarTheme.c
     NonClientBorder.c
     NonClientCaption.c

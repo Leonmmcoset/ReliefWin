@@ -1,0 +1,1379 @@
+{
+  "schema": 1,
+  "builds": {
+    "product": {
+      "targets": [
+        "win32k",
+        "win8.msstyles",
+        "user32"
+      ],
+      "CCACHE_DISABLE": "1",
+      "source_sha256": {
+        "media/themes/Win8/win8.msstyles/bitmaps/LIGHT_MENUBARBACKGROUND.bmp": "3d998e75866b46be6b23f7f00c5a2a7c76850b960a4e07df01d562dfc7ec5ff8",
+        "media/themes/Win8/win8.msstyles/bitmaps/LIGHT_MENUBARITEM.bmp": "8e1542b20f6b4261afed41f9b9161d5f1fc13ac81dcb7ae2abd1dd63949c68c4",
+        "media/themes/Win8/win8.msstyles/bitmaps/LIGHT_MENUPOPUPBACKGROUND.bmp": "b32d3a6a881d0bf74c5f1e392c4e1e66ff5fb640999c38a4c5aab6032d8535c0",
+        "media/themes/Win8/win8.msstyles/bitmaps/LIGHT_MENUPOPUPBORDERS.bmp": "71240f5b9e2cc3efdccb9e3f7da3a40eb7d1ba73445c61658d86068de56bb284",
+        "media/themes/Win8/win8.msstyles/bitmaps/LIGHT_MENUPOPUPCHECK.bmp": "a18e02c12b4fcc6be0505764df4bc0d4e18a9332fe23d1120942ad0f1ff883df",
+        "media/themes/Win8/win8.msstyles/bitmaps/LIGHT_MENUPOPUPCHECKBACKGROUND.bmp": "add0592f3b43ef926dd695b5b586c95c3e6779696dc493e3e60b0d569b9b2b34",
+        "media/themes/Win8/win8.msstyles/bitmaps/LIGHT_MENUPOPUPGUTTER.bmp": "14fc7d43e327e9a22bd8c6b8a0ad630fe50becbe497b1d07593076867ce2ab4b",
+        "media/themes/Win8/win8.msstyles/bitmaps/LIGHT_MENUPOPUPITEM.bmp": "77101202889f6171ba4f900daf49bdaa3158b35587f6db0eda2d0266c6ced418",
+        "media/themes/Win8/win8.msstyles/bitmaps/LIGHT_MENUPOPUPSEPARATOR.bmp": "8afe931a5c49b5107e0f60f1f464471cd2cf778a7fee0f856c97f6e146f12727",
+        "media/themes/Win8/win8.msstyles/bitmaps/LIGHT_MENUPOPUPSUBMENU.bmp": "918dfff1af2e5ae2aaed837c075ad5a87a09f36c194b9a5ecd30e2c11cae2d7a",
+        "media/themes/Win8/win8.msstyles/bitmaps/NORMAL_MENUBARBACKGROUND.bmp": "19b15fcaa24934b58c780303eec785f3c1ec0c49084f53634b6051cc54bab487",
+        "media/themes/Win8/win8.msstyles/bitmaps/NORMAL_MENUBARITEM.bmp": "9f4664901c1f9f3488aa15454e205b8788b81640c9c929f31b308af2042881a4",
+        "media/themes/Win8/win8.msstyles/bitmaps/NORMAL_MENUPOPUPBACKGROUND.bmp": "343a6f798f095f57647800c5ce5cc5b9d69af436eb4b538d023447300aa79601",
+        "media/themes/Win8/win8.msstyles/bitmaps/NORMAL_MENUPOPUPBORDERS.bmp": "a994d242ffa3d877c9ce10d9384f9363675a60ad0339edc44bc7196364eecdd5",
+        "media/themes/Win8/win8.msstyles/bitmaps/NORMAL_MENUPOPUPCHECK.bmp": "84d20d9a57eb1b21402fb122788d816c8e79a830fad9cb3922c9b2f9597c598c",
+        "media/themes/Win8/win8.msstyles/bitmaps/NORMAL_MENUPOPUPCHECKBACKGROUND.bmp": "add0592f3b43ef926dd695b5b586c95c3e6779696dc493e3e60b0d569b9b2b34",
+        "media/themes/Win8/win8.msstyles/bitmaps/NORMAL_MENUPOPUPGUTTER.bmp": "46726541da70feed42935ee7f7c2e75bbbf6013e91a9e83d0c81eec6e08c869a",
+        "media/themes/Win8/win8.msstyles/bitmaps/NORMAL_MENUPOPUPITEM.bmp": "90396516f073fe188baa633c8a5efdfcfa7d483a2f794f1f21a652ea7108c2c8",
+        "media/themes/Win8/win8.msstyles/bitmaps/NORMAL_MENUPOPUPSEPARATOR.bmp": "ce7704a178fc9092e7c3fc37bc8d3f8ad05b20a1f72ea3ce7b9368769c06d1a3",
+        "media/themes/Win8/win8.msstyles/bitmaps/NORMAL_MENUPOPUPSUBMENU.bmp": "5fd58abb5862b297aaea880042f16fe90f61515f72301977038b4d34182aa9eb",
+        "media/themes/Win8/win8.msstyles/sources/MODERN_MENUS.md": "34fee036182ace1d420bcf7d152af4fa6c6c65dabf9cf2389f40521f3cbe81c1",
+        "media/themes/Win8/win8.msstyles/sources/fluentui-system-icons/SOURCE.txt": "5682212f390010a10061c3a4dce6f09acfa67266d17fad84a7e7473e9a89d549",
+        "media/themes/Win8/win8.msstyles/sources/fluentui-system-icons/ic_fluent_circle_12_filled.svg": "8b4bbbbe4a87608f37cfcd45e046698b91137ee09bb8549c1b38b6d962ff542d",
+        "media/themes/Win8/win8.msstyles/sources/modern_menus.json": "ac9c8d7550de6c5f552a9d42cc0f9845cd4c860f9c11dc0b18da59848e765a4f",
+        "media/themes/Win8/win8.msstyles/sources/modern_menus.py": "11deca0f2af1454b2809a319132f356264a9aa2bbc657839021a48f945683c19",
+        "media/themes/Win8/win8.msstyles/sources/test_modern_menus.py": "f358a1a645f0800a1ae7d46190205e43e29c42b3af023c7491f280e0366101eb",
+        "media/themes/Win8/win8.msstyles/textfiles/ExtraLargeNormal.INI": "eed5a1bb1c1a91006a0ee6f044c01e28df53eac204a2eaa32c5fd6a113cbd967",
+        "media/themes/Win8/win8.msstyles/textfiles/LargeFontsNormal.INI": "eed5a1bb1c1a91006a0ee6f044c01e28df53eac204a2eaa32c5fd6a113cbd967",
+        "media/themes/Win8/win8.msstyles/textfiles/NormalNormal.INI": "515196f7a34ff58455a83e95c0dda150108e463fc00e2fb9612c374c4bf278d8",
+        "media/themes/Win8/win8.msstyles/win8.rc": "2e2400120720f4cca799f64c42fa92dc35ba1c1f2b09339346146c285f87cdd0",
+        "sdk/include/reliefwin/menuart.h": "bd7ea696b31f28f9b9c6332ab044bc5c2d385105ff6e0afe3bd92cc357241b57",
+        "subsystems/win/win32k/user/ntuser/dpi.c": "538ee13a5d78276f693e0570ece3a63d75b8f7359adec04d31fde2c66bfc53b5",
+        "subsystems/win/win32k/user/ntuser/menu.c": "2a1e1902d062ea55a3252c258aa53953f7e7a738d14901c64fe4930d06744b9a",
+        "subsystems/win/win32k/user/user32/user32.spec": "40847753c94ddcb2a49c558a5b5eddbe588a3f8bc76b1d609d2c2b03681a2b0c",
+        "subsystems/win/win32k/user/user32/windows/menu.c": "3ac6b2a3f0fb7e72fa160ea0b4f0f0718e12003adf28f3d8618b9acc42dd4b22"
+      },
+      "architectures": {
+        "amd64": {
+          "build": {
+            "command": [
+              "ninja",
+              "-C",
+              "/root/reliefwin.2/output-Clang-amd64-debug",
+              "-j2",
+              "win32k",
+              "win8.msstyles",
+              "user32"
+            ],
+            "exit": 0,
+            "seconds": 2.207580741996935
+          },
+          "artifacts": {
+            "win32k": {
+              "path": "/root/reliefwin.2/output-Clang-amd64-debug/subsystems/win/win32k/win32k.sys",
+              "sha256": "9f11545672e6c91ee613056160fcbc1330b6a5df985a1f685a18078113909429",
+              "size": 5615616,
+              "machine": "0x8664",
+              "matches_current_file": true
+            },
+            "win8.msstyles": {
+              "path": "/root/reliefwin.2/output-Clang-amd64-debug/media/themes/Win8/win8.msstyles/win8.msstyles",
+              "sha256": "6c7ca6c282cedb79afd3ca39a482ba6113203337e8b5c53a0cd3ad367c08204f",
+              "size": 2998272,
+              "machine": "0x8664",
+              "matches_current_file": true
+            },
+            "user32": {
+              "path": "/root/reliefwin.2/output-Clang-amd64-debug/subsystems/win/win32k/user/user32/user32.dll",
+              "sha256": "25751d0a53fec00d7184f4f69f097ee7279256baf74c25465e36945d0ccb52db",
+              "size": 4037120,
+              "machine": "0x8664",
+              "matches_current_file": true
+            }
+          },
+          "ENABLE_ROSTESTS_restored_OFF": true
+        },
+        "i386": {
+          "build": {
+            "command": [
+              "ninja",
+              "-C",
+              "/root/reliefwin.2/output-Clang-i386-debug",
+              "-j2",
+              "win32k",
+              "win8.msstyles",
+              "user32"
+            ],
+            "exit": 0,
+            "seconds": 2.2616034839957138
+          },
+          "artifacts": {
+            "win32k": {
+              "path": "/root/reliefwin.2/output-Clang-i386-debug/subsystems/win/win32k/win32k.sys",
+              "sha256": "6f7cc89718fcb954454ef49a1d77b3301b90d791e749743be6e3758e71b3b455",
+              "size": 5427200,
+              "machine": "0x14c",
+              "matches_current_file": true
+            },
+            "win8.msstyles": {
+              "path": "/root/reliefwin.2/output-Clang-i386-debug/media/themes/Win8/win8.msstyles/win8.msstyles",
+              "sha256": "cd3ce132b5f96c9bc55a538f5dfbb374ec801d92628e050746fa46d72d345208",
+              "size": 2998272,
+              "machine": "0x14c",
+              "matches_current_file": true
+            },
+            "user32": {
+              "path": "/root/reliefwin.2/output-Clang-i386-debug/subsystems/win/win32k/user/user32/user32.dll",
+              "sha256": "b7bfba1194a35bcc11454afb7a39ad4f18564716bad229c0b649e9d5372d9020",
+              "size": 4045824,
+              "machine": "0x14c",
+              "matches_current_file": true
+            }
+          },
+          "ENABLE_ROSTESTS_restored_OFF": true
+        },
+        "arm64": {
+          "build": {
+            "command": [
+              "ninja",
+              "-C",
+              "/root/reliefwin.2/output-Clang-arm64-debug",
+              "-j2",
+              "win32k",
+              "win8.msstyles",
+              "user32"
+            ],
+            "exit": 0,
+            "seconds": 1.9171981339968625
+          },
+          "artifacts": {
+            "win32k": {
+              "path": "/root/reliefwin.2/output-Clang-arm64-debug/subsystems/win/win32k/win32k.sys",
+              "sha256": "786ffe6f4b26a9d118531113a18d2e2963dcb81e0b773743db528356a2b14a27",
+              "size": 5316608,
+              "machine": "0xaa64",
+              "matches_current_file": true
+            },
+            "win8.msstyles": {
+              "path": "/root/reliefwin.2/output-Clang-arm64-debug/media/themes/Win8/win8.msstyles/win8.msstyles",
+              "sha256": "2c6fae0706338f347ca30de3cb110eed4f5db6a711b9b61e48e7813d6e1240d8",
+              "size": 2998272,
+              "machine": "0xaa64",
+              "matches_current_file": true
+            },
+            "user32": {
+              "path": "/root/reliefwin.2/output-Clang-arm64-debug/subsystems/win/win32k/user/user32/user32.dll",
+              "sha256": "8358557622ff161c3b878b958864194400a3c04299f7a1c7afcbfa44a799218e",
+              "size": 3972096,
+              "machine": "0xaa64",
+              "matches_current_file": true
+            }
+          },
+          "ENABLE_ROSTESTS_restored_OFF": true
+        }
+      },
+      "log": "/tmp/reliefwin-controls-build.log",
+      "source_still_matches": true,
+      "log_sha256": "f41481d3c3a5b685e94e9bb4011057a96d7e427c04f4fc45ffac040853c57caa"
+    },
+    "tests": {
+      "targets": [
+        "uxtheme_apitest"
+      ],
+      "CCACHE_DISABLE": "1",
+      "source_sha256": {
+        "modules/rostests/apitests/uxtheme/CMakeLists.txt": "847bd8eda754125cf565f730b90d51918a5f1d008bc4001890b622ecce7f03fa",
+        "modules/rostests/apitests/uxtheme/MenuTheme.c": "59f261106fb2b6cfc0d7272237712a885dacc8e6b878c3a46bb4c3dd680c7848",
+        "modules/rostests/apitests/uxtheme/ModernMenu.c": "bd2a101ef53cee412478ddf6320acfa5eb4fe7ea683978a392577454f1fb4102",
+        "modules/rostests/apitests/uxtheme/testlist.c": "07801e4bf7169657359e36c796e23795e1014456dd48fed36196eaa92c32a975"
+      },
+      "architectures": {
+        "amd64": {
+          "configure_on": {
+            "command": [
+              "/root/.local/lib/python3.10/site-packages/cmake/data/bin/cmake",
+              "-S",
+              "/root/reliefwin.2",
+              "-B",
+              "/root/reliefwin.2/output-Clang-amd64-debug",
+              "-DENABLE_ROSTESTS=ON"
+            ],
+            "exit": 0,
+            "seconds": 7.325657344001229
+          },
+          "build": {
+            "command": [
+              "ninja",
+              "-C",
+              "/root/reliefwin.2/output-Clang-amd64-debug",
+              "-j2",
+              "uxtheme_apitest"
+            ],
+            "exit": 0,
+            "seconds": 1.019844793001539
+          },
+          "artifacts": {
+            "uxtheme_apitest": {
+              "path": "/root/reliefwin.2/output-Clang-amd64-debug/modules/rostests/apitests/uxtheme/uxtheme_apitest.exe",
+              "sha256": "5ec124df78361f2b9886a2dd5e82d100a8bd54572e21b4af2d4b6177de699073",
+              "size": 369152,
+              "machine": "0x8664",
+              "matches_current_file": true
+            }
+          },
+          "compdb_exit": 0,
+          "compdb_sha256": "75f3c041c5814910b256e9b4ac34c36744ff0298d372fd5f1695f68d431d092a",
+          "configure_off": {
+            "command": [
+              "/root/.local/lib/python3.10/site-packages/cmake/data/bin/cmake",
+              "-S",
+              "/root/reliefwin.2",
+              "-B",
+              "/root/reliefwin.2/output-Clang-amd64-debug",
+              "-DENABLE_ROSTESTS=OFF"
+            ],
+            "exit": 0,
+            "seconds": 5.836010781000368
+          },
+          "ENABLE_ROSTESTS_restored_OFF": true
+        },
+        "i386": {
+          "configure_on": {
+            "command": [
+              "/root/.local/lib/python3.10/site-packages/cmake/data/bin/cmake",
+              "-S",
+              "/root/reliefwin.2",
+              "-B",
+              "/root/reliefwin.2/output-Clang-i386-debug",
+              "-DENABLE_ROSTESTS=ON"
+            ],
+            "exit": 0,
+            "seconds": 6.1539207929963595
+          },
+          "build": {
+            "command": [
+              "ninja",
+              "-C",
+              "/root/reliefwin.2/output-Clang-i386-debug",
+              "-j2",
+              "uxtheme_apitest"
+            ],
+            "exit": 0,
+            "seconds": 0.8992682349999086
+          },
+          "artifacts": {
+            "uxtheme_apitest": {
+              "path": "/root/reliefwin.2/output-Clang-i386-debug/modules/rostests/apitests/uxtheme/uxtheme_apitest.exe",
+              "sha256": "b382664ec6ae4b501ff2e33c2d7dbac82c5ae6077d992188336f41b121f4b887",
+              "size": 392704,
+              "machine": "0x14c",
+              "matches_current_file": true
+            }
+          },
+          "configure_off": {
+            "command": [
+              "/root/.local/lib/python3.10/site-packages/cmake/data/bin/cmake",
+              "-S",
+              "/root/reliefwin.2",
+              "-B",
+              "/root/reliefwin.2/output-Clang-i386-debug",
+              "-DENABLE_ROSTESTS=OFF"
+            ],
+            "exit": 0,
+            "seconds": 4.698953417995654
+          },
+          "ENABLE_ROSTESTS_restored_OFF": true
+        },
+        "arm64": {
+          "configure_on": {
+            "command": [
+              "/root/.local/lib/python3.10/site-packages/cmake/data/bin/cmake",
+              "-S",
+              "/root/reliefwin.2",
+              "-B",
+              "/root/reliefwin.2/output-Clang-arm64-debug",
+              "-DENABLE_ROSTESTS=ON"
+            ],
+            "exit": 0,
+            "seconds": 7.567627855001774
+          },
+          "build": {
+            "command": [
+              "ninja",
+              "-C",
+              "/root/reliefwin.2/output-Clang-arm64-debug",
+              "-j2",
+              "uxtheme_apitest"
+            ],
+            "exit": 0,
+            "seconds": 0.6858034239994595
+          },
+          "artifacts": {
+            "uxtheme_apitest": {
+              "path": "/root/reliefwin.2/output-Clang-arm64-debug/modules/rostests/apitests/uxtheme/uxtheme_apitest.exe",
+              "sha256": "f40650d772baea386b5506d021f6b69821b563a6dcd7b4830f9bd48b38613607",
+              "size": 377856,
+              "machine": "0xaa64",
+              "matches_current_file": true
+            }
+          },
+          "configure_off": {
+            "command": [
+              "/root/.local/lib/python3.10/site-packages/cmake/data/bin/cmake",
+              "-S",
+              "/root/reliefwin.2",
+              "-B",
+              "/root/reliefwin.2/output-Clang-arm64-debug",
+              "-DENABLE_ROSTESTS=OFF"
+            ],
+            "exit": 0,
+            "seconds": 6.227602406004735
+          },
+          "ENABLE_ROSTESTS_restored_OFF": true
+        }
+      },
+      "log": "/tmp/reliefwin-controls-build.log",
+      "source_still_matches": true,
+      "log_sha256": "fe711515f986494796612d774964ee2c0da72adb19bbf74e5b2430760d33bf59"
+    }
+  },
+  "runs": {
+    "baseline96": {
+      "tests": {
+        "MenuTheme": {
+          "checks": 50,
+          "failures": 0,
+          "skips": 0,
+          "exit": 0
+        },
+        "MenuAppearance": {
+          "checks": 194,
+          "failures": 37,
+          "skips": 0,
+          "exit": 37
+        },
+        "NativeMenuAppearance": {
+          "checks": 414,
+          "failures": 64,
+          "skips": 0,
+          "exit": 64
+        },
+        "MenuInteraction": {
+          "checks": 2014,
+          "failures": 169,
+          "skips": 0,
+          "exit": 169
+        },
+        "NativeMenuScroll": {
+          "checks": 5329,
+          "failures": 127,
+          "skips": 0,
+          "exit": 127
+        }
+      },
+      "log_path": ".git/menu/baseline.log",
+      "log_sha256": "1329b079fb1dd15839c9e8cb03bbe903decd7d634d11ee1b2875ad0f3dceb281",
+      "binary_sha256": "5ec124df78361f2b9886a2dd5e82d100a8bd54572e21b4af2d4b6177de699073",
+      "done": "done",
+      "next_dpi": "144",
+      "product_sha256": {
+        "/Windows/system32/win32k.sys": "e70502495e13d2cc224664d9f9d73ec268a021067666b25caa682f3a2f9e7c65",
+        "/Windows/Resources/Themes/Aero/aero.msstyles": "810f6bb4f8b9d928d75d41e80136bea28cdf07a7e27e96133da7f19027ea49d5",
+        "/Windows/system32/user32.dll": "c502cec3f035ef776f3004a9658f03cdbd689042d5932bda5f669317f429cbb5"
+      },
+      "failure_lines": [
+        "ModernMenu.c:1235: Test failed: menu part 9 state 0 did not leave transparent opposite corners",
+        "ModernMenu.c:1235: Test failed: menu part 10 state 0 did not leave transparent opposite corners",
+        "ModernMenu.c:1235: Test failed: menu part 9 state 0 did not leave transparent opposite corners",
+        "ModernMenu.c:1235: Test failed: menu part 10 state 0 did not leave transparent opposite corners",
+        "ModernMenu.c:1292: Test failed: palette 0 popup content margins missing",
+        "ModernMenu.c:1294: Test failed: palette 0 popup margins are 0,0,0,0",
+        "ModernMenu.c:1232: Test failed: menu part 14 state 1 changed 5600 pixels",
+        "ModernMenu.c:1235: Test failed: menu part 14 state 2 did not leave transparent opposite corners",
+        "ModernMenu.c:1232: Test failed: menu part 14 state 3 changed 5600 pixels",
+        "ModernMenu.c:1235: Test failed: menu part 14 state 4 did not leave transparent opposite corners",
+        "ModernMenu.c:1232: Test failed: menu part 8 state 1 changed 5600 pixels",
+        "ModernMenu.c:1235: Test failed: menu part 8 state 2 did not leave transparent opposite corners",
+        "ModernMenu.c:1235: Test failed: menu part 8 state 3 did not leave transparent opposite corners",
+        "ModernMenu.c:1232: Test failed: menu part 8 state 4 changed 5600 pixels",
+        "ModernMenu.c:1235: Test failed: menu part 8 state 5 did not leave transparent opposite corners",
+        "ModernMenu.c:1235: Test failed: menu part 8 state 6 did not leave transparent opposite corners",
+        "ModernMenu.c:1312: Test failed: palette 0 menu check is not native 12px",
+        "ModernMenu.c:1314: Test failed: palette 0 submenu glyph is not native 12px",
+        "ModernMenu.c:1235: Test failed: menu part 9 state 0 did not leave transparent opposite corners",
+        "ModernMenu.c:1235: Test failed: menu part 10 state 0 did not leave transparent opposite corners",
+        "ModernMenu.c:1235: Test failed: menu part 9 state 0 did not leave transparent opposite corners",
+        "ModernMenu.c:1235: Test failed: menu part 10 state 0 did not leave transparent opposite corners",
+        "ModernMenu.c:1292: Test failed: palette 1 popup content margins missing",
+        "ModernMenu.c:1294: Test failed: palette 1 popup margins are 0,0,0,0",
+        "ModernMenu.c:1232: Test failed: menu part 14 state 1 changed 5600 pixels",
+        "ModernMenu.c:1235: Test failed: menu part 14 state 2 did not leave transparent opposite corners",
+        "ModernMenu.c:1232: Test failed: menu part 14 state 3 changed 5600 pixels",
+        "ModernMenu.c:1235: Test failed: menu part 14 state 4 did not leave transparent opposite corners",
+        "ModernMenu.c:1232: Test failed: menu part 8 state 1 changed 5600 pixels",
+        "ModernMenu.c:1235: Test failed: menu part 8 state 2 did not leave transparent opposite corners",
+        "ModernMenu.c:1235: Test failed: menu part 8 state 3 did not leave transparent opposite corners",
+        "ModernMenu.c:1232: Test failed: menu part 8 state 4 changed 5600 pixels",
+        "ModernMenu.c:1235: Test failed: menu part 8 state 5 did not leave transparent opposite corners",
+        "ModernMenu.c:1235: Test failed: menu part 8 state 6 did not leave transparent opposite corners",
+        "ModernMenu.c:1312: Test failed: palette 1 menu check is not native 12px",
+        "ModernMenu.c:1314: Test failed: palette 1 submenu glyph is not native 12px",
+        "ModernMenu.c:1321: Test failed: menu theme dark/light panel signatures did not differ: 6e68f7f1/6e68f7f1",
+        "ModernMenu.c:248: Test failed: popup client (243,243)-(439,382), GetMenuBarInfo (243,243)-(439,381)",
+        "ModernMenu.c:294: Test failed: left item edge does not hit the first item",
+        "ModernMenu.c:296: Test failed: right item edge does not hit the first item",
+        "ModernMenu.c:299: Test failed: top item edge does not hit the first item",
+        "ModernMenu.c:301: Test failed: bottom item edge does not hit the first item",
+        "ModernMenu.c:305: Test failed: popup top padding incorrectly hits an item",
+        "ModernMenu.c:310: Test failed: popup bottom padding incorrectly hits an item",
+        "ModernMenu.c:393: Test failed: palette 0 popup padding: (0,0,0,0), expected at least 6",
+        "ModernMenu.c:397: Test failed: palette 0 row height 22 is below 28",
+        "ModernMenu.c:400: Test failed: palette 0 row height 22 does not reserve text height 16 + margins 6",
+        "ModernMenu.c:403: Test failed: palette 0 separator height 7, expected 9",
+        "ModernMenu.c:494: Test failed: palette 0 native glyph 3 bounds 27x22, expected 12x12",
+        "ModernMenu.c:494: Test failed: palette 0 native glyph 4 bounds 27x22, expected 12x12",
+        "ModernMenu.c:494: Test failed: palette 0 native glyph 5 bounds 4x7, expected 12x12",
+        "ModernMenu.c:248: Test failed: popup client (243,243)-(439,382), GetMenuBarInfo (243,243)-(439,381)",
+        "ModernMenu.c:530: Test failed: palette 0 hot item changed its rounded top-left corner",
+        "ModernMenu.c:248: Test failed: popup client (243,243)-(439,382), GetMenuBarInfo (243,243)-(439,381)",
+        "ModernMenu.c:294: Test failed: left item edge does not hit the first item",
+        "ModernMenu.c:296: Test failed: right item edge does not hit the first item",
+        "ModernMenu.c:299: Test failed: top item edge does not hit the first item",
+        "ModernMenu.c:301: Test failed: bottom item edge does not hit the first item",
+        "ModernMenu.c:305: Test failed: popup top padding incorrectly hits an item",
+        "ModernMenu.c:310: Test failed: popup bottom padding incorrectly hits an item",
+        "ModernMenu.c:393: Test failed: palette 0 popup padding: (0,0,0,0), expected at least 6",
+        "ModernMenu.c:397: Test failed: palette 0 row height 22 is below 28",
+        "ModernMenu.c:400: Test failed: palette 0 row height 22 does not reserve text height 16 + margins 6",
+        "ModernMenu.c:403: Test failed: palette 0 separator height 7, expected 9",
+        "ModernMenu.c:491: Test failed: palette 0 native glyph 3 or its reference is empty",
+        "ModernMenu.c:491: Test failed: palette 0 native glyph 4 or its reference is empty",
+        "ModernMenu.c:494: Test failed: palette 0 native glyph 5 bounds 1x22, expected 12x12",
+        "ModernMenu.c:248: Test failed: popup client (243,243)-(439,382), GetMenuBarInfo (243,243)-(439,381)",
+        "ModernMenu.c:530: Test failed: palette 0 hot item changed its rounded top-left corner",
+        "ModernMenu.c:248: Test failed: popup client (243,243)-(439,382), GetMenuBarInfo (243,243)-(439,381)",
+        "ModernMenu.c:294: Test failed: left item edge does not hit the first item",
+        "ModernMenu.c:296: Test failed: right item edge does not hit the first item",
+        "ModernMenu.c:299: Test failed: top item edge does not hit the first item",
+        "ModernMenu.c:301: Test failed: bottom item edge does not hit the first item",
+        "ModernMenu.c:305: Test failed: popup top padding incorrectly hits an item",
+        "ModernMenu.c:310: Test failed: popup bottom padding incorrectly hits an item",
+        "ModernMenu.c:393: Test failed: palette 1 popup padding: (0,0,0,0), expected at least 6",
+        "ModernMenu.c:397: Test failed: palette 1 row height 22 is below 28",
+        "ModernMenu.c:400: Test failed: palette 1 row height 22 does not reserve text height 16 + margins 6",
+        "ModernMenu.c:403: Test failed: palette 1 separator height 7, expected 9",
+        "ModernMenu.c:494: Test failed: palette 1 native glyph 3 bounds 27x22, expected 12x12",
+        "ModernMenu.c:494: Test failed: palette 1 native glyph 4 bounds 27x22, expected 12x12",
+        "ModernMenu.c:494: Test failed: palette 1 native glyph 5 bounds 4x7, expected 12x12",
+        "ModernMenu.c:248: Test failed: popup client (243,243)-(439,382), GetMenuBarInfo (243,243)-(439,381)",
+        "ModernMenu.c:530: Test failed: palette 1 hot item changed its rounded top-left corner",
+        "ModernMenu.c:248: Test failed: popup client (243,243)-(439,382), GetMenuBarInfo (243,243)-(439,381)",
+        "ModernMenu.c:294: Test failed: left item edge does not hit the first item",
+        "ModernMenu.c:296: Test failed: right item edge does not hit the first item",
+        "ModernMenu.c:299: Test failed: top item edge does not hit the first item",
+        "ModernMenu.c:301: Test failed: bottom item edge does not hit the first item",
+        "ModernMenu.c:305: Test failed: popup top padding incorrectly hits an item",
+        "ModernMenu.c:310: Test failed: popup bottom padding incorrectly hits an item",
+        "ModernMenu.c:393: Test failed: palette 1 popup padding: (0,0,0,0), expected at least 6",
+        "ModernMenu.c:397: Test failed: palette 1 row height 22 is below 28",
+        "ModernMenu.c:400: Test failed: palette 1 row height 22 does not reserve text height 16 + margins 6",
+        "ModernMenu.c:403: Test failed: palette 1 separator height 7, expected 9",
+        "ModernMenu.c:491: Test failed: palette 1 native glyph 3 or its reference is empty",
+        "ModernMenu.c:491: Test failed: palette 1 native glyph 4 or its reference is empty",
+        "ModernMenu.c:494: Test failed: palette 1 native glyph 5 bounds 1x22, expected 12x12",
+        "ModernMenu.c:248: Test failed: popup client (243,243)-(439,382), GetMenuBarInfo (243,243)-(439,381)",
+        "ModernMenu.c:530: Test failed: palette 1 hot item changed its rounded top-left corner",
+        "ModernMenu.c:248: Test failed: popup client (163,183)-(359,322), GetMenuBarInfo (163,183)-(359,321)",
+        "ModernMenu.c:294: Test failed: left item edge does not hit the first item",
+        "ModernMenu.c:296: Test failed: right item edge does not hit the first item",
+        "ModernMenu.c:299: Test failed: top item edge does not hit the first item",
+        "ModernMenu.c:301: Test failed: bottom item edge does not hit the first item",
+        "ModernMenu.c:305: Test failed: popup top padding incorrectly hits an item",
+        "ModernMenu.c:310: Test failed: popup bottom padding incorrectly hits an item",
+        "ModernMenu.c:248: Test failed: popup client (163,183)-(359,322), GetMenuBarInfo (163,183)-(359,321)",
+        "ModernMenu.c:248: Test failed: popup client (163,183)-(359,322), GetMenuBarInfo (163,183)-(359,321)",
+        "ModernMenu.c:294: Test failed: left item edge does not hit the first item",
+        "ModernMenu.c:296: Test failed: right item edge does not hit the first item",
+        "ModernMenu.c:299: Test failed: top item edge does not hit the first item",
+        "ModernMenu.c:301: Test failed: bottom item edge does not hit the first item",
+        "ModernMenu.c:305: Test failed: popup top padding incorrectly hits an item",
+        "ModernMenu.c:310: Test failed: popup bottom padding incorrectly hits an item",
+        "ModernMenu.c:248: Test failed: popup client (163,183)-(359,322), GetMenuBarInfo (163,183)-(359,321)",
+        "ModernMenu.c:248: Test failed: popup client (3,3)-(199,142), GetMenuBarInfo (3,3)-(199,141)",
+        "ModernMenu.c:294: Test failed: left item edge does not hit the first item",
+        "ModernMenu.c:296: Test failed: right item edge does not hit the first item",
+        "ModernMenu.c:299: Test failed: top item edge does not hit the first item",
+        "ModernMenu.c:301: Test failed: bottom item edge does not hit the first item",
+        "ModernMenu.c:305: Test failed: popup top padding incorrectly hits an item",
+        "ModernMenu.c:310: Test failed: popup bottom padding incorrectly hits an item",
+        "ModernMenu.c:248: Test failed: popup client (3,3)-(199,142), GetMenuBarInfo (3,3)-(199,141)",
+        "ModernMenu.c:248: Test failed: popup client (3,3)-(199,142), GetMenuBarInfo (3,3)-(199,141)",
+        "ModernMenu.c:248: Test failed: popup client (3,3)-(199,142), GetMenuBarInfo (3,3)-(199,141)",
+        "ModernMenu.c:248: Test failed: popup client (201,98)-(351,164), GetMenuBarInfo (201,98)-(351,163)",
+        "ModernMenu.c:248: Test failed: popup client (3,3)-(199,142), GetMenuBarInfo (3,3)-(199,141)",
+        "ModernMenu.c:248: Test failed: popup client (201,98)-(351,164), GetMenuBarInfo (201,98)-(351,163)",
+        "ModernMenu.c:248: Test failed: popup client (1081,3)-(1277,142), GetMenuBarInfo (1081,3)-(1277,141)",
+        "ModernMenu.c:294: Test failed: left item edge does not hit the first item",
+        "ModernMenu.c:296: Test failed: right item edge does not hit the first item",
+        "ModernMenu.c:299: Test failed: top item edge does not hit the first item",
+        "ModernMenu.c:301: Test failed: bottom item edge does not hit the first item",
+        "ModernMenu.c:305: Test failed: popup top padding incorrectly hits an item",
+        "ModernMenu.c:310: Test failed: popup bottom padding incorrectly hits an item",
+        "ModernMenu.c:248: Test failed: popup client (1081,3)-(1277,142), GetMenuBarInfo (1081,3)-(1277,141)",
+        "ModernMenu.c:248: Test failed: popup client (1081,3)-(1277,142), GetMenuBarInfo (1081,3)-(1277,141)",
+        "ModernMenu.c:248: Test failed: popup client (1081,3)-(1277,142), GetMenuBarInfo (1081,3)-(1277,141)",
+        "ModernMenu.c:248: Test failed: popup client (929,98)-(1079,164), GetMenuBarInfo (929,98)-(1079,163)",
+        "ModernMenu.c:248: Test failed: popup client (1081,3)-(1277,142), GetMenuBarInfo (1081,3)-(1277,141)",
+        "ModernMenu.c:248: Test failed: popup client (929,98)-(1079,164), GetMenuBarInfo (929,98)-(1079,163)",
+        "ModernMenu.c:217: Test failed: popup (0,731)-(202,876) is outside work area (0,0)-(1280,852)",
+        "ModernMenu.c:248: Test failed: popup client (3,734)-(199,873), GetMenuBarInfo (3,734)-(199,872)",
+        "ModernMenu.c:294: Test failed: left item edge does not hit the first item",
+        "ModernMenu.c:296: Test failed: right item edge does not hit the first item",
+        "ModernMenu.c:299: Test failed: top item edge does not hit the first item",
+        "ModernMenu.c:301: Test failed: bottom item edge does not hit the first item",
+        "ModernMenu.c:305: Test failed: popup top padding incorrectly hits an item",
+        "ModernMenu.c:310: Test failed: popup bottom padding incorrectly hits an item",
+        "ModernMenu.c:217: Test failed: popup (0,731)-(202,876) is outside work area (0,0)-(1280,852)",
+        "ModernMenu.c:248: Test failed: popup client (3,734)-(199,873), GetMenuBarInfo (3,734)-(199,872)",
+        "ModernMenu.c:217: Test failed: popup (0,731)-(202,876) is outside work area (0,0)-(1280,852)",
+        "ModernMenu.c:248: Test failed: popup client (3,734)-(199,873), GetMenuBarInfo (3,734)-(199,872)",
+        "ModernMenu.c:217: Test failed: popup (0,731)-(202,876) is outside work area (0,0)-(1280,852)",
+        "ModernMenu.c:248: Test failed: popup client (3,734)-(199,873), GetMenuBarInfo (3,734)-(199,872)",
+        "ModernMenu.c:217: Test failed: popup (198,826)-(354,898) is outside work area (0,0)-(1280,852)",
+        "ModernMenu.c:248: Test failed: popup client (201,829)-(351,895), GetMenuBarInfo (201,829)-(351,894)",
+        "ModernMenu.c:217: Test failed: popup (0,731)-(202,876) is outside work area (0,0)-(1280,852)",
+        "ModernMenu.c:248: Test failed: popup client (3,734)-(199,873), GetMenuBarInfo (3,734)-(199,872)",
+        "ModernMenu.c:217: Test failed: popup (198,826)-(354,898) is outside work area (0,0)-(1280,852)",
+        "ModernMenu.c:248: Test failed: popup client (201,829)-(351,895), GetMenuBarInfo (201,829)-(351,894)",
+        "ModernMenu.c:217: Test failed: popup (1078,731)-(1280,876) is outside work area (0,0)-(1280,852)",
+        "ModernMenu.c:248: Test failed: popup client (1081,734)-(1277,873), GetMenuBarInfo (1081,734)-(1277,872)",
+        "ModernMenu.c:294: Test failed: left item edge does not hit the first item",
+        "ModernMenu.c:296: Test failed: right item edge does not hit the first item",
+        "ModernMenu.c:299: Test failed: top item edge does not hit the first item",
+        "ModernMenu.c:301: Test failed: bottom item edge does not hit the first item",
+        "ModernMenu.c:305: Test failed: popup top padding incorrectly hits an item",
+        "ModernMenu.c:310: Test failed: popup bottom padding incorrectly hits an item",
+        "ModernMenu.c:217: Test failed: popup (1078,731)-(1280,876) is outside work area (0,0)-(1280,852)",
+        "ModernMenu.c:248: Test failed: popup client (1081,734)-(1277,873), GetMenuBarInfo (1081,734)-(1277,872)",
+        "ModernMenu.c:217: Test failed: popup (1078,731)-(1280,876) is outside work area (0,0)-(1280,852)",
+        "ModernMenu.c:248: Test failed: popup client (1081,734)-(1277,873), GetMenuBarInfo (1081,734)-(1277,872)",
+        "ModernMenu.c:217: Test failed: popup (1078,731)-(1280,876) is outside work area (0,0)-(1280,852)",
+        "ModernMenu.c:248: Test failed: popup client (1081,734)-(1277,873), GetMenuBarInfo (1081,734)-(1277,872)",
+        "ModernMenu.c:217: Test failed: popup (926,826)-(1082,898) is outside work area (0,0)-(1280,852)",
+        "ModernMenu.c:248: Test failed: popup client (929,829)-(1079,895), GetMenuBarInfo (929,829)-(1079,894)",
+        "ModernMenu.c:217: Test failed: popup (1078,731)-(1280,876) is outside work area (0,0)-(1280,852)",
+        "ModernMenu.c:248: Test failed: popup client (1081,734)-(1277,873), GetMenuBarInfo (1081,734)-(1277,872)",
+        "ModernMenu.c:217: Test failed: popup (926,826)-(1082,898) is outside work area (0,0)-(1280,852)",
+        "ModernMenu.c:248: Test failed: popup client (929,829)-(1079,895), GetMenuBarInfo (929,829)-(1079,894)",
+        "ModernMenu.c:217: Test failed: popup (1078,731)-(1280,876) is outside work area (0,0)-(1280,852)",
+        "ModernMenu.c:248: Test failed: popup client (1081,734)-(1277,873), GetMenuBarInfo (1081,734)-(1277,872)",
+        "ModernMenu.c:294: Test failed: left item edge does not hit the first item",
+        "ModernMenu.c:296: Test failed: right item edge does not hit the first item",
+        "ModernMenu.c:299: Test failed: top item edge does not hit the first item",
+        "ModernMenu.c:301: Test failed: bottom item edge does not hit the first item",
+        "ModernMenu.c:305: Test failed: popup top padding incorrectly hits an item",
+        "ModernMenu.c:310: Test failed: popup bottom padding incorrectly hits an item",
+        "ModernMenu.c:217: Test failed: popup (1078,731)-(1280,876) is outside work area (0,0)-(1280,852)",
+        "ModernMenu.c:248: Test failed: popup client (1081,734)-(1277,873), GetMenuBarInfo (1081,734)-(1277,872)",
+        "ModernMenu.c:217: Test failed: popup (1078,731)-(1280,876) is outside work area (0,0)-(1280,852)",
+        "ModernMenu.c:248: Test failed: popup client (1081,734)-(1277,873), GetMenuBarInfo (1081,734)-(1277,872)",
+        "ModernMenu.c:294: Test failed: left item edge does not hit the first item",
+        "ModernMenu.c:296: Test failed: right item edge does not hit the first item",
+        "ModernMenu.c:299: Test failed: top item edge does not hit the first item",
+        "ModernMenu.c:301: Test failed: bottom item edge does not hit the first item",
+        "ModernMenu.c:305: Test failed: popup top padding incorrectly hits an item",
+        "ModernMenu.c:310: Test failed: popup bottom padding incorrectly hits an item",
+        "ModernMenu.c:217: Test failed: popup (1078,731)-(1280,876) is outside work area (0,0)-(1280,852)",
+        "ModernMenu.c:248: Test failed: popup client (1081,734)-(1277,873), GetMenuBarInfo (1081,734)-(1277,872)",
+        "ModernMenu.c:217: Test failed: popup (1078,731)-(1280,876) is outside work area (0,0)-(1280,852)",
+        "ModernMenu.c:248: Test failed: popup client (1081,734)-(1277,873), GetMenuBarInfo (1081,734)-(1277,872)",
+        "ModernMenu.c:217: Test failed: popup (1078,731)-(1280,876) is outside work area (0,0)-(1280,852)",
+        "ModernMenu.c:248: Test failed: popup client (1081,734)-(1277,873), GetMenuBarInfo (1081,734)-(1277,872)",
+        "ModernMenu.c:217: Test failed: popup (926,826)-(1082,898) is outside work area (0,0)-(1280,852)",
+        "ModernMenu.c:248: Test failed: popup client (929,829)-(1079,895), GetMenuBarInfo (929,829)-(1079,894)",
+        "ModernMenu.c:217: Test failed: popup (1078,731)-(1280,876) is outside work area (0,0)-(1280,852)",
+        "ModernMenu.c:248: Test failed: popup client (1081,734)-(1277,873), GetMenuBarInfo (1081,734)-(1277,872)",
+        "ModernMenu.c:989: Test failed: menu consumed 0 of 2 scheduled key steps",
+        "ModernMenu.c:248: Test failed: popup client (163,183)-(359,322), GetMenuBarInfo (163,183)-(359,321)",
+        "ModernMenu.c:294: Test failed: left item edge does not hit the first item",
+        "ModernMenu.c:296: Test failed: right item edge does not hit the first item",
+        "ModernMenu.c:299: Test failed: top item edge does not hit the first item",
+        "ModernMenu.c:301: Test failed: bottom item edge does not hit the first item",
+        "ModernMenu.c:305: Test failed: popup top padding incorrectly hits an item",
+        "ModernMenu.c:310: Test failed: popup bottom padding incorrectly hits an item",
+        "ModernMenu.c:338: Test failed: callback background mode 1 left popup style 94800000 ex-style 189",
+        "ModernMenu.c:358: Test failed: callback cleared the background but retained a nonclient frame",
+        "ModernMenu.c:359: Test failed: callback cleared the background without restoring 6-pixel popup padding",
+        "ModernMenu.c:248: Test failed: popup client (163,183)-(359,322), GetMenuBarInfo (163,183)-(359,321)",
+        "ModernMenu.c:248: Test failed: popup client (163,183)-(359,322), GetMenuBarInfo (163,183)-(359,321)",
+        "ModernMenu.c:294: Test failed: left item edge does not hit the first item",
+        "ModernMenu.c:296: Test failed: right item edge does not hit the first item",
+        "ModernMenu.c:299: Test failed: top item edge does not hit the first item",
+        "ModernMenu.c:301: Test failed: bottom item edge does not hit the first item",
+        "ModernMenu.c:305: Test failed: popup top padding incorrectly hits an item",
+        "ModernMenu.c:310: Test failed: popup bottom padding incorrectly hits an item",
+        "ModernMenu.c:248: Test failed: popup client (163,183)-(359,322), GetMenuBarInfo (163,183)-(359,321)",
+        "ModernMenu.c:248: Test failed: popup client (3,183)-(199,322), GetMenuBarInfo (3,183)-(199,321)",
+        "ModernMenu.c:294: Test failed: left item edge does not hit the first item",
+        "ModernMenu.c:296: Test failed: right item edge does not hit the first item",
+        "ModernMenu.c:299: Test failed: top item edge does not hit the first item",
+        "ModernMenu.c:301: Test failed: bottom item edge does not hit the first item",
+        "ModernMenu.c:305: Test failed: popup top padding incorrectly hits an item",
+        "ModernMenu.c:310: Test failed: popup bottom padding incorrectly hits an item",
+        "ModernMenu.c:248: Test failed: popup client (3,183)-(199,322), GetMenuBarInfo (3,183)-(199,321)",
+        "ModernMenu.c:248: Test failed: popup client (3,183)-(199,322), GetMenuBarInfo (3,183)-(199,321)",
+        "ModernMenu.c:248: Test failed: popup client (3,183)-(199,322), GetMenuBarInfo (3,183)-(199,321)",
+        "ModernMenu.c:248: Test failed: popup client (201,278)-(351,344), GetMenuBarInfo (201,278)-(351,343)",
+        "ModernMenu.c:248: Test failed: popup client (3,183)-(199,322), GetMenuBarInfo (3,183)-(199,321)",
+        "ModernMenu.c:248: Test failed: popup client (201,278)-(351,344), GetMenuBarInfo (201,278)-(351,343)",
+        "ModernMenu.c:248: Test failed: popup client (1080,183)-(1276,322), GetMenuBarInfo (1080,183)-(1276,321)",
+        "ModernMenu.c:294: Test failed: left item edge does not hit the first item",
+        "ModernMenu.c:296: Test failed: right item edge does not hit the first item",
+        "ModernMenu.c:299: Test failed: top item edge does not hit the first item",
+        "ModernMenu.c:301: Test failed: bottom item edge does not hit the first item",
+        "ModernMenu.c:305: Test failed: popup top padding incorrectly hits an item",
+        "ModernMenu.c:310: Test failed: popup bottom padding incorrectly hits an item",
+        "ModernMenu.c:248: Test failed: popup client (1080,183)-(1276,322), GetMenuBarInfo (1080,183)-(1276,321)",
+        "ModernMenu.c:248: Test failed: popup client (1080,183)-(1276,322), GetMenuBarInfo (1080,183)-(1276,321)",
+        "ModernMenu.c:248: Test failed: popup client (1080,183)-(1276,322), GetMenuBarInfo (1080,183)-(1276,321)",
+        "ModernMenu.c:248: Test failed: popup client (927,278)-(1077,344), GetMenuBarInfo (927,278)-(1077,343)",
+        "ModernMenu.c:248: Test failed: popup client (1080,183)-(1276,322), GetMenuBarInfo (1080,183)-(1276,321)",
+        "ModernMenu.c:248: Test failed: popup client (927,278)-(1077,344), GetMenuBarInfo (927,278)-(1077,343)",
+        "ModernMenu.c:248: Test failed: popup client (1081,183)-(1277,322), GetMenuBarInfo (1081,183)-(1277,321)",
+        "ModernMenu.c:294: Test failed: left item edge does not hit the first item",
+        "ModernMenu.c:296: Test failed: right item edge does not hit the first item",
+        "ModernMenu.c:299: Test failed: top item edge does not hit the first item",
+        "ModernMenu.c:301: Test failed: bottom item edge does not hit the first item",
+        "ModernMenu.c:305: Test failed: popup top padding incorrectly hits an item",
+        "ModernMenu.c:310: Test failed: popup bottom padding incorrectly hits an item",
+        "ModernMenu.c:248: Test failed: popup client (1081,183)-(1277,322), GetMenuBarInfo (1081,183)-(1277,321)",
+        "ModernMenu.c:248: Test failed: popup client (1081,183)-(1277,322), GetMenuBarInfo (1081,183)-(1277,321)",
+        "ModernMenu.c:248: Test failed: popup client (1081,183)-(1277,322), GetMenuBarInfo (1081,183)-(1277,321)",
+        "ModernMenu.c:248: Test failed: popup client (929,278)-(1079,344), GetMenuBarInfo (929,278)-(1079,343)",
+        "ModernMenu.c:248: Test failed: popup client (1081,183)-(1277,322), GetMenuBarInfo (1081,183)-(1277,321)",
+        "ModernMenu.c:248: Test failed: popup client (929,278)-(1079,344), GetMenuBarInfo (929,278)-(1079,343)",
+        "ModernMenu.c:248: Test failed: popup client (243,243)-(439,423), GetMenuBarInfo (243,243)-(439,422)",
+        "ModernMenu.c:563: Test failed: scroll step 0 painted 45 pixels in the left/right panel padding",
+        "ModernMenu.c:572: Test failed: top scroll arrow incorrectly hits an item",
+        "ModernMenu.c:574: Test failed: bottom scroll arrow incorrectly hits an item",
+        "ModernMenu.c:248: Test failed: popup client (243,243)-(439,423), GetMenuBarInfo (243,243)-(439,422)",
+        "ModernMenu.c:563: Test failed: scroll step 1 painted 89 pixels in the left/right panel padding",
+        "ModernMenu.c:572: Test failed: top scroll arrow incorrectly hits an item",
+        "ModernMenu.c:574: Test failed: bottom scroll arrow incorrectly hits an item",
+        "ModernMenu.c:609: Test failed: scroll step 1 highlighted item 0 does not hit at its public rectangle center",
+        "ModernMenu.c:248: Test failed: popup client (243,243)-(439,423), GetMenuBarInfo (243,243)-(439,422)",
+        "ModernMenu.c:563: Test failed: scroll step 2 painted 44 pixels in the left/right panel padding",
+        "ModernMenu.c:572: Test failed: top scroll arrow incorrectly hits an item",
+        "ModernMenu.c:574: Test failed: bottom scroll arrow incorrectly hits an item",
+        "ModernMenu.c:609: Test failed: scroll step 2 highlighted item 54 does not hit at its public rectangle center",
+        "ModernMenu.c:248: Test failed: popup client (243,243)-(439,423), GetMenuBarInfo (243,243)-(439,422)",
+        "ModernMenu.c:563: Test failed: scroll step 3 painted 44 pixels in the left/right panel padding",
+        "ModernMenu.c:572: Test failed: top scroll arrow incorrectly hits an item",
+        "ModernMenu.c:574: Test failed: bottom scroll arrow incorrectly hits an item",
+        "ModernMenu.c:609: Test failed: scroll step 3 highlighted item 53 does not hit at its public rectangle center",
+        "ModernMenu.c:248: Test failed: popup client (243,243)-(439,423), GetMenuBarInfo (243,243)-(439,422)",
+        "ModernMenu.c:563: Test failed: scroll step 4 painted 44 pixels in the left/right panel padding",
+        "ModernMenu.c:572: Test failed: top scroll arrow incorrectly hits an item",
+        "ModernMenu.c:574: Test failed: bottom scroll arrow incorrectly hits an item",
+        "ModernMenu.c:609: Test failed: scroll step 4 highlighted item 54 does not hit at its public rectangle center",
+        "ModernMenu.c:248: Test failed: popup client (243,243)-(439,423), GetMenuBarInfo (243,243)-(439,422)",
+        "ModernMenu.c:563: Test failed: scroll step 5 painted 89 pixels in the left/right panel padding",
+        "ModernMenu.c:572: Test failed: top scroll arrow incorrectly hits an item",
+        "ModernMenu.c:574: Test failed: bottom scroll arrow incorrectly hits an item",
+        "ModernMenu.c:609: Test failed: scroll step 5 highlighted item 0 does not hit at its public rectangle center",
+        "ModernMenu.c:248: Test failed: popup client (243,243)-(439,423), GetMenuBarInfo (243,243)-(439,422)",
+        "ModernMenu.c:563: Test failed: scroll step 6 painted 89 pixels in the left/right panel padding",
+        "ModernMenu.c:572: Test failed: top scroll arrow incorrectly hits an item",
+        "ModernMenu.c:574: Test failed: bottom scroll arrow incorrectly hits an item",
+        "ModernMenu.c:609: Test failed: scroll step 6 highlighted item 1 does not hit at its public rectangle center",
+        "ModernMenu.c:248: Test failed: popup client (243,243)-(439,423), GetMenuBarInfo (243,243)-(439,422)",
+        "ModernMenu.c:563: Test failed: scroll step 7 painted 44 pixels in the left/right panel padding",
+        "ModernMenu.c:572: Test failed: top scroll arrow incorrectly hits an item",
+        "ModernMenu.c:574: Test failed: bottom scroll arrow incorrectly hits an item",
+        "ModernMenu.c:609: Test failed: scroll step 7 highlighted item 54 does not hit at its public rectangle center",
+        "ModernMenu.c:248: Test failed: popup client (243,243)-(439,423), GetMenuBarInfo (243,243)-(439,422)",
+        "ModernMenu.c:572: Test failed: top scroll arrow incorrectly hits an item",
+        "ModernMenu.c:574: Test failed: bottom scroll arrow incorrectly hits an item",
+        "ModernMenu.c:248: Test failed: popup client (243,243)-(439,423), GetMenuBarInfo (243,243)-(439,422)",
+        "ModernMenu.c:563: Test failed: scroll step 1 painted 89 pixels in the left/right panel padding",
+        "ModernMenu.c:572: Test failed: top scroll arrow incorrectly hits an item",
+        "ModernMenu.c:574: Test failed: bottom scroll arrow incorrectly hits an item",
+        "ModernMenu.c:609: Test failed: scroll step 1 highlighted item 0 does not hit at its public rectangle center",
+        "ModernMenu.c:248: Test failed: popup client (243,243)-(439,423), GetMenuBarInfo (243,243)-(439,422)",
+        "ModernMenu.c:563: Test failed: scroll step 2 painted 44 pixels in the left/right panel padding",
+        "ModernMenu.c:572: Test failed: top scroll arrow incorrectly hits an item",
+        "ModernMenu.c:574: Test failed: bottom scroll arrow incorrectly hits an item",
+        "ModernMenu.c:609: Test failed: scroll step 2 highlighted item 54 does not hit at its public rectangle center",
+        "ModernMenu.c:248: Test failed: popup client (243,243)-(439,423), GetMenuBarInfo (243,243)-(439,422)",
+        "ModernMenu.c:563: Test failed: scroll step 3 painted 44 pixels in the left/right panel padding",
+        "ModernMenu.c:572: Test failed: top scroll arrow incorrectly hits an item",
+        "ModernMenu.c:574: Test failed: bottom scroll arrow incorrectly hits an item",
+        "ModernMenu.c:609: Test failed: scroll step 3 highlighted item 53 does not hit at its public rectangle center",
+        "ModernMenu.c:248: Test failed: popup client (243,243)-(439,423), GetMenuBarInfo (243,243)-(439,422)",
+        "ModernMenu.c:563: Test failed: scroll step 4 painted 44 pixels in the left/right panel padding",
+        "ModernMenu.c:572: Test failed: top scroll arrow incorrectly hits an item",
+        "ModernMenu.c:574: Test failed: bottom scroll arrow incorrectly hits an item",
+        "ModernMenu.c:609: Test failed: scroll step 4 highlighted item 54 does not hit at its public rectangle center",
+        "ModernMenu.c:248: Test failed: popup client (243,243)-(439,423), GetMenuBarInfo (243,243)-(439,422)",
+        "ModernMenu.c:563: Test failed: scroll step 5 painted 89 pixels in the left/right panel padding",
+        "ModernMenu.c:572: Test failed: top scroll arrow incorrectly hits an item",
+        "ModernMenu.c:574: Test failed: bottom scroll arrow incorrectly hits an item",
+        "ModernMenu.c:609: Test failed: scroll step 5 highlighted item 0 does not hit at its public rectangle center",
+        "ModernMenu.c:248: Test failed: popup client (243,243)-(439,423), GetMenuBarInfo (243,243)-(439,422)",
+        "ModernMenu.c:563: Test failed: scroll step 6 painted 89 pixels in the left/right panel padding",
+        "ModernMenu.c:572: Test failed: top scroll arrow incorrectly hits an item",
+        "ModernMenu.c:574: Test failed: bottom scroll arrow incorrectly hits an item",
+        "ModernMenu.c:609: Test failed: scroll step 6 highlighted item 1 does not hit at its public rectangle center",
+        "ModernMenu.c:248: Test failed: popup client (243,243)-(439,423), GetMenuBarInfo (243,243)-(439,422)",
+        "ModernMenu.c:563: Test failed: scroll step 7 painted 44 pixels in the left/right panel padding",
+        "ModernMenu.c:572: Test failed: top scroll arrow incorrectly hits an item",
+        "ModernMenu.c:574: Test failed: bottom scroll arrow incorrectly hits an item",
+        "ModernMenu.c:609: Test failed: scroll step 7 highlighted item 54 does not hit at its public rectangle center",
+        "ModernMenu.c:248: Test failed: popup client (243,243)-(439,423), GetMenuBarInfo (243,243)-(439,422)",
+        "ModernMenu.c:572: Test failed: top scroll arrow incorrectly hits an item",
+        "ModernMenu.c:574: Test failed: bottom scroll arrow incorrectly hits an item",
+        "ModernMenu.c:248: Test failed: popup client (243,243)-(439,423), GetMenuBarInfo (243,243)-(439,422)",
+        "ModernMenu.c:563: Test failed: scroll step 1 painted 89 pixels in the left/right panel padding",
+        "ModernMenu.c:572: Test failed: top scroll arrow incorrectly hits an item",
+        "ModernMenu.c:574: Test failed: bottom scroll arrow incorrectly hits an item",
+        "ModernMenu.c:609: Test failed: scroll step 1 highlighted item 0 does not hit at its public rectangle center",
+        "ModernMenu.c:248: Test failed: popup client (243,243)-(439,423), GetMenuBarInfo (243,243)-(439,422)",
+        "ModernMenu.c:563: Test failed: scroll step 2 painted 44 pixels in the left/right panel padding",
+        "ModernMenu.c:572: Test failed: top scroll arrow incorrectly hits an item",
+        "ModernMenu.c:574: Test failed: bottom scroll arrow incorrectly hits an item",
+        "ModernMenu.c:609: Test failed: scroll step 2 highlighted item 54 does not hit at its public rectangle center",
+        "ModernMenu.c:248: Test failed: popup client (243,243)-(439,423), GetMenuBarInfo (243,243)-(439,422)",
+        "ModernMenu.c:563: Test failed: scroll step 3 painted 44 pixels in the left/right panel padding",
+        "ModernMenu.c:572: Test failed: top scroll arrow incorrectly hits an item",
+        "ModernMenu.c:574: Test failed: bottom scroll arrow incorrectly hits an item",
+        "ModernMenu.c:609: Test failed: scroll step 3 highlighted item 53 does not hit at its public rectangle center",
+        "ModernMenu.c:248: Test failed: popup client (243,243)-(439,423), GetMenuBarInfo (243,243)-(439,422)",
+        "ModernMenu.c:563: Test failed: scroll step 4 painted 44 pixels in the left/right panel padding",
+        "ModernMenu.c:572: Test failed: top scroll arrow incorrectly hits an item",
+        "ModernMenu.c:574: Test failed: bottom scroll arrow incorrectly hits an item",
+        "ModernMenu.c:609: Test failed: scroll step 4 highlighted item 54 does not hit at its public rectangle center",
+        "ModernMenu.c:248: Test failed: popup client (243,243)-(439,423), GetMenuBarInfo (243,243)-(439,422)",
+        "ModernMenu.c:563: Test failed: scroll step 5 painted 89 pixels in the left/right panel padding",
+        "ModernMenu.c:572: Test failed: top scroll arrow incorrectly hits an item",
+        "ModernMenu.c:574: Test failed: bottom scroll arrow incorrectly hits an item",
+        "ModernMenu.c:609: Test failed: scroll step 5 highlighted item 0 does not hit at its public rectangle center",
+        "ModernMenu.c:248: Test failed: popup client (243,243)-(439,423), GetMenuBarInfo (243,243)-(439,422)",
+        "ModernMenu.c:563: Test failed: scroll step 6 painted 89 pixels in the left/right panel padding",
+        "ModernMenu.c:572: Test failed: top scroll arrow incorrectly hits an item",
+        "ModernMenu.c:574: Test failed: bottom scroll arrow incorrectly hits an item",
+        "ModernMenu.c:609: Test failed: scroll step 6 highlighted item 1 does not hit at its public rectangle center",
+        "ModernMenu.c:248: Test failed: popup client (243,243)-(439,423), GetMenuBarInfo (243,243)-(439,422)",
+        "ModernMenu.c:563: Test failed: scroll step 7 painted 44 pixels in the left/right panel padding",
+        "ModernMenu.c:572: Test failed: top scroll arrow incorrectly hits an item",
+        "ModernMenu.c:574: Test failed: bottom scroll arrow incorrectly hits an item",
+        "ModernMenu.c:609: Test failed: scroll step 7 highlighted item 54 does not hit at its public rectangle center",
+        "ModernMenu.c:248: Test failed: popup client (243,243)-(439,244), GetMenuBarInfo (243,243)-(439,243)",
+        "ModernMenu.c:585: Test failed: tiny menu height 1 painted 196 pixels beyond its client rectangle",
+        "ModernMenu.c:248: Test failed: popup client (243,243)-(439,254), GetMenuBarInfo (243,243)-(439,253)",
+        "ModernMenu.c:565: Test failed: scroll step 0 painted top/bottom panel padding",
+        "ModernMenu.c:585: Test failed: tiny menu height 11 painted 196 pixels beyond its client rectangle",
+        "ModernMenu.c:248: Test failed: popup client (243,243)-(439,255), GetMenuBarInfo (243,243)-(439,254)",
+        "ModernMenu.c:565: Test failed: scroll step 0 painted top/bottom panel padding",
+        "ModernMenu.c:585: Test failed: tiny menu height 12 painted 196 pixels beyond its client rectangle",
+        "ModernMenu.c:248: Test failed: popup client (243,243)-(439,258), GetMenuBarInfo (243,243)-(439,257)",
+        "ModernMenu.c:585: Test failed: tiny menu height 15 painted 196 pixels beyond its client rectangle",
+        "ModernMenu.c:248: Test failed: popup client (243,243)-(439,275), GetMenuBarInfo (243,243)-(439,274)",
+        "ModernMenu.c:585: Test failed: tiny menu height 32 painted 196 pixels beyond its client rectangle"
+      ],
+      "total_checks": 8001,
+      "total_failures": 397,
+      "total_skips": 0
+    },
+    "baseline144": {
+      "tests": {
+        "MenuInteraction": {
+          "checks": 2019,
+          "failures": 131,
+          "skips": 0,
+          "exit": 131
+        }
+      },
+      "log_path": ".git/menu/baseline144.log",
+      "log_sha256": "1e97a7934868cbb047c34e998a0c9ed3c2934a2d07f65d10c697b0bc7f58b13b",
+      "binary_sha256": "5ec124df78361f2b9886a2dd5e82d100a8bd54572e21b4af2d4b6177de699073",
+      "done": "done",
+      "next_dpi": "96",
+      "product_sha256": {
+        "/Windows/system32/win32k.sys": "e70502495e13d2cc224664d9f9d73ec268a021067666b25caa682f3a2f9e7c65",
+        "/Windows/Resources/Themes/Aero/aero.msstyles": "810f6bb4f8b9d928d75d41e80136bea28cdf07a7e27e96133da7f19027ea49d5",
+        "/Windows/system32/user32.dll": "c502cec3f035ef776f3004a9658f03cdbd689042d5932bda5f669317f429cbb5"
+      },
+      "failure_lines": [
+        "ModernMenu.c:294: Test failed: left item edge does not hit the first item",
+        "ModernMenu.c:296: Test failed: right item edge does not hit the first item",
+        "ModernMenu.c:299: Test failed: top item edge does not hit the first item",
+        "ModernMenu.c:301: Test failed: bottom item edge does not hit the first item",
+        "ModernMenu.c:305: Test failed: popup top padding incorrectly hits an item",
+        "ModernMenu.c:310: Test failed: popup bottom padding incorrectly hits an item",
+        "ModernMenu.c:294: Test failed: left item edge does not hit the first item",
+        "ModernMenu.c:296: Test failed: right item edge does not hit the first item",
+        "ModernMenu.c:299: Test failed: top item edge does not hit the first item",
+        "ModernMenu.c:301: Test failed: bottom item edge does not hit the first item",
+        "ModernMenu.c:305: Test failed: popup top padding incorrectly hits an item",
+        "ModernMenu.c:310: Test failed: popup bottom padding incorrectly hits an item",
+        "ModernMenu.c:294: Test failed: left item edge does not hit the first item",
+        "ModernMenu.c:296: Test failed: right item edge does not hit the first item",
+        "ModernMenu.c:299: Test failed: top item edge does not hit the first item",
+        "ModernMenu.c:301: Test failed: bottom item edge does not hit the first item",
+        "ModernMenu.c:305: Test failed: popup top padding incorrectly hits an item",
+        "ModernMenu.c:310: Test failed: popup bottom padding incorrectly hits an item",
+        "ModernMenu.c:248: Test failed: popup client (199,100)-(347,168), GetMenuBarInfo (199,100)-(347,167)",
+        "ModernMenu.c:248: Test failed: popup client (199,100)-(347,168), GetMenuBarInfo (199,100)-(347,167)",
+        "ModernMenu.c:294: Test failed: left item edge does not hit the first item",
+        "ModernMenu.c:296: Test failed: right item edge does not hit the first item",
+        "ModernMenu.c:299: Test failed: top item edge does not hit the first item",
+        "ModernMenu.c:301: Test failed: bottom item edge does not hit the first item",
+        "ModernMenu.c:305: Test failed: popup top padding incorrectly hits an item",
+        "ModernMenu.c:310: Test failed: popup bottom padding incorrectly hits an item",
+        "ModernMenu.c:248: Test failed: popup client (506,100)-(655,168), GetMenuBarInfo (506,100)-(655,167)",
+        "ModernMenu.c:248: Test failed: popup client (506,100)-(655,168), GetMenuBarInfo (506,100)-(655,167)",
+        "ModernMenu.c:217: Test failed: popup (0,427)-(199,575) is outside work area (0,0)-(853,552)",
+        "ModernMenu.c:248: Test failed: popup client (2,429)-(197,573), GetMenuBarInfo (2,429)-(197,572)",
+        "ModernMenu.c:294: Test failed: left item edge does not hit the first item",
+        "ModernMenu.c:296: Test failed: right item edge does not hit the first item",
+        "ModernMenu.c:299: Test failed: top item edge does not hit the first item",
+        "ModernMenu.c:301: Test failed: bottom item edge does not hit the first item",
+        "ModernMenu.c:305: Test failed: popup top padding incorrectly hits an item",
+        "ModernMenu.c:310: Test failed: popup bottom padding incorrectly hits an item",
+        "ModernMenu.c:217: Test failed: popup (0,427)-(199,575) is outside work area (0,0)-(853,552)",
+        "ModernMenu.c:248: Test failed: popup client (2,429)-(197,573), GetMenuBarInfo (2,429)-(197,572)",
+        "ModernMenu.c:217: Test failed: popup (0,427)-(199,575) is outside work area (0,0)-(853,552)",
+        "ModernMenu.c:248: Test failed: popup client (2,429)-(197,573), GetMenuBarInfo (2,429)-(197,572)",
+        "ModernMenu.c:217: Test failed: popup (0,427)-(199,575) is outside work area (0,0)-(853,552)",
+        "ModernMenu.c:248: Test failed: popup client (2,429)-(197,573), GetMenuBarInfo (2,429)-(197,572)",
+        "ModernMenu.c:217: Test failed: popup (197,525)-(349,597) is outside work area (0,0)-(853,552)",
+        "ModernMenu.c:217: Test failed: popup (0,427)-(199,575) is outside work area (0,0)-(853,552)",
+        "ModernMenu.c:248: Test failed: popup client (2,429)-(197,573), GetMenuBarInfo (2,429)-(197,572)",
+        "ModernMenu.c:217: Test failed: popup (197,525)-(349,597) is outside work area (0,0)-(853,552)",
+        "ModernMenu.c:217: Test failed: popup (654,427)-(853,575) is outside work area (0,0)-(853,552)",
+        "ModernMenu.c:248: Test failed: popup client (656,429)-(851,573), GetMenuBarInfo (656,429)-(851,572)",
+        "ModernMenu.c:294: Test failed: left item edge does not hit the first item",
+        "ModernMenu.c:296: Test failed: right item edge does not hit the first item",
+        "ModernMenu.c:299: Test failed: top item edge does not hit the first item",
+        "ModernMenu.c:301: Test failed: bottom item edge does not hit the first item",
+        "ModernMenu.c:305: Test failed: popup top padding incorrectly hits an item",
+        "ModernMenu.c:310: Test failed: popup bottom padding incorrectly hits an item",
+        "ModernMenu.c:217: Test failed: popup (654,427)-(853,575) is outside work area (0,0)-(853,552)",
+        "ModernMenu.c:248: Test failed: popup client (656,429)-(851,573), GetMenuBarInfo (656,429)-(851,572)",
+        "ModernMenu.c:217: Test failed: popup (654,427)-(853,575) is outside work area (0,0)-(853,552)",
+        "ModernMenu.c:248: Test failed: popup client (656,429)-(851,573), GetMenuBarInfo (656,429)-(851,572)",
+        "ModernMenu.c:217: Test failed: popup (654,427)-(853,575) is outside work area (0,0)-(853,552)",
+        "ModernMenu.c:248: Test failed: popup client (656,429)-(851,573), GetMenuBarInfo (656,429)-(851,572)",
+        "ModernMenu.c:217: Test failed: popup (504,525)-(657,597) is outside work area (0,0)-(853,552)",
+        "ModernMenu.c:217: Test failed: popup (654,427)-(853,575) is outside work area (0,0)-(853,552)",
+        "ModernMenu.c:248: Test failed: popup client (656,429)-(851,573), GetMenuBarInfo (656,429)-(851,572)",
+        "ModernMenu.c:217: Test failed: popup (504,525)-(657,597) is outside work area (0,0)-(853,552)",
+        "ModernMenu.c:217: Test failed: popup (654,427)-(853,575) is outside work area (0,0)-(853,552)",
+        "ModernMenu.c:248: Test failed: popup client (656,429)-(851,573), GetMenuBarInfo (656,429)-(851,572)",
+        "ModernMenu.c:294: Test failed: left item edge does not hit the first item",
+        "ModernMenu.c:296: Test failed: right item edge does not hit the first item",
+        "ModernMenu.c:299: Test failed: top item edge does not hit the first item",
+        "ModernMenu.c:301: Test failed: bottom item edge does not hit the first item",
+        "ModernMenu.c:305: Test failed: popup top padding incorrectly hits an item",
+        "ModernMenu.c:310: Test failed: popup bottom padding incorrectly hits an item",
+        "ModernMenu.c:217: Test failed: popup (654,427)-(853,575) is outside work area (0,0)-(853,552)",
+        "ModernMenu.c:248: Test failed: popup client (656,429)-(851,573), GetMenuBarInfo (656,429)-(851,572)",
+        "ModernMenu.c:217: Test failed: popup (654,427)-(853,575) is outside work area (0,0)-(853,552)",
+        "ModernMenu.c:248: Test failed: popup client (656,429)-(851,573), GetMenuBarInfo (656,429)-(851,572)",
+        "ModernMenu.c:294: Test failed: left item edge does not hit the first item",
+        "ModernMenu.c:296: Test failed: right item edge does not hit the first item",
+        "ModernMenu.c:299: Test failed: top item edge does not hit the first item",
+        "ModernMenu.c:301: Test failed: bottom item edge does not hit the first item",
+        "ModernMenu.c:305: Test failed: popup top padding incorrectly hits an item",
+        "ModernMenu.c:310: Test failed: popup bottom padding incorrectly hits an item",
+        "ModernMenu.c:217: Test failed: popup (654,427)-(853,575) is outside work area (0,0)-(853,552)",
+        "ModernMenu.c:248: Test failed: popup client (656,429)-(851,573), GetMenuBarInfo (656,429)-(851,572)",
+        "ModernMenu.c:217: Test failed: popup (654,427)-(853,575) is outside work area (0,0)-(853,552)",
+        "ModernMenu.c:248: Test failed: popup client (656,429)-(851,573), GetMenuBarInfo (656,429)-(851,572)",
+        "ModernMenu.c:217: Test failed: popup (654,427)-(853,575) is outside work area (0,0)-(853,552)",
+        "ModernMenu.c:248: Test failed: popup client (656,429)-(851,573), GetMenuBarInfo (656,429)-(851,572)",
+        "ModernMenu.c:217: Test failed: popup (504,525)-(657,597) is outside work area (0,0)-(853,552)",
+        "ModernMenu.c:217: Test failed: popup (654,427)-(853,575) is outside work area (0,0)-(853,552)",
+        "ModernMenu.c:248: Test failed: popup client (656,429)-(851,573), GetMenuBarInfo (656,429)-(851,572)",
+        "ModernMenu.c:989: Test failed: menu consumed 0 of 2 scheduled key steps",
+        "ModernMenu.c:294: Test failed: left item edge does not hit the first item",
+        "ModernMenu.c:296: Test failed: right item edge does not hit the first item",
+        "ModernMenu.c:299: Test failed: top item edge does not hit the first item",
+        "ModernMenu.c:301: Test failed: bottom item edge does not hit the first item",
+        "ModernMenu.c:305: Test failed: popup top padding incorrectly hits an item",
+        "ModernMenu.c:310: Test failed: popup bottom padding incorrectly hits an item",
+        "ModernMenu.c:338: Test failed: callback background mode 1 left popup style 94800000 ex-style 189",
+        "ModernMenu.c:358: Test failed: callback cleared the background but retained a nonclient frame",
+        "ModernMenu.c:359: Test failed: callback cleared the background without restoring 9-pixel popup padding",
+        "ModernMenu.c:294: Test failed: left item edge does not hit the first item",
+        "ModernMenu.c:296: Test failed: right item edge does not hit the first item",
+        "ModernMenu.c:299: Test failed: top item edge does not hit the first item",
+        "ModernMenu.c:301: Test failed: bottom item edge does not hit the first item",
+        "ModernMenu.c:305: Test failed: popup top padding incorrectly hits an item",
+        "ModernMenu.c:310: Test failed: popup bottom padding incorrectly hits an item",
+        "ModernMenu.c:294: Test failed: left item edge does not hit the first item",
+        "ModernMenu.c:296: Test failed: right item edge does not hit the first item",
+        "ModernMenu.c:299: Test failed: top item edge does not hit the first item",
+        "ModernMenu.c:301: Test failed: bottom item edge does not hit the first item",
+        "ModernMenu.c:305: Test failed: popup top padding incorrectly hits an item",
+        "ModernMenu.c:310: Test failed: popup bottom padding incorrectly hits an item",
+        "ModernMenu.c:248: Test failed: popup client (199,280)-(347,348), GetMenuBarInfo (199,280)-(347,347)",
+        "ModernMenu.c:248: Test failed: popup client (199,280)-(347,348), GetMenuBarInfo (199,280)-(347,347)",
+        "ModernMenu.c:294: Test failed: left item edge does not hit the first item",
+        "ModernMenu.c:296: Test failed: right item edge does not hit the first item",
+        "ModernMenu.c:299: Test failed: top item edge does not hit the first item",
+        "ModernMenu.c:301: Test failed: bottom item edge does not hit the first item",
+        "ModernMenu.c:305: Test failed: popup top padding incorrectly hits an item",
+        "ModernMenu.c:310: Test failed: popup bottom padding incorrectly hits an item",
+        "ModernMenu.c:248: Test failed: popup client (504,280)-(653,348), GetMenuBarInfo (504,280)-(653,347)",
+        "ModernMenu.c:248: Test failed: popup client (504,280)-(653,348), GetMenuBarInfo (504,280)-(653,347)",
+        "ModernMenu.c:294: Test failed: left item edge does not hit the first item",
+        "ModernMenu.c:296: Test failed: right item edge does not hit the first item",
+        "ModernMenu.c:299: Test failed: top item edge does not hit the first item",
+        "ModernMenu.c:301: Test failed: bottom item edge does not hit the first item",
+        "ModernMenu.c:305: Test failed: popup top padding incorrectly hits an item",
+        "ModernMenu.c:310: Test failed: popup bottom padding incorrectly hits an item",
+        "ModernMenu.c:248: Test failed: popup client (506,280)-(655,348), GetMenuBarInfo (506,280)-(655,347)",
+        "ModernMenu.c:248: Test failed: popup client (506,280)-(655,348), GetMenuBarInfo (506,280)-(655,347)"
+      ],
+      "total_checks": 2019,
+      "total_failures": 131,
+      "total_skips": 0
+    },
+    "fixed144": {
+      "tests": {
+        "MenuInteraction": {
+          "checks": 2091,
+          "failures": 0,
+          "skips": 0,
+          "exit": 0
+        }
+      },
+      "log_path": ".git/menu/fixed144.log",
+      "log_sha256": "cfcee36cb420555373cad088043e8f10e2c92002853705b820fae3acc82e2703",
+      "binary_sha256": "5ec124df78361f2b9886a2dd5e82d100a8bd54572e21b4af2d4b6177de699073",
+      "done": "done",
+      "next_dpi": "96",
+      "product_sha256": {
+        "/Windows/system32/win32k.sys": "9f11545672e6c91ee613056160fcbc1330b6a5df985a1f685a18078113909429",
+        "/Windows/Resources/Themes/Aero/aero.msstyles": "6c7ca6c282cedb79afd3ca39a482ba6113203337e8b5c53a0cd3ad367c08204f",
+        "/Windows/system32/user32.dll": "25751d0a53fec00d7184f4f69f097ee7279256baf74c25465e36945d0ccb52db",
+        "/Windows/SysWOW64/user32.dll": "b7bfba1194a35bcc11454afb7a39ad4f18564716bad229c0b649e9d5372d9020"
+      },
+      "failure_lines": [],
+      "total_checks": 2091,
+      "total_failures": 0,
+      "total_skips": 0
+    },
+    "fixed96": {
+      "tests": {
+        "MenuTheme": {
+          "checks": 50,
+          "failures": 0,
+          "skips": 0,
+          "exit": 0
+        },
+        "MenuAppearance": {
+          "checks": 194,
+          "failures": 0,
+          "skips": 0,
+          "exit": 0
+        },
+        "NativeMenuAppearance": {
+          "checks": 430,
+          "failures": 0,
+          "skips": 0,
+          "exit": 0
+        },
+        "MenuInteraction": {
+          "checks": 2086,
+          "failures": 0,
+          "skips": 0,
+          "exit": 0
+        },
+        "NativeMenuScroll": {
+          "checks": 5329,
+          "failures": 0,
+          "skips": 0,
+          "exit": 0
+        }
+      },
+      "log_path": ".git/menu/fixed96.log",
+      "log_sha256": "ada3de644f88e96df8f611c89e29590091112e8798d299d9f5f308214ff04ff3",
+      "binary_sha256": "5ec124df78361f2b9886a2dd5e82d100a8bd54572e21b4af2d4b6177de699073",
+      "done": "done",
+      "next_dpi": "144",
+      "product_sha256": {
+        "/Windows/system32/win32k.sys": "9f11545672e6c91ee613056160fcbc1330b6a5df985a1f685a18078113909429",
+        "/Windows/Resources/Themes/Aero/aero.msstyles": "6c7ca6c282cedb79afd3ca39a482ba6113203337e8b5c53a0cd3ad367c08204f",
+        "/Windows/system32/user32.dll": "25751d0a53fec00d7184f4f69f097ee7279256baf74c25465e36945d0ccb52db",
+        "/Windows/SysWOW64/user32.dll": "b7bfba1194a35bcc11454afb7a39ad4f18564716bad229c0b649e9d5372d9020"
+      },
+      "failure_lines": [],
+      "total_checks": 8089,
+      "total_failures": 0,
+      "total_skips": 0
+    }
+  },
+  "environment": {
+    "root": "/root/reliefwin.2",
+    "image": "output-Clang-amd64-debug/ReliefWin.img",
+    "payload": "/tmp/reliefwin-branding-fat.img",
+    "payload_partition_offset": 1048576,
+    "guest_payload_drive": "F:",
+    "guest": "ReliefWin AMD64, Simplified Chinese, ReliefUser",
+    "qemu": "q35, TCG max CPU, 2 vCPU, 2048 MiB, no NIC",
+    "screen": "1280x900, 96 DPI, headless",
+    "qmp": "output-Clang-amd64-debug/qmp.sock",
+    "working_log": "/tmp/reliefwin-controls.log",
+    "monitor": "/tmp/reliefwin-vm-monitor.py",
+    "monitor_options": [
+      "--timeout",
+      "30",
+      "--stall",
+      "6",
+      "--keep",
+      "--continue-after-observation"
+    ],
+    "windows11_available": false,
+    "build_log_semantics": "One working build log reused in place. Build log SHA-256 fields record the digest at completion, not a promise that older build logs remain on disk."
+  },
+  "baseline_installed": {
+    "/Windows/system32/win32k.sys": {
+      "size": 5599232,
+      "sha256": "e6c13c0f1b44c551241fc025d0fa37886683eb0f7eeba8820f63514ea87eab29"
+    },
+    "/Windows/Resources/Themes/Aero/aero.msstyles": {
+      "size": 2848256,
+      "sha256": "6f9e39436085fbda6724844e5ab9ffd187b3afce935d7004cd94f289e139655c"
+    }
+  },
+  "payload": {
+    "mode": "fixed144",
+    "tests": [
+      "MenuInteraction"
+    ],
+    "next_dpi": "96",
+    "binary_sha256": "5ec124df78361f2b9886a2dd5e82d100a8bd54572e21b4af2d4b6177de699073",
+    "batch_sha256": "a8ccda8c35056f766d3bd63c2278463f1c31f7a933fe0670ea43715f37825af6"
+  },
+  "deployment": {
+    "/Windows/system32/win32k.sys": {
+      "architecture": "amd64",
+      "source": "subsystems/win/win32k/win32k.sys",
+      "size": 5615616,
+      "old_sha256": "e70502495e13d2cc224664d9f9d73ec268a021067666b25caa682f3a2f9e7c65",
+      "sha256": "9f11545672e6c91ee613056160fcbc1330b6a5df985a1f685a18078113909429"
+    },
+    "/Windows/Resources/Themes/Aero/aero.msstyles": {
+      "architecture": "amd64",
+      "source": "media/themes/Win8/win8.msstyles/win8.msstyles",
+      "size": 2998272,
+      "old_sha256": "810f6bb4f8b9d928d75d41e80136bea28cdf07a7e27e96133da7f19027ea49d5",
+      "sha256": "6c7ca6c282cedb79afd3ca39a482ba6113203337e8b5c53a0cd3ad367c08204f"
+    },
+    "/Windows/system32/user32.dll": {
+      "architecture": "amd64",
+      "source": "subsystems/win/win32k/user/user32/user32.dll",
+      "size": 4037120,
+      "old_sha256": "c502cec3f035ef776f3004a9658f03cdbd689042d5932bda5f669317f429cbb5",
+      "sha256": "25751d0a53fec00d7184f4f69f097ee7279256baf74c25465e36945d0ccb52db"
+    },
+    "/Windows/SysWOW64/user32.dll": {
+      "architecture": "i386",
+      "source": "subsystems/win/win32k/user/user32/user32.dll",
+      "size": 4045824,
+      "old_sha256": "b7bfba1194a35bcc11454afb7a39ad4f18564716bad229c0b649e9d5372d9020",
+      "sha256": "b7bfba1194a35bcc11454afb7a39ad4f18564716bad229c0b649e9d5372d9020"
+    }
+  },
+  "baseline_rebuild": {
+    "commit": "8193276317f886ac1019916f38759bf259cba833",
+    "source_sha256": {
+      "subsystems/win/win32k/user/user32/windows/menu.c": "fc0f4432a19ee6def06b3ba229afd9efd7afab3110d3824986bd78a0122d3702",
+      "subsystems/win/win32k/user/user32/user32.spec": "aafb0808e4288cc1b1aa301cbc6d8112ebc67f86043180dbad5263db318a4891",
+      "subsystems/win/win32k/user/ntuser/menu.c": "10b8ced3f7e513e5e4817a1543cfe237a926b9686dde9ff2079bcbdbf5dc6aea",
+      "subsystems/win/win32k/user/ntuser/dpi.c": "15130e76fd23ac58eb6e66194ecc3add86195f6e7897ed42e3003c021a28066e",
+      "media/themes/Win8/win8.msstyles/win8.rc": "367b937856ed769bcf0bef3be3388d83f775bf046c3ae156ccca03dd5ab5b290",
+      "media/themes/Win8/win8.msstyles/textfiles/NormalNormal.INI": "41584476207c30e45bc916461af8c29dd21db0f8d0ec5cd6047d19380480e264",
+      "media/themes/Win8/win8.msstyles/textfiles/LargeFontsNormal.INI": "e9d75102f308d289feffc26092e6f672c3aeae8452140060413dcd98d4df62b5",
+      "media/themes/Win8/win8.msstyles/textfiles/ExtraLargeNormal.INI": "e9d75102f308d289feffc26092e6f672c3aeae8452140060413dcd98d4df62b5"
+    },
+    "CCACHE_DISABLE": "1",
+    "architecture": "amd64",
+    "exit": 0,
+    "artifacts": {
+      "user32": {
+        "path": "subsystems/win/win32k/user/user32/user32.dll",
+        "sha256": "c502cec3f035ef776f3004a9658f03cdbd689042d5932bda5f669317f429cbb5",
+        "size": 4036608
+      },
+      "win32k": {
+        "path": "subsystems/win/win32k/win32k.sys",
+        "sha256": "e70502495e13d2cc224664d9f9d73ec268a021067666b25caa682f3a2f9e7c65",
+        "size": 5599232
+      },
+      "theme": {
+        "path": "media/themes/Win8/win8.msstyles/win8.msstyles",
+        "sha256": "810f6bb4f8b9d928d75d41e80136bea28cdf07a7e27e96133da7f19027ea49d5",
+        "size": 2825216
+      }
+    },
+    "current_sources_restored": true
+  },
+  "verification": {
+    "host_assets": {
+      "modern_menus_check": {
+        "bitmaps": 20,
+        "exit": 0
+      },
+      "test_modern_menus": {
+        "groups": 5,
+        "failures": 0,
+        "exit": 0
+      },
+      "test_modern_controls": {
+        "groups": 7,
+        "failures": 0,
+        "exit": 0
+      }
+    },
+    "static_analysis": {
+      "tool": "cppcheck 2.7",
+      "completed": false,
+      "files": [
+        "modules/rostests/apitests/uxtheme/MenuTheme.c",
+        "modules/rostests/apitests/uxtheme/ModernMenu.c",
+        "modules/rostests/apitests/uxtheme/testlist.c",
+        "subsystems/win/win32k/user/ntuser/dpi.c",
+        "subsystems/win/win32k/user/ntuser/menu.c",
+        "subsystems/win/win32k/user/user32/windows/menu.c"
+      ],
+      "configuration": "Actual AMD64 compilation database, one file filter per file, target defines and AGENTS.md builtin substitutions; no SDK macro replacement or suppression",
+      "limitations": [
+        "sdk/include/crt/stdio.h:90: _CRTDATA unknownMacro",
+        "sdk/include/psdk/shellapi.h:895: SIID_WORLD syntaxError"
+      ],
+      "log_sha256": "fc50b5af5bae56a195ef003c1d7056f9f501a51843545dd7b657197645f28c0e",
+      "source_sha256": {
+        "modules/rostests/apitests/uxtheme/MenuTheme.c": "59f261106fb2b6cfc0d7272237712a885dacc8e6b878c3a46bb4c3dd680c7848",
+        "modules/rostests/apitests/uxtheme/ModernMenu.c": "bd2a101ef53cee412478ddf6320acfa5eb4fe7ea683978a392577454f1fb4102",
+        "modules/rostests/apitests/uxtheme/testlist.c": "07801e4bf7169657359e36c796e23795e1014456dd48fed36196eaa92c32a975",
+        "subsystems/win/win32k/user/ntuser/dpi.c": "538ee13a5d78276f693e0570ece3a63d75b8f7359adec04d31fde2c66bfc53b5",
+        "subsystems/win/win32k/user/ntuser/menu.c": "2a1e1902d062ea55a3252c258aa53953f7e7a738d14901c64fe4930d06744b9a",
+        "subsystems/win/win32k/user/user32/windows/menu.c": "3ac6b2a3f0fb7e72fa160ea0b4f0f0718e12003adf28f3d8618b9acc42dd4b22"
+      }
+    },
+    "text_oracle_diagnostic": {
+      "binary_sha256": "b23e49af4bbba7196b9d4def8cc8a9bff02c02760e72700f74f1a43bbb04ddfd",
+      "log_sha256": "811a92b52408870a5d2346cea5c5e6be3d5e4352fd6c4253839027ef68e80f90",
+      "output": "MenuTheme.c:77: TEXT_PROBE part=8 lit=0 other=195 maxRGB=fefcf9 raw=00fefcf9 first=00202020 fontResult=80070490 height=0 quality=0\nMenuTheme.c:80: Test failed: part 8 state 1: no pixel in the text color\nMenuTheme.c:77: TEXT_PROBE part=14 lit=0 other=195 maxRGB=fefcf9 raw=00fefcf9 first=00202020 fontResult=80070490 height=0 quality=0\nMenuTheme.c:80: Test failed: part 14 state 1: no pixel in the text color\n\nMenuTheme: 34 tests executed (0 marked as todo, 2 failures), 0 skipped.\n",
+      "conclusion": "Cleartype ink is present (195 pixels); highest RGB sample fefcf9 is below full white, so an exact-white-pixel requirement is not a valid antialiased-text oracle."
+    },
+    "installed_final": {
+      "/Windows/system32/win32k.sys": {
+        "sha256": "9f11545672e6c91ee613056160fcbc1330b6a5df985a1f685a18078113909429",
+        "size": 5615616,
+        "matches_build": true
+      },
+      "/Windows/Resources/Themes/Aero/aero.msstyles": {
+        "sha256": "6c7ca6c282cedb79afd3ca39a482ba6113203337e8b5c53a0cd3ad367c08204f",
+        "size": 2998272,
+        "matches_build": true
+      },
+      "/Windows/system32/user32.dll": {
+        "sha256": "25751d0a53fec00d7184f4f69f097ee7279256baf74c25465e36945d0ccb52db",
+        "size": 4037120,
+        "matches_build": true
+      },
+      "/Windows/SysWOW64/user32.dll": {
+        "sha256": "b7bfba1194a35bcc11454afb7a39ad4f18564716bad229c0b649e9d5372d9020",
+        "size": 4045824,
+        "matches_build": true
+      }
+    }
+  },
+  "first_installed_user32": {
+    "/Windows/system32/user32.dll": {
+      "architecture": "amd64",
+      "source": "subsystems/win/win32k/user/user32/user32.dll",
+      "size": 4037120,
+      "old_sha256": "9ec58de8763c0cf474df38439b2caae0b9e7d86651ab384efa9bb4f97d1df3d0",
+      "sha256": "c02af0bbc01631891be5c71d3ed4826193dbde7e9d67853618cf8be3bd2a017e"
+    },
+    "/Windows/SysWOW64/user32.dll": {
+      "architecture": "i386",
+      "source": "subsystems/win/win32k/user/user32/user32.dll",
+      "size": 4045824,
+      "old_sha256": "52a2c0612200b7ec17e76a1eb4fd073592d3581406f5d505f4b6c1afc079f3eb",
+      "sha256": "6c09621084b5a37e0e877c1bf4a5b6d6262b985b59b0343612779dd565bcd284"
+    }
+  },
+  "baseline_deployment": {
+    "/Windows/system32/win32k.sys": {
+      "architecture": "amd64",
+      "source": "subsystems/win/win32k/win32k.sys",
+      "size": 5599232,
+      "old_sha256": "9f11545672e6c91ee613056160fcbc1330b6a5df985a1f685a18078113909429",
+      "sha256": "e70502495e13d2cc224664d9f9d73ec268a021067666b25caa682f3a2f9e7c65",
+      "final_build_output_restored_sha256": "9f11545672e6c91ee613056160fcbc1330b6a5df985a1f685a18078113909429"
+    },
+    "/Windows/Resources/Themes/Aero/aero.msstyles": {
+      "architecture": "amd64",
+      "source": "media/themes/Win8/win8.msstyles/win8.msstyles",
+      "size": 2825216,
+      "old_sha256": "6c7ca6c282cedb79afd3ca39a482ba6113203337e8b5c53a0cd3ad367c08204f",
+      "sha256": "810f6bb4f8b9d928d75d41e80136bea28cdf07a7e27e96133da7f19027ea49d5",
+      "final_build_output_restored_sha256": "6c7ca6c282cedb79afd3ca39a482ba6113203337e8b5c53a0cd3ad367c08204f"
+    },
+    "/Windows/system32/user32.dll": {
+      "architecture": "amd64",
+      "source": "subsystems/win/win32k/user/user32/user32.dll",
+      "size": 4036608,
+      "old_sha256": "25751d0a53fec00d7184f4f69f097ee7279256baf74c25465e36945d0ccb52db",
+      "sha256": "c502cec3f035ef776f3004a9658f03cdbd689042d5932bda5f669317f429cbb5",
+      "final_build_output_restored_sha256": "25751d0a53fec00d7184f4f69f097ee7279256baf74c25465e36945d0ccb52db"
+    }
+  },
+  "evidence_summary": {
+    "build_source_matches": {
+      "product": {
+        "all_match": true,
+        "mismatches": []
+      },
+      "tests": {
+        "all_match": true,
+        "mismatches": []
+      }
+    },
+    "runtime": {
+      "baseline96": {
+        "checks": 8001,
+        "failures": 397,
+        "skips": 0,
+        "done": "done",
+        "dpi_observations": [
+          {
+            "system": 96,
+            "window": 96,
+            "gdi": 96
+          },
+          {
+            "system": 96,
+            "window": 96,
+            "gdi": 96
+          },
+          {
+            "system": 96,
+            "window": 96,
+            "gdi": 96
+          },
+          {
+            "system": 96,
+            "window": 96,
+            "gdi": 96
+          }
+        ],
+        "missing_summaries": [],
+        "font_dpi_registry_values": [
+          96,
+          96,
+          96,
+          144,
+          144,
+          144
+        ]
+      },
+      "baseline144": {
+        "checks": 2019,
+        "failures": 131,
+        "skips": 0,
+        "done": "done",
+        "dpi_observations": [
+          {
+            "system": 96,
+            "window": 96,
+            "gdi": 96
+          }
+        ],
+        "missing_summaries": [],
+        "font_dpi_registry_values": [
+          144,
+          144,
+          144,
+          96,
+          96,
+          96
+        ]
+      },
+      "fixed144": {
+        "checks": 2091,
+        "failures": 0,
+        "skips": 0,
+        "done": "done",
+        "dpi_observations": [
+          {
+            "system": 96,
+            "window": 96,
+            "gdi": 96
+          }
+        ],
+        "missing_summaries": [],
+        "font_dpi_registry_values": [
+          144,
+          144,
+          144,
+          96,
+          96,
+          96
+        ]
+      },
+      "fixed96": {
+        "checks": 8089,
+        "failures": 0,
+        "skips": 0,
+        "done": "done",
+        "dpi_observations": [
+          {
+            "system": 96,
+            "window": 96,
+            "gdi": 96
+          },
+          {
+            "system": 96,
+            "window": 96,
+            "gdi": 96
+          },
+          {
+            "system": 96,
+            "window": 96,
+            "gdi": 96
+          },
+          {
+            "system": 96,
+            "window": 96,
+            "gdi": 96
+          }
+        ],
+        "missing_summaries": [],
+        "font_dpi_registry_values": [
+          96,
+          96,
+          96,
+          144,
+          144,
+          144
+        ]
+      }
+    },
+    "screenshots": [
+      {
+        "path": "media/graphics/screenshots/modern-menus.png",
+        "sha256": "e401f0c633d4f40348fbacab858b21be1210c803432dbe0197bfe4a7d24620a8",
+        "width": 1280,
+        "height": 900,
+        "source": "Actual ReliefWin QMP screen dump"
+      },
+      {
+        "path": "media/graphics/screenshots/modern-context-menu.png",
+        "sha256": "dd00eb3ea7d156df42f87ff87b81e5feec0d574f5b22f7b38b934e8f00a4fd2f",
+        "width": 1280,
+        "height": 900,
+        "source": "Actual ReliefWin QMP screen dump"
+      }
+    ],
+    "same_test_binary_all_runs": true
+  }
+}

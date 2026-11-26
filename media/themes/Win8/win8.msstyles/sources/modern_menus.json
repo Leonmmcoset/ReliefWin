@@ -1,0 +1,302 @@
+{
+  "NORMAL_MENUPOPUPBACKGROUND.bmp": {
+    "size": [
+      40,
+      40
+    ],
+    "states": 1,
+    "margins": [
+      9,
+      9,
+      9,
+      9
+    ],
+    "radius": 8,
+    "sha256": "343a6f798f095f57647800c5ce5cc5b9d69af436eb4b538d023447300aa79601"
+  },
+  "NORMAL_MENUPOPUPBORDERS.bmp": {
+    "size": [
+      40,
+      40
+    ],
+    "states": 1,
+    "margins": [
+      9,
+      9,
+      9,
+      9
+    ],
+    "radius": 8,
+    "sha256": "a994d242ffa3d877c9ce10d9384f9363675a60ad0339edc44bc7196364eecdd5"
+  },
+  "NORMAL_MENUPOPUPITEM.bmp": {
+    "size": [
+      32,
+      28
+    ],
+    "states": 4,
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "90396516f073fe188baa633c8a5efdfcfa7d483a2f794f1f21a652ea7108c2c8"
+  },
+  "NORMAL_MENUBARITEM.bmp": {
+    "size": [
+      32,
+      28
+    ],
+    "states": 6,
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "9f4664901c1f9f3488aa15454e205b8788b81640c9c929f31b308af2042881a4"
+  },
+  "NORMAL_MENUPOPUPCHECK.bmp": {
+    "size": [
+      12,
+      12
+    ],
+    "states": 4,
+    "margins": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "radius": 0,
+    "sha256": "84d20d9a57eb1b21402fb122788d816c8e79a830fad9cb3922c9b2f9597c598c"
+  },
+  "NORMAL_MENUPOPUPSUBMENU.bmp": {
+    "size": [
+      12,
+      12
+    ],
+    "states": 2,
+    "margins": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "radius": 0,
+    "sha256": "5fd58abb5862b297aaea880042f16fe90f61515f72301977038b4d34182aa9eb"
+  },
+  "NORMAL_MENUPOPUPSEPARATOR.bmp": {
+    "size": [
+      32,
+      9
+    ],
+    "states": 1,
+    "margins": [
+      0,
+      0,
+      4,
+      4
+    ],
+    "radius": 0,
+    "sha256": "ce7704a178fc9092e7c3fc37bc8d3f8ad05b20a1f72ea3ce7b9368769c06d1a3"
+  },
+  "NORMAL_MENUPOPUPCHECKBACKGROUND.bmp": {
+    "size": [
+      16,
+      16
+    ],
+    "states": 3,
+    "margins": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "radius": 0,
+    "sha256": "add0592f3b43ef926dd695b5b586c95c3e6779696dc493e3e60b0d569b9b2b34"
+  },
+  "NORMAL_MENUPOPUPGUTTER.bmp": {
+    "size": [
+      1,
+      1
+    ],
+    "states": 1,
+    "margins": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "radius": 0,
+    "sha256": "46726541da70feed42935ee7f7c2e75bbbf6013e91a9e83d0c81eec6e08c869a"
+  },
+  "NORMAL_MENUBARBACKGROUND.bmp": {
+    "size": [
+      1,
+      1
+    ],
+    "states": 2,
+    "margins": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "radius": 0,
+    "sha256": "19b15fcaa24934b58c780303eec785f3c1ec0c49084f53634b6051cc54bab487"
+  },
+  "LIGHT_MENUPOPUPBACKGROUND.bmp": {
+    "size": [
+      40,
+      40
+    ],
+    "states": 1,
+    "margins": [
+      9,
+      9,
+      9,
+      9
+    ],
+    "radius": 8,
+    "sha256": "b32d3a6a881d0bf74c5f1e392c4e1e66ff5fb640999c38a4c5aab6032d8535c0"
+  },
+  "LIGHT_MENUPOPUPBORDERS.bmp": {
+    "size": [
+      40,
+      40
+    ],
+    "states": 1,
+    "margins": [
+      9,
+      9,
+      9,
+      9
+    ],
+    "radius": 8,
+    "sha256": "71240f5b9e2cc3efdccb9e3f7da3a40eb7d1ba73445c61658d86068de56bb284"
+  },
+  "LIGHT_MENUPOPUPITEM.bmp": {
+    "size": [
+      32,
+      28
+    ],
+    "states": 4,
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "77101202889f6171ba4f900daf49bdaa3158b35587f6db0eda2d0266c6ced418"
+  },
+  "LIGHT_MENUBARITEM.bmp": {
+    "size": [
+      32,
+      28
+    ],
+    "states": 6,
+    "margins": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "radius": 4,
+    "sha256": "8e1542b20f6b4261afed41f9b9161d5f1fc13ac81dcb7ae2abd1dd63949c68c4"
+  },
+  "LIGHT_MENUPOPUPCHECK.bmp": {
+    "size": [
+      12,
+      12
+    ],
+    "states": 4,
+    "margins": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "radius": 0,
+    "sha256": "a18e02c12b4fcc6be0505764df4bc0d4e18a9332fe23d1120942ad0f1ff883df"
+  },
+  "LIGHT_MENUPOPUPSUBMENU.bmp": {
+    "size": [
+      12,
+      12
+    ],
+    "states": 2,
+    "margins": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "radius": 0,
+    "sha256": "918dfff1af2e5ae2aaed837c075ad5a87a09f36c194b9a5ecd30e2c11cae2d7a"
+  },
+  "LIGHT_MENUPOPUPSEPARATOR.bmp": {
+    "size": [
+      32,
+      9
+    ],
+    "states": 1,
+    "margins": [
+      0,
+      0,
+      4,
+      4
+    ],
+    "radius": 0,
+    "sha256": "8afe931a5c49b5107e0f60f1f464471cd2cf778a7fee0f856c97f6e146f12727"
+  },
+  "LIGHT_MENUPOPUPCHECKBACKGROUND.bmp": {
+    "size": [
+      16,
+      16
+    ],
+    "states": 3,
+    "margins": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "radius": 0,
+    "sha256": "add0592f3b43ef926dd695b5b586c95c3e6779696dc493e3e60b0d569b9b2b34"
+  },
+  "LIGHT_MENUPOPUPGUTTER.bmp": {
+    "size": [
+      1,
+      1
+    ],
+    "states": 1,
+    "margins": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "radius": 0,
+    "sha256": "14fc7d43e327e9a22bd8c6b8a0ad630fe50becbe497b1d07593076867ce2ab4b"
+  },
+  "LIGHT_MENUBARBACKGROUND.bmp": {
+    "size": [
+      1,
+      1
+    ],
+    "states": 2,
+    "margins": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "radius": 0,
+    "sha256": "3d998e75866b46be6b23f7f00c5a2a7c76850b960a4e07df01d562dfc7ec5ff8"
+  }
+}

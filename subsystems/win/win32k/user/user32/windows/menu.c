@@ -2096,6 +2096,13 @@ SetSystemMenu (
   return NtUserSetSystemMenu(hwnd, hMenu);
 }
 
+int
+WINAPI
+MenuItemFromPoint(HWND hWnd, HMENU hMenu, POINT Point)
+{
+  return NtUserMenuItemFromPoint(hWnd, hMenu, Point.x, Point.y);
+}
+
 BOOL
 WINAPI
 TrackPopupMenu(

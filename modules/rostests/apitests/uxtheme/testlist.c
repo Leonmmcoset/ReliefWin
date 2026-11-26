@@ -10,6 +10,11 @@ extern void func_DwmCaptionButton(void);
 extern void func_GetThemeParseErrorInfo(void);
 extern void func_CustomCaptionInset(void);
 extern void func_MenuTheme(void);
+extern void func_MenuAppearance(void);
+extern void func_MenuInteraction(void);
+extern void func_MenuShowcase(void);
+extern void func_NativeMenuAppearance(void);
+extern void func_NativeMenuScroll(void);
 extern void func_NativeScrollbarTheme(void);
 extern void func_NativeScrollbarRendering(void);
 extern void func_NativeScrollbarThemeShutdown(void);
@@ -46,6 +51,11 @@ const struct test winetest_testlist[] =
     { "GetThemeParseErrorInfo", func_GetThemeParseErrorInfo },
     { "CustomCaptionInset", func_CustomCaptionInset },
     { "MenuTheme", func_MenuTheme },
+    { "MenuAppearance", func_MenuAppearance },
+    { "MenuInteraction", func_MenuInteraction },
+    { "MenuShowcase", func_MenuShowcase },
+    { "NativeMenuAppearance", func_NativeMenuAppearance },
+    { "NativeMenuScroll", func_NativeMenuScroll },
     { "NativeScrollbarTheme", func_NativeScrollbarTheme },
     { "NativeScrollbarRendering", func_NativeScrollbarRendering },
     { "NativeScrollbarThemeShutdown", func_NativeScrollbarThemeShutdown },
