@@ -14,6 +14,8 @@ import subprocess
 import sys
 import tempfile
 
+from PIL import Image
+
 sys.dont_write_bytecode = True
 from test_boot_brand import ROOT, function
 
@@ -21,13 +23,24 @@ from test_boot_brand import ROOT, function
 def pixel_parity():
     kernel = (ROOT / "ntos/inbv/inbvgop.c").read_text()
     loader = (ROOT / "bootloader/gui/bmui.c").read_text()
-    asset = (ROOT / "ntos/inbv/resources/reliefwin_logo.bmp").read_bytes()
+    asset = (ROOT / "ntos/inbv/resources/reliefwin_boot_mark.bmp").read_bytes()
     assert asset[:2] == b"BM"
-    assert struct.unpack_from("<IiiHHI", asset, 14) == (108, 652, 120, 1, 32, 3)
+    assert struct.unpack_from("<IiiHHI", asset, 14) == (108, 478, 460, 1, 32, 3)
     assert struct.unpack_from("<IIII", asset, 54) == (0xff0000, 0xff00, 0xff, 0xff000000)
     assert struct.unpack_from("<I", asset, 10)[0] == 122
-    assert len(asset) == 122 + 652 * 120 * 4
-    assert "ntos/inbv/resources/reliefwin_logo.bmp" in (ROOT / "bootloader/CMakeLists.txt").read_text()
+    assert len(asset) == 122 + 478 * 460 * 4
+    assert struct.unpack_from("<ii", (ROOT / "ntos/inbv/resources/reliefwin_boot_mark_vga.bmp").read_bytes(), 18) == (240, 240)
+    source_mark = Image.open(ROOT / "media/graphics/branding/reliefwin-mark.png").convert("RGBA")
+    transpose = getattr(Image, "Transpose", Image)
+    assert asset[122:] == source_mark.transpose(transpose.FLIP_TOP_BOTTOM).tobytes("raw", "BGRA")
+    assert "ntos/inbv/resources/reliefwin_boot_mark.bmp" in (ROOT / "bootloader/CMakeLists.txt").read_text()
+    assert 'IDB_GOP_LOGO BITMAP "inbv/resources/reliefwin_boot_mark.bmp"' in (ROOT / "ntos/inbv/bootanim.rc").read_text()
+    assert 'IDB_BOOT_MARK BITMAP "inbv/resources/reliefwin_boot_mark_vga.bmp"' in (ROOT / "ntos/inbv/bootanim.rc").read_text()
+    bootlogo = (ROOT / "ntos/inbv/bootlogo.c").read_text()
+    assert "InbvDrawResourceCentered(IDB_BOOT_MARK" in bootlogo
+    assert "InbvDrawResourceCentered(IDB_LOGO_DEFAULT" in bootlogo
+    assert struct.unpack_from("<ii", (ROOT / "ntos/inbv/resources/logo.bmp").read_bytes(), 18) == (190, 224)
+    assert "VidDisplayStringXY(LoadingMsg" not in kernel
     harness = r'''
 #include <stdint.h>
 #include <stdlib.h>
@@ -77,49 +90,46 @@ static VOID VidBufferToScreenBlt(PUCHAR Data,ULONG X,ULONG Y,ULONG Width,ULONG H
     memcpy(KernelPixels+(SIZE_T)Y*BmUiWidth+X,Data,Stride);
 }
 '''
-    harness += "\nstatic UCHAR bootui_wordmark[] = {" + ",".join(map(str, asset)) + "};\n"
+    harness += "\nstatic UCHAR bootui_mark[] = {" + ",".join(map(str, asset)) + "};\n"
     harness += r'''
-static PUCHAR InbvGetResourceAddress(ULONG Id) { CHECK(Id == IDB_GOP_LOGO); return bootui_wordmark+14; }
+static PUCHAR InbvGetResourceAddress(ULONG Id) { CHECK(Id == IDB_GOP_LOGO); return bootui_mark+14; }
 '''
     harness += re.search(r"typedef struct _INBV_GOP_RGB\b.*?\}\s*[^;]+;", kernel, re.S).group() + "\n"
     for name, result in (
         ("InbvMaskShift", "ULONG"), ("InbvMaskMax", "ULONG"), ("InbvPackColor", "ULONG"),
-        ("InbvGopValidateWordmarkHeader", "BOOLEAN"), ("InbvGopComputeWordmarkRect", "BOOLEAN"),
-        ("InbvGopExtractChannel", "UCHAR"), ("InbvGopReadWordmarkPixel", "VOID"),
-        ("InbvGopDrawWordmark", "BOOLEAN")):
+        ("InbvGopValidateLogoHeader", "BOOLEAN"), ("InbvGopComputeLogoRect", "BOOLEAN"),
+        ("InbvGopExtractChannel", "UCHAR"), ("InbvGopReadLogoPixel", "VOID"),
+        ("InbvGopDrawLogo", "BOOLEAN")):
         harness += function(kernel, name, result)
-    for name, result in (("BmUiBootLogoPixel", "ULONG"), ("BmUiDrawBootLogo", "VOID")):
+    for name, result in (("BmUiBootMarkPixel", "ULONG"), ("BmUiDrawBootMark", "VOID")):
         harness += function(loader, name, result)
     harness += r'''
 int main(VOID)
 {
-    static const ULONG Sizes[][2] = {{1,1},{16,16},{640,480},{1280,900},{3840,2160}};
+    static const ULONG Sizes[][2] = {{1,1},{16,16},{640,480},{1280,900},{1920,1080},{3840,2160}};
     RELIEF_BOOT_LOGO_RECT Rect;
-    CHECK(!ReliefBootLogoGetRect(0,900,652,120,96,&Rect));
-    CHECK(!ReliefBootLogoGetRect(1280,0,652,120,96,&Rect));
-    CHECK(!ReliefBootLogoGetRect(1280,900,0,120,96,&Rect));
-    CHECK(!ReliefBootLogoGetRect(1280,900,652,0,96,&Rect));
-    CHECK(!ReliefBootLogoGetRect(1280,900,652,120,96,NULL));
-    CHECK(ReliefBootLogoGetRect(1280,900,652,120,96,&Rect));
-    CHECK(Rect.X == 509 && Rect.Y == 72 && Rect.Width == 261 && Rect.Height == 48);
+    CHECK(!ReliefBootLogoGetRect(0,900,478,460,&Rect));
+    CHECK(!ReliefBootLogoGetRect(1280,0,478,460,&Rect));
+    CHECK(!ReliefBootLogoGetRect(1280,900,0,460,&Rect));
+    CHECK(!ReliefBootLogoGetRect(1280,900,478,0,&Rect));
+    CHECK(!ReliefBootLogoGetRect(1280,900,478,460,NULL));
+    CHECK(ReliefBootLogoGetRect(1280,900,478,460,&Rect));
+    CHECK(Rect.X == 523 && Rect.Y == 337 && Rect.Width == 234 && Rect.Height == 225);
     for (unsigned i=0;i<sizeof(Sizes)/sizeof(Sizes[0]);i++)
     {
         SIZE_T Bytes = (SIZE_T)Sizes[i][0]*Sizes[i][1]*4;
         BmUiWidth=Sizes[i][0]; BmUiHeight=Sizes[i][1];
         BmUiPixels=calloc(1,Bytes); KernelPixels=calloc(1,Bytes);
         CHECK(BmUiPixels && KernelPixels);
-        BmUiDrawBootLogo();
-        CHECK(InbvGopDrawWordmark(BmUiWidth,BmUiHeight,NULL));
+        BmUiDrawBootMark();
+        CHECK(InbvGopDrawLogo(BmUiWidth,BmUiHeight,NULL));
         CHECK(!memcmp(BmUiPixels,KernelPixels,Bytes));
-        for (ULONG Dpi=0;Dpi<=600;Dpi+=24)
-        {
-            CHECK(ReliefBootLogoGetRect(BmUiWidth,BmUiHeight,652,120,Dpi,&Rect));
-            CHECK(Rect.Width && Rect.Height && Rect.X+Rect.Width<=BmUiWidth && Rect.Y+Rect.Height<=BmUiHeight);
-            CHECK(Rect.X==(BmUiWidth-Rect.Width)/2);
-        }
+        CHECK(ReliefBootLogoGetRect(BmUiWidth,BmUiHeight,478,460,&Rect));
+        CHECK(Rect.Width && Rect.Height && Rect.X+Rect.Width<=BmUiWidth && Rect.Y+Rect.Height<=BmUiHeight);
+        CHECK(Rect.X==(BmUiWidth-Rect.Width)/2 && Rect.Y==(BmUiHeight-Rect.Height)/2);
         free(BmUiPixels); free(KernelPixels);
     }
-    printf("Loader/kernel boot logo: %u checks passed; framebuffers match pixel for pixel at five display sizes\n",Checks);
+    printf("Loader/kernel boot logo: %u checks passed; framebuffers match pixel for pixel at six display sizes\n",Checks);
     return 0;
 }
 '''
@@ -138,6 +148,10 @@ def main():
     path = "ntos/inbv/inbvgop.c"
     source = (subprocess.check_output(["git", "show", args.baseline + ":" + path], cwd=ROOT).decode()
               if args.baseline else (ROOT / path).read_text())
+    if args.baseline:
+        rc = subprocess.check_output(["git", "show", args.baseline + ":ntos/inbv/bootanim.rc"], cwd=ROOT).decode()
+        if 'IDB_GOP_LOGO BITMAP "inbv/resources/reliefwin_boot_mark.bmp"' not in rc:
+            raise SystemExit("Baseline still uses the small wordmark instead of the centered ReliefWin mark")
     harness = r'''
 #include <assert.h>
 #include <stdint.h>
@@ -150,7 +164,6 @@ def main():
 #define FALSE 0
 #define BV_COLOR_BLACK 0
 #define BV_COLOR_WHITE 15
-#define INBV_WORDMARK_TOP_VPOS 0.08f
 #define INBV_DISPLAY_STATE_OWNED 1
 #define ASSERT(x) assert(x)
 typedef uint32_t ULONG;
@@ -160,7 +173,7 @@ typedef struct { ULONG Unused; } LOADER_PARAMETER_FRAMEBUFFER;
 typedef struct { ULONG Width, Height, PhysicalWidth, PhysicalHeight, CharacterWidth; } VID_DISPLAY_INFO;
 static VID_DISPLAY_INFO Display = {1280,900,1280,900,8};
 static ULONG Canvas[1280 * 900];
-static unsigned Checks, Clears, Logos, Status, Locked, Owned = 1, Installed = 1;
+static unsigned Checks, Clears, Logos, Status, BrandText, Locked, Owned = 1, Installed = 1;
 static BOOLEAN Gop = TRUE, Query = TRUE, Resource = TRUE;
 #define CHECK(x) do { ++Checks; if (!(x)) { fprintf(stderr,"line %d: %s\n",__LINE__,#x); exit(1); } } while (0)
 static BOOLEAN InbvGopQueryInfo(LOADER_PARAMETER_FRAMEBUFFER *Info) { (void)Info; return Gop; }
@@ -176,18 +189,18 @@ static VOID VidSolidColorFill(ULONG Left,ULONG Top,ULONG Right,ULONG Bottom,unsi
     memset(Canvas,0,sizeof(Canvas)); Clears++;
 }
 static VOID InbvSetTextColor(ULONG Color) { CHECK(Color == BV_COLOR_WHITE); }
-static BOOLEAN InbvGopDrawWordmark(ULONG Width,ULONG Height,const VOID *Rect)
+static BOOLEAN InbvGopDrawLogo(ULONG Width,ULONG Height,const VOID *Rect)
 {
     CHECK(Width == Display.PhysicalWidth && Height == Display.PhysicalHeight && !Rect);
     if (!Resource) return FALSE;
-    Canvas[72 * 1280 + 640] = 0x123456; Logos++; return TRUE;
+    Canvas[(Display.Height/2) * Display.Width + Display.Width/2] = 0x123456; Logos++; return TRUE;
 }
 static VOID InbvInitializeBootStatus(VOID)
 {
     CHECK(!Locked); Canvas[0] = 0xffffff; Canvas[700 * 1280 + 640] = 0xffffff; Status++;
 }
 static VOID VidDisplayStringXY(const CHAR *Text,ULONG X,ULONG Y,BOOLEAN Clear)
-{ CHECK(!strcmp(Text,"ReliefWin") && X < Display.Width && Y < Display.Height && Clear); }
+{ (void)Text;(void)X;(void)Y;(void)Clear;BrandText++; }
 static VOID InbvEnableDisplayString(BOOLEAN Enabled) { CHECK(!Enabled); }
 '''
     harness += function(source, "InbvGopHandleBootBitmap", "BOOLEAN")
@@ -199,13 +212,13 @@ int main(VOID)
         for (unsigned i = 0; i < 1280 * 900; i++) Canvas[i] = 0xfeed;
         CHECK(InbvGopHandleBootBitmap());
         CHECK(Canvas[245 * 1280 + 640] == BV_COLOR_BLACK);
-        CHECK(Canvas[72 * 1280 + 640] == 0x123456 && Canvas[0] == 0xffffff);
+        CHECK(Canvas[450 * 1280 + 640] == 0x123456 && Canvas[0] == 0xffffff);
         CHECK(Canvas[700 * 1280 + 640] == 0xffffff && !Locked);
     }
     Resource = FALSE;
     CHECK(InbvGopHandleBootBitmap() && !Locked);
-    CHECK(Canvas[72 * 1280 + 640] == BV_COLOR_BLACK);
-    CHECK(Clears == 3 && Logos == 2 && Status == 3);
+    CHECK(Canvas[450 * 1280 + 640] == BV_COLOR_BLACK);
+    CHECK(Clears == 3 && Logos == 2 && Status == 3 && BrandText == 0);
     Gop = FALSE; CHECK(!InbvGopHandleBootBitmap() && Clears == 3);
     Gop = TRUE; Query = FALSE; CHECK(!InbvGopHandleBootBitmap() && Clears == 3);
     Query = TRUE; Display.PhysicalWidth = 0; CHECK(!InbvGopHandleBootBitmap() && Clears == 3);

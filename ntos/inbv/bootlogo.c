@@ -125,7 +125,7 @@ DisplayBootBitmap(VOID)
 
     InbvEnableDisplayString(FALSE);
 
-    if (!InbvDrawResourceCentered(IDB_LOGO_DEFAULT,
+    if (!InbvDrawResourceCentered(IDB_BOOT_MARK,
                                   DisplayInfo.Width / 2,
                                   DisplayInfo.Height / 2))
     {

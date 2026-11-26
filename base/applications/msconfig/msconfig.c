@@ -148,9 +148,48 @@ void MsConfig_OnTabWndSelChange(void)
     HWND Pages[] = {hGeneralPage, hServicesPage, hStartupPage, hToolsPage};
     INT Selected = TabCtrl_GetCurSel(hTabWnd);
     INT i;
+    INT dx = 0, dy = 0;
+    HWND Control;
+    RECT rc, PageRect, TabRect;
 
+    GetClientRect(hTabWnd, &rc);
+    TabCtrl_AdjustRect(hTabWnd, FALSE, &rc);
     for (i = 0; i < (INT)_countof(Pages); i++)
+    {
+        if (GetWindowRect(Pages[i], &PageRect))
+        {
+            dx = max(dx, PageRect.right - PageRect.left - (rc.right - rc.left));
+            dy = max(dy, PageRect.bottom - PageRect.top - (rc.bottom - rc.top));
+        }
+    }
+    if (dx || dy)
+    {
+        GetWindowRect(hTabWnd, &TabRect);
+        for (Control = GetWindow(hMainWnd, GW_CHILD); Control; Control = GetWindow(Control, GW_HWNDNEXT))
+        {
+            GetWindowRect(Control, &rc);
+            if (rc.top >= TabRect.bottom)
+            {
+                MapWindowPoints(NULL, hMainWnd, (POINT *)&rc, 2);
+                SetWindowPos(Control, NULL, rc.left + dx, rc.top + dy, 0, 0,
+                             SWP_NOACTIVATE | SWP_NOSIZE | SWP_NOZORDER);
+            }
+        }
+        SetWindowPos(hTabWnd, NULL, 0, 0, TabRect.right - TabRect.left + dx, TabRect.bottom - TabRect.top + dy,
+                     SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOZORDER);
+        GetWindowRect(hMainWnd, &rc);
+        SetWindowPos(hMainWnd, NULL, 0, 0, rc.right - rc.left + dx, rc.bottom - rc.top + dy,
+                     SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOZORDER);
+    }
+    GetClientRect(hTabWnd, &rc);
+    TabCtrl_AdjustRect(hTabWnd, FALSE, &rc);
+    MapWindowPoints(hTabWnd, hMainWnd, (POINT *)&rc, 2);
+    for (i = 0; i < (INT)_countof(Pages); i++)
+    {
+        SetWindowPos(Pages[i], NULL, rc.left, rc.top, 0, 0,
+                     SWP_NOACTIVATE | SWP_NOSIZE | SWP_NOZORDER);
         ShowWindow(Pages[i], (i == Selected) ? SW_SHOW : SW_HIDE);
+    }
 
     if (Selected >= 0 && Selected < (INT)_countof(Pages))
         BringWindowToTop(Pages[Selected]);

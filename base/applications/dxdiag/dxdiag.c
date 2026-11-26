@@ -131,6 +131,8 @@ TabCtrl_OnSelChange(PDXDIAG_CONTEXT pContext)
 {
     INT Index;
     INT CurSel;
+    HWND hPage;
+    RECT rc;
 
     /* retrieve new page */
     CurSel = TabCtrl_GetCurSel(hTabCtrlWnd);
@@ -152,18 +154,25 @@ TabCtrl_OnSelChange(PDXDIAG_CONTEXT pContext)
     {
         if (CurSel)
             CurSel -= pContext->NumDisplayAdapter + pContext->NumSoundAdapter;
-        ShowWindow(pContext->hDialogs[CurSel], SW_SHOW);
-        return;
+        hPage = pContext->hDialogs[CurSel];
     }
-
-    if (CurSel -1 < pContext->NumDisplayAdapter)
+    else if (CurSel -1 < pContext->NumDisplayAdapter)
     {
-        ShowWindow(pContext->DisplayAdapters[CurSel-1]->hDisplayWnd, SW_SHOW);
-        return;
+        hPage = pContext->DisplayAdapters[CurSel-1]->hDisplayWnd;
+    }
+    else
+    {
+        CurSel -= pContext->NumDisplayAdapter + 1;
+        hPage = pContext->hSoundWnd[CurSel];
     }
 
-    CurSel -= pContext->NumDisplayAdapter + 1;
-    ShowWindow(pContext->hSoundWnd[CurSel], SW_SHOW);
+    GetClientRect(hTabCtrlWnd, &rc);
+    TabCtrl_AdjustRect(hTabCtrlWnd, FALSE, &rc);
+    MapWindowPoints(hTabCtrlWnd, GetParent(hPage), (POINT *)&rc, 2);
+    SetWindowPos(hPage, NULL, rc.left, rc.top, rc.right - rc.left, rc.bottom - rc.top,
+                 SWP_NOACTIVATE | SWP_NOOWNERZORDER | SWP_NOZORDER);
+    ShowWindow(hPage, SW_SHOW);
+
 }
 
 VOID

@@ -20,3 +20,4 @@
 #define IDB_LOGO_DEFAULT 5
 #define IDB_COPYRIGHT    22
 #define IDB_GOP_LOGO     23
+#define IDB_BOOT_MARK    24

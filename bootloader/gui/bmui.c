@@ -10,7 +10,7 @@
 #include <ft2build.h>
 #include FT_FREETYPE_H
 #include "bootui_mono.h"
-#include "bootui_wordmark.h"
+#include "bootui_mark.h"
 #include <reliefwin/bootlogo.h>
 
 #define BMUI_GRAPHICS_COLUMNS   100
@@ -407,7 +407,7 @@ BmUiBootProgress(
 }
 
 static ULONG
-BmUiBootLogoPixel(
+BmUiBootMarkPixel(
     _In_ const UCHAR *Bits,
     _In_ ULONG Width,
     _In_ ULONG Height,
@@ -422,16 +422,15 @@ BmUiBootLogoPixel(
 }
 
 static VOID
-BmUiDrawBootLogo(VOID)
+BmUiDrawBootMark(VOID)
 {
     RELIEF_BOOT_LOGO_RECT Rect;
-    ULONG Width = LeUlong(bootui_wordmark + 18);
-    ULONG Height = LeUlong(bootui_wordmark + 22);
-    const UCHAR *Bits = bootui_wordmark + LeUlong(bootui_wordmark + 10);
+    ULONG Width = LeUlong(bootui_mark + 18);
+    ULONG Height = LeUlong(bootui_mark + 22);
+    const UCHAR *Bits = bootui_mark + LeUlong(bootui_mark + 10);
     ULONG X, Y, Sx, Sy, Sx1, Sy1, C00, C10, C01, C11, Color, Shift;
 
-    if (!ReliefBootLogoGetRect(BmUiWidth, BmUiHeight, Width, Height,
-                               LOADER_PARAMETER_FRAMEBUFFER_DPI_DEFAULT, &Rect))
+    if (!ReliefBootLogoGetRect(BmUiWidth, BmUiHeight, Width, Height, &Rect))
         return;
 
     for (Y = 0; Y < Rect.Height; Y++)
@@ -442,10 +441,10 @@ BmUiDrawBootLogo(VOID)
         {
             Sx = (ULONG)(((ULONGLONG)X * Width) / Rect.Width);
             Sx1 = Rect.Width < Width ? min(Sx + 1, Width - 1) : Sx;
-            C00 = BmUiBootLogoPixel(Bits, Width, Height, Sx, Sy);
-            C10 = BmUiBootLogoPixel(Bits, Width, Height, Sx1, Sy);
-            C01 = BmUiBootLogoPixel(Bits, Width, Height, Sx, Sy1);
-            C11 = BmUiBootLogoPixel(Bits, Width, Height, Sx1, Sy1);
+            C00 = BmUiBootMarkPixel(Bits, Width, Height, Sx, Sy);
+            C10 = BmUiBootMarkPixel(Bits, Width, Height, Sx1, Sy);
+            C01 = BmUiBootMarkPixel(Bits, Width, Height, Sx, Sy1);
+            C11 = BmUiBootMarkPixel(Bits, Width, Height, Sx1, Sy1);
             Color = 0;
             for (Shift = 0; Shift < 24; Shift += 8)
                 Color |= ((((C00 >> Shift) & 255) + ((C10 >> Shift) & 255) +
@@ -465,7 +464,7 @@ BmUiBeginBoot(VOID)
     BmUiClear(BMUI_BLACK, BMUI_ATTR_NORMAL);
     if (BmUiGraphics)
     {
-        BmUiDrawBootLogo();
+        BmUiDrawBootMark();
         BmUiPresent(0, BmUiHeight);
     }
     BmUiBootProgress("winload.exe", 0);

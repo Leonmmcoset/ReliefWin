@@ -1,37 +1,25 @@
-# 启动 Logo 交接修复
+# 启动画面大型 ReliefWin 标志
 
-基于 `ff070cb6873ab3181347a393a6565b86485e399f`，修复引导程序与内核交接后出现两个 ReliefWin Logo 的问题。
+启动加载画面现在显示单独的蓝色 ReliefWin 图形标志，不带旁边的产品文字。标志水平、垂直居中，高度约为屏幕高度的四分之一，并保留原始长宽比。winload 与内核共用同一幅透明 PNG 导出的 BMP V4 资源和布局计算；内核交接时清屏，再画标志、顶部进度条及居中的加载组件文字。非 GOP VGA 启动使用独立 RLE4 图标资源，关机 Logo 沿用原资源。
 
-原来的 `BmUiBeginBoot` 在屏幕高度四分之一处绘制独立图标；`InbvGopHandleBootBitmap` 接管后在顶部绘制另一份带字 Logo，却没有清理引导程序留下的图像。
+标志来源是 `media/graphics/branding/reliefwin-mark.png`。其 BMP BGRA 字节与透明源图逐像素一致。格式使用本项目现有 `bitmap32` 生成器；BMP 文件头和 V4 位域依据 Microsoft [BITMAPFILEHEADER](https://learn.microsoft.com/en-us/windows/win32/api/wingdi/ns-wingdi-bitmapfileheader) 与 [BITMAPV4HEADER](https://learn.microsoft.com/en-us/windows/win32/api/wingdi/ns-wingdi-bitmapv4header)。没有引入 Windows Logo ABI。
 
-现在两个阶段都使用 `ntos/inbv/resources/reliefwin_logo.bmp`，共用 `sdk/include/reliefwin/bootlogo.h` 的布局计算，水平居中、距顶端约屏幕高度的 8%。内核在持有现有 INBV 显示锁、确认显示所有权后，先清除旧画面，再绘制唯一 Logo，随后初始化原有顶部进度条和加载文字。未增加延时或修改进度计算。
-
-布局及 Logo 是 ReliefWin 自有设计，不引入 Windows ABI 定义。引导程序解码的格式由已有 `scripts/generate_brand_assets.py` 的 `bitmap32` 生成；回归测试固定检查 BMP V4、32 位 BGRA 位域、透明度和数据长度。格式依据为 Microsoft [BITMAPFILEHEADER](https://learn.microsoft.com/en-us/windows/win32/api/wingdi/ns-wingdi-bitmapfileheader) 和 [BITMAPV4HEADER](https://learn.microsoft.com/en-us/windows/win32/api/wingdi/ns-wingdi-bitmapv4header)。
-
-## 定向验证
+## 验证
 
 | 检查 | 结果 |
 | --- | --- |
-| `python3 scripts/test_boot_logo.py` | 交接 48 项、资源和像素布局 569 项通过；调用实际内核接管与绘制函数、实际引导 Logo 绘制函数。五种屏幕尺寸从 1 × 1 到 3840 × 2160，默认缩放下整幅 Logo 帧缓冲逐像素相同。另覆盖无 GOP、查询失败、空尺寸、资源失败、失去显示所有权、重复交接和 DPI 范围。 |
-| 修复前的回归 | 改动产品代码前运行交接测试，在原图标位置必须清黑的断言处失败；修复后同一断言通过。 |
-| `python3 scripts/test_boot_brand.py` | 内核进度 15,091,427 项、引导进度 2,105 项、字形映射 768 项通过。 |
-| 三架构增量构建 | `CCACHE_DISABLE=1 ninja -C output-Clang-{amd64,i386,arm64}-debug -j2 ntoskrnl bootloader` 均退出 0。复用已有构建目录。 |
-| AMD64 安装介质 | 正常关机后执行 `CCACHE_DISABLE=1 ninja -C output-Clang-amd64-debug -j2 bootcd`，退出 0；复用原有 `bootcd.iso`，未重复安装验证。 |
-| cppcheck | 使用 AMD64 构建数据库中两个变更 C 文件的三个实际编译单元；在已有 CRT 头 `stdio.h:90` 的 `_CRTDATA` 宏处中止，未计作通过。 |
+| 修复前基线 | `python3 scripts/test_boot_logo.py --baseline 8e1b49b5699` 按预期失败，指出该版本仍嵌入小型文字 Logo。 |
+| `python3 scripts/test_boot_logo.py` | 47 项交接检查、1,215 项资源与布局检查通过。测试调用实际 loader 和内核绘制函数；六种分辨率（1 × 1 至 3840 × 2160）输出逐像素相同，并核对资源与透明源图一致。 |
+| `python3 scripts/test_boot_brand.py` | 内核进度绘制 15,091,427 项、loader 进度 2,105 项、字形映射 768 项通过。 |
+| `python3 scripts/check_brand_assets.py` | 42 项生成资源与 3,000 张图片审查通过，包括源图、BGRA alpha、启动 VGA RLE4 与关机资源。 |
+| 三架构目标构建 | `CCACHE_DISABLE=1 ninja -C output-Clang-{amd64,i386,arm64}-debug -j2 ntoskrnl bootloader` 均退出 0。最终分离 VGA 启动资源后再次构建，均通过。 |
+| cppcheck | 使用 AMD64 构建数据库中的实际编译命令；在 SDK CRT 头 `stdio.h:90` 的 `_CRTDATA` 处解析中止，未计作通过。 |
 
-## 实际启动
+AMD64 使用 OVMF / QEMU 实际冷启动，分辨率 1280 × 900，系统正常进入桌面。截图来自同一次启动的原始 QMP 帧：
 
-停机后仅更新既有 AMD64 `ReliefWin.img` 的内核、两种 winload、PCAT bootmgr 和两处 EFI bootmgr，逐个读回确认与构建产物一致。通过无网络、无显示窗口的 QEMU / OVMF 正常冷启动，使用固定既有测试载荷；监视参数为 `--timeout 30 --stall 6 --keep --continue-after-observation`。
+- [引导加载阶段：Loading acpi.sys…](../graphics/screenshots/boot-loader.png)，进度白色长度 389 / 1280。
+- [内核加载阶段：Loading cache manager…](../graphics/screenshots/boot-progress.png)，进度白色长度 819 / 1280。
 
-同次启动的原始 QMP 截图：
+截图无合成或修饰。两阶段 Logo 区域逐像素一致，只显示居中的图形标志；加载文字和顶部进度条均可见。随后添加了独立 VGA fallback 资源，GOP 资源未变；最终三架构目标重新构建后，把最终 AMD64 内核与引导程序部署到既有镜像，再次启动并进入桌面。两张加载阶段截图来自此前同一 GOP 实现的启动。VGA fallback 尚未在无 GOP 的 VM 中单独启动验证。
 
-- [引导程序：Loading SYSTEM…](../graphics/screenshots/boot-loader.png)，约 6.04 秒，进度条白色部分 128 / 1280 像素。
-- [内核：Loading registry…](../graphics/screenshots/boot-progress.png)，约 7.89 秒，进度条白色部分 793 / 1280 像素。
-
-两图均为 1280 × 900，无合成或修饰。排除顶部进度条后，从 y=10 到 y=649 的整个画面逐像素一致；原中部独立图标所在矩形完全为黑色。系统随后正常进入简体中文桌面，并完成正常关机。
-
-实际启动的 AMD64 内核 SHA-256：`e856c9efc71c3cc1e1d1d8eddb84c68b2474a57ff107e9fdc65494a8127a7bff`；winload.efi：`08a67211f211d723bbf38b0bbc8ca1ef2178d768488965c3ab775570ea1944d2`；bootmgfw.efi：`3a1b561adc1b851a7f485dab084c721ab004832e97a4d505d78f0ba33a6572ed`。
-
-随后封装的 ISO 为 557,629,440 字节，SHA-256 为 `a70084ab26cf5bb0460af7f840751f97488a421d77ca9e3dd4a16817010a612a`。封装过程更新其余模块及内核中的完整性目录，以上截图对应先前定向部署的内核；未将 ISO 封装后的二进制计作已启动实测。
-
-本轮未重做系统全量语言审计、Office 测试或全新安装。i386、ARM64 仅完成构建，未运行客体。实际截图为默认 96 DPI；内核保留已有的自定义 DPI 缩放，引导早期使用默认 DPI。未执行 Windows 11 基线，本次自有品牌画面不声称 Windows 绘制实现或像素一致性。
+我尝试重建 AMD64 安装 ISO 时，Ninja 开始重建 4,521 个无关目标，在第 826 项中断以避免不必要的构建开销。因此现有 `bootcd.iso` 不包含最终的 VGA 资源拆分，不能作为该最终源码的安装介质交付。本次没有做全新安装、i386／ARM64 VM 启动或 Windows 11 基线测试。

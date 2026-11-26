@@ -257,8 +257,10 @@ def main():
     raw = bytes(c if channel == 3 else c * pixel[3] // 255
                 for pixel in image.getdata() for channel, c in enumerate(pixel))
     write("bootloader/gui/assets/logo.rgba", raw)
+    bitmap32("ntos/inbv/resources/reliefwin_boot_mark.bmp", MARK)
     bitmap32("ntos/inbv/resources/reliefwin_logo.bmp", wordmark((652, 120), "white"))
     bitmap4("ntos/inbv/resources/logo.bmp", flatten(wordmark((190, 224), "white", True), "black"))
+    bitmap4("ntos/inbv/resources/reliefwin_boot_mark_vga.bmp", flatten(symbol((240, 240)), "black"))
     copyright = Image.new("RGB", (260, 26), "black")
     draw = ImageDraw.Draw(copyright)
     draw.text((0, 0), "ReliefWin", font=font(10, True), fill="white")

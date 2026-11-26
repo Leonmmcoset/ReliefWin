@@ -277,7 +277,7 @@ int main(void)
     loader = (ROOT / "bootloader/gui/bmui.c").read_text()
     loader_functions = "".join(function(loader, name, result) for name, result in (
         ("BmUiFill", "VOID"), ("BmUiBootProgress", "BOOLEAN"),
-        ("BmUiBootLogoPixel", "ULONG"), ("BmUiDrawBootLogo", "VOID"),
+        ("BmUiBootMarkPixel", "ULONG"), ("BmUiDrawBootMark", "VOID"),
         ("BmUiBeginBoot", "VOID"), ("BmUiEndBoot", "VOID")))
     loader_harness = r'''
 #include <stdint.h>
@@ -368,8 +368,8 @@ static VOID FwFreePages(VOID *Pointer,SIZE_T Size)
     Freed++; free(Allocation); Allocation = NULL;
 }
 '''
-    loader_harness += "\nstatic UCHAR bootui_wordmark[] = {" + ",".join(
-        str(value) for value in (ROOT / "ntos/inbv/resources/reliefwin_logo.bmp").read_bytes()) + "};\n"
+    loader_harness += "\nstatic UCHAR bootui_mark[] = {" + ",".join(
+        str(value) for value in (ROOT / "ntos/inbv/resources/reliefwin_boot_mark.bmp").read_bytes()) + "};\n"
     loader_harness += loader_functions
     loader_harness += r'''
 static int Equals(const WCHAR *Wide,const char *Narrow)

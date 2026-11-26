@@ -37,6 +37,8 @@
     "media/graphics/start-button/pressed.png": "adc5c08345cc8a0bd490da2ae2372f54d9cac3958bc72efa48befddf7e3da737",
     "ntos/inbv/resources/copyright.bmp": "2e3388f508c2e09f02408d3c777f8768e0698cd5a2c733c519d319d9fdef6f35",
     "ntos/inbv/resources/logo.bmp": "a7619efc87d5067609c43bdfa5ba47653e1a08785220bd9cba89cd317467ca1f",
+    "ntos/inbv/resources/reliefwin_boot_mark.bmp": "69fe0d5aebe49f55418e7f0b52487ad2c6ee181958bfedb11008cf9576471c0e",
+    "ntos/inbv/resources/reliefwin_boot_mark_vga.bmp": "068e356b4cfd05c61a9b174a681544a96248525cb3811327d8d30c07403fde3b",
     "ntos/inbv/resources/reliefwin_logo.bmp": "d08f3abc67b1f23f8bb4413ca439159b69b0cfbda8f5e57c8bf3024b35100a6d",
     "ntos/inbv/resources/shutdown.bmp": "e8d9041215e8ba7116dae88690f6960e3a7ffa9b1896a1629d662f8b68c50370",
     "subsystems/win/win32k/user/user32/resources/oic_reactos.ico": "996a3f5faf4494eedf7569c4871725db454b6116f3267a71b2d24bbcd0c38653"

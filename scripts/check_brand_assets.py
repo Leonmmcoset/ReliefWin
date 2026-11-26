@@ -117,7 +117,18 @@ def main():
     check(struct.unpack_from("<IIII", bitmap, 54) ==
           (0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000),
           "The GOP bitmap lost its explicit BGRA masks")
+    mark = (ROOT / "ntos/inbv/resources/reliefwin_boot_mark.bmp").read_bytes()
+    check(struct.unpack_from("<IiiHHI", mark, 14) == (108, 478, 460, 1, 32, 3),
+          "The boot mark's shape, depth or bitfield encoding changed")
+    check(struct.unpack_from("<IIII", mark, 54) ==
+          (0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000),
+          "The boot mark lost its explicit BGRA masks")
+    source_mark = Image.open(ROOT / "media/graphics/branding/reliefwin-mark.png").convert("RGBA")
+    transpose = getattr(Image, "Transpose", Image)
+    check(mark[122:] == source_mark.transpose(transpose.FLIP_TOP_BOTTOM).tobytes("raw", "BGRA"),
+          "The boot bitmap differs from the supplied transparent ReliefWin mark")
     rle4("ntos/inbv/resources/logo.bmp", (190, 224))
+    rle4("ntos/inbv/resources/reliefwin_boot_mark_vga.bmp", (240, 240))
     rle4("ntos/inbv/resources/copyright.bmp", (260, 26))
     rle4("ntos/inbv/resources/shutdown.bmp", (213, 11))
     palettes = []

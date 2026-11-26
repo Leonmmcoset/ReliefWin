@@ -11,6 +11,7 @@ add_executable(appsmoke_apitest
     suite.c
     system.c
     taskdialog.c
+    tablayout.c
     testlist.c)
 
 target_include_directories(appsmoke_apitest PRIVATE ${REACTOS_SOURCE_DIR}/modules/rostests/apitests/include)

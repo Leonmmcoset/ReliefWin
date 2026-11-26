@@ -625,6 +625,7 @@ BOOL OnCreate(HWND hWnd)
     GetClientRect(hWnd, &rc);
     nOldWidth = rc.right;
     nOldHeight = rc.bottom;
+    OnSize(SIZE_RESTORED, rc.right, rc.bottom);
     /* nOldStartX = rc.left; */
     /*nOldStartY = rc.top;  */
 
@@ -805,23 +806,20 @@ void OnSize( WPARAM nType, int cx, int cy )
     cy = (rc.bottom - rc.top) + nYDifference;
     SetWindowPos(hTabWnd, NULL, 0, 0, cx, cy, SWP_NOACTIVATE|SWP_NOOWNERZORDER|SWP_NOMOVE|SWP_NOZORDER);
 
+    GetClientRect(hTabWnd, &rc);
+    TabCtrl_AdjustRect(hTabWnd, FALSE, &rc);
+    MapWindowPoints(hTabWnd, hMainWnd, (POINT *)&rc, 2);
+    cx = rc.right - rc.left;
+    cy = rc.bottom - rc.top;
+
     /* Resize the application page */
-    GetWindowRect(hApplicationPage, &rc);
-    cx = (rc.right - rc.left) + nXDifference;
-    cy = (rc.bottom - rc.top) + nYDifference;
-    SetWindowPos(hApplicationPage, NULL, 0, 0, cx, cy, SWP_NOACTIVATE|SWP_NOOWNERZORDER|SWP_NOMOVE|SWP_NOZORDER);
+    SetWindowPos(hApplicationPage, NULL, rc.left, rc.top, cx, cy, SWP_NOACTIVATE|SWP_NOOWNERZORDER|SWP_NOZORDER);
 
     /* Resize the process page */
-    GetWindowRect(hProcessPage, &rc);
-    cx = (rc.right - rc.left) + nXDifference;
-    cy = (rc.bottom - rc.top) + nYDifference;
-    SetWindowPos(hProcessPage, NULL, 0, 0, cx, cy, SWP_NOACTIVATE|SWP_NOOWNERZORDER|SWP_NOMOVE|SWP_NOZORDER);
+    SetWindowPos(hProcessPage, NULL, rc.left, rc.top, cx, cy, SWP_NOACTIVATE|SWP_NOOWNERZORDER|SWP_NOZORDER);
 
     /* Resize the performance page */
-    GetWindowRect(hPerformancePage, &rc);
-    cx = (rc.right - rc.left) + nXDifference;
-    cy = (rc.bottom - rc.top) + nYDifference;
-    SetWindowPos(hPerformancePage, NULL, 0, 0, cx, cy, SWP_NOACTIVATE|SWP_NOOWNERZORDER|SWP_NOMOVE|SWP_NOZORDER);
+    SetWindowPos(hPerformancePage, NULL, rc.left, rc.top, cx, cy, SWP_NOACTIVATE|SWP_NOOWNERZORDER|SWP_NOZORDER);
 }
 
 void LoadSettings(void)

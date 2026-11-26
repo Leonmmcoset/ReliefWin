@@ -84,6 +84,47 @@ DoSaveAs(PINFO pInfo)
 static VOID
 OnTabWndSelChange(PINFO pInfo)
 {
+    HWND Pages[] = {pInfo->hGeneralPage, pInfo->hDisplayPage};
+    HWND Control;
+    RECT rc, PageRect, TabRect;
+    INT dx = 0, dy = 0;
+    UINT i;
+
+    GetClientRect(pInfo->hTab, &rc);
+    TabCtrl_AdjustRect(pInfo->hTab, FALSE, &rc);
+    for (i = 0; i < _countof(Pages); i++)
+    {
+        if (GetWindowRect(Pages[i], &PageRect))
+        {
+            dx = max(dx, PageRect.right - PageRect.left - (rc.right - rc.left));
+            dy = max(dy, PageRect.bottom - PageRect.top - (rc.bottom - rc.top));
+        }
+    }
+    if (dx || dy)
+    {
+        GetWindowRect(pInfo->hTab, &TabRect);
+        for (Control = GetWindow(pInfo->hSelf, GW_CHILD); Control; Control = GetWindow(Control, GW_HWNDNEXT))
+        {
+            GetWindowRect(Control, &rc);
+            if (rc.top >= TabRect.bottom)
+            {
+                MapWindowPoints(NULL, pInfo->hSelf, (POINT *)&rc, 2);
+                SetWindowPos(Control, NULL, rc.left + dx, rc.top + dy, 0, 0,
+                             SWP_NOACTIVATE | SWP_NOSIZE | SWP_NOZORDER);
+            }
+        }
+        SetWindowPos(pInfo->hTab, NULL, 0, 0, TabRect.right - TabRect.left + dx, TabRect.bottom - TabRect.top + dy,
+                     SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOZORDER);
+        GetWindowRect(pInfo->hSelf, &rc);
+        SetWindowPos(pInfo->hSelf, NULL, 0, 0, rc.right - rc.left + dx, rc.bottom - rc.top + dy,
+                     SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOZORDER);
+    }
+    GetClientRect(pInfo->hTab, &rc);
+    TabCtrl_AdjustRect(pInfo->hTab, FALSE, &rc);
+    for (i = 0; i < _countof(Pages); i++)
+        SetWindowPos(Pages[i], NULL, rc.left, rc.top, 0, 0,
+                     SWP_NOACTIVATE | SWP_NOSIZE | SWP_NOZORDER);
+
     switch (TabCtrl_GetCurSel(pInfo->hTab))
     {
         case 0: //General

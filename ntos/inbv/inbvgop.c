@@ -21,8 +21,6 @@
 #ifndef BI_BITFIELDS
 #define BI_BITFIELDS 3
 #endif
-#define INBV_WORDMARK_TOP_VPOS      0.08f
-
 #define INBV_LOGO_POOL_TAG          'oLbI'
 #define INBV_BOOT_PROGRESS_MAX      10000
 #define INBV_BOOT_PROGRESS_START    5000
@@ -123,7 +121,7 @@ static ULONG InbvPackColor(ULONG RedMask, ULONG GreenMask, ULONG BlueMask,
 }
 
 static BOOLEAN
-InbvGopValidateWordmarkHeader(_In_ const BITMAPINFOHEADER *Header)
+InbvGopValidateLogoHeader(_In_ const BITMAPINFOHEADER *Header)
 {
     if (!Header ||
         Header->biSize < sizeof(BITMAPINFOHEADER) ||
@@ -148,10 +146,9 @@ InbvGopValidateWordmarkHeader(_In_ const BITMAPINFOHEADER *Header)
 
 static
 BOOLEAN
-InbvGopComputeWordmarkRect(
+InbvGopComputeLogoRect(
     _In_ ULONG ScreenWidth,
     _In_ ULONG ScreenHeight,
-    _In_ ULONG Dpi,
     _Out_ PINBV_GOP_RECT Rect)
 {
     PBITMAPINFOHEADER Header;
@@ -161,7 +158,7 @@ InbvGopComputeWordmarkRect(
         return FALSE;
 
     Header = (PBITMAPINFOHEADER)InbvGetResourceAddress(IDB_GOP_LOGO);
-    if (!InbvGopValidateWordmarkHeader(Header))
+    if (!InbvGopValidateLogoHeader(Header))
         return FALSE;
 
     SrcWidth = (ULONG)Header->biWidth;
@@ -169,7 +166,7 @@ InbvGopComputeWordmarkRect(
     if (!SrcWidth || !SrcHeight)
         return FALSE;
 
-    return ReliefBootLogoGetRect(ScreenWidth, ScreenHeight, SrcWidth, SrcHeight, Dpi, Rect);
+    return ReliefBootLogoGetRect(ScreenWidth, ScreenHeight, SrcWidth, SrcHeight, Rect);
 }
 
 static VOID
@@ -693,7 +690,7 @@ InbvCopyBootScreen(
 }
 
 static VOID
-InbvGopReadWordmarkPixel(
+InbvGopReadLogoPixel(
     _In_reads_bytes_(Stride * SrcHeight) const UCHAR *Bits,
     ULONG Stride,
     ULONG BitCount,
@@ -746,15 +743,15 @@ InbvGopReadWordmarkPixel(
 
 static
 BOOLEAN
-InbvGopDrawWordmark(
+InbvGopDrawLogo(
     _In_ ULONG ScreenWidth,
     _In_ ULONG ScreenHeight,
-    _In_opt_ const INBV_GOP_RECT *WordmarkRectOverride)
+    _In_opt_ const INBV_GOP_RECT *LogoRectOverride)
 {
     PUCHAR Bitmap;
     PBITMAPINFOHEADER Header;
     ULONG SrcWidth, SrcHeight, SrcDelta;
-    INBV_GOP_RECT WordmarkRect;
+    INBV_GOP_RECT LogoRect;
     ULONG DstWidth, DstHeight, DestX, DestY;
     BOOLEAN TopDown = FALSE;
     PUCHAR Bits;
@@ -772,7 +769,7 @@ InbvGopDrawWordmark(
 
     Bitmap = InbvGetResourceAddress(IDB_GOP_LOGO);
     Header = (PBITMAPINFOHEADER)Bitmap;
-    if (!InbvGopValidateWordmarkHeader(Header))
+    if (!InbvGopValidateLogoHeader(Header))
         return FALSE;
 
     SrcWidth = (ULONG)Header->biWidth;
@@ -784,20 +781,20 @@ InbvGopDrawWordmark(
     if (!InbvGopQueryInfo(&FbInfo))
         return FALSE;
 
-    if (WordmarkRectOverride)
+    if (LogoRectOverride)
     {
-        WordmarkRect = *WordmarkRectOverride;
+        LogoRect = *LogoRectOverride;
     }
     else
     {
-        if (!InbvGopComputeWordmarkRect(ScreenWidth, ScreenHeight, FbInfo.Dpi, &WordmarkRect))
+        if (!InbvGopComputeLogoRect(ScreenWidth, ScreenHeight, &LogoRect))
             return FALSE;
     }
 
-    DstWidth = WordmarkRect.Width;
-    DstHeight = WordmarkRect.Height;
-    DestX = WordmarkRect.X;
-    DestY = WordmarkRect.Y;
+    DstWidth = LogoRect.Width;
+    DstHeight = LogoRect.Height;
+    DestX = LogoRect.X;
+    DestY = LogoRect.Y;
 
     if (!DstWidth || !DstHeight || DestX >= ScreenWidth || DestY >= ScreenHeight)
     {
@@ -864,22 +861,22 @@ InbvGopDrawWordmark(
                 INBV_GOP_RGB C00, C10, C01, C11;
                 ULONG r, g, b;
 
-                InbvGopReadWordmarkPixel(Bits, SrcDelta, Header->biBitCount,
+                InbvGopReadLogoPixel(Bits, SrcDelta, Header->biBitCount,
                                          TopDown, SrcHeight, sx0, sy,
                                          Palette, PaletteCount,
                                          SourceRedMask, SourceGreenMask,
                                          SourceBlueMask, SourceAlphaMask, &C00);
-                InbvGopReadWordmarkPixel(Bits, SrcDelta, Header->biBitCount,
+                InbvGopReadLogoPixel(Bits, SrcDelta, Header->biBitCount,
                                          TopDown, SrcHeight, sx1, sy,
                                          Palette, PaletteCount,
                                          SourceRedMask, SourceGreenMask,
                                          SourceBlueMask, SourceAlphaMask, &C10);
-                InbvGopReadWordmarkPixel(Bits, SrcDelta, Header->biBitCount,
+                InbvGopReadLogoPixel(Bits, SrcDelta, Header->biBitCount,
                                          TopDown, SrcHeight, sx0, sy1,
                                          Palette, PaletteCount,
                                          SourceRedMask, SourceGreenMask,
                                          SourceBlueMask, SourceAlphaMask, &C01);
-                InbvGopReadWordmarkPixel(Bits, SrcDelta, Header->biBitCount,
+                InbvGopReadLogoPixel(Bits, SrcDelta, Header->biBitCount,
                                          TopDown, SrcHeight, sx1, sy1,
                                          Palette, PaletteCount,
                                          SourceRedMask, SourceGreenMask,
@@ -915,7 +912,6 @@ InbvGopHandleBootBitmap(VOID)
     LOADER_PARAMETER_FRAMEBUFFER FbInfo;
     VID_DISPLAY_INFO DisplayInfo;
     ULONG Width, Height;
-    BOOLEAN WordmarkDrawn;
 
     if (!InbvGopQueryInfo(&FbInfo))
         return FALSE;
@@ -937,24 +933,9 @@ InbvGopHandleBootBitmap(VOID)
     }
     ASSERT(DisplayInfo.Width && DisplayInfo.Height);
     VidSolidColorFill(0, 0, DisplayInfo.Width - 1, DisplayInfo.Height - 1, BV_COLOR_BLACK);
-    WordmarkDrawn = InbvGopDrawWordmark(Width, Height, NULL);
+    InbvGopDrawLogo(Width, Height, NULL);
     InbvReleaseLock();
     InbvInitializeBootStatus();
-
-    if (!WordmarkDrawn)
-    {
-        static const CHAR LoadingMsg[] = "ReliefWin";
-        ULONG CharW;
-        ULONG msgPx;
-        ULONG x;
-        ULONG y;
-
-        CharW = DisplayInfo.CharacterWidth ? DisplayInfo.CharacterWidth : 8;
-        msgPx = (ULONG)(sizeof(LoadingMsg) - 1) * CharW;
-        x = (DisplayInfo.Width > msgPx) ? ((DisplayInfo.Width - msgPx) / 2) : 0;
-        y = (ULONG)(DisplayInfo.Height * INBV_WORDMARK_TOP_VPOS + 0.5f);
-        VidDisplayStringXY(LoadingMsg, x, y, TRUE);
-    }
 
     InbvEnableDisplayString(FALSE);
     return TRUE;
