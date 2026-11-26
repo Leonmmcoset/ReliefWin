@@ -277,6 +277,7 @@ int main(void)
     loader = (ROOT / "bootloader/gui/bmui.c").read_text()
     loader_functions = "".join(function(loader, name, result) for name, result in (
         ("BmUiFill", "VOID"), ("BmUiBootProgress", "BOOLEAN"),
+        ("BmUiBootLogoPixel", "ULONG"), ("BmUiDrawBootLogo", "VOID"),
         ("BmUiBeginBoot", "VOID"), ("BmUiEndBoot", "VOID")))
     loader_harness = r'''
 #include <stdint.h>
@@ -286,6 +287,7 @@ int main(void)
 #include <string.h>
 #define _In_
 #define _In_opt_
+#define _Out_
 #define VOID void
 #define TRUE 1
 #define FALSE 0
@@ -300,6 +302,9 @@ int main(void)
 #define BMUI_ATTR_BRIGHT 15
 #define BMUI_TEXT_COLUMNS 80
 #define UNICODE_NULL 0
+#define LOADER_PARAMETER_FRAMEBUFFER_DPI_DEFAULT 96
+#define LOADER_PARAMETER_FRAMEBUFFER_DPI_MIN 96
+#define LOADER_PARAMETER_FRAMEBUFFER_DPI_MAX 480
 typedef uint32_t ULONG, *PULONG;
 typedef uint64_t ULONGLONG;
 typedef int32_t LONG;
@@ -307,6 +312,9 @@ typedef uint16_t WCHAR;
 typedef unsigned char UCHAR, BOOLEAN;
 typedef size_t SIZE_T;
 typedef const char *PCSTR;
+static ULONG LeUlong(const UCHAR *Data)
+{ return Data[0] | (Data[1] << 8) | (Data[2] << 16) | ((ULONG)Data[3] << 24); }
+#include <reliefwin/bootlogo.h>
 static unsigned Checks, Presents, Freed, Graphics = 1;
 #define CHECK(x) do { ++Checks; if (!(x)) { fprintf(stderr,"loader line %d: %s\n",__LINE__,#x); exit(1); } } while (0)
 static ULONG BmUiWidth, BmUiHeight, BmUiCellHeight, BmUiCellWidth, BmUiColumns;
@@ -360,8 +368,8 @@ static VOID FwFreePages(VOID *Pointer,SIZE_T Size)
     Freed++; free(Allocation); Allocation = NULL;
 }
 '''
-    loader_harness += "\nstatic UCHAR bootui_logo[] = {" + ",".join(
-        str(value) for value in (ROOT / "bootloader/gui/assets/logo.rgba").read_bytes()) + "};\n"
+    loader_harness += "\nstatic UCHAR bootui_wordmark[] = {" + ",".join(
+        str(value) for value in (ROOT / "ntos/inbv/resources/reliefwin_logo.bmp").read_bytes()) + "};\n"
     loader_harness += loader_functions
     loader_harness += r'''
 static int Equals(const WCHAR *Wide,const char *Narrow)
@@ -401,6 +409,7 @@ int main(VOID)
     c_file, binary = folder / "loader-boot-brand.c", folder / "loader-boot-brand"
     c_file.write_text(loader_harness)
     subprocess.run(["cc", "-std=c11", "-fshort-wchar", "-Wall", "-Wextra", "-Werror", "-O2",
+                    "-I", str(ROOT / "sdk/include"),
                     str(c_file), "-o", str(binary)], check=True)
     subprocess.run([str(binary)], check=True)
 

@@ -9,6 +9,7 @@
 #define NDEBUG
 #include <debug.h>
 #include <drivers/bootvid/bootvid.h>
+#include <reliefwin/bootlogo.h>
 #include "logo.h"
 #include "resource.h"
 #include "inbvgop.h"
@@ -20,23 +21,13 @@
 #ifndef BI_BITFIELDS
 #define BI_BITFIELDS 3
 #endif
-#define INBV_WORDMARK_SCALE_NUM     2
-#define INBV_WORDMARK_SCALE_DEN     5
 #define INBV_WORDMARK_TOP_VPOS      0.08f
-#define INBV_WORDMARK_BGRT_SAFE_TOP 0.35f
-#define INBV_CENTERMARK_VPOS        0.625f
 
 #define INBV_LOGO_POOL_TAG          'oLbI'
 #define INBV_BOOT_PROGRESS_MAX      10000
 #define INBV_BOOT_PROGRESS_START    5000
 
-typedef struct _INBV_GOP_RECT
-{
-    ULONG X;
-    ULONG Y;
-    ULONG Width;
-    ULONG Height;
-} INBV_GOP_RECT, *PINBV_GOP_RECT;
+typedef RELIEF_BOOT_LOGO_RECT INBV_GOP_RECT, *PINBV_GOP_RECT;
 
 typedef struct _INBV_STATUS_LINE
 {
@@ -131,25 +122,6 @@ static ULONG InbvPackColor(ULONG RedMask, ULONG GreenMask, ULONG BlueMask,
            (BlueMask  ? ((B << BlueShift)  & BlueMask)  : 0);
 }
 
-static ULONG
-InbvGopNormalizeDpi(ULONG Dpi)
-{
-    if (Dpi < LOADER_PARAMETER_FRAMEBUFFER_DPI_MIN || Dpi > LOADER_PARAMETER_FRAMEBUFFER_DPI_MAX)
-    {
-        return LOADER_PARAMETER_FRAMEBUFFER_DPI_DEFAULT;
-    }
-
-    return Dpi;
-}
-
-static ULONG
-InbvGopScaleForDpi(ULONG Value, ULONG Dpi)
-{
-    return (ULONG)(((ULONGLONG)Value * InbvGopNormalizeDpi(Dpi) +
-                    LOADER_PARAMETER_FRAMEBUFFER_DPI_DEFAULT / 2) /
-                   LOADER_PARAMETER_FRAMEBUFFER_DPI_DEFAULT);
-}
-
 static BOOLEAN
 InbvGopValidateWordmarkHeader(_In_ const BITMAPINFOHEADER *Header)
 {
@@ -184,8 +156,6 @@ InbvGopComputeWordmarkRect(
 {
     PBITMAPINFOHEADER Header;
     ULONG SrcWidth, SrcHeight;
-    ULONG DstWidth, DstHeight;
-    ULONG MaxWidth, SafeBottom;
 
     if (!Rect)
         return FALSE;
@@ -199,50 +169,7 @@ InbvGopComputeWordmarkRect(
     if (!SrcWidth || !SrcHeight)
         return FALSE;
 
-    DstWidth = (ULONG)(((ULONGLONG)SrcWidth * INBV_WORDMARK_SCALE_NUM +
-                        INBV_WORDMARK_SCALE_DEN / 2) /
-                       INBV_WORDMARK_SCALE_DEN);
-    DstWidth = InbvGopScaleForDpi(DstWidth, Dpi);
-    if (DstWidth == 0)
-        DstWidth = 1;
-
-    DstHeight = (ULONG)(((ULONGLONG)SrcHeight * INBV_WORDMARK_SCALE_NUM +
-                         INBV_WORDMARK_SCALE_DEN / 2) /
-                        INBV_WORDMARK_SCALE_DEN);
-    DstHeight = InbvGopScaleForDpi(DstHeight, Dpi);
-    if (DstHeight == 0)
-        DstHeight = 1;
-
-    /*
-     * Preserve the logo aspect ratio if an extreme configured scale would
-     * overlap the display edge or the firmware-logo safe area.
-     */
-    MaxWidth = max((ScreenWidth * 9) / 10, 1UL);
-    SafeBottom = max((ULONG)(ScreenHeight * INBV_WORDMARK_BGRT_SAFE_TOP), 1UL);
-    if (DstWidth > MaxWidth)
-    {
-        DstHeight = max((ULONG)(((ULONGLONG)DstHeight * MaxWidth) / DstWidth), 1UL);
-        DstWidth = MaxWidth;
-    }
-    if (DstHeight > SafeBottom)
-    {
-        DstWidth = max((ULONG)(((ULONGLONG)DstWidth * SafeBottom) / DstHeight), 1UL);
-        DstHeight = SafeBottom;
-    }
-
-    Rect->Width = DstWidth;
-    Rect->Height = DstHeight;
-    Rect->X = (ScreenWidth > DstWidth) ? ((ScreenWidth - DstWidth) / 2) : 0;
-
-    {
-        ULONG TopMargin = (ULONG)(ScreenHeight * INBV_WORDMARK_TOP_VPOS + 0.5f);
-        if (TopMargin + DstHeight > SafeBottom)
-            TopMargin = (SafeBottom > DstHeight) ? (SafeBottom - DstHeight) : 0;
-        if (TopMargin + DstHeight > ScreenHeight)
-            TopMargin = (ScreenHeight > DstHeight) ? (ScreenHeight - DstHeight) : 0;
-        Rect->Y = TopMargin;
-    }
-    return TRUE;
+    return ReliefBootLogoGetRect(ScreenWidth, ScreenHeight, SrcWidth, SrcHeight, Dpi, Rect);
 }
 
 static VOID
@@ -994,14 +921,24 @@ InbvGopHandleBootBitmap(VOID)
         return FALSE;
 
     /* Native 32-bit blits use physical dimensions after rotation. */
-    InbvQueryDisplayInfo(&DisplayInfo);
+    if (!InbvQueryDisplayInfo(&DisplayInfo))
+        return FALSE;
     Width = DisplayInfo.PhysicalWidth;
     Height = DisplayInfo.PhysicalHeight;
-    if ((Width == 0) || (Height == 0))
+    if (!Width || !Height || !DisplayInfo.Width || !DisplayInfo.Height)
         return FALSE;
 
     InbvSetTextColor(BV_COLOR_WHITE);
+    InbvAcquireLock();
+    if (!InbvIsBootDriverInstalled() || InbvGetDisplayState() != INBV_DISPLAY_STATE_OWNED)
+    {
+        InbvReleaseLock();
+        return FALSE;
+    }
+    ASSERT(DisplayInfo.Width && DisplayInfo.Height);
+    VidSolidColorFill(0, 0, DisplayInfo.Width - 1, DisplayInfo.Height - 1, BV_COLOR_BLACK);
     WordmarkDrawn = InbvGopDrawWordmark(Width, Height, NULL);
+    InbvReleaseLock();
     InbvInitializeBootStatus();
 
     if (!WordmarkDrawn)

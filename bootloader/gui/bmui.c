@@ -10,7 +10,8 @@
 #include <ft2build.h>
 #include FT_FREETYPE_H
 #include "bootui_mono.h"
-#include "bootui_logo.h"
+#include "bootui_wordmark.h"
+#include <reliefwin/bootlogo.h>
 
 #define BMUI_GRAPHICS_COLUMNS   100
 #define BMUI_TEXT_COLUMNS       80
@@ -405,10 +406,58 @@ BmUiBootProgress(
     return TRUE;
 }
 
+static ULONG
+BmUiBootLogoPixel(
+    _In_ const UCHAR *Bits,
+    _In_ ULONG Width,
+    _In_ ULONG Height,
+    _In_ ULONG X,
+    _In_ ULONG Y)
+{
+    const UCHAR *Pixel = Bits + ((SIZE_T)(Height - 1 - Y) * Width + X) * 4;
+
+    return (((Pixel[2] * Pixel[3] + 127) / 255) << 16) |
+           (((Pixel[1] * Pixel[3] + 127) / 255) << 8) |
+           ((Pixel[0] * Pixel[3] + 127) / 255);
+}
+
+static VOID
+BmUiDrawBootLogo(VOID)
+{
+    RELIEF_BOOT_LOGO_RECT Rect;
+    ULONG Width = LeUlong(bootui_wordmark + 18);
+    ULONG Height = LeUlong(bootui_wordmark + 22);
+    const UCHAR *Bits = bootui_wordmark + LeUlong(bootui_wordmark + 10);
+    ULONG X, Y, Sx, Sy, Sx1, Sy1, C00, C10, C01, C11, Color, Shift;
+
+    if (!ReliefBootLogoGetRect(BmUiWidth, BmUiHeight, Width, Height,
+                               LOADER_PARAMETER_FRAMEBUFFER_DPI_DEFAULT, &Rect))
+        return;
+
+    for (Y = 0; Y < Rect.Height; Y++)
+    {
+        Sy = (ULONG)(((ULONGLONG)Y * Height) / Rect.Height);
+        Sy1 = Rect.Height < Height ? min(Sy + 1, Height - 1) : Sy;
+        for (X = 0; X < Rect.Width; X++)
+        {
+            Sx = (ULONG)(((ULONGLONG)X * Width) / Rect.Width);
+            Sx1 = Rect.Width < Width ? min(Sx + 1, Width - 1) : Sx;
+            C00 = BmUiBootLogoPixel(Bits, Width, Height, Sx, Sy);
+            C10 = BmUiBootLogoPixel(Bits, Width, Height, Sx1, Sy);
+            C01 = BmUiBootLogoPixel(Bits, Width, Height, Sx, Sy1);
+            C11 = BmUiBootLogoPixel(Bits, Width, Height, Sx1, Sy1);
+            Color = 0;
+            for (Shift = 0; Shift < 24; Shift += 8)
+                Color |= ((((C00 >> Shift) & 255) + ((C10 >> Shift) & 255) +
+                           ((C01 >> Shift) & 255) + ((C11 >> Shift) & 255)) / 4) << Shift;
+            BmUiPixels[(SIZE_T)(Rect.Y + Y) * BmUiWidth + Rect.X + X] = Color;
+        }
+    }
+}
+
 VOID
 BmUiBeginBoot(VOID)
 {
-    ULONG Left, Top, X, Y;
 
     BmUiInitialize();
     BmUiBootActive = TRUE;
@@ -416,17 +465,7 @@ BmUiBeginBoot(VOID)
     BmUiClear(BMUI_BLACK, BMUI_ATTR_NORMAL);
     if (BmUiGraphics)
     {
-        Left = BmUiWidth > 48 ? (BmUiWidth - 48) / 2 : 0;
-        Top = BmUiHeight / 4;
-        for (Y = 0; Y < 42 && Top + Y < BmUiHeight; Y++)
-        {
-            for (X = 0; X < 48 && Left + X < BmUiWidth; X++)
-            {
-                const UCHAR *Pixel = bootui_logo + (Y * 48 + X) * 4;
-                BmUiPixels[(SIZE_T)(Top + Y) * BmUiWidth + Left + X] =
-                    ((ULONG)Pixel[0] << 16) | ((ULONG)Pixel[1] << 8) | Pixel[2];
-            }
-        }
+        BmUiDrawBootLogo();
         BmUiPresent(0, BmUiHeight);
     }
     BmUiBootProgress("winload.exe", 0);
