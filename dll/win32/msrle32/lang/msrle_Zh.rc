@@ -29,12 +29,3 @@ STRINGTABLE
 	IDS_DESCRIPTION	"Wine MS-RLE 视频编解码器"
 	IDS_ABOUT       "Wine MS-RLE 视频编解码器\n版权所有 2002 by Michael Günnewig"
 }
-
-LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_TRADITIONAL
-
-STRINGTABLE
-{
-	IDS_NAME	"WINE-MS-RLE"
-	IDS_DESCRIPTION	"Wine MS-RLE 視訊編碼解碼器"
-	IDS_ABOUT       "Wine MS-RLE 視訊編碼解碼器\n著作權 2002 by Michael Günnewig"
-}

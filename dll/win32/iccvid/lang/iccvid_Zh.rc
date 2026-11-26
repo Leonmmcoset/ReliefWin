@@ -28,11 +28,3 @@ STRINGTABLE
     IDS_NAME "Cinepak 视频编解码器"
     IDS_DESCRIPTION "Cinepak 视频编解码器"
 }
-
-LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_TRADITIONAL
-
-STRINGTABLE
-{
-    IDS_NAME "Cinepak 視訊編碼解碼器"
-    IDS_DESCRIPTION "Cinepak 視訊編碼解碼器"
-}

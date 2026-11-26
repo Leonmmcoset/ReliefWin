@@ -57,6 +57,3 @@ NecMfg = "NEC"
 ; Localizable
 PCI\VEN_1033&DEV_0009.DeviceDesc = "NEC PCI to Core-Graph Bridge"
 pc98vid.DeviceDesc = "Graphic controller for PC-9821"
-
-[Strings.0419]
-pc98vid.DeviceDesc = "Графический контроллер для PC-9821"

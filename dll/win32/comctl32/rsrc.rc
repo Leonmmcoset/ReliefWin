@@ -113,111 +113,12 @@ IDI_TT_ERROR_MD ICON idi_tt_error_md.ico
 /* UTF-8 */
 #pragma code_page(65001)
 
-#ifdef LANGUAGE_BG_BG
-    #include "lang/comctl_Bg.rc"
-#endif
-#ifdef LANGUAGE_CS_CZ
-    #include "lang/comctl_Cs.rc"
-#endif
-#ifdef LANGUAGE_DA_DK
-    #include "lang/comctl_Da.rc"
-#endif
-#ifdef LANGUAGE_DE_DE
-    #include "lang/comctl_De.rc"
-#endif
-#ifdef LANGUAGE_EL_GR
-    #include "lang/comctl_El.rc"
-#endif
 #ifdef LANGUAGE_EN_US
     #include "lang/comctl_En.rc"
-#endif
-#ifdef LANGUAGE_EO_AA
-    #include "lang/comctl_Eo.rc"
-#endif
-#ifdef LANGUAGE_ES_ES
-    #include "lang/comctl_Es.rc"
-#endif
-#ifdef LANGUAGE_ET_EE
-    #include "lang/comctl_Et.rc"
-#endif
-#ifdef LANGUAGE_EU_ES
-    #include "lang/comctl_Eu.rc"
-#endif
-#ifdef LANGUAGE_FR_FR
-    #include "lang/comctl_Fr.rc"
-#endif
-#ifdef LANGUAGE_HE_IL
-    #include "lang/comctl_He.rc"
-#endif
-#ifdef LANGUAGE_HI_IN
-    #include "lang/comctl_Hi.rc"
-#endif
-#ifdef LANGUAGE_HR_HR
-    #include "lang/comctl_Hr.rc"
-#endif
-#ifdef LANGUAGE_HU_HU
-    #include "lang/comctl_Hu.rc"
-#endif
-#ifdef LANGUAGE_ID_ID
-    #include "lang/comctl_Id.rc"
-#endif
-#ifdef LANGUAGE_IT_IT
-    #include "lang/comctl_It.rc"
 #endif
 #ifdef LANGUAGE_JA_JP
     #include "lang/comctl_Ja.rc"
 #endif
-#ifdef LANGUAGE_KO_KR
-    #include "lang/comctl_Ko.rc"
-#endif
-#ifdef LANGUAGE_LT_LT
-    #include "lang/comctl_Lt.rc"
-#endif
-#ifdef LANGUAGE_NL_NL
-    #include "lang/comctl_Nl.rc"
-#endif
-#ifdef LANGUAGE_NO_NO
-    #include "lang/comctl_No.rc"
-#endif
-#ifdef LANGUAGE_PL_PL
-    #include "lang/comctl_Pl.rc"
-#endif
-#ifdef LANGUAGE_PT_PT
-    #include "lang/comctl_Pt.rc"
-#endif
-#ifdef LANGUAGE_RO_RO
-    #include "lang/comctl_Ro.rc"
-#endif
-#ifdef LANGUAGE_RU_RU
-    #include "lang/comctl_Ru.rc"
-#endif
-#ifdef LANGUAGE_SK_SK
-    #include "lang/comctl_Sk.rc"
-#endif
-#ifdef LANGUAGE_SL_SI
-    #include "lang/comctl_Si.rc"
-#endif
-#ifdef LANGUAGE_SQ_AL
-    #include "lang/comctl_Sq.rc"
-#endif
-#ifdef LANGUAGE_SR_SP
-    #include "lang/comctl_Sr.rc"
-#endif
-#ifdef LANGUAGE_SV_SE
-    #include "lang/comctl_Sv.rc"
-#endif
-#ifdef LANGUAGE_TH_TH
-    #include "lang/comctl_Th.rc"
-#endif
-#ifdef LANGUAGE_TR_TR
-    #include "lang/comctl_Tr.rc"
-#endif
-#ifdef LANGUAGE_UK_UA
-    #include "lang/comctl_Uk.rc"
-#endif
 #ifdef LANGUAGE_ZH_CN
     #include "lang/comctl_Zh-CN.rc"
-#endif
-#ifdef LANGUAGE_ZH_TW
-    #include "lang/comctl_Zh-TW.rc"
 #endif

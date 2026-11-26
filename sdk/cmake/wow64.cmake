@@ -178,6 +178,12 @@ foreach(_alias IN LISTS WOW64_I386_ALIASES)
 endforeach()
 
 get_filename_component(_wow64_toolchain "${CMAKE_TOOLCHAIN_FILE}" ABSOLUTE BASE_DIR "${REACTOS_SOURCE_DIR}")
+if(HOST_TOOLS_DIR)
+    set(_wow64_i386_host_tools_dir "${HOST_TOOLS_DIR}")
+else()
+    set(_wow64_i386_host_tools_dir "${REACTOS_BINARY_DIR}/host-tools/bin")
+endif()
+
 set(_wow64_i386_cmake_args
     -DARCH:STRING=i386
     -DOARCH:STRING=i686
@@ -190,7 +196,7 @@ set(_wow64_i386_cmake_args
     -DENABLE_CCACHE:BOOL=${ENABLE_CCACHE}
     -DBISON_EXECUTABLE:FILEPATH=${BISON_EXECUTABLE}
     -DFLEX_EXECUTABLE:FILEPATH=${FLEX_EXECUTABLE}
-    -DHOST_TOOLS_DIR:PATH=${REACTOS_BINARY_DIR}/host-tools/bin
+    -DHOST_TOOLS_DIR:PATH=${_wow64_i386_host_tools_dir}
     -DKD_DEBUGGER:STRING=NONE
     -DOPTIMIZE:STRING=${OPTIMIZE}
     -DPCH:BOOL=${PCH}

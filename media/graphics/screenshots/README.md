@@ -18,6 +18,7 @@
 | 系统属性 | [查看](sysdm.png) |
 | 更新设置 | [查看](updates.png) |
 | 安装语言与键盘 | [查看](setup.png) |
+| 仅保留三种语言后的实际语言列表 | [查看](supported-languages.png) |
 | 最终 ISO 的 Live 桌面与中文安装快捷方式 | [查看](live-installer.png) |
 | 最终 ISO 的全新离线安装完成 | [查看](offline-install-complete.png) |
 | 首次配置中的账户页面 | [查看](oobe-account.png) |
@@ -36,6 +37,8 @@
 启动图中的 TianoCore 标志和灰色日志来自测试虚拟机的 OVMF 固件。关于对话框中的原作者版权仍按来源保留；它与当前 ReliefWin 产品名称、Logo 分开显示。命令提示符中的 `ver` 保留 NT10 兼容输出，随后实际查询注册表所得的 ProductName 为 ReliefWin。可选组件中标为上游软件包的项目保留真实来源，不是本项目的更新服务。
 
 构建、镜像审计、测试结果及未验证范围见[验证记录](../../doc/RELIEFWIN_VALIDATION.md)。
+
+三种界面语言清理后的截图来自本次资源部署并冷启动的已安装系统，真实首次配置程序的下拉框仅有简体中文、美式英语和日语。保留的兼容数据、原厂驱动例外与最终审计范围见[语言验证记录](../../doc/RELIEFWIN_LANGUAGES_VALIDATION.md)。
 
 启动进度与 Office 移植的构建和实测记录见[补充验证记录](../../doc/RELIEFWIN_OFFICE_VALIDATION.md)。Office 截图通过已注册的原生文件关联打开来自 Unix 源码的格式样例。
 

@@ -69,6 +69,3 @@ AMDMfg = "AMD"
 
 ; Localizable
 PCNET.DeviceDesc = "AMD PCnet Am79C970 PCI Ethernet Adapter"
-
-[Strings.0415]
-PCNET.DeviceDesc = "Karta AMD PCnet Am79C970 PCI Ethernet Adapter"

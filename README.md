@@ -6,7 +6,7 @@
 
 [简体中文](translations/zh-CN/README.md) · [Installation](INSTALL.md) · [Contributing](CONTRIBUTING.md) · [运行截图](media/graphics/screenshots/README.md) · [验证记录](media/doc/RELIEFWIN_VALIDATION.md)
 
-ReliefWin is a free NT operating system derived from LiberNT and ReactOS. It targets Windows 11 compatibility and modern hardware. The default interface language is Simplified Chinese; other translations and the English fallback remain available.
+ReliefWin is a free NT operating system derived from LiberNT and ReactOS. It targets Windows 11 compatibility and modern hardware. The supported interface languages are Simplified Chinese (zh-CN), English (en-US) and Japanese (ja-JP). Simplified Chinese is the default; untranslated text falls back to English.
 
 This checkout has no ReliefWin website, public release repository or update service configured. Build the source locally. Automatic operating-system updates are disabled until a maintainer configures an endpoint. Upstream toolchain and third-party package downloads retain their real addresses.
 

@@ -96,45 +96,5 @@ BthLeScan.DeviceDesc="Scan Parameter Service"
 BthLeService.DeviceDesc="Bluetooth LE Generic Attribute Service"
 BluetoothClassName="Bluetooth Radios"
 
-[Strings.0404]
-BTUSB.DeviceDesc="標準 USB 藍牙無線電"
-BluetoothClassName="藍牙無線電"
-
-[Strings.0405]
-BTUSB.DeviceDesc="Obecný USB Bluetooth vysílač"
-BluetoothClassName="Bluetooth vysílače"
-
-[Strings.0407]
-BTUSB.DeviceDesc="USB-Treiber für Bluetooth-Funkgerät"
-BluetoothClassName="Bluetooth Funkgeräte"
-
-[Strings.0a]
-BTUSB.DeviceDesc="Radio Bluetooth USB genérica"
-BluetoothClassName="Radios Bluetooth"
-
-[Strings.0415]
-BTUSB.DeviceDesc="Standardowy odbiornik radiowy Bluetooth na USB"
-BluetoothClassName="Odbiorniki radiowe Bluetooth"
-
-[Strings.0418]
-BTUSB.DeviceDesc="Radio Bluetooth USB generic"
-BluetoothClassName="Radiouri Bluetooth"
-
-[Strings.0419]
-BTUSB.DeviceDesc="Стандартный USB Bluetooth радиомодуль"
-BluetoothClassName="Радиомодули Bluetooth"
-
-[Strings.041f]
-BTUSB.DeviceDesc="Genel USB Bluetooth Radyo"
-BluetoothClassName="Bluetooth Radyoları"
-
 [Strings.0804]
 BTUSB.DeviceDesc="通用 USB 蓝牙无线电"
-
-[Strings.0816]
-BTUSB.DeviceDesc="Rádio Bluetooth USB genérico"
-BluetoothClassName="Rádios Bluetooth"
-
-[Strings.0C04]
-BTUSB.DeviceDesc="標準 USB 藍牙無線電"
-BluetoothClassName="藍牙無線電"

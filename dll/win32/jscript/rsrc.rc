@@ -33,68 +33,11 @@
 /* UTF-8 */
 #pragma code_page(65001)
 
-#ifdef LANGUAGE_DA_DK
-    #include "lang/jscript_Da.rc"
-#endif
-#ifdef LANGUAGE_DE_DE
-    #include "lang/jscript_De.rc"
-#endif
 #ifdef LANGUAGE_EN_US
     #include "lang/jscript_En.rc"
 #endif
-#ifdef LANGUAGE_ES_ES
-    #include "lang/jscript_Es.rc"
-#endif
-#ifdef LANGUAGE_FR_FR
-    #include "lang/jscript_Fr.rc"
-#endif
-#ifdef LANGUAGE_HE_IL
-    #include "lang/jscript_He.rc"
-#endif
-#ifdef LANGUAGE_HU_HU
-    #include "lang/jscript_Hu.rc"
-#endif
-#ifdef LANGUAGE_IT_IT
-    #include "lang/jscript_It.rc"
-#endif
 #ifdef LANGUAGE_JA_JP
     #include "lang/jscript_Ja.rc"
-#endif
-#ifdef LANGUAGE_KO_KR
-    #include "lang/jscript_Ko.rc"
-#endif
-#ifdef LANGUAGE_LT_LT
-    #include "lang/jscript_Lt.rc"
-#endif
-#ifdef LANGUAGE_NL_NL
-    #include "lang/jscript_Nl.rc"
-#endif
-#ifdef LANGUAGE_NO_NO
-    #include "lang/jscript_No.rc"
-#endif
-#ifdef LANGUAGE_PL_PL
-    #include "lang/jscript_Pl.rc"
-#endif
-#ifdef LANGUAGE_PT_PT
-    #include "lang/jscript_Pt.rc"
-#endif
-#ifdef LANGUAGE_RO_RO
-    #include "lang/jscript_Ro.rc"
-#endif
-#ifdef LANGUAGE_RU_RU
-    #include "lang/jscript_Ru.rc"
-#endif
-#ifdef LANGUAGE_SL_SI
-    #include "lang/jscript_Si.rc"
-#endif
-#ifdef LANGUAGE_SQ_AL
-    #include "lang/jscript_Sq.rc"
-#endif
-#ifdef LANGUAGE_TR_TR
-    #include "lang/jscript_Tr.rc"
-#endif
-#ifdef LANGUAGE_UK_UA
-    #include "lang/jscript_Uk.rc"
 #endif
 #ifdef LANGUAGE_ZH_CN
     #include "lang/jscript_Zh.rc"

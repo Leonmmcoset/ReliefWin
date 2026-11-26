@@ -1184,6 +1184,9 @@ static BOOL
 LoadSetupData(
     _Inout_ PSETUPDATA pSetupData)
 {
+    WCHAR Locale[ARRAYSIZE(pSetupData->DefaultLanguage)];
+    WCHAR Layout[ARRAYSIZE(pSetupData->DefaultKBLayout)];
+
     pSetupData->PartitionList = CreatePartitionList();
     if (!pSetupData->PartitionList)
     {
@@ -1196,23 +1199,40 @@ LoadSetupData(
     pSetupData->USetupData.KeyboardList = CreateKeyboardDriverList(pSetupData->USetupData.SetupInf);
     pSetupData->USetupData.LanguageList = CreateLanguageList(pSetupData->USetupData.SetupInf,
                                                              pSetupData->DefaultLanguage);
+    if (!SelectListEntryById(pSetupData->USetupData.LanguageList, pSetupData->DefaultLanguage))
+        return FALSE;
 
-    if (!pSetupData->bUnattend)
+    if (pSetupData->bUnattend)
     {
-        StringCchPrintfW(pSetupData->USetupData.LocaleID, ARRAYSIZE(pSetupData->USetupData.LocaleID),
-                         L"%08lx", GetUserDefaultLCID());
+        StringCchCopyW(Locale, ARRAYSIZE(Locale), pSetupData->USetupData.LocaleID);
     }
+    else
+    {
+        StringCchPrintfW(Locale, ARRAYSIZE(Locale), L"%08lx",
+                         MAKELCID(GetUserDefaultUILanguage(), SORT_DEFAULT));
+    }
+    if (SelectListEntryById(pSetupData->USetupData.LanguageList, Locale))
+        StringCchCopyW(pSetupData->DefaultLanguage, ARRAYSIZE(pSetupData->DefaultLanguage), Locale);
 
-    StringCchCopyW(pSetupData->DefaultLanguage, ARRAYSIZE(pSetupData->DefaultLanguage),
-                   pSetupData->USetupData.LocaleID);
+    StringCchCopyW(pSetupData->USetupData.LocaleID, ARRAYSIZE(pSetupData->USetupData.LocaleID),
+                   pSetupData->DefaultLanguage);
     pSetupData->SelectedLanguageId = pSetupData->DefaultLanguage;
     pSetupData->USetupData.LanguageId = (LANGID)(wcstoul(pSetupData->SelectedLanguageId, NULL, 16) & 0xFFFF);
 
     pSetupData->USetupData.LayoutList = CreateKeyboardLayoutList(pSetupData->USetupData.SetupInf,
                                                                  pSetupData->SelectedLanguageId,
                                                                  pSetupData->DefaultKBLayout);
-    if (!pSetupData->bUnattend)
-        GetKeyboardLayoutNameW(pSetupData->DefaultKBLayout);
+    if (!pSetupData->USetupData.LayoutList)
+        return FALSE;
+    StringCchCopyW(Layout, ARRAYSIZE(Layout), pSetupData->DefaultKBLayout);
+    if (pSetupData->bUnattend)
+        GetLocaleKeyboardLayout(pSetupData, wcstoul(Locale, NULL, 16), Layout, ARRAYSIZE(Layout));
+    else if (!GetKeyboardLayoutNameW(Layout))
+        StringCchCopyW(Layout, ARRAYSIZE(Layout), pSetupData->DefaultKBLayout);
+    if (SelectListEntryById(pSetupData->USetupData.LayoutList, Layout))
+        StringCchCopyW(pSetupData->DefaultKBLayout, ARRAYSIZE(pSetupData->DefaultKBLayout), Layout);
+    if (!SelectListEntryById(pSetupData->USetupData.LayoutList, pSetupData->DefaultKBLayout))
+        return FALSE;
 
     GenerateComputerName(pSetupData->ComputerName);
     pSetupData->TimeZoneIndex = (ULONG)-1;
@@ -1221,9 +1241,6 @@ LoadSetupData(
     if (pSetupData->bUnattend)
         LoadUnattendedAccountSettings(pSetupData);
 
-    SelectListEntryById(pSetupData->USetupData.LanguageList, pSetupData->DefaultLanguage);
-    SelectListEntryById(pSetupData->USetupData.LayoutList,
-                        pSetupData->bUnattend ? pSetupData->DefaultLanguage : pSetupData->DefaultKBLayout);
     if (!pSetupData->bUnattend)
         DetectLanguageDefaults(pSetupData);
 

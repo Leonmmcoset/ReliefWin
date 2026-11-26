@@ -29,15 +29,3 @@ STRINGTABLE
   IDS_ON    "开"
   IDS_OFF   "关"
 }
-
-LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_TRADITIONAL
-
-STRINGTABLE
-{
-  IDS_TRUE  "真"
-  IDS_FALSE "假"
-  IDS_YES   "是"
-  IDS_NO    "否"
-  IDS_ON    "開"
-  IDS_OFF   "關"
-}

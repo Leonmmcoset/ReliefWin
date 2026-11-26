@@ -1,9 +1,0 @@
-/* Translated by David Nordenberg */
-
-LANGUAGE LANG_SWEDISH, SUBLANG_NEUTRAL
-
-STRINGTABLE
-BEGIN
-    IDS_SHELL_FAIL "Userinit misslyckades att starta användargränssnittet!"
-    IDS_INSTALLER_FAIL "Userinit failed to start the installer!"
-END

@@ -46,56 +46,11 @@ IDB_CERT_HEADER BITMAP "res/certheader.bmp"
 /* UTF-8 */
 #pragma code_page(65001)
 
-#ifdef LANGUAGE_BG_BG
-    #include "lang/cryptui_Bg.rc"
-#endif
 #ifdef LANGUAGE_EN_US
     #include "lang/cryptui_En.rc"
 #endif
 #ifdef LANGUAGE_JA_JP
     #include "lang/cryptui_Ja.rc"
-#endif
-#ifdef LANGUAGE_KO_KR
-    #include "lang/cryptui_Ko.rc"
-#endif
-#ifdef LANGUAGE_PL_PL
-    #include "lang/cryptui_Pl.rc"
-#endif
-#ifdef LANGUAGE_DE_DE
-    #include "lang/cryptui_De.rc"
-#endif
-#ifdef LANGUAGE_FR_FR
-    #include "lang/cryptui_Fr.rc"
-#endif
-#ifdef LANGUAGE_IT_IT
-    #include "lang/cryptui_It.rc"
-#endif
-#ifdef LANGUAGE_LT_LT
-    #include "lang/cryptui_Lt.rc"
-#endif
-#ifdef LANGUAGE_NL_NL
-    #include "lang/cryptui_Nl.rc"
-#endif
-#ifdef LANGUAGE_NO_NO
-    #include "lang/cryptui_No.rc"
-#endif
-#ifdef LANGUAGE_PT_PT
-    #include "lang/cryptui_Pt.rc"
-#endif
-#ifdef LANGUAGE_RO_RO
-    #include "lang/cryptui_Ro.rc"
-#endif
-#ifdef LANGUAGE_RU_RU
-    #include "lang/cryptui_Ru.rc"
-#endif
-#ifdef LANGAUGE_SQ_AL
-    #include "lang/cryptui_Sq.rc"
-#endif
-#ifdef LANGUAGE_TR_TR
-    #include "lang/cryptui_Tr.rc"
-#endif
-#ifdef LANGUAGE_UK_UA
-    #include "lang/cryptui_Uk.rc"
 #endif
 #ifdef LANGUAGE_ZH_CN
     #include "lang/cryptui_Zh.rc"

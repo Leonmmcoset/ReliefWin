@@ -1,13 +1,13 @@
 {
   "scope": "Case-insensitive ReactOS tokens in C/C++/header/include and RC/RC2 string literals, including C++ raw strings; source comments excluded. Exact per-occurrence audit of retained author credits, upstream dependencies, compatibility identifiers and fixed test data.",
-  "retained_occurrences": 853,
-  "retained_files": 323,
+  "retained_occurrences": 718,
+  "retained_files": 199,
   "categories": {
-    "compatibility interface": 154,
+    "compatibility interface": 138,
     "fixed serialization placeholder": 2,
     "fixed test fixture": 467,
     "legacy product detection": 1,
-    "original authorship": 165,
+    "original authorship": 46,
     "technical test identifier": 4,
     "upstream ABI/test history": 10,
     "upstream build identity": 12,
@@ -19,100 +19,9 @@
   },
   "literals": [
     {
-      "path": "base/applications/charmap/lang/bg-BG.rc",
-      "line": 45,
-      "literal": "\"Знаков изборник, в0,1\\nВъзпроизводствено право (C) 2007 Ged Murphy (gedmurphy@reactos.org)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "base/applications/charmap/lang/bn-IN.rc",
-      "line": 42,
-      "literal": "\"ক্যারেক্টার ম্যাপ v0.1\\nকপিরাইট (C) 2007 Ged Murphy (gedmurphy@reactos.org)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "base/applications/charmap/lang/ca-ES.rc",
-      "line": 42,
-      "literal": "\"Character Map v0.1\\nCopyright (C) 2007 Ged Murphy (gedmurphy@reactos.org)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "base/applications/charmap/lang/cs-CZ.rc",
-      "line": 47,
-      "literal": "\"Mapa znaků v0.1\\nCopyright (C) 2007 Ged Murphy (gedmurphy@reactos.org)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "base/applications/charmap/lang/de-DE.rc",
-      "line": 42,
-      "literal": "\"Zeichentabelle v0.1\\nCopyright (C) 2007 Ged Murphy (gedmurphy@reactos.org)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "base/applications/charmap/lang/el-GR.rc",
-      "line": 42,
-      "literal": "\"Πίνακας χαρακτήρων v0.1\\nCopyright (C) 2007 Ged Murphy (gedmurphy@reactos.org)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
       "path": "base/applications/charmap/lang/en-US.rc",
       "line": 42,
       "literal": "\"Character Map v0.1\\nCopyright (C) 2007 Ged Murphy (gedmurphy@reactos.org)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "base/applications/charmap/lang/es-ES.rc",
-      "line": 45,
-      "literal": "\"Mapa de caracteres v0.1\\nCopyright (C) 2007 Ged Murphy (gedmurphy@reactos.org)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "base/applications/charmap/lang/et-EE.rc",
-      "line": 42,
-      "literal": "\"Märgistik v0.1\\nAutoriõigus (C) 2007 Ged Murphy (gedmurphy@reactos.org)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "base/applications/charmap/lang/fr-FR.rc",
-      "line": 42,
-      "literal": "\"Table des Caractères v0.1\\nCopyright (C) 2007 Ged Murphy (gedmurphy@reactos.org)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "base/applications/charmap/lang/he-IL.rc",
-      "line": 46,
-      "literal": "\"Character Map v0.1\\nCopyright (C) 2007 Ged Murphy (gedmurphy@reactos.org)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "base/applications/charmap/lang/hr-HR.rc",
-      "line": 49,
-      "literal": "\"Mapa znakova v0.1\\nCopyright (C) 2007 Ged Murphy (gedmurphy@reactos.org)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "base/applications/charmap/lang/id-ID.rc",
-      "line": 42,
-      "literal": "\"Character Map v0.1\\nHak Cipta (C) 2007 Ged Murphy (gedmurphy@reactos.org)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "base/applications/charmap/lang/it-IT.rc",
-      "line": 42,
-      "literal": "\"Mappa caratteri v0.1\\nCopyright (C) 2007 Ged Murphy (gedmurphy@reactos.org)\"",
       "category": "original authorship",
       "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
     },
@@ -124,114 +33,9 @@
       "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
     },
     {
-      "path": "base/applications/charmap/lang/ko-KR.rc",
-      "line": 46,
-      "literal": "\"Character Map v0.1\\nCopyright (C) 2007 Ged Murphy (gedmurphy@reactos.org)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "base/applications/charmap/lang/lt-LT.rc",
-      "line": 51,
-      "literal": "\"Simbolių lentelė v0.1\\n(C) 2007 Ged Murphy (gedmurphy@reactos.org)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "base/applications/charmap/lang/nl-NL.rc",
-      "line": 42,
-      "literal": "\"Speciale tekens v0.1\\nCopyright (C) 2007 Ged Murphy (gedmurphy@reactos.org)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "base/applications/charmap/lang/no-NO.rc",
-      "line": 42,
-      "literal": "\"Tegnkart v0.1\\nCopyright (C) 2007 Ged Murphy (gedmurphy@reactos.org)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "base/applications/charmap/lang/pl-PL.rc",
-      "line": 51,
-      "literal": "\"Tablica znaków v0.1\\nCopyright (C) 2007 Ged Murphy (gedmurphy@reactos.org)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "base/applications/charmap/lang/pt-BR.rc",
-      "line": 42,
-      "literal": "\"Mapa de Caracteres v0.1\\nCopyright (C) 2007 Ged Murphy (gedmurphy@reactos.org)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "base/applications/charmap/lang/ro-RO.rc",
-      "line": 49,
-      "literal": "\"Plan caractere v0.1\\nDrept de autor (C) 2007 Ged Murphy (gedmurphy@reactos.org)\\nTraducere de Ștefan Fulea (stefan.fulea@mail.com)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "base/applications/charmap/lang/ru-RU.rc",
-      "line": 44,
-      "literal": "\"Таблица символов v0.1\\nCopyright (C) 2007 Ged Murphy (gedmurphy@reactos.org)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "base/applications/charmap/lang/sk-SK.rc",
-      "line": 51,
-      "literal": "\"Mapa znakov v0.1\\nCopyright (C) 2007 Ged Murphy (gedmurphy@reactos.org)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "base/applications/charmap/lang/sq-AL.rc",
-      "line": 46,
-      "literal": "\"Karakteret Map v0.1\\nCopyright (C) 2007 Ged Murphy (gedmurphy@reactos.org)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "base/applications/charmap/lang/sv-SE.rc",
-      "line": 49,
-      "literal": "\"Teckenuppsättning v0.1\\nCopyright (C) 2007 Ged Murphy (gedmurphy@reactos.org)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "base/applications/charmap/lang/tr-TR.rc",
-      "line": 47,
-      "literal": "\"Karakter Seçici - Sürüm: 0.1\\nTelif Hakkı: 2007 - Ged Murphy (gedmurphy@reactos.org)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "base/applications/charmap/lang/uk-UA.rc",
-      "line": 50,
-      "literal": "\"Таблиця символів v0.1\\nCopyright (C) 2007 Ged Murphy (gedmurphy@reactos.org)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
       "path": "base/applications/charmap/lang/zh-CN.rc",
       "line": 50,
       "literal": "\"字符映射表 v0.1\\nCopyright (C) 2007 Ged Murphy (gedmurphy@reactos.org)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "base/applications/charmap/lang/zh-HK.rc",
-      "line": 50,
-      "literal": "\"字元對應表 v0.1\\nCopyright (C) 2007 Ged Murphy (gedmurphy@reactos.org)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "base/applications/charmap/lang/zh-TW.rc",
-      "line": 50,
-      "literal": "\"字元對應表 v0.1\\nCopyright (C) 2007 Ged Murphy (gedmurphy@reactos.org)\"",
       "category": "original authorship",
       "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
     },
@@ -264,70 +68,7 @@
       "reason": "Existing registry value/key, window class, named IPC object, window property, atom or clipboard format identifier."
     },
     {
-      "path": "base/applications/mscutils/servman/lang/bg-BG.rc",
-      "line": 323,
-      "literal": "\"Copyright (C) 2005-2007 by Ged Murphy (gedmurphy@reactos.org)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "base/applications/mscutils/servman/lang/cs-CZ.rc",
-      "line": 323,
-      "literal": "\"Copyright (C) 2005-2007 by Ged Murphy (gedmurphy@reactos.org)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "base/applications/mscutils/servman/lang/de-DE.rc",
-      "line": 323,
-      "literal": "\"Copyright (C) 2005-2007 by Ged Murphy (gedmurphy@reactos.org)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "base/applications/mscutils/servman/lang/el-GR.rc",
-      "line": 323,
-      "literal": "\"Copyright (C) 2005-2007 by Ged Murphy (gedmurphy@reactos.org)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
       "path": "base/applications/mscutils/servman/lang/en-US.rc",
-      "line": 323,
-      "literal": "\"Copyright (C) 2005-2007 by Ged Murphy (gedmurphy@reactos.org)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "base/applications/mscutils/servman/lang/es-ES.rc",
-      "line": 326,
-      "literal": "\"Copyright (C) 2005-2007 creado por Ged Murphy (gedmurphy@reactos.org)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "base/applications/mscutils/servman/lang/fr-FR.rc",
-      "line": 323,
-      "literal": "\"Copyright (C) 2005-2007 by Ged Murphy (gedmurphy@reactos.org)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "base/applications/mscutils/servman/lang/he-IL.rc",
-      "line": 323,
-      "literal": "\"Copyright (C) 2005-2007 by Ged Murphy (gedmurphy@reactos.org)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "base/applications/mscutils/servman/lang/id-ID.rc",
-      "line": 323,
-      "literal": "\"Copyright (C) 2005-2007 by Ged Murphy (gedmurphy@reactos.org)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "base/applications/mscutils/servman/lang/it-IT.rc",
       "line": 323,
       "literal": "\"Copyright (C) 2005-2007 by Ged Murphy (gedmurphy@reactos.org)\"",
       "category": "original authorship",
@@ -341,106 +82,8 @@
       "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
     },
     {
-      "path": "base/applications/mscutils/servman/lang/ko-KR.rc",
-      "line": 325,
-      "literal": "\"Copyright (C) 2005-2007 by Ged Murphy (gedmurphy@reactos.org)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "base/applications/mscutils/servman/lang/no-NO.rc",
-      "line": 323,
-      "literal": "\"Copyright (C) 2005-2007 by Ged Murphy (gedmurphy@reactos.org)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "base/applications/mscutils/servman/lang/pl-PL.rc",
-      "line": 333,
-      "literal": "\"Copyright (C) 2005-2007 by Ged Murphy (gedmurphy@reactos.org)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "base/applications/mscutils/servman/lang/pt-PT.rc",
-      "line": 323,
-      "literal": "\"Copyright (C) 2005-2007 by Ged Murphy (gedmurphy@reactos.org)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "base/applications/mscutils/servman/lang/ro-RO.rc",
-      "line": 332,
-      "literal": "\"Drepturi de autor (C) 2005-2007 de Ged Murphy (gedmurphy@reactos.org)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "base/applications/mscutils/servman/lang/ru-RU.rc",
-      "line": 323,
-      "literal": "\"Copyright (C) 2005-2007 by Ged Murphy (gedmurphy@reactos.org)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "base/applications/mscutils/servman/lang/sk-SK.rc",
-      "line": 328,
-      "literal": "\"Copyright (C) 2005-2007 by Ged Murphy (gedmurphy@reactos.org)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "base/applications/mscutils/servman/lang/sq-AL.rc",
-      "line": 328,
-      "literal": "\"Copyright (C) 2005-2007 by Ged Murphy (gedmurphy@reactos.org)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "base/applications/mscutils/servman/lang/sv-SE.rc",
-      "line": 330,
-      "literal": "\"Copyright (C) 2005-2007 by Ged Murphy (gedmurphy@reactos.org)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "base/applications/mscutils/servman/lang/th-TH.rc",
-      "line": 331,
-      "literal": "\"Copyright (C) 2005-2007 by Ged Murphy (gedmurphy@reactos.org)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "base/applications/mscutils/servman/lang/tr-TR.rc",
-      "line": 325,
-      "literal": "\"Telif hakkı: 2005-2007, Ged Murphy (gedmurphy@reactos.org)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "base/applications/mscutils/servman/lang/uk-UA.rc",
-      "line": 331,
-      "literal": "\"Copyright (C) 2005-2007 by Ged Murphy (gedmurphy@reactos.org)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
       "path": "base/applications/mscutils/servman/lang/zh-CN.rc",
       "line": 325,
-      "literal": "\"Copyright (C) 2005-2007 by Ged Murphy (gedmurphy@reactos.org)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "base/applications/mscutils/servman/lang/zh-HK.rc",
-      "line": 331,
-      "literal": "\"Copyright (C) 2005-2007 by Ged Murphy (gedmurphy@reactos.org)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "base/applications/mscutils/servman/lang/zh-TW.rc",
-      "line": 331,
       "literal": "\"Copyright (C) 2005-2007 by Ged Murphy (gedmurphy@reactos.org)\"",
       "category": "original authorship",
       "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
@@ -502,49 +145,7 @@
       "reason": "Existing registry value/key, window class, named IPC object, window property, atom or clipboard format identifier."
     },
     {
-      "path": "base/applications/sndrec32/lang/cs-CZ.rc",
-      "line": 61,
-      "literal": "\"REACTOS_SNDREC32\"",
-      "category": "compatibility interface",
-      "reason": "IDC_REACTOS_SNDREC32 is the sound recorder's existing window-class string, paired with its class registration and message handling; it is not its displayed title."
-    },
-    {
-      "path": "base/applications/sndrec32/lang/de-DE.rc",
-      "line": 56,
-      "literal": "\"REACTOS_SNDREC32\"",
-      "category": "compatibility interface",
-      "reason": "IDC_REACTOS_SNDREC32 is the sound recorder's existing window-class string, paired with its class registration and message handling; it is not its displayed title."
-    },
-    {
       "path": "base/applications/sndrec32/lang/en-US.rc",
-      "line": 56,
-      "literal": "\"REACTOS_SNDREC32\"",
-      "category": "compatibility interface",
-      "reason": "IDC_REACTOS_SNDREC32 is the sound recorder's existing window-class string, paired with its class registration and message handling; it is not its displayed title."
-    },
-    {
-      "path": "base/applications/sndrec32/lang/es-ES.rc",
-      "line": 59,
-      "literal": "\"REACTOS_SNDREC32\"",
-      "category": "compatibility interface",
-      "reason": "IDC_REACTOS_SNDREC32 is the sound recorder's existing window-class string, paired with its class registration and message handling; it is not its displayed title."
-    },
-    {
-      "path": "base/applications/sndrec32/lang/fr-FR.rc",
-      "line": 56,
-      "literal": "\"REACTOS_SNDREC32\"",
-      "category": "compatibility interface",
-      "reason": "IDC_REACTOS_SNDREC32 is the sound recorder's existing window-class string, paired with its class registration and message handling; it is not its displayed title."
-    },
-    {
-      "path": "base/applications/sndrec32/lang/he-IL.rc",
-      "line": 56,
-      "literal": "\"REACTOS_SNDREC32\"",
-      "category": "compatibility interface",
-      "reason": "IDC_REACTOS_SNDREC32 is the sound recorder's existing window-class string, paired with its class registration and message handling; it is not its displayed title."
-    },
-    {
-      "path": "base/applications/sndrec32/lang/it-IT.rc",
       "line": 56,
       "literal": "\"REACTOS_SNDREC32\"",
       "category": "compatibility interface",
@@ -558,78 +159,8 @@
       "reason": "IDC_REACTOS_SNDREC32 is the sound recorder's existing window-class string, paired with its class registration and message handling; it is not its displayed title."
     },
     {
-      "path": "base/applications/sndrec32/lang/pl-PL.rc",
-      "line": 65,
-      "literal": "\"REACTOS_SNDREC32\"",
-      "category": "compatibility interface",
-      "reason": "IDC_REACTOS_SNDREC32 is the sound recorder's existing window-class string, paired with its class registration and message handling; it is not its displayed title."
-    },
-    {
-      "path": "base/applications/sndrec32/lang/ro-RO.rc",
-      "line": 64,
-      "literal": "\"REACTOS_SNDREC32\"",
-      "category": "compatibility interface",
-      "reason": "IDC_REACTOS_SNDREC32 is the sound recorder's existing window-class string, paired with its class registration and message handling; it is not its displayed title."
-    },
-    {
-      "path": "base/applications/sndrec32/lang/ru-RU.rc",
-      "line": 56,
-      "literal": "\"REACTOS_SNDREC32\"",
-      "category": "compatibility interface",
-      "reason": "IDC_REACTOS_SNDREC32 is the sound recorder's existing window-class string, paired with its class registration and message handling; it is not its displayed title."
-    },
-    {
-      "path": "base/applications/sndrec32/lang/sk-SK.rc",
-      "line": 61,
-      "literal": "\"REACTOS_SNDREC32\"",
-      "category": "compatibility interface",
-      "reason": "IDC_REACTOS_SNDREC32 is the sound recorder's existing window-class string, paired with its class registration and message handling; it is not its displayed title."
-    },
-    {
-      "path": "base/applications/sndrec32/lang/sq-AL.rc",
-      "line": 60,
-      "literal": "\"REACTOS_SNDREC32\"",
-      "category": "compatibility interface",
-      "reason": "IDC_REACTOS_SNDREC32 is the sound recorder's existing window-class string, paired with its class registration and message handling; it is not its displayed title."
-    },
-    {
-      "path": "base/applications/sndrec32/lang/sv-SE.rc",
-      "line": 58,
-      "literal": "\"REACTOS_SNDREC32\"",
-      "category": "compatibility interface",
-      "reason": "IDC_REACTOS_SNDREC32 is the sound recorder's existing window-class string, paired with its class registration and message handling; it is not its displayed title."
-    },
-    {
-      "path": "base/applications/sndrec32/lang/tr-TR.rc",
-      "line": 58,
-      "literal": "\"REACTOS_SNDREC32\"",
-      "category": "compatibility interface",
-      "reason": "IDC_REACTOS_SNDREC32 is the sound recorder's existing window-class string, paired with its class registration and message handling; it is not its displayed title."
-    },
-    {
-      "path": "base/applications/sndrec32/lang/uk-UA.rc",
-      "line": 58,
-      "literal": "\"REACTOS_SNDREC32\"",
-      "category": "compatibility interface",
-      "reason": "IDC_REACTOS_SNDREC32 is the sound recorder's existing window-class string, paired with its class registration and message handling; it is not its displayed title."
-    },
-    {
       "path": "base/applications/sndrec32/lang/zh-CN.rc",
       "line": 58,
-      "literal": "\"REACTOS_SNDREC32\"",
-      "category": "compatibility interface",
-      "reason": "IDC_REACTOS_SNDREC32 is the sound recorder's existing window-class string, paired with its class registration and message handling; it is not its displayed title."
-    },
-    {
-      "path": "base/applications/sndrec32/lang/zh-HK.rc",
-      "line": 64,
-      "literal": "\"REACTOS_SNDREC32\"",
-      "category": "compatibility interface",
-      "reason": "IDC_REACTOS_SNDREC32 is the sound recorder's existing window-class string, paired with its class registration and message handling; it is not its displayed title."
-    },
-    {
-      "path": "base/applications/sndrec32/lang/zh-TW.rc",
-      "line": 64,
       "literal": "\"REACTOS_SNDREC32\"",
       "category": "compatibility interface",
       "reason": "IDC_REACTOS_SNDREC32 is the sound recorder's existing window-class string, paired with its class registration and message handling; it is not its displayed title."
@@ -761,13 +292,6 @@
       "reason": "Existing registry value/key, window class, named IPC object, window property, atom or clipboard format identifier."
     },
     {
-      "path": "base/system/chkdsk/lang/de-DE.rc",
-      "line": 18,
-      "literal": "\"\\n\\\nChkdskx v1.0.1 by Mark Russinovich\\n\\\nSystems Internals - http://www.sysinternals.com\\n\\\nReactOS adaptation 1999 by Emanuele Aliberti\\n\\n\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
       "path": "base/system/chkdsk/lang/en-US.rc",
       "line": 16,
       "literal": "\"\\n\\\nChkdskx v1.0.1 by Mark Russinovich\\n\\\nSystems Internals - http://www.sysinternals.com\\n\\\nReactOS adaptation 1999 by Emanuele Aliberti\\n\\n\"",
@@ -777,20 +301,6 @@
     {
       "path": "base/system/chkdsk/lang/ja-JP.rc",
       "line": 23,
-      "literal": "\"\\n\\\nChkdskx v1.0.1 by Mark Russinovich\\n\\\nSystems Internals - http://www.sysinternals.com\\n\\\nReactOS adaptation 1999 by Emanuele Aliberti\\n\\n\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "base/system/chkdsk/lang/pl-PL.rc",
-      "line": 16,
-      "literal": "\"\\n\\\nChkdskx v1.0.1 by Mark Russinovich\\n\\\nSystems Internals - http://www.sysinternals.com\\n\\\nReactOS adaptation 1999 by Emanuele Aliberti\\n\\n\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "base/system/chkdsk/lang/pt-PT.rc",
-      "line": 24,
       "literal": "\"\\n\\\nChkdskx v1.0.1 by Mark Russinovich\\n\\\nSystems Internals - http://www.sysinternals.com\\n\\\nReactOS adaptation 1999 by Emanuele Aliberti\\n\\n\"",
       "category": "original authorship",
       "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
@@ -1272,34 +782,6 @@
       "reason": "CMake substitution variable for generated version-resource metadata; its expanded value is checked in the actual built PE, not a literal product title."
     },
     {
-      "path": "media/themes/Win8/win8.msstyles/lang/cs-CZ.rc",
-      "line": 31,
-      "literal": "\"Nadace ReactOS\"",
-      "category": "original authorship",
-      "reason": "Theme author/publisher attribution or the upstream theme author's real website; the current theme name and description separately identify ReliefWin."
-    },
-    {
-      "path": "media/themes/Win8/win8.msstyles/lang/cs-CZ.rc",
-      "line": 34,
-      "literal": "\"https://reactos.org/\"",
-      "category": "original authorship",
-      "reason": "Theme author/publisher attribution or the upstream theme author's real website; the current theme name and description separately identify ReliefWin."
-    },
-    {
-      "path": "media/themes/Win8/win8.msstyles/lang/de-DE.rc",
-      "line": 31,
-      "literal": "\"ReactOS Project\"",
-      "category": "original authorship",
-      "reason": "Theme author/publisher attribution or the upstream theme author's real website; the current theme name and description separately identify ReliefWin."
-    },
-    {
-      "path": "media/themes/Win8/win8.msstyles/lang/de-DE.rc",
-      "line": 34,
-      "literal": "\"https://reactos.org/\"",
-      "category": "original authorship",
-      "reason": "Theme author/publisher attribution or the upstream theme author's real website; the current theme name and description separately identify ReliefWin."
-    },
-    {
       "path": "media/themes/Win8/win8.msstyles/lang/en-US.rc",
       "line": 31,
       "literal": "\"ReactOS Project\"",
@@ -1308,48 +790,6 @@
     },
     {
       "path": "media/themes/Win8/win8.msstyles/lang/en-US.rc",
-      "line": 34,
-      "literal": "\"https://reactos.org/\"",
-      "category": "original authorship",
-      "reason": "Theme author/publisher attribution or the upstream theme author's real website; the current theme name and description separately identify ReliefWin."
-    },
-    {
-      "path": "media/themes/Win8/win8.msstyles/lang/es-ES.rc",
-      "line": 31,
-      "literal": "\"Fundación ReactOS\"",
-      "category": "original authorship",
-      "reason": "Theme author/publisher attribution or the upstream theme author's real website; the current theme name and description separately identify ReliefWin."
-    },
-    {
-      "path": "media/themes/Win8/win8.msstyles/lang/es-ES.rc",
-      "line": 34,
-      "literal": "\"https://reactos.org/\"",
-      "category": "original authorship",
-      "reason": "Theme author/publisher attribution or the upstream theme author's real website; the current theme name and description separately identify ReliefWin."
-    },
-    {
-      "path": "media/themes/Win8/win8.msstyles/lang/fr-FR.rc",
-      "line": 31,
-      "literal": "\"Projet ReactOS\"",
-      "category": "original authorship",
-      "reason": "Theme author/publisher attribution or the upstream theme author's real website; the current theme name and description separately identify ReliefWin."
-    },
-    {
-      "path": "media/themes/Win8/win8.msstyles/lang/fr-FR.rc",
-      "line": 34,
-      "literal": "\"https://reactos.org/\"",
-      "category": "original authorship",
-      "reason": "Theme author/publisher attribution or the upstream theme author's real website; the current theme name and description separately identify ReliefWin."
-    },
-    {
-      "path": "media/themes/Win8/win8.msstyles/lang/it-IT.rc",
-      "line": 31,
-      "literal": "\"ReactOS Project\"",
-      "category": "original authorship",
-      "reason": "Theme author/publisher attribution or the upstream theme author's real website; the current theme name and description separately identify ReliefWin."
-    },
-    {
-      "path": "media/themes/Win8/win8.msstyles/lang/it-IT.rc",
       "line": 34,
       "literal": "\"https://reactos.org/\"",
       "category": "original authorship",
@@ -1365,62 +805,6 @@
     {
       "path": "media/themes/Win8/win8.msstyles/lang/ja-JP.rc",
       "line": 41,
-      "literal": "\"https://reactos.org/\"",
-      "category": "original authorship",
-      "reason": "Theme author/publisher attribution or the upstream theme author's real website; the current theme name and description separately identify ReliefWin."
-    },
-    {
-      "path": "media/themes/Win8/win8.msstyles/lang/pl-PL.rc",
-      "line": 31,
-      "literal": "\"Fundacja ReactOS\"",
-      "category": "original authorship",
-      "reason": "Theme author/publisher attribution or the upstream theme author's real website; the current theme name and description separately identify ReliefWin."
-    },
-    {
-      "path": "media/themes/Win8/win8.msstyles/lang/pl-PL.rc",
-      "line": 34,
-      "literal": "\"https://reactos.org/\"",
-      "category": "original authorship",
-      "reason": "Theme author/publisher attribution or the upstream theme author's real website; the current theme name and description separately identify ReliefWin."
-    },
-    {
-      "path": "media/themes/Win8/win8.msstyles/lang/ro-RO.rc",
-      "line": 33,
-      "literal": "\"Fundația ReactOS\"",
-      "category": "original authorship",
-      "reason": "Theme author/publisher attribution or the upstream theme author's real website; the current theme name and description separately identify ReliefWin."
-    },
-    {
-      "path": "media/themes/Win8/win8.msstyles/lang/ro-RO.rc",
-      "line": 36,
-      "literal": "\"https://reactos.org/\"",
-      "category": "original authorship",
-      "reason": "Theme author/publisher attribution or the upstream theme author's real website; the current theme name and description separately identify ReliefWin."
-    },
-    {
-      "path": "media/themes/Win8/win8.msstyles/lang/ru-RU.rc",
-      "line": 31,
-      "literal": "\"Команда ReactOS\"",
-      "category": "original authorship",
-      "reason": "Theme author/publisher attribution or the upstream theme author's real website; the current theme name and description separately identify ReliefWin."
-    },
-    {
-      "path": "media/themes/Win8/win8.msstyles/lang/ru-RU.rc",
-      "line": 34,
-      "literal": "\"https://reactos.org/\"",
-      "category": "original authorship",
-      "reason": "Theme author/publisher attribution or the upstream theme author's real website; the current theme name and description separately identify ReliefWin."
-    },
-    {
-      "path": "media/themes/Win8/win8.msstyles/lang/tr-TR.rc",
-      "line": 33,
-      "literal": "\"ReactOS Vakfı\"",
-      "category": "original authorship",
-      "reason": "Theme author/publisher attribution or the upstream theme author's real website; the current theme name and description separately identify ReliefWin."
-    },
-    {
-      "path": "media/themes/Win8/win8.msstyles/lang/tr-TR.rc",
-      "line": 36,
       "literal": "\"https://reactos.org/\"",
       "category": "original authorship",
       "reason": "Theme author/publisher attribution or the upstream theme author's real website; the current theme name and description separately identify ReliefWin."
@@ -1440,72 +824,9 @@
       "reason": "Theme author/publisher attribution or the upstream theme author's real website; the current theme name and description separately identify ReliefWin."
     },
     {
-      "path": "media/themes/Win8/win8.msstyles/lang/zh-HK.rc",
-      "line": 38,
-      "literal": "\"ReactOS Project\"",
-      "category": "original authorship",
-      "reason": "Theme author/publisher attribution or the upstream theme author's real website; the current theme name and description separately identify ReliefWin."
-    },
-    {
-      "path": "media/themes/Win8/win8.msstyles/lang/zh-HK.rc",
-      "line": 41,
-      "literal": "\"https://reactos.org/\"",
-      "category": "original authorship",
-      "reason": "Theme author/publisher attribution or the upstream theme author's real website; the current theme name and description separately identify ReliefWin."
-    },
-    {
-      "path": "media/themes/Win8/win8.msstyles/lang/zh-TW.rc",
-      "line": 33,
-      "literal": "\"ReactOS Project\"",
-      "category": "original authorship",
-      "reason": "Theme author/publisher attribution or the upstream theme author's real website; the current theme name and description separately identify ReliefWin."
-    },
-    {
-      "path": "media/themes/Win8/win8.msstyles/lang/zh-TW.rc",
-      "line": 36,
-      "literal": "\"https://reactos.org/\"",
-      "category": "original authorship",
-      "reason": "Theme author/publisher attribution or the upstream theme author's real website; the current theme name and description separately identify ReliefWin."
-    },
-    {
-      "path": "modules/rosapps/applications/screensavers/cylfrac/lang/cs-CZ.rc",
-      "line": 14,
-      "literal": "\"Válcový fraktál od unC0Rr.\\nSpeciálně pro ReactOS.\"",
-      "category": "original authorship",
-      "reason": "Original unC0Rr dedication states the screensaver was created for ReactOS; retaining it preserves the author's historical credit."
-    },
-    {
-      "path": "modules/rosapps/applications/screensavers/cylfrac/lang/de-DE.rc",
-      "line": 7,
-      "literal": "\"Cylinders Fractal von unC0Rr.\\nSpeziell für ReactOS.\"",
-      "category": "original authorship",
-      "reason": "Original unC0Rr dedication states the screensaver was created for ReactOS; retaining it preserves the author's historical credit."
-    },
-    {
       "path": "modules/rosapps/applications/screensavers/cylfrac/lang/en-US.rc",
       "line": 7,
       "literal": "\"Cylinders fractal by unC0Rr.\\nSpecial for ReactOS.\"",
-      "category": "original authorship",
-      "reason": "Original unC0Rr dedication states the screensaver was created for ReactOS; retaining it preserves the author's historical credit."
-    },
-    {
-      "path": "modules/rosapps/applications/screensavers/cylfrac/lang/es-ES.rc",
-      "line": 7,
-      "literal": "\"Cilindros fractales por unC0Rr.\\nEspecial para ReactOS.\"",
-      "category": "original authorship",
-      "reason": "Original unC0Rr dedication states the screensaver was created for ReactOS; retaining it preserves the author's historical credit."
-    },
-    {
-      "path": "modules/rosapps/applications/screensavers/cylfrac/lang/fr-FR.rc",
-      "line": 7,
-      "literal": "\"Fractale de cylindres par unC0Rr.\\nSpécial pour ReactOS.\"",
-      "category": "original authorship",
-      "reason": "Original unC0Rr dedication states the screensaver was created for ReactOS; retaining it preserves the author's historical credit."
-    },
-    {
-      "path": "modules/rosapps/applications/screensavers/cylfrac/lang/it-IT.rc",
-      "line": 7,
-      "literal": "\"Cilindri frattali di unC0Rr.\\nRealizzato apposta per ReactOS.\"",
       "category": "original authorship",
       "reason": "Original unC0Rr dedication states the screensaver was created for ReactOS; retaining it preserves the author's historical credit."
     },
@@ -1517,69 +838,6 @@
       "reason": "Original unC0Rr dedication states the screensaver was created for ReactOS; retaining it preserves the author's historical credit."
     },
     {
-      "path": "modules/rosapps/applications/screensavers/cylfrac/lang/lt-LT.rc",
-      "line": 16,
-      "literal": "\"Ekrano užsklanda sukurta unC0Rr.\\nSpecialiai ReactOS.\"",
-      "category": "original authorship",
-      "reason": "Original unC0Rr dedication states the screensaver was created for ReactOS; retaining it preserves the author's historical credit."
-    },
-    {
-      "path": "modules/rosapps/applications/screensavers/cylfrac/lang/nl-NL.rc",
-      "line": 7,
-      "literal": "\"Cylinders fractal door unC0Rr.\\nSpeciaal voor ReactOS.\"",
-      "category": "original authorship",
-      "reason": "Original unC0Rr dedication states the screensaver was created for ReactOS; retaining it preserves the author's historical credit."
-    },
-    {
-      "path": "modules/rosapps/applications/screensavers/cylfrac/lang/no-NO.rc",
-      "line": 7,
-      "literal": "\"Sylindere fraktal av unC0Rr.\\nSpesielt for ReactOS.\"",
-      "category": "original authorship",
-      "reason": "Original unC0Rr dedication states the screensaver was created for ReactOS; retaining it preserves the author's historical credit."
-    },
-    {
-      "path": "modules/rosapps/applications/screensavers/cylfrac/lang/pl-PL.rc",
-      "line": 14,
-      "literal": "\"Fraktale cylindryczne autorstwa unC0Rr.\\nWersja dedykowana dla ReactOS.\"",
-      "category": "original authorship",
-      "reason": "Original unC0Rr dedication states the screensaver was created for ReactOS; retaining it preserves the author's historical credit."
-    },
-    {
-      "path": "modules/rosapps/applications/screensavers/cylfrac/lang/ro-RO.rc",
-      "line": 15,
-      "literal": "\"Fractal cilindri de unC0Rr.\\nSpecial pentru ReactOS.\"",
-      "category": "original authorship",
-      "reason": "Original unC0Rr dedication states the screensaver was created for ReactOS; retaining it preserves the author's historical credit."
-    },
-    {
-      "path": "modules/rosapps/applications/screensavers/cylfrac/lang/ru-RU.rc",
-      "line": 15,
-      "literal": "\"Cylinders fractal от unC0Rr.\\nСпециально для ReactOS.\"",
-      "category": "original authorship",
-      "reason": "Original unC0Rr dedication states the screensaver was created for ReactOS; retaining it preserves the author's historical credit."
-    },
-    {
-      "path": "modules/rosapps/applications/screensavers/cylfrac/lang/sk-SK.rc",
-      "line": 11,
-      "literal": "\"Cylinders fractal od unC0Rr.\\nŠpeciálne pre systém ReactOS.\"",
-      "category": "original authorship",
-      "reason": "Original unC0Rr dedication states the screensaver was created for ReactOS; retaining it preserves the author's historical credit."
-    },
-    {
-      "path": "modules/rosapps/applications/screensavers/cylfrac/lang/tr-TR.rc",
-      "line": 14,
-      "literal": "\"Cylinders fractal unC0Rr tarafından yapılmıştır.\\nReactOS'a özeldir.\"",
-      "category": "original authorship",
-      "reason": "Original unC0Rr dedication states the screensaver was created for ReactOS; retaining it preserves the author's historical credit."
-    },
-    {
-      "path": "modules/rosapps/applications/screensavers/cylfrac/lang/uk-UA.rc",
-      "line": 15,
-      "literal": "\"Cylinders fractal від unC0Rr.\\nСпеціально для ReactOS.\"",
-      "category": "original authorship",
-      "reason": "Original unC0Rr dedication states the screensaver was created for ReactOS; retaining it preserves the author's historical credit."
-    },
-    {
       "path": "modules/rosapps/applications/screensavers/cylfrac/lang/zh-CN.rc",
       "line": 9,
       "literal": "\"圆筒形 by unC0Rr.\\nSpecial for ReactOS.\"",
@@ -1587,44 +845,9 @@
       "reason": "Original unC0Rr dedication states the screensaver was created for ReactOS; retaining it preserves the author's historical credit."
     },
     {
-      "path": "modules/rosapps/applications/screensavers/cylfrac/lang/zh-HK.rc",
-      "line": 14,
-      "literal": "\"分形圓筒，製作者：unC0Rr。\\n特別為 ReactOS 製作。\"",
-      "category": "original authorship",
-      "reason": "Original unC0Rr dedication states the screensaver was created for ReactOS; retaining it preserves the author's historical credit."
-    },
-    {
-      "path": "modules/rosapps/applications/screensavers/cylfrac/lang/zh-TW.rc",
-      "line": 14,
-      "literal": "\"分形圓筒，製作者：unC0Rr。\\n特別為 ReactOS 製作。\"",
-      "category": "original authorship",
-      "reason": "Original unC0Rr dedication states the screensaver was created for ReactOS; retaining it preserves the author's historical credit."
-    },
-    {
-      "path": "modules/rosapps/applications/screensavers/mazescr/lang/cs-CZ.rc",
-      "line": 44,
-      "literal": "\"[08-15-03] Ge van Geldorp - Portováno na ReactOS\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "modules/rosapps/applications/screensavers/mazescr/lang/de-DE.rc",
-      "line": 37,
-      "literal": "\"[08-15-03] Ge van Geldorp - Portierung auf ReactOS\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
       "path": "modules/rosapps/applications/screensavers/mazescr/lang/en-US.rc",
       "line": 37,
       "literal": "\"[08-15-03] Ge van Geldorp - Ported to ReactOS\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "modules/rosapps/applications/screensavers/mazescr/lang/es-ES.rc",
-      "line": 37,
-      "literal": "\"[08-15-03] Ge van Geldorp - Adaptado a ReactOS\"",
       "category": "original authorship",
       "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
     },
@@ -1636,72 +859,9 @@
       "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
     },
     {
-      "path": "modules/rosapps/applications/screensavers/mazescr/lang/pl-PL.rc",
-      "line": 37,
-      "literal": "\"[08-15-03] Ge van Geldorp - Ported to ReactOS\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "modules/rosapps/applications/screensavers/mazescr/lang/ro-RO.rc",
-      "line": 45,
-      "literal": "\"[08-15-03] Ge van Geldorp - Portat pe ReactOS\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "modules/rosapps/applications/screensavers/mazescr/lang/ru-RU.rc",
-      "line": 45,
-      "literal": "\"[08-15-03] Ge van Geldorp - Ported to ReactOS\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "modules/rosapps/applications/screensavers/mazescr/lang/sk-SK.rc",
-      "line": 44,
-      "literal": "\"[08-15-03] Ge van Geldorp - Portované na ReactOS\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "modules/rosapps/applications/screensavers/mazescr/lang/tr-TR.rc",
-      "line": 44,
-      "literal": "\"[08-15-03] Ge van Geldorp - Ported to ReactOS\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
       "path": "modules/rosapps/applications/screensavers/mazescr/lang/zh-CN.rc",
       "line": 39,
       "literal": "\"[08-15-03] Ge van Geldorp - 移植到 ReactOS\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "modules/rosapps/applications/screensavers/mazescr/lang/zh-HK.rc",
-      "line": 44,
-      "literal": "\"[08-15-03] Ge van Geldorp - 轉移到 ReactOS\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "modules/rosapps/applications/screensavers/mazescr/lang/zh-TW.rc",
-      "line": 44,
-      "literal": "\"[08-15-03] Ge van Geldorp - 轉移到 ReactOS\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "modules/rosapps/applications/sysutils/ctm/lang/de-DE.rc",
-      "line": 7,
-      "literal": "\"Console TaskManager von Aleksey Bragin <aleksey@reactos.org>\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "modules/rosapps/applications/sysutils/ctm/lang/el-GR.rc",
-      "line": 7,
-      "literal": "\"Console TaskManager by Aleksey Bragin <aleksey@reactos.org>\"",
       "category": "original authorship",
       "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
     },
@@ -1713,58 +873,9 @@
       "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
     },
     {
-      "path": "modules/rosapps/applications/sysutils/ctm/lang/es-ES.rc",
-      "line": 7,
-      "literal": "\"Administrador de tareas de la Consola por Aleksey Bragin <aleksey@reactos.org>\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "modules/rosapps/applications/sysutils/ctm/lang/fr-FR.rc",
-      "line": 7,
-      "literal": "\"Console TaskManager par Aleksey Bragin <aleksey@reactos.org>\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
       "path": "modules/rosapps/applications/sysutils/ctm/lang/ja-JP.rc",
       "line": 12,
       "literal": "\"コンソール タスク マネージャー (作成: Aleksey Bragin <aleksey@reactos.org>)\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "modules/rosapps/applications/sysutils/ctm/lang/no-NO.rc",
-      "line": 7,
-      "literal": "\"Konsoll oppgavebehandler av Aleksey Bragin <aleksey@reactos.org>\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "modules/rosapps/applications/sysutils/ctm/lang/pl-PL.rc",
-      "line": 7,
-      "literal": "\"Console TaskManager by Aleksey Bragin <aleksey@reactos.org>\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "modules/rosapps/applications/sysutils/ctm/lang/ro-RO.rc",
-      "line": 13,
-      "literal": "\"Gestionar de activități consolă v0.1 de Aleksey Bragin <aleksey@reactos.org>\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "modules/rosapps/applications/sysutils/ctm/lang/ru-RU.rc",
-      "line": 7,
-      "literal": "\"Консольный Диспетчер задач от Алексея Брагина <aleksey@reactos.org>\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "modules/rosapps/applications/sysutils/ctm/lang/uk-UA.rc",
-      "line": 13,
-      "literal": "\"Консольний Диспетчер завдань від Aleksey Bragin <aleksey@reactos.org>\"",
       "category": "original authorship",
       "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
     },
@@ -1776,13 +887,6 @@
       "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
     },
     {
-      "path": "modules/rosapps/applications/sysutils/ctm/lang/zh-TW.rc",
-      "line": 7,
-      "literal": "\"主控台工作管理員，由 Aleksey Bragin <aleksey@reactos.org> 開發\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
       "path": "modules/rosapps/applications/sysutils/fontsub/fontsub.cpp",
       "line": 54,
       "literal": "\"ReactOS Font Substitutes Editor\"",
@@ -1790,23 +894,9 @@
       "reason": "Window class identifier, preserved separately from the visible application title."
     },
     {
-      "path": "modules/rosapps/applications/sysutils/fontsub/lang/de-DE.rc",
-      "line": 71,
-      "literal": "\"FontSub (Font Substitute Editor) Version 0.5\\r\\nvon Katayama Hirofumi MZ und dem ReactOS Team\\r\\n\\r\\nDiese Software wurde unter CC0 1.0 Lizenz veröffentlicht.\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
       "path": "modules/rosapps/applications/sysutils/fontsub/lang/en-US.rc",
       "line": 71,
       "literal": "\"FontSub (Font Substitute Editor) Version 0.5\\r\\nby Katayama Hirofumi MZ and The ReactOS Team\\r\\n\\r\\nThis software was released under CC0 1.0 license.\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "modules/rosapps/applications/sysutils/fontsub/lang/es-ES.rc",
-      "line": 73,
-      "literal": "\"FontSub (Font Substitute Editor) Version 0.5\\r\\npor Katayama Hirofumi MZ y The ReactOS Team\\r\\n\\r\\nEste software ha sido publicado bajo la licencia CC0 1.0.\"",
       "category": "original authorship",
       "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
     },
@@ -1818,44 +908,9 @@
       "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
     },
     {
-      "path": "modules/rosapps/applications/sysutils/fontsub/lang/pl-PL.rc",
-      "line": 71,
-      "literal": "\"FontSub (Edytor substytutów czcionek) Wersja 0.5\\r\\nby Katayama Hirofumi MZ and The ReactOS Team\\r\\n\\r\\nTo oprogramowanie jest rozpowszechniane na zasadach licencji CC0 1.0.\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "modules/rosapps/applications/sysutils/fontsub/lang/ro-RO.rc",
-      "line": 69,
-      "literal": "\"FontSub (Editor pentru substitutul fontului) Versiunea 0.5\\r\\nde Katayama Hirofumi MZ și Echipa ReactOS\\r\\n\\r\\nAcest software a fost publicat sub licența CC0 1.0.\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "modules/rosapps/applications/sysutils/fontsub/lang/tr-TR.rc",
-      "line": 68,
-      "literal": "\"FontSub (Font Substitute Editor) Sürüm 0.5\\r\\nKatayama Hirofumi MZ ve ReactOS Ekibi tarafından\\r\\n\\r\\nBu yazılım CC0 1.0 lisansı altında yayınlandı.\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
       "path": "modules/rosapps/applications/sysutils/fontsub/lang/zh-CN.rc",
       "line": 73,
       "literal": "\"FontSub （字体名称替代） 版本 0.5\\r\\nby 片山博文MZ 和 The ReactOS Team\\r\\n\\r\\n本软件基于 CC0 1.0 许可证发布。\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "modules/rosapps/applications/sysutils/fontsub/lang/zh-HK.rc",
-      "line": 69,
-      "literal": "\"FontSub（字型名稱替代）版本 0.5\\r\\nby 片山博文MZ 和 The ReactOS Team\\r\\n\\r\\n本軟體基於 CC0 1.0 授權發佈。\"",
-      "category": "original authorship",
-      "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
-    },
-    {
-      "path": "modules/rosapps/applications/sysutils/fontsub/lang/zh-TW.rc",
-      "line": 69,
-      "literal": "\"FontSub（字型名稱替代）版本 0.5\\r\\nby 片山博文MZ 和 The ReactOS Team\\r\\n\\r\\n本軟體基於 CC0 1.0 授權發佈。\"",
       "category": "original authorship",
       "reason": "Original component author, translator, copyright or porting-history credit, including the author's published contact address."
     },

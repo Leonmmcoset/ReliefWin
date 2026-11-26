@@ -48,41 +48,6 @@ GenericMfg = "(Generic system devices)"
 *PNP0C14.DeviceDesc = "WMI for ACPI"
 WmiAcpi.ServiceDesc = "Windows Management Interface for ACPI"
 
-[Strings.0404]
-GenericMfg = "(標準系統裝置)"
-*PNP0C14.DeviceDesc = "ACPI 的 WMI"
-
-[Strings.0405]
-GenericMfg = "(Generická systémová zařízení)"
-
-[Strings.0407]
-GenericMfg = "(Generische Systemgeräte)"
-*PNP0C14.DeviceDesc = "WMI für ACPI"
-
-[Strings.0415]
-GenericMfg = "(Standardowe urządzenia systemowe)"
-*PNP0C14.DeviceDesc = "WMI dla ACPI"
-
-[Strings.0418]
-GenericMfg = "(dispozitive generice de sistem)"
-*PNP0C14.DeviceDesc = "WMI pentru ACPI"
-
-[Strings.0419]
-GenericMfg = "(Универсальные системные устройства)"
-*PNP0C14.DeviceDesc = "WMI для ACPI"
-
-[Strings.041f]
-GenericMfg = "(Genel Sistem Aygıtları)"
-*PNP0C14.DeviceDesc = "ACPI için WMI"
-
 [Strings.0804]
 GenericMfg = "(通用系统设备)"
-*PNP0C14.DeviceDesc = "ACPI 的 WMI"
-
-[Strings.0a]
-GenericMfg = "(Dispositivos genéricos del sistema)"
-*PNP0C14.DeviceDesc = "WMI para ACPI"
-
-[Strings.0C04]
-GenericMfg = "(標準系統裝置)"
 *PNP0C14.DeviceDesc = "ACPI 的 WMI"

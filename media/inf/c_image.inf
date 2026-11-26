@@ -29,27 +29,3 @@ ReactOS = "ReliefWin Project"
 
 ; Localizable
 ImageClassName = "Image"
-
-[Strings.0404]
-ImageClassName = "圖像"
-
-[Strings.0a]
-ImageClassName = "Imagen"
-
-[Strings.0415]
-ImageClassName = "Obraz"
-
-[Strings.0418]
-ImageClassName = "Imagine"
-
-[Strings.0419]
-ImageClassName = "Образ"
-
-[Strings.041f]
-ImageClassName = "Resim"
-
-[Strings.0816]
-ImageClassName = "Imagem"
-
-[Strings.0c04]
-ImageClassName = "圖像"

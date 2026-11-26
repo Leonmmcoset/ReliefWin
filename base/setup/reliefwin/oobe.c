@@ -63,6 +63,21 @@ typedef struct _CHOICE_LIST
 
 static CHOICE_LIST LocaleList;
 
+static LANGID
+GetInitialSetupLanguage(VOID)
+{
+    LANGID LanguageId = GetUserDefaultUILanguage();
+
+    if (LanguageId == MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_US) ||
+        LanguageId == MAKELANGID(LANG_JAPANESE, SUBLANG_DEFAULT) ||
+        LanguageId == MAKELANGID(LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED))
+    {
+        return LanguageId;
+    }
+
+    return MAKELANGID(LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED);
+}
+
 static BOOL
 AddChoice(
     _Inout_ PCHOICE_LIST List,
@@ -90,6 +105,13 @@ AddLocaleChoice(
 {
     WCHAR Name[128];
     LCID Lcid = wcstoul(LocaleString, NULL, 16);
+
+    if (Lcid != MAKELCID(MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_US), SORT_DEFAULT) &&
+        Lcid != MAKELCID(MAKELANGID(LANG_JAPANESE, SUBLANG_DEFAULT), SORT_DEFAULT) &&
+        Lcid != MAKELCID(MAKELANGID(LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED), SORT_DEFAULT))
+    {
+        return TRUE;
+    }
 
     if (GetLocaleInfoW(Lcid, LOCALE_SLOCALIZEDDISPLAYNAME, Name, ARRAYSIZE(Name)))
         AddChoice(&LocaleList, LocaleString, Name);
@@ -1085,7 +1107,8 @@ wWinMain(
     InitCommonControlsEx(&iccx);
     hrCom = CoInitializeEx(NULL, COINIT_APARTMENTTHREADED);
 
-    StringCchPrintfW(SetupData.DefaultLanguage, ARRAYSIZE(SetupData.DefaultLanguage), L"%08lX", GetUserDefaultLCID());
+    StringCchPrintfW(SetupData.DefaultLanguage, ARRAYSIZE(SetupData.DefaultLanguage), L"%08lX",
+                     MAKELCID(GetInitialSetupLanguage(), SORT_DEFAULT));
     SetSetupLanguage(SetupData.DefaultLanguage);
     if (!GetKeyboardLayoutNameW(SetupData.DefaultKBLayout))
         StringCchCopyW(SetupData.DefaultKBLayout, ARRAYSIZE(SetupData.DefaultKBLayout), L"00000409");

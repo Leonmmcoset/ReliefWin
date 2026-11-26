@@ -48,63 +48,10 @@ ReactOS = "ReliefWin Project"
 GenericMfg = "(Generic system devices)"
 *PNP0C08.DeviceDesc = "Microsoft ACPI-Compliant System"
 
-[Strings.0405]
-GenericMfg = "(Generická systémová zařízení)"
-
-[Strings.0404]
-GenericMfg = "（標準系統裝置）"
-*PNP0C08.DeviceDesc = "ACPI 硬體"
-
-[Strings.0407]
-GenericMfg = "(Generische Systemgeräte)"
-*PNP0C08.DeviceDesc = "ACPI Hardware"
-
-[Strings.0a]
-GenericMfg = "(Dispositivos del sistema estándar)"
-*PNP0C08.DeviceDesc = "Hardware ACPI"
-
-[Strings.040C]
-GenericMfg = "(Périphériques systèmes génériques)"
-
 [Strings.0411]
 GenericMfg = "(標準システム デバイス)"
 *PNP0C08.DeviceDesc = "ACPI ハードウェア"
 
-[Strings.0415]
-GenericMfg = "(Standardowe urządzenia systemowe)"
-*PNP0C08.DeviceDesc = "Sprzęt ACPI"
-
-[Strings.0416]
-GenericMfg = "(Dispositivos de sistema padrão)"
-*PNP0C08.DeviceDesc = "Hardware ACPI"
-
-[Strings.0418]
-GenericMfg = "(dispozitiv de sistem generic)"
-*PNP0C08.DeviceDesc = "Dispozitive ACPI"
-
-[Strings.0419]
-GenericMfg = "(Стандартные системные устройства)"
-*PNP0C08.DeviceDesc = "Устройства ACPI"
-
-[Strings.041B]
-GenericMfg = "(Generické systémové zariadenia)"
-*PNP0C08.DeviceDesc = "ACPI hardvér"
-
-[Strings.041f]
-GenericMfg = "(Genel Sistem Aygıtları)"
-*PNP0C08.DeviceDesc = "ACPI Donanım"
-
-[Strings.0422]
-GenericMfg = "(Стандартні системні пристрої)"
-*PNP0C08.DeviceDesc = "Пристрої ACPI"
-
-[Strings.0427]
-GenericMfg = "(Standartiniai sisteminiai įrenginiai)"
-
 [Strings.0804]
 GenericMfg = "（通用系统设备）"
-*PNP0C08.DeviceDesc = "ACPI 硬件"
-
-[Strings.0c04]
-GenericMfg = "（標準系統裝置）"
 *PNP0C08.DeviceDesc = "ACPI 硬件"

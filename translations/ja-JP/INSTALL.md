@@ -2,7 +2,7 @@
 
 # ReliefWin のインストール
 
-> [English](../../INSTALL.md) | [中文](../zh-CN/INSTALL.md) | [Français](../fr-FR/INSTALL.md) | [Español](../es-ES/INSTALL.md) | **日本語** | [العربية](../ar-MA/INSTALL.md) | [Українська](../uk-UA/INSTALL.md)
+> [English](../../INSTALL.md) | [中文](../zh-CN/INSTALL.md) | **日本語**
 
 ## イメージをビルドする
 

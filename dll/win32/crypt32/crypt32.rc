@@ -32,65 +32,11 @@
 /* UTF-8 */
 #pragma code_page(65001)
 
-#ifdef LANGUAGE_BG_BG
-    #include "lang/crypt32_Bg.rc"
-#endif
-#ifdef LANGUAGE_DE_DE
-    #include "lang/crypt32_De.rc"
-#endif
 #ifdef LANGUAGE_EN_US
     #include "lang/crypt32_En.rc"
 #endif
-#ifdef LANGUAGE_FR_FR
-    #include "lang/crypt32_Fr.rc"
-#endif
-#ifdef LANGUAGE_HE_IL
-    #include "lang/crypt32_He.rc"
-#endif
-#ifdef LANGUAGE_HU_HU
-    #include "lang/crypt32_Hu.rc"
-#endif
-#ifdef LANGUAGE_IT_IT
-    #include "lang/crypt32_It.rc"
-#endif
 #ifdef LANGUAGE_JA_JP
     #include "lang/crypt32_Ja.rc"
-#endif
-#ifdef LANGUAGE_KO_KR
-    #include "lang/crypt32_Ko.rc"
-#endif
-#ifdef LANGUAGE_LT_LT
-    #include "lang/crypt32_Lt.rc"
-#endif
-#ifdef LANGUAGE_NL_NL
-    #include "lang/crypt32_Nl.rc"
-#endif
-#ifdef LANGUAGE_NO_NO
-    #include "lang/crypt32_No.rc"
-#endif
-#ifdef LANGUAGE_PL_PL
-    #include "lang/crypt32_Pl.rc"
-#endif
-#ifdef LANGUAGE_PT_PT
-    #include "lang/crypt32_Pt.rc"
-#endif
-#ifdef LANGUAGE_RO_RO
-    #include "lang/crypt32_Ro.rc"
-#endif
-#ifdef LANGUAGE_RU_RU
-    #include "lang/crypt32_Ru.rc"
-#endif
-#ifdef LANGUAGE_SQ_AL
-    #include "lang/crypt32_Sq.rc"
-#endif
-#ifdef LANGUAGE_SV_SE
-    #include "lang/crypt32_Sv.rc"
-#endif
-#ifdef LANGUAGE_TR_TR
-    #include "lang/crypt32_Tr.rc"
-#endif
-#ifdef LANGUAGE_UK_UA
-    #include "lang/crypt32_Uk.rc"
 #endif
 #ifdef LANGUAGE_ZH_CN
     #include "lang/crypt32_Zh.rc"

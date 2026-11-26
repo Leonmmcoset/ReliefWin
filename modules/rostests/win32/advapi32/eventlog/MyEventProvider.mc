@@ -16,9 +16,7 @@ FacilityNames=(System=0x0:FACILITY_SYSTEM
                Io=0x4:FACILITY_IO_ERROR_CODE
               )
 
-LanguageNames=(English=0x409:MSG00409
-               Polish=0x415:MSG00415
-               Romanian=0x418:MSG00418)
+LanguageNames=(English=0x409:MSG00409)
 
 
 ; // The following are the categories of events.
@@ -30,35 +28,17 @@ SymbolicName=NETWORK_CATEGORY
 Language=English
 Network Events
 .
-Language=Polish
-Zdarzenia sieciowe
-.
-Language=Romanian
-Evenimente de rețea
-.
 
 MessageId=0x2
 SymbolicName=DATABASE_CATEGORY
 Language=English
 Database Events
 .
-Language=Polish
-Zdarzenia bazy danych
-.
-Language=Romanian
-Evenimente de baze de date
-.
 
 MessageId=0x3
 SymbolicName=UI_CATEGORY
 Language=English
 UI Events
-.
-Language=Polish
-Zdarzenia interfejsu użytkownika
-.
-Language=Romanian
-Evenimente de interfață grafică (UI)
 .
 
 
@@ -73,12 +53,6 @@ SymbolicName=MSG_INVALID_COMMAND
 Language=English
 The command is not valid.
 .
-Language=Polish
-To polecenie jest nieprawidłowe.
-.
-Language=Romanian
-Comanda nu este validă.
-.
 
 
 MessageId=0x101
@@ -87,12 +61,6 @@ Facility=System
 SymbolicName=MSG_BAD_FILE_CONTENTS
 Language=English
 File %1 contains content that is not valid.
-.
-Language=Polish
-Plik %1 ma nieprawidłową zawartość.
-.
-Language=Romanian
-Fișierul %1 are conținut ce nu este valid.
 .
 
 MessageId=0x102
@@ -103,26 +71,12 @@ Language=English
 There have been %1 retries with %2 success! Disconnect from
 the server and try again later.
 .
-Language=Polish
-Podjęto %1 ponownych prób, %2 zakończyło się sukcesem! Odłącz
-od serwera i spróbuj ponownie później.
-.
-Language=Romanian
-Au fost %1 reîncercări cu %2 succes(e)! Deconectați-vă de la
-server și încercați din nou, mai târziu.
-.
 
 MessageId=0x103
 Severity=Informational
 Facility=System
 SymbolicName=MSG_COMPUTE_CONVERSION
 Language=English
-%1 %%4096 = %2 %%4097.
-.
-Language=Polish
-%1 %%4096 = %2 %%4097.
-.
-Language=Romanian
 %1 %%4096 = %2 %%4097.
 .
 
@@ -137,12 +91,6 @@ SymbolicName=QUARTS_UNITS
 Language=English
 quarts%0
 .
-Language=Polish
-kwarty%0
-.
-Language=Romanian
-pinte%0
-.
 
 MessageId=0x1001
 Severity=Success
@@ -150,11 +98,5 @@ Facility=System
 SymbolicName=GALLONS_UNITS
 Language=English
 gallons%0
-.
-Language=Polish
-galony%0
-.
-Language=Romanian
-galoane%0
 .
 

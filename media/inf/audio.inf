@@ -72,44 +72,5 @@ ReactOS = "ReliefWin Project"
 ; Localizable
 AUDIOClassName = "Audio & Videocontroller"
 
-[Strings.0404]
-AUDIOClassName = "音訊及視訊控制器"
-
-[Strings.0405]
-AUDIOClassName = "Řadiče zvuku a obrazu"
-
-[Strings.0407]
-AUDIOClassName = "Audio-, Video- und Gamecontroller"
-
-[Strings.0a]
-AUDIOClassName = "Dispositivos de sonido, vídeo y juegos"
-
-[Strings.0415]
-AUDIOClassName = "Kontrolery audio, wideo i gier"
-
-[Strings.0416]
-AUDIOClassName = "Controladores de som, vídeo e jogo"
-
-[Strings.0418]
-AUDIOClassName = "Dispozitive audio & video"
-
-[Strings.0419]
-AUDIOClassName = "Аудио и видео контроллер"
-
-[Strings.041f]
-AUDIOClassName = "Ses ve Video Denetleyicisi"
-
-[Strings.0422]
-AUDIOClassName = "Контроллер аудіо та відео"
-
-[Strings.0427]
-AUDIOClassName = "Garso, vaizdo ir žaidimu irenginiai"
-
 [Strings.0804]
 AUDIOClassName = "音视频控制器"
-
-[Strings.0816]
-AUDIOClassName = "Controladores de som, vídeo e jogos"
-
-[Strings.0C04]
-AUDIOClassName = "音訊及視訊控制器"

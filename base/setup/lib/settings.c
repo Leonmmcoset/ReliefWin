@@ -1191,8 +1191,8 @@ CreateKeyboardLayoutList(
     PGENERIC_LIST List;
     INFCONTEXT Context;
     PCWSTR KeyValue;
-    const MUI_LAYOUTS* LayoutsList;
-    ULONG uIndex = 0;
+
+    UNREFERENCED_PARAMETER(LanguageId);
 
     /* Get default layout id */
     if (!SpInfFindFirstLine(InfFile, L"NLS", L"DefaultLayout", &Context))
@@ -1207,25 +1207,16 @@ CreateKeyboardLayoutList(
     if (List == NULL)
         return NULL;
 
-    LayoutsList = MUIGetLayoutsList(LanguageId);
-
-    do
+    if (AddEntriesFromInfSection(List,
+                                 InfFile,
+                                 L"KeyboardLayout",
+                                 &Context,
+                                 DefaultProcessEntry,
+                                 DefaultKBLayout) == -1)
     {
-        // NOTE: See https://svn.reactos.org/svn/reactos?view=revision&revision=68354
-        if (AddEntriesFromInfSection(List,
-                                     InfFile,
-                                     L"KeyboardLayout",
-                                     &Context,
-                                     DefaultProcessEntry,
-                                     DefaultKBLayout) == -1)
-        {
-            DestroyGenericList(List, TRUE);
-            return NULL;
-        }
-
-        uIndex++;
-
-    } while (LayoutsList[uIndex].LangID != 0);
+        DestroyGenericList(List, TRUE);
+        return NULL;
+    }
 
     /* Check whether some keyboard layouts have been found */
     /* FIXME: Handle this case */
@@ -1248,38 +1239,59 @@ ProcessKeyboardLayoutRegistry(
     KLID LayoutId;
     const MUI_LAYOUTS* LayoutsList;
     MUI_LAYOUTS NewLayoutsList[20]; // HACK: Hardcoded fixed size "20" is a hack. Please verify against lang/*.h
-    ULONG uIndex;
-    ULONG uOldPos = 0;
+    ULONG uIndex, uNewPos, uCount = 1;
 
-    LayoutId = (KLID)(pszLayoutId ? wcstoul(pszLayoutId, NULL, 16) : 0);
-    if (LayoutId == 0)
+    if (!pszLayoutId || wcslen(pszLayoutId) != 8)
+        return FALSE;
+
+    for (uIndex = 0; uIndex < 8; ++uIndex)
+    {
+        WCHAR Character = pszLayoutId[uIndex];
+
+        if (!((Character >= L'0' && Character <= L'9') ||
+              (Character >= L'A' && Character <= L'F') ||
+              (Character >= L'a' && Character <= L'f')))
+        {
+            return FALSE;
+        }
+    }
+
+    LayoutId = (KLID)wcstoul(pszLayoutId, NULL, 16);
+    if (LOWORD(LayoutId) == 0)
         return FALSE;
 
     LayoutsList = MUIGetLayoutsList(LanguageId);
+    NewLayoutsList[0].LangID = LOWORD(LayoutId);
+    NewLayoutsList[0].LayoutID = LayoutId;
 
-    /* If the keyboard layout is already at the top of the list, we are done */
-    if (LayoutsList[0].LayoutID == LayoutId)
-        return TRUE;
-
-    /* Otherwise, move it up to the top of the list */
-    for (uIndex = 1; LayoutsList[uIndex].LangID != 0; ++uIndex)
+    for (uIndex = 0; LayoutsList[uIndex].LangID != 0; ++uIndex)
     {
         if (LayoutsList[uIndex].LayoutID == LayoutId)
         {
-            uOldPos = uIndex;
-            continue;
+            NewLayoutsList[0] = LayoutsList[uIndex];
+            break;
         }
-
-        NewLayoutsList[uIndex].LangID   = LayoutsList[uIndex].LangID;
-        NewLayoutsList[uIndex].LayoutID = LayoutsList[uIndex].LayoutID;
     }
 
-    NewLayoutsList[uIndex].LangID    = 0;
-    NewLayoutsList[uIndex].LayoutID  = 0;
-    NewLayoutsList[uOldPos].LangID   = LayoutsList[0].LangID;
-    NewLayoutsList[uOldPos].LayoutID = LayoutsList[0].LayoutID;
-    NewLayoutsList[0].LangID         = LayoutsList[uOldPos].LangID;
-    NewLayoutsList[0].LayoutID       = LayoutsList[uOldPos].LayoutID;
+    for (uIndex = 0; LayoutsList[uIndex].LangID != 0; ++uIndex)
+    {
+        for (uNewPos = 0; uNewPos < uCount; ++uNewPos)
+        {
+            if (NewLayoutsList[uNewPos].LangID == LayoutsList[uIndex].LangID &&
+                NewLayoutsList[uNewPos].LayoutID == LayoutsList[uIndex].LayoutID)
+                break;
+        }
+        if (uNewPos < uCount)
+            continue;
+
+        if (uCount >= ARRAYSIZE(NewLayoutsList) - 1)
+            return FALSE;
+
+        NewLayoutsList[uCount++] = LayoutsList[uIndex];
+    }
+
+    NewLayoutsList[uCount].LangID = 0;
+    NewLayoutsList[uCount].LayoutID = 0;
 
     return AddKbLayoutsToRegistry(NewLayoutsList);
 }

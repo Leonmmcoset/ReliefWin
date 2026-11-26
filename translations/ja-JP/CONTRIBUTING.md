@@ -2,7 +2,7 @@
 
 # ReliefWin への貢献
 
-> [English](../../CONTRIBUTING.md) | [中文](../zh-CN/CONTRIBUTING.md) | [Français](../fr-FR/CONTRIBUTING.md) | [Español](../es-ES/CONTRIBUTING.md) | **日本語** | [العربية](../ar-MA/CONTRIBUTING.md) | [Українська](../uk-UA/CONTRIBUTING.md)
+> [English](../../CONTRIBUTING.md) | [中文](../zh-CN/CONTRIBUTING.md) | **日本語**
 
 ReliefWin は、バグ報告、テスト、修正、新機能、ドキュメントを歓迎します。このページでは、作業の送り方を説明します。すべての変更が従うエンジニアリングのルールは [AGENTS.md](../../AGENTS.md) にあり、人間のコントリビューターにも AI ツールにも同じように適用されます。
 

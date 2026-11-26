@@ -69,8 +69,6 @@ def classify(name, line):
         return "KDNET wire protocol compatibility"
     if name == "modules/rostests/kmtests/ksecdd/KsecBcryptKeyPair.c" and 'SHA-256("LiberNT ECDH A"/"... B")' in line:
         return "original cryptographic fixture seed"
-    if name == "modules/rosapps/applications/screensavers/cylfrac/lang/bg-BG.rc" and "IDS_TEXT" in line and "unC0Rr" in line:
-        return "original author dedication"
     if name in EVIDENCE:
         return "audit pattern"
     if re.search(r'copyright assignment|contributor licen[cs]e agreement', line, re.IGNORECASE):

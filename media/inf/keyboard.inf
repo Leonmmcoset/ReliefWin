@@ -111,100 +111,10 @@ StdMfg = "(Standard keyboards)"
 LocationOverride = "plugged in to keyboard port"
 HID.KeyboardDevice = "HID-Keyboard"
 
-[Strings.0404]
-KeyboardClassName = "鍵盤"
-
-StdMfg = "(標準鍵盤)"
-HID.KeyboardDevice    = "HID 鍵盤"
-
-[Strings.0405]
-KeyboardClassName = "Klávesnice"
-
-StdMfg = "(Standardní klávesnice)"
-*PNP0303.DeviceDesc = "Klávesnice IBM PC/AT"
-LocationOverride = "připojeno ke klávesnicovému portu"
-HID.KeyboardDevice = "Klávesnice standardu HID"
-
-[Strings.0407]
-KeyboardClassName = "Tastaturen"
-
-StdMfg = "(Standard-Tastaturen)"
-LocationOverride = "eingesteckt in Tastaturanschluss"
-HID.KeyboardDevice = "HID-Tastatur"
-
-[Strings.0408]
-KeyboardClassName = "Πληκτρολόγια"
-
-StdMfg = "(Πρότυπα πληκτρολόγια)"
-
-[Strings.0a]
-KeyboardClassName = "Teclados"
-
-StdMfg = "(Teclado estándar)"
-LocationOverride = "se conecta al puerto de teclado"
-
-[Strings.040C]
-KeyboardClassName = "Claviers"
-
-StdMfg = "(Claviers standards)"
-LocationOverride = "Branché sur le port clavier"
-
 [Strings.0411]
 KeyboardClassName = "キーボード"
 
 StdMfg = "(スタンダード キーボード)"
-
-[Strings.0415]
-KeyboardClassName = "Klawiatury"
-
-StdMfg = "(Klawiatury standardowe)"
-LocationOverride = "podłaczone do portu klawiatury"
-HID.KeyboardDevice = "Klawiatura HID"
-
-[Strings.0416]
-KeyboardClassName = "Teclados"
-
-StdMfg = "(Teclado padrão)"
-
-[Strings.0418]
-KeyboardClassName = "Tastaturi"
-
-StdMfg = "(tastatură standard)"
-LocationOverride = "conectat la portul de tastatură"
-HID.KeyboardDevice = "Tastatură-dispozitiv de interfațare umană"
-
-[Strings.0419]
-KeyboardClassName = "Клавиатуры"
-
-StdMfg = "(Стандартные клавиатуры)"
-*PNP0303.DeviceDesc = "Стандартная (101/102 клавиши) или клавиатура PS/2 Microsoft Natural"
-*PNP030B.DeviceDesc = "Расширенная клавиатура PS/2 PC/AT (101/102 клавиши)"
-LocationOverride = "подключено к порту клавиатуры"
-HID.KeyboardDevice = "Клавиатура HID"
-
-[Strings.041B]
-KeyboardClassName = "Klávesnice"
-
-StdMfg = "(Štandardné klávesnice)"
-
-[Strings.041f]
-KeyboardClassName = "Klavyeler"
-
-StdMfg = "(Standart Klavyeler)"
-LocationOverride = "klavye girişine takılı"
-HID.KeyboardDevice = "HID Klavyeler"
-
-[Strings.0422]
-KeyboardClassName = "Клавіатури"
-
-StdMfg = "(Стандартні клавіатури)"
-LocationOverride = "приєднано до порту клавітури"
-HID.KeyboardDevice = "HID-Клавіатура"
-
-[Strings.0427]
-KeyboardClassName = "Klaviatūros"
-
-StdMfg = "(Standartinė klaviatūra)"
 
 [Strings.0804]
 KeyboardClassName = "键盘"
@@ -212,14 +122,3 @@ KeyboardClassName = "键盘"
 HID.KeyboardDevice = "HID 键盘"
 
 StdMfg = "(标准键盘)"
-
-[Strings.0816]
-KeyboardClassName = "Teclados"
-
-StdMfg = "(Teclado padrão)"
-
-[Strings.0C04]
-KeyboardClassName = "鍵盤"
-
-StdMfg = "(標準鍵盤)"
-HID.KeyboardDevice = "HID 鍵盤"

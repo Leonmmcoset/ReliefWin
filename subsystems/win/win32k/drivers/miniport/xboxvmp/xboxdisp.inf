@@ -55,23 +55,5 @@ nVidiaMfg = "nVidia"
 ; Localizable
 PCI\VEN_10DE&DEV_02A0.DeviceDesc = "NV2A Xbox Graphics Processing Unit"
 
-[Strings.0a]
-PCI\VEN_10DE&DEV_02A0.DeviceDesc = "Unidad de procesamiento de gráficos de Xbox NV2A"
-
-[Strings.0415]
-PCI\VEN_10DE&DEV_02A0.DeviceDesc = "Procesor graficzny Xbox NV2A"
-
-[Strings.0418]
-PCI\VEN_10DE&DEV_02A0.DeviceDesc = "Unitate de procesare grafică Xbox NV2A"
-
-[Strings.0419]
-PCI\VEN_10DE&DEV_02A0.DeviceDesc = "Графический процессор NV2A Xbox"
-
-[Strings.041f]
-PCI\VEN_10DE&DEV_02A0.DeviceDesc = "NV2A Xbox Çizge İşleme Birimi"
-
-[Strings.0422]
-PCI\VEN_10DE&DEV_02A0.DeviceDesc = "Графічний процесор NV2A Xbox"
-
 [Strings.0804]
 PCI\VEN_10DE&DEV_02A0.DeviceDesc = "NV2A Xbox 图形处理器"

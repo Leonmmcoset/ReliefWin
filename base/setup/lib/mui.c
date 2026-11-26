@@ -212,7 +212,7 @@ AddKbLayoutsToRegistry(
     UNICODE_STRING KeyName;
     UNICODE_STRING ValueName;
     HANDLE KeyHandle;
-    HANDLE SubKeyHandle;
+    HANDLE SubKeyHandle = NULL;
     NTSTATUS Status;
     ULONG Disposition;
     ULONG uIndex;
@@ -350,10 +350,12 @@ AddKbLayoutsToRegistry(
         }
     }
 
-    AddHotkeySettings(L"1", L"1", L"2");
+    if (!AddHotkeySettings(L"1", L"1", L"2"))
+        Status = STATUS_UNSUCCESSFUL;
 
 Quit:
-    NtClose(SubKeyHandle);
+    if (SubKeyHandle)
+        NtClose(SubKeyHandle);
     NtClose(KeyHandle);
     return NT_SUCCESS(Status);
 }

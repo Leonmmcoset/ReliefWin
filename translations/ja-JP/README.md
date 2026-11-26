@@ -1,6 +1,6 @@
 > ReliefWin 默认使用简体中文。目前没有配置 ReliefWin 官网、公开下载仓库或更新服务。请从本地源码构建；系统默认关闭自动更新。上游构建依赖保留真实下载地址。
 
-> [English](../../README.md) | [中文](../zh-CN/README.md) | [Français](../fr-FR/README.md) | [Español](../es-ES/README.md) | **日本語** | [العربية](../ar-MA/README.md) | [Українська](../uk-UA/README.md)
+> [English](../../README.md) | [中文](../zh-CN/README.md) | **日本語**
 
 <p align="center">
   <img src="../../media/graphics/branding/reliefwin-banner.png" width="480" alt="ReliefWin">

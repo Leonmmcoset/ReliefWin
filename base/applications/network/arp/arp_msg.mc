@@ -9,9 +9,7 @@ SeverityNames=(Success=0x0:STATUS_SEVERITY_SUCCESS
 FacilityNames=(System=0x0:FACILITY_SYSTEM
               )
 
-LanguageNames=(English=0x409:MSG00409
-               Polish=0x415:MSG00415
-               Romanian=0x418:MSG00418)
+LanguageNames=(English=0x409:MSG00409)
 
 MessageId=10000
 SymbolicName=MSG_ARP_SYNTAX
@@ -48,73 +46,6 @@ Example:
   > arp -s 157.55.85.212   00-aa-00-62-c6-09  .... Adds a static entry.
   > arp -a                                    .... Displays the arp table.
 .
-Language=Polish
-Wyświetla i modyfikuje tabelę translacji adresów IP na adresy
-fizyczne, używane przez protokół rozróżniania adresów (ARP).
-
-ARP -s inet_addr eth_addr [if_addr]
-ARP -d inet_addr [if_addr]
-ARP -a [inet_addr] [-N if_addr]
-
-  -a            Wyświetla bieżące wpisy protokołu ARP przez odpytywanie
-                bieżących danych protokołu. Jeżeli inet_addr jest
-                określony, to wyświetlany jest adres IP i fizyczny dla
-                określonego komputera. Jeżeli więcej niż jeden interfejs
-                sieciowy korzysta z protokołu ARP, to wyświetlane są wpisy dla
-                każdej tabeli protokołu ARP.
-  -g            To samo co -a.
-  inet_addr     Określa adres internetowy.
-  -N if_addr    Wyświetla wpisy protokołu ARP dla interfejsu sieciowego
-                określonego przez if_addr.
-  -d            Usuwa hosta określonego przez inet_addr. W inet_addr można
-                użyć symbolu wieloznacznego * do usunięcia wszystkich hostów.
-  -s            Dodaje hosta i kojarzy adres internetowy inet_addr
-                z fizycznym adresem internetowym eth_addr.  Adres
-                fizyczny jest reprezentowany przez 6 szesnastkowych
-                bajtów oddzielonych znakami łącznika. Wpis dokonywany
-                jest na stałe.
-  eth_addr      Określa adres fizyczny.
-  if_addr       Jeżeli jest określony, to wskazuje adres interfejsu, którego
-                tabela translacji powinna zostać zmieniona.
-                Jeżeli nie jest określony, zostanie użyty pierwszy
-                odpowiadający interfejs.
-Przykłady:
-  > arp -s 157.55.85.212   00-aa-00-62-c6-09  .... Dodaje statyczny wpis.
-  > arp -a                                    .... Wyświetla tabelę arp.
-.
-Language=Romanian
-Afișează și modifică tabelele de traducere din adrese IP în adrese fizice
-folosite de Protocolul de rezolvare a adreselor (ARP).
-
-ARP -s inet_addr eth_addr [if_addr]
-ARP -d inet_addr [if_addr]
-ARP -a [inet_addr] [-N if_addr]
-
-  -a            Afișează intrările ARP actuale interogând datele protocolului
-                actual. Dacă inet_addr e specificat, adresele IP și fizică
-                sunt afișate numai pentru calculatorul specificat. Dacă
-                mai mult de o interfață de rețea folosește ARP, sunt
-                afișate intrările pentru fiecare tabel ARP.
-  -g            La fel ca la -a.
-  inet_addr     Specifică o adresă de internet.
-  -N if_addr    Afișează intrările ARP pentru interfața de rețea specificată
-                de if_addr.
-  -d            Șterge gazda specificată de inet_addr. inet_addr poate fi
-                marcat cu caracterul special * pentru a șterge toate gazdele.
-  -s            Adaugă gazda și asociază adresa de Internet inet_addr
-                cu adresa fizică eth_addr. Adresa fizică este
-                reprezentată ca 6 octeți hexazecimali separați de cratime.
-                Intrarea este permanentă.
-  eth_addr      Specifică adresa fizică.
-  if_addr       Dacă e prezent, acesta specifică adresa de Internet a
-                interfeței al cărei tabel de traducere a adreselor ar trebui
-                modificat. Dacă nu e prezentă, va fi folosită prima interfață
-                aplicabilă.
-
-Exemplu:
-  > arp -s 157.55.85.212   00-aa-00-62-c6-09  .... Adaugă o intrare statică.
-  > arp -a                                    .... Afișează tabelul arp.
-.
 
 MessageId=10001
 SymbolicName=MSG_ARP_BAD_IP_ADDRESS
@@ -123,12 +54,6 @@ Facility=System
 Language=English
 ARP: bad IP address: %1
 .
-Language=Polish
-ARP: zły adres IP: %1
-.
-Language=Romanian
-ARP: adresă IP greșită: %1
-.
 
 MessageId=10002
 SymbolicName=MSG_ARP_BAD_ARGUMENT
@@ -136,12 +61,6 @@ Severity=Success
 Facility=System
 Language=English
 ARP: bad argument: %1
-.
-Language=Polish
-ARP: zły argument: %1
-.
-Language=Romanian
-ARP: argument greșit: %1
 .
 
 MessageId=10003
@@ -153,16 +72,6 @@ Language=English
 Interface: %1!s! --- 0x%2!lx!
   Internet Address      Physical Address      Type
 .
-Language=Polish
-
-Interfejs: %1!s! --- 0x%2!lx!
-  Adres internetowy     Adres fizyczny        Typ
-.
-Language=Romanian
-
-Interfață: %1!s! --- 0x%2!lx!
-  Adresă de Internet      Adresă fizică      Tip
-.
 
 MessageId=10004
 SymbolicName=MSG_ARP_NO_MEMORY
@@ -170,12 +79,6 @@ Severity=Success
 Facility=System
 Language=English
 ARP: not enough memory
-.
-Language=Polish
-ARP: za mało pamięci
-.
-Language=Romanian
-ARP: memorie insuficientă
 .
 
 MessageId=10005
@@ -185,12 +88,6 @@ Facility=System
 Language=English
 other%0
 .
-Language=Polish
-inny%0
-.
-Language=Romanian
-altele%0
-.
 
 MessageId=10006
 SymbolicName=MSG_ARP_INVALID
@@ -198,12 +95,6 @@ Severity=Success
 Facility=System
 Language=English
 invalid%0
-.
-Language=Polish
-nieprawidłowy%0
-.
-Language=Romanian
-nevalid%0
 .
 
 MessageId=10007
@@ -213,24 +104,12 @@ Facility=System
 Language=English
 dynamic%0
 .
-Language=Polish
-dynamiczny%0
-.
-Language=Romanian
-dinamic%0
-.
 
 MessageId=10008
 SymbolicName=MSG_ARP_STATIC
 Severity=Success
 Facility=System
 Language=English
-static%0
-.
-Language=Polish
-statyczny%0
-.
-Language=Romanian
 static%0
 .
 
@@ -241,12 +120,6 @@ Facility=System
 Language=English
   %1!-20s!  %2!-20s!  %3!-10s!
 .
-Language=Polish
-  %1!-20s!  %2!-20s!  %3!-10s!
-.
-Language=Romanian
-  %1!-20s!  %2!-20s!  %3!-10s!
-.
 
 MessageId=10018
 SymbolicName=MSG_ARP_NO_ENTRIES
@@ -254,10 +127,4 @@ Severity=Success
 Facility=System
 Language=English
 No ARP entires found
-.
-Language=Polish
-Nie znaleziono żadnych wpisów ARP
-.
-Language=Romanian
-Nu au fost găsite intrări ARP
 .
