@@ -78,7 +78,7 @@ def main():
         'base/applications/cmdutils/lntget/lntget.exe.manifest', 'base/applications/cmdutils/lntget/gui.cpp',
         'media/inf/nettcpip.inf', 'bootloader/uefi/fdtacpi.c', 'hal/arch/common/acpi/tables.c',
         'base/shell/explorer/lang/en-US.rc', 'base/shell/explorer/lang/zh-CN.rc', 'media/inf/shortcuts.inf',
-        'subsystems/linux/lxterm/CMakeLists.txt', 'sdk/cmake/CMakeMacros.cmake',
+        'sdk/cmake/CMakeMacros.cmake',
     )
     defaults = {path: source.decode((ROOT / path).read_bytes()) for path in defaults_paths}
     errors = []

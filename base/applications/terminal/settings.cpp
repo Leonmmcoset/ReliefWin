@@ -379,15 +379,6 @@ Defaults()
         powershell.CommandLine = L"%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe";
         settings.Profiles.push_back(powershell);
     }
-    if (FileExistsInSystem(L"lxterm.exe"))
-    {
-        Profile ubuntu = cmd;
-        ubuntu.Name = L"Ubuntu";
-        ubuntu.CommandLine = L"%SystemRoot%\\System32\\lxterm.exe";
-        ubuntu.StartingDirectory = L"";
-        settings.Profiles.push_back(ubuntu);
-    }
-
     for (const SchemeSource &source : BuiltInSchemes)
         settings.Schemes.push_back(SchemeFromSource(source));
 

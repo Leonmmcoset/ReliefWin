@@ -332,7 +332,6 @@ list(APPEND SOURCE
     ${REACTOS_SOURCE_DIR}/ntos/po/povolumes.c
     ${REACTOS_SOURCE_DIR}/ntos/ps/apiset.c
     ${REACTOS_SOURCE_DIR}/ntos/ps/energy.c
-    ${REACTOS_SOURCE_DIR}/ntos/ps/pico.c
     ${REACTOS_SOURCE_DIR}/ntos/ps/property.c
     ${REACTOS_SOURCE_DIR}/ntos/ps/tls.c
     ${REACTOS_SOURCE_DIR}/ntos/ps/psaccessors.c

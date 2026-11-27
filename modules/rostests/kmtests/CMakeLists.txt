@@ -400,7 +400,6 @@ list(APPEND KMTEST_DRV_SOURCE
     ntos_ps/PsQuota.c
     ntos_ps/PsGetVersion.c
     ntos_ps/PsSystemThread.c
-    ntos_ps/PsPico.c
     ntos_ps/PsJobCommit.c
     ntos_se/SeAccessCheck.c
     ntos_se/SeHelpers.c

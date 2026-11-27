@@ -244,8 +244,6 @@ PspExitThread(
 
     PspRunCreateThreadNotifyRoutines(Thread, FALSE);
 
-    if (Thread->PicoNotifyExit) PspPicoThreadExit(Thread);
-
     /* The windowing kernel takes its per-thread state down while the thread can still run */
     if ((Thread->Tcb.Win32Thread != NULL) && (PspW32ThreadCallout != NULL))
         PspW32ThreadCallout(Thread, PsW32ThreadCalloutExit);
@@ -330,8 +328,6 @@ PspExitProcess(
                               Process,
                               (PCSTR)Process->ImageFileName);
     }
-
-    if (Process->PicoCreated) PspPicoProcessExit(Process);
 
     if (Process->CreateReported)
     {
@@ -502,7 +498,6 @@ PspTerminateProcessThreads(
     PETHREAD Thread;
     PETHREAD Self = PsGetCurrentThread();
     NTSTATUS Status = STATUS_NOTHING_TO_TERMINATE;
-    BOOLEAN WasExiting;
 
     PAGED_CODE();
 
@@ -516,7 +511,6 @@ PspTerminateProcessThreads(
     KeEnterCriticalRegion();
     ExAcquirePushLockExclusive(&Process->ProcessLock);
     if (Process->ExitStatus == STATUS_PENDING) Process->ExitStatus = ExitStatus;
-    WasExiting = (BOOLEAN)Process->ProcessExiting;
     Process->ProcessExiting = TRUE;
     ExReleasePushLockExclusive(&Process->ProcessLock);
     KeLeaveCriticalRegion();
@@ -536,10 +530,6 @@ PspTerminateProcessThreads(
         Status = STATUS_SUCCESS;
         Thread = PsGetNextProcessThread(Process, Thread);
     }
-
-    /* No last thread will tell the provider that a pico process with none has ended */
-    if (Status == STATUS_NOTHING_TO_TERMINATE && !WasExiting && Process->PicoCreated)
-        PspPicoProcessExit(Process);
 
     if (EndCaller && THREAD_TO_PROCESS(Self) == Process)
     {

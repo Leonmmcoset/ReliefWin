@@ -401,9 +401,6 @@ MmInitializeProcessAddressSpace(
 
     Process->AddressSpaceInitialized = 2;
     ExInitializePushLock(&Process->AddressCreationLock);
-    if (Process->PicoCreated)
-        MiSpaceOfProcess(Process)->Granularity = PAGE_SIZE;
-
     if (ProcessClone != NULL)
     {
         PMI_PROCESS Source;

@@ -126,10 +126,6 @@ def check_defaults(files, errors):
     if not english_start or english_start - chinese_start:
         errors.append({"path": "base/shell/explorer/lang/zh-CN.rc", "check": "complete Simplified Chinese modern Start menu strings"})
     require("base/shell/explorer/lang/zh-CN.rc", r'IDS_SM2_SEARCH\s+"搜索程序和文件"', "Simplified Chinese Start menu search")
-    require("media/inf/shortcuts.inf", r'(?s:\[Strings\.0804\](?:(?!\[Strings\.).)*LXTERM_TITLE=Linux 终端)', "Simplified Chinese Linux terminal shortcut")
-    require("subsystems/linux/lxterm/CMakeLists.txt", r'add_link\("Linux 终端"', "Linux terminal generated shortcut title")
-    require("subsystems/linux/lxterm/CMakeLists.txt", r'add_custom_target\(lxterm_links DEPENDS "\$\{CMAKE_CURRENT_BINARY_DIR\}/Linux 终端\.lnk"\)', "Linux terminal generated shortcut dependency")
-    require("subsystems/linux/lxterm/CMakeLists.txt", r'add_cd_file\(FILE "\$\{CMAKE_CURRENT_BINARY_DIR\}/Linux 终端\.lnk"', "Linux terminal generated shortcut installation")
     for mode in ("preinstall", "livecd"):
         require("sdk/cmake/CMakeMacros.cmake", r'utf16le_convert\(\$\{CMAKE_SOURCE_DIR\}/image/data/' + mode + r'\.inf \$\{CMAKE_BINARY_DIR\}/image/data/' + mode + r'_utf16\.inf\)', mode + " Unicode hive overlay conversion")
         require("sdk/cmake/CMakeMacros.cmake", r'list\(APPEND _' + mode + r'_inf_files\s+\$\{_registry_inf\}\s+\$\{CMAKE_BINARY_DIR\}/image/data/' + mode + r'_utf16\.inf', mode + " converted Unicode hive overlay input")

@@ -206,10 +206,7 @@ KiLoadThreadUserSegments(
 
     Pcr->NtTib.Self = (PVOID)NewThread->Teb;
 
-    /* A minimal (pico) thread brings its own GS and FS bases instead of a TEB */
-    if (NewThread->Header.Minimal)
-        __writemsr(MSR_GS_SWAP, Thread->UserGsBase);
-    else if (NewThread->Teb)
+    if (NewThread->Teb)
         __writemsr(MSR_GS_SWAP, (ULONG64)NewThread->Teb);
 
     KiSetGdtDescriptorBase(KiGetGdtEntry(Pcr->GdtBase, KGDT64_R3_CMTEB), (ULONG64)CompatTeb);
@@ -222,9 +219,6 @@ KiLoadThreadUserSegments(
         __writefs(KGDT64_R3_CMTEB | RPL_MASK);
 #endif
     }
-
-    if (NewThread->Header.Minimal)
-        __writemsr(MSR_FS_BASE, Thread->UserFsBase);
 }
 
 BOOLEAN

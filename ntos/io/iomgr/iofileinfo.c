@@ -46,7 +46,6 @@ UCHAR IopQueryOperationLength[FileMaximumInformation] =
     [FileNumaNodeInformation] = sizeof(FILE_NUMA_NODE_INFORMATION),
     [FileIdInformation] = sizeof(FILE_ID_INFORMATION),
     [FileStatInformation] = sizeof(FILE_STAT_INFORMATION),
-    [FileStatLxInformation] = sizeof(FILE_STAT_LX_INFORMATION),
     [FileCaseSensitiveInformation] = sizeof(FILE_CASE_SENSITIVE_INFORMATION)
 };
 
@@ -104,7 +103,6 @@ ACCESS_MASK IopQueryOperationAccess[FileMaximumInformation] =
     [FileNetworkOpenInformation] = FILE_READ_ATTRIBUTES,
     [FileAttributeTagInformation] = FILE_READ_ATTRIBUTES,
     [FileStatInformation] = FILE_READ_ATTRIBUTES,
-    [FileStatLxInformation] = FILE_READ_ATTRIBUTES | FILE_READ_EA,
     [FileCaseSensitiveInformation] = FILE_READ_ATTRIBUTES
 };
 

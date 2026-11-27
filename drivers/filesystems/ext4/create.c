@@ -471,8 +471,6 @@ Ext4CreateWorker(
     ACCESS_MASK Access = Stack->Parameters.Create.SecurityContext->DesiredAccess;
     ULONG Options = Stack->Parameters.Create.Options & FILE_VALID_OPTION_FLAGS;
     ULONG Disposition = Stack->Parameters.Create.Options >> 24;
-    /* Names differ by case on this file system, and a kernel caller such as the Linux subsystem gets exactly that.
-     * A user-mode caller that asks for a case-insensitive open also finds a name that differs in case only. */
     BOOLEAN IgnoreCase = !(Stack->Flags & SL_CASE_SENSITIVE) && Irp->RequestorMode == UserMode;
     BOOLEAN TargetDirectory = BooleanFlagOn(Stack->Flags, SL_OPEN_TARGET_DIRECTORY);
     BOOLEAN ById = BooleanFlagOn(Options, FILE_OPEN_BY_FILE_ID);
@@ -725,7 +723,7 @@ Ext4CreateWorker(
     if (Created && Stack->Parameters.Create.EaLength != 0 && Irp->AssociatedIrp.SystemBuffer != NULL)
     {
         ExAcquireResourceExclusiveLite(&Fcb->MainResource, TRUE);
-        Ext4ApplyEaList(Fcb, Ccb, Irp->AssociatedIrp.SystemBuffer, Stack->Parameters.Create.EaLength);
+        Ext4ApplyEaList(Fcb, Irp->AssociatedIrp.SystemBuffer, Stack->Parameters.Create.EaLength);
         ExReleaseResourceLite(&Fcb->MainResource);
     }
 

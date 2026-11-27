@@ -199,10 +199,10 @@ NTSTATUS Ext4AllocateRange(_In_ PEXT4_FCB Fcb, _In_ ULONGLONG Offset, _In_ ULONG
 
 /* fileinfo.c */
 NTSTATUS Ext4MarkDeletePending(_In_ PEXT4_FCB Fcb, _In_ PEXT4_CCB Ccb, _In_ PFILE_OBJECT FileObject, _In_ BOOLEAN Delete);
-VOID Ext4FillStatLx(_In_ PEXT4_FCB Fcb, _Out_ PFILE_STAT_LX_INFORMATION Stat);
+VOID Ext4FillStat(_In_ PEXT4_FCB Fcb, _Out_ PFILE_STAT_INFORMATION Stat);
 
 /* ea.c */
-NTSTATUS Ext4ApplyEaList(_In_ PEXT4_FCB Fcb, _In_ PEXT4_CCB Ccb, _In_reads_bytes_(Length) PFILE_FULL_EA_INFORMATION List, _In_ ULONG Length);
+NTSTATUS Ext4ApplyEaList(_In_ PEXT4_FCB Fcb, _In_reads_bytes_(Length) PFILE_FULL_EA_INFORMATION List, _In_ ULONG Length);
 ULONG Ext4EaSize(_In_ PEXT4_FCB Fcb);
 
 /* close.c */

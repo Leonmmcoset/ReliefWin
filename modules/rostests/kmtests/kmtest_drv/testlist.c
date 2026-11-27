@@ -423,7 +423,6 @@ KMT_TESTFUNC Test_PsNotify;
 KMT_TESTFUNC Test_PsQuota;
 KMT_TESTFUNC Test_PsGetVersion;
 KMT_TESTFUNC Test_PsSystemThread;
-KMT_TESTFUNC Test_PsPico;
 KMT_TESTFUNC Test_PsJobCommit;
 KMT_TESTFUNC Test_SeAccessCheckKM;
 KMT_TESTFUNC Test_SeInheritance;
@@ -929,7 +928,6 @@ const KMT_TEST TestList[] =
     { "PsNotifyKM",                         Test_PsNotifyKM },
     { "PsGetVersion",                       Test_PsGetVersion },
     { "PsSystemThread",                     Test_PsSystemThread },
-    { "PsPico",                             Test_PsPico },
     { "PsJobCommit",                        Test_PsJobCommit },
     { "RtlBitmapKM",                        Test_RtlBitmapKM },
     { "RtlBitmapEx",                        Test_RtlBitmapEx },

@@ -50,7 +50,6 @@ ICONS = (
     ("utilities-terminal", ("base/shell/cmd/res/terminal.ico", "base/applications/terminal/res/terminal.ico")),
     ("preferences-system-windows", ("base/applications/dwmsettings/res/dwm-settings.ico",)),
     ("yast-vm-install", ("base/setup/reliefwin/res/reliefwin.ico",)),
-    ("tux", ("subsystems/linux/lxwinhost/res/linux.ico",)),
 )
 SCREENS = {
     "computer": {16: (2, 3, 14, 11), 22: (1, 2, 21, 16), 24: (2, 3, 22, 17), 32: (3, 5, 29, 22), 48: (4, 6, 44, 34), 64: (6, 9, 58, 44)},
@@ -101,7 +100,6 @@ FLUENT_STRIPS = (
 )
 BADGED = (
     ("computer", "emblem-system", ("base/applications/mscutils/devmgmt/devmgmt.ico",)),
-    ("utilities-terminal", "tux", ("subsystems/linux/lxterm/res/linux.ico",)),
 )
 
 

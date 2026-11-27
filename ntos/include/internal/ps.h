@@ -120,12 +120,6 @@ typedef NTSTATUS
     _In_opt_ PVOID Context
 );
 
-#define PSP_PROCESS_CREATE_PICO       0x40000000
-
-#define PSP_PROCESS_CREATE_PICO_CLONE 0x80000000
-
-#define PSP_PROCESS_CREATE_PICO_MASK  (PSP_PROCESS_CREATE_PICO | PSP_PROCESS_CREATE_PICO_CLONE)
-
 extern ULONG PspTraceLevel;
 
 extern LCID PsDefaultThreadLocaleId;
@@ -371,35 +365,6 @@ PspMapApiSetSchema(
 PPO_PROCESS_ENERGY_CONTEXT
 PspGetEnergyContext(
     _In_ PEPROCESS Process);
-
-BOOLEAN
-NTAPI
-PspPicoDispatchException(
-    _Inout_ PEXCEPTION_RECORD ExceptionRecord,
-    _Inout_opt_ PKEXCEPTION_FRAME ExceptionFrame,
-    _Inout_ PKTRAP_FRAME TrapFrame);
-
-VOID
-NTAPI
-PspPicoProcessExit(
-    _In_ PEPROCESS Process);
-
-VOID
-NTAPI
-PspPicoSystemCallDispatch(
-    _Inout_ PKTRAP_FRAME TrapFrame,
-    _Inout_opt_ PKEXCEPTION_FRAME ExceptionFrame);
-
-VOID
-NTAPI
-PspPicoThreadExit(
-    _In_ PETHREAD Thread);
-
-VOID
-NTAPI
-PspPicoThreadStartup(
-    _Inout_ PKTRAP_FRAME TrapFrame,
-    _Inout_opt_ PKEXCEPTION_FRAME ExceptionFrame);
 
 VOID
 NTAPI

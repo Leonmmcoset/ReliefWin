@@ -67,12 +67,10 @@ Ext4StandardInformation(
 }
 
 VOID
-Ext4FillStatLx(
+Ext4FillStat(
     _In_ PEXT4_FCB Fcb,
-    _Out_ PFILE_STAT_LX_INFORMATION Stat)
+    _Out_ PFILE_STAT_INFORMATION Stat)
 {
-    ULONG Type = Fcb->Attr.Mode & E4_S_IFMT;
-
     RtlZeroMemory(Stat, sizeof(*Stat));
     Stat->FileId.QuadPart = Fcb->Inode;
     Stat->CreationTime = Ext4TimeToNt(&Fcb->Attr.Create);
@@ -85,17 +83,6 @@ Ext4FillStatLx(
     if (Stat->FileAttributes == 0) Stat->FileAttributes = FILE_ATTRIBUTE_NORMAL;
     Stat->NumberOfLinks = Fcb->Orphaned ? 0 : max(Fcb->Attr.Links, 1);
     Stat->EffectiveAccess = Fcb->Vcb->Writable ? FILE_ALL_ACCESS : EXT4_READ_ACCESS;
-    Stat->LxFlags = LX_FILE_METADATA_HAS_UID | LX_FILE_METADATA_HAS_GID | LX_FILE_METADATA_HAS_MODE;
-    if (Fcb->Directory) Stat->LxFlags |= LX_FILE_CASE_SENSITIVE_DIR;
-    Stat->LxUid = Fcb->Attr.Uid;
-    Stat->LxGid = Fcb->Attr.Gid;
-    Stat->LxMode = Fcb->Attr.Mode;
-    if (Type == E4_S_IFCHR || Type == E4_S_IFBLK)
-    {
-        Stat->LxFlags |= LX_FILE_METADATA_HAS_DEVICE_ID;
-        Stat->LxDeviceIdMajor = Fcb->Attr.DeviceMajor;
-        Stat->LxDeviceIdMinor = Fcb->Attr.DeviceMinor;
-    }
 }
 
 static
@@ -247,20 +234,14 @@ Ext4QueryInformationWorker(
 
         case FileStatInformation:
         {
-            FILE_STAT_LX_INFORMATION Lx;
+            FILE_STAT_INFORMATION Stat;
 
             EXT4_NEED(FILE_STAT_INFORMATION);
-            Ext4FillStatLx(Fcb, &Lx);
-            RtlCopyMemory(Buffer, &Lx, sizeof(FILE_STAT_INFORMATION));
-            *Information = sizeof(FILE_STAT_INFORMATION);
+            Ext4FillStat(Fcb, &Stat);
+            RtlCopyMemory(Buffer, &Stat, sizeof(Stat));
+            *Information = sizeof(Stat);
             return STATUS_SUCCESS;
         }
-
-        case FileStatLxInformation:
-            EXT4_NEED(FILE_STAT_LX_INFORMATION);
-            Ext4FillStatLx(Fcb, Buffer);
-            *Information = sizeof(FILE_STAT_LX_INFORMATION);
-            return STATUS_SUCCESS;
 
         case FileCaseSensitiveInformation:
             EXT4_NEED(FILE_CASE_SENSITIVE_INFORMATION);

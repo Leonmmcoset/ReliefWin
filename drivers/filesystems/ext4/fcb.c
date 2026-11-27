@@ -235,7 +235,6 @@ Ext4FileAttributes(
         default: Attributes = FILE_ATTRIBUTE_ARCHIVE; break;
     }
 
-    /* The system attribute is how the Linux subsystem tells a special file from a regular one before it asks for the mode */
     if (Tag != 0) Attributes |= FILE_ATTRIBUTE_REPARSE_POINT | FILE_ATTRIBUTE_SYSTEM;
     if ((Attr->Mode & E4_S_IFMT) == E4_S_IFREG && (Attr->Mode & 0222) == 0) Attributes |= FILE_ATTRIBUTE_READONLY;
     if (Name != NULL && NameLength > 1 && Name[0] == '.' && !(NameLength == 2 && Name[1] == '.'))

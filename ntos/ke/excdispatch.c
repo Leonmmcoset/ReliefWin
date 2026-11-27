@@ -225,9 +225,6 @@ KiDispatchUserException(
 
     *Handled = FALSE;
 
-    if (PspPicoDispatchException(ExceptionRecord, ExceptionFrame, TrapFrame))
-        return;
-
     KiArchBeginUserExceptionDispatch(TrapFrame);
 
     /* A fast fail never reaches user-mode handlers */

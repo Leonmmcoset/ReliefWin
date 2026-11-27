@@ -332,17 +332,15 @@ static
 NTSTATUS
 GetFileStatInformation(_In_ PVolumeContextBlock VolCB,
                        _In_ PFileContextBlock FileCB,
-                       _In_ BOOLEAN Lx,
-                       _Out_ PFILE_STAT_LX_INFORMATION Buffer,
+                       _Out_ PFILE_STAT_INFORMATION Buffer,
                        _Inout_ PULONG Length)
 {
-    ULONG Size = Lx ? sizeof(FILE_STAT_LX_INFORMATION) : sizeof(FILE_STAT_INFORMATION);
     FILE_BASIC_INFORMATION Basic;
     FILE_STANDARD_INFORMATION Standard;
     ULONG BasicLength = sizeof(Basic), StandardLength = sizeof(Standard);
     NTSTATUS Status;
 
-    if (*Length < Size)
+    if (*Length < sizeof(*Buffer))
         return STATUS_BUFFER_TOO_SMALL;
 
     Status = GetFileBasicInformation(FileCB, &Basic, &BasicLength);
@@ -363,13 +361,8 @@ GetFileStatInformation(_In_ PVolumeContextBlock VolCB,
     Buffer->NumberOfLinks = Standard.NumberOfLinks;
     Buffer->EffectiveAccess = FileCB->MaximumAccess;
     Status = GetFileReparseTag(FileCB, Basic.FileAttributes, &Buffer->ReparseTag);
-    if (NT_SUCCESS(Status) && Lx)
-        Status = NtfsQueryLxMetadata(FileCB, Buffer);
-    /* Windows 11 reports no effective access for a file that carries a Linux mode */
-    if (NT_SUCCESS(Status) && Lx && (Buffer->LxFlags & LX_FILE_METADATA_HAS_MODE))
-        Buffer->EffectiveAccess = 0;
     if (NT_SUCCESS(Status))
-        *Length -= Size;
+        *Length -= sizeof(*Buffer);
     return Status;
 }
 
@@ -2694,7 +2687,6 @@ NtfsFsdQueryInformation(_In_    PDEVICE_OBJECT VolumeDeviceObject,
         case FileIdInformation:
         case FileCaseSensitiveInformation:
         case FileStatInformation:
-        case FileStatLxInformation:
         case FileHardLinkInformation:
             if (!FileCB->FileRec || !VolCB || !VolCB->DiskVolume)
             {
@@ -2751,9 +2743,8 @@ NtfsFsdQueryInformation(_In_    PDEVICE_OBJECT VolumeDeviceObject,
                                           &BufferLength);
             break;
         case FileStatInformation:
-        case FileStatLxInformation:
-            Status = GetFileStatInformation(VolCB, FileCB, FileInfoRequest == FileStatLxInformation,
-                                            (PFILE_STAT_LX_INFORMATION)SystemBuffer, &BufferLength);
+            Status = GetFileStatInformation(VolCB, FileCB,
+                                            (PFILE_STAT_INFORMATION)SystemBuffer, &BufferLength);
             break;
         case FileNetworkOpenInformation:
             Status = GetFileNetworkOpenInformation(FileCB,

@@ -27,7 +27,7 @@ KiArmNeedsGuiConversion(
     _In_ PKTHREAD Thread,
     _In_ PKTRAP_FRAME TrapFrame)
 {
-    return !Thread->Header.Minimal && ((TrapFrame->R12 >> TABLE_OFFSET_BITS) == WIN32K_SERVICE_INDEX) &&
+    return ((TrapFrame->R12 >> TABLE_OFFSET_BITS) == WIN32K_SERVICE_INDEX) &&
            !Thread->GuiThread && KeServiceDescriptorTableShadow[WIN32K_SERVICE_INDEX].Base &&
            PspW32ProcessCallout && PspW32ThreadCallout;
 }
@@ -220,12 +220,6 @@ KiArmSystemServiceDispatch(
 
     KeGetCurrentPrcb()->KeSystemCalls++;
     _enable();
-
-    if (Thread->Header.Minimal && KiIsUserModeTrap(TrapFrame))
-    {
-        PspPicoSystemCallDispatch(TrapFrame, NULL);
-        return;
-    }
 
     if (KiIsUserModeTrap(TrapFrame) && KiArmNeedsGuiConversion(Thread, TrapFrame))
     {

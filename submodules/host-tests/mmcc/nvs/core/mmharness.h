@@ -111,7 +111,6 @@ void TestAsync(void);
 void TestSys(void);
 void TestProcess(void);
 void TestHighMem(void);
-void TestLxMm(void);
 void TestBenchSys(void);
 void TestBenchVm(void);
 void TestBenchCcDirty(void);

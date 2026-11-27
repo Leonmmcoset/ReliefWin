@@ -458,7 +458,6 @@ SIZE(ExecutiveProcessObjectLength, EPROCESS),
 
 HEADER("ETHREAD offsets"),
 OFFSET(EtCid, ETHREAD, Cid), // 0x364
-//OFFSET(EtPicoContext, ETHREAD, PicoContext),
 SIZE(ExecutiveThreadObjectLength, ETHREAD), // 0x418
 
 HEADER("KEVENT"),
@@ -816,10 +815,6 @@ OFFSET(ThLegoData, KTHREAD, LegoData),
 //OFFSET(ThSListFaultCount, KTHREAD, SListFaultCount), // 0x18E
 //OFFSET(ThSListFaultAddress, KTHREAD, ListFaultAddress), // 0x10
 #endif // _M_IX86
-#if defined(_M_IX86) || defined(_M_AMD64)
-//OFFSET(ThUserFsBase, KTHREAD, UserFsBase), // 0x434
-//OFFSET(ThUserGsBase, KTHREAD, GsBase), // 0x438
-#endif // defined
 SIZE(KernelThreadObjectLength, KTHREAD),
 
 HEADER("ETHREAD"),

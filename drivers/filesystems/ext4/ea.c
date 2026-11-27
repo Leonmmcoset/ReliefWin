@@ -1,7 +1,7 @@
 /*
  * PROJECT:     ReliefWin ext4 file system driver
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
- * PURPOSE:     Extended attributes: the Linux owner, group, mode and device of a file, and its user attributes
+ * PURPOSE:     Extended attributes for file user attributes
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
  */
 
@@ -11,16 +11,6 @@
 #define EXT4_XATTR_USER_LENGTH  5
 #define EXT4_EA_ENTRY_SIZE(NameLength, ValueLength) \
     ALIGN_UP_BY(FIELD_OFFSET(FILE_FULL_EA_INFORMATION, EaName) + (NameLength) + 1 + (ValueLength), sizeof(ULONG))
-
-static
-BOOLEAN
-Ext4EaNameIs(
-    _In_reads_bytes_(Length) const CHAR *Name,
-    _In_ ULONG Length,
-    _In_ PCSTR Wanted)
-{
-    return Length == strlen(Wanted) && _strnicmp(Name, Wanted, Length) == 0;
-}
 
 static
 PFILE_FULL_EA_INFORMATION
@@ -49,7 +39,6 @@ Ext4AppendEa(
     return Entry;
 }
 
-/* Every attribute of the file as one list: the four Linux metadata attributes first, then the user attributes */
 static
 NTSTATUS
 Ext4CollectEas(
@@ -58,7 +47,6 @@ Ext4CollectEas(
     _Out_ PULONG Length)
 {
     PEXT4_VCB Vcb = Fcb->Vcb;
-    ULONG Type = Fcb->Attr.Mode & E4_S_IFMT;
     PFILE_FULL_EA_INFORMATION Previous = NULL;
     PCHAR Names = NULL;
     uint32_t NamesLength = 0, Offset;
@@ -80,7 +68,7 @@ Ext4CollectEas(
             Error = E4XattrList(&Vcb->Core, Fcb->Inode, Names, NamesLength, &NamesLength);
     }
 
-    Size = 4 * EXT4_EA_ENTRY_SIZE(6, 8);
+    Size = 0;
     for (Offset = 0; Error == EOK && Offset < NamesLength; Offset += (uint32_t)strlen(Names + Offset) + 1)
     {
         ULONG NameLength = (ULONG)strlen(Names + Offset);
@@ -99,19 +87,12 @@ Ext4CollectEas(
     Buffer = NULL;
     if (Error == EOK)
     {
+        if (Size == 0) Size = 1;
         Buffer = ExAllocatePoolZero(PagedPool, Size, TAG_EXT4);
         if (Buffer == NULL) Error = ENOMEM;
     }
     if (Error == EOK)
     {
-        ULONG Device[2] = { Fcb->Attr.DeviceMajor, Fcb->Attr.DeviceMinor };
-
-        Ext4AppendEa(Buffer, &Used, &Previous, LX_FILE_METADATA_UID_EA_NAME, 6, &Fcb->Attr.Uid, sizeof(ULONG));
-        Ext4AppendEa(Buffer, &Used, &Previous, LX_FILE_METADATA_GID_EA_NAME, 6, &Fcb->Attr.Gid, sizeof(ULONG));
-        Ext4AppendEa(Buffer, &Used, &Previous, LX_FILE_METADATA_MODE_EA_NAME, 6, &Fcb->Attr.Mode, sizeof(ULONG));
-        if (Type == E4_S_IFCHR || Type == E4_S_IFBLK)
-            Ext4AppendEa(Buffer, &Used, &Previous, LX_FILE_METADATA_DEVICE_ID_EA_NAME, 6, Device, sizeof(Device));
-
         for (Offset = 0; Offset < NamesLength; Offset += (uint32_t)strlen(Names + Offset) + 1)
         {
             ULONG NameLength = (ULONG)strlen(Names + Offset);
@@ -142,9 +123,7 @@ Ext4CollectEas(
         return Ext4Status(Vcb, Error);
     }
 
-    /* The Linux metadata attributes are always there, so the list is never empty */
     ASSERT(Buffer != NULL);
-    ASSERT(Used != 0);
     ASSERT(Used <= Size);
     *List = Buffer;
     *Length = Used;
@@ -160,6 +139,11 @@ Ext4EaSize(
     PUCHAR List;
 
     if (!NT_SUCCESS(Ext4CollectEas(Fcb, &List, &Length))) return 0;
+    if (Length == 0)
+    {
+        ExFreePoolWithTag(List, TAG_EXT4);
+        return 0;
+    }
 
     for (Entry = (PFILE_FULL_EA_INFORMATION)List;; Entry = (PFILE_FULL_EA_INFORMATION)((PUCHAR)Entry + Entry->NextEntryOffset))
     {
@@ -173,14 +157,12 @@ Ext4EaSize(
 NTSTATUS
 Ext4ApplyEaList(
     _In_ PEXT4_FCB Fcb,
-    _In_ PEXT4_CCB Ccb,
     _In_reads_bytes_(Length) PFILE_FULL_EA_INFORMATION List,
     _In_ ULONG Length)
 {
     PEXT4_VCB Vcb = Fcb->Vcb;
     PFILE_FULL_EA_INFORMATION Entry = List;
-    E4_ATTR Attr = Fcb->Attr;
-    ULONG Mask = 0, NewType = 0, ErrorOffset;
+    ULONG ErrorOffset;
     NTSTATUS Status;
     int Error = EOK;
 
@@ -200,47 +182,8 @@ Ext4ApplyEaList(
         ULONG NameLength = Entry->EaNameLength;
         ULONG ValueLength = Entry->EaValueLength;
 
-        if (Ext4EaNameIs(Name, NameLength, LX_FILE_METADATA_UID_EA_NAME))
+        if (NameLength != 0)
         {
-            if (ValueLength >= sizeof(ULONG))
-            {
-                RtlCopyMemory(&Attr.Uid, Value, sizeof(ULONG));
-                Mask |= E4_SET_UID;
-            }
-        }
-        else if (Ext4EaNameIs(Name, NameLength, LX_FILE_METADATA_GID_EA_NAME))
-        {
-            if (ValueLength >= sizeof(ULONG))
-            {
-                RtlCopyMemory(&Attr.Gid, Value, sizeof(ULONG));
-                Mask |= E4_SET_GID;
-            }
-        }
-        else if (Ext4EaNameIs(Name, NameLength, LX_FILE_METADATA_MODE_EA_NAME))
-        {
-            if (ValueLength >= sizeof(ULONG))
-            {
-                ULONG Mode;
-
-                RtlCopyMemory(&Mode, Value, sizeof(ULONG));
-                Attr.Mode = (Attr.Mode & E4_S_IFMT) | (Mode & 07777);
-                Mask |= E4_SET_MODE;
-                if ((Mode & E4_S_IFMT) != 0 && (Mode & E4_S_IFMT) != (Fcb->Attr.Mode & E4_S_IFMT)) NewType = Mode & E4_S_IFMT;
-            }
-        }
-        else if (Ext4EaNameIs(Name, NameLength, LX_FILE_METADATA_DEVICE_ID_EA_NAME))
-        {
-            if (ValueLength >= 2 * sizeof(ULONG))
-            {
-                RtlCopyMemory(&Attr.DeviceMajor, Value, sizeof(ULONG));
-                RtlCopyMemory(&Attr.DeviceMinor, Value + sizeof(ULONG), sizeof(ULONG));
-                Mask |= E4_SET_DEVICE;
-            }
-        }
-        else if (NameLength != 0)
-        {
-            /* TODO: the attribute lxcore keeps Linux extended attributes in is stored as one user attribute, so
-             * Linux itself does not see them as security.* or trusted.* attributes */
             CHAR Full[EXT4_XATTR_USER_LENGTH + 256];
 
             RtlCopyMemory(Full, EXT4_XATTR_USER, EXT4_XATTR_USER_LENGTH);
@@ -260,12 +203,6 @@ Ext4ApplyEaList(
         Entry = (PFILE_FULL_EA_INFORMATION)((PUCHAR)Entry + Entry->NextEntryOffset);
     }
 
-    /* The mode attribute is how a file becomes a symbolic link, a device node, a fifo or a socket */
-    /* FIXME: a link gets its target with the write that follows, in another transaction; a crash between the two
-     * leaves an empty link */
-    if (Error == EOK && NewType != 0)
-        Error = E4SetType(&Vcb->Core, Ccb->ParentInode, Ccb->Name, Ccb->NameLength, Fcb->Inode, NewType | (Attr.Mode & 07777));
-    if (Error == EOK && Mask != 0) Error = E4SetAttr(&Vcb->Core, Fcb->Inode, Mask, &Attr);
     if (Vcb->Core.TransDepth != 0) Error = E4End(&Vcb->Core, Error);
     Status = Ext4Status(Vcb, Error);
     Ext4UnlockCore(Vcb);
@@ -273,15 +210,6 @@ Ext4ApplyEaList(
 
     Ext4MarkCoreDirty(Vcb);
     Status = Ext4RefreshFcb(Fcb);
-    if (NT_SUCCESS(Status) && NewType != 0 && !Fcb->Directory)
-    {
-        /* Whatever the handle did as a regular file is over: the size is the one of the new node */
-        ExAcquireResourceExclusiveLite(&Fcb->PagingIoResource, TRUE);
-        Fcb->Header.FileSize.QuadPart = 0;
-        Fcb->Header.ValidDataLength.QuadPart = 0;
-        Fcb->Header.AllocationSize.QuadPart = 0;
-        ExReleaseResourceLite(&Fcb->PagingIoResource);
-    }
     return Status;
 }
 
@@ -355,7 +283,7 @@ Ext4QueryEaWorker(
                 Status = STATUS_EA_LIST_INCONSISTENT;
                 break;
             }
-            Found = Ext4FindEa(List, Get->EaName, Get->EaNameLength);
+            Found = ListLength != 0 ? Ext4FindEa(List, Get->EaName, Get->EaNameLength) : NULL;
             ValueLength = Found ? Found->EaValueLength : 0;
             Needed = EXT4_EA_ENTRY_SIZE(Get->EaNameLength, ValueLength);
             if (Used + Needed > OutputLength)
@@ -368,6 +296,10 @@ Ext4QueryEaWorker(
             if (Get->NextEntryOffset == 0 || Single) break;
             Offset += Get->NextEntryOffset;
         }
+    }
+    else if (ListLength == 0)
+    {
+        Status = (Stack->Flags & SL_INDEX_SPECIFIED) ? STATUS_NONEXISTENT_EA_ENTRY : STATUS_NO_EAS_ON_FILE;
     }
     else
     {
@@ -460,7 +392,7 @@ Ext4DispatchSetEa(
     KeEnterCriticalRegion();
     ExAcquireResourceSharedLite(&Vcb->Resource, TRUE);
     ExAcquireResourceExclusiveLite(&Fcb->MainResource, TRUE);
-    Status = Ext4ApplyEaList(Fcb, Ccb, Buffer, Stack->Parameters.SetEa.Length);
+    Status = Ext4ApplyEaList(Fcb, Buffer, Stack->Parameters.SetEa.Length);
     if (NT_SUCCESS(Status)) Ext4NotifyChange(Vcb, &Ccb->FullName, FILE_NOTIFY_CHANGE_EA | FILE_NOTIFY_CHANGE_ATTRIBUTES, FILE_ACTION_MODIFIED);
     ExReleaseResourceLite(&Fcb->MainResource);
     ExReleaseResourceLite(&Vcb->Resource);

@@ -371,9 +371,6 @@ KiDispatchException(
 
     if (PreviousMode != KernelMode)
     {
-        if (PspPicoDispatchException(ExceptionRecord, ExceptionFrame, TrapFrame))
-            return;
-
         if (FirstChance)
         {
             if ((!PsGetCurrentProcess()->DebugPort && !KdIgnoreUmExceptions) || KdIsThisAKdTrap(ExceptionRecord, &Context, PreviousMode))

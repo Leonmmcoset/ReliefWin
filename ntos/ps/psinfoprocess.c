@@ -1413,8 +1413,7 @@ NtQueryInformationProcess(
             break;
 
         case ProcessSubsystemInformation:
-            Value = Process->PicoCreated ? SubsystemInformationTypeWSL :
-                                           SubsystemInformationTypeWin32;
+            Value = SubsystemInformationTypeWin32;
 
             Status = PspReturnInformation(ProcessInformation,
                                           ProcessInformationLength,

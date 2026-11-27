@@ -124,28 +124,6 @@ KiEnterSystemService(
     return Thread;
 }
 
-VOID
-KiPicoSystemCallHandler(
-    _Inout_ PKTRAP_FRAME TrapFrame,
-    _Inout_ PKEXCEPTION_FRAME ExceptionFrame)
-{
-    PKTHREAD Thread = KiEnterSystemService(TrapFrame);
-
-    _enable();
-    PspPicoSystemCallDispatch(TrapFrame, ExceptionFrame);
-
-    if (Thread->ApcState.UserApcPending)
-    {
-        KIRQL OldIrql;
-
-        KeRaiseIrql(APC_LEVEL, &OldIrql);
-        KiDeliverApc(UserMode, ExceptionFrame, TrapFrame);
-        KeLowerIrql(OldIrql);
-    }
-
-    _disable();
-}
-
 static
 VOID
 KiTrackInstrumentation(

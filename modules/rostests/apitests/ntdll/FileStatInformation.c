@@ -1,14 +1,13 @@
 /*
  * PROJECT:     ReliefWin API tests
  * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
- * PURPOSE:     Tests for FileStatInformation and FileStatLxInformation
+ * PURPOSE:     Tests for FileStatInformation and retired Linux metadata queries
  * COPYRIGHT:   Copyright 2026 Ahmed ARIF <arif.ing@outlook.com>
  */
 
 #include "precomp.h"
 
-/* Layouts and values from the WDK 10.0.26100.0 ntifs.h */
-typedef struct _TEST_FILE_STAT_LX_INFORMATION
+typedef struct _TEST_FILE_STAT_INFORMATION
 {
     LARGE_INTEGER FileId;
     LARGE_INTEGER CreationTime;
@@ -21,44 +20,15 @@ typedef struct _TEST_FILE_STAT_LX_INFORMATION
     ULONG ReparseTag;
     ULONG NumberOfLinks;
     ACCESS_MASK EffectiveAccess;
-    ULONG LxFlags;
-    ULONG LxUid;
-    ULONG LxGid;
-    ULONG LxMode;
-    ULONG LxDeviceIdMajor;
-    ULONG LxDeviceIdMinor;
-} TEST_FILE_STAT_LX_INFORMATION;
+} TEST_FILE_STAT_INFORMATION;
 
-#define TEST_FILE_STAT_SIZE         FIELD_OFFSET(TEST_FILE_STAT_LX_INFORMATION, LxFlags)
-#define TestFileStatInformation     ((FILE_INFORMATION_CLASS)68)
-#define TestFileStatLxInformation   ((FILE_INFORMATION_CLASS)70)
-#define TEST_LX_HAS_UID             0x1
-#define TEST_LX_HAS_GID             0x2
-#define TEST_LX_HAS_MODE            0x4
-#define TEST_LX_HAS_DEVICE_ID       0x8
+#define TEST_FILE_STAT_INFORMATION_CLASS ((FILE_INFORMATION_CLASS)68)
+#define TEST_REMOVED_LX_INFORMATION_CLASS ((FILE_INFORMATION_CLASS)70)
 
 typedef NTSTATUS (NTAPI *PNT_QUERY_INFORMATION_BY_NAME)(POBJECT_ATTRIBUTES, PIO_STATUS_BLOCK, PVOID, ULONG,
                                                         FILE_INFORMATION_CLASS);
 
-static ULONG AppendEa(PUCHAR Buffer, ULONG Offset, PFILE_FULL_EA_INFORMATION *Previous, PCSTR Name,
-                      const VOID *Value, USHORT ValueLength)
-{
-    PFILE_FULL_EA_INFORMATION Entry = (PFILE_FULL_EA_INFORMATION)(Buffer + Offset);
-    UCHAR NameLength = (UCHAR)strlen(Name);
-
-    Entry->NextEntryOffset = 0;
-    Entry->Flags = 0;
-    Entry->EaNameLength = NameLength;
-    Entry->EaValueLength = ValueLength;
-    memcpy(Entry->EaName, Name, NameLength + 1);
-    memcpy(Entry->EaName + NameLength + 1, Value, ValueLength);
-    if (*Previous)
-        (*Previous)->NextEntryOffset = (ULONG)((PUCHAR)Entry - (PUCHAR)*Previous);
-    *Previous = Entry;
-    return Offset + ((FIELD_OFFSET(FILE_FULL_EA_INFORMATION, EaName) + NameLength + 1 + ValueLength + 3) & ~3UL);
-}
-
-static VOID CheckCommonFields(HANDLE Handle, const TEST_FILE_STAT_LX_INFORMATION *Stat, PCSTR What)
+static VOID CheckCommonFields(HANDLE Handle, const TEST_FILE_STAT_INFORMATION *Stat, PCSTR What)
 {
     FILE_BASIC_INFORMATION Basic;
     FILE_STANDARD_INFORMATION Standard;
@@ -104,53 +74,12 @@ static HANDLE OpenPath(PCWSTR Path, ACCESS_MASK Access, ULONG Options)
     return NT_SUCCESS(Status) ? Handle : NULL;
 }
 
-static VOID TestEffectiveAccessWithoutMode(PCWSTR Directory)
-{
-    static const PCSTR Names[] = { "$LXUID", "$LXGID", "$LXDEV" };
-    static const ULONG Flags[] = { TEST_LX_HAS_UID, TEST_LX_HAS_GID, TEST_LX_HAS_DEVICE_ID };
-    TEST_FILE_STAT_LX_INFORMATION Stat;
-    PFILE_FULL_EA_INFORMATION Previous;
-    ULONG Value[2] = { 5, 7 }, EaLength, Index;
-    UCHAR EaBuffer[64];
-    WCHAR Path[MAX_PATH];
-    IO_STATUS_BLOCK Iosb;
-    NTSTATUS Status;
-    HANDLE File;
-
-    for (Index = 0; Index < ARRAYSIZE(Names); Index++)
-    {
-        GetTempFileNameW(Directory, L"fsa", 0, Path);
-        File = CreateFileW(Path, GENERIC_READ | GENERIC_WRITE | FILE_READ_EA | FILE_WRITE_EA,
-                           FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, CREATE_ALWAYS,
-                           FILE_ATTRIBUTE_NORMAL, NULL);
-        ok(File != INVALID_HANDLE_VALUE, "%s: CreateFileW failed with %lu\n", Names[Index], GetLastError());
-        if (File == INVALID_HANDLE_VALUE)
-            continue;
-
-        Previous = NULL;
-        EaLength = AppendEa(EaBuffer, 0, &Previous, Names[Index], Value,
-                            (Flags[Index] == TEST_LX_HAS_DEVICE_ID) ? sizeof(Value) : sizeof(Value[0]));
-        ok_ntstatus(NtSetEaFile(File, &Iosb, EaBuffer, EaLength), STATUS_SUCCESS);
-        memset(&Stat, 0xcc, sizeof(Stat));
-        Status = NtQueryInformationFile(File, &Iosb, &Stat, sizeof(Stat), TestFileStatLxInformation);
-        ok_ntstatus(Status, STATUS_SUCCESS);
-        ok(Stat.LxFlags == Flags[Index], "%s: LxFlags %lx\n", Names[Index], Stat.LxFlags);
-        ok(Stat.EffectiveAccess == FILE_ALL_ACCESS, "%s: EffectiveAccess %lx\n", Names[Index], Stat.EffectiveAccess);
-
-        CloseHandle(File);
-        DeleteFileW(Path);
-    }
-}
-
 START_TEST(FileStatInformation)
 {
     PNT_QUERY_INFORMATION_BY_NAME QueryByName =
         (PNT_QUERY_INFORMATION_BY_NAME)GetProcAddress(GetModuleHandleW(L"ntdll.dll"), "NtQueryInformationByName");
     WCHAR Directory[MAX_PATH], Path[MAX_PATH];
-    TEST_FILE_STAT_LX_INFORMATION Stat;
-    UCHAR EaBuffer[256];
-    PFILE_FULL_EA_INFORMATION Previous = NULL;
-    ULONG EaLength = 0, Uid = 1000, Gid = 1001, Mode = 0100644, Device[2] = { 5, 7 };
+    TEST_FILE_STAT_INFORMATION Stat;
     UNICODE_STRING NtName;
     OBJECT_ATTRIBUTES Attributes;
     IO_STATUS_BLOCK Iosb;
@@ -160,7 +89,7 @@ START_TEST(FileStatInformation)
 
     GetTempPathW(MAX_PATH, Directory);
     GetTempFileNameW(Directory, L"fst", 0, Path);
-    File = CreateFileW(Path, GENERIC_READ | GENERIC_WRITE | FILE_READ_EA | FILE_WRITE_EA, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE,
+    File = CreateFileW(Path, GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE,
                        NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
     ok(File != INVALID_HANDLE_VALUE, "CreateFileW failed with %lu\n", GetLastError());
     if (File == INVALID_HANDLE_VALUE)
@@ -169,66 +98,26 @@ START_TEST(FileStatInformation)
 
     memset(&Stat, 0xcc, sizeof(Stat));
     Iosb.Information = 0xdeadbeef;
-    Status = NtQueryInformationFile(File, &Iosb, &Stat, TEST_FILE_STAT_SIZE, TestFileStatInformation);
-    ok_ntstatus(Status, STATUS_SUCCESS);
-    ok_size_t(Iosb.Information, TEST_FILE_STAT_SIZE);
-    if (NT_SUCCESS(Status))
-        CheckCommonFields(File, &Stat, "stat");
-    ok(Stat.LxFlags == 0xcccccccc, "FileStatInformation wrote past its structure\n");
-
-    Status = NtQueryInformationFile(File, &Iosb, &Stat, TEST_FILE_STAT_SIZE - 1, TestFileStatInformation);
-    ok_ntstatus(Status, STATUS_INFO_LENGTH_MISMATCH);
-    Status = NtQueryInformationFile(File, &Iosb, &Stat, sizeof(Stat) - 1, TestFileStatLxInformation);
-    ok_ntstatus(Status, STATUS_INFO_LENGTH_MISMATCH);
-
-    memset(&Stat, 0xcc, sizeof(Stat));
-    Iosb.Information = 0xdeadbeef;
-    Status = NtQueryInformationFile(File, &Iosb, &Stat, sizeof(Stat), TestFileStatLxInformation);
+    Status = NtQueryInformationFile(File, &Iosb, &Stat, sizeof(Stat), TEST_FILE_STAT_INFORMATION_CLASS);
     ok_ntstatus(Status, STATUS_SUCCESS);
     ok_size_t(Iosb.Information, sizeof(Stat));
     if (NT_SUCCESS(Status))
-        CheckCommonFields(File, &Stat, "lx without metadata");
-    ok_hex(Stat.LxFlags, 0);
-    ok_hex(Stat.LxUid, 0);
-    ok_hex(Stat.LxGid, 0);
-    ok_hex(Stat.LxMode, 0);
-    ok_hex(Stat.LxDeviceIdMajor, 0);
-    ok_hex(Stat.LxDeviceIdMinor, 0);
+        CheckCommonFields(File, &Stat, "stat");
 
-    EaLength = AppendEa(EaBuffer, EaLength, &Previous, "$LXMOD", &Mode, sizeof(Mode));
-    ok_ntstatus(NtSetEaFile(File, &Iosb, EaBuffer, EaLength), STATUS_SUCCESS);
-    Status = NtQueryInformationFile(File, &Iosb, &Stat, sizeof(Stat), TestFileStatLxInformation);
-    ok_ntstatus(Status, STATUS_SUCCESS);
-    ok_hex(Stat.LxFlags, TEST_LX_HAS_MODE);
-    ok_hex(Stat.LxMode, Mode);
-    ok_hex(Stat.LxUid, 0);
-    ok_hex(Stat.EffectiveAccess, 0);
+    Status = NtQueryInformationFile(File, &Iosb, &Stat, sizeof(Stat) - 1, TEST_FILE_STAT_INFORMATION_CLASS);
+    ok_ntstatus(Status, STATUS_INFO_LENGTH_MISMATCH);
 
-    EaLength = 0;
-    Previous = NULL;
-    EaLength = AppendEa(EaBuffer, EaLength, &Previous, "$LXUID", &Uid, sizeof(Uid));
-    EaLength = AppendEa(EaBuffer, EaLength, &Previous, "$LXGID", &Gid, sizeof(Gid));
-    EaLength = AppendEa(EaBuffer, EaLength, &Previous, "$LXDEV", Device, sizeof(Device));
-    ok_ntstatus(NtSetEaFile(File, &Iosb, EaBuffer, EaLength), STATUS_SUCCESS);
-    Status = NtQueryInformationFile(File, &Iosb, &Stat, sizeof(Stat), TestFileStatLxInformation);
-    ok_ntstatus(Status, STATUS_SUCCESS);
-    ok_hex(Stat.LxFlags, TEST_LX_HAS_UID | TEST_LX_HAS_GID | TEST_LX_HAS_MODE | TEST_LX_HAS_DEVICE_ID);
-    ok_hex(Stat.LxUid, Uid);
-    ok_hex(Stat.LxGid, Gid);
-    ok_hex(Stat.LxMode, Mode);
-    ok_hex(Stat.LxDeviceIdMajor, Device[0]);
-    ok_hex(Stat.LxDeviceIdMinor, Device[1]);
+    Status = NtQueryInformationFile(File, &Iosb, &Stat, sizeof(Stat), TEST_REMOVED_LX_INFORMATION_CLASS);
+    ok_ntstatus(Status, STATUS_INVALID_INFO_CLASS);
 
     Handle = OpenPath(Path, FILE_READ_ATTRIBUTES, FILE_NON_DIRECTORY_FILE);
     ok(Handle != NULL, "Opening with FILE_READ_ATTRIBUTES failed\n");
     if (Handle)
     {
-        Status = NtQueryInformationFile(Handle, &Iosb, &Stat, TEST_FILE_STAT_SIZE, TestFileStatInformation);
+        Status = NtQueryInformationFile(Handle, &Iosb, &Stat, sizeof(Stat), TEST_FILE_STAT_INFORMATION_CLASS);
         ok_ntstatus(Status, STATUS_SUCCESS);
         if (NT_SUCCESS(Status))
             CheckCommonFields(Handle, &Stat, "read attributes");
-        Status = NtQueryInformationFile(Handle, &Iosb, &Stat, sizeof(Stat), TestFileStatLxInformation);
-        ok_ntstatus(Status, STATUS_ACCESS_DENIED);
         NtClose(Handle);
     }
 
@@ -236,9 +125,7 @@ START_TEST(FileStatInformation)
     ok(Handle != NULL, "Opening with FILE_READ_EA failed\n");
     if (Handle)
     {
-        Status = NtQueryInformationFile(Handle, &Iosb, &Stat, TEST_FILE_STAT_SIZE, TestFileStatInformation);
-        ok_ntstatus(Status, STATUS_ACCESS_DENIED);
-        Status = NtQueryInformationFile(Handle, &Iosb, &Stat, sizeof(Stat), TestFileStatLxInformation);
+        Status = NtQueryInformationFile(Handle, &Iosb, &Stat, sizeof(Stat), TEST_FILE_STAT_INFORMATION_CLASS);
         ok_ntstatus(Status, STATUS_ACCESS_DENIED);
         NtClose(Handle);
     }
@@ -248,28 +135,21 @@ START_TEST(FileStatInformation)
     {
         InitializeObjectAttributes(&Attributes, &NtName, OBJ_CASE_INSENSITIVE, NULL, NULL);
         memset(&Stat, 0xcc, sizeof(Stat));
-        Status = QueryByName(&Attributes, &Iosb, &Stat, sizeof(Stat), TestFileStatLxInformation);
+        Status = QueryByName(&Attributes, &Iosb, &Stat, sizeof(Stat), TEST_FILE_STAT_INFORMATION_CLASS);
         ok_ntstatus(Status, STATUS_SUCCESS);
         ok_size_t(Iosb.Information, sizeof(Stat));
-        ok_hex(Stat.LxFlags, TEST_LX_HAS_UID | TEST_LX_HAS_GID | TEST_LX_HAS_MODE | TEST_LX_HAS_DEVICE_ID);
-        ok_hex(Stat.LxUid, Uid);
         ok(Stat.EndOfFile.QuadPart == 10, "By name: EndOfFile %I64d\n", Stat.EndOfFile.QuadPart);
-        todo_ros ok_hex(Stat.EffectiveAccess, 0);
 
-        memset(&Stat, 0xcc, sizeof(Stat));
-        Status = QueryByName(&Attributes, &Iosb, &Stat, TEST_FILE_STAT_SIZE, TestFileStatInformation);
-        ok_ntstatus(Status, STATUS_SUCCESS);
-        ok_size_t(Iosb.Information, TEST_FILE_STAT_SIZE);
-        ok(Stat.EndOfFile.QuadPart == 10, "By name: EndOfFile %I64d\n", Stat.EndOfFile.QuadPart);
-        todo_ros ok_hex(Stat.EffectiveAccess, FILE_ALL_ACCESS);
+        Status = QueryByName(&Attributes, &Iosb, &Stat, sizeof(Stat), TEST_REMOVED_LX_INFORMATION_CLASS);
+        ok_ntstatus(Status, STATUS_INVALID_INFO_CLASS);
         RtlFreeUnicodeString(&NtName);
     }
 
-    Handle = OpenPath(Directory, FILE_READ_ATTRIBUTES | FILE_READ_EA, FILE_DIRECTORY_FILE);
+    Handle = OpenPath(Directory, FILE_READ_ATTRIBUTES, FILE_DIRECTORY_FILE);
     ok(Handle != NULL, "Opening the directory failed\n");
     if (Handle)
     {
-        Status = NtQueryInformationFile(Handle, &Iosb, &Stat, sizeof(Stat), TestFileStatLxInformation);
+        Status = NtQueryInformationFile(Handle, &Iosb, &Stat, sizeof(Stat), TEST_FILE_STAT_INFORMATION_CLASS);
         ok_ntstatus(Status, STATUS_SUCCESS);
         if (NT_SUCCESS(Status))
             CheckCommonFields(Handle, &Stat, "directory");
@@ -279,6 +159,4 @@ START_TEST(FileStatInformation)
 
     CloseHandle(File);
     DeleteFileW(Path);
-
-    TestEffectiveAccessWithoutMode(Directory);
 }

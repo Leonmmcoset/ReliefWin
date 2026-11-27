@@ -2876,14 +2876,6 @@
 @ stdcall PsIsWin32KFilterEnabledForProcess(ptr)
 @ stdcall PsLeavePriorityRegion()
 @ stub -arch=win64 PsMakeSiloContextPermanent
-@ stdcall PsPicoCreateProcess(long ptr ptr)
-@ stdcall PsPicoCreateThread(ptr ptr ptr ptr ptr)
-@ stdcall PsPicoGetProcessContext(ptr)
-@ stdcall PsPicoGetThreadContext(ptr)
-@ stdcall PsPicoRegisterProvider(ptr)
-@ stdcall PsPicoSetProcessName(ptr str)
-@ stdcall PsPicoTerminateCurrentThread(long)
-@ stdcall PsPicoTerminateThread(ptr long)
 @ stdcall PsQueryCurrentApiSetSchema()
 @ stdcall PsQueryProcessAttributesByToken(ptr ptr ptr)
 @ stub -arch=win64 PsQueryProcessAvailableCpus
@@ -2897,7 +2889,6 @@
 @ stdcall PsReferenceKernelStack(ptr)
 @ stub -arch=win64 PsReferenceSiloContext
 @ stub -arch=win64 PsRegisterAltSystemCallHandler
-@ stub -arch=win64 PsRegisterPicoProvider
 @ stub -arch=win64 PsRegisterProcessAvailableCpusChangeNotification
 @ stub -arch=win64 PsRegisterSiloMonitor
 @ stub -arch=win64 PsRegisterSyscallProvider

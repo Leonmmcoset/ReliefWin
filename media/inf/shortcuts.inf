@@ -16,7 +16,6 @@ QuickLaunchShortcuts=26, Microsoft\Internet Explorer\Quick Launch
 [ProgramShortcuts]
 %SystemRoot%\explorer.exe, %EXPLORER_TITLE%, %EXPLORER_DESC%, 1, %HOMEDRIVE%%HOMEPATH%
 %SystemRoot%\system32\rapps.exe, %RAPPS_TITLE%, %RAPPS_DESC%, 0
-%SystemRoot%\system32\terminal.exe, %LXTERM_TITLE%, %LXTERM_DESC%, 0, %HOMEDRIVE%%HOMEPATH%, -p Ubuntu, %SystemRoot%\system32\lxterm.exe
 %16422%\Internet Explorer\iexplore.exe, %IEXPLORE_TITLE%, %IEXPLORE_DESC%, 0
 
 [AdminToolsShortcuts]
@@ -87,8 +86,6 @@ CMD_TITLE=Command Prompt
 CMD_DESC=Open command prompt
 TERMINAL_TITLE=Terminal
 TERMINAL_DESC=Open the command prompt and other shells in tabs
-LXTERM_TITLE=Linux Terminal
-LXTERM_DESC=Open a Linux shell
 EXPLORER_TITLE=ReliefWin Explorer
 EXPLORER_DESC=Launch Explorer
 RAPPS_TITLE=ReliefWin Applications Manager
@@ -248,8 +245,6 @@ CMD_TITLE=命令提示符
 CMD_DESC=命令提示符
 TERMINAL_TITLE=终端
 TERMINAL_DESC=在选项卡中打开命令提示符和其他命令行环境
-LXTERM_TITLE=Linux 终端
-LXTERM_DESC=打开 Linux 命令行环境
 EXPLORER_TITLE=ReliefWin 资源管理器
 EXPLORER_DESC=ReliefWin 资源管理器
 RAPPS_TITLE=ReliefWin 应用程序管理器

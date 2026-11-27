@@ -891,9 +891,7 @@ KiArm64HandleSystemService(
     {
         KiArm64ClearTrapActive();
     }
-    if ((TrapFrame->PreviousMode == UserMode) && Thread->Header.Minimal)
-        PspPicoSystemCallDispatch(TrapFrame, ExceptionFrame);
-    else if (KiSystemService(Thread, TrapFrame, Instruction))
+    if (KiSystemService(Thread, TrapFrame, Instruction))
         KiSystemServiceConvertInPlace(Thread, Instruction);
 
     /* A first win32k call can relocate the entire kernel stack. */
@@ -2647,9 +2645,6 @@ KiArm64HandleSynchronousException(
                             KeBugCheckWithTf(KERNEL_SECURITY_CHECK_FAILURE, Context->State.Registers.X[0], (ULONG_PTR)TrapFrame, (ULONG_PTR)&ExceptionRecord, 0, TrapFrame);
                         }
 
-                        if (KeGetCurrentThread()->Header.Minimal)
-                            break;
-
                         if (PsGetCurrentProcess()->DebugPort)
                             DbgkForwardException(&ExceptionRecord, TRUE, TRUE);
 
@@ -2676,9 +2671,6 @@ KiArm64HandleSynchronousException(
             goto HandledExit;
         }
 
-        /* User-mode MRS/MSR of a privileged system register: Windows 11 raises
-           STATUS_ILLEGAL_INSTRUCTION (no emulation), and pico providers such as
-           lxcore emulate the ID register reads, so this is not an unhandled trap. */
         case 0x18:
         {
             EXCEPTION_RECORD ExceptionRecord;

@@ -162,16 +162,13 @@ Retry:
     {
         KiRiscvUserTransitionFailure(Frame, STATUS_ACCESS_VIOLATION);
     }
-    if (!Thread->Header.Minimal)
-    {
-        Status = KiRiscvCheckUserPage((PVOID)Frame->Context.Pc, MI_RISCV_PTE_EXECUTE, Frame);
-        if (NT_SUCCESS(Status))
-            Status = KiRiscvCheckUserPage((PVOID)(Frame->Context.Sp - 1), MI_RISCV_PTE_WRITE, Frame);
-        if (NT_SUCCESS(Status))
-            Status = KiRiscvCheckUserPage(Thread->Teb, MI_RISCV_PTE_WRITE, Frame);
-        if (!NT_SUCCESS(Status))
-            KiRiscvUserTransitionFailure(Frame, Status);
-    }
+    Status = KiRiscvCheckUserPage((PVOID)Frame->Context.Pc, MI_RISCV_PTE_EXECUTE, Frame);
+    if (NT_SUCCESS(Status))
+        Status = KiRiscvCheckUserPage((PVOID)(Frame->Context.Sp - 1), MI_RISCV_PTE_WRITE, Frame);
+    if (NT_SUCCESS(Status))
+        Status = KiRiscvCheckUserPage(Thread->Teb, MI_RISCV_PTE_WRITE, Frame);
+    if (!NT_SUCCESS(Status))
+        KiRiscvUserTransitionFailure(Frame, Status);
 
     _disable();
     if (Thread->ApcState.UserApcPending) goto Retry;
@@ -210,7 +207,7 @@ KiRiscvStartUserThread(VOID)
 {
     PKTHREAD Thread = KeGetCurrentThread();
 
-    if ((!Thread->Header.Minimal && !Thread->Teb) || !Thread->TrapFrame ||
+    if (!Thread->Teb || !Thread->TrapFrame ||
         (Thread->TrapFrame != ((PKTRAP_FRAME)Thread->InitialStack) - 1))
         KiRiscvUnimplemented("KiRiscvStartUserThread/invalid-frame");
     KiRiscvReturnToUser(Thread->TrapFrame);
