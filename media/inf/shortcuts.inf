@@ -25,6 +25,7 @@ QuickLaunchShortcuts=26, Microsoft\Internet Explorer\Quick Launch
 %SystemRoot%\system32\diskmgmt.exe, %DISKMGMT_TITLE%, %DISKMGMT_DESC%, 0
 %SystemRoot%\system32\eventvwr.exe, %EVENTVWR_TITLE%, %EVENTVWR_DESC%, 0
 %SystemRoot%\system32\msconfig.exe, %MSCONFIG_TITLE%, %MSCONFIG_DESC%, 0
+%SystemRoot%\system32\recoverycenter.exe, %RECOVERY_TITLE%, %RECOVERY_DESC%, 0
 
 [CommunicationsShortcuts]
 %SystemRoot%\system32\mstsc.exe, %MSTSC_TITLE%, %MSTSC_DESC%, 0, %HOMEDRIVE%%HOMEPATH%
@@ -113,6 +114,8 @@ EVENTVWR_TITLE=Event Viewer
 EVENTVWR_DESC=Launch Event Viewer
 MSCONFIG_TITLE=System Configuration
 MSCONFIG_DESC=Launch System Configuration program
+RECOVERY_TITLE=ReliefWin Recovery Center
+RECOVERY_DESC=View offline startup logs, recover drivers and restore boot configuration
 CALC_TITLE=Calculator
 CALC_DESC=Launch Calculator
 NOTEPAD_TITLE=Notepad
@@ -193,6 +196,8 @@ EVENTVWR_TITLE=イベント ビューア
 EVENTVWR_DESC=イベント ビューアを起動します
 MSCONFIG_TITLE=システムの構成
 MSCONFIG_DESC=システムの構成プログラムを開きます
+RECOVERY_TITLE=ReliefWin システム回復センター
+RECOVERY_DESC=オフラインの起動ログ、ドライバー、起動構成を回復します
 CALC_TITLE=電卓
 CALC_DESC=電卓を起動します
 NOTEPAD_TITLE=メモ帳
@@ -270,6 +275,8 @@ EVENTVWR_TITLE=事件查看器
 EVENTVWR_DESC=启动事件查看器
 MSCONFIG_TITLE=系统配置程序
 MSCONFIG_DESC=启动系统配置程序
+RECOVERY_TITLE=ReliefWin 系统恢复中心
+RECOVERY_DESC=查看离线启动日志，恢复驱动和启动配置
 CALC_TITLE=计算器
 CALC_DESC=计算器
 NOTEPAD_TITLE=记事本

@@ -1,0 +1,263 @@
+/*
+ * PROJECT:     ReliefWin Recovery Center
+ * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
+ * PURPOSE:     Recovery interface resources
+ * COPYRIGHT:   Copyright 2026 ReliefWin contributors
+ */
+
+#include <windef.h>
+#include <winuser.h>
+#include <commctrl.h>
+#include "resource.h"
+
+#define REACTOS_STR_FILE_DESCRIPTION "ReliefWin Recovery Center"
+#define REACTOS_STR_INTERNAL_NAME "recoverycenter"
+#define REACTOS_STR_ORIGINAL_FILENAME "recoverycenter.exe"
+#include <reliefwin/version.rc>
+#include <reliefwin/manifest_exe.rc>
+
+#pragma code_page(65001)
+
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+
+IDD_RECOVERY DIALOGEX 0, 0, 640, 418
+STYLE DS_SHELLFONT | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX
+CAPTION "ReliefWin Recovery Center"
+FONT 9, "Segoe UI"
+BEGIN
+    LTEXT "ReliefWin Recovery Center", -1, 18, 12, 600, 16
+    LTEXT "Choose the offline system to repair. Changes require confirmation.", -1, 18, 31, 600, 20
+    LTEXT "Windows folder:", -1, 18, 58, 70, 12
+    COMBOBOX IDC_TARGET, 90, 55, 442, 120, CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON "Browse…", IDC_BROWSE_TARGET, 542, 54, 80, 18
+    PUSHBUTTON "Startup logs", IDC_LOG_PAGE, 18, 84, 160, 24
+    PUSHBUTTON "Driver recovery", IDC_DRIVER_PAGE, 188, 84, 160, 24
+    PUSHBUTTON "Boot configuration", IDC_BOOT_PAGE, 358, 84, 160, 24
+    LTEXT "", IDC_PAGE_HELP, 18, 117, 604, 30
+    COMBOBOX IDC_LOGS, 18, 153, 500, 110, CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON "Read log", IDC_READ_LOG, 530, 152, 92, 19
+    EDITTEXT IDC_OUTPUT, 18, 180, 604, 171, ES_MULTILINE | ES_READONLY | ES_AUTOVSCROLL | ES_AUTOHSCROLL | WS_VSCROLL | WS_HSCROLL
+    CONTROL "", IDC_DRIVERS, WC_LISTVIEW, LVS_REPORT | LVS_SINGLESEL | WS_BORDER | WS_TABSTOP, 18, 153, 604, 171
+    PUSHBUTTON "Disable selected driver", IDC_DISABLE, 18, 333, 172, 21
+    PUSHBUTTON "Undo disable", IDC_UNDO, 200, 333, 150, 21
+    COMBOBOX IDC_BCD, 18, 154, 500, 100, CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON "Browse…", IDC_BROWSE_BCD, 530, 153, 92, 20
+    PUSHBUTTON "Back up BCD…", IDC_BACKUP, 18, 188, 192, 26
+    PUSHBUTTON "Restore BCD backup…", IDC_RESTORE, 222, 188, 192, 26
+    LTEXT "", IDC_STATUS, 18, 363, 604, 18
+    PUSHBUTTON "Restart", IDC_RESTART, 418, 389, 98, 20
+    PUSHBUTTON "Close", IDCANCEL, 524, 389, 98, 20
+END
+
+STRINGTABLE
+BEGIN
+    IDS_TITLE "ReliefWin Recovery Center"
+    IDS_INTRO "Choose the offline system to repair. Changes require confirmation."
+    IDS_TARGET "Windows folder:"
+    IDS_BROWSE "Browse…"
+    IDS_LOGS "Startup logs"
+    IDS_DRIVERS "Driver recovery"
+    IDS_BOOT "Boot configuration"
+    IDS_READ "Read log"
+    IDS_DISABLE "Disable selected driver"
+    IDS_UNDO "Undo disable"
+    IDS_BACKUP "Back up BCD…"
+    IDS_RESTORE "Restore BCD backup…"
+    IDS_RESTART "Restart"
+    IDS_CLOSE "Close"
+    IDS_READY "Select a system folder to begin."
+    IDS_LOG_HELP "View the latest 256 KiB of a startup or setup log. Files are opened read-only."
+    IDS_DRIVER_HELP "Only the control set selected for the next boot is changed. Boot, severe/critical and overridden drivers are protected."
+    IDS_BOOT_HELP "Select the BCD store on the boot partition. Restore requires a complete backup; the current file is saved before replacement."
+    IDS_FAILED "Operation failed (%lu): %s"
+    IDS_OK "Completed."
+    IDS_NAME "Service name"
+    IDS_DISPLAY "Description"
+    IDS_START "Start"
+    IDS_PROTECTED "Protected"
+    IDS_YES "Yes"
+    IDS_NO "No"
+    IDS_UNDO_AVAILABLE "Undo available"
+    IDS_CONFIRM_DISABLE "Disable driver %s in %s? Its original start type will be saved."
+    IDS_CONFIRM_UNDO "Restore driver %s in %s to its saved start type?"
+    IDS_CONFIRM_BACKUP "Save a complete backup of %s to %s?"
+    IDS_CONFIRM_RESTORE "Replace %s with backup %s? The current file will be saved with the suffix .ReliefWin.before-restore."
+    IDS_CONFIRM_RESTART "Restart this computer now?"
+    IDS_CHOOSE_TARGET "Select the Windows folder of the offline ReliefWin installation."
+    IDS_CHOOSE_BCD "Select the BCD store on the boot partition"
+    IDS_SAVE_BACKUP "Save boot configuration backup"
+    IDS_OPEN_BACKUP "Select boot configuration backup"
+    IDS_TRUNCATED "Showing the last 256 KiB."
+    IDS_ENVIRONMENT "Offline recovery environment"
+    IDS_NO_DRIVERS "No drivers were found in the selected control set."
+    IDS_BUSY "Another Recovery Center instance is already running."
+    IDS_BOOT_START "Boot"
+    IDS_SYSTEM_START "System"
+    IDS_AUTO_START "Automatic"
+    IDS_DEMAND_START "On demand"
+    IDS_DISABLED "Disabled"
+    IDS_CONFIRM_EXIT "Restart to leave the recovery environment?"
+END
+
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+
+IDD_RECOVERY DIALOGEX 0, 0, 640, 418
+STYLE DS_SHELLFONT | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX
+CAPTION "ReliefWin 系统恢复中心"
+FONT 9, "Segoe UI"
+BEGIN
+    LTEXT "ReliefWin 系统恢复中心", -1, 18, 12, 600, 16
+    LTEXT "选择需要修复的离线系统。修改操作需要确认。", -1, 18, 31, 600, 20
+    LTEXT "系统目录：", -1, 18, 58, 70, 12
+    COMBOBOX IDC_TARGET, 90, 55, 442, 120, CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON "浏览…", IDC_BROWSE_TARGET, 542, 54, 80, 18
+    PUSHBUTTON "启动日志", IDC_LOG_PAGE, 18, 84, 160, 24
+    PUSHBUTTON "驱动恢复", IDC_DRIVER_PAGE, 188, 84, 160, 24
+    PUSHBUTTON "启动配置", IDC_BOOT_PAGE, 358, 84, 160, 24
+    LTEXT "", IDC_PAGE_HELP, 18, 117, 604, 30
+    COMBOBOX IDC_LOGS, 18, 153, 500, 110, CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON "读取日志", IDC_READ_LOG, 530, 152, 92, 19
+    EDITTEXT IDC_OUTPUT, 18, 180, 604, 171, ES_MULTILINE | ES_READONLY | ES_AUTOVSCROLL | ES_AUTOHSCROLL | WS_VSCROLL | WS_HSCROLL
+    CONTROL "", IDC_DRIVERS, WC_LISTVIEW, LVS_REPORT | LVS_SINGLESEL | WS_BORDER | WS_TABSTOP, 18, 153, 604, 171
+    PUSHBUTTON "禁用选中驱动", IDC_DISABLE, 18, 333, 172, 21
+    PUSHBUTTON "撤销禁用", IDC_UNDO, 200, 333, 150, 21
+    COMBOBOX IDC_BCD, 18, 154, 500, 100, CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON "浏览…", IDC_BROWSE_BCD, 530, 153, 92, 20
+    PUSHBUTTON "备份 BCD…", IDC_BACKUP, 18, 188, 192, 26
+    PUSHBUTTON "恢复 BCD 备份…", IDC_RESTORE, 222, 188, 192, 26
+    LTEXT "", IDC_STATUS, 18, 363, 604, 18
+    PUSHBUTTON "重新启动", IDC_RESTART, 418, 389, 98, 20
+    PUSHBUTTON "关闭", IDCANCEL, 524, 389, 98, 20
+END
+
+STRINGTABLE
+BEGIN
+    IDS_TITLE "ReliefWin 系统恢复中心"
+    IDS_INTRO "选择需要修复的离线系统。修改操作需要确认。"
+    IDS_TARGET "系统目录："
+    IDS_BROWSE "浏览…"
+    IDS_LOGS "启动日志"
+    IDS_DRIVERS "驱动恢复"
+    IDS_BOOT "启动配置"
+    IDS_READ "读取日志"
+    IDS_DISABLE "禁用选中驱动"
+    IDS_UNDO "撤销禁用"
+    IDS_BACKUP "备份 BCD…"
+    IDS_RESTORE "恢复 BCD 备份…"
+    IDS_RESTART "重新启动"
+    IDS_CLOSE "关闭"
+    IDS_READY "请选择系统目录。"
+    IDS_LOG_HELP "查看启动或安装日志末尾最多 256 KiB 的内容，文件以只读方式打开。"
+    IDS_DRIVER_HELP "只修改下次启动使用的控制集。启动必需、严重错误级别及带启动覆盖项的驱动受保护。"
+    IDS_BOOT_HELP "选择启动分区上的 BCD 文件。恢复需要完整备份；替换前会保存当前文件。"
+    IDS_FAILED "操作失败（%lu）：%s"
+    IDS_OK "操作完成。"
+    IDS_NAME "服务名称"
+    IDS_DISPLAY "说明"
+    IDS_START "启动类型"
+    IDS_PROTECTED "受保护"
+    IDS_YES "是"
+    IDS_NO "否"
+    IDS_UNDO_AVAILABLE "可撤销"
+    IDS_CONFIRM_DISABLE "要禁用 %s 驱动吗？\n目标系统：%s\n将保存原启动类型，之后可以撤销。"
+    IDS_CONFIRM_UNDO "要恢复 %s 驱动的原启动类型吗？\n目标系统：%s"
+    IDS_CONFIRM_BACKUP "要备份以下启动配置吗？\n源文件：%s\n备份位置：%s"
+    IDS_CONFIRM_RESTORE "要恢复启动配置吗？\n目标文件：%s\n备份文件：%s\n当前文件会先保存为 .ReliefWin.before-restore。"
+    IDS_CONFIRM_RESTART "现在重新启动计算机吗？"
+    IDS_CHOOSE_TARGET "请选择离线 ReliefWin 安装的 Windows 目录。"
+    IDS_CHOOSE_BCD "选择启动分区上的 BCD 文件"
+    IDS_SAVE_BACKUP "保存启动配置备份"
+    IDS_OPEN_BACKUP "选择启动配置备份"
+    IDS_TRUNCATED "正在显示日志末尾 256 KiB。"
+    IDS_ENVIRONMENT "离线恢复环境"
+    IDS_NO_DRIVERS "所选控制集中没有驱动。"
+    IDS_BUSY "恢复中心已经在运行。"
+    IDS_BOOT_START "引导"
+    IDS_SYSTEM_START "系统"
+    IDS_AUTO_START "自动"
+    IDS_DEMAND_START "按需"
+    IDS_DISABLED "已禁用"
+    IDS_CONFIRM_EXIT "重新启动以退出恢复环境吗？"
+END
+
+LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
+
+IDD_RECOVERY DIALOGEX 0, 0, 640, 418
+STYLE DS_SHELLFONT | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX
+CAPTION "ReliefWin システム回復センター"
+FONT 9, "Segoe UI"
+BEGIN
+    LTEXT "ReliefWin システム回復センター", -1, 18, 12, 600, 16
+    LTEXT "修復するオフラインシステムを選択してください。変更には確認が必要です。", -1, 18, 31, 600, 20
+    LTEXT "システムフォルダー：", -1, 18, 58, 70, 12
+    COMBOBOX IDC_TARGET, 90, 55, 442, 120, CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON "参照…", IDC_BROWSE_TARGET, 542, 54, 80, 18
+    PUSHBUTTON "起動ログ", IDC_LOG_PAGE, 18, 84, 160, 24
+    PUSHBUTTON "ドライバーの回復", IDC_DRIVER_PAGE, 188, 84, 160, 24
+    PUSHBUTTON "ブート構成", IDC_BOOT_PAGE, 358, 84, 160, 24
+    LTEXT "", IDC_PAGE_HELP, 18, 117, 604, 30
+    COMBOBOX IDC_LOGS, 18, 153, 500, 110, CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON "ログを表示", IDC_READ_LOG, 530, 152, 92, 19
+    EDITTEXT IDC_OUTPUT, 18, 180, 604, 171, ES_MULTILINE | ES_READONLY | ES_AUTOVSCROLL | ES_AUTOHSCROLL | WS_VSCROLL | WS_HSCROLL
+    CONTROL "", IDC_DRIVERS, WC_LISTVIEW, LVS_REPORT | LVS_SINGLESEL | WS_BORDER | WS_TABSTOP, 18, 153, 604, 171
+    PUSHBUTTON "選択したドライバーを無効化", IDC_DISABLE, 18, 333, 172, 21
+    PUSHBUTTON "無効化を元に戻す", IDC_UNDO, 200, 333, 150, 21
+    COMBOBOX IDC_BCD, 18, 154, 500, 100, CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON "参照…", IDC_BROWSE_BCD, 530, 153, 92, 20
+    PUSHBUTTON "BCD をバックアップ…", IDC_BACKUP, 18, 188, 192, 26
+    PUSHBUTTON "BCD バックアップを復元…", IDC_RESTORE, 222, 188, 192, 26
+    LTEXT "", IDC_STATUS, 18, 363, 604, 18
+    PUSHBUTTON "再起動", IDC_RESTART, 418, 389, 98, 20
+    PUSHBUTTON "閉じる", IDCANCEL, 524, 389, 98, 20
+END
+
+STRINGTABLE
+BEGIN
+    IDS_TITLE "ReliefWin システム回復センター"
+    IDS_INTRO "修復するオフラインシステムを選択してください。変更には確認が必要です。"
+    IDS_TARGET "システムフォルダー："
+    IDS_BROWSE "参照…"
+    IDS_LOGS "起動ログ"
+    IDS_DRIVERS "ドライバーの回復"
+    IDS_BOOT "ブート構成"
+    IDS_READ "ログを表示"
+    IDS_DISABLE "選択したドライバーを無効化"
+    IDS_UNDO "無効化を元に戻す"
+    IDS_BACKUP "BCD をバックアップ…"
+    IDS_RESTORE "BCD バックアップを復元…"
+    IDS_RESTART "再起動"
+    IDS_CLOSE "閉じる"
+    IDS_READY "システムフォルダーを選択してください。"
+    IDS_LOG_HELP "起動・セットアップログの末尾 256 KiB を読み取り専用で表示します。"
+    IDS_DRIVER_HELP "次回起動の制御セットのみ変更します。ブート必須、重大エラー、起動上書きのあるドライバーは保護されます。"
+    IDS_BOOT_HELP "ブートパーティションの BCD を選択してください。復元には完全なバックアップが必要です。現在のファイルは置換前に保存されます。"
+    IDS_FAILED "操作に失敗しました (%lu): %s"
+    IDS_OK "完了しました。"
+    IDS_NAME "サービス名"
+    IDS_DISPLAY "説明"
+    IDS_START "開始"
+    IDS_PROTECTED "保護"
+    IDS_YES "はい"
+    IDS_NO "いいえ"
+    IDS_UNDO_AVAILABLE "元に戻せます"
+    IDS_CONFIRM_DISABLE "ドライバー %s を無効にしますか？\n対象: %s\n元の開始設定を保存します。"
+    IDS_CONFIRM_UNDO "ドライバー %s の保存済み開始設定を復元しますか？\n対象: %s"
+    IDS_CONFIRM_BACKUP "%s の完全なバックアップを %s に保存しますか？"
+    IDS_CONFIRM_RESTORE "%s をバックアップ %s で置換しますか？現在のファイルは .ReliefWin.before-restore として保存されます。"
+    IDS_CONFIRM_RESTART "今すぐ再起動しますか？"
+    IDS_CHOOSE_TARGET "オフライン ReliefWin の Windows フォルダーを選択してください。"
+    IDS_CHOOSE_BCD "ブートパーティションの BCD を選択"
+    IDS_SAVE_BACKUP "ブート構成バックアップを保存"
+    IDS_OPEN_BACKUP "ブート構成バックアップを選択"
+    IDS_TRUNCATED "ログの末尾 256 KiB を表示しています。"
+    IDS_ENVIRONMENT "オフライン回復環境"
+    IDS_NO_DRIVERS "選択した制御セットにドライバーがありません。"
+    IDS_BUSY "回復センターはすでに実行中です。"
+    IDS_BOOT_START "ブート"
+    IDS_SYSTEM_START "システム"
+    IDS_AUTO_START "自動"
+    IDS_DEMAND_START "要求時"
+    IDS_DISABLED "無効"
+    IDS_CONFIRM_EXIT "再起動して回復環境を終了しますか？"
+END
+

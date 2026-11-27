@@ -38,6 +38,7 @@ set(BCD_OS_ENTRY "{${BOOTLOADER_ID_NAMESPACE}}")
 set(BCD_DEFAULT_ENTRY "${BCD_OS_ENTRY}")
 set(BCD_DISPLAY_ORDER "\"${BCD_OS_ENTRY}\"")
 set(BCD_HTTP_ENTRY "")
+set(BCD_RECOVERY_ID "{e24552c5-f0e2-5ec0-9f7d-52a05f389a30}")
 string(UUID BOOTLOADER_DISK_ID NAMESPACE ${BOOTLOADER_ID_NAMESPACE} NAME "ReliefWin disk" TYPE SHA1)
 string(UUID BOOTLOADER_ESP_ID NAMESPACE ${BOOTLOADER_ID_NAMESPACE} NAME "ReliefWin EFI system partition" TYPE SHA1)
 string(UUID BOOTLOADER_SYSTEM_ID NAMESPACE ${BOOTLOADER_ID_NAMESPACE} NAME "ReliefWin system partition" TYPE SHA1)
@@ -73,7 +74,53 @@ function(bootloader_integer _out _value)
     set(${_out} "${_low},${_high},00,00,00,00,00,00" PARENT_SCOPE)
 endfunction()
 
+set(_zero "00,00,00,00,00,00,00,00")
+set(_ramdisk_header "${_zero},${_zero},00,00,00,00,01,00,00,00")
+set(_ramdisk_body "00,00,00,00,03,00,00,00,00,00,00,00,${_zero},${_zero},01,00,00,00")
+
+function(bootloader_dword _out _value)
+    set(_bytes "")
+    foreach(_shift 0 8 16 24)
+        math(EXPR _byte "((${_value} >> ${_shift}) & 255) + 256" OUTPUT_FORMAT HEXADECIMAL)
+        string(SUBSTRING "${_byte}" 3 2 _byte)
+        list(APPEND _bytes ${_byte})
+    endforeach()
+    list(JOIN _bytes "," _joined)
+    set(${_out} "${_joined}" PARENT_SCOPE)
+endfunction()
+
+function(bootloader_ramdisk_device _out _path)
+    set(_parent "${_boot_device}")
+    if(ARGC GREATER 2)
+        set(_parent "${ARGV2}")
+    endif()
+    string(LENGTH "${_path}" _chars)
+    string(HEX "${_path}" _hex)
+    set(_text "")
+    math(EXPR _index 0)
+    while(_index LESS _chars)
+        math(EXPR _offset "${_index} * 2")
+        string(SUBSTRING "${_hex}" ${_offset} 2 _byte)
+        string(APPEND _text "${_byte},00,")
+        math(EXPR _index "${_index} + 1")
+    endwhile()
+    math(EXPR _text_size "(${_chars} + 1) * 2")
+    bootloader_dword(_device_size "0x7c + ${_text_size}")
+    bootloader_dword(_file_size "0x54 + ${_text_size}")
+    set(${_out}
+        "${_ramdisk_header},${_device_size},${_ramdisk_body},${_file_size},05,00,00,00,${_parent},${_text}00,00"
+        PARENT_SCOPE)
+endfunction()
+
 function(bootloader_bcd_store _directory)
+    set(BCD_RECOVERY_LOADER "${BCD_LOADER_PATH}")
+    set(BCD_RECOVERY_IMAGE "\\Recovery\\ReliefWin\\Winre.wim")
+    if(BCD_WINPE_ELEMENT)
+        set(BCD_RECOVERY_IMAGE "\\deployment\\Recovery\\ReliefWin\\Winre.wim")
+    endif()
+    string(LENGTH "${_zero},${_zero}," _parent_offset)
+    string(SUBSTRING "${BCD_LOADER_DEVICE}" ${_parent_offset} -1 _recovery_parent)
+    bootloader_ramdisk_device(BCD_RECOVERY_DEVICE "${BCD_RECOVERY_IMAGE}" "${_recovery_parent}")
     configure_file(bcd.inf.in ${_directory}/bcd.inf @ONLY)
 
     add_custom_command(
@@ -222,6 +269,7 @@ function(bootloader_media _target _directory _image)
         COMMAND ${CMAKE_COMMAND}
             -DLIST=${_directory}/files.lst
             -DEFISYS=${_directory}/efisys.bin
+            -DRECOVERY=${REACTOS_BINARY_DIR}/boot/recovery/Winre.wim
             ${_bios_media_files}
             ${ARGN}
             -P ${CMAKE_CURRENT_SOURCE_DIR}/medialist.cmake
@@ -238,40 +286,6 @@ function(bootloader_media _target _directory _image)
         VERBATIM)
 
     add_dependencies(${_target} livecd_hives livecd_files)
-endfunction()
-
-function(bootloader_dword _out _value)
-    set(_bytes "")
-    foreach(_shift 0 8 16 24)
-        math(EXPR _byte "((${_value} >> ${_shift}) & 255) + 256" OUTPUT_FORMAT HEXADECIMAL)
-        string(SUBSTRING "${_byte}" 3 2 _byte)
-        list(APPEND _bytes ${_byte})
-    endforeach()
-    list(JOIN _bytes "," _joined)
-    set(${_out} "${_joined}" PARENT_SCOPE)
-endfunction()
-
-function(bootloader_ramdisk_device _out _path)
-    set(_parent "${_boot_device}")
-    if(ARGC GREATER 2)
-        set(_parent "${ARGV2}")
-    endif()
-    string(LENGTH "${_path}" _chars)
-    string(HEX "${_path}" _hex)
-    set(_text "")
-    math(EXPR _index 0)
-    while(_index LESS _chars)
-        math(EXPR _offset "${_index} * 2")
-        string(SUBSTRING "${_hex}" ${_offset} 2 _byte)
-        string(APPEND _text "${_byte},00,")
-        math(EXPR _index "${_index} + 1")
-    endwhile()
-    math(EXPR _text_size "(${_chars} + 1) * 2")
-    bootloader_dword(_device_size "0x7c + ${_text_size}")
-    bootloader_dword(_file_size "0x54 + ${_text_size}")
-    set(${_out}
-        "${_ramdisk_header},${_device_size},${_ramdisk_body},${_file_size},05,00,00,00,${_parent},${_text}00,00"
-        PARENT_SCOPE)
 endfunction()
 
 function(bootloader_http_boot_entry _options)
@@ -309,7 +323,7 @@ ${_object}\\Elements\\26000022\",\"Element\",0x1,01
 ${_object}\\Elements\\26000091\",\"Element\",0x1,${BCD_SOS}
 ${_object}\\Elements\\260000a0\",\"Element\",0x1,${BCD_DEBUG}
 ${_object}\\Elements\\12000030\",\"Element\",,\"${_http_options}\"
-BCD,\"BCD00000000\\Objects\\{9dea862c-5cdd-4e70-acc1-f32b344d4795}\\Elements\\24000010\",\"Element\",0x10000,\"${_http_entry}\"" PARENT_SCOPE)
+BCD,\"BCD00000000\\Objects\\{9dea862c-5cdd-4e70-acc1-f32b344d4795}\\Elements\\24000010\",\"Element\",0x10000,\"${BCD_RECOVERY_ID}\",\"${_http_entry}\"" PARENT_SCOPE)
         if(BOOTLOADER_HTTP_BOOT_DEFAULT)
             set(BCD_DEFAULT_ENTRY "${_http_entry}" PARENT_SCOPE)
         endif()

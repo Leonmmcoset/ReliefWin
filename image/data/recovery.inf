@@ -1,0 +1,8 @@
+[Version]
+Signature = "$Windows NT$"
+
+[AddReg]
+HKLM,"SYSTEM\Setup","CmdLine",0x00020000,"%SystemRoot%\system32\recoverycenter.exe /environment"
+HKLM,"SYSTEM\Setup","SetupType",0x00010001,1
+HKLM,"SYSTEM\Setup","SystemSetupInProgress",0x00010001,1
+

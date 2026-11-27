@@ -1,0 +1,74 @@
+/*
+ * PROJECT:     ReliefWin Recovery Center
+ * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
+ * PURPOSE:     Recovery interface resources
+ * COPYRIGHT:   Copyright 2026 ReliefWin contributors
+ */
+
+#pragma once
+
+#define IDD_RECOVERY 100
+#define IDC_TARGET 101
+#define IDC_BROWSE_TARGET 102
+#define IDC_LOG_PAGE 103
+#define IDC_DRIVER_PAGE 104
+#define IDC_BOOT_PAGE 105
+#define IDC_LOGS 106
+#define IDC_READ_LOG 107
+#define IDC_OUTPUT 108
+#define IDC_DRIVERS 109
+#define IDC_DISABLE 110
+#define IDC_UNDO 111
+#define IDC_BCD 112
+#define IDC_BROWSE_BCD 113
+#define IDC_BACKUP 114
+#define IDC_RESTORE 115
+#define IDC_STATUS 116
+#define IDC_RESTART 117
+#define IDC_PAGE_HELP 118
+#define IDS_TITLE 300
+#define IDS_INTRO 301
+#define IDS_TARGET 302
+#define IDS_BROWSE 303
+#define IDS_LOGS 304
+#define IDS_DRIVERS 305
+#define IDS_BOOT 306
+#define IDS_READ 307
+#define IDS_DISABLE 308
+#define IDS_UNDO 309
+#define IDS_BACKUP 310
+#define IDS_RESTORE 311
+#define IDS_RESTART 312
+#define IDS_CLOSE 313
+#define IDS_READY 314
+#define IDS_LOG_HELP 315
+#define IDS_DRIVER_HELP 316
+#define IDS_BOOT_HELP 317
+#define IDS_FAILED 318
+#define IDS_OK 319
+#define IDS_NAME 320
+#define IDS_DISPLAY 321
+#define IDS_START 322
+#define IDS_PROTECTED 323
+#define IDS_YES 324
+#define IDS_NO 325
+#define IDS_UNDO_AVAILABLE 326
+#define IDS_CONFIRM_DISABLE 327
+#define IDS_CONFIRM_UNDO 328
+#define IDS_CONFIRM_BACKUP 329
+#define IDS_CONFIRM_RESTORE 330
+#define IDS_CONFIRM_RESTART 331
+#define IDS_CHOOSE_TARGET 332
+#define IDS_CHOOSE_BCD 333
+#define IDS_SAVE_BACKUP 334
+#define IDS_OPEN_BACKUP 335
+#define IDS_TRUNCATED 336
+#define IDS_ENVIRONMENT 337
+#define IDS_NO_DRIVERS 338
+#define IDS_BUSY 339
+#define IDS_BOOT_START 340
+#define IDS_SYSTEM_START 341
+#define IDS_AUTO_START 342
+#define IDS_DEMAND_START 343
+#define IDS_DISABLED 344
+#define IDS_CONFIRM_EXIT 345

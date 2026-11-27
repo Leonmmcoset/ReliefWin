@@ -1145,6 +1145,37 @@ GetPartitionDeviceNumber(
 
 static
 NTSTATUS
+InstallRecoveryBcdEntry(
+    _In_reads_bytes_(BCD_DEVICE_ELEMENT_SIZE) const UCHAR *OsElement,
+    _In_ BOOLEAN PcAt)
+{
+    static const WCHAR Id[] = L"{e24552c5-f0e2-5ec0-9f7d-52a05f389a30}";
+    static const WCHAR Image[] = L"\\Recovery\\ReliefWin\\Winre.wim";
+    static const WCHAR UefiLoader[] = L"\\Windows\\system32\\winload.efi";
+    UCHAR Device[0x44 + BCD_DEVICE_BODY_SIZE + sizeof(Image)];
+    NTSTATUS Status;
+
+    RtlZeroMemory(Device, sizeof(Device));
+    *(PULONG)(Device + 0x14) = 1;
+    *(PULONG)(Device + BCD_DEVICE_SIZE_OFFSET) = sizeof(Device) - 0x10;
+    *(PULONG)(Device + 0x20) = 3;
+    *(PULONG)(Device + 0x38) = 1;
+    *(PULONG)(Device + 0x3c) = sizeof(Device) - 0x38;
+    *(PULONG)(Device + 0x40) = 5;
+    RtlCopyMemory(Device + 0x44, OsElement + 0x10, BCD_DEVICE_BODY_SIZE);
+    RtlCopyMemory(Device + 0x44 + BCD_DEVICE_BODY_SIZE, Image, sizeof(Image));
+    Status = SetBcdElement(Id, BCD_APPLICATION_DEVICE, REG_BINARY, OsElement, BCD_DEVICE_ELEMENT_SIZE);
+    if (NT_SUCCESS(Status))
+        Status = SetBcdElement(Id, BCD_OS_DEVICE, REG_BINARY, Device, sizeof(Device));
+    if (NT_SUCCESS(Status))
+        Status = SetBcdElement(Id, BCD_APPLICATION_PATH, REG_SZ,
+                              PcAt ? PCAT_OS_LOADER_PATH : UefiLoader,
+                              PcAt ? sizeof(PCAT_OS_LOADER_PATH) : sizeof(UefiLoader));
+    return Status;
+}
+
+static
+NTSTATUS
 InstallBcdStore(
     _In_ PCUNICODE_STRING SystemRootPath,
     _In_ PCWSTR TemplatePath,
@@ -1263,10 +1294,23 @@ InstallBcdStore(
                                        PCAT_OS_LOADER_PATH, sizeof(PCAT_OS_LOADER_PATH));
             if (NT_SUCCESS(Status) && PcAt)
                 Status = DeleteBcdElement(BCD_BOOTMGR_OBJECT, BCD_APPLICATION_PATH);
+            if (NT_SUCCESS(Status))
+                Status = InstallRecoveryBcdEntry(OsElement, PcAt);
             if (NT_SUCCESS(Status) && Kept.Count != 0)
                 Status = RestoreBcdEntries(&Kept);
 
-            NtUnloadKey(&KeyAttributes);
+            {
+                NTSTATUS UnloadStatus = NtUnloadKey(&KeyAttributes);
+                if (NT_SUCCESS(Status)) Status = UnloadStatus;
+            }
+            if (NT_SUCCESS(Status))
+            {
+                Status = RtlStringCchPrintfW(Path, ARRAYSIZE(Path),
+                    L"\\Device\\Harddisk%lu\\Partition%lu\\Recovery\\ReliefWin\\BCD-%s.initial",
+                    Disk, Number, PcAt ? L"BIOS" : L"UEFI");
+                if (NT_SUCCESS(Status))
+                    Status = SetupCopyFile(StorePath, Path, FALSE);
+            }
         }
 
         for (i = 0; i < Kept.Count; i++)

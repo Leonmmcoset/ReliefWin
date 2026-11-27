@@ -15,6 +15,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <strsafe.h>
 
 #include "expandcore.h"
 
@@ -54,6 +55,7 @@ typedef struct _BCD_DEVICE_VALUE
 {
     HKEY Key;
     DWORD Size;
+    DWORD SignatureOffset;
     BYTE Data[BCD_MAX_DEVICE_SIZE];
 } BCD_DEVICE_VALUE;
 
@@ -534,8 +536,37 @@ EnablePrivilege(LPCWSTR Name)
     CloseHandle(Token);
 }
 
+static DWORD
+BcdSignatureOffset(const BYTE* Data, DWORD Size)
+{
+    DWORD Offset = BCD_DEVICE_TYPE_OFFSET, Length, ParentSize;
+
+    if (Size < BCD_DEVICE_DISK_OFFSET + sizeof(ULONG)) return MAXDWORD;
+    Length = *(const ULONG*)(Data + 0x18);
+    if (Length > Size - BCD_DEVICE_TYPE_OFFSET || Length < 0x10) return MAXDWORD;
+    if (*(const ULONG*)(Data + Offset) == 0)
+    {
+        if (Length < 0x34 || Size < 0x54 ||
+            *(const ULONG*)(Data + 0x20) != 3 ||
+            *(const ULONG*)(Data + 0x38) != 1 ||
+            *(const ULONG*)(Data + 0x40) != 5)
+            return MAXDWORD;
+        ParentSize = *(const ULONG*)(Data + 0x3c);
+        if (ParentSize < 0x0c || ParentSize > Length - 0x28) return MAXDWORD;
+        Length = ParentSize - 0x0c;
+        Offset = 0x44;
+        ParentSize = *(const ULONG*)(Data + Offset + 0x08);
+        if (ParentSize > Length || ParentSize < 0x10) return MAXDWORD;
+        Length = ParentSize;
+    }
+    if (Length < 0x48 || *(const ULONG*)(Data + Offset) != BCD_DEVICE_PARTITION ||
+        *(const ULONG*)(Data + Offset + BCD_DEVICE_STYLE_OFFSET - BCD_DEVICE_TYPE_OFFSET) != BCD_PARTITION_STYLE_MBR)
+        return MAXDWORD;
+    return Offset + BCD_DEVICE_DISK_OFFSET - BCD_DEVICE_TYPE_OFFSET;
+}
+
 static LONG
-CollectBcdDevices(ULONG Signature, BCD_DEVICE_VALUE* Devices, ULONG MaxDevices, PULONG DeviceCount)
+CollectBcdDevices(HKEY Root, PCWSTR ObjectsPath, ULONG Signature, BCD_DEVICE_VALUE* Devices, ULONG MaxDevices, PULONG DeviceCount)
 {
     WCHAR ObjectName[64];
     WCHAR ElementName[16];
@@ -547,7 +578,7 @@ CollectBcdDevices(ULONG Signature, BCD_DEVICE_VALUE* Devices, ULONG MaxDevices, 
     LONG Error;
 
     *DeviceCount = 0;
-    Error = RegOpenKeyExW(HKEY_LOCAL_MACHINE, BCD_OBJECTS_KEY, REG_OPTION_BACKUP_RESTORE, KEY_ENUMERATE_SUB_KEYS, &Objects);
+    Error = RegOpenKeyExW(Root, ObjectsPath, REG_OPTION_BACKUP_RESTORE, KEY_ENUMERATE_SUB_KEYS, &Objects);
     if (Error != ERROR_SUCCESS)
         return Error;
 
@@ -587,12 +618,11 @@ CollectBcdDevices(ULONG Signature, BCD_DEVICE_VALUE* Devices, ULONG MaxDevices, 
 
             Device = &Devices[Count];
             Device->Size = sizeof(Device->Data);
-            if (RegQueryValueExW(Element, L"Element", NULL, &Type, Device->Data, &Device->Size) == ERROR_SUCCESS &&
-                Type == REG_BINARY &&
-                Device->Size >= BCD_DEVICE_DISK_OFFSET + sizeof(ULONG) &&
-                *(PULONG)(Device->Data + BCD_DEVICE_TYPE_OFFSET) == BCD_DEVICE_PARTITION &&
-                *(PULONG)(Device->Data + BCD_DEVICE_STYLE_OFFSET) == BCD_PARTITION_STYLE_MBR &&
-                *(PULONG)(Device->Data + BCD_DEVICE_DISK_OFFSET) == Signature)
+            Device->SignatureOffset = MAXDWORD;
+            if (RegQueryValueExW(Element, L"Element", NULL, &Type, Device->Data, &Device->Size) == ERROR_SUCCESS && Type == REG_BINARY)
+                Device->SignatureOffset = BcdSignatureOffset(Device->Data, Device->Size);
+            if (Device->SignatureOffset != MAXDWORD &&
+                *(PULONG)(Device->Data + Device->SignatureOffset) == Signature)
             {
                 Device->Key = Element;
                 Count++;
@@ -618,7 +648,7 @@ SetBcdDeviceSignature(BCD_DEVICE_VALUE* Devices, ULONG Count, ULONG Signature)
 
     for (Index = 0; Index < Count; Index++)
     {
-        *(PULONG)(Devices[Index].Data + BCD_DEVICE_DISK_OFFSET) = Signature;
+        *(PULONG)(Devices[Index].Data + Devices[Index].SignatureOffset) = Signature;
         if (RegSetValueExW(Devices[Index].Key,
                            L"Element",
                            0,
@@ -702,6 +732,10 @@ WaitForMountedDevices(HKEY Key, HANDLE Changed, ULONG OldSignature)
 static int
 MakeDiskUnique(ULONG DriveNumber)
 {
+    static const PCWSTR Backups[] = {L"Recovery\\ReliefWin\\BCD-UEFI.initial", L"Recovery\\ReliefWin\\BCD-BIOS.initial"};
+    HKEY RecoveryHives[ARRAYSIZE(Backups)] = {NULL};
+    WCHAR RecoveryMounts[ARRAYSIZE(Backups)][64] = {{0}};
+    WCHAR Windows[MAX_PATH], Root[MAX_PATH], Backup[MAX_PATH];
     PDRIVE_LAYOUT_INFORMATION_EX Layout;
     BCD_DEVICE_VALUE* Devices;
     WCHAR DevicePath[64];
@@ -709,7 +743,7 @@ MakeDiskUnique(ULONG DriveNumber)
     HANDLE Changed = NULL;
     HANDLE Handle;
     DWORD Returned;
-    ULONG OldSignature, Signature, Count, Index, BootDrive;
+    ULONG OldSignature, Signature, Count, Index, BootDrive, Added;
     LONG Error;
     int Result = 1;
 
@@ -776,11 +810,47 @@ MakeDiskUnique(ULONG DriveNumber)
     OldSignature = Layout->Mbr.Signature;
     EnablePrivilege(L"SeBackupPrivilege");
     EnablePrivilege(L"SeRestorePrivilege");
-    Error = CollectBcdDevices(OldSignature, Devices, BCD_MAX_DEVICES, &Count);
+    Error = CollectBcdDevices(HKEY_LOCAL_MACHINE, BCD_OBJECTS_KEY, OldSignature, Devices, BCD_MAX_DEVICES, &Count);
     if (Error != ERROR_SUCCESS)
     {
         Print("lntexpandstorage: cannot read the boot configuration (error %ld)\n", Error);
         goto Done;
+    }
+
+    if (!GetWindowsDirectoryW(Windows, ARRAYSIZE(Windows)) || !GetVolumePathNameW(Windows, Root, ARRAYSIZE(Root)))
+    {
+        Print("lntexpandstorage: cannot locate recovery backups (error %lu)\n", GetLastError());
+        goto Done;
+    }
+    for (Index = 0; Index < ARRAYSIZE(Backups); Index++)
+    {
+        if (FAILED(StringCchPrintfW(Backup, ARRAYSIZE(Backup), L"%s%s", Root, Backups[Index])))
+            goto Done;
+        if (GetFileAttributesW(Backup) == INVALID_FILE_ATTRIBUTES)
+        {
+            Error = GetLastError();
+            if (Error == ERROR_FILE_NOT_FOUND || Error == ERROR_PATH_NOT_FOUND) continue;
+            goto Done;
+        }
+        StringCchPrintfW(RecoveryMounts[Index], ARRAYSIZE(RecoveryMounts[Index]),
+                         L"ReliefWinRecoveryBackup-%lu-%lu", GetCurrentProcessId(), Index);
+        Error = RegLoadKeyW(HKEY_LOCAL_MACHINE, RecoveryMounts[Index], Backup);
+        if (Error != ERROR_SUCCESS)
+        {
+            RecoveryMounts[Index][0] = 0;
+            Print("lntexpandstorage: cannot load %ls (error %ld)\n", Backup, Error);
+            goto Done;
+        }
+        Error = RegOpenKeyExW(HKEY_LOCAL_MACHINE, RecoveryMounts[Index], REG_OPTION_BACKUP_RESTORE,
+                              KEY_ALL_ACCESS, &RecoveryHives[Index]);
+        if (Error != ERROR_SUCCESS) goto Done;
+        Error = CollectBcdDevices(RecoveryHives[Index], L"Objects", OldSignature, Devices + Count, BCD_MAX_DEVICES - Count, &Added);
+        Count += Added;
+        if (Error != ERROR_SUCCESS)
+        {
+            Print("lntexpandstorage: cannot update %ls (error %ld)\n", Backup, Error);
+            goto Done;
+        }
     }
 
     if (!SetBcdDeviceSignature(Devices, Count, Signature))
@@ -829,6 +899,16 @@ Done:
     FlushBcd();
     for (Index = 0; Index < Count; Index++)
         RegCloseKey(Devices[Index].Key);
+    for (Index = 0; Index < ARRAYSIZE(RecoveryHives); Index++)
+    {
+        if (RecoveryHives[Index])
+        {
+            RegFlushKey(RecoveryHives[Index]);
+            RegCloseKey(RecoveryHives[Index]);
+        }
+        if (RecoveryMounts[Index][0])
+            RegUnLoadKeyW(HKEY_LOCAL_MACHINE, RecoveryMounts[Index]);
+    }
     HeapFree(GetProcessHeap(), 0, Devices);
     HeapFree(GetProcessHeap(), 0, Layout);
     CloseHandle(Handle);

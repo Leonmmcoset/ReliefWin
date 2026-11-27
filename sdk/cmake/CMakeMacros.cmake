@@ -1102,6 +1102,19 @@ function(create_registry_hives)
         DESTINATION reactos/system32/config
         FOR livecd)
 
+    utf16le_convert(${CMAKE_SOURCE_DIR}/image/data/recovery.inf ${CMAKE_BINARY_DIR}/image/data/recovery_utf16.inf)
+    set(_recovery_hives)
+    foreach(_hive system software default sam security)
+        list(APPEND _recovery_hives ${CMAKE_BINARY_DIR}/boot/bootdata/recovery/${_hive})
+    endforeach()
+    add_custom_command(OUTPUT ${_recovery_hives}
+        COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/boot/bootdata/recovery
+        COMMAND native-mkhive -h:SYSTEM,SOFTWARE,DEFAULT,SAM,SECURITY
+            -d:${CMAKE_BINARY_DIR}/boot/bootdata/recovery ${_livecd_inf_files}
+            ${CMAKE_BINARY_DIR}/image/data/recovery_utf16.inf
+        DEPENDS native-mkhive ${_livecd_inf_files} ${CMAKE_BINARY_DIR}/image/data/recovery_utf16.inf)
+    add_custom_target(recovery_hives DEPENDS ${_recovery_hives})
+
     # Preinstall hives (same as LiveCD but with preinstall.inf instead of livecd.inf)
     file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/boot/bootdata/preinstall)
 

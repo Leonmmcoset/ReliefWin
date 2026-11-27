@@ -453,6 +453,7 @@ Enable this if the module uses typeid or dynamic_cast. You will probably need to
 
     # Create the registry hives
     create_registry_hives()
+    include(image/recovery.cmake)
 
     # Create {bootcd, livecd, preinstall}.lst
     create_iso_lists()
