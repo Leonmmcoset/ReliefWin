@@ -51,7 +51,7 @@ DWORD WINAPI VfdInstallDriver(
 
 //	Uninstall the driver
 
-DWORD WINAPI VfdRemoveDriver();
+DWORD WINAPI VfdRemoveDriver(void);
 
 //	Configure the driver
 
@@ -197,7 +197,7 @@ DWORD WINAPI VfdGetLocalLink(
 
 //	Choose the first available drive letter
 
-CHAR WINAPI VfdChooseLetter();
+CHAR WINAPI VfdChooseLetter(void);
 
 //==============================
 //	utility functions
@@ -205,11 +205,11 @@ CHAR WINAPI VfdChooseLetter();
 
 //	Check running platform
 
-BOOL WINAPI VfdIsValidPlatform();
+BOOL WINAPI VfdIsValidPlatform(void);
 
 //	Get VFD notification message value
 
-UINT WINAPI VfdGetNotifyMessage();
+UINT WINAPI VfdGetNotifyMessage(void);
 
 //	Check if specified file is a valid VFD driver
 
@@ -263,15 +263,15 @@ void WINAPI VfdMakeFileDesc(
 
 //	install the shell extension
 
-DWORD WINAPI VfdRegisterHandlers();
+DWORD WINAPI VfdRegisterHandlers(void);
 
 //	uninstall the shell extension
 
-DWORD WINAPI VfdUnregisterHandlers();
+DWORD WINAPI VfdUnregisterHandlers(void);
 
 //	check if the shell extension is installed
 
-DWORD WINAPI VfdCheckHandlers();
+DWORD WINAPI VfdCheckHandlers(void);
 
 //==============================
 //	GUI utility functions

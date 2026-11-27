@@ -549,6 +549,13 @@ static NTSTATUS NTAPI PortDumpPrepare(_In_ PVOID Context)
     FdoExtension->DumpMode = TRUE;
     KeMemoryBarrier();
 
+    if (FdoExtension->DevicePowerState != PowerDeviceD0 &&
+        FdoExtension->DevicePowerState != PowerDeviceUnspecified &&
+        MiniportAdapterControl(&FdoExtension->Miniport, ScsiRestartAdapter, NULL) != ScsiAdapterControlSuccess)
+    {
+        return STATUS_IO_DEVICE_ERROR;
+    }
+
     if ((FdoExtension->Miniport.InitData->HwResetBus == NULL) || !FdoExtension->Miniport.InitData->HwResetBus(&FdoExtension->Miniport.MiniportExtension->HwDeviceExtension, DumpContext->PdoExtension->Bus))
     {
         return STATUS_IO_DEVICE_ERROR;

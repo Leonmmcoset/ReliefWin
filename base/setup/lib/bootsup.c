@@ -1147,6 +1147,7 @@ static
 NTSTATUS
 InstallRecoveryBcdEntry(
     _In_reads_bytes_(BCD_DEVICE_ELEMENT_SIZE) const UCHAR *OsElement,
+    _In_reads_bytes_(BCD_DEVICE_ELEMENT_SIZE) const UCHAR *SystemElement,
     _In_ BOOLEAN PcAt)
 {
     static const WCHAR Id[] = L"{e24552c5-f0e2-5ec0-9f7d-52a05f389a30}";
@@ -1164,7 +1165,7 @@ InstallRecoveryBcdEntry(
     *(PULONG)(Device + 0x40) = 5;
     RtlCopyMemory(Device + 0x44, OsElement + 0x10, BCD_DEVICE_BODY_SIZE);
     RtlCopyMemory(Device + 0x44 + BCD_DEVICE_BODY_SIZE, Image, sizeof(Image));
-    Status = SetBcdElement(Id, BCD_APPLICATION_DEVICE, REG_BINARY, OsElement, BCD_DEVICE_ELEMENT_SIZE);
+    Status = SetBcdElement(Id, BCD_APPLICATION_DEVICE, REG_BINARY, SystemElement, BCD_DEVICE_ELEMENT_SIZE);
     if (NT_SUCCESS(Status))
         Status = SetBcdElement(Id, BCD_OS_DEVICE, REG_BINARY, Device, sizeof(Device));
     if (NT_SUCCESS(Status))
@@ -1193,6 +1194,7 @@ InstallBcdStore(
     UNICODE_STRING FileName;
     UNICODE_STRING NtPath;
     WCHAR StorePath[MAX_PATH];
+    WCHAR LoaderSource[MAX_PATH];
     WCHAR Path[MAX_PATH];
     PCWSTR Text;
     ULONG Disk, Number, i;
@@ -1276,6 +1278,24 @@ InstallBcdStore(
             Status = SetupCopyFile(BootManagerPath, Path, FALSE);
         }
         if (NT_SUCCESS(Status))
+        {
+            CombinePaths(Path, ARRAYSIZE(Path), 2, SystemRootPath->Buffer, L"Windows\\system32");
+            Status = SetupCreateDirectory(Path);
+            if (Status == STATUS_OBJECT_NAME_COLLISION)
+                Status = STATUS_SUCCESS;
+        }
+        if (NT_SUCCESS(Status))
+        {
+            RtlStringCchCopyW(LoaderSource, ARRAYSIZE(LoaderSource), TemplatePath);
+            *wcsrchr(LoaderSource, L'\\') = UNICODE_NULL;
+            *wcsrchr(LoaderSource, L'\\') = UNICODE_NULL;
+            RtlStringCchCatW(LoaderSource, ARRAYSIZE(LoaderSource),
+                             PcAt ? L"\\winload.exe" : L"\\winload.efi");
+            CombinePaths(Path, ARRAYSIZE(Path), 3, SystemRootPath->Buffer, L"Windows\\system32",
+                         PcAt ? L"winload.exe" : L"winload.efi");
+            Status = SetupCopyFile(LoaderSource, Path, FALSE);
+        }
+        if (NT_SUCCESS(Status))
             Status = SetupCopyFile(TemplatePath, StorePath, FALSE);
         if (NT_SUCCESS(Status))
             Status = NtLoadKey(&KeyAttributes, &FileAttributes);
@@ -1285,7 +1305,7 @@ InstallBcdStore(
                                    SystemElement, sizeof(SystemElement));
             if (NT_SUCCESS(Status))
                 Status = SetBcdElement(BCD_OSLOADER_OBJECT, BCD_APPLICATION_DEVICE, REG_BINARY,
-                                       OsElement, sizeof(OsElement));
+                                       SystemElement, sizeof(SystemElement));
             if (NT_SUCCESS(Status))
                 Status = SetBcdElement(BCD_OSLOADER_OBJECT, BCD_OS_DEVICE, REG_BINARY,
                                        OsElement, sizeof(OsElement));
@@ -1295,7 +1315,7 @@ InstallBcdStore(
             if (NT_SUCCESS(Status) && PcAt)
                 Status = DeleteBcdElement(BCD_BOOTMGR_OBJECT, BCD_APPLICATION_PATH);
             if (NT_SUCCESS(Status))
-                Status = InstallRecoveryBcdEntry(OsElement, PcAt);
+                Status = InstallRecoveryBcdEntry(OsElement, SystemElement, PcAt);
             if (NT_SUCCESS(Status) && Kept.Count != 0)
                 Status = RestoreBcdEntries(&Kept);
 

@@ -956,6 +956,7 @@ RawDispatch(
         case IRP_MJ_READ:
         case IRP_MJ_WRITE:
         case IRP_MJ_DEVICE_CONTROL:
+        case IRP_MJ_FLUSH_BUFFERS:
             return RawReadWriteDeviceControl(Vcb, DeviceObject, Irp);
 
         case IRP_MJ_QUERY_INFORMATION:

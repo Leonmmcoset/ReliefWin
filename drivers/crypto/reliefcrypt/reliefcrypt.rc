@@ -1,0 +1,5 @@
+#define REACTOS_VERSION_DLL
+#define REACTOS_STR_FILE_DESCRIPTION "ReliefWin Disk Encryption"
+#define REACTOS_STR_INTERNAL_NAME "reliefcrypt"
+#define REACTOS_STR_ORIGINAL_FILENAME "reliefcrypt.sys"
+#include <reliefwin/version.rc>

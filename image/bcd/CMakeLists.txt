@@ -119,7 +119,11 @@ function(bootloader_bcd_store _directory)
         set(BCD_RECOVERY_IMAGE "\\deployment\\Recovery\\ReliefWin\\Winre.wim")
     endif()
     string(LENGTH "${_zero},${_zero}," _parent_offset)
-    string(SUBSTRING "${BCD_LOADER_DEVICE}" ${_parent_offset} -1 _recovery_parent)
+    if(BCD_WINPE_ELEMENT)
+        string(SUBSTRING "${BCD_LOADER_DEVICE}" ${_parent_offset} -1 _recovery_parent)
+    else()
+        string(SUBSTRING "${BCD_OS_DEVICE}" ${_parent_offset} -1 _recovery_parent)
+    endif()
     bootloader_ramdisk_device(BCD_RECOVERY_DEVICE "${BCD_RECOVERY_IMAGE}" "${_recovery_parent}")
     configure_file(bcd.inf.in ${_directory}/bcd.inf @ONLY)
 
@@ -136,7 +140,7 @@ endfunction()
 
 bootloader_partition_device(BCD_BOOT_DEVICE ${BOOTLOADER_ESP_ID} ${BOOTLOADER_DISK_ID})
 bootloader_partition_device(BCD_OS_DEVICE ${BOOTLOADER_SYSTEM_ID} ${BOOTLOADER_DISK_ID})
-set(BCD_LOADER_DEVICE "${BCD_OS_DEVICE}")
+set(BCD_LOADER_DEVICE "${BCD_BOOT_DEVICE}")
 set(BCD_LOADER_PATH "\\Windows\\system32\\${BOOTLOADER_OS_LOADER}")
 set(BCD_KERNEL "${BOOTLOADER_KERNEL}")
 set(BCD_HAL "${BOOTLOADER_HAL}")
@@ -187,10 +191,13 @@ add_custom_command(
         -mkdir EFI/BOOT
         -mkdir EFI/ReliefWin
         -mkdir EFI/ReliefWin/Boot
+        -mkdir Windows
+        -mkdir Windows/system32
+        -add $<TARGET_FILE:winload> Windows/system32/${BOOTLOADER_OS_LOADER}
         -add $<TARGET_FILE:bootmgfw> EFI/BOOT/${_efi_name}
         -add $<TARGET_FILE:bootmgfw> EFI/ReliefWin/Boot/bootmgfw.efi
         -add ${CMAKE_CURRENT_BINARY_DIR}/BCD EFI/ReliefWin/Boot/BCD
-    DEPENDS native-fatten bootmgfw ${CMAKE_CURRENT_BINARY_DIR}/BCD
+    DEPENDS native-fatten bootmgfw winload ${CMAKE_CURRENT_BINARY_DIR}/BCD
     VERBATIM)
 
 add_custom_target(bootloaderesp DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/esp.fat)
@@ -367,7 +374,7 @@ if(_standard_signature)
     endif()
 
     string(REGEX REPLACE "(^| )/" "\\1" _standard_options "${_standard_options}")
-    set(BCD_LOADER_DEVICE "${BCD_OS_DEVICE}")
+    set(BCD_LOADER_DEVICE "${BCD_BOOT_DEVICE}")
     set(BCD_LOADER_PATH "\\Windows\\system32\\${BOOTLOADER_OS_LOADER}")
     set(BCD_LOAD_OPTIONS "${BOOTLOADER_LOAD_OPTIONS} ${_standard_options}${BOOTLOADER_DEBUG_LOAD_OPTIONS}")
     string(STRIP "${BCD_LOAD_OPTIONS}" BCD_LOAD_OPTIONS)

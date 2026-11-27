@@ -1,0 +1,12 @@
+set(DISKCRYPT_SOURCES storage.c volumes.c conversion.c backup.c boot.c)
+add_rc_deps(diskcrypt.rc ${CMAKE_CURRENT_SOURCE_DIR}/resource.h)
+add_executable(diskcrypt main.c ${DISKCRYPT_SOURCES} diskcrypt.rc)
+set_module_type(diskcrypt win32gui UNICODE)
+target_link_libraries(diskcrypt volumecrypt_crypto volumecrypt)
+add_importlibs(diskcrypt bcrypt advapi32 comctl32 comdlg32 user32 msvcrt kernel32)
+add_cd_file(TARGET diskcrypt DESTINATION reactos/system32 FOR all)
+
+add_executable(diskcrypt_test tests.c ${DISKCRYPT_SOURCES})
+set_module_type(diskcrypt_test win32cui UNICODE)
+target_link_libraries(diskcrypt_test volumecrypt_crypto volumecrypt)
+add_importlibs(diskcrypt_test bcrypt advapi32 msvcrt kernel32)

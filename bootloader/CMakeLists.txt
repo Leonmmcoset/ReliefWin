@@ -85,6 +85,7 @@ endfunction()
 
 list(APPEND BOOTLIB_COMMON_SOURCE
     lib/bcd.c
+    lib/cryptdisk.c
     lib/cdfs.c
     lib/disk.c
     lib/entries.c
@@ -130,8 +131,15 @@ elseif(ARCH STREQUAL "amd64" OR ARCH STREQUAL "i386")
     list(APPEND BOOTLIB_SOURCE arch/x86/comport.c)
 endif()
 
+if(ARCH STREQUAL "amd64" OR ARCH STREQUAL "i386")
+    set(BOOTLIB_ENTROPY_SOURCE arch/x86/entropy.c)
+else()
+    set(BOOTLIB_ENTROPY_SOURCE arch/common/entropy.c)
+endif()
+list(APPEND BOOTLIB_SOURCE ${BOOTLIB_ENTROPY_SOURCE})
+
 add_library(bootlib ${BOOTLIB_SOURCE})
-target_link_libraries(bootlib fatfs)
+target_link_libraries(bootlib fatfs volumecrypt_crypto volumecrypt entropy_drbg)
 if(ARCH STREQUAL "amd64" OR ARCH STREQUAL "i386")
     target_link_libraries(bootlib cportlib)
 endif()
@@ -143,7 +151,7 @@ target_include_directories(bootntfs PRIVATE
     ${REACTOS_SOURCE_DIR}/sdk/lib/fslib/ntfslib_new/include/internal)
 add_dependencies(bootntfs bugcodes xdk psdk)
 
-foreach(_asset font mono icons logo mark)
+foreach(_asset font mono icons logo mark unlock)
     if(_asset STREQUAL "font")
         set(_asset_source ${REACTOS_SOURCE_DIR}/media/fonts/selawk.ttf)
     elseif(_asset STREQUAL "mono")
@@ -152,6 +160,8 @@ foreach(_asset font mono icons logo mark)
         set(_asset_source ${CMAKE_CURRENT_SOURCE_DIR}/gui/assets/icons.alpha)
     elseif(_asset STREQUAL "mark")
         set(_asset_source ${REACTOS_SOURCE_DIR}/ntos/inbv/resources/reliefwin_boot_mark.bmp)
+    elseif(_asset STREQUAL "unlock")
+        set(_asset_source ${CMAKE_CURRENT_SOURCE_DIR}/gui/assets/unlock.otf)
     else()
         set(_asset_source ${CMAKE_CURRENT_SOURCE_DIR}/gui/assets/logo.rgba)
     endif()
@@ -316,6 +326,8 @@ list(APPEND WINLOAD_COMMON_SOURCE
     winload/hw.c
     winload/lpb.c
     winload/main.c
+    winload/crypt.c
+    winload/entropy.c
     winload/memory.c
     ramdisk/fatformat.c
     ramdisk/fatwrite.c
@@ -359,12 +371,13 @@ if(ARCH STREQUAL "amd64" OR ARCH STREQUAL "i386")
 
     add_library(bootlibpcat
         ${BOOTLIB_COMMON_SOURCE}
+        ${BOOTLIB_ENTROPY_SOURCE}
         arch/x86/comport.c
         bios/bios.c
         bios/console.c
         bios/disk.c
         bios/memory.c)
-    target_link_libraries(bootlibpcat fatfs cportlib)
+    target_link_libraries(bootlibpcat fatfs cportlib volumecrypt_crypto volumecrypt entropy_drbg)
     add_dependencies(bootlibpcat bugcodes asm xdk)
 
     add_library(bootguipcat

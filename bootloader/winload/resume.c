@@ -418,7 +418,7 @@ OslHiberReadRecords(VOID)
         if (Applied * 10 / OslHiber.Header->TargetPages > Tenth)
         {
             Tenth = (ULONG)(Applied * 10 / OslHiber.Header->TargetPages);
-            FwPrint(L"Resuming from hibernation: %lu%%\r\n", Tenth * 10);
+            BmUiBootProgress("hiberfil.sys", Tenth * 1000);
         }
     }
 
@@ -578,7 +578,8 @@ OslResumeFromHibernation(
     if (Header->Signature != LNT_HIBER_SIGNATURE)
         goto Cleanup;
 
-    FwPrint(L"Resuming from hibernation...\r\n");
+    FwDebugPrint("Resuming from hibernation\n");
+    BmUiBootProgress("hiberfil.sys", 0);
 
     if (!OslHiberValidateHeader())
     {

@@ -106,3 +106,9 @@ BmUiBootProgress(
 
 VOID
 BmUiEndBoot(VOID);
+
+BOOLEAN
+BmUiCryptPassword(PCSTR Id, BOOLEAN Failed, PCHAR Secret, ULONG Capacity, PULONG Length, PBOOLEAN Cancelled);
+
+VOID
+BmUiCryptFailure(PCSTR Id, BOOLEAN Incomplete);

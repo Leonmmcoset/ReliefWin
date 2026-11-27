@@ -988,16 +988,15 @@ EmitConfiguration(INF_FILE *File, const char *PackageKey, const char *Section)
         for (Found = 1; Found; Found = FindNextMatch(Context, "AddService"))
         {
             Service = Field(Context, 1);
+            if (!Associated && IntField(Context, 2, &Flags) && (Flags & SPSVCINST_ASSOCSERVICE))
+            {
+                PutSz(Key, "Service", Service ? Service : "");
+                Associated = 1;
+            }
             if (!Service || !*Service)
             {
                 free(Service);
                 continue;
-            }
-
-            if (!Associated && IntField(Context, 2, &Flags) && (Flags & SPSVCINST_ASSOCSERVICE))
-            {
-                PutSz(Key, "Service", Service);
-                Associated = 1;
             }
 
             ServiceSection = Field(Context, 3);

@@ -8,6 +8,13 @@ The initial countdown uses a black screen with the firmware's BGRT logo. A key, 
 - `icons.alpha` contains the 24 x 24 coverage masks of Desktop, Chevron Right, Arrow Left and Cursor, in that order. Desktop is drawn beside detected Windows Boot Manager entries. These are unmodified regular icons from [Microsoft Fluent UI System Icons](https://github.com/microsoft/fluentui-system-icons), under the MIT license in `LICENSE`. They are rasterized at their native size by AppKit with no translation, composition or gamma adjustment. The original SVGs are retained here. The UI applies its foreground color when drawing these monochrome masks.
 - The UI font is the existing `media/fonts/selawk.ttf`, embedded by `native-bin2c`.
 
+The pre-boot disk unlock screen embeds `unlock.otf`, a subset of the existing
+`media/fonts/NotoSansSC-Regular.otf` covering the Simplified Chinese, English and
+Japanese strings in `../cryptstrings.h`. Its internal name is ReliefWin Unlock;
+the original copyright and OFL metadata are retained. The OFL is also in
+`UNLOCK-FONT-LICENSE.txt`. Run `python3 bootloader/gui/assets/unlock_font.py` with
+fontTools installed to reproduce it; fontTools is not a build dependency.
+
 The OS-loading progress screen embeds the standalone mark from `ntos/inbv/resources/reliefwin_boot_mark.bmp` as `bootui_mark`. Loader and kernel share `sdk/include/reliefwin/bootlogo.h` to center the mark at one quarter of the display height. The kernel clears the previous framebuffer before drawing. The non-GOP VGA fallback uses `ntos/inbv/resources/reliefwin_boot_mark_vga.bmp`; the existing `logo.bmp` remains unchanged for shutdown. See the [boot-logo validation](../../../media/doc/RELIEFWIN_BOOT_LOGO_VALIDATION.md) for actual startup screenshots and test scope.
 
 Startup choices follow the supported subset of Microsoft's [Windows startup settings](https://support.microsoft.com/en-us/windows/experience/startup-boot/windows-startup-settings). The existing loader option parser supplies the SAFEBOOT, BOOTLOG, DEBUG and BASEVIDEO strings. No Windows structures are introduced. Basic video names the existing BASEVIDEO behavior; it does not claim a new display implementation. Firmware settings appear only when the existing firmware capability check succeeds. Unsupported recovery features and the old HAL-selection/custom-boot wizard are absent from the menu tree. Startup overrides are kept per boot entry for the current session.

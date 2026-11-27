@@ -9,6 +9,12 @@
 #include <ofw.h>
 #include <drivers/bootvid/framebuf.h>
 
+BOOLEAN FwGetEntropy(PUCHAR Buffer, ULONG Size)
+{
+    RtlSecureZeroMemory(Buffer, Size);
+    return FALSE;
+}
+
 #define OFW_PAGE_SIZE        0x1000
 #define OFW_HEAP_CHUNK       0x100000
 #define OFW_HEAP_SPLIT       64

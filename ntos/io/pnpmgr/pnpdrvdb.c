@@ -208,11 +208,12 @@ IopOpenDriverDatabaseKey(
 
 static
 BOOLEAN
-IopGetDriverDatabaseString(
+IopGetDriverDatabaseStringEx(
     _In_ HANDLE Key,
     _In_ PWSTR ValueName,
     _Out_writes_(BufferLength) PWSTR Buffer,
-    _In_ ULONG BufferLength)
+    _In_ ULONG BufferLength,
+    _In_ BOOLEAN AllowEmpty)
 {
     PKEY_VALUE_FULL_INFORMATION Information;
     ULONG Length;
@@ -222,7 +223,7 @@ IopGetDriverDatabaseString(
 
     Length = Information->DataLength / sizeof(WCHAR);
     if (Information->Type != REG_SZ || (Information->DataLength % sizeof(WCHAR)) != 0 ||
-        Length < 2 || Length > BufferLength)
+        Length < (AllowEmpty ? 1u : 2u) || Length > BufferLength)
     {
         ExFreePool(Information);
         return FALSE;
@@ -232,6 +233,17 @@ IopGetDriverDatabaseString(
     Buffer[Length - 1] = UNICODE_NULL;
     ExFreePool(Information);
     return TRUE;
+}
+
+static
+BOOLEAN
+IopGetDriverDatabaseString(
+    _In_ HANDLE Key,
+    _In_ PWSTR ValueName,
+    _Out_writes_(BufferLength) PWSTR Buffer,
+    _In_ ULONG BufferLength)
+{
+    return IopGetDriverDatabaseStringEx(Key, ValueName, Buffer, BufferLength, FALSE);
 }
 
 static
@@ -991,7 +1003,7 @@ IopApplyDriverDatabaseMatch(
         !NT_SUCCESS(IopOpenDriverDatabaseKey(&Descriptor, Package, L"Descriptors\\%s", Match->DeviceId, KEY_READ)) ||
         !IopGetDriverDatabaseString(Descriptor, L"Configuration", Config->Configuration, RTL_NUMBER_OF(Config->Configuration)) ||
         !NT_SUCCESS(IopOpenDriverDatabaseKey(&Configuration, Package, L"Configurations\\%s", Config->Configuration, KEY_READ)) ||
-        !IopGetDriverDatabaseString(Configuration, L"Service", Config->Service, RTL_NUMBER_OF(Config->Service)))
+        !IopGetDriverDatabaseStringEx(Configuration, L"Service", Config->Service, RTL_NUMBER_OF(Config->Service), TRUE))
     {
         goto Cleanup;
     }

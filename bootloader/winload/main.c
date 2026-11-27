@@ -7,6 +7,10 @@
 
 #include "winload.h"
 
+BOOLEAN OslCryptUnlock(PDK_DEVICE Device);
+BOOLEAN OslCryptHandoff(PLOADER_PARAMETER_BLOCK LoaderBlock);
+VOID OslEntropyHandoff(PLOADER_PARAMETER_BLOCK LoaderBlock);
+
 #define OSL_STACK_SIZE    0x40000
 #define OSL_MAX_ENTRIES   16
 #define OSL_KERNEL_MODULE "ntoskrnl.exe"
@@ -441,6 +445,9 @@ OslMain(VOID)
                             ? Address : NULL);
         }
 
+        if (!OslCryptUnlock(&OsDevice))
+            return;
+
         OslResumeFromHibernation(&OsDevice);
 
         if (OslGetOption(Options, OSL_INSTALL_IMAGE_OPTION, Url, sizeof(Url)))
@@ -528,6 +535,13 @@ OslMain(VOID)
 
     BmUiBootProgress("drvmain.sdb", 4500);
     OslLoadDriverDatabase(LoaderBlock, &OsDevice, SystemRoot);
+
+    OslEntropyHandoff(LoaderBlock);
+    if (!OslCryptHandoff(LoaderBlock))
+    {
+        FwPrint(L"Disk encryption key handoff failed.\r\n");
+        return;
+    }
 
     if (!OslFinalizeLoaderBlock(LoaderBlock, &OsDevice, SystemRoot, Options))
     {

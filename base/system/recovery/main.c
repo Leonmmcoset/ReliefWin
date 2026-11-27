@@ -16,6 +16,7 @@
 static HINSTANCE Instance;
 static BOOL Environment;
 static UINT Page;
+static HANDLE EncryptionProcess;
 static WCHAR Windows[MAX_PATH];
 static WCHAR BcdPath[MAX_PATH];
 static const PCWSTR Logs[] = {L"..\\lastboot.log", L"..\\prevboot.log", L"debug.log", L"ntbtlog.txt", L"setupact.log", L"setuperr.log", L"setupapi.log", L"Panther\\setupact.log"};
@@ -61,6 +62,23 @@ Text(UINT Id)
     Value[0] = 0;
     LoadStringW(Instance, Id, Value, ARRAYSIZE(Values[0]));
     return Value;
+}
+
+static VOID
+OpenEncryption(HWND Dialog)
+{
+    WCHAR Path[MAX_PATH];
+    STARTUPINFOW Startup = {sizeof(Startup)};
+    PROCESS_INFORMATION Process;
+    GetSystemDirectoryW(Path, ARRAYSIZE(Path));
+    StringCchCatW(Path, ARRAYSIZE(Path), L"\\diskcrypt.exe");
+    if (CreateProcessW(Path, NULL, NULL, NULL, FALSE, 0, NULL, NULL, &Startup, &Process))
+    {
+        CloseHandle(Process.hThread);
+        EncryptionProcess = Process.hProcess;
+        EnableWindow(Dialog, FALSE);
+        SetTimer(Dialog, 1, 1000, NULL);
+    }
 }
 
 static VOID
@@ -335,6 +353,7 @@ Restart(HWND Dialog, BOOL Exiting)
     TOKEN_PRIVILEGES Privileges = {0};
     DWORD Error = ERROR_SUCCESS;
 
+    if (EncryptionProcess) return FALSE;
     if (!Confirm(Dialog, Exiting ? IDS_CONFIRM_EXIT : IDS_CONFIRM_RESTART, L"", L"")) return FALSE;
     if (!OpenProcessToken(GetCurrentProcess(), TOKEN_QUERY | TOKEN_ADJUST_PRIVILEGES, &Token))
         Error = GetLastError();
@@ -431,6 +450,7 @@ DialogProc(HWND Dialog, UINT Message, WPARAM WParam, LPARAM LParam)
                 case IDC_LOG_PAGE: SelectPage(Dialog, 0); break;
                 case IDC_DRIVER_PAGE: SelectPage(Dialog, 1); break;
                 case IDC_BOOT_PAGE: SelectPage(Dialog, 2); break;
+                case IDC_ENCRYPTION: OpenEncryption(Dialog); break;
                 case IDC_BROWSE_TARGET: BrowseTarget(Dialog); break;
                 case IDC_READ_LOG: ReadLog(Dialog); break;
                 case IDC_DISABLE: ChangeDriver(Dialog, FALSE); break;
@@ -449,7 +469,18 @@ DialogProc(HWND Dialog, UINT Message, WPARAM WParam, LPARAM LParam)
             }
             return TRUE;
         case WM_CLOSE:
+            if (EncryptionProcess) return TRUE;
             SendMessageW(Dialog, WM_COMMAND, IDCANCEL, 0);
+            return TRUE;
+        case WM_TIMER:
+            if (WParam == 1 && EncryptionProcess && WaitForSingleObject(EncryptionProcess, 0) == WAIT_OBJECT_0)
+            {
+                CloseHandle(EncryptionProcess);
+                EncryptionProcess = NULL;
+                KillTimer(Dialog, 1);
+                EnableWindow(Dialog, TRUE);
+                SetForegroundWindow(Dialog);
+            }
             return TRUE;
     }
     return FALSE;

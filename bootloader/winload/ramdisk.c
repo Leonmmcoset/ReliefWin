@@ -6,6 +6,8 @@
  */
 
 #include "winload.h"
+
+BOOLEAN OslCryptUnlock(PDK_DEVICE Device);
 #include <ramdisk.h>
 #include <wim.h>
 
@@ -566,7 +568,11 @@ OslBuildRamdisk(
         if (Parent.Type == BcdDeviceBoot)
             File.Memory = FwReadBootFile(Path, &FileSize);
         else if (DkOpenBcdDevice(&Parent, &ParentDevice))
+        {
+            if (!OslCryptUnlock(&ParentDevice))
+                return FALSE;
             File.Memory = FsReadFile(&ParentDevice, Path, &FileSize);
+        }
 
         File.Size = FileSize;
         OslTrace("RAM disk: %ls is %lu bytes", Path, FileSize);

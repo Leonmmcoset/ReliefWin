@@ -6,6 +6,7 @@
  */
 
 #include <ntoskrnl.h>
+#include <drivers/volumecrypt.h>
 #include <internal/dump.h>
 #include <ntdddisk.h>
 #include <ntddstor.h>
@@ -641,7 +642,7 @@ BOOLEAN NTAPI KdpInitializeCrashDump(_In_ HANDLE DumpFileHandle)
     FILE_VALID_DATA_LENGTH_INFORMATION ValidDataLength;
     PARTITION_INFORMATION_EX PartitionInfo;
     STARTING_VCN_INPUT_BUFFER StartingVcn;
-    PDEVICE_OBJECT StorageDevice;
+    PDEVICE_OBJECT StorageDevice = NULL;
     PVPB Vpb;
     IO_STATUS_BLOCK IoStatus;
     NTSTATUS Status;
@@ -695,7 +696,7 @@ BOOLEAN NTAPI KdpInitializeCrashDump(_In_ HANDLE DumpFileHandle)
         goto Failure;
     }
 
-    StorageDevice = Vpb->RealDevice;
+    StorageDevice = IoGetAttachedDeviceReference(Vpb->RealDevice);
     RtlZeroMemory(&PartitionInfo, sizeof(PartitionInfo));
     KdpCrashDumpInitializationStage = "querying the partition";
     Status = KdpSendDeviceIoControl(StorageDevice, IOCTL_DISK_GET_PARTITION_INFO_EX, NULL, 0, &PartitionInfo, sizeof(PartitionInfo));
@@ -763,9 +764,12 @@ BOOLEAN NTAPI KdpInitializeCrashDump(_In_ HANDLE DumpFileHandle)
         goto Failure;
     KdpCrashDumpInitializationStage = "dump target ready";
     KdpCrashDumpInitializationStatus = STATUS_SUCCESS;
+    ObDereferenceObject(StorageDevice);
     return TRUE;
 
 Failure:
+    if (StorageDevice)
+        ObDereferenceObject(StorageDevice);
     DPRINT1("KD: Crash dump target initialization failed while %s (0x%08lx)\n", KdpCrashDumpInitializationStage, Status);
     KdpCrashDumpInitializationStatus = Status;
     KdpCleanupCrashDumpTarget();
@@ -1213,7 +1217,8 @@ BOOLEAN NTAPI KdpInitializeDedicatedCrashDump(_In_ PFILE_OBJECT BootFileObject)
     DISK_GEOMETRY Geometry;
     STORAGE_DEVICE_NUMBER DeviceNumber;
     PARTITION_INFORMATION_EX DumpPartition;
-    PDEVICE_OBJECT SystemDevice;
+    PDEVICE_OBJECT SystemDevice = NULL;
+    ULONG EncryptionFlags = 0;
     PVPB Vpb;
     ULONG DefaultPartitionType = KDP_RAW_DUMP_DEFAULT_MBR_TYPE;
     ULONG PartitionType = KDP_RAW_DUMP_DEFAULT_MBR_TYPE;
@@ -1267,7 +1272,14 @@ BOOLEAN NTAPI KdpInitializeDedicatedCrashDump(_In_ PFILE_OBJECT BootFileObject)
         Status = STATUS_INVALID_DEVICE_STATE;
         goto Failure;
     }
-    SystemDevice = Vpb->RealDevice;
+    SystemDevice = IoGetAttachedDeviceReference(Vpb->RealDevice);
+    Status = KdpSendDeviceIoControl(SystemDevice, RW_CRYPT_IOCTL_VOLUME_STATE, NULL, 0,
+                                    &EncryptionFlags, sizeof(EncryptionFlags));
+    if (NT_SUCCESS(Status) && (EncryptionFlags & RW_CRYPT_FLAG_CONFIGURED))
+    {
+        Status = STATUS_NOT_SUPPORTED;
+        goto Failure;
+    }
 
     RtlZeroMemory(&DeviceNumber, sizeof(DeviceNumber));
     KdpCrashDumpInitializationStage = "locating the system disk";
@@ -1361,9 +1373,12 @@ BOOLEAN NTAPI KdpInitializeDedicatedCrashDump(_In_ PFILE_OBJECT BootFileObject)
     KdpSetDedicatedCrashDumpActive(TRUE);
     KdpCrashDumpInitializationStage = "dump target ready";
     KdpCrashDumpInitializationStatus = STATUS_SUCCESS;
+    ObDereferenceObject(SystemDevice);
     return TRUE;
 
 Failure:
+    if (SystemDevice)
+        ObDereferenceObject(SystemDevice);
     if (Status != STATUS_NOT_FOUND)
         DPRINT1("KD: Raw crash dump target initialization failed while %s (0x%08lx)\n", KdpCrashDumpInitializationStage, Status);
     KdpCrashDumpInitializationStatus = Status;

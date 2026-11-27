@@ -778,3 +778,6 @@
 #define IDS_UPDATE_OPTIONS             857
 #define IDS_UPDATE_AUTOMATIC           858
 #define IDS_UPDATE_AUTOMATIC_DESC      859
+
+#define IDS_ENCRYPTION_TITLE           860
+#define IDS_ENCRYPTION_DESC            861

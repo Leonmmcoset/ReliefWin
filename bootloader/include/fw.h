@@ -11,6 +11,9 @@ extern const USHORT FwApplicationSubsystem;
 extern const USHORT FwApplicationMachine;
 extern const BOOLEAN FwUefiFirmware;
 
+BOOLEAN FwGetEntropy(PUCHAR Buffer, ULONG Size);
+BOOLEAN FwArchGetEntropy(PUCHAR Buffer, ULONG Size);
+
 typedef enum _FW_VOLUME_SCAN_STATE
 {
     FwVolumeScanConnect,

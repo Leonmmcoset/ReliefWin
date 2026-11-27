@@ -433,6 +433,7 @@ NtfsMountVolume(IN PDEVICE_OBJECT TargetDeviceObject,
     DISK_GEOMETRY DiskGeometry;
     ULONG Index;
     ULONG Size;
+    KIRQL VpbIrql;
 
     // Get disk geometry.
     Size = sizeof(DISK_GEOMETRY);
@@ -537,7 +538,7 @@ NtfsMountVolume(IN PDEVICE_OBJECT TargetDeviceObject,
     InitializeListHead(&VolCB->NotifyList);
     FsRtlNotifyInitializeSync(&VolCB->NotifySync);
     FsRtlInitializeTunnelCache(&VolCB->Tunnel);
-    FSDeviceObject->Vpb = TargetDeviceObject->Vpb;
+    FSDeviceObject->Vpb = Vpb;
 
     // Give VolCB access to Ntfs Partition object
     VolCB->DiskVolume = DiskVolume;
@@ -548,9 +549,9 @@ NtfsMountVolume(IN PDEVICE_OBJECT TargetDeviceObject,
 
     // Set up storage device in VolCB.
     VolCB->StorageDevice = TargetDeviceObject;
-    VolCB->StorageDevice->Vpb->DeviceObject = FSDeviceObject;
-    VolCB->StorageDevice->Vpb->RealDevice = VolCB->StorageDevice;
-    VolCB->StorageDevice->Vpb->Flags |= VPB_MOUNTED;
+    IoAcquireVpbSpinLock(&VpbIrql);
+    Vpb->DeviceObject = FSDeviceObject;
+    IoReleaseVpbSpinLock(VpbIrql);
     FSDeviceObject->StackSize = VolCB->StorageDevice->StackSize + 1;
 
     // Tell IO manager we are done initializing.
@@ -558,7 +559,7 @@ NtfsMountVolume(IN PDEVICE_OBJECT TargetDeviceObject,
 
     // Create file stream object.
     VolCB->StreamFileObject = IoCreateStreamFileObject(NULL,
-                                                       VolCB->StorageDevice);
+                                                       FSDeviceObject);
 
     // Get serial number.
     FSDeviceObject->Vpb->SerialNumber = NtfsVolumeGetSerialNumber(DiskVolume);

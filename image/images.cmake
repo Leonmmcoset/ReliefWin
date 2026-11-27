@@ -712,6 +712,10 @@ macro(reliefwin_standard_disk_ids)
     set_property(GLOBAL PROPERTY RELIEFWIN_STANDARD_OPTIONS "${BOOTLOADER_PREINSTALL_OPTIONS}")
 endmacro()
 
+if(BOOTLOADER_UEFI OR TARGET winloadpcat)
+    list(APPEND _preinstall_boot_partition_files -mkdir Windows -mkdir Windows/system32)
+endif()
+
 if(BOOTLOADER_OFW)
     # The firmware boot partition is advertised as FAT32 LBA (0x0c).
     set(_preinstall_boot_partition_fs fat32)
@@ -729,8 +733,9 @@ if((ARCH STREQUAL "i386" OR ARCH STREQUAL "amd64") AND NOT MSVC)
     list(APPEND _preinstall_boot_partition_files
         -add ${REACTOS_BINARY_DIR}/bootloader/bootmgr bootmgr
         -mkdir Boot
+        -add $<TARGET_FILE:winloadpcat> Windows/system32/winload.exe
         -add ${REACTOS_BINARY_DIR}/bootloader/image/standardpcat/BCD Boot/BCD)
-    list(APPEND _preinstall_partition_deps bootmgrbios bootloaderstandardpcatbcd)
+    list(APPEND _preinstall_partition_deps bootmgrbios bootloaderstandardpcatbcd winloadpcat)
     list(APPEND _reliefwinimg_mbr_args -mbr ${REACTOS_BINARY_DIR}/bootloader/mbr.bin)
     list(APPEND _reliefwinimg_deps bootmgrbios)
 endif()
@@ -745,8 +750,9 @@ if(DEFINED EFI_PLATFORM_ID)
             -mkdir EFI/ReliefWin
             -mkdir EFI/ReliefWin/Boot
             -add $<TARGET_FILE:bootmgfw> EFI/ReliefWin/Boot/bootmgfw.efi
+            -add $<TARGET_FILE:winload> Windows/system32/winload.efi
             -add ${REACTOS_BINARY_DIR}/bootloader/image/standard/BCD EFI/ReliefWin/Boot/BCD)
-        list(APPEND _preinstall_partition_deps bootloaderstandardbcd)
+        list(APPEND _preinstall_partition_deps bootloaderstandardbcd winload)
         if((BOOTLOADER_HTTP_BOOT AND BOOTLOADER_HTTP_BOOT_URL) OR BOOTLOADER_HTTP_IMAGE_URL)
             list(APPEND _preinstall_boot_partition_files
                 -add $<TARGET_FILE:winload> EFI/ReliefWin/Boot/winload.efi)

@@ -112,3 +112,9 @@ PVOID
 ExFatReadFile(
     _In_ PCSTR Path,
     _Out_ PULONG Size);
+
+BOOLEAN DkCryptActive(PDK_DEVICE Device);
+BOOLEAN DkCryptTransfer(PDK_DEVICE Device, ULONGLONG Offset, ULONG Length, PVOID Buffer, BOOLEAN Write);
+BOOLEAN DkReadRaw(PDK_DEVICE Device, ULONGLONG Offset, ULONG Length, PVOID Buffer);
+BOOLEAN DkWriteRaw(PDK_DEVICE Device, ULONGLONG Offset, ULONG Length, const VOID *Buffer);
+VOID DkCryptForget(VOID);

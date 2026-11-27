@@ -7,10 +7,15 @@
 
 #include <bl.h>
 #include <bmui.h>
+#include <gui.h>
 #include <ft2build.h>
 #include FT_FREETYPE_H
 #include "bootui_mono.h"
 #include "bootui_mark.h"
+#include "bootui_unlock.h"
+#include "bootui_icons.h"
+#include "cryptinput.h"
+#include "cryptstrings.h"
 #include <reliefwin/bootlogo.h>
 
 #define BMUI_GRAPHICS_COLUMNS   100
@@ -480,6 +485,289 @@ BmUiEndBoot(VOID)
     BmUiPixels = NULL;
     BmUiGraphics = FALSE;
     BmUiBootActive = FALSE;
+}
+
+static FT_Face BmUiCryptFace;
+static ULONG BmUiCryptLanguage;
+static BOOLEAN BmUiCryptRecovery;
+
+static VOID
+BmUiCryptRect(ULONG X, ULONG Y, ULONG Width, ULONG Height, ULONG Radius, ULONG Color)
+{
+    ULONG Row, Column, Alpha;
+    LONG Dx, Dy, Distance;
+    Radius = min(Radius, min(Width, Height) / 2);
+    for (Row = Y; Row < min(Y + Height, BmUiHeight); ++Row)
+        for (Column = X; Column < min(X + Width, BmUiWidth); ++Column)
+        {
+            Dx = max((LONG)Radius - (LONG)(Column - X), (LONG)Column - (LONG)(X + Width - 1 - Radius));
+            Dy = max((LONG)Radius - (LONG)(Row - Y), (LONG)Row - (LONG)(Y + Height - 1 - Radius));
+            Alpha = 255;
+            if (Radius && Dx > 0 && Dy > 0)
+            {
+                Distance = Dx * Dx + Dy * Dy;
+                if (Distance > (LONG)(Radius * Radius)) continue;
+                if (Distance > (LONG)((Radius - 1) * (Radius - 1)))
+                    Alpha = 255 * (Radius * Radius - Distance) / (2 * Radius - 1);
+            }
+            BmUiPixels[(SIZE_T)Row * BmUiWidth + Column] =
+                BmUiBlend(BmUiPixels[(SIZE_T)Row * BmUiWidth + Column], Color, Alpha);
+        }
+}
+
+static VOID
+BmUiCryptText(PCWSTR Text, ULONG Size, ULONG Center, ULONG Baseline, ULONG Color)
+{
+    PCWSTR Character;
+    ULONG Width = 0;
+    FT_Set_Pixel_Sizes(BmUiCryptFace, 0, Size);
+    for (Character = Text; *Character; ++Character)
+        if (FT_Load_Char(BmUiCryptFace, *Character, FT_LOAD_DEFAULT) == FT_Err_Ok)
+            Width += BmUiCryptFace->glyph->advance.x >> 6;
+    BmUiDrawText(BmUiCryptFace, (LONG)Center - (LONG)Width / 2, Baseline, Text, Color);
+}
+
+static VOID
+BmUiCryptLogo(ULONG Top)
+{
+    const UCHAR *Bits = bootui_mark + LeUlong(bootui_mark + 10), *Pixel;
+    ULONG Width = LeUlong(bootui_mark + 18), Height = LeUlong(bootui_mark + 22);
+    ULONG X, Y, Left = (BmUiWidth - 64) / 2;
+    for (Y = 0; Y < 64; ++Y)
+        for (X = 0; X < 64; ++X)
+        {
+            Pixel = Bits + ((SIZE_T)(Height - 1 - Y * Height / 64) * Width + X * Width / 64) * 4;
+            BmUiPixels[(SIZE_T)(Top + Y) * BmUiWidth + Left + X] =
+                BmUiBlend(BmUiPixels[(SIZE_T)(Top + Y) * BmUiWidth + Left + X],
+                          (Pixel[2] << 16) | (Pixel[1] << 8) | Pixel[0], Pixel[3]);
+        }
+}
+
+static ULONG
+BmUiCryptHit(ULONG X, ULONG Y)
+{
+    ULONG Left = (BmUiWidth - 360) / 2, Top = (BmUiHeight - 460) / 2;
+    if (X >= Left && X < Left + 360)
+    {
+        if (Y >= Top + 166 && Y < Top + 214) return 0;
+        if (Y >= Top + 264 && Y < Top + 308)
+            return X < Left + 172 ? 1 : (X >= Left + 188 ? 3 : MAXULONG);
+        if (Y >= Top + 326 && Y < Top + 362) return 2;
+    }
+    if (X >= BmUiWidth / 2 - 100 && X < BmUiWidth / 2 + 100 &&
+        Y >= BmUiHeight - 68 && Y < BmUiHeight - 32) return 4;
+    return MAXULONG;
+}
+
+static VOID
+BmUiCryptFrame(const BM_CRYPT_EDIT *Edit, PCSTR Id, ULONG Status, BOOLEAN Caret,
+               const MACH_POINTER_STATE *Pointer, BOOLEAN ShowPointer)
+{
+    const BM_CRYPT_TEXT *Text = &BmCryptText[BmUiCryptLanguage];
+    ULONG X, Y, Color, Left = (BmUiWidth - 360) / 2, Top = (BmUiHeight - 460) / 2;
+    ULONG Start, End, Index, Width;
+    WCHAR Volume[38];
+    PCWSTR Message = NULL;
+    for (Y = 0; Y < BmUiHeight; ++Y)
+    {
+        Color = BmUiBlend(0x163966, 0x080F20, Y * 255 / BmUiHeight);
+        BmUiFill(0, Y, BmUiWidth, 1, Color);
+    }
+    BmUiCryptLogo(Top + 6);
+    BmUiCryptText(Text->Title, 30, BmUiWidth / 2, Top + 111, 0xFFFFFF);
+    BmUiCryptText(Edit->Recovery ? Text->RecoveryDescription : Text->Description,
+                 16, BmUiWidth / 2, Top + 143, 0xCDD9EA);
+    if (Status < 4)
+    {
+        Color = Edit->Focus == 0 ? 0x9CCBFF : 0x657B99;
+        BmUiCryptRect(Left, Top + 166, 360, 48, 7, Color);
+        BmUiCryptRect(Left + 1, Top + 167, 358, 46, 6, 0x0A172A);
+        if (!Edit->Length)
+        {
+            FT_Set_Pixel_Sizes(BmUiCryptFace, 0, 17);
+            BmUiDrawText(BmUiCryptFace, Left + 16, Top + 197,
+                         Edit->Recovery ? Text->Recovery : Text->Password, 0xA9BAD1);
+        }
+        Start = Edit->Cursor > 26 ? Edit->Cursor - 26 : 0;
+        End = min(Edit->Length, Start + 27);
+        FT_Set_Pixel_Sizes(BmUiCryptFace, 0, 18);
+        for (Index = Start; Index < End; ++Index)
+        {
+            WCHAR Bullet[2] = {0x2022, 0};
+            BmUiDrawText(BmUiCryptFace, Left + 16 + (Index - Start) * 12, Top + 197, Bullet, 0xFFFFFF);
+        }
+        if (Edit->Focus == 0 && Caret && Status != 3)
+            BmUiFill(Left + 16 + (Edit->Cursor - Start) * 12, Top + 178, 1, 23, 0xFFFFFF);
+    }
+    if (Status == 1) Message = Text->Wrong;
+    if (Status == 2) Message = Edit->Recovery ? Text->RecoveryFormat : Text->PasswordFormat;
+    if (Status == 3) Message = Text->Busy;
+    if (Status == 4) Message = Text->Failed;
+    if (Status == 5) Message = Text->Incomplete;
+    if (Message) BmUiCryptText(Message, Status >= 4 ? 15 : 14, BmUiWidth / 2, Top + 241,
+                             Status == 3 ? 0xCDD9EA : 0xFFD2C9);
+    if (Status >= 4)
+    {
+        BmUiCryptRect(Left, Top + 264, 360, 44, 6, 0x9CCBFF);
+        BmUiCryptText(Text->Back, 17, BmUiWidth / 2, Top + 293, 0x071629);
+    }
+    else
+    {
+        for (Index = 0; Index < 2; ++Index)
+        {
+            X = Left + Index * 188;
+            Color = Index ? 0x354A65 : 0x9CCBFF;
+            if (Edit->Focus == (Index ? 3 : 1))
+                BmUiCryptRect(X - 3, Top + 261, 178, 50, 8, 0xFFFFFF);
+            BmUiCryptRect(X, Top + 264, 172, 44, 6, Color);
+            BmUiCryptText(Index ? Text->Cancel : Text->Unlock, 17, X + 86, Top + 293,
+                         Index ? 0xFFFFFF : 0x071629);
+        }
+        if (Edit->Focus == 2) BmUiCryptRect(Left, Top + 326, 360, 36, 5, 0x304A6D);
+        BmUiCryptText(Edit->Recovery ? Text->UsePassword : Text->UseRecovery,
+                     16, BmUiWidth / 2, Top + 350, 0xBDDDFE);
+    }
+    if (Id)
+    {
+        for (Index = 0; Index < 36 && Id[Index]; ++Index) Volume[Index] = (UCHAR)Id[Index];
+        Volume[Index] = 0;
+        BmUiCryptText(Volume, 12, BmUiWidth / 2, Top + 390, 0x9AAEC9);
+    }
+    if (Status < 4)
+    {
+        if (Edit->Focus == 4)
+            BmUiCryptRect(BmUiWidth / 2 - 100, BmUiHeight - 68, 200, 36, 5, 0x304A6D);
+        BmUiCryptText(Text->Language, 15, BmUiWidth / 2, BmUiHeight - 44, 0xCDD9EA);
+        BmUiCryptText(Text->Hint, 12, BmUiWidth / 2, BmUiHeight - 14, 0x9AAEC9);
+    }
+    if (ShowPointer && Pointer)
+        for (Y = 0; Y < 24; ++Y)
+            for (X = 0; X < 24; ++X)
+            {
+                LONG Px = (LONG)Pointer->X - 6 + X, Py = (LONG)Pointer->Y - 3 + Y;
+                if (Px < 0 || Py < 0 || Px >= (LONG)BmUiWidth || Py >= (LONG)BmUiHeight) continue;
+                Width = bootui_icons[3 * 24 * 24 + Y * 24 + X];
+                BmUiPixels[(SIZE_T)Py * BmUiWidth + Px] =
+                    BmUiBlend(BmUiPixels[(SIZE_T)Py * BmUiWidth + Px], 0xFFFFFF, Width);
+            }
+    BmUiPresent(0, BmUiHeight);
+}
+
+static BOOLEAN
+BmUiCryptStart(VOID)
+{
+    if (!BmUiPixels) BmUiInitialize();
+    if (!BmUiGraphics || BmUiWidth < 640 || BmUiHeight < 480) return FALSE;
+    if (!BmUiCryptFace && FT_New_Memory_Face(BmUiLibrary, bootui_unlock, bootui_unlock_SIZE,
+                                           0, &BmUiCryptFace) != FT_Err_Ok) return FALSE;
+    return TRUE;
+}
+
+BOOLEAN
+BmUiCryptPassword(PCSTR Id, BOOLEAN Failed, PCHAR Secret, ULONG Capacity, PULONG Length, PBOOLEAN Cancelled)
+{
+    BM_CRYPT_EDIT Edit = {0};
+    MACH_POINTER_STATE Pointer = {0}, Sample;
+    BM_CRYPT_POINTER Click = {0};
+    BOOLEAN Extended, Caret = TRUE, Dirty = TRUE, ShowPointer = FALSE;
+    ULONG Status = Failed ? 1 : 0, Hit, Polls = 0;
+    int Key, Action;
+    *Length = 0;
+    *Cancelled = FALSE;
+    BmCryptClear(&Edit, Secret, Capacity);
+    Edit.Recovery = BmUiCryptRecovery;
+    if (!BmUiCryptStart()) return FALSE;
+    FwDebugPrint("Graphical disk unlock ready\n");
+    for (;;)
+    {
+        if (Dirty)
+        {
+            BmUiCryptFrame(&Edit, Id, Status, Caret, &Pointer, ShowPointer);
+            Dirty = FALSE;
+        }
+        Key = -1;
+        Extended = FALSE;
+        if (FwKeyAvailable())
+        {
+            Key = FwReadKey();
+            Extended = Key == KEY_EXTENDED;
+            if (Extended) Key = FwReadKey();
+        }
+        if (FwGetPointerState(BmUiWidth, BmUiHeight, &Sample))
+        {
+            Pointer = Sample;
+            Dirty = TRUE;
+            ShowPointer = !Pointer.Absolute;
+            Hit = BmUiCryptHit(Pointer.X, Pointer.Y);
+            if (BmCryptPointer(&Edit, &Click, TRUE, Hit, Pointer.LeftButton))
+            {
+                Key = KEY_ENTER;
+                Extended = FALSE;
+            }
+        }
+        if (Key >= 0)
+        {
+            Action = BmCryptKey(&Edit, Secret, Capacity, Key, Extended);
+            if (Action == BmCryptCancel)
+            {
+                BmCryptClear(&Edit, Secret, Capacity);
+                *Cancelled = TRUE;
+                return FALSE;
+            }
+            if (Action == BmCryptSubmit)
+            {
+                BmUiCryptRecovery = Edit.Recovery;
+                *Length = Edit.Length;
+                BmUiCryptFrame(&Edit, Id, 3, FALSE, NULL, FALSE);
+                return TRUE;
+            }
+            if (Action == BmCryptLanguage) BmUiCryptLanguage = (BmUiCryptLanguage + 1) % RTL_NUMBER_OF(BmCryptText);
+            if (Action == BmCryptInvalid) Status = 2;
+            else if (Action != BmCryptLanguage) Status = 0;
+            Caret = TRUE;
+            Polls = 0;
+            Dirty = TRUE;
+        }
+        StallExecutionProcessor(BMUI_POLL_MICROSECONDS);
+        if (++Polls == 50)
+        {
+            Polls = 0;
+            Caret = !Caret;
+            Dirty = TRUE;
+        }
+    }
+}
+
+VOID
+BmUiCryptFailure(PCSTR Id, BOOLEAN Incomplete)
+{
+    BM_CRYPT_EDIT Edit = {0};
+    MACH_POINTER_STATE Pointer;
+    BM_CRYPT_POINTER Click = {0};
+    int Key;
+    if (!BmUiCryptStart())
+    {
+        BmUiShutdown();
+        FwPrint(L"The graphical disk unlock screen is unavailable.\r\n");
+        return;
+    }
+    BmUiCryptFrame(&Edit, Id, Incomplete ? 5 : 4, FALSE, NULL, FALSE);
+    for (;;)
+    {
+        if (FwKeyAvailable())
+        {
+            Key = FwReadKey();
+            if (Key == KEY_ENTER || Key == KEY_ESC) break;
+            if (Key == KEY_EXTENDED) FwReadKey();
+        }
+        if (FwGetPointerState(BmUiWidth, BmUiHeight, &Pointer) &&
+            BmCryptPointer(&Edit, &Click, TRUE,
+                Pointer.X >= (BmUiWidth - 360) / 2 && Pointer.X < (BmUiWidth + 360) / 2 &&
+                Pointer.Y >= (BmUiHeight - 460) / 2 + 264 &&
+                Pointer.Y < (BmUiHeight - 460) / 2 + 308 ? 1 : MAXULONG, Pointer.LeftButton)) break;
+        StallExecutionProcessor(BMUI_POLL_MICROSECONDS);
+    }
+    BmUiShutdown();
 }
 
 static

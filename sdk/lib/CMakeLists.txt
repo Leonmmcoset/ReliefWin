@@ -77,6 +77,7 @@ if(((REACTOS_USE_WDDM AND (REACTOS_WDDM_TARGET_LEVEL GREATER_EQUAL 2000)) OR MES
    (ARCH STREQUAL "riscv64"))
     add_subdirectory(pvrkmt)
 endif()
+add_subdirectory(volumecrypt)
 add_subdirectory(vcruntime)
 add_subdirectory(vcstartup)
 add_subdirectory(wine2ros)

@@ -774,7 +774,7 @@ PopHiberOpenFile(
     LARGE_INTEGER AllocationSize;
     LARGE_INTEGER Offset;
     UNICODE_STRING Path;
-    PDEVICE_OBJECT StorageDevice;
+    PDEVICE_OBJECT StorageDevice = NULL;
     PLNT_HIBER_HEADER Header;
     KEVENT Event;
     PIRP Irp;
@@ -851,7 +851,7 @@ PopHiberOpenFile(
         goto Failure;
     }
 
-    StorageDevice = Vpb->RealDevice;
+    StorageDevice = IoGetAttachedDeviceReference(Vpb->RealDevice);
     RtlZeroMemory(&PartitionInfo, sizeof(PartitionInfo));
     KeInitializeEvent(&Event, NotificationEvent, FALSE);
     Irp = IoBuildDeviceIoControlRequest(IOCTL_DISK_GET_PARTITION_INFO_EX, StorageDevice, NULL, 0,
@@ -935,9 +935,12 @@ PopHiberOpenFile(
     PopHiber.Ready = TRUE;
     PopCapabilities.HiberFilePresent = TRUE;
     DPRINT1("Hibernation file ready: %I64u MB in %lu extents\n", Size >> 20, PopHiber.Extents->ExtentCount);
+    ObDereferenceObject(StorageDevice);
     return STATUS_SUCCESS;
 
 Failure:
+    if (StorageDevice)
+        ObDereferenceObject(StorageDevice);
     DPRINT1("Hibernation file setup failed: 0x%08lx\n", Status);
     PopHiberCloseFile();
     return Status;

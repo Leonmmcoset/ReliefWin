@@ -779,3 +779,9 @@ BEGIN
     IDS_TARGET "目标"
     IDS_TARGET_FORMAT "Windows 11 %s %s"
 END
+
+STRINGTABLE
+BEGIN
+    IDS_ENCRYPTION_TITLE "ReliefWin 磁盘加密"
+    IDS_ENCRYPTION_DESC "管理卷加密、密码、恢复密钥和离线转换"
+END

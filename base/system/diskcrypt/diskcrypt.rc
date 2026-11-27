@@ -1,0 +1,174 @@
+/*
+ * PROJECT:     ReliefWin Disk Encryption
+ * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
+ * PURPOSE:     English, Simplified Chinese and Japanese management resources
+ * COPYRIGHT:   Copyright 2026 ReliefWin contributors
+ */
+#include <windef.h>
+#include <winuser.h>
+#include <commctrl.h>
+#include "resource.h"
+#define REACTOS_STR_FILE_DESCRIPTION "ReliefWin Disk Encryption"
+#define REACTOS_STR_INTERNAL_NAME "diskcrypt"
+#define REACTOS_STR_ORIGINAL_FILENAME "diskcrypt.exe"
+#include <reliefwin/version.rc>
+#include <reliefwin/manifest_exe.rc>
+#pragma code_page(65001)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+IDD_DISKCRYPT DIALOGEX 0, 0, 620, 360
+STYLE DS_SHELLFONT | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX
+CAPTION "ReliefWin Disk Encryption"
+FONT 9, "Segoe UI"
+BEGIN
+    LTEXT "", IDC_BOOT_LABEL, 16, 18, 120, 12
+    COMBOBOX IDC_BOOT, 142, 15, 460, 160, CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT "", IDC_VOLUME_LABEL, 16, 49, 120, 12
+    COMBOBOX IDC_VOLUME, 142, 46, 460, 180, CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT "", IDC_ACTION_LABEL, 16, 80, 120, 12
+    COMBOBOX IDC_ACTION, 142, 77, 460, 180, CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT "", IDC_SECRET_LABEL, 16, 111, 120, 24
+    EDITTEXT IDC_SECRET, 142, 108, 460, 21, ES_PASSWORD | ES_AUTOHSCROLL | WS_TABSTOP
+    LTEXT "", IDC_NEW_LABEL, 16, 142, 120, 12
+    EDITTEXT IDC_NEW, 142, 139, 460, 21, ES_PASSWORD | ES_AUTOHSCROLL | WS_TABSTOP
+    LTEXT "", IDC_CONFIRM_LABEL, 16, 173, 120, 12
+    EDITTEXT IDC_CONFIRM, 142, 170, 460, 21, ES_PASSWORD | ES_AUTOHSCROLL | WS_TABSTOP
+    LTEXT "", IDC_DESCRIPTION, 16, 206, 586, 48
+    CONTROL "", IDC_PROGRESS, PROGRESS_CLASS, WS_VISIBLE, 16, 260, 586, 12
+    LTEXT "", IDC_STATUS, 16, 282, 586, 31
+    DEFPUSHBUTTON "", IDC_GO, 250, 325, 80, 22
+    PUSHBUTTON "", IDC_PAUSE, 340, 325, 80, 22
+    PUSHBUTTON "", IDC_REFRESH, 430, 325, 80, 22
+    PUSHBUTTON "", IDCANCEL, 520, 325, 82, 22
+END
+
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+STRINGTABLE
+BEGIN
+    IDS_TITLE "ReliefWin Disk Encryption"
+    IDS_BOOT "Boot partition:"
+    IDS_VOLUME "Volume:"
+    IDS_ACTION "Action:"
+    IDS_SECRET "Password or recovery key:"
+    IDS_NEW "New password:"
+    IDS_CONFIRM "Confirm new password:"
+    IDS_HELP "Existing files are preserved by offline conversion. A paused volume stays unavailable until conversion resumes. Convert the system volume from external recovery media. Keep recovery files on separate offline storage."
+    IDS_GO "Run"
+    IDS_PAUSE "Pause safely"
+    IDS_REFRESH "Refresh"
+    IDS_CLOSE "Close"
+    IDS_ENCRYPT "Encrypt existing volume"
+    IDS_DECRYPT "Decrypt volume"
+    IDS_RESUME "Resume interrupted conversion"
+    IDS_UNLOCK "Unlock"
+    IDS_LOCK "Lock"
+    IDS_PASSWORD "Change password"
+    IDS_RECOVERY "Generate new recovery key"
+    IDS_BACKUP "Back up encryption header"
+    IDS_RESTORE "Restore header / import recovery file"
+    IDS_PLAIN "Not encrypted"
+    IDS_LOCKED "Encrypted, locked"
+    IDS_OPEN "Encrypted, unlocked"
+    IDS_OFFLINE "Conversion incomplete or header unavailable"
+    IDS_ERROR "Failed (%lu): %s"
+    IDS_OK "Completed."
+    IDS_PAUSED "Paused. Resume conversion before using this volume."
+    IDS_BUSY "Working…"
+    IDS_PASSWORD_RULE "New passwords must contain 12–128 printable ASCII characters. The two entries must match."
+    IDS_SAVE "Save recovery file (contains an unencrypted recovery key when generated)"
+    IDS_LOAD "Select recovery file"
+    IDS_CONFIRM_ACTION "Apply “%s” to disk %lu, partition %lu?\n%s\n\nBack up important files first. Store recovery files separately; anyone holding the recovery key and encryption header can unlock the volume."
+    IDS_NO_VOLUMES "Choose a boot partition and target volume."
+    IDS_BUSY_CLOSE "Pause the conversion and wait for the current operation to finish before closing."
+    IDS_RECOVERY_ENV "Offline recovery environment"
+    IDS_RUNNING_SYSTEM "System volume (currently running)"
+    IDS_SYSTEM "System volume"
+    IDS_KEY_NOTE "Recovery files created and read back successfully. The .txt file beside the .rwbackup file contains the recovery key for pre-boot unlock. Keep both files offline."
+END
+
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+STRINGTABLE
+BEGIN
+    IDS_TITLE "ReliefWin 磁盘加密"
+    IDS_BOOT "启动分区："
+    IDS_VOLUME "目标卷："
+    IDS_ACTION "操作："
+    IDS_SECRET "密码或恢复密钥："
+    IDS_NEW "新密码："
+    IDS_CONFIRM "确认新密码："
+    IDS_HELP "原地转换保留现有文件。暂停后，目标卷需要完成续转才能使用。系统卷请从外部恢复介质转换。请将恢复文件保存在独立的离线存储中。"
+    IDS_GO "执行"
+    IDS_PAUSE "安全暂停"
+    IDS_REFRESH "刷新"
+    IDS_CLOSE "关闭"
+    IDS_ENCRYPT "加密现有卷"
+    IDS_DECRYPT "解密卷"
+    IDS_RESUME "继续未完成的转换"
+    IDS_UNLOCK "解锁"
+    IDS_LOCK "锁定"
+    IDS_PASSWORD "修改密码"
+    IDS_RECOVERY "生成新的恢复密钥"
+    IDS_BACKUP "备份加密头"
+    IDS_RESTORE "恢复加密头／导入恢复文件"
+    IDS_PLAIN "未加密"
+    IDS_LOCKED "已加密、已锁定"
+    IDS_OPEN "已加密、已解锁"
+    IDS_OFFLINE "转换未完成或加密头不可用"
+    IDS_ERROR "操作失败（%lu）：%s"
+    IDS_OK "操作完成。"
+    IDS_PAUSED "已暂停。使用此卷前，请继续并完成转换。"
+    IDS_BUSY "正在处理…"
+    IDS_PASSWORD_RULE "新密码须为 12–128 个可打印 ASCII 字符，两次输入必须一致。"
+    IDS_SAVE "保存恢复文件（生成密钥时，文件包含未加密的恢复密钥）"
+    IDS_LOAD "选择恢复文件"
+    IDS_CONFIRM_ACTION "要执行“%s”吗？\n磁盘 %lu，分区 %lu\n%s\n\n请先备份重要文件，并将恢复文件保存在独立的离线存储中。持有恢复密钥与加密头的人可以解锁此卷。"
+    IDS_NO_VOLUMES "请选择启动分区和目标卷。"
+    IDS_BUSY_CLOSE "请先暂停转换，并等待当前操作完成后关闭。"
+    IDS_RECOVERY_ENV "离线恢复环境"
+    IDS_RUNNING_SYSTEM "系统卷（当前运行中）"
+    IDS_SYSTEM "系统卷"
+    IDS_KEY_NOTE "已创建恢复文件并完成回读核对。与 .rwbackup 文件同目录的 .txt 文件包含启动前解锁所需的恢复密钥。请将两个文件一起离线妥善保存。"
+END
+
+LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
+STRINGTABLE
+BEGIN
+    IDS_TITLE "ReliefWin ディスク暗号化"
+    IDS_BOOT "ブート パーティション:"
+    IDS_VOLUME "ボリューム:"
+    IDS_ACTION "操作:"
+    IDS_SECRET "パスワードまたは回復キー:"
+    IDS_NEW "新しいパスワード:"
+    IDS_CONFIRM "新しいパスワードの確認:"
+    IDS_HELP "オフライン変換で既存のファイルを保持します。一時停止したボリュームは再開して完了するまで使用できません。システム ボリュームは外部の回復メディアから変換してください。回復ファイルは別のオフライン ストレージに保管してください。"
+    IDS_GO "実行"
+    IDS_PAUSE "安全に一時停止"
+    IDS_REFRESH "更新"
+    IDS_CLOSE "閉じる"
+    IDS_ENCRYPT "既存のボリュームを暗号化"
+    IDS_DECRYPT "ボリュームの暗号化を解除"
+    IDS_RESUME "中断した変換を再開"
+    IDS_UNLOCK "ロック解除"
+    IDS_LOCK "ロック"
+    IDS_PASSWORD "パスワードの変更"
+    IDS_RECOVERY "新しい回復キーの生成"
+    IDS_BACKUP "暗号化ヘッダーのバックアップ"
+    IDS_RESTORE "ヘッダーの復元 / 回復ファイルのインポート"
+    IDS_PLAIN "暗号化なし"
+    IDS_LOCKED "暗号化済み、ロック中"
+    IDS_OPEN "暗号化済み、ロック解除済み"
+    IDS_OFFLINE "変換未完了、またはヘッダーを読み取れません"
+    IDS_ERROR "失敗 (%lu): %s"
+    IDS_OK "完了しました。"
+    IDS_PAUSED "一時停止しました。このボリュームを使用する前に変換を再開してください。"
+    IDS_BUSY "処理中…"
+    IDS_PASSWORD_RULE "新しいパスワードは印字可能な ASCII 文字 12～128 文字で、確認入力と一致する必要があります。"
+    IDS_SAVE "回復ファイルを保存 (生成時は平文の回復キーを含みます)"
+    IDS_LOAD "回復ファイルの選択"
+    IDS_CONFIRM_ACTION "「%s」を実行しますか?\nディスク %lu、パーティション %lu\n%s\n\n重要なファイルを事前にバックアップし、回復ファイルは別のオフライン ストレージに保存してください。回復キーと暗号化ヘッダーを持つ人はボリュームを解除できます。"
+    IDS_NO_VOLUMES "ブート パーティションと対象ボリュームを選択してください。"
+    IDS_BUSY_CLOSE "変換を一時停止し、現在の処理が完了するまで待ってから閉じてください。"
+    IDS_RECOVERY_ENV "オフライン回復環境"
+    IDS_RUNNING_SYSTEM "システム ボリューム (実行中)"
+    IDS_SYSTEM "システム ボリューム"
+    IDS_KEY_NOTE "回復ファイルの作成と読み取り確認が完了しました。.rwbackup と同じ場所の .txt ファイルには起動前のロック解除に使う回復キーが保存されています。両方をオフラインで保管してください。"
+END

@@ -79,6 +79,8 @@ BuildSystem(PageBuilder &page)
         Str(IDS_SOUND_KEYWORDS);
     page.Navigate(Str(IDS_PAGE_POWER), Str(IDS_POWER_DESC), L"power_20_regular", PageId::Power);
     page.Navigate(Str(IDS_PAGE_STORAGE), Str(IDS_STORAGE_DESC), L"storage_20_regular", PageId::Storage);
+    page.Button(Str(IDS_ENCRYPTION_TITLE), Str(IDS_ENCRYPTION_DESC), L"lock_closed_20_regular", Str(IDS_UPDATE_OPEN_BUTTON),
+                [](int) { Launch(L"diskcrypt.exe"); });
     page.Navigate(Str(IDS_PAGE_MULTITASKING), Str(IDS_MULTITASKING_DESC), L"window_multiple_20_regular",
                   PageId::Multitasking);
     page.Navigate(Str(IDS_PAGE_BOOTLOADER), Str(IDS_BOOTLOADER_DESC), L"power_20_regular", PageId::BootLoader).Keywords =

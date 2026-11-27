@@ -299,6 +299,7 @@ IopSendMountVolume(
     _In_ BOOLEAN AllowRawMount)
 {
     PIO_STACK_LOCATION StackPtr;
+    PDEVICE_OBJECT MountDevice;
     IO_STATUS_BLOCK IoStatusBlock;
     KEVENT Event;
     NTSTATUS Status;
@@ -322,7 +323,8 @@ IopSendMountVolume(
     StackPtr->MinorFunction = IRP_MN_MOUNT_VOLUME;
     StackPtr->Flags = AllowRawMount ? SL_ALLOW_RAW_MOUNT : 0;
     StackPtr->Parameters.MountVolume.Vpb = DeviceObject->Vpb;
-    StackPtr->Parameters.MountVolume.DeviceObject = IoGetAttachedDevice(DeviceObject);
+    MountDevice = IoGetAttachedDeviceReference(DeviceObject);
+    StackPtr->Parameters.MountVolume.DeviceObject = MountDevice;
 
     Status = IoCallDriver(FileSystemDeviceObject, Irp);
     if (Status == STATUS_PENDING)
@@ -330,6 +332,8 @@ IopSendMountVolume(
         KeWaitForSingleObject(&Event, Executive, KernelMode, FALSE, NULL);
         Status = IoStatusBlock.Status;
     }
+
+    if (!NT_SUCCESS(Status)) ObDereferenceObject(MountDevice);
 
     return Status;
 }

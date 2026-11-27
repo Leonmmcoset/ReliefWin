@@ -12,6 +12,7 @@
 MD5_CTX KsecLoadTimeStartMd5s[2];
 DES3_KEY KsecGlobalDes3Key;
 AES_KEY KsecGlobalAesKey;
+static BOOLEAN KsecEncryptionReady;
 
 typedef struct _KSEC_PROCESS_DATA
 {
@@ -43,27 +44,26 @@ NTAPI
 KsecInitializeEncryptionSupport (
     VOID)
 {
-    KSEC_ENTROPY_DATA EntropyData;
+    UCHAR Seed[64], KeyDataBuffer[32];
     MD5_CTX Md5Context;
-    UCHAR KeyDataBuffer[32];
 
-    KsecGatherEntropyData(&EntropyData);
+    if (!NT_SUCCESS(KsecGenRandom(Seed, sizeof(Seed)))) return;
     MD5Init(&Md5Context);
-    MD5Update(&Md5Context, (PVOID)&EntropyData, sizeof(EntropyData));
+    MD5Update(&Md5Context, Seed, 32);
     KsecLoadTimeStartMd5s[0] = Md5Context;
     MD5Final(&Md5Context);
-    RtlCopyMemory(KeyDataBuffer, &Md5Context.digest, 16);
-
-    KsecGatherEntropyData(&EntropyData);
-    Md5Context = KsecLoadTimeStartMd5s[0];
-    MD5Update(&Md5Context, (PVOID)&EntropyData, sizeof(EntropyData));
+    RtlCopyMemory(KeyDataBuffer, Md5Context.digest, 16);
+    MD5Init(&Md5Context);
+    MD5Update(&Md5Context, Seed + 32, 32);
     KsecLoadTimeStartMd5s[1] = Md5Context;
     MD5Final(&Md5Context);
-    RtlCopyMemory(&KeyDataBuffer[16], &Md5Context.digest, 16);
+    RtlCopyMemory(KeyDataBuffer + 16, Md5Context.digest, 16);
+    RtlSecureZeroMemory(Seed, sizeof(Seed));
 
     /* Create the global keys */
     aes_setup(KeyDataBuffer, 32, 0, &KsecGlobalAesKey);
     des3_setup(KeyDataBuffer, 24, 0, &KsecGlobalDes3Key);
+    KsecEncryptionReady = TRUE;
 
     /* Erase the temp data */
     RtlSecureZeroMemory(KeyDataBuffer, sizeof(KeyDataBuffer));
@@ -298,6 +298,8 @@ KsecEncryptMemory (
     _In_ ULONG Length,
     _In_ ULONG OptionFlags)
 {
+    if (!KsecEncryptionReady) return STATUS_DEVICE_NOT_READY;
+
     /* Validate parameter */
     if (OptionFlags > RTL_ENCRYPT_OPTION_SAME_LOGON)
     {
@@ -333,6 +335,8 @@ KsecDecryptMemory (
     _In_ ULONG Length,
     _In_ ULONG OptionFlags)
 {
+    if (!KsecEncryptionReady) return STATUS_DEVICE_NOT_READY;
+
     /* Validate parameter */
     if (OptionFlags > RTL_ENCRYPT_OPTION_SAME_LOGON)
     {

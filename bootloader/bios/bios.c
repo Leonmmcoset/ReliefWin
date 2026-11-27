@@ -8,6 +8,12 @@
 #include <bl.h>
 #include <bios.h>
 
+BOOLEAN FwGetEntropy(PUCHAR Buffer, ULONG Size)
+{
+    RtlSecureZeroMemory(Buffer, Size);
+    return FALSE;
+}
+
 #define BIOS_PRINT_CHARS        512
 #define BIOS_PIT_FREQUENCY      1193182
 #define BIOS_PIT_LATCH          11932

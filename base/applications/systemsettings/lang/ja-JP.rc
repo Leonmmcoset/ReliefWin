@@ -779,3 +779,9 @@ BEGIN
     IDS_TARGET "ターゲット"
     IDS_TARGET_FORMAT "Windows 11 %s %s"
 END
+
+STRINGTABLE
+BEGIN
+    IDS_ENCRYPTION_TITLE "ReliefWin ディスク暗号化"
+    IDS_ENCRYPTION_DESC "ボリュームの暗号化、パスワード、回復キー、オフライン変換を管理"
+END

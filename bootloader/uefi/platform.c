@@ -12,6 +12,25 @@
 #include <SystemResourceTable.h>
 #include <loader_firmware.h>
 #include <loader_framebuffer.h>
+#include <Rng.h>
+
+BOOLEAN FwGetEntropy(PUCHAR Buffer, ULONG Size)
+{
+    EFI_GUID Guid = EFI_RNG_PROTOCOL_GUID;
+    EFI_GUID Raw = EFI_RNG_ALGORITHM_RAW;
+    EFI_RNG_PROTOCOL *Rng = NULL;
+    EFI_STATUS Status;
+    if (!Size || BootServicesExitedFlag) return FALSE;
+    Status = GlobalSystemTable->BootServices->LocateProtocol(&Guid, NULL, (VOID **)&Rng);
+    if (!EFI_ERROR(Status) && Rng && Rng->GetRNG)
+    {
+        Status = Rng->GetRNG(Rng, &Raw, Size, Buffer);
+        if (Status == EFI_UNSUPPORTED) Status = Rng->GetRNG(Rng, NULL, Size, Buffer);
+        if (!EFI_ERROR(Status)) return TRUE;
+    }
+    RtlSecureZeroMemory(Buffer, Size);
+    return FALSE;
+}
 
 #define FW_COLOR_BITS  32
 #define FW_MASK_RED    0x000000FF

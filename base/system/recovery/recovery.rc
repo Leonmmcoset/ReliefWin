@@ -33,6 +33,7 @@ BEGIN
     PUSHBUTTON "Startup logs", IDC_LOG_PAGE, 18, 84, 160, 24
     PUSHBUTTON "Driver recovery", IDC_DRIVER_PAGE, 188, 84, 160, 24
     PUSHBUTTON "Boot configuration", IDC_BOOT_PAGE, 358, 84, 160, 24
+    PUSHBUTTON "Disk encryption", IDC_ENCRYPTION, 528, 84, 94, 24
     LTEXT "", IDC_PAGE_HELP, 18, 117, 604, 30
     COMBOBOX IDC_LOGS, 18, 153, 500, 110, CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON "Read log", IDC_READ_LOG, 530, 152, 92, 19
@@ -52,6 +53,7 @@ END
 STRINGTABLE
 BEGIN
     IDS_TITLE "ReliefWin Recovery Center"
+    IDS_ENCRYPTION "Disk encryption"
     IDS_INTRO "Choose the offline system to repair. Changes require confirmation."
     IDS_TARGET "Windows folder:"
     IDS_BROWSE "Browse…"
@@ -114,6 +116,7 @@ BEGIN
     PUSHBUTTON "启动日志", IDC_LOG_PAGE, 18, 84, 160, 24
     PUSHBUTTON "驱动恢复", IDC_DRIVER_PAGE, 188, 84, 160, 24
     PUSHBUTTON "启动配置", IDC_BOOT_PAGE, 358, 84, 160, 24
+    PUSHBUTTON "磁盘加密", IDC_ENCRYPTION, 528, 84, 94, 24
     LTEXT "", IDC_PAGE_HELP, 18, 117, 604, 30
     COMBOBOX IDC_LOGS, 18, 153, 500, 110, CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON "读取日志", IDC_READ_LOG, 530, 152, 92, 19
@@ -133,6 +136,7 @@ END
 STRINGTABLE
 BEGIN
     IDS_TITLE "ReliefWin 系统恢复中心"
+    IDS_ENCRYPTION "磁盘加密"
     IDS_INTRO "选择需要修复的离线系统。修改操作需要确认。"
     IDS_TARGET "系统目录："
     IDS_BROWSE "浏览…"
@@ -195,6 +199,7 @@ BEGIN
     PUSHBUTTON "起動ログ", IDC_LOG_PAGE, 18, 84, 160, 24
     PUSHBUTTON "ドライバーの回復", IDC_DRIVER_PAGE, 188, 84, 160, 24
     PUSHBUTTON "ブート構成", IDC_BOOT_PAGE, 358, 84, 160, 24
+    PUSHBUTTON "ディスク暗号化", IDC_ENCRYPTION, 528, 84, 94, 24
     LTEXT "", IDC_PAGE_HELP, 18, 117, 604, 30
     COMBOBOX IDC_LOGS, 18, 153, 500, 110, CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON "ログを表示", IDC_READ_LOG, 530, 152, 92, 19
@@ -214,6 +219,7 @@ END
 STRINGTABLE
 BEGIN
     IDS_TITLE "ReliefWin システム回復センター"
+    IDS_ENCRYPTION "ディスク暗号化"
     IDS_INTRO "修復するオフラインシステムを選択してください。変更には確認が必要です。"
     IDS_TARGET "システムフォルダー："
     IDS_BROWSE "参照…"

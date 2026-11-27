@@ -255,12 +255,12 @@ int wmain(int argc, WCHAR *argv[])
             }
             else
             {
-                ConResPuts(StdOut, IDS_ERROR_HIBERNATE_ENABLED);
                 return EXIT_SUCCESS;
             }
         }
         else
         {
+            ConResPuts(StdErr, IDS_ERROR_HIBERNATE_ENABLED);
             return EXIT_FAILURE;
         }
     }

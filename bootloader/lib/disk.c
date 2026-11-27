@@ -78,7 +78,7 @@ DkCacheLine(
 }
 
 BOOLEAN
-DkRead(
+DkReadRaw(
     _In_ PDK_DEVICE Device,
     _In_ ULONGLONG Offset,
     _In_ ULONG Length,
@@ -182,7 +182,7 @@ DkCacheInvalidate(
 }
 
 BOOLEAN
-DkWrite(
+DkWriteRaw(
     _In_ PDK_DEVICE Device,
     _In_ ULONGLONG Offset,
     _In_ ULONG Length,
@@ -393,4 +393,20 @@ DkLocateBootPartition(
     }
 
     return FALSE;
+}
+
+BOOLEAN
+DkRead(PDK_DEVICE Device, ULONGLONG Offset, ULONG Length, PVOID Buffer)
+{
+    if (DkCryptActive(Device))
+        return DkCryptTransfer(Device, Offset, Length, Buffer, FALSE);
+    return DkReadRaw(Device, Offset, Length, Buffer);
+}
+
+BOOLEAN
+DkWrite(PDK_DEVICE Device, ULONGLONG Offset, ULONG Length, const VOID *Buffer)
+{
+    if (DkCryptActive(Device))
+        return DkCryptTransfer(Device, Offset, Length, (PVOID)Buffer, TRUE);
+    return DkWriteRaw(Device, Offset, Length, Buffer);
 }
