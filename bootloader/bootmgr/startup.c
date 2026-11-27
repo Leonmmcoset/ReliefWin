@@ -14,27 +14,21 @@
 #endif
 #define BM_PROFILE_ISOLATED_DEBUGGING 3
 
-static PCSTR BmStartupNames[] =
+static const UI_TEXT BmStartupNames[] =
 {
-    "Debugging",
-    "Debugging (isolated)",
+    UiTextDebugging,
+    UiTextIsolatedDebugging,
 #ifdef REMOTE_ASSISTANCE
-    "Remote debugging"
+    UiTextRemoteDebugging
 #endif
 };
 
-static PCSTR BmStartupDescriptions[] =
+static const UI_TEXT BmStartupDescriptions[] =
 {
-    "Starts ReliefWin with the kernel debugger. The log shows on the screen and goes to a log file, "
-    "the serial port and the network cable without encryption. A debugger at the other end can "
-    "read it and break in. ReliefWin maintainers have one.",
-    "Like Debugging but ReliefWin only opens the disk it starts from. Other disks stay offline and "
-    "read-only even if you plug them in later. Nothing on them can be read or changed. When "
-    "ReliefWin runs from memory it opens no disk at all.",
+    UiTextDebuggingDescription,
+    UiTextIsolatedDescription,
 #ifdef REMOTE_ASSISTANCE
-    "Lets a ReliefWin maintainer connect to this computer to help you. The debugger joins the "
-    "network and opens an encrypted session. The key to join it shows on the screen. Anyone "
-    "with the key controls this PC. Give it only to a maintainer."
+    UiTextRemoteDescription
 #endif
 };
 
@@ -68,19 +62,19 @@ BmChooseStartupSettings(
 
     for (i = 0; i < RTL_NUMBER_OF(BmStartupProfiles); i++)
     {
-        Descriptions[Count] = BmStartupDescriptions[i];
-        Names[Count++] = BmStartupNames[i];
+        Descriptions[Count] = UiTextInLanguage(BmStartupDescriptions[i], Graphical ? UiGetLanguage() : UiLanguageEnglish);
+        Names[Count++] = UiTextInLanguage(BmStartupNames[i], Graphical ? UiGetLanguage() : UiLanguageEnglish);
     }
 
     for (i = 0; i < ToolCount && i < BM_MAX_TOOLS; i++)
         Names[Count++] = ToolNames[i];
 
-    Names[Count] = "Back";
+    Names[Count] = UiText(UiTextBack);
 
     if (Graphical)
     {
         UiMenuDescriptions = Descriptions;
-        Chosen = UiDisplayMenu("Startup options", NULL, Names, Count + 1,
+        Chosen = UiDisplayMenu(UiText(UiTextStartup), NULL, Names, Count + 1,
                                0, -1, &Choice, TRUE, NULL, NULL);
         UiMenuDescriptions = NULL;
         if (!Chosen)

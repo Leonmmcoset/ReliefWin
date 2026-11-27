@@ -38,7 +38,10 @@ typedef char *PCHAR;
 typedef struct {unsigned X, Y; int Absolute, LeftButton;} MACH_POINTER_STATE;
 static int Available, Message, Reads, Draws;
 static const char *Keys;
-static unsigned BmUiWidth = 1280, BmUiHeight = 900, BmUiCryptLanguage;
+static unsigned BmUiWidth = 1280, BmUiHeight = 900;
+static UI_LANGUAGE Language;
+UI_LANGUAGE UiGetLanguage(void) {return Language;}
+int UiSelectLanguage(UI_LANGUAGE Value) {Language = Value; return 1;}
 static BOOLEAN BmUiCryptRecovery;
 const unsigned BmCryptText[3] = {0};
 static BOOLEAN BmUiCryptStart(void) {return Available;}
@@ -93,7 +96,8 @@ int main(void)
 '''
 program = Path('/tmp/reliefwin-cryptdialog.c')
 binary = Path('/tmp/reliefwin-cryptdialog')
-program.write_text('#include ' + json.dumps(str(root / 'cryptinput.h')) + '\n' +
+program.write_text('#include ' + json.dumps(str(root / 'cryptinput.h')) + '\n#include ' +
+                   json.dumps(str(root.parent / 'include/bootlang.h')) + '\n' +
                    fixture + password + '\n' + failure + wrapper + tests)
 subprocess.run(['clang', '-std=c11', '-Wall', '-Wextra', '-Werror',
                 '-fsanitize=address,undefined', str(program), '-o', str(binary)], check=True)

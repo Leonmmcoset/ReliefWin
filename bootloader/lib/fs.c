@@ -71,6 +71,16 @@ FsOpenFileA(
 }
 
 BOOLEAN
+FsWriteFatFile(
+    _In_ PDK_DEVICE Device,
+    _In_ PCSTR Path,
+    _In_reads_bytes_(Size) const VOID* Data,
+    _In_ ULONG Size)
+{
+    return FsMount(Device) && FsMountedExFat && ExFatWriteFile(Path, Data, Size);
+}
+
+BOOLEAN
 FsReadFileAt(
     _In_ PVOID File,
     _In_ ULONGLONG Offset,

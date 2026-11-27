@@ -181,6 +181,8 @@ endif()
 add_library(bootgui
     ${BOOTGUI_SOURCE}
     ${BOOTGUI_FIRMWARE_SOURCE}
+    gui/bootlang.c
+    gui/bootlangio.c
     gui/bmui.c
     gui/bootui.c
     gui/ftglue.c
@@ -374,14 +376,17 @@ if(ARCH STREQUAL "amd64" OR ARCH STREQUAL "i386")
         ${BOOTLIB_ENTROPY_SOURCE}
         arch/x86/comport.c
         bios/bios.c
+        bios/bootfile.c
         bios/console.c
         bios/disk.c
         bios/memory.c)
-    target_link_libraries(bootlibpcat fatfs cportlib volumecrypt_crypto volumecrypt entropy_drbg)
+    target_link_libraries(bootlibpcat fatfs cportlib volumecrypt_crypto volumecrypt entropy_drbg bootntfs)
     add_dependencies(bootlibpcat bugcodes asm xdk)
 
     add_library(bootguipcat
         ${BOOTGUI_SOURCE}
+        gui/bootlang.c
+        gui/bootlangio.c
         gui/bmui.c
         gui/bootui.c
         gui/ftglue.c

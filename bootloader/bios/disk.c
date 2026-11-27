@@ -422,34 +422,6 @@ FwGetBootMedium(
     return FwGetDisk(BiosParameters->BootDisk, Device);
 }
 
-PVOID
-FwReadBootFile(
-    _In_ PCWSTR Path,
-    _Out_ PULONG Size)
-{
-    DK_DEVICE Device;
-
-    *Size = 0;
-
-    if (!FwGetBootDevice(&Device))
-        return NULL;
-
-    return FsReadFile(&Device, Path, Size);
-}
-
-BOOLEAN
-FwWriteBootFile(
-    _In_ PCWSTR Path,
-    _In_reads_bytes_(Size) const VOID* Data,
-    _In_ ULONG Size)
-{
-    UNREFERENCED_PARAMETER(Path);
-    UNREFERENCED_PARAMETER(Data);
-    UNREFERENCED_PARAMETER(Size);
-    /* TODO: write files on the BIOS boot volume; until then the starts of an update entry are not counted */
-    return FALSE;
-}
-
 static
 PBIOS_VOLUME
 BiosVolume(

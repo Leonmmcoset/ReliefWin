@@ -119,6 +119,7 @@ GuiInitialize(VOID)
 {
     ULONG Width, Height, Depth, CellWidth, CellHeight;
 
+    UiLoadLanguage();
     VidFbGetDisplaySize(&Width, &Height, &Depth);
     FbConsGetCellSize(&CellWidth, &CellHeight);
     if (Width == 0 || Height == 0 || CellWidth == 0 || CellHeight == 0)

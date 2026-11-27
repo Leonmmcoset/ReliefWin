@@ -12,6 +12,8 @@
 #include "bootui_font.h"
 #include "bootui_icons.h"
 #include "bootui_logo.h"
+#include "bootui_unlock.h"
+#include "utf8.h"
 
 #define BOOTUI_TEXT 0xF3F6F8
 #define BOOTUI_MUTED 0x9EABC3
@@ -24,6 +26,7 @@
 typedef struct
 {
     ULONG Offset;
+    ULONG Character;
     USHORT Width, Rows;
     SHORT Left, Top, Advance;
     BOOLEAN Loaded;
@@ -34,6 +37,7 @@ static ULONG BootUiWidth, BootUiHeight, BootUiFontSize;
 static ULONG BootUiCellWidth, BootUiCellHeight;
 static FT_Library BootUiLibrary;
 static FT_Face BootUiFace;
+static FT_Face BootUiCjkFace;
 static CHAR BootUiStatus[260];
 static CHAR BootUiProgressText[260];
 static MACH_POINTER_STATE BootUiPointer;
@@ -158,20 +162,23 @@ BootUiBackground(ULONG Height)
 }
 
 static const BOOTUI_GLYPH*
-BootUiGlyph(UCHAR Character, ULONG Size)
+BootUiGlyph(ULONG Character, ULONG Size)
 {
     FT_GlyphSlot Slot;
+    FT_Face Face;
     BOOTUI_GLYPH* Glyph;
-    ULONG Index, Row, Bytes;
+    ULONG Index, Row, Bytes, Bucket = Character % 256;
     for (Index = 0; Index < RTL_NUMBER_OF(BootUiGlyphSizes); ++Index)
         if (BootUiGlyphSizes[Index] == Size || !BootUiGlyphSizes[Index])
             break;
-    if (Index < RTL_NUMBER_OF(BootUiGlyphSizes) && BootUiGlyphs[Index][Character].Loaded)
-        return &BootUiGlyphs[Index][Character];
-    if (FT_Set_Pixel_Sizes(BootUiFace, 0, Size) ||
-        FT_Load_Char(BootUiFace, Character, FT_LOAD_RENDER))
+    if (Index < RTL_NUMBER_OF(BootUiGlyphSizes) && BootUiGlyphs[Index][Bucket].Loaded &&
+        BootUiGlyphs[Index][Bucket].Character == Character)
+        return &BootUiGlyphs[Index][Bucket];
+    Face = FT_Get_Char_Index(BootUiFace, Character) ? BootUiFace : BootUiCjkFace;
+    if (FT_Set_Pixel_Sizes(Face, 0, Size) ||
+        FT_Load_Char(Face, Character, FT_LOAD_RENDER))
         return NULL;
-    Slot = BootUiFace->glyph;
+    Slot = Face->glyph;
     Bytes = Slot->bitmap.width * Slot->bitmap.rows;
     if (Bytes > BOOTUI_GLYPH_ARENA)
         return NULL;
@@ -183,8 +190,9 @@ BootUiGlyph(UCHAR Character, ULONG Size)
         Index = 0;
     }
     BootUiGlyphSizes[Index] = Size;
-    Glyph = &BootUiGlyphs[Index][Character];
+    Glyph = &BootUiGlyphs[Index][Bucket];
     Glyph->Offset = BootUiGlyphUsed;
+    Glyph->Character = Character;
     Glyph->Width = (USHORT)Slot->bitmap.width;
     Glyph->Rows = (USHORT)Slot->bitmap.rows;
     Glyph->Left = (SHORT)Slot->bitmap_left;
@@ -203,11 +211,12 @@ BootUiTextWidth(PCSTR Text, ULONG Size, ULONG Count)
 {
     const BOOTUI_GLYPH* Glyph;
     ULONG Width = 0, I;
+    size_t Used;
     if (!Text || !BootUiFace)
         return 0;
-    for (I = 0; Text[I] && Text[I] != '\n' && I < Count; ++I)
+    for (I = 0; I < Count && Text[I] && Text[I] != '\n'; I += (ULONG)Used)
     {
-        Glyph = BootUiGlyph((UCHAR)Text[I], Size);
+        Glyph = BootUiGlyph(UiUtf8Next(Text + I, Count - I, &Used), Size);
         if (Glyph)
             Width += Glyph->Advance;
     }
@@ -220,13 +229,14 @@ BootUiText(LONG X, LONG Y, PCSTR Text, ULONG Size, ULONG Color,
 {
     const BOOTUI_GLYPH* Glyph;
     ULONG I, Row, Col;
+    size_t Used;
     LONG Cursor = X;
     if (!Text || !BootUiFace || Y - (LONG)Size >= BootUiClipBottom ||
         Y + 2 * (LONG)Size <= BootUiClipTop)
         return;
-    for (I = 0; Text[I] && Text[I] != '\n' && I < Count; ++I)
+    for (I = 0; I < Count && Text[I] && Text[I] != '\n'; I += (ULONG)Used)
     {
-        Glyph = BootUiGlyph((UCHAR)Text[I], Size);
+        Glyph = BootUiGlyph(UiUtf8Next(Text + I, Count - I, &Used), Size);
         if (!Glyph)
             continue;
         if (Cursor + Glyph->Advance > X + (LONG)Width)
@@ -305,7 +315,7 @@ static VOID
 BootUiInputLabel(VOID)
 {
     if (BootUiTabletMode)
-        BootUiText(24, 24, "Tablet mode", max(14, BootUiFontSize - 3),
+        BootUiText(24, 24, UiText(UiTextTablet), max(14, BootUiFontSize - 3),
                    BOOTUI_MUTED, BootUiWidth - 48, MAXULONG);
 }
 
@@ -372,6 +382,8 @@ BootUiUnInitialize(VOID)
     MachSetInputTimer(0);
     if (BootUiFace)
         FT_Done_Face(BootUiFace);
+    if (BootUiCjkFace)
+        FT_Done_Face(BootUiCjkFace);
     if (BootUiLibrary)
         FT_Done_FreeType(BootUiLibrary);
     if (BootUiPixels)
@@ -382,6 +394,7 @@ BootUiUnInitialize(VOID)
     RtlZeroMemory(BootUiGlyphSizes, sizeof(BootUiGlyphSizes));
     BootUiGlyphUsed = 0;
     BootUiFace = NULL;
+    BootUiCjkFace = NULL;
     BootUiLibrary = NULL;
     BootUiPixels = NULL;
     BootUiGlyphPixels = NULL;
@@ -400,7 +413,8 @@ BootUiInitialize(VOID)
     BootUiPixels = FwAllocatePages(BootUiWidth * BootUiHeight * sizeof(ULONG));
     BootUiGlyphPixels = FwAllocatePages(BOOTUI_GLYPH_ARENA);
     if (!BootUiPixels || !BootUiGlyphPixels || FT_Init_FreeType(&BootUiLibrary) ||
-        FT_New_Memory_Face(BootUiLibrary, bootui_font, sizeof(bootui_font), 0, &BootUiFace))
+        FT_New_Memory_Face(BootUiLibrary, bootui_font, sizeof(bootui_font), 0, &BootUiFace) ||
+        FT_New_Memory_Face(BootUiLibrary, bootui_unlock, sizeof(bootui_unlock), 0, &BootUiCjkFace))
     {
         BootUiUnInitialize();
         return FALSE;
@@ -584,21 +598,26 @@ static ULONG
 BootUiParagraph(PCSTR Text, ULONG X, ULONG Y, ULONG Width, ULONG MaxLines, ULONG Skip)
 {
     ULONG Lines = 0, Count, Fit, LastSpace, Size = max(14, BootUiFontSize - 2);
+    size_t Used;
     while (*Text)
     {
         Fit = LastSpace = 0;
-        for (Count = 0; Text[Count] && Text[Count] != '\n'; ++Count)
+        for (Count = 0; Text[Count] && Text[Count] != '\n'; Count += (ULONG)Used)
         {
-            if (BootUiTextWidth(Text, Size, Count + 1) > Width)
+            UiUtf8Next(Text + Count, MAXULONG - Count, &Used);
+            if (BootUiTextWidth(Text, Size, Count + (ULONG)Used) > Width)
                 break;
-            Fit = Count + 1;
+            Fit = Count + (ULONG)Used;
             if (Text[Count] == ' ')
                 LastSpace = Count;
         }
         if (Text[Count] && Text[Count] != '\n' && LastSpace)
             Fit = LastSpace;
         if (!Fit && Text[0] != '\n')
-            Fit = 1;
+        {
+            UiUtf8Next(Text, MAXULONG, &Used);
+            Fit = (ULONG)Used;
+        }
         if (Lines >= Skip && Lines - Skip < MaxLines)
             BootUiText(X, Y + (Lines - Skip) * (Size + 8), Text, Size, BOOTUI_TEXT, Width, Fit);
         ++Lines;
@@ -679,23 +698,23 @@ BootUiDialog(PCSTR Message, PCHAR Edit, ULONG Length)
         }
         BootUiInputLabel();
         BootUiRect(Left + 24, ButtonY, ButtonWidth, 40, 6, BOOTUI_TEXT, Accept ? 14 : 40);
-        BootUiText(Left + 40, ButtonY + 8, Edit ? "Cancel" : "Back", Size,
+        BootUiText(Left + 40, ButtonY + 8, UiText(Edit ? UiTextCancel : UiTextBack), Size,
                    BOOTUI_TEXT, ButtonWidth - 32, MAXULONG);
         if (Edit)
         {
             BootUiRect(Left + 40 + ButtonWidth, ButtonY, ButtonWidth, 40, 6, BOOTUI_TEXT, Accept ? 40 : 14);
-            BootUiText(Left + 56 + ButtonWidth, ButtonY + 8, "Save", Size,
+            BootUiText(Left + 56 + ButtonWidth, ButtonY + 8, UiText(UiTextSave), Size,
                        BOOTUI_TEXT, ButtonWidth - 32, MAXULONG);
         }
         if (Remaining > 0)
         {
             CHAR Countdown[80];
-            RtlStringCbPrintfA(Countdown, sizeof(Countdown), "%s in %ld seconds",
-                               Accept ? "Save" : (Edit ? "Cancel" : "Back"), Remaining);
+            RtlStringCbPrintfA(Countdown, sizeof(Countdown), UiText(UiTextDialogCountdown),
+                               UiText(Accept ? UiTextSave : (Edit ? UiTextCancel : UiTextBack)), Remaining);
             BootUiCentered(ButtonY - LineHeight - 4, Countdown, Size, BOOTUI_ACCENT);
         }
         else if (Lines > Visible)
-            BootUiCentered(ButtonY - LineHeight - 4, "Up / Down  Scroll message", Size, BOOTUI_MUTED);
+            BootUiCentered(ButtonY - LineHeight - 4, UiText(UiTextScroll), Size, BOOTUI_MUTED);
         BootUiCursor();
         VidFbPresent(BootUiPixels, Left, Top, Width, PanelHeight);
         MachVideoSync();
@@ -991,9 +1010,9 @@ BootUiRenderMenu(PUI_MENU_INFO Menu, LONG TimeOut, BOOLEAN CanEscape, BOOTUI_MEN
         if (I == Menu->SelectedMenuItem)
             BootUiRect(Left, Y + 3, Width, RowHeight - 6, 9, 0xFFFFFF, 35);
         Icon = CanEscape ? 1 : 0;
-        if (!strcmp(Item, "Startup options") || !strcmp(Item, "Settings"))
+        if (!strcmp(Item, UiText(UiTextStartup)) || !strcmp(Item, UiText(UiTextSettings)))
             Icon = 1;
-        if (!strncmp(Item, "Back", 4))
+        if (!strcmp(Item, UiText(UiTextBack)))
             Icon = 2;
         if (Menu->MenuItemIcons && Menu->MenuItemIcons[I] == UiMenuIconReliefWin)
         {
@@ -1044,14 +1063,10 @@ BootUiRenderMenu(PUI_MENU_INFO Menu, LONG TimeOut, BOOLEAN CanEscape, BOOTUI_MEN
     if (TimeOut > 0)
     {
         PCSTR Item = Menu->MenuItemList[Menu->SelectedMenuItem];
-        PCSTR Verb = !CanEscape ? "Starting" : "Selecting";
-        if (!strcmp(Item, "Startup options") || !strcmp(Item, "Settings") ||
-            !strcmp(Item, "Recovery options"))
-            Verb = "Opening";
-        if (!strncmp(Item, "Boot ", 5))
-            RtlStringCbPrintfA(Status, sizeof(Status), "%s in %ld seconds", Item, TimeOut);
-        else
-            RtlStringCbPrintfA(Status, sizeof(Status), "%s %s in %ld seconds", Verb, Item, TimeOut);
+        UI_TEXT Format = !CanEscape ? UiTextStartCountdown : UiTextSelectCountdown;
+        if (!strcmp(Item, UiText(UiTextStartup)) || !strcmp(Item, UiText(UiTextSettings)))
+            Format = UiTextOpenCountdown;
+        RtlStringCbPrintfA(Status, sizeof(Status), UiText(Format), Item, TimeOut);
         BootUiCentered(BootUiHeight - 104, Status, Size, BOOTUI_ACCENT);
     }
     else if (BootUiStatus[0])
@@ -1059,9 +1074,7 @@ BootUiRenderMenu(PUI_MENU_INFO Menu, LONG TimeOut, BOOLEAN CanEscape, BOOTUI_MEN
     if (Menu->MenuFooter)
         BootUiCentered(BootUiHeight - 74, Menu->MenuFooter, Size, BOOTUI_MUTED);
     BootUiCentered(BootUiHeight - 40,
-                   BootUiTabletMode ? "Volume up / down  Select     Wait 5 seconds to choose" :
-                   CanEscape ? "Tap to choose     Up / Down  Select     Enter  Choose     Esc  Back" :
-                               "Tap to start     Up / Down  Select     Enter  Start",
+                   UiText(BootUiTabletMode ? UiTextTabletHint : CanEscape ? UiTextChooseHint : UiTextStartHint),
                    Size, BOOTUI_MUTED);
     BootUiCursor();
     BootUiPresent();
@@ -1096,10 +1109,9 @@ BootUiDrawCountdown(LONG TimeOut)
     ULONG Size = max(14, BootUiFontSize - 3);
     BootUiCountdownClip(Size);
     BootUiBackground(BootUiHeight);
-    RtlStringCbPrintfA(Text, sizeof(Text), "Starting in %ld %s", TimeOut,
-                       TimeOut == 1 ? "second" : "seconds");
+    RtlStringCbPrintfA(Text, sizeof(Text), UiText(TimeOut == 1 ? UiTextStartingOne : UiTextStartingMany), TimeOut);
     BootUiCentered(BootUiHeight - 100, Text, Size, BOOTUI_TEXT);
-    BootUiCentered(BootUiHeight - 56, "Press a key, a volume button, or tap to open the boot menu", Size, BOOTUI_TEXT);
+    BootUiCentered(BootUiHeight - 56, UiText(UiTextOpenMenuHint), Size, BOOTUI_TEXT);
     BootUiPresent();
     BootUiSetClip(0, 0, BootUiWidth, BootUiHeight);
 }

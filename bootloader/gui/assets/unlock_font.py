@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # PROJECT:     ReliefWin Boot Loader
 # LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
-# PURPOSE:     Reproduce the OFL font subset for the pre-boot unlock screen
+# PURPOSE:     Reproduce the OFL font subset for the boot menu and unlock screen
 # COPYRIGHT:   Copyright 2026 ReliefWin contributors
 
 from pathlib import Path
@@ -12,7 +12,8 @@ from fontTools.ttLib import TTFont
 assets = Path(__file__).resolve().parent
 source = assets.parents[2] / 'media/fonts/NotoSansSC-Regular.otf'
 strings = (assets.parent / 'cryptstrings.h').read_text(encoding='utf-8')
-text = ''.join(re.findall(r'L"([^"]*)"', strings)) + ''.join(chr(i) for i in range(32, 127)) + '•'
+strings += (assets.parents[1] / 'include/bootstrings.inc').read_text(encoding='utf-8')
+text = ''.join(re.findall(r'"([^"]*)"', strings)) + ''.join(chr(i) for i in range(32, 127)) + '•'
 font = TTFont(source, recalcTimestamp=False)
 missing = set(map(ord, text)) - set(font.getBestCmap())
 if missing:
@@ -26,9 +27,9 @@ subsetter.populate(text=text)
 subsetter.subset(font)
 for record in font['name'].names:
     if record.nameID in (1, 3, 4, 6, 16):
-        record.string = ('ReliefWinUnlock-Regular' if record.nameID == 6 else 'ReliefWin Unlock').encode(record.getEncoding())
+        record.string = ('ReliefWinBootUI-Regular' if record.nameID == 6 else 'ReliefWin Boot UI').encode(record.getEncoding())
 if 'CFF ' in font:
-    font['CFF '].cff.fontNames[0] = 'ReliefWinUnlock-Regular'
+    font['CFF '].cff.fontNames[0] = 'ReliefWinBootUI-Regular'
     top = font['CFF '].cff.topDictIndex[0]
-    top.FullName = top.FamilyName = 'ReliefWin Unlock'
+    top.FullName = top.FamilyName = 'ReliefWin Boot UI'
 font.save(assets / 'unlock.otf')

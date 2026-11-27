@@ -165,11 +165,49 @@ ExFatReadFile(
     return Data;
 }
 
+BOOLEAN
+ExFatWriteFile(
+    _In_ PCSTR Path,
+    _In_reads_bytes_(Size) const VOID* Data,
+    _In_ ULONG Size)
+{
+    CHAR FatPath[EXFAT_PATH_CHARS];
+    FIL File;
+    UINT Written;
+    ULONG i;
+    BOOLEAN Success;
+
+    if (!ExFatVolume || !Path || (!Data && Size))
+        return FALSE;
+
+    while (*Path == '\\' || *Path == '/')
+        Path++;
+
+    FatPath[0] = '0';
+    FatPath[1] = ':';
+    FatPath[2] = '/';
+    for (i = 0; Path[i] != ANSI_NULL; i++)
+    {
+        if (i + 4 >= sizeof(FatPath))
+            return FALSE;
+        FatPath[i + 3] = (Path[i] == '\\') ? '/' : Path[i];
+    }
+    FatPath[i + 3] = ANSI_NULL;
+
+    if (f_open(&File, FatPath, FA_WRITE | FA_CREATE_ALWAYS) != FR_OK)
+        return FALSE;
+
+    Success = f_write(&File, Data, Size, &Written) == FR_OK && Written == Size;
+    if (f_close(&File) != FR_OK)
+        Success = FALSE;
+    return Success;
+}
+
 DSTATUS
 disk_initialize(
     BYTE PhysicalDrive)
 {
-    return (PhysicalDrive == 0 && ExFatVolume) ? STA_PROTECT : STA_NOINIT;
+    return (PhysicalDrive == 0 && ExFatVolume) ? 0 : STA_NOINIT;
 }
 
 DSTATUS
@@ -255,11 +293,23 @@ disk_write(
     LBA_t Sector,
     UINT Count)
 {
-    UNREFERENCED_PARAMETER(PhysicalDrive);
-    UNREFERENCED_PARAMETER(Buffer);
-    UNREFERENCED_PARAMETER(Sector);
-    UNREFERENCED_PARAMETER(Count);
-    return RES_WRPRT;
+    PEXFAT_VOLUME Volume = ExFatVolume;
+    ULONG i;
+
+    if (PhysicalDrive != 0 || !Volume || !Buffer || !Count ||
+        Sector >= Volume->SectorCount || Count > Volume->SectorCount - Sector ||
+        Count > MAXULONG / Volume->BytesPerSector)
+    {
+        return RES_PARERR;
+    }
+
+    for (i = 0; i < EXFAT_CACHE_BLOCKS; i++)
+        Volume->CacheTags[i] = EXFAT_CACHE_EMPTY;
+
+    return DkWrite(&Volume->Device,
+                   (ULONGLONG)Sector * Volume->BytesPerSector,
+                   Count * Volume->BytesPerSector,
+                   Buffer) ? RES_OK : RES_ERROR;
 }
 
 DRESULT
@@ -274,7 +324,7 @@ disk_ioctl(
     switch (Command)
     {
         case CTRL_SYNC:
-            return RES_OK;
+            return DkFlush(&ExFatVolume->Device) ? RES_OK : RES_ERROR;
 
         case GET_SECTOR_COUNT:
             *(LBA_t*)Buffer = ExFatVolume->SectorCount;

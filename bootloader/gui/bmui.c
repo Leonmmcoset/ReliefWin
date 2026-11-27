@@ -488,7 +488,6 @@ BmUiEndBoot(VOID)
 }
 
 static FT_Face BmUiCryptFace;
-static ULONG BmUiCryptLanguage;
 static BOOLEAN BmUiCryptRecovery;
 
 static VOID
@@ -563,7 +562,7 @@ static VOID
 BmUiCryptFrame(const BM_CRYPT_EDIT *Edit, PCSTR Id, ULONG Status, BOOLEAN Caret,
                const MACH_POINTER_STATE *Pointer, BOOLEAN ShowPointer)
 {
-    const BM_CRYPT_TEXT *Text = &BmCryptText[BmUiCryptLanguage];
+    const BM_CRYPT_TEXT *Text = &BmCryptText[UiGetLanguage()];
     ULONG X, Y, Color, Left = (BmUiWidth - 360) / 2, Top = (BmUiHeight - 460) / 2;
     ULONG Start, End, Index, Width;
     WCHAR Volume[38];
@@ -656,6 +655,7 @@ BmUiCryptFrame(const BM_CRYPT_EDIT *Edit, PCSTR Id, ULONG Status, BOOLEAN Caret,
 static BOOLEAN
 BmUiCryptStart(VOID)
 {
+    UiLoadLanguage();
     if (!BmUiPixels) BmUiInitialize();
     if (!BmUiGraphics || BmUiWidth < 640 || BmUiHeight < 480) return FALSE;
     if (!BmUiCryptFace && FT_New_Memory_Face(BmUiLibrary, bootui_unlock, bootui_unlock_SIZE,
@@ -721,7 +721,7 @@ BmUiCryptPassword(PCSTR Id, BOOLEAN Failed, PCHAR Secret, ULONG Capacity, PULONG
                 BmUiCryptFrame(&Edit, Id, 3, FALSE, NULL, FALSE);
                 return TRUE;
             }
-            if (Action == BmCryptLanguage) BmUiCryptLanguage = (BmUiCryptLanguage + 1) % RTL_NUMBER_OF(BmCryptText);
+            if (Action == BmCryptLanguage) UiSelectLanguage((UI_LANGUAGE)((UiGetLanguage() + 1) % UiLanguageCount));
             if (Action == BmCryptInvalid) Status = 2;
             else if (Action != BmCryptLanguage) Status = 0;
             Caret = TRUE;

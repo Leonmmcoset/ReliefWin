@@ -7,10 +7,11 @@
 
 #include <bl.h>
 #include <gui.h>
+#include "../gui/utf8.h"
 
 #define BM_MAX_ENTRIES     GUI_MAX_ENTRIES
 #define BM_EXTRA_ITEMS     3
-#define BM_NAME_CHARS      64
+#define BM_NAME_CHARS      (3 * BM_DESCRIPTION_CHARS)
 #define BM_STORE_NAME      L"BCD"
 #define BM_DEFAULT_TITLE   L"Boot Manager"
 #define BM_BOOT_TIMEOUT    3
@@ -436,12 +437,7 @@ BmMenuName(
     _In_z_ PCWSTR Description,
     _Out_writes_z_(BM_NAME_CHARS) PCHAR Name)
 {
-    ULONG i;
-
-    for (i = 0; i < BM_NAME_CHARS - 1 && Description[i] != UNICODE_NULL; i++)
-        Name[i] = Description[i] <= 0x7F ? (CHAR)Description[i] : '?';
-
-    Name[i] = ANSI_NULL;
+    UiUtf16ToUtf8((const uint16_t *)Description, Name, BM_NAME_CHARS);
 }
 
 static
@@ -460,11 +456,17 @@ BmBuildMenu(VOID)
     }
 
     BmMenuNames[BmCount] = NULL;
-    BmMenuNames[BmCount + 1] = "Startup options";
-    BmMenuNames[BmCount + 2] = "Settings";
+    BmMenuNames[BmCount + 1] = UiText(UiTextStartup);
+    BmMenuNames[BmCount + 2] = UiText(UiTextSettings);
     BmMenuIcons[BmCount] = UiMenuIconNone;
     BmMenuIcons[BmCount + 1] = UiMenuIconNone;
     BmMenuIcons[BmCount + 2] = UiMenuIconNone;
+    for (i = 0; i < BmToolCount; ++i)
+    {
+        BmMenuName(BmTools[i].Description, BmToolNames[i]);
+        BmToolMenuNames[i] = !wcscmp(BmTools[i].Description, L"Repair your computer") ?
+                           UiText(UiTextRepair) : BmToolNames[i];
+    }
 }
 
 static
@@ -479,6 +481,8 @@ BmMenuIdle(
     if (MenuInfo->MenuItemList != BmMenuNames)
         return FALSE;
 
+    *Changed = MenuInfo->MenuHeader != UiText(UiTextChooseBoot);
+    MenuInfo->MenuHeader = UiText(UiTextChooseBoot);
     BmTrackedItem = &MenuInfo->SelectedMenuItem;
     More = BmScanStep(&Updated);
     BmTrackedItem = NULL;
@@ -671,10 +675,10 @@ static
 VOID
 BmRestartMenu(VOID)
 {
-    PCSTR Items[] = {"Restart", "Back"};
+    PCSTR Items[] = {UiText(UiTextRestart), UiText(UiTextBack)};
     ULONG Selected;
 
-    if (UiDisplayMenu("Restart this device?", NULL, Items, RTL_NUMBER_OF(Items),
+    if (UiDisplayMenu(UiText(UiTextRestartQuestion), NULL, Items, RTL_NUMBER_OF(Items),
                       1, -1, &Selected, TRUE, NULL, NULL) && Selected == 0)
     {
         Reboot();
@@ -683,33 +687,51 @@ BmRestartMenu(VOID)
 
 static
 VOID
+BmLanguageMenu(VOID)
+{
+    PCSTR Items[] = {"简体中文", "English", "日本語", UiText(UiTextBack)};
+    ULONG Selected = UiGetLanguage();
+    if (UiDisplayMenu(UiText(UiTextLanguage), NULL, Items, RTL_NUMBER_OF(Items),
+                      Selected, -1, &Selected, TRUE, NULL, NULL) && Selected < UiLanguageCount)
+    {
+        if (!UiSaveLanguage((UI_LANGUAGE)Selected))
+            UiMessageBox("%s", UiText(UiTextSaveLanguageFailed));
+        BmBuildMenu();
+    }
+}
+
+static
+VOID
 BmSettingsMenu(VOID)
 {
-    PCSTR Items[3];
+    PCSTR Items[4];
     ULONG Count, Selected = 0, FirmwareIndex, RestartIndex, BackIndex;
 
     for (;;)
     {
-        Count = 0;
+        Count = 1;
+        Items[0] = UiText(UiTextLanguage);
         FirmwareIndex = MAXULONG;
         if (FwFirmwareSetupSupported())
         {
             FirmwareIndex = Count;
-            Items[Count++] = "UEFI firmware settings";
+            Items[Count++] = UiText(UiTextFirmware);
         }
 
         RestartIndex = Count;
-        Items[Count++] = "Restart";
+        Items[Count++] = UiText(UiTextRestart);
         BackIndex = Count;
-        Items[Count++] = "Back";
+        Items[Count++] = UiText(UiTextBack);
 
-        if (!UiDisplayMenu("Settings", NULL, Items, Count, Selected, -1,
+        if (!UiDisplayMenu(UiText(UiTextSettings), NULL, Items, Count, Selected, -1,
                            &Selected, TRUE, NULL, NULL) || Selected == BackIndex)
         {
             return;
         }
 
-        if (Selected == FirmwareIndex)
+        if (Selected == 0)
+            BmLanguageMenu();
+        else if (Selected == FirmwareIndex)
             FwBootToFirmware();
         else if (Selected == RestartIndex)
             BmRestartMenu();
@@ -750,7 +772,7 @@ BmRunGuiMenu(
 
     for (;;)
     {
-        if (!FbGuiVtbl.DisplayMenu("Choose boot option",
+        if (!FbGuiVtbl.DisplayMenu(UiText(UiTextChooseBoot),
                                    NULL,
                                    BmMenuNames,
                                    BmCount + BM_EXTRA_ITEMS,

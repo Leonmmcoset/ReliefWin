@@ -1,0 +1,37 @@
+/*
+ * PROJECT:     ReliefWin Boot Loader
+ * LICENSE:     GPL-3.0-or-later (https://spdx.org/licenses/GPL-3.0-or-later)
+ * PURPOSE:     English, Simplified Chinese and Japanese boot menu resources
+ * COPYRIGHT:   Copyright 2026 ReliefWin contributors
+ */
+
+BOOT_TEXT(ChooseBoot, "Choose boot option", "选择启动选项", "起動オプションの選択")
+BOOT_TEXT(Startup, "Startup options", "启动选项", "起動オプション")
+BOOT_TEXT(Settings, "Settings", "设置", "設定")
+BOOT_TEXT(Language, "Language", "语言", "言語")
+BOOT_TEXT(Firmware, "UEFI firmware settings", "UEFI 固件设置", "UEFI ファームウェアの設定")
+BOOT_TEXT(Restart, "Restart", "重新启动", "再起動")
+BOOT_TEXT(RestartQuestion, "Restart this device?", "要重新启动此设备吗？", "このデバイスを再起動しますか？")
+BOOT_TEXT(Back, "Back", "返回", "戻る")
+BOOT_TEXT(Cancel, "Cancel", "取消", "キャンセル")
+BOOT_TEXT(Save, "Save", "保存", "保存")
+BOOT_TEXT(Tablet, "Tablet mode", "平板模式", "タブレットモード")
+BOOT_TEXT(Scroll, "Up / Down  Scroll message", "↑ / ↓  滚动消息", "↑ / ↓  メッセージをスクロール")
+BOOT_TEXT(DialogCountdown, "%s in %ld seconds", "%s（%ld 秒后）", "%s（%ld 秒後）")
+BOOT_TEXT(StartCountdown, "Starting %s in %ld seconds", "%s 将于 %ld 秒后启动", "%s を %ld 秒後に起動")
+BOOT_TEXT(SelectCountdown, "Selecting %s in %ld seconds", "%s 将于 %ld 秒后选中", "%s を %ld 秒後に選択")
+BOOT_TEXT(OpenCountdown, "Opening %s in %ld seconds", "%s 将于 %ld 秒后打开", "%s を %ld 秒後に開く")
+BOOT_TEXT(StartingOne, "Starting in %ld second", "%ld 秒后启动", "%ld 秒後に起動")
+BOOT_TEXT(StartingMany, "Starting in %ld seconds", "%ld 秒后启动", "%ld 秒後に起動")
+BOOT_TEXT(OpenMenuHint, "Press a key, a volume button, or tap to open the boot menu", "按任意键、音量键或轻触屏幕，打开启动菜单", "キー、音量ボタン、またはタップで起動メニューを開く")
+BOOT_TEXT(TabletHint, "Volume up / down  Select     Wait 5 seconds to choose", "音量 + / −  选择     等待 5 秒确认", "音量 + / −  選択     5 秒待つと確定")
+BOOT_TEXT(ChooseHint, "Tap to choose     Up / Down  Select     Enter  Choose     Esc  Back", "轻触选择     ↑ / ↓  选择     Enter  确认     Esc  返回", "タップで選択     ↑ / ↓  移動     Enter  確定     Esc  戻る")
+BOOT_TEXT(StartHint, "Tap to start     Up / Down  Select     Enter  Start", "轻触启动     ↑ / ↓  选择     Enter  启动", "タップで起動     ↑ / ↓  選択     Enter  起動")
+BOOT_TEXT(SaveLanguageFailed, "The language applies to this session, but could not be saved on this boot device. Read-only installation media cannot store this preference.", "语言已在本次启动中生效，但无法保存到此启动设备。只读安装介质无法保存此设置。", "言語は今回の起動に適用されましたが、起動デバイスに保存できませんでした。読み取り専用のインストールメディアには保存できません。")
+BOOT_TEXT(Debugging, "Debugging", "调试", "デバッグ")
+BOOT_TEXT(IsolatedDebugging, "Debugging (isolated)", "调试（隔离模式）", "デバッグ（分離モード）")
+BOOT_TEXT(RemoteDebugging, "Remote debugging", "远程调试", "リモートデバッグ")
+BOOT_TEXT(DebuggingDescription, "Starts ReliefWin with the kernel debugger. The log shows on the screen and goes to a log file, the serial port and the network cable without encryption. A debugger at the other end can read it and break in. ReliefWin maintainers have one.", "启用内核调试器启动 ReliefWin。日志显示在屏幕上，并写入日志文件，通过串口和网线以未加密方式传送。另一端的调试器可以读取日志并中断系统执行。ReliefWin 维护者可使用此功能。", "カーネルデバッガーを有効にして ReliefWin を起動します。ログは画面とファイルに出力され、シリアルポートとネットワークケーブルには暗号化せず送信されます。接続先のデバッガーはログを読み取り、実行を中断できます。ReliefWin の保守担当者が使用します。")
+BOOT_TEXT(IsolatedDescription, "Like Debugging but ReliefWin only opens the disk it starts from. Other disks stay offline and read-only even if you plug them in later. Nothing on them can be read or changed. When ReliefWin runs from memory it opens no disk at all.", "启用调试，但 ReliefWin 只访问启动所在的磁盘。其他磁盘保持脱机和只读状态，之后接入的磁盘也一样，无法读取或修改其中的数据。从内存运行 ReliefWin 时，不访问任何磁盘。", "デバッグを有効にしますが、ReliefWin は起動元のディスクだけにアクセスします。他のディスクは後から接続してもオフラインかつ読み取り専用のままとなり、データの読み取りや変更はできません。メモリから実行する場合、ディスクには一切アクセスしません。")
+BOOT_TEXT(RemoteDescription, "Lets a ReliefWin maintainer connect to this computer to help you. The debugger joins the network and opens an encrypted session. The key to join it shows on the screen. Anyone with the key controls this PC. Give it only to a maintainer.", "允许 ReliefWin 维护者连接此计算机提供帮助。调试器联网后建立加密会话，连接密钥显示在屏幕上。持有密钥的人可以控制此计算机，请只将密钥提供给维护者。", "ReliefWin の保守担当者がこのコンピューターに接続して支援できます。デバッガーはネットワークに接続し、暗号化されたセッションを開始します。接続キーは画面に表示されます。キーを持つ人はこの PC を操作できるため、保守担当者だけに渡してください。")
+BOOT_TEXT(Repair, "Repair your computer", "修复计算机", "コンピューターを修復する")

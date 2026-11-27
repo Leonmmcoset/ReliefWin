@@ -8,18 +8,35 @@ The initial countdown uses a black screen with the firmware's BGRT logo. A key, 
 - `icons.alpha` contains the 24 x 24 coverage masks of Desktop, Chevron Right, Arrow Left and Cursor, in that order. Desktop is drawn beside detected Windows Boot Manager entries. These are unmodified regular icons from [Microsoft Fluent UI System Icons](https://github.com/microsoft/fluentui-system-icons), under the MIT license in `LICENSE`. They are rasterized at their native size by AppKit with no translation, composition or gamma adjustment. The original SVGs are retained here. The UI applies its foreground color when drawing these monochrome masks.
 - The UI font is the existing `media/fonts/selawk.ttf`, embedded by `native-bin2c`.
 
-The pre-boot disk unlock screen embeds `unlock.otf`, a subset of the existing
-`media/fonts/NotoSansSC-Regular.otf` covering the Simplified Chinese, English and
-Japanese strings in `../cryptstrings.h`. Its internal name is ReliefWin Unlock;
-the original copyright and OFL metadata are retained. The OFL is also in
+The boot menu and pre-boot disk unlock screen embed `unlock.otf`, a subset of the
+existing `media/fonts/NotoSansSC-Regular.otf` covering the Simplified Chinese,
+English and Japanese strings in `../../include/bootstrings.inc` and
+`../cryptstrings.h`. Its internal name is ReliefWin Boot UI; the original
+copyright and OFL metadata are retained. The OFL is also in
 `UNLOCK-FONT-LICENSE.txt`. Run `python3 bootloader/gui/assets/unlock_font.py` with
 fontTools installed to reproduce it; fontTools is not a build dependency.
+Menu text is decoded as UTF-8 and boot entry descriptions are converted from
+BCD's UTF-16. Characters missing from the Latin font use this subset; arbitrary
+custom boot entry names can require additional glyphs.
+
+The graphical menu defaults to Simplified Chinese. Settings → Language offers
+简体中文, English and 日本語. Choosing a language updates the current menus and
+writes its five-byte `zh-CN`, `en-US` or `ja-JP` tag to `\ReliefWin.bootlang` on the
+firmware boot volume. The saved tag is also loaded by the graphical disk unlock
+screen. Missing or invalid tags use Simplified Chinese. Saving is supported on
+writable UEFI boot volumes and BIOS FAT/NTFS boot volumes. BIOS FAT writes use
+the existing FatFs API and invalidate the adapter's read cache before block
+writes; close/sync errors reach the caller. NTFS writes use the existing boot
+NTFS library and close its volume before readback. Read-only installation media
+and the existing Open Firmware write stub cannot save it; the selected language
+still applies to the current menu and a dialog explains that saving failed.
+Emergency text-mode menus retain English.
 
 The OS-loading progress screen embeds the standalone mark from `ntos/inbv/resources/reliefwin_boot_mark.bmp` as `bootui_mark`. Loader and kernel share `sdk/include/reliefwin/bootlogo.h` to center the mark at one quarter of the display height. The kernel clears the previous framebuffer before drawing. The non-GOP VGA fallback uses `ntos/inbv/resources/reliefwin_boot_mark_vga.bmp`; the existing `logo.bmp` remains unchanged for shutdown. See the [boot-logo validation](../../../media/doc/RELIEFWIN_BOOT_LOGO_VALIDATION.md) for actual startup screenshots and test scope.
 
 Startup choices follow the supported subset of Microsoft's [Windows startup settings](https://support.microsoft.com/en-us/windows/experience/startup-boot/windows-startup-settings). The existing loader option parser supplies the SAFEBOOT, BOOTLOG, DEBUG and BASEVIDEO strings. No Windows structures are introduced. Basic video names the existing BASEVIDEO behavior; it does not claim a new display implementation. Firmware settings appear only when the existing firmware capability check succeeds. Unsupported recovery features and the old HAL-selection/custom-boot wizard are absent from the menu tree. Startup overrides are kept per boot entry for the current session.
 
-The supplied media configurations contain one ReliefWin entry. Startup options offers direct boot actions: normal, serial debugging, debugging (file logging and screen output together), one processor, and processor diagnostics. The single-processor action supplies `NUMPROC=1` to the existing architecture-neutral consumer in `ntos/ex/init.c`; it does not substitute a different kernel or HAL. Recovery options contains safe-mode selection, basic display, and driver-load recording. Reset appears only when session overrides exist. Settings contains firmware setup, when supported, and restart. The command editor is available through F10, outside the visible menu tree; the diagnostic-channel editor is removed.
+The supplied media configurations contain one ReliefWin entry. Startup options offers direct boot actions: normal, serial debugging, debugging (file logging and screen output together), one processor, and processor diagnostics. The single-processor action supplies `NUMPROC=1` to the existing architecture-neutral consumer in `ntos/ex/init.c`; it does not substitute a different kernel or HAL. Recovery options contains safe-mode selection, basic display, and driver-load recording. Reset appears only when session overrides exist. Settings contains language selection, firmware setup, when supported, and restart. The command editor is available through F10, outside the visible menu tree; the diagnostic-channel editor is removed.
 
 ## Input
 
@@ -32,6 +49,25 @@ The UEFI input implementation uses Simple Text Input Ex when available and falls
 Firmware must expose the input device through these protocols. This does not add USB, I2C or GPIO drivers to FreeLdr. Physical touch and volume-button delivery therefore need validation on the target device.
 
 ## Validation
+
+The boot-language change builds `bootmgfw` and `winload` for amd64, i386 and
+ARM64, and the BIOS manager/loader for amd64 and i386. An amd64 QEMU run using
+OVMF checks Chinese, English and Japanese menus, descriptions and language
+selection; a second boot confirms the saved Japanese choice. A separate SeaBIOS
+run on the same FAT32 boot partition checks language saving and reloading after
+restart. The graphical disk unlock screen loads the saved language as well.
+
+`python3 bootloader/gui/tests/bootlang.py` checks actual resource and UTF-8 code,
+preference I/O failures, parent-menu refresh and all 397 required menu/unlock
+glyphs. `python3 bootloader/gui/tests/bootfile.py` exercises the actual BIOS
+file wrapper, FAT adapter and FatFs on FAT12, FAT16, FAT32 and exFAT, including
+read-after-write, remount, unaffected files, cache invalidation, invalid ranges
+and failed writes/flushes. Its NTFS adapter checks use simulated NTFS calls;
+NTFS boot-volume persistence and physical hardware have not been boot-tested.
+`python3 bootloader/gui/tests/cryptdialog.py` checks the graphical unlock input
+state machine. These host tests do not establish Windows 11 parity; no Windows
+11 reference run was available for this change. The file-write contracts come
+from the existing FatFs and boot NTFS APIs; no Windows ABI definitions change.
 
 `uefildr` builds on ARM64; `uefildr`, `freeldr` and `rosload` build on amd64 and i386 with `CCACHE_DISABLE=1`. ARM64 VM checks exercise the menu tree, touch taps, relative mouse clicks, both volume directions, countdown resets, volume entry during the initial timeout, and the BGRT loading transition. The central firmware-logo pixels match before menu entry and after the tablet countdown starts loading. The single-processor action is verified to supply `NUMPROC=1` before firmware handoff. Input checks inject UEFI key/pointer responses through the debugger: the current ARM64 test firmware omits USB pointer drivers, and its USB keyboard driver does not deliver volume scan codes. These checks validate the loader response to firmware input; they do not establish physical device support.
 

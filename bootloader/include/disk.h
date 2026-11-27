@@ -67,6 +67,13 @@ FsOpenFileA(
     _Out_ PULONGLONG Size);
 
 BOOLEAN
+FsWriteFatFile(
+    _In_ PDK_DEVICE Device,
+    _In_ PCSTR Path,
+    _In_reads_bytes_(Size) const VOID* Data,
+    _In_ ULONG Size);
+
+BOOLEAN
 FsReadFileAt(
     _In_ PVOID File,
     _In_ ULONGLONG Offset,
@@ -112,6 +119,12 @@ PVOID
 ExFatReadFile(
     _In_ PCSTR Path,
     _Out_ PULONG Size);
+
+BOOLEAN
+ExFatWriteFile(
+    _In_ PCSTR Path,
+    _In_reads_bytes_(Size) const VOID* Data,
+    _In_ ULONG Size);
 
 BOOLEAN DkCryptActive(PDK_DEVICE Device);
 BOOLEAN DkCryptTransfer(PDK_DEVICE Device, ULONGLONG Offset, ULONG Length, PVOID Buffer, BOOLEAN Write);
