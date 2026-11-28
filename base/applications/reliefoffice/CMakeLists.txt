@@ -10,9 +10,11 @@ add_custom_command(OUTPUT ${_generated}/catalogs.inc
         ${CMAKE_CURRENT_SOURCE_DIR}/locale ${_generated}/catalogs.inc
     DEPENDS ${_office_catalogs} localization/catalogs.py VERBATIM)
 add_library(reliefoffice_locale STATIC localization/locale.cpp ${_generated}/catalogs.inc)
+add_dependencies(reliefoffice_locale psdk)
 target_include_directories(reliefoffice_locale PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/localization PRIVATE ${_generated})
 target_link_libraries(reliefoffice_locale PUBLIC libkernel32)
 add_library(reliefoffice_platform STATIC platform/posix.cpp platform/worker.cpp)
+add_dependencies(reliefoffice_platform psdk)
 set_target_properties(reliefoffice_platform PROPERTIES CXX_STANDARD 17)
 target_include_directories(reliefoffice_platform PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/platform)
 target_link_libraries(reliefoffice_platform PUBLIC reliefoffice_cppstl libkernel32 libadvapi32 libshell32 libntdll)

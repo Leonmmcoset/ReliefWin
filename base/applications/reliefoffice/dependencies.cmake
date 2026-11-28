@@ -24,6 +24,7 @@ set(_png_sources png.c pngerror.c pngget.c pngmem.c pngpread.c pngread.c
     pngrio.c pngrtran.c pngrutil.c pngset.c pngtrans.c pngwio.c pngwrite.c pngwtran.c pngwutil.c)
 list(TRANSFORM _png_sources PREPEND "${_png}/")
 add_library(reliefoffice_png STATIC ${_png_sources})
+add_dependencies(reliefoffice_png psdk)
 target_compile_definitions(reliefoffice_png PRIVATE PNG_ARM_NEON_OPT=0 PNG_INTEL_SSE_OPT=0 PNG_POWERPC_VSX_OPT=0)
 target_include_directories(reliefoffice_png PUBLIC ${_png} ${_generated} ${REACTOS_SOURCE_DIR}/sdk/include/reliefwin/libs/zlib)
 target_link_libraries(reliefoffice_png PUBLIC zlib libucrtbase)

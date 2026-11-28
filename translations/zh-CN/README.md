@@ -136,7 +136,7 @@ ReliefWin 使用 RosBE 交叉编译工具链构建。下面的步骤适用于 Li
 
 ### 1. 安装工具链
 
-本机需要 Git、CMake、Ninja 和一套 C/C++ 编译器；构建 ReliefWin 所需的交叉编译器由 RosBE 提供。
+本机需要 CMake 3.24 及以上、Python 3.9 及以上、Git、Ninja 和一套 C/C++ 编译器；构建 ReliefWin 所需的交叉编译器由 RosBE 提供。完整的 Arch Linux／Debian 依赖清单、外部源码准备及安装 ISO 步骤见[全新设备构建说明](../../media/doc/BUILDING.md)。
 
 ```sh
 curl -fsSL https://raw.githubusercontent.com/LiberNT/libernt-build-toolchain/main/rosbe-unix-bootstrap.sh | sh
@@ -148,7 +148,8 @@ curl -fsSL https://raw.githubusercontent.com/LiberNT/libernt-build-toolchain/mai
 ### 2. 获取源码
 
 ```sh
-cd /path/to/ReliefWin
+git clone https://github.com/Leonmmcoset/ReliefWin.git
+cd ReliefWin
 ```
 
 > [!NOTE]

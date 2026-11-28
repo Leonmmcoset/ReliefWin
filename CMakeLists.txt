@@ -1,5 +1,7 @@
 
-cmake_minimum_required(VERSION 3.17.0)
+cmake_minimum_required(VERSION 3.24)
+
+include(sdk/cmake/host-dependencies.cmake)
 
 include(CMakeDependentOption)
 

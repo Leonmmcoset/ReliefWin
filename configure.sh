@@ -148,8 +148,42 @@ fex_arm64ec_enabled() {
 	return 0
 }
 
-# FFmpeg is opt-in for Clang builds of i386, AMD64 and ARM64. An explicit
-# CMake value takes precedence over menuconfig.
+cmake_option_enabled() {
+	OPTION_SETTING=$2
+	case "$(rosconfig_cache_get "$1")" in
+		y) OPTION_SETTING=ON ;;
+		n) OPTION_SETTING=OFF ;;
+	esac
+	for OPTION_ARG in $ROS_CMAKEOPTS; do
+		case "$OPTION_ARG" in
+			-D"$1"=*|-D"$1":*=*) OPTION_SETTING=${OPTION_ARG#*=} ;;
+		esac
+	done
+	OPTION_SETTING=$(printf '%s' "$OPTION_SETTING" | tr '[:lower:]' '[:upper:]')
+	case "$OPTION_SETTING" in
+		""|0|OFF|NO|FALSE|N|IGNORE|NOTFOUND|*-NOTFOUND) return 1 ;;
+	esac
+	return 0
+}
+
+mesa_enabled() {
+	[ "$USE_CLANG" = "1" ] || return 1
+	case "$ARCH" in
+		i386|amd64|arm64|riscv64) ;;
+		*) return 1 ;;
+	esac
+	cmake_option_enabled MESA_GALLIUM_FROM_SOURCE ON
+}
+
+dxilconv_enabled() {
+	[ "$USE_CLANG" = "1" ] || return 1
+	case "$ARCH" in
+		i386|amd64|arm64) ;;
+		*) return 1 ;;
+	esac
+	cmake_option_enabled ENABLE_DXILCONV ON
+}
+
 ffmpeg_enabled() {
 	[ "$USE_CLANG" = "1" ] || return 1
 	case "$ARCH" in
@@ -157,19 +191,8 @@ ffmpeg_enabled() {
 		*) return 1 ;;
 	esac
 
-	FFMPEG_SETTING=$(rosconfig_cache_get ENABLE_FFMPEG)
-	for FFMPEG_ARG in $ROS_CMAKEOPTS; do
-		case "$FFMPEG_ARG" in
-			-DENABLE_FFMPEG=*|-DENABLE_FFMPEG:*=*)
-				FFMPEG_SETTING=$(printf '%s' "${FFMPEG_ARG#*=}" | tr '[:lower:]' '[:upper:]')
-				;;
-		esac
-	done
-
-	case "$FFMPEG_SETTING" in
-		y|1|ON|YES|TRUE|Y) return 0 ;;
-	esac
-	return 1
+	cmake_option_enabled ENABLE_FFMPEG ON || return 1
+	cmake_option_enabled FFMPEG_FROM_SOURCE OFF
 }
 
 felix86_enabled() {
@@ -212,26 +235,7 @@ sync_glmark2_submodule() {
 }
 
 install_host_packages() {
-	[ "${ROSBE_DOCKER_ACTIVE:-0}" = "1" ] && return 0
-	HOST_PACKAGES_MISSING=
-	for HOST_TOOL in cmake:cmake ninja:ninja-build flex:flex bison:bison ccache:ccache wget:wget xz:xz-utils tar:tar python3:python3 glslangValidator:glslang-tools; do
-		command -v "${HOST_TOOL%%:*}" >/dev/null 2>&1 ||
-			HOST_PACKAGES_MISSING="$HOST_PACKAGES_MISSING ${HOST_TOOL#*:}"
-	done
-	for HOST_PYMOD in mako:python3-mako yaml:python3-yaml packaging:python3-packaging; do
-		python3 -c "import ${HOST_PYMOD%%:*}" >/dev/null 2>&1 ||
-			HOST_PACKAGES_MISSING="$HOST_PACKAGES_MISSING ${HOST_PYMOD#*:}"
-	done
-	[ -n "$HOST_PACKAGES_MISSING" ] || return 0
-	if ! command -v apt-get >/dev/null 2>&1; then
-		echo "configure.sh: warning: missing host packages:$HOST_PACKAGES_MISSING" >&2
-		return 0
-	fi
-	HOST_SUDO=
-	[ "$(id -u)" = "0" ] || HOST_SUDO=sudo
-	echo "Installing host packages:$HOST_PACKAGES_MISSING"
-	{ $HOST_SUDO apt-get update && $HOST_SUDO apt-get install -y $HOST_PACKAGES_MISSING; } ||
-		fail "could not install the host packages:$HOST_PACKAGES_MISSING"
+	sh "$REACTOS_SOURCE_DIR/scripts/build-deps.sh" || fail "host build dependencies are unavailable"
 }
 
 # External sources live in their own repositories, declared in feeds.conf.
@@ -240,7 +244,13 @@ sync_feeds() {
 	[ "$SKIP_FEEDS_UPDATE" = "0" ] || return 0
 	[ -x "$REACTOS_SOURCE_DIR/scripts/feeds" ] || fail "missing $REACTOS_SOURCE_DIR/scripts/feeds"
 
-	FEEDS_WANTED=mesa
+	FEEDS_WANTED=
+	if mesa_enabled; then
+		FEEDS_WANTED=mesa
+	fi
+	if dxilconv_enabled; then
+		FEEDS_WANTED="$FEEDS_WANTED dxc"
+	fi
 	FEEDS_WANT_KDB_ZYDIS=0
 	if [ "$ARCH" = "arm64" ] && fex_arm64ec_enabled; then
 		FEEDS_WANTED="$FEEDS_WANTED fex-arm64ec"
@@ -257,10 +267,11 @@ sync_feeds() {
 		FEEDS_WANTED="$FEEDS_WANTED felix86"
 	fi
 
-	echo "Updating source feeds:$FEEDS_WANTED"
-	# shellcheck disable=SC2086
-	"$REACTOS_SOURCE_DIR/scripts/feeds" update $FEEDS_WANTED ||
-		fail "could not update the source feeds; pass --no-feeds-update to skip"
+	if [ -n "$FEEDS_WANTED" ]; then
+		echo "Updating source feeds:$FEEDS_WANTED"
+		"$REACTOS_SOURCE_DIR/scripts/feeds" update $FEEDS_WANTED ||
+			fail "could not update the source feeds; pass --no-feeds-update to skip"
+	fi
 
 	[ "$FEEDS_WANT_KDB_ZYDIS" = "1" ] || return 0
 	echo "Updating source feeds: fex-arm64ec ($KDB_ZYDIS_FEED_PATHS)"
@@ -540,6 +551,7 @@ fi
 
 # Build the host configurator and seed this output tree's cache. The target
 # identity is persisted rather than existing only as a transient override.
+install_host_packages
 if rosconfig_build; then
 	ROSCONFIG_OK=1
 	if [ "$RUN_MENUCONFIG" = "0" ]; then
@@ -698,7 +710,6 @@ if [ "$ROSCONFIG_OK" = "1" ]; then
 fi
 echo
 
-install_host_packages
 sync_glmark2_submodule
 sync_feeds
 verify_kdb_sources

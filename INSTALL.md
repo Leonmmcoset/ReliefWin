@@ -6,7 +6,7 @@
 
 ## Building the images
 
-Set up the build environment and configure a build as described in [Building](README.md#building). Then build the image you need from the output folder, for example `output-Clang-amd64-debug`:
+Set up the build environment and configure a build as described in [Building](README.md#building-reliefwin-yourself). Then build the image you need from the output folder, for example `output-Clang-amd64-debug`:
 
 | Command | Creates | Use it to |
 |---|---|---|

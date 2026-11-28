@@ -106,3 +106,25 @@ Ubuntu 的 cppcheck 2.7 无法完整解析部分现有 SDK 枚举宏与 libc++ �
 提交前以真实 amd64/arm64 编译数据库、逐文件过滤及目标 defines 对 20 个改动的现存 C/C++ 文件运行 cppcheck 2.7。现有 libc++ 条件宏和 SDK `_CRTDATA` 宏导致部分解析中止，因此不计作静态分析全部通过。ext4 的四条 `sizeofFunctionCall` 来自 `RTL_CONSTANT_STRING` 的编译期类型检查；`StreamName` 越界报告对应变长尾部数组，写入前已按字段偏移与实际字符串长度校验缓冲区。逐项读源核查均未确认缺陷，未添加抑制。ARM32/PPC/RISC-V 的五个文件及宿主内存测试入口共六个文件没有当前配置的编译命令，未计入静态分析覆盖。
 
 本次未运行 Windows 11 基线、i386/arm64 启动或实体硬件测试。专属统计类的拒绝是按维护者要求删除功能后的有意变化，不作为 Windows 11 一致性的证明。实际运行结果仅证明上述环境与检查覆盖的行为，不能保证所有硬件和应用均无问题。
+
+## 构建系统审查（2026-11-28）
+
+本次修改以 `2c9e653b7c7` 为基线，检查配置入口、主机依赖、外部源码选择、SDK 生成文件、嵌套构建、安装 ISO、CI 和 Gitpod。修复了主机依赖安装晚于菜单工具编译、Arch 使用 Debian 包名、缺少本机编译器和工具检查、Python 模块安装失败后继续配置、默认 DXC 未获取源码和 FFmpeg 源码模式漏取源码的问题，并防止空组件选择误更新全部 feed。Office 的 PNG、Cairo、locale、platform 四个库补齐生成 SDK 头文件的编译顺序。
+
+实际主机为 Linux x86-64，使用 RosBE LLVM 24.0.0、CMake 3.31.10、Python 3.10.12、Ninja 1.10.1。全部构建设置 `CCACHE_DISABLE=1`，复用 `output-Clang-{amd64,i386,arm64}-debug`，未另建纯净构建缓存。新的 `configure.sh` 已完整执行，包含依赖预检、rosconfig、CMake 和 LLVM 运行库准备。
+
+| 验证 | 结果与范围 |
+| --- | --- |
+| 三架构 `ninja bootcd` | amd64、i386、arm64 均退出 0，生成各自的 `bootcd.iso` 和恢复镜像。均启用 Mesa 源码构建；amd64、arm64 包含 WoW64。 |
+| DXC | amd64 原生和 WoW64 i386 的 `dxilconv.dll` 均实际编译成功，PE Machine 分别为 `0x8664`、`0x014c`，最终 amd64 ISO 构建成功。 |
+| 主机依赖与源码选择 | 九个源码选择场景、Arch/Debian 包名、本机编译器包去重、安装失败、安装后模块仍缺失，以及 Python 3.8 拒绝检查均通过。原配置脚本按预期复现 DXC 和 FFmpeg 漏取源码。模拟包管理器与全部符号链接限制在临时目录内。 |
+| Office 生成头顺序 | 原图确认四个库共 58 处缺少生成头文件依赖；修复后 amd64、i386、arm64 的真实 Ninja 图检查均通过，相关库实际编译成功。 |
+| 编译记录依赖扫描 | 修复后扫描 amd64 主图及当时已有的五个嵌套图，生成头顺序缺口、缺失 include、缺失资源和扫描失败均为 0；后来启用的 DXC 由实际编译验证。两类资源未跟踪报告经核查属于注释资源和本地 manifest 覆盖。 |
+| 已有回归 | Mesa SDK 路径、feed 更新保护和 EFI 镜像生成规则检查通过。 |
+| 配置文件 | Shell 语法、主机依赖脚本 warning 级 ShellCheck、工作流 YAML 和 `git diff --check` 通过；Docker `build --check` 通过，未实际构建 Gitpod 镜像。 |
+
+本次三个主构建均关闭 FFmpeg；i386、arm64 关闭 DXC，arm64 关闭 FEX；amd64 的 DXC 开启。i386 沿用开启测试程序的缓存，amd64、arm64 关闭非默认的整套测试程序构建。未验证 FFmpeg 源码编译、ARM64 FEX、LLVMpipe 源码构建或所有可选配置组合。构建指南的 Release 命令未在此处另建缓存执行。
+
+本环境的 GitHub Git 连接反复超时。DXC 使用官方 `v1.10.2605.37` 对应提交 `c4d8f4f99aa221da58cd540bf2099a2889632ab6` 的归档，SPIR-V 子模块使用对应 gitlink；FEX 的调试器依赖使用官方提交 `13ba62a093a9b15190fed3a02594099c1e7c6198` 及对应子模块归档。它们只用于当前忽略目录中的编译验证，保留归档来源标记，未作为正常 Git 拉取通过的证据，也未提交外部源码。新设备仍需能获取 `feeds.conf.default` 声明的仓库与所选下载载荷。
+
+主机包安装使用模拟的 pacman/apt-get 验证，实际预检在现有 Linux 主机上通过；未在全新 Arch 主机、Windows 原生环境或 macOS 上重新安装构建环境。未运行虚拟机、硬件启动或 Windows 11 行为基线，本次没有修改操作系统运行时代码。完整准备步骤见[全新设备构建说明](BUILDING.md)。

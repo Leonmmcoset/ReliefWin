@@ -24,7 +24,13 @@ ReliefWin builds with RosBE, a cross-build toolchain. The steps below work on Li
 
 ### 1. Install the toolchain
 
-You need Git, CMake, Ninja and a C/C++ compiler for your own machine. RosBE adds the compilers that build ReliefWin.
+You need CMake 3.24 or newer, Python 3.9 or newer, Git, Ninja and a native C/C++ compiler. RosBE adds the compilers that build ReliefWin. `configure.sh` checks host dependencies before building the configuration tool and installs missing packages on Debian/Ubuntu and Arch Linux. A failed dependency check stops configuration.
+
+On Arch Linux, install the host dependencies with:
+
+```sh
+sudo pacman -S --needed base-devel git cmake ninja flex bison m4 ccache curl wget xz tar patch pkgconf python python-mako python-yaml python-packaging glslang msitools
+```
 
 ```sh
 curl -fsSL https://raw.githubusercontent.com/LiberNT/libernt-build-toolchain/main/rosbe-unix-bootstrap.sh | sh
@@ -36,11 +42,12 @@ curl -fsSL https://raw.githubusercontent.com/LiberNT/libernt-build-toolchain/mai
 ### 2. Get the source
 
 ```sh
-cd /path/to/ReliefWin
+git clone https://github.com/Leonmmcoset/ReliefWin.git
+cd ReliefWin
 ```
 
 > [!NOTE]
-> The first configure run also fetches the submodule and external sources the build needs.
+> The first configure run fetches the external sources needed by the selected components. Mesa and DXC are fetched for supported Clang targets; the debugger and ARM64 emulators use the FEX feed. FFmpeg source is fetched when `FFMPEG_FROM_SOURCE=ON`. Feed access and release payload downloads require an Internet connection. Use `--no-feeds-update` only after preparing those sources.
 
 ### 3. Configure
 
@@ -104,7 +111,9 @@ Each target builds everything it needs first, and the files are written to the o
 | **macOS** Intel / Apple Silicon | Clang | RosBE has no GCC build for macOS |
 | **Windows** | Clang and GCC | Through WSL2, following the Linux steps |
 
-On every host, install Git, CMake, Ninja, Flex and Bison from your package manager. RosBE provides only the cross compilers. The upstream build toolchains are available in [LiberNT/libernt-build-toolchain](https://github.com/LiberNT/libernt-build-toolchain).
+On other hosts, install Git, CMake 3.24+, Ninja, a native C/C++ compiler, Make, Flex, Bison, M4, ccache, curl, wget, xz, tar, patch, pkg-config, glslang and msitools from your package manager. Install Python 3.9+ with the Mako, PyYAML and packaging modules in the interpreter used by the build. RosBE provides the cross compilers and matching runtime sources. The upstream build toolchains are available in [LiberNT/libernt-build-toolchain](https://github.com/LiberNT/libernt-build-toolchain).
+
+See [全新设备构建说明](media/doc/BUILDING.md) for the complete installation-ISO workflow and the scope of build validation.
 
 ---
 

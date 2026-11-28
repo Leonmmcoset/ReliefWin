@@ -132,7 +132,7 @@ ReliefWin は、クロスビルド用ツールチェーンの RosBE でビルド
 
 ### 1. ツールチェーンをインストールする
 
-自分のマシン用の Git、CMake、Ninja、C/C++ コンパイラーが必要です。RosBE は ReliefWin をビルドするコンパイラーを追加します。
+自分のマシン用の Git、CMake 3.24 以降、Python 3.9 以降、Ninja、C/C++ コンパイラーが必要です。RosBE は ReliefWin をビルドするコンパイラーを追加します。依存パッケージ、外部ソースの準備、インストール ISO の手順は[新しい環境でのビルドガイド（中国語）](../../media/doc/BUILDING.md)を参照してください。
 
 ```sh
 curl -fsSL https://raw.githubusercontent.com/LiberNT/libernt-build-toolchain/main/rosbe-unix-bootstrap.sh | sh
@@ -144,7 +144,8 @@ curl -fsSL https://raw.githubusercontent.com/LiberNT/libernt-build-toolchain/mai
 ### 2. ソースを取得する
 
 ```sh
-cd /path/to/ReliefWin
+git clone https://github.com/Leonmmcoset/ReliefWin.git
+cd ReliefWin
 ```
 
 > [!NOTE]
