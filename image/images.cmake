@@ -103,6 +103,7 @@ if(DEFINED EFI_PLATFORM_ID)
     endif()
 
     add_custom_target(efisys
+        BYPRODUCTS ${CMAKE_CURRENT_BINARY_DIR}/efisys.bin
         COMMAND ${CMAKE_COMMAND} -E rm -f ${CMAKE_CURRENT_BINARY_DIR}/efisys.bin
         COMMAND native-fatten ${CMAKE_CURRENT_BINARY_DIR}/efisys.bin -format ${_efisys_sectors} EFIBOOT
             ${_efisys_boot_options}
