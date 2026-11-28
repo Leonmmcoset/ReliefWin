@@ -126,6 +126,12 @@ feed_nested_update() {
 		fail "could not initialize $_path in $_root"
 }
 
+feed_prepare_mesa() {
+	[ "$1" = "mesa" ] || return 0
+	cmake "-DMESA_SOURCE_DIR=$2" "-DRESTORE=$3" -P "$REACTOS_SOURCE_DIR/submodules/mesa-sdk.cmake" ||
+		fail "could not prepare the Mesa SDK include directory"
+}
+
 feed_update() {
 	_name=$1
 	_url=$2
@@ -144,8 +150,10 @@ feed_update() {
 		git clone --depth 1 --single-branch --branch "$_branch" "$_url" "$_dir" ||
 			fail "could not clone $_name"
 	else
+		feed_prepare_mesa "$_name" "$_dir" ON
 		# Never discard local work: a dirty or diverged feed is left as it is.
 		if [ -n "$(git -C "$_dir" status --porcelain 2>/dev/null)" ]; then
+			feed_prepare_mesa "$_name" "$_dir" OFF
 			echo "feeds: $_name has local modifications; leaving it untouched" >&2
 			return 0
 		fi
@@ -159,6 +167,8 @@ feed_update() {
 				fail "could not check out $_branch for $_name"
 		fi
 	fi
+
+	feed_prepare_mesa "$_name" "$_dir" OFF
 
 	if [ -n "$_nested" ]; then
 		# Shortest paths first so a parent is checked out before its children.

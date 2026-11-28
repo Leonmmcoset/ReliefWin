@@ -9,6 +9,11 @@ set(MESA_SOURCE_DIR "${REACTOS_SOURCE_DIR}/submodules/mesa")
 if(NOT EXISTS "${MESA_SOURCE_DIR}/CMakeLists.txt")
     message(FATAL_ERROR "The vendored Mesa source is missing at ${MESA_SOURCE_DIR}")
 endif()
+set(_mesa_sdk_prepare "${REACTOS_SOURCE_DIR}/submodules/mesa-sdk.cmake")
+execute_process(COMMAND "${CMAKE_COMMAND}" "-DMESA_SOURCE_DIR=${MESA_SOURCE_DIR}" -P "${_mesa_sdk_prepare}"
+    COMMAND_ERROR_IS_FATAL ANY)
+set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS
+    "${_mesa_sdk_prepare}" "${MESA_SOURCE_DIR}/CMakeLists.txt")
 # Parallelism is inherited at build time; discard the old fixed job limit.
 unset(MESA_BUILD_JOBS CACHE)
 if(CMAKE_BUILD_TYPE STREQUAL "Release")

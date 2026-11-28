@@ -41,6 +41,11 @@ Nested builds inherit the invoking `ninja -jN` or `cmake --build --parallel N`
 at build time, including ARM64EC and WoW64. `CMAKE_BUILD_PARALLEL_LEVEL` is also
 supported. The old fixed `MESA_BUILD_JOBS` cache setting is removed.
 `MESA_BISON`, `MESA_FLEX`, and `MESA_PYTHON` select the host generator tools.
+Configuration prepares the Mesa feed to select `sdk/include/reliefwin` for
+the KMT and zlib headers. Feed updates remove and reapply that managed change
+so it does not prevent upstream updates; unrelated local edits are retained.
+`python3 scripts/test_mesa_sdk.py` checks header selection, repeated preparation,
+feed updates and preservation of local edits using the downloaded Mesa revision.
 WGL and Lavapipe share one Mesa CMake configuration and generated-source graph.
 See [Mesa's CMake notes](../../../submodules/mesa/cmake/README.md) for standalone
 build commands and supported profiles.
