@@ -554,3 +554,8 @@ BEGIN
     IDS_HOST_VOLUMEERRORS "%s has file system errors, so Windows cannot shrink it. Run ""chkdsk %s /f"" as an administrator, restart the computer so that Windows repairs the drive, then start Setup again."
     IDS_HOST_CHECKINGSIZE "Windows is checking how much space %s can give to ReliefWin..."
 END
+
+STRINGTABLE
+BEGIN
+    IDS_READY_OOBE_ACCOUNT "Create during first-run setup"
+END

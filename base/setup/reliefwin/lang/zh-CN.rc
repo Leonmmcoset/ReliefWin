@@ -554,3 +554,8 @@ BEGIN
     IDS_HOST_VOLUMEERRORS "%s 存在文件系统错误，Windows 无法压缩该分区。请以管理员身份运行“chkdsk %s /f”，重启计算机以修复驱动器，然后重新运行安装程序。"
     IDS_HOST_CHECKINGSIZE "Windows 正在检查 %s 可以为 ReliefWin 分配多少空间…"
 END
+
+STRINGTABLE
+BEGIN
+    IDS_READY_OOBE_ACCOUNT "将在首次启动时创建"
+END

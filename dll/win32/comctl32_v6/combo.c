@@ -630,6 +630,17 @@ static void CBPaintText(HEADCOMBO *lphc, HDC hdc_paint)
    INT	id, size = 0;
    LPWSTR pText = NULL;
 
+   if (!hdc_paint && !(lphc->wState & (CBF_EDIT | CBF_NOREDRAW)) &&
+       !CB_OWNERDRAWN(lphc) && IsWindowVisible(lphc->self))
+   {
+       HTHEME theme = GetWindowTheme(lphc->self);
+       if (theme && IsThemePartDefined(theme, CP_READONLY, 0))
+       {
+           RedrawWindow(lphc->self, NULL, NULL, RDW_INVALIDATE | RDW_UPDATENOW);
+           return;
+       }
+   }
+
    TRACE("\n");
 
    /* follow Windows combobox that sends a bunch of text

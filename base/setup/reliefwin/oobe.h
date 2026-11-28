@@ -40,14 +40,6 @@ GetSystemDriveSpace(
     _Out_opt_ PULONGLONG TotalMb,
     _Out_ PULONGLONG FreeMb);
 
-INT_PTR
-CALLBACK
-AppsPageProc(
-    _In_ HWND hwndDlg,
-    _In_ UINT uMsg,
-    _In_ WPARAM wParam,
-    _In_ LPARAM lParam);
-
 BOOL
 WaitForInternet(VOID);
 
@@ -67,3 +59,12 @@ OobeResultText(
 extern POOBE_APP OobeApps;
 extern ULONG OobeAppCount;
 extern BOOL OobeInstallDrivers;
+
+DWORD OobeBootLanguage(PCWSTR Locale, BOOL Write);
+DWORD OobeEncryptionState(PDWORD Flags);
+BOOL OobeOwnsAccount(PCWSTR Name);
+BOOL OobePending(VOID);
+DWORD OobeApply(PSETUPDATA Data, POOBE_PROGRESS Progress, BOOL ComponentsOnly);
+DWORD OobeComplete(BOOL ComponentsOnly);
+DWORD OobeFinishSession(BOOL Reboot);
+int RunOobeExperience(PSETUPDATA Data, BOOL Preview, BOOL ComponentsOnly, int Show);

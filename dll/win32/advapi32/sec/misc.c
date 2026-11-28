@@ -726,6 +726,7 @@ LookupAccountNameW(LPCWSTR lpSystemName,
 #endif
             ReferencedDomainName[dwDomainNameLength] = L'\0';
 
+            *cbSid = dwSidLength;
             *cchReferencedDomainName = dwDomainNameLength;
 
             *peUse = TranslatedSid->Use;

@@ -790,6 +790,38 @@ StartInstaller(IN LPCWSTR lpInstallerName)
     return FALSE;
 }
 
+static BOOL
+RunFirstBootSetup(VOID)
+{
+    WCHAR Scheduled[MAX_PATH + 32], Path[MAX_PATH], Command[MAX_PATH + 32];
+    DWORD Size = sizeof(Scheduled), ExitCode = ERROR_GEN_FAILURE;
+    STARTUPINFOW Startup = {sizeof(Startup)};
+    PROCESS_INFORMATION Process;
+    BOOL Components;
+
+    if (RegGetValueW(HKEY_LOCAL_MACHINE, L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run",
+                     L"OOBE", RRF_RT_REG_SZ, NULL, Scheduled, &Size) != ERROR_SUCCESS)
+        return TRUE;
+    Components = wcsstr(Scheduled, L"/components") != NULL;
+    if (!GetSystemDirectoryW(Path, ARRAYSIZE(Path)) ||
+        FAILED(StringCchCatW(Path, ARRAYSIZE(Path), L"\\oobe\\oobe.exe")) ||
+        FAILED(StringCchPrintfW(Command, ARRAYSIZE(Command), L"\"%s\"%s", Path,
+                               Components ? L" /components" : L"")))
+        return FALSE;
+    if (!CreateProcessW(Path, Command, NULL, NULL, FALSE, 0, NULL, NULL, &Startup, &Process))
+        return FALSE;
+    if (WaitForSingleObject(Process.hProcess, INFINITE) == WAIT_OBJECT_0)
+        GetExitCodeProcess(Process.hProcess, &ExitCode);
+    CloseHandle(Process.hThread);
+    CloseHandle(Process.hProcess);
+    Size = sizeof(Scheduled);
+    if (Components && ExitCode == ERROR_SUCCESS &&
+        RegGetValueW(HKEY_LOCAL_MACHINE, L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run",
+                     L"OOBE", RRF_RT_REG_SZ, NULL, Scheduled, &Size) == ERROR_FILE_NOT_FOUND)
+        return TRUE;
+    return FALSE;
+}
+
 int WINAPI
 wWinMain(IN HINSTANCE hInst,
          IN HINSTANCE hPrevInstance,
@@ -809,6 +841,13 @@ wWinMain(IN HINSTANCE hInst,
         WARN("CreateEnvironmentBlock() failed, fall back to default (error %lu)\n", GetLastError());
     if (!IsConsoleShell())
         StartDesktopCompositor(pEnvironment);
+    if (!bIsLiveCD && !RunFirstBootSetup())
+    {
+        if (pEnvironment)
+            DestroyEnvironmentBlock(pEnvironment);
+        ExitWindowsEx(EWX_LOGOFF, 0);
+        return ERROR_CANCELLED;
+    }
     Success = StartShell(pEnvironment);
     if (pEnvironment)
         DestroyEnvironmentBlock(pEnvironment);

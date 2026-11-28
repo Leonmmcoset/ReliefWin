@@ -30,7 +30,7 @@ static const SETUP_PAGE_INFO SetupPages[SETUP_PAGE_COUNT] =
     { IDD_DISKPAGE,     DiskPageProc,     IDS_DRIVETITLE,    IDS_DISKSUBTITLE,
       SETUP_PAGE_BACK | SETUP_PAGE_OPTIONAL | SETUP_PAGE_SKIP_UPGRADE },
     { IDD_ACCOUNTPAGE,  AccountPageProc,  IDS_ACCOUNTTITLE,  IDS_ACCOUNTZONESUBTITLE,
-      SETUP_PAGE_BACK | SETUP_PAGE_SKIP_UNATTEND | SETUP_PAGE_SKIP_UPGRADE },
+      SETUP_PAGE_BACK | SETUP_PAGE_SKIP_UNATTEND | SETUP_PAGE_SKIP_UPGRADE | SETUP_PAGE_OPTIONAL },
     { IDD_READYPAGE,    ReadyPageProc,    IDS_READYTITLE,    IDS_READYSUBTITLE,       SETUP_PAGE_BACK | SETUP_PAGE_SKIP_UNATTEND },
     { IDD_PROCESSPAGE,  InstallPageProc,  IDS_PROCESSTITLE,  IDS_PROCESSSUBTITLE,     0 },
     { IDD_FINISHPAGE,   DonePageProc,     IDS_DONETITLE,     0,                       0 },
@@ -130,7 +130,7 @@ FillSummary(
     AppendLine(Text, ARRAYSIZE(Text), IDS_READY_COMPUTER, pSetupData->ComputerName);
     if (pSetupData->UserName[0])
         AppendLine(Text, ARRAYSIZE(Text), IDS_READY_ACCOUNT, pSetupData->UserName);
-    else if (GetBuiltinAdministratorName(Account, ARRAYSIZE(Account)))
+    else if (LoadStringW(pSetupData->hInstance, IDS_READY_OOBE_ACCOUNT, Account, ARRAYSIZE(Account)))
         AppendLine(Text, ARRAYSIZE(Text), IDS_READY_ACCOUNT, Account);
     if (pSetupData->TimeZoneName[0])
         AppendLine(Text, ARRAYSIZE(Text), IDS_READY_TIMEZONE, pSetupData->TimeZoneName);

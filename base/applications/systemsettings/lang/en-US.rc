@@ -785,3 +785,9 @@ BEGIN
     IDS_ENCRYPTION_TITLE "ReliefWin Disk Encryption"
     IDS_ENCRYPTION_DESC "Manage volume encryption, passwords, recovery keys and offline conversion"
 END
+
+STRINGTABLE
+BEGIN
+    IDS_OOBE_PREVIEW "Preview first-run setup"
+    IDS_OOBE_PREVIEW_DESC "Explore the first-run experience without changing settings or accounts."
+END

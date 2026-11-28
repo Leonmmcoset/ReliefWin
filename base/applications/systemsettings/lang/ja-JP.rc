@@ -785,3 +785,9 @@ BEGIN
     IDS_ENCRYPTION_TITLE "ReliefWin ディスク暗号化"
     IDS_ENCRYPTION_DESC "ボリュームの暗号化、パスワード、回復キー、オフライン変換を管理"
 END
+
+STRINGTABLE
+BEGIN
+    IDS_OOBE_PREVIEW "初期設定を体験"
+    IDS_OOBE_PREVIEW_DESC "設定やアカウントを変更せずに初回起動の手順を確認します。"
+END

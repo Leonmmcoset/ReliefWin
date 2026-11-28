@@ -1073,6 +1073,14 @@ BuildAbout(PageBuilder &page)
                 });
 
     page.Group(Str(IDS_RELATED));
+    page.Button(Str(IDS_OOBE_PREVIEW), Str(IDS_OOBE_PREVIEW_DESC), L"desktop_20_regular", Str(IDS_UPDATE_OPEN_BUTTON),
+                [](int)
+                {
+                    WCHAR path[MAX_PATH];
+                    if (GetSystemDirectoryW(path, _countof(path)) &&
+                        SUCCEEDED(StringCchCatW(path, _countof(path), L"\\oobe\\oobe.exe")))
+                        Launch(path, L"/preview");
+                });
     page.Navigate(Str(IDS_PAGE_ENVIRONMENT), Str(IDS_ENVIRONMENT_DESC), L"code_20_regular", PageId::Environment)
         .Keywords = Str(IDS_ENVIRONMENT_KEYWORDS);
     page.Navigate(Str(IDS_PAGE_RECOVERY), Str(IDS_RECOVERY_DESC), L"storage_20_regular", PageId::Recovery)

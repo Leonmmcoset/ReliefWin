@@ -749,7 +749,7 @@ LsapLookupWellKnownSid(PSID Sid)
         Ptr = CONTAINING_RECORD(ListEntry,
                                 WELL_KNOWN_SID,
                                 ListEntry);
-        if (RtlEqualSid(Sid, Ptr->Sid))
+        if (Ptr->Use != SidTypeAlias && RtlEqualSid(Sid, Ptr->Sid))
         {
             return Ptr;
         }
@@ -773,7 +773,7 @@ LsapLookupIsolatedWellKnownName(PUNICODE_STRING AccountName)
         Ptr = CONTAINING_RECORD(ListEntry,
                                 WELL_KNOWN_SID,
                                 ListEntry);
-        if (RtlEqualUnicodeString(AccountName, &Ptr->AccountName, TRUE))
+        if (Ptr->Use != SidTypeAlias && RtlEqualUnicodeString(AccountName, &Ptr->AccountName, TRUE))
         {
             return Ptr;
         }
@@ -798,7 +798,8 @@ LsapLookupFullyQualifiedWellKnownName(PUNICODE_STRING AccountName,
         Ptr = CONTAINING_RECORD(ListEntry,
                                 WELL_KNOWN_SID,
                                 ListEntry);
-        if (RtlEqualUnicodeString(AccountName, &Ptr->AccountName, TRUE) &&
+        if (Ptr->Use != SidTypeAlias &&
+            RtlEqualUnicodeString(AccountName, &Ptr->AccountName, TRUE) &&
             RtlEqualUnicodeString(DomainName, &Ptr->DomainName, TRUE) &&
             RtlCompareMemory(RtlIdentifierAuthoritySid(Ptr->Sid), &AppPackageAuthority,
                              sizeof(AppPackageAuthority)) != sizeof(AppPackageAuthority))

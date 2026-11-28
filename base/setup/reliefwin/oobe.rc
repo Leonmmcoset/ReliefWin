@@ -3,3 +3,5 @@
 #define REACTOS_STR_ORIGINAL_FILENAME   "oobe.exe"
 
 #include "reliefwin.rc"
+
+#include "experience.rc"

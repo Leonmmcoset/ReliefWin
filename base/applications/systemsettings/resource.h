@@ -781,3 +781,5 @@
 
 #define IDS_ENCRYPTION_TITLE           860
 #define IDS_ENCRYPTION_DESC            861
+#define IDS_OOBE_PREVIEW               862
+#define IDS_OOBE_PREVIEW_DESC          863

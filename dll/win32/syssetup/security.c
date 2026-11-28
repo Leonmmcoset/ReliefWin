@@ -102,12 +102,8 @@ SetAccountsDomainSid(
     if (Status != STATUS_SUCCESS)
     {
         DPRINT("LsaSetInformationPolicy failed (Status: 0x%08lx)\n", Status);
+        goto Cleanup;
     }
-
-    if (OrigInfo != NULL)
-        LsaFreeMemory(OrigInfo);
-
-    LsaClose(PolicyHandle);
 
     DomainNameInfo.DomainName.Length = DomainNameLength * sizeof(WCHAR);
     DomainNameInfo.DomainName.MaximumLength = DomainNameInfo.DomainName.Length + sizeof(WCHAR);
@@ -143,6 +139,10 @@ SetAccountsDomainSid(
         SamCloseHandle(ServerHandle);
     }
 
+Cleanup:
+    if (OrigInfo != NULL)
+        LsaFreeMemory(OrigInfo);
+    LsaClose(PolicyHandle);
     return Status;
 }
 

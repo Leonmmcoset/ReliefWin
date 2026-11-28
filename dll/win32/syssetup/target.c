@@ -749,7 +749,7 @@ WriteTargetLogon(
 }
 
 static DWORD
-ScheduleFirstBootComponents(
+ScheduleFirstBootSetup(
     _In_ PTARGET_SETTINGS Settings)
 {
     WCHAR Path[MAX_PATH];
@@ -774,10 +774,12 @@ ScheduleFirstBootComponents(
     if (Error != ERROR_SUCCESS)
         return Error;
 
-    SetRegString(hKey, L"OOBE", REG_EXPAND_SZ, L"%SystemRoot%\\system32\\oobe\\oobe.exe /components");
+    Error = RegSetValueExW(hKey, L"OOBE", 0, REG_EXPAND_SZ,
+                           (const BYTE*)L"%SystemRoot%\\system32\\oobe\\oobe.exe",
+                           sizeof(L"%SystemRoot%\\system32\\oobe\\oobe.exe"));
     RegCloseKey(hKey);
 
-    return ERROR_SUCCESS;
+    return Error;
 }
 
 static DWORD
@@ -1334,9 +1336,9 @@ ConfigureTargetSystem(
     ReportTargetPhase(9);
     if (Settings->Components && !Settings->Upgrade)
     {
-        Error = ScheduleFirstBootComponents(Settings);
+        Error = ScheduleFirstBootSetup(Settings);
         if (Error != ERROR_SUCCESS)
-            DPRINT1("ScheduleFirstBootComponents() failed (Error %lu)\n", Error);
+            return Error;
     }
     SetupCloseInfFile(hSysSetupInf);
     hSysSetupInf = INVALID_HANDLE_VALUE;
